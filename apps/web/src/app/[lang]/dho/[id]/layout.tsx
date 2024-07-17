@@ -1,3 +1,4 @@
+import { Locale } from '@hypha-platform/i18n';
 import {
   HomeIcon,
   Logo,
@@ -10,15 +11,13 @@ import Link from 'next/link';
 
 export default function DhoLayout({
   children,
-  params,
+  params: { id: dho, lang},
   searchParams,
 }: {
   children: React.ReactNode;
-  params: { id: string };
+  params: { id: string, lang: Locale };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  console.debug({ params, searchParams });
-  const dho = params.id;
   return (
     <div className="flex">
       <Navigation>
@@ -29,25 +28,25 @@ export default function DhoLayout({
           </div>
           <ul className='flex flex-col gap-2'>
             <NavigationItem>
-              <Link href={`/dho/${dho}/`} className="flex gap-2">
+              <Link href={`/${lang}/dho/${dho}/`} className="flex gap-2">
                 <HomeIcon />
                 <div>Dashboard</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
-              <Link href={`/dho/${dho}/members`} className="flex gap-2">
+              <Link href={`/${lang}/dho/${dho}/members`} className="flex gap-2">
                 <PeopleIcon />
                 <div>Members</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
-              <Link href={`/dho/${dho}/assignments`} className="flex gap-2">
+              <Link href={`/${lang}/dho/${dho}/assignments`} className="flex gap-2">
                 <VoteIcon />
                 <div>Assignments</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
-              <Link href={`/dho/${dho}/treasury`} className="flex gap-2">
+              <Link href={`/${lang}/dho/${dho}/treasury`} className="flex gap-2">
                 <HomeIcon />
                 <div>Treasury</div>
               </Link>

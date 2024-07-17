@@ -19,7 +19,7 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
   },
   "include": [
     "**/*.ts",
@@ -30,7 +30,7 @@
     "../../dist/apps/web/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "../../packages/i18n/src/get-dictionaries.ts", "../../packages/i18n/src/i18n-config.ts", "../../packages/i18n/src/middleware.ts"  ],
   "exclude": [
     "node_modules",
     "jest.config.ts",
