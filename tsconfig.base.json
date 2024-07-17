@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@hypha-platform/ui": ["packages/ui/src/index.ts"],
+      "@hypha-platform/ui/server": ["packages/ui/src/server.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
