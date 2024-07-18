@@ -1,3 +1,22 @@
+<p align="center">
+  <a href="https://hypha.earth/">
+    <img src="https://hypha.earth/wp-content/themes/hypha-theme/img/round-logo.svg" height="128">
+    <h1 align="center">Hypha DHO Web Platform v3</h1>
+  </a>
+</p>
+
+<p align="center">
+  <a aria-label="GitHub version" href="https://github.com/hypha-dao/dho-web-client">
+    <img alt="GitHub package.json version (subfolder of monorepo)" src="https://img.shields.io/github/package-json/v/hypha-dao/dho-web-client?style=for-the-badge&labelColor=000000">
+  </a>
+  <a aria-label="License" href="https://github.com/hypha-dao/dho-web-client/blob/master/license.md">
+    <img alt="" src="https://img.shields.io/github/license/hypha-dao/dho-web-client?style=for-the-badge&labelColor=000000">
+  </a>
+  <a aria-label="Join the community on GitHub" href="https://github.com/hypha-dao/dho-web-client/discussions">
+    <img alt="Discord" src="https://img.shields.io/discord/722537361480613950?style=for-the-badge">
+  </a>
+</p>
+
 # HyphaPlatform
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
