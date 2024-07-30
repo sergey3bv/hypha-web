@@ -1,4 +1,4 @@
-import { Locale } from '@hypha-platform/i18n';
+import { Locale, i18nConfig } from '@hypha-platform/i18n';
 import {
   HomeIcon,
   Logo,
@@ -60,7 +60,7 @@ export default function DhoLayout({
           </ul>
         </div>
         <div>
-          <SelectLanguage lang={lang} />
+          <SelectLanguage currentLanguage={lang} languages={i18nConfig.locales}/>
         </div>
       </Navigation>
       <article>{children}</article>

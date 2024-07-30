@@ -6,7 +6,7 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons
 type SelectMenuProps = {
   children: React.ReactNode;
   value: string;
-  onValueChange: (value: string) => void;
+  onValueChange?: (value: string) => void;
 }
 
 

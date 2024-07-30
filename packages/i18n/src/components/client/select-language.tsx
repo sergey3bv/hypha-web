@@ -4,10 +4,11 @@ import { SelectItem, SelectMenu } from '@hypha-platform/ui/server';
 import { usePathname, useRouter } from 'next/navigation';
 
 type LangSelectProps = {
-  lang: string;
+  currentLanguage: string;
+  languages: readonly string[];
 };
 
-export const SelectLanguage: React.FC<LangSelectProps> = ({lang}) => {
+export const SelectLanguage: React.FC<LangSelectProps> = ({currentLanguage, languages}) => {
   const {push} = useRouter()
   const path = usePathname()
 
@@ -18,9 +19,12 @@ export const SelectLanguage: React.FC<LangSelectProps> = ({lang}) => {
   }
 
   return (
-    <SelectMenu value={lang} onValueChange={handleLangChange}>
-      <SelectItem value="de">De</SelectItem>
-      <SelectItem value="en">En</SelectItem>
+    <SelectMenu value={currentLanguage} onValueChange={handleLangChange}>
+      {languages.map((lang) => (
+        <SelectItem key={lang} value={lang}>
+          {lang.toUpperCase()}
+        </SelectItem>
+      ))}
     </SelectMenu>
   );
 };
