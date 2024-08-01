@@ -2,3 +2,4 @@
 
 export * from './query/dao/list'
 export * from './query/dao/detail'
+export * from './fetch-access-token'
