@@ -1,6 +1,5 @@
 import { getAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
 import { DaoCard } from '@hypha-platform/ui/server';
-import { Card } from '@radix-ui/themes';
 import Link from 'next/link';
 
 export default async function Index() {
@@ -14,10 +13,10 @@ export default async function Index() {
           <Link href={`/dho/${dao.url}`}>
             <DaoCard
               createdDate={dao.date}
-              description={dao.description}
+              description={dao.description as string}
               icon={`https://hypha.infura-ipfs.io/ipfs/${dao.logo}`}
               members={0}
-              title={dao.title}
+              title={dao.title as string}
             />
           </Link>
         </div>
