@@ -2,17 +2,13 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 @layer base {
-  :root { }
-
-  .dark { }
-}
-
-@layer base {
-  * { }
-
   body {
     @apply font-body;
+
+    .radix-themes {
+      --default-font-family: var(--font-body);
+      --heading-font-family: var(--font-heading);
+    }
   }
 }
