@@ -12,7 +12,14 @@ export default meta;
 type Story = StoryObj<typeof DaoCard>;
 
 export const Primary = {
-  args: {},
+  args: {
+    icon: "https://hypha.infura-ipfs.io/ipfs/QmRsJAvDpAPp54Tqf9P7LdyhU46YjZuuvjmkMMhjWwNFKk",
+    title: 'Hypha DAO',
+    description:
+      "Hypha's complete DAO toolkit helps individuals, projects, and organizations achieve more together.",
+    createdDate: 'Jul 16, 2024',
+    members: 100,
+  },
 };
 
 export const Heading: Story = {

@@ -1,4 +1,4 @@
-import { Html, Theme } from '@hypha-platform/ui/server';
+import { Html, Menu, Theme } from '@hypha-platform/ui/server';
 import '@radix-ui/themes/styles.css';
 import '@hypha-platform/ui/styles.css';
 
@@ -14,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <Html>
-      <Theme>{children}</Theme>
+      <Theme>
+        <Menu />
+        {children}
+      </Theme>
     </Html>
   );
 }

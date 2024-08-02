@@ -17,11 +17,8 @@ const sourceSans = Source_Sans_3({
 
 export const Html: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html
-      lang="en"
-      className={clsx('h-full bg-slate-50', lato.variable, sourceSans.variable)}
-    >
-      <body className="flex h-full">{children}</body>
+    <html lang="en" className={clsx(lato.variable, sourceSans.variable)}>
+      <body className="flex w-full h-full">{children}</body>
     </html>
   );
 };

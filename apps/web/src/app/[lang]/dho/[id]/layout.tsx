@@ -18,10 +18,9 @@ export default function DhoLayout({
   params: { id: string; lang: Locale };
 }) {
   return (
-    <div className="flex">
+    <div className="flex h-full">
       <Navigation>
-        <Logo />
-        <div className="flex flex-col gap-2 py-8">
+        <div className="flex flex-col gap-2">
           <div className="text-[0.5rem] uppercase font-bold text-slate-500">
             General
           </div>
@@ -65,7 +64,7 @@ export default function DhoLayout({
           />
         </div>
       </Navigation>
-      <article>{children}</article>
+      <article className="py-4">{children}</article>
     </div>
   );
 }

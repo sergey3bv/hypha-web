@@ -8,9 +8,5 @@ export type NavigationProps = {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({children}) => {
-  return (
-    <nav className="h-full px-6 py-4 bg-white w-52">
-    {children}
-    </nav>
-  );
+  return <nav className="h-full px-6 py-4 w-52">{children}</nav>;
 };
