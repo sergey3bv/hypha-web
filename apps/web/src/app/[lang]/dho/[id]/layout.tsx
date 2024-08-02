@@ -16,7 +16,6 @@ export default function DhoLayout({
 }: {
   children: React.ReactNode;
   params: { id: string; lang: Locale };
-  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   return (
     <div className="flex">
@@ -60,7 +59,10 @@ export default function DhoLayout({
           </ul>
         </div>
         <div>
-          <SelectLanguage currentLanguage={lang} languages={i18nConfig.locales}/>
+          <SelectLanguage
+            currentLanguage={lang}
+            languages={i18nConfig.locales}
+          />
         </div>
       </Navigation>
       <article>{children}</article>
