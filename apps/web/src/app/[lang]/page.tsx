@@ -1,12 +1,11 @@
-import { fetchAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
+import { getAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
 import Link from 'next/link';
 
 
 export default async function Index() {
-  const newtoken = await fetchAccessToken();
-
+  const newtoken = await getAccessToken();
   const daos = await getDaoList({ token: newtoken.accessJWT });
-  console.debug({ daos: JSON.stringify(daos), newtoken });
+
   return (
     <div>
       <h1>DHOs</h1>

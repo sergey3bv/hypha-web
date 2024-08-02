@@ -1,4 +1,4 @@
-export const fetchAccessToken = () => {
+export const getAccessToken = async () => {
   const HYPHA_AUTH_URL = process.env.HYPHA_AUTH_URL
   const CHAIN_NAME = process.env.CHAIN_NAME
   const ENV = process.env.ENV || 'prod'

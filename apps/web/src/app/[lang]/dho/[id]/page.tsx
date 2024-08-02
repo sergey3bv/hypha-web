@@ -1,12 +1,14 @@
-import { fetchAccessToken, getDaoDetail } from '@hypha-platform/graphql/rsc';
+import { getAccessToken, getDaoDetail } from '@hypha-platform/graphql/rsc';
 import { getDictionary, Locale } from '@hypha-platform/i18n';
 
 type PageProps = {
-  params: { lang: Locale, id: string };
+  params: { lang: Locale; id: string };
 };
 
-export default async function Index({ params: { lang, id: daoSlug } }: PageProps) {
-  const newtoken = await fetchAccessToken();
+export default async function Index({
+  params: { lang, id: daoSlug },
+}: PageProps) {
+  const newtoken = await getAccessToken();
   const t = await getDictionary(lang);
   const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
   return (
