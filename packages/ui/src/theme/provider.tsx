@@ -1,16 +1,20 @@
 import { Theme as RadixTheme } from '@radix-ui/themes';
 import type { ThemeProps } from '@radix-ui/themes';
+import { ThemeProvider } from 'next-themes';
 
 export const Theme: React.FC<ThemeProps> = (props) => {
   return (
-    <RadixTheme
-      accentColor="blue"
-      grayColor="gray"
-      panelBackground="solid"
-      scaling="100%"
-      {...props}
-    >
-      {props.children}
-    </RadixTheme>
+    <ThemeProvider attribute="class">
+      <RadixTheme
+        accentColor="indigo"
+        grayColor="gray"
+        panelBackground="solid"
+        scaling="100%"
+        className="w-full h-full"
+        {...props}
+      >
+        {props.children}
+      </RadixTheme>
+    </ThemeProvider>
   );
 };
