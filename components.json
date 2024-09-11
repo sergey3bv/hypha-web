@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tailwind": {
+    "config": "packages/ui-utils/tailwind.config.js",
+    "css": "packages/ui-utils/global.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@hypha-platform/ui",
+    "utils": "@hypha-platform/ui-utils"
+  }
+}
