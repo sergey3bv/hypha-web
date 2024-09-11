@@ -1,6 +1,6 @@
 import { Html, Menu, Theme } from '@hypha-platform/ui/server';
 import '@radix-ui/themes/styles.css';
-import '@hypha-platform/ui/styles.css';
+import '@hypha-platform/ui-utils/global.css';
 
 export const metadata = {
   title: 'Welcome to web',
