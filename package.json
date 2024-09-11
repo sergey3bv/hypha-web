@@ -2,7 +2,9 @@
   "name": "@hypha-platform/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx dev web"
+  },
   "private": true,
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
