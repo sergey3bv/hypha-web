@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { FaRegCompass } from 'react-icons/fa6';
-import { Logo } from '../atoms';
+import { Logo, } from '../atoms';
 
 type MenuProps = {
   home?: string;

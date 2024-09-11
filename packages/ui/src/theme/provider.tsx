@@ -10,7 +10,7 @@ export const Theme: React.FC<ThemeProps> = (props) => {
         grayColor="gray"
         panelBackground="solid"
         scaling="100%"
-        className="w-full h-full"
+        className="flex flex-col w-full h-full"
         {...props}
       >
         {props.children}

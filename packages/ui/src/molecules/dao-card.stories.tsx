@@ -7,6 +7,13 @@ import { expect } from '@storybook/jest';
 const meta: Meta<typeof DaoCard> = {
   component: DaoCard,
   title: 'molecules/DaoCard',
+  decorators: [
+    (Story) => (
+      <div className="w-52 h-44">
+        <Story />
+      </div>
+    ),
+  ],
 };
 export default meta;
 type Story = StoryObj<typeof DaoCard>;

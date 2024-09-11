@@ -1,14 +1,12 @@
 import { Locale, i18nConfig } from '@hypha-platform/i18n';
 import {
-  HomeIcon,
-  Logo,
   Navigation,
   NavigationItem,
-  PeopleIcon,
-  VoteIcon,
 } from '@hypha-platform/ui/server';
 import Link from 'next/link';
 import { SelectLanguage } from '@hypha-platform/i18n/client';
+import { FaHome, FaVoteYea } from 'react-icons/fa';
+import { FaMoneyBill, FaPeopleGroup } from 'react-icons/fa6';
 
 export default function DhoLayout({
   children,
@@ -18,7 +16,7 @@ export default function DhoLayout({
   params: { id: string; lang: Locale };
 }) {
   return (
-    <div className="flex h-full">
+    <div className="flex flex-grow h-full">
       <Navigation>
         <div className="flex flex-col gap-2">
           <div className="text-[0.5rem] uppercase font-bold text-slate-500">
@@ -26,32 +24,38 @@ export default function DhoLayout({
           </div>
           <ul className="flex flex-col gap-2">
             <NavigationItem>
-              <Link href={`/${lang}/dho/${dho}/`} className="flex gap-2">
-                <HomeIcon />
+              <Link
+                href={`/${lang}/dho/${dho}/`}
+                className="flex items-center gap-2"
+              >
+                <FaHome />
                 <div>Dashboard</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
-              <Link href={`/${lang}/dho/${dho}/members`} className="flex gap-2">
-                <PeopleIcon />
+              <Link
+                href={`/${lang}/dho/${dho}/members`}
+                className="flex items-center gap-2"
+              >
+                <FaPeopleGroup />
                 <div>Members</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
               <Link
                 href={`/${lang}/dho/${dho}/assignments`}
-                className="flex gap-2"
+                className="flex items-center gap-2"
               >
-                <VoteIcon />
+                <FaVoteYea />
                 <div>Assignments</div>
               </Link>
             </NavigationItem>
             <NavigationItem>
               <Link
                 href={`/${lang}/dho/${dho}/treasury`}
-                className="flex gap-2"
+                className="flex items-center gap-2"
               >
-                <HomeIcon />
+                <FaMoneyBill />
                 <div>Treasury</div>
               </Link>
             </NavigationItem>
@@ -64,7 +68,7 @@ export default function DhoLayout({
           />
         </div>
       </Navigation>
-      <article className="py-4">{children}</article>
+      <article className="w-full h-full py-4">{children}</article>
     </div>
   );
 }

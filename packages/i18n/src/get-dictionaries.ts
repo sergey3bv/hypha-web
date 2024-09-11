@@ -10,5 +10,5 @@ const dictionaries = {
 
 export const getDictionary = async (locale: Locale) => {
   const dict = await dictionaries[locale]?.() ?? dictionaries.en();
-  return async (key: keyof typeof dict) => dict[key] ?? key;
+  return (key: keyof typeof dict) => dict[key] ?? key;
 }
