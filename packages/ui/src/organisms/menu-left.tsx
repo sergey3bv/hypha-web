@@ -18,7 +18,7 @@ export const MenuLeft = ({
   className,
 }: LeftMenuProps) => {
   return (
-    <div id="menu-left" className={clsx("fixed top-0 left-0 h-full flex flex-col w-20 items-center py-4 space-y-8 bg-background-1", className)}>
+    <div id="menu-left" className={clsx("fixed top-0 left-0 h-full flex flex-col w-20 items-center py-4 space-y-8 bg-background-2", className)}>
       <div id="active-dao">
         <Avatar>
           <AvatarImage src={logo} alt="logo" />
