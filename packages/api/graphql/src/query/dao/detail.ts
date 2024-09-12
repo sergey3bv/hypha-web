@@ -29,7 +29,7 @@ const toDaoDetail = (data: ActiveDaoQuery) => {
     name: dao.settings[0].settings_daoName_n,
     title: dao.settings[0].settings_daoTitle_s,
     description: dao.settings[0].settings_daoDescription_s,
-    logo: dao.settings[0].settings_logo_s,
+    logo: `https://hypha.infura-ipfs.io/ipfs/${dao.settings[0].settings_logo_s.split(':')[0]}`,
     primaryColor: dao.settings[0].settings_primaryColor_s,
     secondaryColor: dao.settings[0].settings_secondaryColor_s,
   };

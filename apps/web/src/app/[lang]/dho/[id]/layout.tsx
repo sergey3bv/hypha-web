@@ -1,74 +1,23 @@
-import { Locale, i18nConfig } from '@hypha-platform/i18n';
-import {
-  Navigation,
-  NavigationItem,
-} from '@hypha-platform/ui/server';
-import Link from 'next/link';
-import { SelectLanguage } from '@hypha-platform/i18n/client';
-import { FaHome, FaVoteYea } from 'react-icons/fa';
-import { FaMoneyBill, FaPeopleGroup } from 'react-icons/fa6';
+import { getAccessToken, getDaoDetail, getUserDaos } from '@hypha-platform/graphql/rsc';
+import { Locale } from '@hypha-platform/i18n';
+import { MenuLeft, MenuTop } from '@hypha-platform/ui/server';
 
-export default function DhoLayout({
+export default async function DhoLayout({
   children,
-  params: { id: dho, lang },
+  params: { id: daoSlug, lang },
 }: {
   children: React.ReactNode;
   params: { id: string; lang: Locale };
 }) {
+  const newtoken = await getAccessToken();
+  const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
+  const connectedDaos = await getUserDaos({ token: newtoken.accessJWT });
+  console.debug("DhoLayout", {dao, connectedDaos})
   return (
-    <div className="flex flex-grow h-full">
-      <Navigation>
-        <div className="flex flex-col gap-2">
-          <div className="text-[0.5rem] uppercase font-bold text-slate-500">
-            General
-          </div>
-          <ul className="flex flex-col gap-2">
-            <NavigationItem>
-              <Link
-                href={`/${lang}/dho/${dho}/`}
-                className="flex items-center gap-2"
-              >
-                <FaHome />
-                <div>Dashboard</div>
-              </Link>
-            </NavigationItem>
-            <NavigationItem>
-              <Link
-                href={`/${lang}/dho/${dho}/members`}
-                className="flex items-center gap-2"
-              >
-                <FaPeopleGroup />
-                <div>Members</div>
-              </Link>
-            </NavigationItem>
-            <NavigationItem>
-              <Link
-                href={`/${lang}/dho/${dho}/assignments`}
-                className="flex items-center gap-2"
-              >
-                <FaVoteYea />
-                <div>Assignments</div>
-              </Link>
-            </NavigationItem>
-            <NavigationItem>
-              <Link
-                href={`/${lang}/dho/${dho}/treasury`}
-                className="flex items-center gap-2"
-              >
-                <FaMoneyBill />
-                <div>Treasury</div>
-              </Link>
-            </NavigationItem>
-          </ul>
-        </div>
-        <div>
-          <SelectLanguage
-            currentLanguage={lang}
-            languages={i18nConfig.locales}
-          />
-        </div>
-      </Navigation>
-      <article className="w-full h-full py-4">{children}</article>
+    <div className="flex flex-grow h-full w-full">
+      <MenuLeft activeDao={dao} connectedDaos={connectedDaos} />
+      <MenuTop />
+      <div className="flex-grow ml-20 mt-20 p-10">{children}</div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default async function Index() {
             <DaoCard
               createdDate={dao.date}
               description={dao.description as string}
-              icon={`https://hypha.infura-ipfs.io/ipfs/${dao.logo}`}
+              icon={dao.logo}
               members={0}
               title={dao.title as string}
             />
