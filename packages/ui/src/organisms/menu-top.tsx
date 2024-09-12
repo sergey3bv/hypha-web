@@ -1,4 +1,3 @@
-import { Text } from '@radix-ui/themes';
 import { Button } from '../atoms';
 import { ButtonNavItem } from '../atoms/button-nav-item';
 
