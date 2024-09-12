@@ -1,5 +1,6 @@
-import { Avatar, Card, Flex } from '@radix-ui/themes';
 import { FaCalendarAlt, FaUsers } from 'react-icons/fa';
+import { Avatar, AvatarImage } from '../atoms';
+import { Card, CardContent, CardHeader } from './card';
 
 type DaoCardProps = {
   createdDate: string;
@@ -18,11 +19,15 @@ export const DaoCard: React.FC<DaoCardProps> = ({
 }) => {
   return (
     <Card className="h-full">
-      <Flex direction="column" gap="4">
-        <Flex align="center" gap="4">
-          <Avatar radius="full" size="4" src={icon} alt="logo" fallback={''} />
+      <CardHeader>
+        <div className="flex items-center gap-4">
+          <Avatar>
+            <AvatarImage src={icon} alt="logo" />
+          </Avatar>
           <div className="text-xl font-black font-heading">{title}</div>
-        </Flex>
+        </div>
+      </CardHeader>
+      <CardContent>
         <div className="flex flex-grow text-xs text-gray-500">
           {description}
         </div>
@@ -34,7 +39,7 @@ export const DaoCard: React.FC<DaoCardProps> = ({
           <FaUsers />
           <div className="text-xs">{members} Members</div>
         </div>
-      </Flex>
+      </CardContent>
     </Card>
   );
 };

@@ -1,5 +1,4 @@
-import { Html, Theme } from '@hypha-platform/ui/server';
-import '@radix-ui/themes/styles.css';
+import { Html, ThemeProvider } from '@hypha-platform/ui/server';
 import '@hypha-platform/ui-utils/global.css';
 
 export const metadata = {
@@ -14,9 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <Html>
-      <Theme>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         {children}
-      </Theme>
+      </ThemeProvider>
     </Html>
   );
 }

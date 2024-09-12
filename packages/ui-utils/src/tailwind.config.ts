@@ -8,6 +8,7 @@ export function buildConfig(
   appDir: string
 ): Config {
   return {
+    darkMode: ["class"],
     content: [
       join(
         appDir,
