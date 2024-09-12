@@ -21,9 +21,9 @@ export const MenuTop = ({ activeDao: { title }, navItems }: MenuTopProps) => {
   return (
     <div className="fixed top-0 left-20 right-0 flex h-20 items-center px-10 bg-background/5">
       <div id="menu-top-active-dao">
-        <Text size="6" className="font-heading">
+        <h1 className="text-2xl">
           {title}
-        </Text>
+        </h1>
       </div>
       <div
         id="menu-top-actions"
