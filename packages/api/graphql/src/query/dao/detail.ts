@@ -24,6 +24,8 @@ const toDaoDetail = (data: ActiveDaoQuery) => {
   const dao = data.queryDao?.[0];
   invariant(dao, 'Expected non-null DAO');
   invariant(dao.settings, 'Expected non-null DAO settings');
+  invariant(dao.settings[0].settings_daoName_n, 'Expected non-null DAO name');
+  invariant(dao.settings[0].settings_daoTitle_s, 'Expected non-null DAO title');
   return {
     id: dao.docId,
     name: dao.settings[0].settings_daoName_n,
@@ -42,7 +44,7 @@ export const getDaoDetail = async ({
   token: string;
   daoSlug: string;
 }) => {
-  console.debug({ token, daoId: daoSlug });
+  console.debug('getDaoDetail',{ token, daoId: daoSlug });
   return fetch(process.env.GRAPHQL_URI as string, {
     method: 'POST',
 

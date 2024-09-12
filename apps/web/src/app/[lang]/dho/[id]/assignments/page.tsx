@@ -17,7 +17,7 @@ export default async function AssignmentsPage({
     PATH_SEGMENT_LANG,
     lang
   ).replace(PATH_SEGMENT_DHO_ID, id);
-  console.debug({ createAssignmentPat });
+  console.debug('AssignmentsPage', { createAssignmentPat });
   return (
     <>
       <h1>{t('Assignments')}</h1>

@@ -7,7 +7,7 @@ import { EditorMenu } from './editor-menu';
 
 export const Editor = () => {
   const element = document.querySelector('#proposal');
-  console.log(element);
+  console.debug('Editor', {element});
   const editor = useEditor({
     extensions: [StarterKit, Markdown],
     content: '# Hello Tiptap!',

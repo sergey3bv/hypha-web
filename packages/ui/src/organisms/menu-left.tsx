@@ -25,7 +25,7 @@ export const MenuLeft = ({
       <div id='menu-left-spacer' className='flex-grow'/>
       <div id="connected-daos" className='flex flex-col space-y-2'>
         {connectedDaos.map(({ logo, id }) => (
-          <Avatar radius="full" size="4" src={logo} alt="logo" fallback={''} />
+          <Avatar radius="full" size="4" src={logo} alt="logo" fallback={''} key={id}/>
         ))}
       </div>
       <div id="user-avatar">

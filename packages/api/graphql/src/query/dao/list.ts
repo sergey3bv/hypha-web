@@ -61,7 +61,7 @@ const toDaoList = (data: DaoListQuery) => {
 };
 
 export const getDaoList = async ({ token }: { token: string }) => {
-  console.debug({ query: JSON.stringify(postsQueryDocument) });
+  console.debug('getDaoList',{ query: JSON.stringify(postsQueryDocument) });
 
   return fetch(process.env.GRAPHQL_URI as string, {
     method: 'POST',
@@ -87,7 +87,7 @@ export const getDaoList = async ({ token }: { token: string }) => {
       return res.json() as Promise<{ data: DaoListQuery }>;
     })
     .then((data) => {
-      console.debug({ data });
+      console.debug('getDaoList',{ data });
       return toDaoList(data.data);
     });
 };

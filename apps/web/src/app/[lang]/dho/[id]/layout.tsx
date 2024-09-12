@@ -12,12 +12,25 @@ export default async function DhoLayout({
   const newtoken = await getAccessToken();
   const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
   const connectedDaos = await getUserDaos({ token: newtoken.accessJWT });
-  console.debug("DhoLayout", {dao, connectedDaos})
+
   return (
     <div className="flex flex-grow h-full w-full">
       <MenuLeft activeDao={dao} connectedDaos={connectedDaos} />
-      <MenuTop />
-      <div className="flex-grow ml-20 mt-20 p-10">{children}</div>
+      <MenuTop activeDao={dao} navItems={[
+        {
+          label: 'Agreements',
+          href: `/${lang}/dho/${daoSlug}/assignments`,
+        },
+        {
+          label: 'Members',
+          href: `/${lang}/dho/${daoSlug}/members`,
+        },
+        {
+          label: 'Treasury',
+          href: `/${lang}/dho/${daoSlug}/treasury`,
+        },
+      ]}/>
+      <div className="fixed top-20 bottom-0 left-20 right-0 flex-grow p-10 bg-background/5 overflow-y-auto">{children}</div>
     </div>
   );
 }
