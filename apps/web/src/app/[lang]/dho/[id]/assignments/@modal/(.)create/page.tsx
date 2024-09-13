@@ -24,7 +24,7 @@ export default function CreateAssignment() {
   }, [router]);
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={open} onOpenChange={handleClose} modal>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>CreateAssignment</DialogTitle>
