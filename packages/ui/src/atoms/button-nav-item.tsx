@@ -11,7 +11,7 @@ type ButtonNavItemProps = {
 
 export const ButtonNavItem = ({ href, label }: ButtonNavItemProps) => {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = pathname.includes(href);
   return (
     <Link href={href} key={href}>
       <Button variant={isActive ? 'default' : 'ghost'}>{label}</Button>

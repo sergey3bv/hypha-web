@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '../atoms';
 import { ButtonNavItem } from '../atoms/button-nav-item';
 
@@ -14,26 +15,32 @@ type MenuTopNavItem = {
 type MenuTopProps = {
   activeDao: Dao;
   navItems: MenuTopNavItem[];
+  createActionHref: string;
 };
 
-export const MenuTop = ({ activeDao: { title }, navItems }: MenuTopProps) => {
+export const MenuTop = ({
+  activeDao: { title },
+  navItems,
+  createActionHref,
+}: MenuTopProps) => {
+  console.debug('MenuTopProps', { createActionHref });
   return (
-    <div className="fixed top-0 left-20 right-0 flex h-20 items-center px-10 bg-background/5">
+    <div className="fixed top-0 right-0 flex items-center h-20 px-10 left-20 bg-background/5">
       <div id="menu-top-active-dao">
-        <h1 className="text-2xl">
-          {title}
-        </h1>
+        <h1 className="text-2xl">{title}</h1>
       </div>
       <div
         id="menu-top-actions"
-        className="flex gap-2 flex-grow justify-center"
+        className="flex justify-center flex-grow gap-2"
       >
         {navItems.map((item) => (
           <ButtonNavItem key={item.href} href={item.href} label={item.label} />
         ))}
       </div>
       <div id="menu-top-create-action">
-        <Button>Create</Button>
+        <Button>
+          <Link href={createActionHref}>Create</Link>
+        </Button>
       </div>
     </div>
   );

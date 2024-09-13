@@ -8,9 +8,12 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
+  console.debug('RootLayout', { modal });
   return (
     <Html>
       <ThemeProvider
@@ -20,6 +23,7 @@ export default function RootLayout({
         disableTransitionOnChange
       >
         {children}
+        {modal}
       </ThemeProvider>
     </Html>
   );
