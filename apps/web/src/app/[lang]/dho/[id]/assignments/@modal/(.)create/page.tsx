@@ -27,14 +27,14 @@ export default function CreateAssignment() {
     <Dialog open={open} onOpenChange={handleClose} modal>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>CreateAssignment</DialogTitle>
+          <DialogTitle>Create</DialogTitle>
           <DialogDescription>Description</DialogDescription>
         </DialogHeader>
+        <div>Test</div>
         <DialogFooter>
           <Button type="submit">Confirm</Button>
         </DialogFooter>
       </DialogContent>
-      <div className="m-auto bg-background-1"></div>
     </Dialog>
   );
 }

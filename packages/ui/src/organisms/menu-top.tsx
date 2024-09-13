@@ -38,7 +38,7 @@ export const MenuTop = ({
         ))}
       </div>
       <div id="menu-top-create-action">
-        <Button>
+        <Button asChild>
           <Link href={createActionHref}>Create</Link>
         </Button>
       </div>
