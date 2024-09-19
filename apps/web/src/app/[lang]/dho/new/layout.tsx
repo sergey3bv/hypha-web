@@ -1,9 +1,5 @@
-import {
-  getAccessToken,
-  getDaoDetail,
-} from '@hypha-platform/graphql/rsc';
 import { Locale } from '@hypha-platform/i18n';
-import {  MenuTop } from '@hypha-platform/ui/server';
+import { MenuTop } from '@hypha-platform/ui/server';
 
 export default async function DhoLayout({
   children,
@@ -12,8 +8,6 @@ export default async function DhoLayout({
   children: React.ReactNode;
   params: { id: string; lang: Locale };
 }) {
-  const newtoken = await getAccessToken();
-  const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
 
   return (
     <div className="flex flex-grow w-full h-full">
@@ -21,24 +15,22 @@ export default async function DhoLayout({
         createActionHref={'/[lang]/dho/[id]/assignments/create'
           .replace('[lang]', lang)
           .replace('[id]', daoSlug)}
-        activeDao={dao}
         activeUser={{
-          avatarSrc:
-            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+          avatarSrc: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
           userName: 'Jane Doe',
         }}
         navItems={[
           {
-            label: 'Agreements',
-            href: `/${lang}/dho/${daoSlug}/assignments`,
+            label: 'Explore',
+            href: `/${lang}/`,
           },
           {
-            label: 'Members',
-            href: `/${lang}/dho/${daoSlug}/members`,
+            label: 'My Projects',
+            href: `/${lang}/my-projects`,
           },
           {
-            label: 'Treasury',
-            href: `/${lang}/dho/${daoSlug}/treasury`,
+            label: 'Wallet',
+            href: `/${lang}/wallet`,
           },
         ]}
       />

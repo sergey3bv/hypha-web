@@ -26,7 +26,7 @@ export const MenuTop = ({
 }: MenuTopProps) => {
   console.debug('MenuTopProps', { createActionHref });
   return (
-    <div className="fixed top-0 right-0 flex items-center space-x-10 h-20 px-10 left-20 bg-background/5">
+    <div className="fixed top-0 right-0 left-0 flex items-center space-x-10 h-20 px-10 bg-background/5">
       <div id="menu-top-active-dao" className="flex-grow">
         {activeDao && <h1 className="text-2xl">{activeDao.title}</h1>}
       </div>
