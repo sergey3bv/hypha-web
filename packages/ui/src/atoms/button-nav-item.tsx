@@ -13,8 +13,8 @@ export const ButtonNavItem = ({ href, label }: ButtonNavItemProps) => {
   const pathname = usePathname();
   const isActive = pathname.includes(href);
   return (
-    <Link href={href} key={href}>
-      <Button variant={isActive ? 'default' : 'ghost'}>{label}</Button>
-    </Link>
+    <Button key={href} variant={isActive ? 'default' : 'ghost'} asChild>
+      <Link href={href}>{label}</Link>
+    </Button>
   );
 };

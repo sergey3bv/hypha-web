@@ -32,7 +32,9 @@ export default function CreateAssignment() {
         </DialogHeader>
         <div>Test</div>
         <DialogFooter>
-          <Button type="submit">Confirm</Button>
+          <Button type="submit" onClick={handleClose}>
+            Confirm
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
