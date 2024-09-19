@@ -1,9 +1,11 @@
 {
   "name": "@hypha-platform/source",
-  "version": "0.0.0",
+  "version": "3.0.0-alpha.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx dev web"
+    "dev": "nx dev web",
+    "build": "nx build web",
+    "add-component": "nx add-component --"
   },
   "private": true,
   "dependencies": {
