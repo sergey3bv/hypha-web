@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage, Button } from '../atoms';
+import { Avatar, AvatarImage, Button } from "@hypha-platform/ui";
 
 export type ButtonProfileProps = {
   avatarSrc: string;

@@ -1,6 +1,5 @@
+import { Avatar, AvatarImage, Card, CardContent, CardHeader } from '@hypha-platform/ui';
 import { FaCalendarAlt, FaUsers } from 'react-icons/fa';
-import { Avatar, AvatarImage } from '../atoms';
-import { Card, CardContent, CardHeader } from './card';
 
 type DaoCardProps = {
   createdDate: string;
@@ -10,7 +9,7 @@ type DaoCardProps = {
   title: string;
 };
 
-export const DaoCard: React.FC<DaoCardProps> = ({
+export const CardOrganisation: React.FC<DaoCardProps> = ({
   createdDate,
   description,
   icon,

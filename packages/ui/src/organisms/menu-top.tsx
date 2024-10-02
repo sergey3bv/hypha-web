@@ -1,5 +1,4 @@
-import { ButtonProfile, ButtonProfileProps } from './button-profile';
-import { ButtonNavItem } from '../atoms/button-nav-item';
+import { ButtonNavItem } from '../button-nav-item';
 
 type Dao = {
   title: string;
@@ -15,14 +14,14 @@ type MenuTopProps = {
   activeDao?: Dao;
   navItems: MenuTopNavItem[];
   createActionHref: string;
-  activeUser: ButtonProfileProps;
+  children?: React.ReactNode;
 };
 
 export const MenuTop = ({
   activeDao,
   navItems,
   createActionHref,
-  activeUser,
+  children,
 }: MenuTopProps) => {
   console.debug('MenuTopProps', { createActionHref });
   return (
@@ -38,12 +37,13 @@ export const MenuTop = ({
           <ButtonNavItem key={item.href} href={item.href} label={item.label} />
         ))}
       </div>
-      <div id="menu-top-profile">
-        <ButtonProfile
-          avatarSrc={activeUser.avatarSrc}
-          userName={activeUser.userName}
-        />
-      </div>
+      {children}
     </div>
   );
 };
+
+MenuTop.RightSlot = ({ children }: { children: React.ReactNode }) => (
+  <div id="menu-top-profile">
+    {children}
+  </div>
+);

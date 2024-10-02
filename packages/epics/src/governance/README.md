@@ -1,4 +1,4 @@
-[Home](../../../README.md) > [Epics](../README.md) > Governance
+[Home](../../../README.md) > [Epics](../../README.md) > Governance
 
 # Governance Epic
 

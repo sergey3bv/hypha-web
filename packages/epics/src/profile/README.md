@@ -1,4 +1,4 @@
-[Home](../../../README.md) > [Epics](../README.md) > Profile
+[Home](../../../README.md) > [Epics](../../README.md) > Profile
 
 # Profile Epic
 

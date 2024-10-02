@@ -6,8 +6,8 @@ This folder contains the epics for the hypha platform, which is designed to acce
 
 ## Current Epics
 
-- [Profile](./profile/README.md)
-- [Governance](./governance/README.md)
+- [Profile](./src/profile/README.md)
+- [Governance](./src/governance/README.md)
 
 ## Epic Development Guidelines
 
