@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nx dev web",
     "build": "nx build web",
-    "add-component": "nx add-component --"
+    "add-component": "nx add-component --",
+    "postinstall": "if [ ! -f .env ]; then cp .env.template .env; fi"
   },
   "private": true,
   "dependencies": {
