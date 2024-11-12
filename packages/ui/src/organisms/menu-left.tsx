@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Avatar, AvatarImage } from '../atoms';
+import { Avatar, AvatarImage } from '../avatar';
 
 type Dao = {
   logo: string;
