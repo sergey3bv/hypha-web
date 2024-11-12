@@ -1,26 +1,26 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@hypha-platform/ui-utils';
 
 const headingVariants = cva(
-  'font-family-inherit font-medium leading-tight m-0',
+  'font-family-inherit m-0',
   {
     variants: {
       size: {
-        1: 'text-[14px] leading-tight',  // h9
-        2: 'text-[16px] leading-tight',  // h8
-        3: 'text-[18px] leading-tight',  // h7
-        4: 'text-[20px] leading-tight',  // h6
-        5: 'text-[24px] leading-tight',  // h5
-        6: 'text-[30px] leading-tight',  // h4
-        7: 'text-[36px] leading-tight',  // h3
-        8: 'text-[48px] leading-tight',  // h2
-        9: 'text-[60px] leading-tight',  // h1
+        "1": 'text-1',   // h9
+        "2": 'text-2',   // h8
+        "3": 'text-3',   // h7
+        "4": 'text-4',   // h6
+        "5": 'text-5',   // h5
+        "6": 'text-6',   // h4
+        "7": 'text-7',   // h3
+        "8": 'text-8',   // h2
+        "9": 'text-9',   // h1
       },
       weight: {
         regular: 'font-normal',
-        bold: 'font-bold',
+        medium: 'font-medium',
+        bold: 'font-bold'
       },
       align: {
         left: 'text-left',
@@ -28,13 +28,13 @@ const headingVariants = cva(
         right: 'text-right',
       },
       color: {
-        primary: 'text-black',
+        primary: 'text-white',
         secondary: 'text-gray-500',
       },
     },
     defaultVariants: {
-      size: 1,
-      weight: 'bold',
+      size: "1",
+      weight: 'medium',
       align: 'left',
       color: 'primary',
     },
@@ -45,14 +45,18 @@ export interface HeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
     VariantProps<typeof headingVariants> {
   asChild?: boolean;
+  size?: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+  color?: 'primary' | 'secondary';
+  align?: 'left' | 'center' | 'right';
+  weight?: 'regular' | 'medium' | 'bold';
 }
 
 const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className, size, weight, align, color, asChild = false, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'h1';
+    const Comp = asChild ? Slot : 'div';
     return (
       <Comp
-        className={cn(headingVariants({ size, weight, align, color, className }))}
+        className={(headingVariants({ size, weight, align, color, className }))}
         ref={ref}
         {...props}
       >

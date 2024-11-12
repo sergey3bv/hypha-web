@@ -69,6 +69,17 @@ export function buildConfig(appDir: string): Config {
           md: `calc(var(--radius) - 2px)`,
           sm: 'calc(var(--radius) - 4px)',
         },
+        fontSize: {
+          "1": '14px',
+          "2": '16px',
+          "3": '18px',
+          "4": '20px',
+          "5": '24px',
+          "6": '30px',
+          "7": '36px',
+          "8": '48px',
+          "9": '60px'
+        },
         keyframes: {
           'accordion-down': {
             from: { height: '0' },
@@ -82,7 +93,7 @@ export function buildConfig(appDir: string): Config {
         animation: {
           'accordion-down': 'accordion-down 0.2s ease-out',
           'accordion-up': 'accordion-up 0.2s ease-out',
-        },
+        }
       },
     },
     plugins: [TailwindAnimate],
