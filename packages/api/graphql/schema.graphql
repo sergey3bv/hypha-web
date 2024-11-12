@@ -12,7 +12,11 @@ directive @cascade(fields: [String]) on FIELD
 
 directive @custom(dql: String, http: CustomHTTP) on FIELD_DEFINITION
 
+directive @default(add: DgraphDefault, update: DgraphDefault) on FIELD_DEFINITION
+
 directive @dgraph(pred: String, type: String) on FIELD_DEFINITION | INTERFACE | OBJECT
+
+directive @embedding on FIELD_DEFINITION
 
 directive @generate(mutation: GenerateMutationParams, query: GenerateQueryParams, subscription: Boolean) on INTERFACE | OBJECT
 
@@ -28,7 +32,7 @@ directive @remote on ENUM | INPUT_OBJECT | INTERFACE | OBJECT | UNION
 
 directive @remoteResponse(name: String) on FIELD_DEFINITION
 
-directive @search(by: [DgraphIndex!]) on FIELD_DEFINITION
+directive @search(by: [String!]) on FIELD_DEFINITION
 
 directive @secret(field: String!, pred: String) on INTERFACE | OBJECT
 
@@ -2342,6 +2346,7 @@ input AlertPatch {
   details_enabled_i: Int64
   details_level_n: String
   details_level_s: String
+  docId: String
   notifies: [DocumentRef!]
   system_nodeLabel_s: String
   type: String
@@ -2694,6 +2699,7 @@ input AssignbadgePatch {
   details_startTime_t: DateTime
   details_state_s: String
   details_title_s: String
+  docId: String
   ownedby: [MemberRef!]
   start: [PeriodRef!]
   system_ballotId_n: String
@@ -3261,6 +3267,7 @@ input AssignmentPatch {
   details_voiceSalaryPerPeriod_a: String
   details_withdrawalDate_t: DateTime
   details_withdrawalNotes_s: String
+  docId: String
   initimeshare: [TimeshareRef!]
   lastimeshare: [TimeshareRef!]
   original: [AssignmentRef!]
@@ -3444,6 +3451,7 @@ input AttestationPatch {
   createdDate: DateTime
   creator: String
   details_treasurer_n: String
+  docId: String
   system_nodeLabel_s: String
   type: String
   updatedDate: DateTime
@@ -3877,6 +3885,7 @@ input BadgePatch {
   details_state_s: String
   details_title_s: String
   details_voiceCoefficientX10000_i: Int64
+  docId: String
   heldby: [MemberRef!]
   ownedby: [MemberRef!]
   system_badgeId_i: Int64
@@ -4044,6 +4053,7 @@ input BalancePatch {
   creator: String
   details_dao_i: Int64
   details_quantity_a: String
+  docId: String
   owner: [MemberRef!]
   system_nodeLabel_s: String
   type: String
@@ -4231,6 +4241,7 @@ input BillingInfoPatch {
   details_planPrice_a: String
   details_startDate_t: DateTime
   details_totalPaid_a: String
+  docId: String
   nextbill: [BillingInfoRef!]
   priceoffer: [PriceOfferRef!]
   pricingplan: [PricingPlanRef!]
@@ -4509,6 +4520,7 @@ input BudgetPatch {
   details_title_s: String
   details_usdAmount_a: String
   details_voiceAmount_a: String
+  docId: String
   ownedby: [MemberRef!]
   system_clientVersion_s: String
   system_contractVersion_s: String
@@ -4637,6 +4649,7 @@ input CalendarPatch {
   createdDate: DateTime
   creator: String
   dao: [DaoRef!]
+  docId: String
   end: [PeriodRef!]
   period: [PeriodRef!]
   start: [PeriodRef!]
@@ -4913,6 +4926,7 @@ input CirclePatch {
   details_purpose_s: String
   details_state_s: String
   details_title_s: String
+  docId: String
   lockedby: [BudgetRef!]
   member: [MemberRef!]
   ownedby: [MemberRef!]
@@ -5068,6 +5082,7 @@ input CmntSectionPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   likeDetails_likes_i: Int64
   system_nodeLabel_s: String
   type: String
@@ -5222,6 +5237,7 @@ input CommentPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   likeDetails_likes_i: Int64
   likes_johnnyhypha1_i: Int64
   reactedby: [MemberRef!]
@@ -5295,6 +5311,7 @@ enum CursorOrderable {
 
 input CursorPatch {
   cursor: String
+  id: String
 }
 
 input CursorRef {
@@ -5539,6 +5556,7 @@ input DaoDraftPatch {
   createdDate: DateTime
   creator: String
   details_daoName_n: String
+  docId: String
   settings: [SettingsRef!]
   type: String
   updatedDate: DateTime
@@ -5680,9 +5698,11 @@ input DaoPatch {
   creator: String
   current: [PeriodRef!]
   delegate: [MemberRef!]
+  details_daoName_n: String
   details_daoType_s: String
   details_isWaitingEcosystem_i: Int64
   details_unusedField_n: String
+  docId: String
   election: [UpvtElectnRef!]
   end: [PeriodRef!]
   enroller: [MemberRef!]
@@ -6140,6 +6160,10 @@ type DeleteVoteTallyPayload {
   voteTally(filter: VoteTallyFilter, first: Int, offset: Int, order: VoteTallyOrder): [VoteTally]
 }
 
+input DgraphDefault {
+  value: String
+}
+
 enum DgraphIndex {
   bool
   day
@@ -6148,6 +6172,7 @@ enum DgraphIndex {
   fulltext
   geo
   hash
+  hnsw
   hour
   int
   int64
@@ -6337,6 +6362,8 @@ input DhoPatch {
   defpriceplan: [PricingPlanRef!]
   defrole: [DocumentRef!]
   delegate: [BadgeRef!]
+  details_rootNode_n: String
+  docId: String
   ecopriceplan: [PricingPlanRef!]
   enrollerbdg: [BadgeRef!]
   failedprops: [DocumentRef!]
@@ -6466,6 +6493,7 @@ input DoccacheConfigPatch {
   elasticApiKey: String
   elasticEndpoint: String
   eosEndpoint: String
+  id: String
 }
 
 input DoccacheConfigRef {
@@ -6544,6 +6572,7 @@ input DocumentPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   type: String
   updatedDate: DateTime
 }
@@ -6848,6 +6877,7 @@ input EditPatch {
   details_timeShareX100_i: Int64
   details_title_s: String
   details_url_s: String
+  docId: String
   original: [DocumentRef!]
   ownedby: [MemberRef!]
   system_ballotId_n: String
@@ -7013,6 +7043,7 @@ input ElectnGroupPatch {
   details_memberCount_i: Int64
   details_videolink_s: String
   details_winner_i: Int64
+  docId: String
   system_nodeLabel_s: String
   type: String
   ueGroupWin: [MemberRef!]
@@ -7194,6 +7225,7 @@ input ElectnRoundPatch {
   details_roundDuration_i: Int64
   details_startDate_t: DateTime
   details_type_s: String
+  docId: String
   election: [UpvtElectnRef!]
   nextround: [ElectnRoundRef!]
   system_nodeLabel_s: String
@@ -7528,6 +7560,8 @@ input MemberPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  details_member_n: String
+  docId: String
   elctngroup: [VoteGroupRef!]
   enrollerbdg: [AssignbadgeRef!]
   entrustedto: [QueststartRef!]
@@ -7675,6 +7709,7 @@ input MemoPatch {
   createdDate: DateTime
   creator: String
   details_memo_s: String
+  docId: String
   owns: [DocumentRef!]
   paid: [PaymentRef!]
   payout: [PayoutRef!]
@@ -7815,6 +7850,7 @@ input MsigInfoPatch {
   details_state_s: String
   details_treasurer_n: String
   details_treasuryId_i: Int64
+  docId: String
   payment: [TrsyPaymentRef!]
   signer: [MemberRef!]
   system_nodeLabel_s: String
@@ -8316,6 +8352,7 @@ input MultisigPatch {
   creator: String
   details_dao_i: Int64
   details_owner_n: String
+  docId: String
   executedby: [MemberRef!]
   settings_communityVotingAlignmentPercent_i: Int64
   settings_communityVotingDurationSec_i: Int64
@@ -8820,6 +8857,7 @@ input PaymentPatch {
   details_periodHash_c: String
   details_recipientHash_c: String
   details_recipient_n: String
+  docId: String
   system_nodeLabel_s: String
   type: String
   updatedDate: DateTime
@@ -9311,6 +9349,7 @@ input PayoutPatch {
   details_url_s: String
   details_usdAmount_a: String
   details_voiceAmount_a: String
+  docId: String
   lockedby: [PayoutRef!]
   ownedby: [DocumentRef!]
   payment: [PaymentRef!]
@@ -9520,6 +9559,7 @@ input PeriodPatch {
   dao: [DaoRef!]
   details_label_s: String
   details_startTime_t: DateTime
+  docId: String
   next: [PeriodRef!]
   payment: [PaymentRef!]
   system_nodeLabel_s: String
@@ -9652,6 +9692,7 @@ input PlanManagerPatch {
   currentbill: [BillingInfoRef!]
   details_credit_a: String
   details_type_s: String
+  docId: String
   lastbill: [BillingInfoRef!]
   prevstartbil: [BillingInfoRef!]
   startbill: [BillingInfoRef!]
@@ -9949,6 +9990,7 @@ input PolicyPatch {
   details_state_s: String
   details_title_s: String
   details_url_s: String
+  docId: String
   masterpolicy: [PolicyRef!]
   ownedby: [MemberRef!]
   parentcircle: [CircleRef!]
@@ -10205,6 +10247,7 @@ input PollPatch {
   details_state_s: String
   details_title_s: String
   details_votingMethod_s: String
+  docId: String
   ownedby: [MemberRef!]
   system_clientVersion_s: String
   system_contractVersion_s: String
@@ -10360,6 +10403,7 @@ input PriceOfferPatch {
   details_discountPercX10000_i: Int64
   details_periodCount_i: Int64
   details_tag_s: String
+  docId: String
   system_nodeLabel_s: String
   type: String
   updatedDate: DateTime
@@ -10494,6 +10538,7 @@ input PricingPlanPatch {
   details_name_s: String
   details_price_a: String
   details_reactivationPeriodSec_i: Int64
+  docId: String
   priceoffer: [PriceOfferRef!]
   system_nodeLabel_s: String
   type: String
@@ -10890,6 +10935,7 @@ input QuestcomplePatch {
   details_state_s: String
   details_title_s: String
   details_voiceAmount_a: String
+  docId: String
   ownedby: [MemberRef!]
   payment: [PaymentRef!]
   queststart: [QueststartRef!]
@@ -11157,6 +11203,7 @@ input QuestcompletPatch {
   details_questStart_i: Int64
   details_state_s: String
   details_title_s: String
+  docId: String
   ownedby: [MemberRef!]
   queststart: [QueststartRef!]
   system_clientVersion_s: String
@@ -11596,6 +11643,7 @@ input QueststartPatch {
   details_usdAmount_a: String
   details_voiceAmount_a: String
   details_voiceCoefficientX10000_i: Int64
+  docId: String
   failedprops: [QuestcompletRef!]
   lockedby: [QuestcompletRef!]
   ownedby: [MemberRef!]
@@ -11758,6 +11806,7 @@ input ReactionPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   reaction_type_n: String
   reactionlnkr: [MemberRef!]
   reactionof: [CommentRef!]
@@ -11889,6 +11938,7 @@ input RedemptionPatch {
   details_amountPaid_a: String
   details_amountRequested_a: String
   details_requestor_n: String
+  docId: String
   legacy_id_i: Int64
   legacy_notes_s: String
   paidby: [TrsyPaymentRef!]
@@ -12266,6 +12316,7 @@ input RolePatch {
   details_suspensionDate_t: DateTime
   details_title_s: String
   details_url_s: String
+  docId: String
   ownedby: [MemberRef!]
   system_ballotId_n: String
   system_clientVersion_s: String
@@ -12456,6 +12507,7 @@ input SalarybandPatch {
   details_dao_i: Int64
   details_minDeferredX100_i: Int64
   details_name_s: String
+  docId: String
   system_defaultAsset_i: Int64
   system_nodeLabel_s: String
   type: String
@@ -16011,6 +16063,7 @@ input SettingsPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   ecosystem_domain_s: String
   ecosystem_logo_s: String
   ecosystem_name_s: String
@@ -17643,6 +17696,7 @@ input SuspendPatch {
   details_originalDocument_i: Int64
   details_state_s: String
   details_title_s: String
+  docId: String
   ownedby: [MemberRef!]
   suspend: [DocumentRef!]
   system_clientVersion_s: String
@@ -17798,6 +17852,7 @@ input TimesharePatch {
   details_assignment_i: Int64
   details_startDate_t: DateTime
   details_timeShareX100_i: Int64
+  docId: String
   nextimeshare: [TimeshareRef!]
   system_nodeLabel_s: String
   type: String
@@ -17915,6 +17970,7 @@ input TreasuryPatch {
   createdDate: DateTime
   creator: String
   details_dao_i: Int64
+  docId: String
   payment: [TrsyPaymentRef!]
   redemption: [RedemptionRef!]
   settings: [SettingsRef!]
@@ -18097,6 +18153,7 @@ input TrsyPaymentPatch {
   details_nativeAmountPaid_a: String
   details_notes_s: String
   details_state_s: String
+  docId: String
   legacy_id_i: Int64
   legacy_redemptionId_i: Int64
   msiginfo: [MsigInfoRef!]
@@ -18939,6 +18996,7 @@ input UpvtElectnPatch {
   details_seed_c: String
   details_startDate_t: DateTime
   details_status_s: String
+  docId: String
   headround: [ElectnRoundRef!]
   round: [ElectnRoundRef!]
   startround: [ElectnRoundRef!]
@@ -19066,6 +19124,7 @@ input UpvtVotePatch {
   creator: String
   details_votedId_i: Int64
   details_voterId_i: Int64
+  docId: String
   system_nodeLabel_s: String
   type: String
   updatedDate: DateTime
@@ -19358,6 +19417,7 @@ input VoteGroupPatch {
   createdDate: DateTime
   creator: String
   details_roundId_i: Int64
+  docId: String
   round: [ElectnRoundRef!]
   system_nodeLabel_s: String
   type: String
@@ -19420,6 +19480,7 @@ input VotePatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   ownedby: [MemberRef!]
   system_nodeLabel_s: String
   type: String
@@ -19540,6 +19601,7 @@ input VoteTallyPatch {
   contract: String
   createdDate: DateTime
   creator: String
+  docId: String
   fail_votePower_a: String
   pass_votePower_a: String
   system_nodeLabel_s: String
