@@ -23,6 +23,7 @@
       "@hypha-platform/i18n/client": ["packages/i18n/src/client.ts"],
       "@hypha-platform/ui": ["packages/ui/src/index.ts"],
       "@hypha-platform/ui-utils": ["packages/ui-utils/src/index.ts"],
+      "@hypha-platform/ui-utils/global.css": ["packages/ui-utils/src/global.css"],
       "@hypha-platform/ui/server": ["packages/ui/src/server.ts"],
       "@hypha-platform/ui/styles.css": ["packages/ui/src/global.css"]
     }
