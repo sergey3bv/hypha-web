@@ -22,6 +22,8 @@ export default async function Index({ params: { lang } }: PageProps) {
               description={dao.description as string}
               icon={dao.logo}
               members={0}
+              activeAgreements={1}
+              openDiscussions={1}
               title={dao.title as string}
             />
           </Link>
