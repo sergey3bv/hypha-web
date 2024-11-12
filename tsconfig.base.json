@@ -47,9 +47,6 @@
       ],
       "@hypha-platform/ui-utils": [
         "packages/ui-utils/src/index.ts"
-      ],
-      "@hypha-platform/ui-utils/*": [
-        "packages/ui-utils/src/*"
       ]
     }
   },
