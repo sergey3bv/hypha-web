@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
 import { getAssignmentsPath } from './dho/[id]/assignments/constants';
 import { Container } from '@hypha-platform/ui';
+import { Heading } from 'packages/ui/src/atoms/heading';
 
 type PageProps = {
   params: { lang: Locale; id: string };
@@ -16,6 +17,7 @@ export default async function Index({ params: { lang } }: PageProps) {
   return (
     <div className="w-full px-6 py-4 overflow-auto">
       <Container>
+        <Heading className="mb-4" size="9" color="primary" weight="medium" align="center">All your spaces, in one place</Heading>
         <div data-testid="dho-list-container" className="w-full">
           {daos.map((dao) => (
             <div key={dao.name} className="mb-5">

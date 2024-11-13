@@ -5,5 +5,6 @@ export * from './button';
 export * from './card';
 export * from './button-nav-item';
 export * from './container';
+export * from './badge';
 
 export * from './organisms/editor';
