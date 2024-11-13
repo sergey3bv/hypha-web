@@ -28,6 +28,8 @@ export default async function Index({ params: { lang } }: PageProps) {
                   icon={dao.logo}
                   members={0}
                   agreements={0}
+                  activeAgreements={1}
+                  openDiscussions={1}
                   title={dao.title as string}
                 />
               </Link>
