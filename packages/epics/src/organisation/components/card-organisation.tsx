@@ -1,5 +1,4 @@
 import { Avatar, AvatarImage, Badge, Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
-import { FaCalendarAlt, FaUsers } from 'react-icons/fa';
 
 type DaoCardProps = {
   createdDate: string;
@@ -12,15 +11,15 @@ type DaoCardProps = {
   openDiscussions?: number;
 };
 
-const customCardHeaderStyles = {
+const customCardHeaderStyles: React.CSSProperties = {
   height: '150px'
 }
 
-const customCardTitleStyles = {
+const customCardTitleStyles: React.CSSProperties = {
   fontSize: '18px'
 }
 
-const customAvatarStyles = {
+const customAvatarStyles: React.CSSProperties = {
   width: '64px',
   height: '64px',
   position: 'absolute',
