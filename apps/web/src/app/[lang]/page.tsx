@@ -14,24 +14,24 @@ export default async function Index({ params: { lang } }: PageProps) {
   const daos = await getDaoList({ token: newtoken.accessJWT });
 
   return (
-    <div className="w-full px-6 py-4 overflow-auto	">
+    <div className="w-full px-6 py-4 overflow-auto">
       <Container>
-        {daos.map((dao) => (
-          <div key={dao.name} className="mb-5">
-            <Link href={getAssignmentsPath(lang, dao.url as string)}>
-              <CardOrganisation
-                createdDate={dao.date}
-                description={dao.description as string}
-                icon={dao.logo}
-                members={0}
-                agreements={0}
-                activeAgreements={1}
-                openDiscussions={1}
-                title={dao.title as string}
-              />
-            </Link>
-          </div>
-        ))}
+        <div data-testid="dho-list-container" className="w-full">
+          {daos.map((dao) => (
+            <div key={dao.name} className="mb-5">
+              <Link href={getAssignmentsPath(lang, dao.url as string)}>
+                <CardOrganisation
+                  createdDate={dao.date}
+                  description={dao.description as string}
+                  icon={dao.logo}
+                  members={0}
+                  agreements={0}
+                  title={dao.title as string}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
       </Container>
     </div>
   );

@@ -26,6 +26,7 @@ const toDaoDetail = (data: ActiveDaoQuery) => {
   invariant(dao.settings, 'Expected non-null DAO settings');
   invariant(dao.settings[0].settings_daoName_n, 'Expected non-null DAO name');
   invariant(dao.settings[0].settings_daoTitle_s, 'Expected non-null DAO title');
+  invariant(dao.settings[0].settings_logo_s, 'Expected non-null DAO logo');
   return {
     id: dao.docId,
     name: dao.settings[0].settings_daoName_n,
