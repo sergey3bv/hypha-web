@@ -1,7 +1,7 @@
 'use client';
 
+import { Button } from '@hypha-platform/ui';
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogDescription,
