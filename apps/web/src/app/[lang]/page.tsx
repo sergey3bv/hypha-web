@@ -13,7 +13,7 @@ export default async function Index({ params: { lang } }: PageProps) {
   const daos = await getDaoList({ token: newtoken.accessJWT });
 
   return (
-    <div className="grid grid-cols-4 gap-4 px-6 py-4">
+    <div data-testid="dho-list-container" className="grid grid-cols-4 gap-4 px-6 py-4">
       {daos.map((dao) => (
         <div key={dao.name}>
           <Link href={getAssignmentsPath(lang, dao.url as string)}>
