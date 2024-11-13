@@ -7,6 +7,7 @@ type DaoCardProps = {
   icon: string;
   members: number;
   title: string;
+  agreements: number;
 };
 
 export const CardOrganisation: React.FC<DaoCardProps> = ({
@@ -15,6 +16,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   icon,
   members,
   title,
+  agreements
 }) => {
   return (
     <Card className="h-full">
