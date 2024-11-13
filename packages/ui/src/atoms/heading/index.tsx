@@ -28,8 +28,8 @@ const headingVariants = cva(
         right: 'text-right',
       },
       color: {
-        primary: 'text-white',
-        secondary: 'text-gray-500',
+        primary: 'text-primary-foreground',
+        secondary: 'text-secondary-foreground',
       },
     },
     defaultVariants: {

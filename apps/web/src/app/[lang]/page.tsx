@@ -17,7 +17,7 @@ export default async function Index({ params: { lang } }: PageProps) {
   return (
     <div className="w-full px-6 py-4 overflow-auto">
       <Container>
-        <Heading className="mb-4" size="9" color="primary" weight="medium" align="center">All your spaces, in one place</Heading>
+        <Heading className="mb-4" size="8" color="secondary" weight="medium" align="center">All your spaces, in one place</Heading>
         <div data-testid="dho-list-container" className="w-full">
           {daos.map((dao) => (
             <div key={dao.name} className="mb-5">
