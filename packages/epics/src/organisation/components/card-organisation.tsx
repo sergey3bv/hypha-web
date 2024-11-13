@@ -8,7 +8,6 @@ type DaoCardProps = {
   members: number;
   agreements: number;
   title: string;
-  agreements: number;
   activeAgreements?: number;
   openDiscussions?: number;
 };
