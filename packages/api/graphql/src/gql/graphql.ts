@@ -2826,6 +2826,7 @@ export type AlertPatch = {
   details_enabled_i?: InputMaybe<Scalars['Int64']['input']>;
   details_level_n?: InputMaybe<Scalars['String']['input']>;
   details_level_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   notifies?: InputMaybe<Array<DocumentRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -3271,6 +3272,7 @@ export type AssignbadgePatch = {
   details_startTime_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   start?: InputMaybe<Array<PeriodRef>>;
   system_ballotId_n?: InputMaybe<Scalars['String']['input']>;
@@ -4035,6 +4037,7 @@ export type AssignmentPatch = {
   details_voiceSalaryPerPeriod_a?: InputMaybe<Scalars['String']['input']>;
   details_withdrawalDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_withdrawalNotes_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   initimeshare?: InputMaybe<Array<TimeshareRef>>;
   lastimeshare?: InputMaybe<Array<TimeshareRef>>;
   original?: InputMaybe<Array<AssignmentRef>>;
@@ -4233,6 +4236,7 @@ export type AttestationPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   details_treasurer_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
@@ -4772,6 +4776,7 @@ export type BadgePatch = {
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_voiceCoefficientX10000_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   heldby?: InputMaybe<Array<MemberRef>>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_badgeId_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -4954,6 +4959,7 @@ export type BalancePatch = {
   creator?: InputMaybe<Scalars['String']['input']>;
   details_dao_i?: InputMaybe<Scalars['Int64']['input']>;
   details_quantity_a?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   owner?: InputMaybe<Array<MemberRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -5182,6 +5188,7 @@ export type BillingInfoPatch = {
   details_planPrice_a?: InputMaybe<Scalars['String']['input']>;
   details_startDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_totalPaid_a?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   nextbill?: InputMaybe<Array<BillingInfoRef>>;
   priceoffer?: InputMaybe<Array<PriceOfferRef>>;
   pricingplan?: InputMaybe<Array<PricingPlanRef>>;
@@ -5540,6 +5547,7 @@ export type BudgetPatch = {
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_usdAmount_a?: InputMaybe<Scalars['String']['input']>;
   details_voiceAmount_a?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_clientVersion_s?: InputMaybe<Scalars['String']['input']>;
   system_contractVersion_s?: InputMaybe<Scalars['String']['input']>;
@@ -5722,6 +5730,7 @@ export type CalendarPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   dao?: InputMaybe<Array<DaoRef>>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   end?: InputMaybe<Array<PeriodRef>>;
   period?: InputMaybe<Array<PeriodRef>>;
   start?: InputMaybe<Array<PeriodRef>>;
@@ -6143,6 +6152,7 @@ export type CirclePatch = {
   details_purpose_s?: InputMaybe<Scalars['String']['input']>;
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   lockedby?: InputMaybe<Array<BudgetRef>>;
   member?: InputMaybe<Array<MemberRef>>;
   ownedby?: InputMaybe<Array<MemberRef>>;
@@ -6326,6 +6336,7 @@ export type CmntSectionPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   likeDetails_likes_i?: InputMaybe<Scalars['Int64']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -6534,6 +6545,7 @@ export type CommentPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   likeDetails_likes_i?: InputMaybe<Scalars['Int64']['input']>;
   likes_johnnyhypha1_i?: InputMaybe<Scalars['Int64']['input']>;
   reactedby?: InputMaybe<Array<MemberRef>>;
@@ -6609,6 +6621,7 @@ export enum CursorOrderable {
 
 export type CursorPatch = {
   cursor?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CursorRef = {
@@ -7533,6 +7546,7 @@ export type DaoDraftPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   details_daoName_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   settings?: InputMaybe<Array<SettingsRef>>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
@@ -7674,9 +7688,11 @@ export type DaoPatch = {
   creator?: InputMaybe<Scalars['String']['input']>;
   current?: InputMaybe<Array<PeriodRef>>;
   delegate?: InputMaybe<Array<MemberRef>>;
+  details_daoName_n?: InputMaybe<Scalars['String']['input']>;
   details_daoType_s?: InputMaybe<Scalars['String']['input']>;
   details_isWaitingEcosystem_i?: InputMaybe<Scalars['Int64']['input']>;
   details_unusedField_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   election?: InputMaybe<Array<UpvtElectnRef>>;
   end?: InputMaybe<Array<PeriodRef>>;
   enroller?: InputMaybe<Array<MemberRef>>;
@@ -8623,6 +8639,10 @@ export type DeleteVoteTallyPayloadVoteTallyArgs = {
   order?: InputMaybe<VoteTallyOrder>;
 };
 
+export type DgraphDefault = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
 export enum DgraphIndex {
   Bool = 'bool',
   Day = 'day',
@@ -8631,6 +8651,7 @@ export enum DgraphIndex {
   Fulltext = 'fulltext',
   Geo = 'geo',
   Hash = 'hash',
+  Hnsw = 'hnsw',
   Hour = 'hour',
   Int = 'int',
   Int64 = 'int64',
@@ -9199,6 +9220,8 @@ export type DhoPatch = {
   defpriceplan?: InputMaybe<Array<PricingPlanRef>>;
   defrole?: InputMaybe<Array<DocumentRef>>;
   delegate?: InputMaybe<Array<BadgeRef>>;
+  details_rootNode_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ecopriceplan?: InputMaybe<Array<PricingPlanRef>>;
   enrollerbdg?: InputMaybe<Array<BadgeRef>>;
   failedprops?: InputMaybe<Array<DocumentRef>>;
@@ -9330,6 +9353,7 @@ export type DoccacheConfigPatch = {
   elasticApiKey?: InputMaybe<Scalars['String']['input']>;
   elasticEndpoint?: InputMaybe<Scalars['String']['input']>;
   eosEndpoint?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DoccacheConfigRef = {
@@ -9409,6 +9433,7 @@ export type DocumentPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -9793,6 +9818,7 @@ export type EditPatch = {
   details_timeShareX100_i?: InputMaybe<Scalars['Int64']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_url_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   original?: InputMaybe<Array<DocumentRef>>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_ballotId_n?: InputMaybe<Scalars['String']['input']>;
@@ -9999,6 +10025,7 @@ export type ElectnGroupPatch = {
   details_memberCount_i?: InputMaybe<Scalars['Int64']['input']>;
   details_videolink_s?: InputMaybe<Scalars['String']['input']>;
   details_winner_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   ueGroupWin?: InputMaybe<Array<MemberRef>>;
@@ -10299,6 +10326,7 @@ export type ElectnRoundPatch = {
   details_roundDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   details_startDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_type_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   election?: InputMaybe<Array<UpvtElectnRef>>;
   nextround?: InputMaybe<Array<ElectnRoundRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
@@ -10943,6 +10971,8 @@ export type MemberPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  details_member_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   elctngroup?: InputMaybe<Array<VoteGroupRef>>;
   enrollerbdg?: InputMaybe<Array<AssignbadgeRef>>;
   entrustedto?: InputMaybe<Array<QueststartRef>>;
@@ -11144,6 +11174,7 @@ export type MemoPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   details_memo_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   owns?: InputMaybe<Array<DocumentRef>>;
   paid?: InputMaybe<Array<PaymentRef>>;
   payout?: InputMaybe<Array<PayoutRef>>;
@@ -11325,6 +11356,7 @@ export type MsigInfoPatch = {
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_treasurer_n?: InputMaybe<Scalars['String']['input']>;
   details_treasuryId_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   payment?: InputMaybe<Array<TrsyPaymentRef>>;
   signer?: InputMaybe<Array<MemberRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
@@ -11868,6 +11900,7 @@ export type MultisigPatch = {
   creator?: InputMaybe<Scalars['String']['input']>;
   details_dao_i?: InputMaybe<Scalars['Int64']['input']>;
   details_owner_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   executedby?: InputMaybe<Array<MemberRef>>;
   settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -13271,6 +13304,7 @@ export type PaymentPatch = {
   details_periodHash_c?: InputMaybe<Scalars['String']['input']>;
   details_recipientHash_c?: InputMaybe<Scalars['String']['input']>;
   details_recipient_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
@@ -13907,6 +13941,7 @@ export type PayoutPatch = {
   details_url_s?: InputMaybe<Scalars['String']['input']>;
   details_usdAmount_a?: InputMaybe<Scalars['String']['input']>;
   details_voiceAmount_a?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   lockedby?: InputMaybe<Array<PayoutRef>>;
   ownedby?: InputMaybe<Array<DocumentRef>>;
   payment?: InputMaybe<Array<PaymentRef>>;
@@ -14170,6 +14205,7 @@ export type PeriodPatch = {
   dao?: InputMaybe<Array<DaoRef>>;
   details_label_s?: InputMaybe<Scalars['String']['input']>;
   details_startTime_t?: InputMaybe<Scalars['DateTime']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   next?: InputMaybe<Array<PeriodRef>>;
   payment?: InputMaybe<Array<PaymentRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
@@ -14369,6 +14405,7 @@ export type PlanManagerPatch = {
   currentbill?: InputMaybe<Array<BillingInfoRef>>;
   details_credit_a?: InputMaybe<Scalars['String']['input']>;
   details_type_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   lastbill?: InputMaybe<Array<BillingInfoRef>>;
   prevstartbil?: InputMaybe<Array<BillingInfoRef>>;
   startbill?: InputMaybe<Array<BillingInfoRef>>;
@@ -14787,6 +14824,7 @@ export type PolicyPatch = {
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_url_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   masterpolicy?: InputMaybe<Array<PolicyRef>>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   parentcircle?: InputMaybe<Array<CircleRef>>;
@@ -15110,6 +15148,7 @@ export type PollPatch = {
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_votingMethod_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_clientVersion_s?: InputMaybe<Scalars['String']['input']>;
   system_contractVersion_s?: InputMaybe<Scalars['String']['input']>;
@@ -15268,6 +15307,7 @@ export type PriceOfferPatch = {
   details_discountPercX10000_i?: InputMaybe<Scalars['Int64']['input']>;
   details_periodCount_i?: InputMaybe<Scalars['Int64']['input']>;
   details_tag_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
@@ -15417,6 +15457,7 @@ export type PricingPlanPatch = {
   details_name_s?: InputMaybe<Scalars['String']['input']>;
   details_price_a?: InputMaybe<Scalars['String']['input']>;
   details_reactivationPeriodSec_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   priceoffer?: InputMaybe<Array<PriceOfferRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -16888,6 +16929,7 @@ export type QuestcomplePatch = {
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_voiceAmount_a?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   payment?: InputMaybe<Array<PaymentRef>>;
   queststart?: InputMaybe<Array<QueststartRef>>;
@@ -17248,6 +17290,7 @@ export type QuestcompletPatch = {
   details_questStart_i?: InputMaybe<Scalars['Int64']['input']>;
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   queststart?: InputMaybe<Array<QueststartRef>>;
   system_clientVersion_s?: InputMaybe<Scalars['String']['input']>;
@@ -17884,6 +17927,7 @@ export type QueststartPatch = {
   details_usdAmount_a?: InputMaybe<Scalars['String']['input']>;
   details_voiceAmount_a?: InputMaybe<Scalars['String']['input']>;
   details_voiceCoefficientX10000_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   failedprops?: InputMaybe<Array<QuestcompletRef>>;
   lockedby?: InputMaybe<Array<QuestcompletRef>>;
   ownedby?: InputMaybe<Array<MemberRef>>;
@@ -18074,6 +18118,7 @@ export type ReactionPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   reaction_type_n?: InputMaybe<Scalars['String']['input']>;
   reactionlnkr?: InputMaybe<Array<MemberRef>>;
   reactionof?: InputMaybe<Array<CommentRef>>;
@@ -18220,6 +18265,7 @@ export type RedemptionPatch = {
   details_amountPaid_a?: InputMaybe<Scalars['String']['input']>;
   details_amountRequested_a?: InputMaybe<Scalars['String']['input']>;
   details_requestor_n?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   legacy_id_i?: InputMaybe<Scalars['Int64']['input']>;
   legacy_notes_s?: InputMaybe<Scalars['String']['input']>;
   paidby?: InputMaybe<Array<TrsyPaymentRef>>;
@@ -18677,6 +18723,7 @@ export type RolePatch = {
   details_suspensionDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
   details_url_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_ballotId_n?: InputMaybe<Scalars['String']['input']>;
   system_clientVersion_s?: InputMaybe<Scalars['String']['input']>;
@@ -18895,6 +18942,7 @@ export type SalarybandPatch = {
   details_dao_i?: InputMaybe<Scalars['Int64']['input']>;
   details_minDeferredX100_i?: InputMaybe<Scalars['Int64']['input']>;
   details_name_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_defaultAsset_i?: InputMaybe<Scalars['Int64']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -21344,7 +21392,7 @@ export enum SettingsHasFilter {
   SettingsDashboardTitleS = 'settings_dashboardTitle_s',
   SettingsDiscordUrlS = 'settings_discordURL_s',
   SettingsDocumentationButtonTextS = 'settings_documentationButtonText_s',
-  SettingsDocumentationUrlS = 'settings_documentationUrl_s',
+  SettingsDocumentationUrlS = 'settings_documentationURL_s',
   SettingsEcosystemChildPriceStakedA = 'settings_ecosystemChildPriceStaked_a',
   SettingsEcosystemChildPriceA = 'settings_ecosystemChildPrice_a',
   SettingsEcosystemPriceStakedA = 'settings_ecosystemPriceStaked_a',
@@ -21915,7 +21963,7 @@ export enum SettingsOrderable {
   SettingsDashboardPatternColorS = 'settings_dashboardPatternColor_s',
   SettingsDashboardPatternOpacityS = 'settings_dashboardPatternOpacity_s',
   SettingsDashboardTitleS = 'settings_dashboardTitle_s',
-  SettingsDiscordUrlS = 'settings_discordUrl_s',
+  SettingsDiscordUrlS = 'settings_discordURL_s',
   SettingsDocumentationButtonTextS = 'settings_documentationButtonText_s',
   SettingsDocumentationUrlS = 'settings_documentationURL_s',
   SettingsEcosystemChildPriceStakedA = 'settings_ecosystemChildPriceStaked_a',
@@ -22448,6 +22496,7 @@ export type SettingsPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ecosystem_domain_s?: InputMaybe<Scalars['String']['input']>;
   ecosystem_logo_s?: InputMaybe<Scalars['String']['input']>;
   ecosystem_name_s?: InputMaybe<Scalars['String']['input']>;
@@ -25087,6 +25136,7 @@ export type SuspendPatch = {
   details_originalDocument_i?: InputMaybe<Scalars['Int64']['input']>;
   details_state_s?: InputMaybe<Scalars['String']['input']>;
   details_title_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   suspend?: InputMaybe<Array<DocumentRef>>;
   system_clientVersion_s?: InputMaybe<Scalars['String']['input']>;
@@ -25257,6 +25307,7 @@ export type TimesharePatch = {
   details_assignment_i?: InputMaybe<Scalars['Int64']['input']>;
   details_startDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_timeShareX100_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   nextimeshare?: InputMaybe<Array<TimeshareRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -25441,6 +25492,7 @@ export type TreasuryPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   details_dao_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   payment?: InputMaybe<Array<TrsyPaymentRef>>;
   redemption?: InputMaybe<Array<RedemptionRef>>;
   settings?: InputMaybe<Array<SettingsRef>>;
@@ -25664,6 +25716,7 @@ export type TrsyPaymentPatch = {
   details_nativeAmountPaid_a?: InputMaybe<Scalars['String']['input']>;
   details_notes_s?: InputMaybe<Scalars['String']['input']>;
   details_state_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   legacy_id_i?: InputMaybe<Scalars['Int64']['input']>;
   legacy_redemptionId_i?: InputMaybe<Scalars['Int64']['input']>;
   msiginfo?: InputMaybe<Array<MsigInfoRef>>;
@@ -27122,6 +27175,7 @@ export type UpvtElectnPatch = {
   details_seed_c?: InputMaybe<Scalars['String']['input']>;
   details_startDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   details_status_s?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   headround?: InputMaybe<Array<ElectnRoundRef>>;
   round?: InputMaybe<Array<ElectnRoundRef>>;
   startround?: InputMaybe<Array<ElectnRoundRef>>;
@@ -27251,6 +27305,7 @@ export type UpvtVotePatch = {
   creator?: InputMaybe<Scalars['String']['input']>;
   details_votedId_i?: InputMaybe<Scalars['Int64']['input']>;
   details_voterId_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
@@ -27641,6 +27696,7 @@ export type VoteGroupPatch = {
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
   details_roundId_i?: InputMaybe<Scalars['Int64']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   round?: InputMaybe<Array<ElectnRoundRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -27703,6 +27759,7 @@ export type VotePatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   ownedby?: InputMaybe<Array<MemberRef>>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
@@ -27825,6 +27882,7 @@ export type VoteTallyPatch = {
   contract?: InputMaybe<Scalars['String']['input']>;
   createdDate?: InputMaybe<Scalars['DateTime']['input']>;
   creator?: InputMaybe<Scalars['String']['input']>;
+  docId?: InputMaybe<Scalars['String']['input']>;
   fail_votePower_a?: InputMaybe<Scalars['String']['input']>;
   pass_votePower_a?: InputMaybe<Scalars['String']['input']>;
   system_nodeLabel_s?: InputMaybe<Scalars['String']['input']>;
