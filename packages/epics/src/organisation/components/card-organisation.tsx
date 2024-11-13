@@ -43,8 +43,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   agreements,
   activeAgreements,
   openDiscussions,
-  title,
-  agreements
+  title
 }) => {
   return (
     <Card className="h-full w-full">
