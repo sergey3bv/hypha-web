@@ -63,6 +63,10 @@ export function buildConfig(appDir: string): Config {
             DEFAULT: 'hsl(var(--card))',
             foreground: 'hsl(var(--card-foreground))',
           },
+          action: {
+            DEFAULT: 'rgb(62, 99, 221)',
+            foreground: 'rgb(32, 58, 119)'
+          }
         },
         borderRadius: {
           lg: `var(--radius)`,
