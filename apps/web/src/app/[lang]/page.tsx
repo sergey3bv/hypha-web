@@ -28,7 +28,7 @@ export default async function Index({ params: { lang } }: PageProps) {
   const newtoken = await getAccessToken();
   const daos = await getDaoList({ token: newtoken.accessJWT });
 
-  const mySpacesCount:number = 2
+  const mySpacesCount = 2
 
   const filterSettings: SpacesFilterType = {
     value: 'my-spaces',
