@@ -4,4 +4,6 @@ type PageProps = {
   params: { lang: Locale; id: string };
 };
 
-export default async function Index({ params: { lang } }: PageProps) {}
+export default async function Index({ params: { lang } }: PageProps) {
+  return (<div></div>)
+}
