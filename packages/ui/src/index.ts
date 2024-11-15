@@ -7,5 +7,6 @@ export * from './button-nav-item';
 export * from './container';
 export * from './badge';
 export * from './filter-menu';
+export * from './carousel';
 
 export * from './organisms/editor';
