@@ -5,5 +5,5 @@ type PageProps = {
 };
 
 export default async function Index({ params: { lang } }: PageProps) {
-  return (<div>IndexPage</div>)
+  return (<div>NetworkPage</div>)
 }
