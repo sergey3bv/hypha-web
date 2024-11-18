@@ -13,7 +13,7 @@ export const ButtonNavItem = ({ href, label }: ButtonNavItemProps) => {
   const pathname = usePathname();
   const isActive = pathname.includes(href);
   return (
-    <Button key={href} style={{color: "#B0B4BA"}} className={isActive ? 'bg-primary-foreground rounded-lg hover:bg-primary-foreground' : 'rounded-md bg-transparent hover:bg-primary-foreground' } asChild>
+    <Button key={href} className={isActive ? 'bg-primary-foreground rounded-lg hover:bg-primary-foreground text-gray-400' : 'rounded-md bg-transparent hover:bg-primary-foreground text-gray-400' } asChild>
       <Link href={href}>{label}</Link>
     </Button>
   );
