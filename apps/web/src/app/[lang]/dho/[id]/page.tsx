@@ -5,6 +5,7 @@ import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon } 
 import { Text, Link } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 
 type PageProps = {
   params: { lang: Locale; id: string };
@@ -99,6 +100,16 @@ export default async function Index({
             <div className="text-gray-500 ml-1 text-xs">Completed projects</div>
           </div>
         </div>
+        <Tabs defaultValue="agreements" className="w-full mt-16">
+          <TabsList className='w-full'>
+            <TabsTrigger value="agreements" className="w-full" variant="ghost">Agreements</TabsTrigger>
+            <TabsTrigger value="membership" className="w-full" variant="ghost">Membership</TabsTrigger>
+            <TabsTrigger value="treasury" className="w-full" variant="ghost">Treasury</TabsTrigger>
+          </TabsList>
+          <TabsContent value="agreements">Agreements</TabsContent>
+          <TabsContent value="membership">Membership</TabsContent>
+          <TabsContent value="treasury">Treasury</TabsContent>
+        </Tabs>
       </Container>
       {/* {t('DHO Dashboard')}
       <pre>{JSON.stringify(dao, null, 2)}</pre> */}
