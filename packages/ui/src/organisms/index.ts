@@ -7,3 +7,4 @@ export * from './navigation';
 export * from './menu-left';
 export * from './menu-top';
 export * from './footer';
+export * from './tabs';
