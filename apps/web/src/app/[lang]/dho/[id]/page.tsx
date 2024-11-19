@@ -1,7 +1,7 @@
 import { getAccessToken, getDaoDetail } from '@hypha-platform/graphql/rsc';
 import { getDictionary, Locale } from '@hypha-platform/i18n';
-import { Container, Card, Avatar, AvatarImage, Button } from '@hypha-platform/ui';
-import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon } from '@radix-ui/react-icons';
+import { Container, Card, Avatar, AvatarImage, Button, FilterMenu } from '@hypha-platform/ui';
+import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon, PlusIcon} from '@radix-ui/react-icons';
 import { Text, Link } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,24 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@hypha-platform/ui/ser
 
 type PageProps = {
   params: { lang: Locale; id: string };
+};
+
+type OptionType = {
+  label: string,
+  value: string
+}
+
+type FilterType = {
+  value: string,
+  options: OptionType[]
+}
+
+const discussionsfilterSettings: FilterType = {
+  value: 'most-recent',
+  options: [
+    { label: 'All', value: 'all' },
+    { label: 'Most recent', value: 'most-recent' }
+  ],
 };
 
 const customLogoStyles: React.CSSProperties = {
@@ -19,16 +37,11 @@ const customLogoStyles: React.CSSProperties = {
   left: '15px',
 }
 
-const memberButtonBlockCustomStyles: React.CSSProperties = {
-  position: 'absolute',
-  bottom: '-35px',
-  right: '15px',
-}
-
 // Temp dummy data
 const dummyData = {
   membersCount: 128,
-  competedProjectsCount: 58
+  competedProjectsCount: 58,
+  discussionsCount: 18
 }
 
 const alreadyMember = true;
@@ -106,7 +119,31 @@ export default async function Index({
             <TabsTrigger value="membership" className="w-full" variant="ghost">Membership</TabsTrigger>
             <TabsTrigger value="treasury" className="w-full" variant="ghost">Treasury</TabsTrigger>
           </TabsList>
-          <TabsContent value="agreements">Agreements</TabsContent>
+          <TabsContent value="agreements">
+            <div className='flex justify-between items-center mt-10'>
+              <Text className='text-lg'>Discussions | {dummyData.discussionsCount}</Text>
+              <div className='flex items-center'>
+                <FilterMenu
+                  value={discussionsfilterSettings.value}
+                  options={discussionsfilterSettings.options}
+                />
+                <Button className='ml-2' variant="action" size="sm">
+                  <PlusIcon className='mr-2'/>
+                  Create
+                </Button>
+              </div>
+            </div>
+            <Tabs defaultValue="all" className='mt-3'>
+              <TabsList>
+                <TabsTrigger value="all" variant='outlined'>All</TabsTrigger>
+                <TabsTrigger value="open" variant='outlined'>Open</TabsTrigger>
+                <TabsTrigger value="closed" variant='outlined'>Closed</TabsTrigger>
+              </TabsList>
+              <TabsContent value="all">All</TabsContent>
+              <TabsContent value="open">Open</TabsContent>
+              <TabsContent value="closed">Closed</TabsContent>
+            </Tabs>
+          </TabsContent>
           <TabsContent value="membership">Membership</TabsContent>
           <TabsContent value="treasury">Treasury</TabsContent>
         </Tabs>
