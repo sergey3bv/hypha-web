@@ -2,7 +2,7 @@ import { getAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
 import { CardOrganisation } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
-import { getAssignmentsPath } from '../dho/[id]/assignments/constants';
+import { getDhoPath } from '../dho/[id]/constants';
 import { Button, Container, FilterMenu, Carousel, CarouselItem, CarouselContent } from '@hypha-platform/ui';
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Footer } from '@hypha-platform/ui/server';
@@ -57,7 +57,7 @@ export default async function Index({ params: { lang } }: PageProps) {
         <div data-testid="dho-list-container" className="w-full">
           {daos.map((dao) => (
             <div key={dao.name} className="mb-5">
-              <Link href={getAssignmentsPath(lang, dao.url as string)}>
+              <Link href={getDhoPath(lang, dao.url as string)}>
                 <CardOrganisation
                   createdDate={dao.date}
                   description={dao.description as string}
@@ -80,7 +80,7 @@ export default async function Index({ params: { lang } }: PageProps) {
                 key={dao.name}
                 className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
               >
-                <Link className="w-96" href={getAssignmentsPath(lang, dao.url as string)}>
+                <Link className="w-96" href={getDhoPath(lang, dao.url as string)}>
                   <CardOrganisation
                     createdDate={dao.date}
                     description={dao.description as string}
