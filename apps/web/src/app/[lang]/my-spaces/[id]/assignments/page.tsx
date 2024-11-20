@@ -1,6 +1,6 @@
 import {  Locale } from '@hypha-platform/i18n';
 import { AssignmentsGraph } from '@hypha-platform/ui/server';
-import { PATH_SEGMENT_LANG } from '../../../../constants';
+import { PATH_SEGMENT_LANG } from '../../../constants';
 import { PATH_SEGMENT_DHO_ID } from '../constants';
 import { PATH_ASSIGNMENTS_CREATE } from './create/constants';
 

@@ -6,11 +6,10 @@ import { ButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
 import { Container, Card, Avatar, AvatarImage, Button } from '@hypha-platform/ui';
-import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon, PlusIcon} from '@radix-ui/react-icons';
+import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon} from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import Link from 'next/link';
 
 const customLogoStyles: React.CSSProperties = {
@@ -33,9 +32,6 @@ export default async function DhoLayout({
   children,
   params: { id: daoSlug, lang },
 }: {
-  agreements: React.ReactNode;
-  membership: React.ReactNode;
-  treasury: React.ReactNode;
   children: React.ReactNode;
   params: { id: string; lang: Locale };
 }) {
