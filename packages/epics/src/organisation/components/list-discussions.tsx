@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CardDiscussion } from "./card-discussion";
 import { Button } from "@hypha-platform/ui";
 
-type ListDiscussionsProps = {};
+type ListDiscussionsProps = Record<string, never>;
 
 const initialData = [
   {

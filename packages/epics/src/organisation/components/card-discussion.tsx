@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, CardFooter} from '@hypha-platform/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Text } from '@radix-ui/themes';
