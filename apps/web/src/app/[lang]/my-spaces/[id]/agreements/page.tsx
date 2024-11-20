@@ -4,6 +4,7 @@ import { FilterMenu, Button } from "@hypha-platform/ui";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
+import { ListDiscussions } from '@hypha-platform/epics';
 
 type PageProps = {
   params: { lang: Locale; id: string };
@@ -28,10 +29,11 @@ const discussionsfilterSettings: FilterType = {
 };
 
 const dummyData = {
-  discussionsCount: 18
+  discussionsCount: 18,
 }
 
 export default async function AgreementsPage({ params: { lang, id } }: PageProps) {
+
   return (
     <div>
       <Tabs value="agreements" className="w-full mt-16">
@@ -72,9 +74,15 @@ export default async function AgreementsPage({ params: { lang, id } }: PageProps
               <TabsTrigger value="open" variant='outlined'>Open</TabsTrigger>
               <TabsTrigger value="closed" variant='outlined'>Closed</TabsTrigger>
             </TabsList>
-            <TabsContent value="all">All</TabsContent>
-            <TabsContent value="open">Open</TabsContent>
-            <TabsContent value="closed">Closed</TabsContent>
+            <TabsContent value="all">
+              <ListDiscussions/>
+            </TabsContent>
+            <TabsContent value="open">
+              <ListDiscussions/>
+            </TabsContent>
+            <TabsContent value="closed">
+              <ListDiscussions/>
+            </TabsContent>
           </Tabs>
         </TabsContent>
       </Tabs>
