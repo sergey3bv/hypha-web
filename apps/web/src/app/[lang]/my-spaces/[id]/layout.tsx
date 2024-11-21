@@ -10,6 +10,7 @@ import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon} f
 import { Text } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const customLogoStyles: React.CSSProperties = {
@@ -74,7 +75,7 @@ export default async function DhoLayout({
             <Text className='text-sm text-gray-400 ml-1'> / {dao.title}</Text>
           </div>
           <Card className='relative'>
-            <img className="rounded-xl max-h-[270px] w-full object-cover" src={dao.logo}></img>
+            <Image width={768} height={270} className="rounded-xl max-h-[270px] w-full object-cover" src={dao.logo} alt={dao.title}></Image>
             <Avatar style={customLogoStyles} className='border-4'>
               <AvatarImage src={dao.logo} alt="logo" />
             </Avatar>
