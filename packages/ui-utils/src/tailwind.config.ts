@@ -66,7 +66,11 @@ export function buildConfig(appDir: string): Config {
           action: {
             DEFAULT: 'rgb(62, 99, 221)',
             foreground: 'rgb(32, 58, 119)'
-          }
+          },
+          'action-light': {
+            DEFAULT: 'hsl(var(--action-light))',
+            foreground: 'hsl(var(--action-light))',
+          },
         },
         borderRadius: {
           lg: `var(--radius)`,
