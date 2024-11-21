@@ -1,5 +1,5 @@
 import { Locale } from "@hypha-platform/i18n";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
+import { Tabs, TabsList, TabsTrigger } from "@hypha-platform/ui/server";
 import Link from "next/link";
 import { ListDiscussions, ListProposals } from '@hypha-platform/epics';
 
