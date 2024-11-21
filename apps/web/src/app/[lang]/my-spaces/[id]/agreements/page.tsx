@@ -1,7 +1,7 @@
 import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
-import { ListDiscussions } from '@hypha-platform/epics';
+import { ListDiscussions, ListProposals } from '@hypha-platform/epics';
 
 type PageProps = {
   params: { lang: Locale; id: string };
@@ -30,6 +30,7 @@ export default async function AgreementsPage({ params: { lang, id } }: PageProps
           </TabsTrigger>
         </TabsList>
         <ListDiscussions/>
+        <ListProposals/>
       </Tabs>
     </div>
   );
