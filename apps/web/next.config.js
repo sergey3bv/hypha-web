@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'hypha.infura-ipfs.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
     ],
   },
 };
