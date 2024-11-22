@@ -4,7 +4,7 @@ import {
 } from '@hypha-platform/graphql/rsc';
 import { ButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
-import { MenuTop } from '@hypha-platform/ui/server';
+import { Footer, MenuTop } from '@hypha-platform/ui/server';
 import { Container, Card, Avatar, AvatarImage, Button } from '@hypha-platform/ui';
 import { Link2Icon, LinkedInLogoIcon, Share2Icon, PersonIcon, ChevronLeftIcon} from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
@@ -127,6 +127,7 @@ export default async function DhoLayout({
           </div>
           {children}
         </Container>
+        <Footer/>
       </div>
     </div>
   );
