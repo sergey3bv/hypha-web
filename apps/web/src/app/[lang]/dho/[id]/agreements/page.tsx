@@ -20,17 +20,17 @@ export default async function AgreementsPage({ params: { lang, id } }: PageProps
       <Tabs value="agreements" className="w-full mt-16">
         <TabsList className='w-full'>
           <TabsTrigger asChild value="agreements" className="w-full" variant="ghost">
-            <Link href={`/${lang}/my-spaces/${id}/agreements`} className="w-full" passHref>
+            <Link href={`/${lang}/dho/${id}/agreements`} className="w-full" passHref>
               Agreements
             </Link>
           </TabsTrigger>
           <TabsTrigger asChild value="membership" className="w-full" variant="ghost">
-            <Link href={`/${lang}/my-spaces/${id}/membership`} className="w-full" passHref>
+            <Link href={`/${lang}/dho/${id}/membership`} className="w-full" passHref>
               Membership
             </Link>
           </TabsTrigger>
           <TabsTrigger asChild value="treasury" className="w-full" variant="ghost">
-            <Link href={`/${lang}/my-spaces/${id}/treasury`} className="w-full" passHref>
+            <Link href={`/${lang}/dho/${id}/treasury`} className="w-full" passHref>
               Treasury
             </Link>
           </TabsTrigger>
