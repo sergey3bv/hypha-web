@@ -13,7 +13,9 @@ const customCardHeaderStyles: React.CSSProperties = {
 }
 
 const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px'
+  fontSize: '18px',
+  whiteSpace: 'nowrap',
+  fontWeight: '500'
 }
 
 const customAvatarStyles: React.CSSProperties = {
