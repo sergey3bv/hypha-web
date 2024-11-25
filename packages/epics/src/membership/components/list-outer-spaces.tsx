@@ -98,7 +98,7 @@ export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = () => {
       </div>
       <div className="my-6 flex justify-center">
         <Button onClick={loadMoreOuterSpaces} className="rounded-lg" variant="outline" size="sm">
-          Load more projects
+          Load more outer spaces
         </Button>
       </div>
     </div>
