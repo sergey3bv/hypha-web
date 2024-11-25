@@ -1,7 +1,7 @@
 import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
-import { ListOuterSpaces } from "@hypha-platform/epics";
+import { ListOuterSpaces, ListInnerSpaces } from "@hypha-platform/epics";
 
 type PageProps = {
   params: { lang: Locale; id: string };
@@ -29,8 +29,9 @@ export default async function AgreementsPage({ params: { lang, id } }: PageProps
           </TabsTrigger>
         </TabsList>
         <TabsContent value="membership">
-          <div className='flex justify-between items-center mt-10'>
+          <div className='flex flex-col items-center mt-4'>
             <ListOuterSpaces/>
+            <ListInnerSpaces/>
           </div>
         </TabsContent>
       </Tabs>
