@@ -2,7 +2,7 @@ import { getAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
 import { CardOrganisation } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
-import { getDhoPathAgreements } from './[id]/constants';
+import { getDhoPathAgreements } from '../dho/[id]/constants';
 import { Button, Container, FilterMenu, Carousel, CarouselItem, CarouselContent } from '@hypha-platform/ui';
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Footer } from '@hypha-platform/ui/server';
