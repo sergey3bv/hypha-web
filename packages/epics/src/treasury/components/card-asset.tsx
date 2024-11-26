@@ -19,13 +19,12 @@ export const CardAsset: React.FC<AssetCardProps> = ({
   symbol,
   value,
   usdEqual,
-  type
 }) => {
-  const formatValue = (num:Number):String => {
-    let numStr = num.toString();
-    let [integerPart, decimalPart] = numStr.split('.');
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${integerPart},${decimalPart}` : integerPart;
+  const formatValue = (num:number):string => {
+    const numStr = num.toString();
+    const [integerPart, decimalPart] = numStr.split('.');
+    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
   }
   return (
     <Card className='w-full h-full p-6 mb-2 flex flex-col justify-between'>

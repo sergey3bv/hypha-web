@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { Text } from '@radix-ui/themes';
-import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardAgreement } from './card-agreement';

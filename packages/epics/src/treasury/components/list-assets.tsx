@@ -49,11 +49,11 @@ const dummyData = {
 }
 
 export const ListAssets: React.FC<ListAssetsProps> = () => {
-  const formatValue = (num:Number):String => {
-    let numStr = num.toString();
-    let [integerPart, decimalPart] = numStr.split('.');
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${integerPart},${decimalPart}` : integerPart;
+  const formatValue = (num:number):string => {
+    const numStr = num.toString();
+    const [integerPart, decimalPart] = numStr.split('.');
+    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
   }
   const [assets, setAssets] = useState(dummyData.assets);
   const loadMoreAssets = () => {
