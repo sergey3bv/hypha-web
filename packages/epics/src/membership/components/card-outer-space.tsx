@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage, Badge, Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
+import { Avatar, AvatarImage, Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
 
 type CardOuterSpaceProps = {
   logo: string;
