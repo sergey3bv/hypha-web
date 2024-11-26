@@ -72,7 +72,7 @@ export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = () => {
 
   return (
     <div>
-      <div className='flex justify-between items-center mt-10'>
+      <div className='flex justify-between items-center mt-6'>
         <Text className='text-lg'>Outer Spaces | {dummyData.outerSpacesCount}</Text>
         <div className='flex items-center'>
           <FilterMenu

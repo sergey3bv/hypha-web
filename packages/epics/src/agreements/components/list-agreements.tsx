@@ -113,7 +113,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
   }
   return (
     <div>
-      <div className='flex justify-between items-center mt-10'>
+      <div className='flex justify-between items-center mt-6'>
         <Text className='text-lg'>Agreements | {dummyData.agreementsCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
