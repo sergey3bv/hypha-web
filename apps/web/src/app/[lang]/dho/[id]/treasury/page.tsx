@@ -1,6 +1,7 @@
 import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
+import { ListAssets } from "@hypha-platform/epics";
 
 type PageProps = {
   params: { lang: Locale, id: string}
@@ -28,8 +29,8 @@ export default async function TreasuryPage({ params: { lang, id } }: PageProps) 
           </TabsTrigger>
         </TabsList>
         <TabsContent value="treasury">
-          <div className='flex justify-between items-center mt-10'>
-            Treasury
+          <div className='flex justify-between items-center mt-4'>
+            <ListAssets/>
           </div>
         </TabsContent>
       </Tabs>
