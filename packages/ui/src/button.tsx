@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         action: 'text-white rounded-lg bg-action hover:bg-action-foreground',
-        actionOutline: "bg-action bg-opacity-20 border border-blue-500/90 text-action-light",
+        actionOutline: "bg-transparent border border-blue-500/90 text-action-light",
         actionOutlineChecked: "bg-action bg-opacity-50 text-action-light",
       },
       size: {
