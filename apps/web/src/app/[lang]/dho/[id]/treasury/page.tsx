@@ -2,8 +2,8 @@
 import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
-import { ListAssets, ListRequests } from "@hypha-platform/epics";
-import { listRequestsData } from "@hypha-platform/ui-utils";
+import { ListAssets, ListPayouts, ListRequests } from "@hypha-platform/epics";
+import { listRequestsData, listPayoutsData } from "@hypha-platform/ui-utils";
 import { useState } from "react";
 
 type PageProps = {
@@ -12,10 +12,16 @@ type PageProps = {
 
 export default function TreasuryPage({ params: { lang, id } }: PageProps) {
   const [requests, setRequests] = useState(listRequestsData.requests);
+  const [payouts, setPayouts] = useState(listPayoutsData.payouts);
 
   const loadMoreRequests = () => {
     const newRequests = listRequestsData.newRequests;
     setRequests(prevRequests => [...prevRequests, ...newRequests]);
+  }
+
+  const loadMorePayouts = () => {
+    const newPayouts = listPayoutsData.newPayouts;
+    setPayouts(prevRequests => [...prevRequests, ...newPayouts]);
   }
 
   return (
@@ -45,6 +51,11 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
               requests={requests}
               totalValue={listRequestsData.totalValue}
               onLoadMore={loadMoreRequests}
+            />
+            <ListPayouts
+              payouts={payouts}
+              totalValue={listPayoutsData.totalValue}
+              onLoadMore={loadMorePayouts}
             />
           </div>
         </TabsContent>
