@@ -1,5 +1,3 @@
-'use client';
-
 import { Text } from '@radix-ui/themes';
 import { Card, Button, Badge } from '@hypha-platform/ui';
 import Image from 'next/image';
