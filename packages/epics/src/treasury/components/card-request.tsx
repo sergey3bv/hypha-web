@@ -2,7 +2,7 @@ import { Text } from '@radix-ui/themes';
 import { Card, Badge } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { formatCurrencyValue } from '@hypha-platform/ui-utils';
+import { formatCurrencyValue, formatDate } from '@hypha-platform/ui-utils';
 
 type CardRequestProps = {
   name: string;
@@ -21,27 +21,6 @@ export const CardRequest: React.FC<CardRequestProps> = ({
   symbol,
   date
 }) => {
-  const formatDate = (dateString:string):string => {
-      const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-      ];
-      const dateParts = dateString.split('/');
-      const year = dateParts[0];
-      const monthIndex = parseInt(dateParts[1]) - 1;
-      const day = dateParts[2];
-      return `${months[monthIndex]} ${day}, ${year}`;
-  }
   return (
     <Card className='w-full h-full p-6 mb-2 flex'>
       <Image className='rounded-lg mr-3' src={avatar} height={64} width={64} alt={name}></Image>
