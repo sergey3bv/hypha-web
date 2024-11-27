@@ -1,13 +1,23 @@
+'use client';
 import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
 import { ListAssets, ListRequests } from "@hypha-platform/epics";
+import { listRequestsData } from "@hypha-platform/ui-utils";
+import { useState } from "react";
 
 type PageProps = {
   params: { lang: Locale, id: string}
 }
 
-export default async function TreasuryPage({ params: { lang, id } }: PageProps) {
+export default function TreasuryPage({ params: { lang, id } }: PageProps) {
+  const [requests, setRequests] = useState(listRequestsData.requests);
+
+  const loadMoreRequests = () => {
+    const newRequests = listRequestsData.newRequests;
+    setRequests(prevRequests => [...prevRequests, ...newRequests]);
+  }
+
   return (
     <div>
       <Tabs value="treasury" className="w-full mt-16">
@@ -31,7 +41,11 @@ export default async function TreasuryPage({ params: { lang, id } }: PageProps) 
         <TabsContent value="treasury">
           <div className='flex flex-col justify-between items-center mt-4'>
             <ListAssets/>
-            <ListRequests/>
+            <ListRequests
+              requests={requests}
+              totalValue={listRequestsData.totalValue}
+              onLoadMore={loadMoreRequests}
+            />
           </div>
         </TabsContent>
       </Tabs>
