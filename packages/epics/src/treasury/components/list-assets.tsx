@@ -5,6 +5,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardAsset } from './card-asset';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
 type ListAssetsProps = Record<string, never>;
 
@@ -49,12 +50,6 @@ const dummyData = {
 }
 
 export const ListAssets: React.FC<ListAssetsProps> = () => {
-  const formatValue = (num:number):string => {
-    const numStr = num.toString();
-    const [integerPart, decimalPart] = numStr.split('.');
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
-  }
   const [assets, setAssets] = useState(dummyData.assets);
   const loadMoreAssets = () => {
     const newAssets = [
@@ -80,7 +75,7 @@ export const ListAssets: React.FC<ListAssetsProps> = () => {
   return (
     <div className='w-full mb-6'>
       <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Balance | $ {formatValue(dummyData.balance)}</Text>
+        <Text className='text-lg'>Balance | $ {formatCurrencyValue(dummyData.balance)}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={assetsFilterSettings.value}

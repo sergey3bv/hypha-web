@@ -2,6 +2,7 @@ import { Text } from '@radix-ui/themes';
 import { Card, Badge } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { CalendarIcon } from '@radix-ui/react-icons';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
 type CardRequestProps = {
   name: string;
@@ -20,12 +21,6 @@ export const CardRequest: React.FC<CardRequestProps> = ({
   symbol,
   date
 }) => {
-  const formatValue = (num:number):string => {
-    const numStr = num.toString();
-    const [integerPart, decimalPart] = numStr.split('.');
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
-  }
   const formatDate = (dateString:string):string => {
       const months = [
         "January",
@@ -56,7 +51,7 @@ export const CardRequest: React.FC<CardRequestProps> = ({
             <Badge variant="actionOutline">{symbol}</Badge>
             <Badge variant="warning">Pending</Badge>
           </div>
-          <Text className='text-3'>$ {formatValue(value)}</Text>
+          <Text className='text-3'>$ {formatCurrencyValue(value)}</Text>
           <Text className='text-xs text-gray-500'>{name} {surname}</Text>
         </div>
         <div className='flex h-full justify-end items-end text-gray-500'>

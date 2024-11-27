@@ -4,6 +4,7 @@ import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardRequest } from './card-request';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
 type ListRequestsProps = Record<string, never>;
 
@@ -86,16 +87,10 @@ export const ListRequests: React.FC<ListRequestsProps> = () => {
     ];
     setRequests(prevRequests => [...prevRequests, ...newRequests]);
   }
-  const formatValue = (num:number):string => {
-    const numStr = num.toString();
-    const [integerPart, decimalPart] = numStr.split('.');
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
-  }
   return (
     <div className='w-full'>
       <div className='flex justify-between items-center mt-4'>
-        <Text className='text-lg'>Requests | $ {formatValue(dummyData.totalValue)}</Text>
+        <Text className='text-lg'>Requests | $ {formatCurrencyValue(dummyData.totalValue)}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={requestsfilterSettings.value}

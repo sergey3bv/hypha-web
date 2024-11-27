@@ -1,6 +1,7 @@
 import { Text } from '@radix-ui/themes';
 import { Card } from '@hypha-platform/ui';
 import Image from 'next/image';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
 type AssetCardProps = {
   icon: string;
@@ -18,12 +19,6 @@ export const CardAsset: React.FC<AssetCardProps> = ({
   value,
   usdEqual,
 }) => {
-  const formatValue = (num:number):string => {
-    const numStr = num.toString();
-    const [integerPart, decimalPart] = numStr.split('.');
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return decimalPart ? `${formattedIntegerPart},${decimalPart}` : formattedIntegerPart;
-  }
   return (
     <Card className='w-full h-full p-6 mb-2 flex flex-col justify-between'>
       <div className='w-full flex flex-row items-center'>
@@ -36,8 +31,8 @@ export const CardAsset: React.FC<AssetCardProps> = ({
         </div>
       </div>
       <div className='w-full flex flex-row'>
-          <Text className='text-secondary-foreground font-bold text-xs'>$ {formatValue(usdEqual)}</Text>
-          <Text className='text-gray-500 text-xs ml-1'>{formatValue(value)} {symbol}</Text>
+          <Text className='text-secondary-foreground font-bold text-xs'>$ {formatCurrencyValue(usdEqual)}</Text>
+          <Text className='text-gray-500 text-xs ml-1'>{formatCurrencyValue(value)} {symbol}</Text>
       </div>
     </Card>
   )
