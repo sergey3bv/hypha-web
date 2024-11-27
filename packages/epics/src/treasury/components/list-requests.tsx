@@ -5,6 +5,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardRequest } from './card-request';
 import { formatCurrencyValue } from '@hypha-platform/ui-utils';
+import { listRequestsData } from '@hypha-platform/ui-utils';
 
 type ListRequestsProps = Record<string, never>;
 
@@ -26,46 +27,8 @@ const requestsfilterSettings: FilterType = {
   ],
 };
 
-const dummyData = {
-  totalValue: 15850,
-  requests: [
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      value: 1950,
-      symbol: 'ETH',
-      date: '2024/09/23'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      value: 1950,
-      symbol: 'ETH',
-      date: '2024/09/23'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      value: 1950,
-      symbol: 'ETH',
-      date: '2024/09/23'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      value: 1950,
-      symbol: 'ETH',
-      date: '2024/09/23'
-    },
-  ]
-}
-
 export const ListRequests: React.FC<ListRequestsProps> = () => {
-  const [requests, setRequests] = useState(dummyData.requests);
+  const [requests, setRequests] = useState(listRequestsData.requests);
   const loadMoreRequests = () => {
     const newRequests = [
       {
@@ -90,7 +53,7 @@ export const ListRequests: React.FC<ListRequestsProps> = () => {
   return (
     <div className='w-full'>
       <div className='flex justify-between items-center mt-4'>
-        <Text className='text-lg'>Requests | $ {formatCurrencyValue(dummyData.totalValue)}</Text>
+        <Text className='text-lg'>Requests | $ {formatCurrencyValue(listRequestsData.totalValue)}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={requestsfilterSettings.value}

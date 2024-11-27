@@ -5,6 +5,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardMember } from './card-member';
+import { listMembersData } from '@hypha-platform/ui-utils';
 
 type ListMembersProps = Record<string, never>;
 
@@ -26,50 +27,8 @@ const membersfilterSettings: FilterType = {
   ],
 };
 
-const dummyData = {
-  membersCount: 68,
-  members: [
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      nickname: 'username',
-      status: 'applicant',
-      commitment: 50,
-      location: 'Paris, France'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      nickname: 'username',
-      status: 'active',
-      commitment: 50,
-      location: 'Paris, France'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      nickname: 'username',
-      status: 'inactive',
-      commitment: 50,
-      location: 'Paris, France'
-    },
-    {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-      name: 'Name',
-      surname: 'Surname',
-      nickname: 'username',
-      status: 'rejected',
-      commitment: 50,
-      location: 'Paris, France'
-    }
-  ]
-}
-
 export const ListMembers: React.FC<ListMembersProps> = () => {
-  const [members, setMembers] = useState(dummyData.members);
+  const [members, setMembers] = useState(listMembersData.members);
   const loadMoreMembers = () => {
     const newMembers = [
       {
@@ -96,7 +55,7 @@ export const ListMembers: React.FC<ListMembersProps> = () => {
   return (
     <div className='w-full'>
       <div className='flex justify-between items-center mt-4'>
-        <Text className='text-lg'>Members | {dummyData.membersCount}</Text>
+        <Text className='text-lg'>Members | {listMembersData.membersCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={membersfilterSettings.value}

@@ -5,6 +5,7 @@ import { Button, FilterMenu } from "@hypha-platform/ui";
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { CardOuterSpace } from './card-outer-space';
+import { listOuterSpacesData } from '@hypha-platform/ui-utils';
 
 type ListOuterSpacesProps = Record<string, never>;
 
@@ -26,29 +27,8 @@ const outerSpacesfilterSettings: FilterType = {
   ],
 };
 
-const dummyData = {
-  outerSpacesCount: 5,
-}
-
-const initialData = [
-  {
-    logo: 'https://s3-alpha-sig.figma.com/img/2a0a/e61e/2e544fb936cbd0a4710a26e48616806c?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ja6J2tHo0tQSW8nK8rAn~cWIFAQCOfUneOJZdW4O-aES1KIGjGpUGJZ7QyqMOguKX9XBmRVShlTSvGMpiAUikfeAXf5aFlx~xA0ZyalqUjfR2mFEcxwTfjbEh0Ftk~aADoBxuRmuvfOoAifXUV4fypB6mYNECJ0Ol8o8YbidqBJCgxa3DPJD8G1gyzxPIKZreWNt~H2IeQcdqZMi6bToX16HSsvgVxi6CazBLlRy3F21BVgVkJAfL9OrmkF0dqNDyzzout1ihuJB5W9EXY0JbHr1P3fYOzJemmv~llxZ3tQ9dUJhUSsLI~HezPENpIthtUEoXnB7pWSNYv4I0MpzAQ__',
-    title: 'Hypha Energy Hub',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
-    members: 126,
-    projects: 58
-  },
-  {
-    logo: 'https://s3-alpha-sig.figma.com/img/2a0a/e61e/2e544fb936cbd0a4710a26e48616806c?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ja6J2tHo0tQSW8nK8rAn~cWIFAQCOfUneOJZdW4O-aES1KIGjGpUGJZ7QyqMOguKX9XBmRVShlTSvGMpiAUikfeAXf5aFlx~xA0ZyalqUjfR2mFEcxwTfjbEh0Ftk~aADoBxuRmuvfOoAifXUV4fypB6mYNECJ0Ol8o8YbidqBJCgxa3DPJD8G1gyzxPIKZreWNt~H2IeQcdqZMi6bToX16HSsvgVxi6CazBLlRy3F21BVgVkJAfL9OrmkF0dqNDyzzout1ihuJB5W9EXY0JbHr1P3fYOzJemmv~llxZ3tQ9dUJhUSsLI~HezPENpIthtUEoXnB7pWSNYv4I0MpzAQ__',
-    title: 'Hypha Energy Hub',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
-    members: 126,
-    projects: 58
-  }
-];
-
 export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = () => {
-  const [outerSpaces, setOuterSpaces] = useState(initialData);
+  const [outerSpaces, setOuterSpaces] = useState(listOuterSpacesData.spaces);
 
   const loadMoreOuterSpaces = () => {
     const newOuterSpaces = [
@@ -73,7 +53,7 @@ export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = () => {
   return (
     <div>
       <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Outer Spaces | {dummyData.outerSpacesCount}</Text>
+        <Text className='text-lg'>Outer Spaces | {listOuterSpacesData.outerSpacesCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={outerSpacesfilterSettings.value}

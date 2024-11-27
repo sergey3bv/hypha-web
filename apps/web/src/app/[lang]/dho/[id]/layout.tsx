@@ -12,6 +12,7 @@ import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
+import { dhoLayoutData } from '@hypha-platform/ui-utils';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',
@@ -19,12 +20,6 @@ const customLogoStyles: React.CSSProperties = {
   position: 'absolute',
   bottom: '-35px',
   left: '15px',
-}
-
-// Temp dummy data
-const dummyData = {
-  membersCount: 128,
-  competedProjectsCount: 58,
 }
 
 const alreadyMember = true;
@@ -117,11 +112,11 @@ export default async function DhoLayout({
           </div>
           <div className="flex flex-grow gap-2 text-xs items-center mt-6">
             <div className="flex">
-              <div className="font-bold">{dummyData.membersCount}</div>
+              <div className="font-bold">{dhoLayoutData.membersCount}</div>
               <div className="text-gray-500 ml-1 text-xs">Members</div>
             </div>
             <div className="flex ml-3">
-              <div className="font-bold">{dummyData.competedProjectsCount}</div>
+              <div className="font-bold">{dhoLayoutData.competedProjectsCount}</div>
               <div className="text-gray-500 ml-1 text-xs">Completed projects</div>
             </div>
           </div>

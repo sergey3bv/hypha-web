@@ -4,6 +4,7 @@ import { Text } from '@radix-ui/themes';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardAgreement } from './card-agreement';
+import { listAgreementsData } from '@hypha-platform/ui-utils';
 
 type ListAgreementsProps = Record<string, never>;
 
@@ -25,62 +26,8 @@ const agreementsfilterSettings: FilterType = {
   ],
 };
 
-const dummyData = {
-  agreementsCount: 148,
-  agreements: [
-    {
-      title: 'Project Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'active',
-      views: 59,
-      comments: 16,
-    },
-    {
-      title: 'Project Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'voting',
-      views: 59,
-      comments: 16,
-    },
-    {
-      title: 'Project Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'completed',
-      views: 59,
-      comments: 16,
-    },
-    {
-      title: 'Project Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'rejected',
-      views: 59,
-      comments: 16,
-    }
-  ]
-}
-
 export const ListAgreements: React.FC<ListAgreementsProps> = () => {
-  const [agreements, setAgreements] = useState(dummyData.agreements);
+  const [agreements, setAgreements] = useState(listAgreementsData.agreements);
   const loadMoreAgreements = () => {
     const newAgreements = [
       {
@@ -113,7 +60,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
   return (
     <div>
       <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Agreements | {dummyData.agreementsCount}</Text>
+        <Text className='text-lg'>Agreements | {listAgreementsData.agreementsCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={agreementsfilterSettings.value}

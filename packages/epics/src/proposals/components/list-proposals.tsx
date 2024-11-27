@@ -5,6 +5,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardProposal } from './card-proposal';
+import { listProposalsData } from '@hypha-platform/ui-utils';
 
 type ListProposalsProps = Record<string, never>;
 
@@ -26,54 +27,8 @@ const proposalsfilterSettings: FilterType = {
   ],
 };
 
-const dummyData = {
-  proposalsCount: 32,
-  proposals: [
-    {
-      title: 'Proposal Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'active',
-    },
-    {
-      title: 'Proposal Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'voting',
-    },
-    {
-      title: 'Proposal Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'completed',
-    },
-    {
-      title: 'Proposal Title',
-      creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-        name: 'Jane',
-        surname: 'Doe'
-      },
-      commitment: 50,
-      status: 'rejected',
-    }
-  ]
-}
-
 export const ListProposals: React.FC<ListProposalsProps> = () => {
-  const [proposals, setProposals] = useState(dummyData.proposals);
+  const [proposals, setProposals] = useState(listProposalsData.proposals);
   const loadMoreProposals = () => {
     const newProposals = [
       {
@@ -102,7 +57,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
   return (
     <div>
       <div className='flex justify-between items-center mt-10'>
-        <Text className='text-lg'>Proposals | {dummyData.proposalsCount}</Text>
+        <Text className='text-lg'>Proposals | {listProposalsData.proposalsCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={proposalsfilterSettings.value}
