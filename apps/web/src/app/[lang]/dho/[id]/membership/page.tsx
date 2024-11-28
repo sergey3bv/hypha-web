@@ -3,7 +3,7 @@ import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hypha-platform/ui/server";
 import Link from "next/link";
 import { ListOuterSpaces, ListInnerSpaces, ListMembers } from "@hypha-platform/epics";
-import { listOuterSpacesData } from "@hypha-platform/ui-utils";
+import { listOuterSpacesData, listInnerSpacesData } from "@hypha-platform/ui-utils";
 import { useState } from "react";
 
 type PageProps = {
@@ -12,10 +12,15 @@ type PageProps = {
 
 export default function MembershipPage({ params: { lang, id } }: PageProps) {
   const [outerSpaces, setOuterSpaces] = useState(listOuterSpacesData.spaces);
+  const [innerSpaces, setInnerSpaces] = useState(listInnerSpacesData.spaces);
 
   const loadMoreOuterSpaces = () => {
     const newOuterSpaces = listOuterSpacesData.newOuterSpaces;
     setOuterSpaces(prevOuterSpaces => [...prevOuterSpaces, ...newOuterSpaces]);
+  }
+  const loadMoreInnerSpaces = () => {
+    const newInnerSpaces = listInnerSpacesData.newInnerSpaces;
+    setInnerSpaces(prevInnerSpaces => [...prevInnerSpaces, ...newInnerSpaces]);
   }
   return (
     <div>
@@ -44,7 +49,11 @@ export default function MembershipPage({ params: { lang, id } }: PageProps) {
               outerSpacesCount={listOuterSpacesData.outerSpacesCount}
               onLoadMore={loadMoreOuterSpaces}
             />
-            <ListInnerSpaces/>
+            <ListInnerSpaces
+              spaces={innerSpaces}
+              innerSpacesCount={listInnerSpacesData.innerSpacesCount}
+              onLoadMore={loadMoreInnerSpaces}
+            />
             <ListMembers/>
           </div>
         </TabsContent>
