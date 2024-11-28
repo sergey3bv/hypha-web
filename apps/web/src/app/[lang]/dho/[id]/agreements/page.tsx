@@ -3,7 +3,7 @@ import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger } from "@hypha-platform/ui/server";
 import Link from "next/link";
 import { ListDiscussions, ListProposals, ListAgreements } from '@hypha-platform/epics';
-import { listProposalsData } from "@hypha-platform/ui-utils";
+import { listProposalsData, listDiscussionsData } from "@hypha-platform/ui-utils";
 import { useState } from "react";
 
 type PageProps = {
@@ -13,11 +13,16 @@ type PageProps = {
 export default function AgreementsPage({ params: { lang, id } }: PageProps) {
 
   const [proposals, setProposals] = useState(listProposalsData.proposals);
+  const [discussions, setDiscussions] = useState(listDiscussionsData.discussions);
 
   const loadMoreProposals = () => {
     const newProposals = listProposalsData.newProposals;
     setProposals(prevProposals => [...prevProposals, ...newProposals]);
   }
+  const loadMoreDiscussions = () => {
+    const newDiscussions = listDiscussionsData.newDiscussions
+    setDiscussions(prevDiscussions => [...prevDiscussions, ...newDiscussions]);
+  };
 
   return (
     <div>
@@ -39,7 +44,11 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
             </Link>
           </TabsTrigger>
         </TabsList>
-        <ListDiscussions/>
+        <ListDiscussions
+          discussions={discussions}
+          discussionsCount={listDiscussionsData.discussionsCount}
+          onLoadMore={loadMoreDiscussions}
+        />
         <ListProposals
           proposals={proposals}
           proposalsCount={listProposalsData.proposalsCount}
