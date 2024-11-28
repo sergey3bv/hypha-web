@@ -3,7 +3,7 @@ import { Locale } from "@hypha-platform/i18n";
 import { Tabs, TabsList, TabsTrigger } from "@hypha-platform/ui/server";
 import Link from "next/link";
 import { ListDiscussions, ListProposals, ListAgreements } from '@hypha-platform/epics';
-import { listProposalsData, listDiscussionsData } from "@hypha-platform/ui-utils";
+import { listProposalsData, listDiscussionsData, listAgreementsData } from "@hypha-platform/ui-utils";
 import { useState } from "react";
 
 type PageProps = {
@@ -14,6 +14,7 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
 
   const [proposals, setProposals] = useState(listProposalsData.proposals);
   const [discussions, setDiscussions] = useState(listDiscussionsData.discussions);
+  const [agreements, setAgreements] = useState(listAgreementsData.agreements);
 
   const loadMoreProposals = () => {
     const newProposals = listProposalsData.newProposals;
@@ -22,6 +23,10 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
   const loadMoreDiscussions = () => {
     const newDiscussions = listDiscussionsData.newDiscussions
     setDiscussions(prevDiscussions => [...prevDiscussions, ...newDiscussions]);
+  };
+  const loadMoreAgreements = () => {
+    const newAgreements = listAgreementsData.newAgreements
+    setAgreements(prevAgreements => [...prevAgreements, ...newAgreements]);
   };
 
   return (
@@ -54,7 +59,11 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
           proposalsCount={listProposalsData.proposalsCount}
           onLoadMore={loadMoreProposals}
         />
-        <ListAgreements/>
+        <ListAgreements
+          agreements={agreements}
+          agreementsCount={listAgreementsData.agreementsCount}
+          onLoadMore={loadMoreAgreements}
+        />
       </Tabs>
     </div>
   );

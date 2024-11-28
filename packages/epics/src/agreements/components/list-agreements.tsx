@@ -1,12 +1,28 @@
-'use client';
-import { useState } from 'react';
 import { Text } from '@radix-ui/themes';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardAgreement } from './card-agreement';
-import { listAgreementsData } from '@hypha-platform/ui-utils';
 
-type ListAgreementsProps = Record<string, never>;
+type CreatorType = {
+  avatar: string,
+  name: string,
+  surname: string,
+}
+
+type AgreementItem = {
+  creator: CreatorType;
+  title: string;
+  commitment: number;
+  status: string;
+  views: number;
+  comments: number;
+}
+
+type ListAgreementsProps = {
+  agreements: AgreementItem[],
+  agreementsCount: number,
+  onLoadMore: () => void
+};
 
 type OptionType = {
   label: string,
@@ -18,7 +34,7 @@ type FilterType = {
   options: OptionType[]
 }
 
-const agreementsfilterSettings: FilterType = {
+const agreementsFilterSettings: FilterType = {
   value: 'most-recent',
   options: [
     { label: 'All', value: 'all' },
@@ -26,45 +42,19 @@ const agreementsfilterSettings: FilterType = {
   ],
 };
 
-export const ListAgreements: React.FC<ListAgreementsProps> = () => {
-  const [agreements, setAgreements] = useState(listAgreementsData.agreements);
-  const loadMoreAgreements = () => {
-    const newAgreements = [
-      {
-        title: 'New Project Title',
-        creator: {
-          avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-          name: 'Jane',
-          surname: 'Doe'
-        },
-        commitment: 50,
-        status: 'active',
-        views: 59,
-        comments: 16,
-      },
-      {
-        title: 'New Project Title',
-        creator: {
-          avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-          name: 'Jane',
-          surname: 'Doe'
-        },
-        commitment: 50,
-        status: 'active',
-        views: 59,
-        comments: 16,
-      },
-    ];
-    setAgreements(prevAgreements => [...prevAgreements, ...newAgreements]);
-  }
+export const ListAgreements: React.FC<ListAgreementsProps> = ({
+  agreements,
+  agreementsCount,
+  onLoadMore
+}) => {
   return (
     <div>
       <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Agreements | {listAgreementsData.agreementsCount}</Text>
+        <Text className='text-lg'>Agreements | {agreementsCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
-            value={agreementsfilterSettings.value}
-            options={agreementsfilterSettings.options}
+            value={agreementsFilterSettings.value}
+            options={agreementsFilterSettings.options}
           />
         </div>
       </div>
@@ -84,7 +74,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
                   <CardAgreement views={agreement.views} comments={agreement.comments} title={agreement.title} creator={agreement.creator} commitment={agreement.commitment} status={agreement.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAgreements} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more agreements
               </Button>
             </div>
@@ -96,7 +86,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
                   <CardAgreement views={agreement.views} comments={agreement.comments} title={agreement.title} creator={agreement.creator} commitment={agreement.commitment} status={agreement.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAgreements} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more agreements
               </Button>
             </div>
@@ -108,7 +98,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
                   <CardAgreement views={agreement.views} comments={agreement.comments} title={agreement.title} creator={agreement.creator} commitment={agreement.commitment} status={agreement.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAgreements} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more agreements
               </Button>
             </div>
@@ -120,7 +110,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
                   <CardAgreement views={agreement.views} comments={agreement.comments} title={agreement.title} creator={agreement.creator} commitment={agreement.commitment} status={agreement.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAgreements} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more agreements
               </Button>
             </div>
@@ -132,7 +122,7 @@ export const ListAgreements: React.FC<ListAgreementsProps> = () => {
                   <CardAgreement views={agreement.views} comments={agreement.comments} title={agreement.title} creator={agreement.creator} commitment={agreement.commitment} status={agreement.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAgreements} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more agreements
               </Button>
             </div>
