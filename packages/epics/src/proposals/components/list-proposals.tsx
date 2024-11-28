@@ -1,13 +1,27 @@
-'use client';
-import { useState } from 'react';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardProposal } from './card-proposal';
-import { listProposalsData } from '@hypha-platform/ui-utils';
 
-type ListProposalsProps = Record<string, never>;
+type CreatorType = {
+  avatar: string,
+  name: string,
+  surname: string,
+}
+
+type ProposalItem = {
+  creator: CreatorType;
+  title: string;
+  commitment: number;
+  status: string;
+}
+
+type ListProposalsProps = {
+  proposals: ProposalItem[],
+  proposalsCount: number,
+  onLoadMore: () => void
+};
 
 type OptionType = {
   label: string,
@@ -27,37 +41,15 @@ const proposalsfilterSettings: FilterType = {
   ],
 };
 
-export const ListProposals: React.FC<ListProposalsProps> = () => {
-  const [proposals, setProposals] = useState(listProposalsData.proposals);
-  const loadMoreProposals = () => {
-    const newProposals = [
-      {
-        title: 'New Proposal Title',
-        creator: {
-          avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-          name: 'Jane',
-          surname: 'Doe'
-        },
-        commitment: 50,
-        status: 'active',
-      },
-      {
-        title: 'New Proposal Title',
-        creator: {
-          avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
-          name: 'Jane',
-          surname: 'Doe'
-        },
-        commitment: 50,
-        status: 'active',
-      },
-    ];
-    setProposals(prevProposals => [...prevProposals, ...newProposals]);
-  }
+export const ListProposals: React.FC<ListProposalsProps> = ({
+  proposals,
+  proposalsCount,
+  onLoadMore
+}) => {
   return (
     <div>
       <div className='flex justify-between items-center mt-10'>
-        <Text className='text-lg'>Proposals | {listProposalsData.proposalsCount}</Text>
+        <Text className='text-lg'>Proposals | {proposalsCount}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={proposalsfilterSettings.value}
@@ -85,7 +77,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
                   <CardProposal title={proposal.title} creator={proposal.creator} commitment={proposal.commitment} status={proposal.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreProposals} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more proposals
               </Button>
             </div>
@@ -97,7 +89,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
                   <CardProposal title={proposal.title} creator={proposal.creator} commitment={proposal.commitment} status={proposal.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreProposals} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more proposals
               </Button>
             </div>
@@ -109,7 +101,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
                   <CardProposal title={proposal.title} creator={proposal.creator} commitment={proposal.commitment} status={proposal.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreProposals} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more proposals
               </Button>
             </div>
@@ -121,7 +113,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
                   <CardProposal title={proposal.title} creator={proposal.creator} commitment={proposal.commitment} status={proposal.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreProposals} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more proposals
               </Button>
             </div>
@@ -133,7 +125,7 @@ export const ListProposals: React.FC<ListProposalsProps> = () => {
                   <CardProposal title={proposal.title} creator={proposal.creator} commitment={proposal.commitment} status={proposal.status}/>
                 ))}
               </div>
-              <Button onClick={loadMoreProposals} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more proposals
               </Button>
             </div>
