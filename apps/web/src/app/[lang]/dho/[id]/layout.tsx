@@ -1,8 +1,9 @@
 import {
   getAccessToken,
   getDaoDetail,
+  getDaoList
 } from '@hypha-platform/graphql/rsc';
-import { ButtonProfile } from '@hypha-platform/epics';
+import { ButtonProfile, CardOrganisation } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { Footer, MenuTop } from '@hypha-platform/ui/server';
 import { Container, Card, Avatar, AvatarImage, Button } from '@hypha-platform/ui';
@@ -13,6 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { dhoLayoutData } from '@hypha-platform/ui-utils';
+import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
+import { getDhoPathAgreements } from './constants';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',
@@ -33,7 +36,7 @@ export default async function DhoLayout({
 }) {
   const newtoken = await getAccessToken();
   const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
-
+  const daos = await getDaoList({ token: newtoken.accessJWT });
   return (
     <div className="flex flex-grow w-full h-full">
       <MenuTop
@@ -121,6 +124,30 @@ export default async function DhoLayout({
             </div>
           </div>
           {children}
+          <div className="border-t-2 border-primary-foreground pt-6">
+            <Text className='text-3'>Spaces you might like</Text>
+            <Carousel className='my-8'>
+              <CarouselContent>
+                {daos.map((dao) => (
+                  <CarouselItem
+                    key={dao.name}
+                    className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
+                  >
+                    <Link className="w-96" href={getDhoPathAgreements(lang, dao.url as string)}>
+                      <CardOrganisation
+                        createdDate={dao.date}
+                        description={dao.description as string}
+                        icon={dao.logo}
+                        members={0}
+                        agreements={0}
+                        title={dao.title as string}
+                      />
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
         </Container>
         <Footer/>
       </div>
