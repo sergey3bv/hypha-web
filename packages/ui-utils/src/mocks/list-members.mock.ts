@@ -37,5 +37,25 @@ export const listMembersData = {
       commitment: 50,
       location: 'Paris, France'
     }
+  ],
+  newMembers: [
+    {
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      name: 'Name',
+      surname: 'Surname',
+      nickname: 'username',
+      status: 'applicant',
+      commitment: 50,
+      location: 'Paris, France'
+    },
+    {
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      name: 'Name',
+      surname: 'Surname',
+      nickname: 'username',
+      status: 'applicant',
+      commitment: 50,
+      location: 'Paris, France'
+    },
   ]
 }
