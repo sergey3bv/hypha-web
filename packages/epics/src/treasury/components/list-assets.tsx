@@ -5,9 +5,22 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { TabsContent, Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import { Button, FilterMenu } from '@hypha-platform/ui';
 import { CardAsset } from './card-asset';
-import { formatCurrencyValue, listAssetsData } from '@hypha-platform/ui-utils';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
-type ListAssetsProps = Record<string, never>;
+type AssetItem = {
+  icon: string,
+  name: string,
+  symbol: string,
+  value: number,
+  usdEqual: number,
+  type: string
+}
+
+type ListAssetsProps = {
+  assets: AssetItem[],
+  balance: number,
+  onLoadMore: () => void
+};
 
 type OptionType = {
   label: string,
@@ -27,33 +40,15 @@ const assetsFilterSettings: FilterType = {
   ],
 };
 
-export const ListAssets: React.FC<ListAssetsProps> = () => {
-  const [assets, setAssets] = useState(listAssetsData.assets);
-  const loadMoreAssets = () => {
-    const newAssets = [
-      {
-        icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=W0HmD12ptSTV7QwJnar5l0QXpYjN87EJIjR3Hqqh7tyEQzRKmqVynUAWjPNLrDte2kxbcXjxXxHCOq-hcg0Skzn3EVLtp~2MWHlU91cMZ49APOTsv4Q6s9il15KZfJftq45R4sgqvGzCT9ol-O8M795I3q1ironeDlCHKuK8nJfB8H8r4ECM8q3UU77GAvO~Us01N26MsnOdLYw3JI3PyWrQHZB95EjSEZSsJt7SQ7YX7D6NmCkEb~yIbYEVD3fEUF3wMmQWsUPGwgtELPtqiHYkKrkbhJl0ARYvLZ0fOJQOfiIY3vVQhB~zIpq8kEMkTNlVHNvI6rvOhf5WVmYYDA__',
-        name: 'New Bitcoin',
-        symbol: 'BTC',
-        value: 5.25791,
-        usdEqual: 335887.76,
-        type: 'utility'
-      },
-      {
-        icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=W0HmD12ptSTV7QwJnar5l0QXpYjN87EJIjR3Hqqh7tyEQzRKmqVynUAWjPNLrDte2kxbcXjxXxHCOq-hcg0Skzn3EVLtp~2MWHlU91cMZ49APOTsv4Q6s9il15KZfJftq45R4sgqvGzCT9ol-O8M795I3q1ironeDlCHKuK8nJfB8H8r4ECM8q3UU77GAvO~Us01N26MsnOdLYw3JI3PyWrQHZB95EjSEZSsJt7SQ7YX7D6NmCkEb~yIbYEVD3fEUF3wMmQWsUPGwgtELPtqiHYkKrkbhJl0ARYvLZ0fOJQOfiIY3vVQhB~zIpq8kEMkTNlVHNvI6rvOhf5WVmYYDA__',
-        name: 'New Bitcoin',
-        symbol: 'BTC',
-        value: 5.25791,
-        usdEqual: 335887.76,
-        type: 'utility'
-      },
-    ];
-    setAssets(prevAssets => [...prevAssets, ...newAssets]);
-  }
+export const ListAssets: React.FC<ListAssetsProps> = ({
+  assets,
+  balance,
+  onLoadMore
+}) => {
   return (
     <div className='w-full mb-6'>
       <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Balance | $ {formatCurrencyValue(listAssetsData.balance)}</Text>
+        <Text className='text-lg'>Balance | $ {formatCurrencyValue(balance)}</Text>
         <div className='flex items-center'>
           <FilterMenu
             value={assetsFilterSettings.value}
@@ -80,7 +75,7 @@ export const ListAssets: React.FC<ListAssetsProps> = () => {
                   <CardAsset icon={asset.icon} name={asset.name} symbol={asset.symbol} value={asset.value} usdEqual={asset.usdEqual} type={asset.type}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAssets} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more assets
               </Button>
             </div>
@@ -92,7 +87,7 @@ export const ListAssets: React.FC<ListAssetsProps> = () => {
                   <CardAsset icon={asset.icon} name={asset.name} symbol={asset.symbol} value={asset.value} usdEqual={asset.usdEqual} type={asset.type}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAssets} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more assets
               </Button>
             </div>
@@ -104,7 +99,7 @@ export const ListAssets: React.FC<ListAssetsProps> = () => {
                   <CardAsset icon={asset.icon} name={asset.name} symbol={asset.symbol} value={asset.value} usdEqual={asset.usdEqual} type={asset.type}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAssets} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more assets
               </Button>
             </div>
@@ -116,7 +111,7 @@ export const ListAssets: React.FC<ListAssetsProps> = () => {
                   <CardAsset icon={asset.icon} name={asset.name} symbol={asset.symbol} value={asset.value} usdEqual={asset.usdEqual} type={asset.type}/>
                 ))}
               </div>
-              <Button onClick={loadMoreAssets} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
+              <Button onClick={onLoadMore} className="rounded-lg w-fit mt-4" variant="outline" size="sm">
                 Load more assets
               </Button>
             </div>

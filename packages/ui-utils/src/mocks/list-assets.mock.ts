@@ -17,5 +17,23 @@ export const listAssetsData = {
       usdEqual: 335887.76,
       type: 'liquid'
     }
+  ],
+  newAssets: [
+    {
+      icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=W0HmD12ptSTV7QwJnar5l0QXpYjN87EJIjR3Hqqh7tyEQzRKmqVynUAWjPNLrDte2kxbcXjxXxHCOq-hcg0Skzn3EVLtp~2MWHlU91cMZ49APOTsv4Q6s9il15KZfJftq45R4sgqvGzCT9ol-O8M795I3q1ironeDlCHKuK8nJfB8H8r4ECM8q3UU77GAvO~Us01N26MsnOdLYw3JI3PyWrQHZB95EjSEZSsJt7SQ7YX7D6NmCkEb~yIbYEVD3fEUF3wMmQWsUPGwgtELPtqiHYkKrkbhJl0ARYvLZ0fOJQOfiIY3vVQhB~zIpq8kEMkTNlVHNvI6rvOhf5WVmYYDA__',
+      name: 'New Bitcoin',
+      symbol: 'BTC',
+      value: 5.25791,
+      usdEqual: 335887.76,
+      type: 'utility'
+    },
+    {
+      icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=W0HmD12ptSTV7QwJnar5l0QXpYjN87EJIjR3Hqqh7tyEQzRKmqVynUAWjPNLrDte2kxbcXjxXxHCOq-hcg0Skzn3EVLtp~2MWHlU91cMZ49APOTsv4Q6s9il15KZfJftq45R4sgqvGzCT9ol-O8M795I3q1ironeDlCHKuK8nJfB8H8r4ECM8q3UU77GAvO~Us01N26MsnOdLYw3JI3PyWrQHZB95EjSEZSsJt7SQ7YX7D6NmCkEb~yIbYEVD3fEUF3wMmQWsUPGwgtELPtqiHYkKrkbhJl0ARYvLZ0fOJQOfiIY3vVQhB~zIpq8kEMkTNlVHNvI6rvOhf5WVmYYDA__',
+      name: 'New Bitcoin',
+      symbol: 'BTC',
+      value: 5.25791,
+      usdEqual: 335887.76,
+      type: 'utility'
+    },
   ]
 }
