@@ -36,10 +36,9 @@ const statusBadge = (status: string) => {
   }
 }
 
-// Temp variable
 const voted = false;
 
-export const CardProposal: React.FC<ProposalCardProps> = ({
+export const ProposalCard: React.FC<ProposalCardProps> = ({
   commitment,
   status,
   title,
@@ -71,4 +70,3 @@ export const CardProposal: React.FC<ProposalCardProps> = ({
     </Card>
   )
 }
-
