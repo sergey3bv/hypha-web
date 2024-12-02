@@ -6,6 +6,8 @@
     "dev": "nx dev web",
     "build": "nx build web",
     "add-component": "nx add-component --",
+    "format:check": "npx prettier --check 'apps/**/*.{ts,tsx}' --check 'packages/**/*.{ts,tsx}'",
+    "format:fix": "npx prettier --write 'apps/**/*.{ts,tsx}' --write 'packages/**/*.{ts,tsx}'",
     "postinstall": "if [ ! -f .env ]; then cp .env.template .env; fi"
   },
   "private": true,

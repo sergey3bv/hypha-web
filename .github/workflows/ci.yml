@@ -36,6 +36,8 @@ jobs:
       - run: pnpm install
       - uses: nrwl/nx-set-shas@v4
 
+      - run: pnpm run format:check
+
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
       - run: npx nx affected -t lint test build
