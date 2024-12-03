@@ -1,6 +1,6 @@
 'use client';
 import { FC } from 'react';
-import { useProposals } from '../hooks/useProposals';
+import { useProposals } from '../hooks/use-proposals';
 import { ProposalTabs } from './proposal-tabs';
 import { ProposalsFilter } from './proposal-filter';
 import ProposalList from './proposal-list';
