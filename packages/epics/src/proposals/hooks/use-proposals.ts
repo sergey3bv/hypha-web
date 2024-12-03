@@ -31,10 +31,7 @@ const fetchProposals = async () => {
 };
 
 export const useProposals = (): UseProposalsReturn => {
-  const { data: fetchedData, isLoading } = useSWR(
-    'proposals',
-    fetchProposals
-  );
+  const { data: fetchedData, isLoading } = useSWR('proposals', fetchProposals);
 
   const [activeStatus, setActiveStatus] = useState('all');
   const [proposals, setProposals] = useState<ProposalItem[]>([]);
@@ -64,7 +61,7 @@ export const useProposals = (): UseProposalsReturn => {
       : proposals.filter((proposal) => proposal.status === activeStatus);
   }, [activeStatus, proposals]);
 
-  const proposalsCount = useMemo(() => proposals.length, [proposals])
+  const proposalsCount = useMemo(() => proposals.length, [proposals]);
 
   return {
     proposals,
