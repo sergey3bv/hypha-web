@@ -1,4 +1,4 @@
-import {  Locale } from '@hypha-platform/i18n';
+import { Locale } from '@hypha-platform/i18n';
 
 type PageProps = {
   params: { lang: Locale; id: string };

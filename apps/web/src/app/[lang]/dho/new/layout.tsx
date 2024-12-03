@@ -8,7 +8,6 @@ export default async function DhoLayout({
   children: React.ReactNode;
   params: { id: string; lang: Locale };
 }) {
-
   return (
     <div className="flex flex-grow w-full h-full">
       <MenuTop

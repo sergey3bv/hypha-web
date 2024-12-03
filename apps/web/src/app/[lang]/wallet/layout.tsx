@@ -1,6 +1,6 @@
 import { ButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
-import {  MenuTop } from '@hypha-platform/ui/server';
+import { MenuTop } from '@hypha-platform/ui/server';
 
 export default async function DhoLayout({
   children,
@@ -9,7 +9,6 @@ export default async function DhoLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-
   return (
     <div className="flex flex-grow w-full h-full">
       <MenuTop

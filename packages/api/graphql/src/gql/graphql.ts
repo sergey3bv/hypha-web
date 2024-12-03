@@ -2,28 +2,41 @@
 import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
   /**
    * The DateTime scalar type represents date and time as a string in RFC3339 format.
    * For example: "1985-04-12T23:20:50.52Z" represents 20 mins 50.52 secs after the 23rd hour of Apr 12th 1985 in UTC.
    */
-  DateTime: { input: any; output: any; }
+  DateTime: { input: any; output: any };
   /**
    * The Int64 scalar type represents a signed 64‐bit numeric non‐fractional value.
    * Int64 can represent values in range [-(2^63),(2^63 - 1)].
    */
-  Int64: { input: any; output: any; }
+  Int64: { input: any; output: any };
 };
 
 export type AddAlertInput = {
@@ -46,7 +59,6 @@ export type AddAlertPayload = {
   alert?: Maybe<Array<Maybe<Alert>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddAlertPayloadAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
@@ -109,7 +121,6 @@ export type AddAssignbadgePayload = {
   assignbadge?: Maybe<Array<Maybe<Assignbadge>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddAssignbadgePayloadAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -200,7 +211,6 @@ export type AddAssignmentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddAssignmentPayloadAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -225,7 +235,6 @@ export type AddAttestationPayload = {
   attestation?: Maybe<Array<Maybe<Attestation>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddAttestationPayloadAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
@@ -298,7 +307,6 @@ export type AddBadgePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddBadgePayloadBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -324,7 +332,6 @@ export type AddBalancePayload = {
   balance?: Maybe<Array<Maybe<Balance>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddBalancePayloadBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
@@ -362,7 +369,6 @@ export type AddBillingInfoPayload = {
   billingInfo?: Maybe<Array<Maybe<BillingInfo>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddBillingInfoPayloadBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -414,7 +420,6 @@ export type AddBudgetPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddBudgetPayloadBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -440,7 +445,6 @@ export type AddCalendarPayload = {
   calendar?: Maybe<Array<Maybe<Calendar>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddCalendarPayloadCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -496,7 +500,6 @@ export type AddCirclePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddCirclePayloadCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -523,7 +526,6 @@ export type AddCmntSectionPayload = {
   cmntSection?: Maybe<Array<Maybe<CmntSection>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddCmntSectionPayloadCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -558,7 +560,6 @@ export type AddCommentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddCommentPayloadCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -576,7 +577,6 @@ export type AddCursorPayload = {
   cursor?: Maybe<Array<Maybe<Cursor>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddCursorPayloadCursorArgs = {
   filter?: InputMaybe<CursorFilter>;
@@ -602,7 +602,6 @@ export type AddDaoDraftPayload = {
   daoDraft?: Maybe<Array<Maybe<DaoDraft>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddDaoDraftPayloadDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
@@ -682,7 +681,6 @@ export type AddDaoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddDaoPayloadDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -736,7 +734,6 @@ export type AddDhoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddDhoPayloadDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -759,7 +756,6 @@ export type AddDoccacheConfigPayload = {
   doccacheConfig?: Maybe<Array<Maybe<DoccacheConfig>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddDoccacheConfigPayloadDoccacheConfigArgs = {
   filter?: InputMaybe<DoccacheConfigFilter>;
@@ -818,7 +814,6 @@ export type AddEditPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddEditPayloadEditArgs = {
   filter?: InputMaybe<EditFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -847,7 +842,6 @@ export type AddElectnGroupPayload = {
   electnGroup?: Maybe<Array<Maybe<ElectnGroup>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddElectnGroupPayloadElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
@@ -888,7 +882,6 @@ export type AddElectnRoundPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddElectnRoundPayloadElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -907,7 +900,6 @@ export type AddEventPayload = {
   event?: Maybe<Array<Maybe<Event>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddEventPayloadEventArgs = {
   filter?: InputMaybe<EventFilter>;
@@ -956,7 +948,6 @@ export type AddMemberPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddMemberPayloadMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -984,7 +975,6 @@ export type AddMemoPayload = {
   memo?: Maybe<Array<Maybe<Memo>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddMemoPayloadMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
@@ -1016,7 +1006,6 @@ export type AddMsigInfoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddMsigInfoPayloadMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1034,11 +1023,15 @@ export type AddMultisigInput = {
   details_owner_n?: InputMaybe<Scalars['String']['input']>;
   docId: Scalars['String']['input'];
   executedby?: InputMaybe<Array<MemberRef>>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_daoTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoUrl_s?: InputMaybe<Scalars['String']['input']>;
   settings_dashboardBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -1057,7 +1050,9 @@ export type AddMultisigInput = {
   settings_membersTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_msigApprovalAmount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_multisigEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_patternBase64_s?: InputMaybe<Scalars['String']['input']>;
@@ -1076,7 +1071,9 @@ export type AddMultisigInput = {
   settings_textColor_s?: InputMaybe<Scalars['String']['input']>;
   settings_title_s?: InputMaybe<Scalars['String']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateRound_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -1100,7 +1097,6 @@ export type AddMultisigPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type AddMultisigPayloadMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1121,7 +1117,6 @@ export type AddNotificationPayload = {
   notification?: Maybe<Array<Maybe<Notification>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type AddNotificationPayloadNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
@@ -1154,7 +1149,6 @@ export type AddPaymentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   payment?: Maybe<Array<Maybe<Payment>>>;
 };
-
 
 export type AddPaymentPayloadPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -1239,7 +1233,6 @@ export type AddPayoutPayload = {
   payout?: Maybe<Array<Maybe<Payout>>>;
 };
 
-
 export type AddPayoutPayloadPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1272,7 +1265,6 @@ export type AddPeriodPayload = {
   period?: Maybe<Array<Maybe<Period>>>;
 };
 
-
 export type AddPeriodPayloadPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1302,7 +1294,6 @@ export type AddPlanManagerPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   planManager?: Maybe<Array<Maybe<PlanManager>>>;
 };
-
 
 export type AddPlanManagerPayloadPlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
@@ -1356,7 +1347,6 @@ export type AddPolicyPayload = {
   policy?: Maybe<Array<Maybe<Policy>>>;
 };
 
-
 export type AddPolicyPayloadPolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1401,7 +1391,6 @@ export type AddPollPayload = {
   poll?: Maybe<Array<Maybe<Poll>>>;
 };
 
-
 export type AddPollPayloadPollArgs = {
   filter?: InputMaybe<PollFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1427,7 +1416,6 @@ export type AddPriceOfferPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   priceOffer?: Maybe<Array<Maybe<PriceOffer>>>;
 };
-
 
 export type AddPriceOfferPayloadPriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
@@ -1457,7 +1445,6 @@ export type AddPricingPlanPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   pricingPlan?: Maybe<Array<Maybe<PricingPlan>>>;
 };
-
 
 export type AddPricingPlanPayloadPricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -1505,7 +1492,6 @@ export type AddQuestcomplePayload = {
   questcomple?: Maybe<Array<Maybe<Questcomple>>>;
 };
 
-
 export type AddQuestcomplePayloadQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1552,7 +1538,6 @@ export type AddQuestcompletPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   questcomplet?: Maybe<Array<Maybe<Questcomplet>>>;
 };
-
 
 export type AddQuestcompletPayloadQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
@@ -1627,7 +1612,6 @@ export type AddQueststartPayload = {
   queststart?: Maybe<Array<Maybe<Queststart>>>;
 };
 
-
 export type AddQueststartPayloadQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1653,7 +1637,6 @@ export type AddReactionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   reaction?: Maybe<Array<Maybe<Reaction>>>;
 };
-
 
 export type AddReactionPayloadReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -1683,7 +1666,6 @@ export type AddRedemptionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   redemption?: Maybe<Array<Maybe<Redemption>>>;
 };
-
 
 export type AddRedemptionPayloadRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -1749,7 +1731,6 @@ export type AddRolePayload = {
   role?: Maybe<Array<Maybe<Role>>>;
 };
 
-
 export type AddRolePayloadRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1780,7 +1761,6 @@ export type AddSalarybandPayload = {
   salaryband?: Maybe<Array<Maybe<Salaryband>>>;
 };
 
-
 export type AddSalarybandPayloadSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -1807,13 +1787,21 @@ export type AddSettingsInput = {
   settings_claimEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_commentsContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_commentsContract_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_s?: InputMaybe<Scalars['String']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_contractVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_contractsVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoDescription_s?: InputMaybe<Scalars['String']['input']>;
@@ -1875,12 +1863,18 @@ export type AddSettingsInput = {
   settings_nextScheduleId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_nextScheduledId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_onboarderAccount_n?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationOverlayColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationOverlayOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationOverlayOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationPatternColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationPatternOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationPatternOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationHeader_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationSubtitle_s?: InputMaybe<Scalars['String']['input']>;
@@ -1921,7 +1915,9 @@ export type AddSettingsInput = {
   settings_seedsEscrowContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_seedsTokenContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_settingsPatternBase64S_s?: InputMaybe<Scalars['String']['input']>;
-  settings_settingsVotingAlignmentX100I_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_settingsVotingAlignmentX100I_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_settingsVotingQuorumX100I_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_socialChat_s?: InputMaybe<Scalars['String']['input']>;
   settings_splashBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -1940,7 +1936,9 @@ export type AddSettingsInput = {
   settings_treasuryTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_updatedDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteChiefDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -1953,7 +1951,9 @@ export type AddSettingsInput = {
   settings_usesSeeds_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_utilityTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_vOTINGDURATIONSEC_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_voiceTokenDecayPeriod_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_voiceTokenDecayPeriod_s?: InputMaybe<Scalars['String']['input']>;
   settings_voiceTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -2363,7 +2363,6 @@ export type AddSettingsPayload = {
   settings?: Maybe<Array<Maybe<Settings>>>;
 };
 
-
 export type AddSettingsPayloadSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2411,7 +2410,6 @@ export type AddSuspendPayload = {
   suspend?: Maybe<Array<Maybe<Suspend>>>;
 };
 
-
 export type AddSuspendPayloadSuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2439,7 +2437,6 @@ export type AddTimesharePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   timeshare?: Maybe<Array<Maybe<Timeshare>>>;
 };
-
 
 export type AddTimesharePayloadTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -2469,7 +2466,6 @@ export type AddTreasuryPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   treasury?: Maybe<Array<Maybe<Treasury>>>;
 };
-
 
 export type AddTreasuryPayloadTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
@@ -2507,7 +2503,6 @@ export type AddTrsyPaymentPayload = {
   trsyPayment?: Maybe<Array<Maybe<TrsyPayment>>>;
 };
 
-
 export type AddTrsyPaymentPayloadTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2525,7 +2520,6 @@ export type AddTypeVersionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   typeVersion?: Maybe<Array<Maybe<TypeVersion>>>;
 };
-
 
 export type AddTypeVersionPayloadTypeVersionArgs = {
   filter?: InputMaybe<TypeVersionFilter>;
@@ -2566,7 +2560,6 @@ export type AddUpvtElectnPayload = {
   upvtElectn?: Maybe<Array<Maybe<UpvtElectn>>>;
 };
 
-
 export type AddUpvtElectnPayloadUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2592,7 +2585,6 @@ export type AddUpvtVotePayload = {
   upvtVote?: Maybe<Array<Maybe<UpvtVote>>>;
 };
 
-
 export type AddUpvtVotePayloadUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2612,7 +2604,6 @@ export type AddUserPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   user?: Maybe<Array<Maybe<User>>>;
 };
-
 
 export type AddUserPayloadUserArgs = {
   filter?: InputMaybe<UserFilter>;
@@ -2639,7 +2630,6 @@ export type AddVoteGroupPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   voteGroup?: Maybe<Array<Maybe<VoteGroup>>>;
 };
-
 
 export type AddVoteGroupPayloadVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
@@ -2671,7 +2661,6 @@ export type AddVotePayload = {
   vote?: Maybe<Array<Maybe<Vote>>>;
 };
 
-
 export type AddVotePayloadVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2698,7 +2687,6 @@ export type AddVoteTallyPayload = {
   voteTally?: Maybe<Array<Maybe<VoteTally>>>;
 };
 
-
 export type AddVoteTallyPayloadVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -2723,14 +2711,12 @@ export type Alert = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type AlertNotifiesArgs = {
   filter?: InputMaybe<DocumentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DocumentOrder>;
 };
-
 
 export type AlertNotifiesAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -2795,7 +2781,7 @@ export enum AlertHasFilter {
   Notifies = 'notifies',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AlertOrder = {
@@ -2815,7 +2801,7 @@ export enum AlertOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AlertPatch = {
@@ -2848,63 +2834,63 @@ export type AlertRef = {
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type Assignbadge = Document & Votable & {
-  __typename?: 'Assignbadge';
-  badge?: Maybe<Array<Badge>>;
-  badgeAggregate?: Maybe<BadgeAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_assignee_n?: Maybe<Scalars['String']['output']>;
-  details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
-  details_badge_c?: Maybe<Scalars['String']['output']>;
-  details_badge_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_electionId_i?: Maybe<Scalars['Int64']['output']>;
-  details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_endTime_t?: Maybe<Scalars['DateTime']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_startPeriod_c?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_startTime_t?: Maybe<Scalars['DateTime']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  start?: Maybe<Array<Period>>;
-  startAggregate?: Maybe<PeriodAggregateResult>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_category_s?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_proposer_n?: Maybe<Scalars['String']['output']>;
-  system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Assignbadge = Document &
+  Votable & {
+    __typename?: 'Assignbadge';
+    badge?: Maybe<Array<Badge>>;
+    badgeAggregate?: Maybe<BadgeAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_assignee_n?: Maybe<Scalars['String']['output']>;
+    details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
+    details_badge_c?: Maybe<Scalars['String']['output']>;
+    details_badge_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_electionId_i?: Maybe<Scalars['Int64']['output']>;
+    details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_endTime_t?: Maybe<Scalars['DateTime']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_startPeriod_c?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_startTime_t?: Maybe<Scalars['DateTime']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    start?: Maybe<Array<Period>>;
+    startAggregate?: Maybe<PeriodAggregateResult>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_category_s?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_proposer_n?: Maybe<Scalars['String']['output']>;
+    system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type AssignbadgeBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -2913,11 +2899,9 @@ export type AssignbadgeBadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type AssignbadgeBadgeAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type AssignbadgeCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -2926,11 +2910,9 @@ export type AssignbadgeCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type AssignbadgeCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type AssignbadgeDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -2939,11 +2921,9 @@ export type AssignbadgeDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type AssignbadgeDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type AssignbadgeOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -2952,11 +2932,9 @@ export type AssignbadgeOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type AssignbadgeOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type AssignbadgeStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -2965,11 +2943,9 @@ export type AssignbadgeStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type AssignbadgeStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type AssignbadgeVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -2978,11 +2954,9 @@ export type AssignbadgeVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type AssignbadgeVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type AssignbadgeVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -2990,7 +2964,6 @@ export type AssignbadgeVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type AssignbadgeVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -3191,7 +3164,7 @@ export enum AssignbadgeHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type AssignbadgeOrder = {
@@ -3239,7 +3212,7 @@ export enum AssignbadgeOrderable {
   SystemProposerN = 'system_proposer_n',
   SystemSelfApprovedI = 'system_selfApproved_i',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AssignbadgePatch = {
@@ -3340,98 +3313,98 @@ export type AssignbadgeRef = {
   votetally?: InputMaybe<Array<VoteTallyRef>>;
 };
 
-export type Assignment = Document & Votable & {
-  __typename?: 'Assignment';
-  assignee?: Maybe<Array<Document>>;
-  assigneeAggregate?: Maybe<DocumentAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  claimed?: Maybe<Array<Period>>;
-  claimedAggregate?: Maybe<PeriodAggregateResult>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  curtimeshare?: Maybe<Array<Timeshare>>;
-  curtimeshareAggregate?: Maybe<TimeshareAggregateResult>;
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
-  details_approvedDeferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_assignee_n?: Maybe<Scalars['String']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_husdSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_hvoiceSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_hyphaSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_instantHusdPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_originalDocument_c?: Maybe<Scalars['String']['output']>;
-  details_owner_n?: Maybe<Scalars['String']['output']>;
-  details_pegSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_rewardSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
-  details_role_c?: Maybe<Scalars['String']['output']>;
-  details_role_i?: Maybe<Scalars['Int64']['output']>;
-  details_salaryBandId_i?: Maybe<Scalars['Int64']['output']>;
-  details_seedsEscrowSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_seedsInstantSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_c?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_suspensionDate_t?: Maybe<Scalars['DateTime']['output']>;
-  details_timeShareX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  details_usdSalaryValuePerPhase_a?: Maybe<Scalars['String']['output']>;
-  details_voiceSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
-  details_withdrawalDate_t?: Maybe<Scalars['DateTime']['output']>;
-  details_withdrawalNotes_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  initimeshare?: Maybe<Array<Timeshare>>;
-  initimeshareAggregate?: Maybe<TimeshareAggregateResult>;
-  lastimeshare?: Maybe<Array<Timeshare>>;
-  lastimeshareAggregate?: Maybe<TimeshareAggregateResult>;
-  original?: Maybe<Array<Assignment>>;
-  originalAggregate?: Maybe<AssignmentAggregateResult>;
-  ownedby?: Maybe<Array<Document>>;
-  ownedbyAggregate?: Maybe<DocumentAggregateResult>;
-  role?: Maybe<Array<Role>>;
-  roleAggregate?: Maybe<RoleAggregateResult>;
-  salaryband?: Maybe<Array<Salaryband>>;
-  salarybandAggregate?: Maybe<SalarybandAggregateResult>;
-  start?: Maybe<Array<Period>>;
-  startAggregate?: Maybe<PeriodAggregateResult>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
-  system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  timeshare?: Maybe<Array<Timeshare>>;
-  timeshareAggregate?: Maybe<TimeshareAggregateResult>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Assignment = Document &
+  Votable & {
+    __typename?: 'Assignment';
+    assignee?: Maybe<Array<Document>>;
+    assigneeAggregate?: Maybe<DocumentAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    claimed?: Maybe<Array<Period>>;
+    claimedAggregate?: Maybe<PeriodAggregateResult>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    curtimeshare?: Maybe<Array<Timeshare>>;
+    curtimeshareAggregate?: Maybe<TimeshareAggregateResult>;
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
+    details_approvedDeferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_assignee_n?: Maybe<Scalars['String']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_husdSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_hvoiceSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_hyphaSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_instantHusdPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_originalDocument_c?: Maybe<Scalars['String']['output']>;
+    details_owner_n?: Maybe<Scalars['String']['output']>;
+    details_pegSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_rewardSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
+    details_role_c?: Maybe<Scalars['String']['output']>;
+    details_role_i?: Maybe<Scalars['Int64']['output']>;
+    details_salaryBandId_i?: Maybe<Scalars['Int64']['output']>;
+    details_seedsEscrowSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_seedsInstantSalaryPerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_c?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_suspensionDate_t?: Maybe<Scalars['DateTime']['output']>;
+    details_timeShareX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    details_usdSalaryValuePerPhase_a?: Maybe<Scalars['String']['output']>;
+    details_voiceSalaryPerPeriod_a?: Maybe<Scalars['String']['output']>;
+    details_withdrawalDate_t?: Maybe<Scalars['DateTime']['output']>;
+    details_withdrawalNotes_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    initimeshare?: Maybe<Array<Timeshare>>;
+    initimeshareAggregate?: Maybe<TimeshareAggregateResult>;
+    lastimeshare?: Maybe<Array<Timeshare>>;
+    lastimeshareAggregate?: Maybe<TimeshareAggregateResult>;
+    original?: Maybe<Array<Assignment>>;
+    originalAggregate?: Maybe<AssignmentAggregateResult>;
+    ownedby?: Maybe<Array<Document>>;
+    ownedbyAggregate?: Maybe<DocumentAggregateResult>;
+    role?: Maybe<Array<Role>>;
+    roleAggregate?: Maybe<RoleAggregateResult>;
+    salaryband?: Maybe<Array<Salaryband>>;
+    salarybandAggregate?: Maybe<SalarybandAggregateResult>;
+    start?: Maybe<Array<Period>>;
+    startAggregate?: Maybe<PeriodAggregateResult>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
+    system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    timeshare?: Maybe<Array<Timeshare>>;
+    timeshareAggregate?: Maybe<TimeshareAggregateResult>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type AssignmentAssigneeArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -3440,11 +3413,9 @@ export type AssignmentAssigneeArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type AssignmentAssigneeAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type AssignmentClaimedArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -3453,11 +3424,9 @@ export type AssignmentClaimedArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type AssignmentClaimedAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type AssignmentCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -3466,11 +3435,9 @@ export type AssignmentCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type AssignmentCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type AssignmentCurtimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -3479,11 +3446,9 @@ export type AssignmentCurtimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type AssignmentCurtimeshareAggregateArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
-
 
 export type AssignmentDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -3492,11 +3457,9 @@ export type AssignmentDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type AssignmentDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type AssignmentInitimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -3505,11 +3468,9 @@ export type AssignmentInitimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type AssignmentInitimeshareAggregateArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
-
 
 export type AssignmentLastimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -3518,11 +3479,9 @@ export type AssignmentLastimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type AssignmentLastimeshareAggregateArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
-
 
 export type AssignmentOriginalArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -3531,11 +3490,9 @@ export type AssignmentOriginalArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type AssignmentOriginalAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type AssignmentOwnedbyArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -3544,11 +3501,9 @@ export type AssignmentOwnedbyArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type AssignmentOwnedbyAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type AssignmentRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
@@ -3557,11 +3512,9 @@ export type AssignmentRoleArgs = {
   order?: InputMaybe<RoleOrder>;
 };
 
-
 export type AssignmentRoleAggregateArgs = {
   filter?: InputMaybe<RoleFilter>;
 };
-
 
 export type AssignmentSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
@@ -3570,11 +3523,9 @@ export type AssignmentSalarybandArgs = {
   order?: InputMaybe<SalarybandOrder>;
 };
 
-
 export type AssignmentSalarybandAggregateArgs = {
   filter?: InputMaybe<SalarybandFilter>;
 };
-
 
 export type AssignmentStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -3583,11 +3534,9 @@ export type AssignmentStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type AssignmentStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type AssignmentTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -3596,11 +3545,9 @@ export type AssignmentTimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type AssignmentTimeshareAggregateArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
-
 
 export type AssignmentVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -3609,11 +3556,9 @@ export type AssignmentVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type AssignmentVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type AssignmentVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -3621,7 +3566,6 @@ export type AssignmentVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type AssignmentVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -3916,7 +3860,7 @@ export enum AssignmentHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type AssignmentOrder = {
@@ -3983,7 +3927,7 @@ export enum AssignmentOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AssignmentPatch = {
@@ -4152,14 +4096,12 @@ export type Attestation = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type AttestationAttestedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type AttestationAttestedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -4210,7 +4152,7 @@ export enum AttestationHasFilter {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AttestationOrder = {
@@ -4227,7 +4169,7 @@ export enum AttestationOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type AttestationPatch = {
@@ -4261,73 +4203,73 @@ export type AuthRule = {
   rule?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Badge = Document & Votable & {
-  __typename?: 'Badge';
-  assignment?: Maybe<Array<Assignbadge>>;
-  assignmentAggregate?: Maybe<AssignbadgeAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  copyof?: Maybe<Array<Badge>>;
-  copyofAggregate?: Maybe<BadgeAggregateResult>;
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_assignee_n?: Maybe<Scalars['String']['output']>;
-  details_badge_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_detailsPurposeS_i?: Maybe<Scalars['Int64']['output']>;
-  details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_husdCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_hvoiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_hyphaCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_icon_s?: Maybe<Scalars['String']['output']>;
-  details_maxCycles_i?: Maybe<Scalars['Int64']['output']>;
-  details_maxPeriodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_name_s?: Maybe<Scalars['String']['output']>;
-  details_pegCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_purpose_s?: Maybe<Scalars['String']['output']>;
-  details_rewardCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_seedsCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_startPeriod_c?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_voiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  docId: Scalars['String']['output'];
-  heldby?: Maybe<Array<Member>>;
-  heldbyAggregate?: Maybe<MemberAggregateResult>;
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  system_badgeId_i?: Maybe<Scalars['Int64']['output']>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_defaultAsset_i?: Maybe<Scalars['Int64']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_proposer_n?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Badge = Document &
+  Votable & {
+    __typename?: 'Badge';
+    assignment?: Maybe<Array<Assignbadge>>;
+    assignmentAggregate?: Maybe<AssignbadgeAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    copyof?: Maybe<Array<Badge>>;
+    copyofAggregate?: Maybe<BadgeAggregateResult>;
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_assignee_n?: Maybe<Scalars['String']['output']>;
+    details_badge_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_detailsPurposeS_i?: Maybe<Scalars['Int64']['output']>;
+    details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_husdCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_hvoiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_hyphaCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_icon_s?: Maybe<Scalars['String']['output']>;
+    details_maxCycles_i?: Maybe<Scalars['Int64']['output']>;
+    details_maxPeriodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_name_s?: Maybe<Scalars['String']['output']>;
+    details_pegCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_purpose_s?: Maybe<Scalars['String']['output']>;
+    details_rewardCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_seedsCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_startPeriod_c?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_voiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    docId: Scalars['String']['output'];
+    heldby?: Maybe<Array<Member>>;
+    heldbyAggregate?: Maybe<MemberAggregateResult>;
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    system_badgeId_i?: Maybe<Scalars['Int64']['output']>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_defaultAsset_i?: Maybe<Scalars['Int64']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_proposer_n?: Maybe<Scalars['String']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type BadgeAssignmentArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -4336,11 +4278,9 @@ export type BadgeAssignmentArgs = {
   order?: InputMaybe<AssignbadgeOrder>;
 };
 
-
 export type BadgeAssignmentAggregateArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
-
 
 export type BadgeCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -4349,11 +4289,9 @@ export type BadgeCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type BadgeCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type BadgeCopyofArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -4362,11 +4300,9 @@ export type BadgeCopyofArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type BadgeCopyofAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type BadgeDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -4375,11 +4311,9 @@ export type BadgeDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type BadgeDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type BadgeHeldbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -4388,11 +4322,9 @@ export type BadgeHeldbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type BadgeHeldbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type BadgeOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -4401,11 +4333,9 @@ export type BadgeOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type BadgeOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type BadgeVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -4414,11 +4344,9 @@ export type BadgeVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type BadgeVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type BadgeVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -4426,7 +4354,6 @@ export type BadgeVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type BadgeVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -4678,7 +4605,7 @@ export enum BadgeHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type BadgeOrder = {
@@ -4734,7 +4661,7 @@ export enum BadgeOrderable {
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   SystemProposerN = 'system_proposer_n',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BadgePatch = {
@@ -4868,14 +4795,12 @@ export type Balance = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type BalanceOwnerArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type BalanceOwnerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -4932,7 +4857,7 @@ export enum BalanceHasFilter {
   Owner = 'owner',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BalanceOrder = {
@@ -4950,7 +4875,7 @@ export enum BalanceOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BalancePatch = {
@@ -5007,7 +4932,6 @@ export type BillingInfo = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type BillingInfoNextbillArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -5015,11 +4939,9 @@ export type BillingInfoNextbillArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type BillingInfoNextbillAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type BillingInfoPriceofferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
@@ -5028,11 +4950,9 @@ export type BillingInfoPriceofferArgs = {
   order?: InputMaybe<PriceOfferOrder>;
 };
 
-
 export type BillingInfoPriceofferAggregateArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
 };
-
 
 export type BillingInfoPricingplanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -5040,7 +4960,6 @@ export type BillingInfoPricingplanArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PricingPlanOrder>;
 };
-
 
 export type BillingInfoPricingplanAggregateArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -5143,7 +5062,7 @@ export enum BillingInfoHasFilter {
   Pricingplan = 'pricingplan',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BillingInfoOrder = {
@@ -5170,7 +5089,7 @@ export enum BillingInfoOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BillingInfoPatch = {
@@ -5221,50 +5140,50 @@ export type BillingInfoRef = {
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type Budget = Document & Votable & {
-  __typename?: 'Budget';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  circle?: Maybe<Array<Circle>>;
-  circleAggregate?: Maybe<CircleAggregateResult>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_circleId_i?: Maybe<Scalars['Int64']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_pegAmount_a?: Maybe<Scalars['String']['output']>;
-  details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_usdAmount_a?: Maybe<Scalars['String']['output']>;
-  details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Budget = Document &
+  Votable & {
+    __typename?: 'Budget';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    circle?: Maybe<Array<Circle>>;
+    circleAggregate?: Maybe<CircleAggregateResult>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_circleId_i?: Maybe<Scalars['Int64']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_pegAmount_a?: Maybe<Scalars['String']['output']>;
+    details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_usdAmount_a?: Maybe<Scalars['String']['output']>;
+    details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type BudgetCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -5273,11 +5192,9 @@ export type BudgetCircleArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type BudgetCircleAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type BudgetCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -5286,11 +5203,9 @@ export type BudgetCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type BudgetCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type BudgetDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -5299,11 +5214,9 @@ export type BudgetDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type BudgetDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type BudgetOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -5312,11 +5225,9 @@ export type BudgetOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type BudgetOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type BudgetVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -5325,11 +5236,9 @@ export type BudgetVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type BudgetVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type BudgetVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -5337,7 +5246,6 @@ export type BudgetVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type BudgetVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -5483,7 +5391,7 @@ export enum BudgetHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type BudgetOrder = {
@@ -5520,7 +5428,7 @@ export enum BudgetOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type BudgetPatch = {
@@ -5615,7 +5523,6 @@ export type Calendar = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type CalendarDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -5623,11 +5530,9 @@ export type CalendarDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type CalendarDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type CalendarEndArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -5636,11 +5541,9 @@ export type CalendarEndArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type CalendarEndAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type CalendarPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -5649,11 +5552,9 @@ export type CalendarPeriodArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type CalendarPeriodAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type CalendarStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -5661,7 +5562,6 @@ export type CalendarStartArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PeriodOrder>;
 };
-
 
 export type CalendarStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -5707,7 +5607,7 @@ export enum CalendarHasFilter {
   Period = 'period',
   Start = 'start',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CalendarOrder = {
@@ -5722,7 +5622,7 @@ export enum CalendarOrderable {
   Creator = 'creator',
   DocId = 'docId',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CalendarPatch = {
@@ -5751,59 +5651,59 @@ export type CalendarRef = {
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type Circle = Document & Votable & {
-  __typename?: 'Circle';
-  applicant?: Maybe<Array<Member>>;
-  applicantAggregate?: Maybe<MemberAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  budget?: Maybe<Array<Budget>>;
-  budgetAggregate?: Maybe<BudgetAggregateResult>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_name_s?: Maybe<Scalars['String']['output']>;
-  details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
-  details_purpose_s?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  lockedby?: Maybe<Array<Budget>>;
-  lockedbyAggregate?: Maybe<BudgetAggregateResult>;
-  member?: Maybe<Array<Member>>;
-  memberAggregate?: Maybe<MemberAggregateResult>;
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  parentcircle?: Maybe<Array<Document>>;
-  parentcircleAggregate?: Maybe<DocumentAggregateResult>;
-  subcircle?: Maybe<Array<Circle>>;
-  subcircleAggregate?: Maybe<CircleAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Circle = Document &
+  Votable & {
+    __typename?: 'Circle';
+    applicant?: Maybe<Array<Member>>;
+    applicantAggregate?: Maybe<MemberAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    budget?: Maybe<Array<Budget>>;
+    budgetAggregate?: Maybe<BudgetAggregateResult>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_name_s?: Maybe<Scalars['String']['output']>;
+    details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
+    details_purpose_s?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    lockedby?: Maybe<Array<Budget>>;
+    lockedbyAggregate?: Maybe<BudgetAggregateResult>;
+    member?: Maybe<Array<Member>>;
+    memberAggregate?: Maybe<MemberAggregateResult>;
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    parentcircle?: Maybe<Array<Document>>;
+    parentcircleAggregate?: Maybe<DocumentAggregateResult>;
+    subcircle?: Maybe<Array<Circle>>;
+    subcircleAggregate?: Maybe<CircleAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type CircleApplicantArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -5812,11 +5712,9 @@ export type CircleApplicantArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type CircleApplicantAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type CircleBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
@@ -5825,11 +5723,9 @@ export type CircleBudgetArgs = {
   order?: InputMaybe<BudgetOrder>;
 };
 
-
 export type CircleBudgetAggregateArgs = {
   filter?: InputMaybe<BudgetFilter>;
 };
-
 
 export type CircleCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -5838,11 +5734,9 @@ export type CircleCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type CircleCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type CircleDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -5851,11 +5745,9 @@ export type CircleDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type CircleDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type CircleLockedbyArgs = {
   filter?: InputMaybe<BudgetFilter>;
@@ -5864,11 +5756,9 @@ export type CircleLockedbyArgs = {
   order?: InputMaybe<BudgetOrder>;
 };
 
-
 export type CircleLockedbyAggregateArgs = {
   filter?: InputMaybe<BudgetFilter>;
 };
-
 
 export type CircleMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -5877,11 +5767,9 @@ export type CircleMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type CircleMemberAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type CircleOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -5890,11 +5778,9 @@ export type CircleOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type CircleOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type CircleParentcircleArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -5903,11 +5789,9 @@ export type CircleParentcircleArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type CircleParentcircleAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type CircleSubcircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -5916,11 +5800,9 @@ export type CircleSubcircleArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type CircleSubcircleAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type CircleVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -5929,11 +5811,9 @@ export type CircleVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type CircleVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type CircleVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -5941,7 +5821,6 @@ export type CircleVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type CircleVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -6090,7 +5969,7 @@ export enum CircleHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type CircleOrder = {
@@ -6126,7 +6005,7 @@ export enum CircleOrderable {
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   SystemSelfApprovedI = 'system_selfApproved_i',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CirclePatch = {
@@ -6228,7 +6107,6 @@ export type CmntSection = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type CmntSectionCmntsectofArgs = {
   filter?: InputMaybe<DocumentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -6236,11 +6114,9 @@ export type CmntSectionCmntsectofArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type CmntSectionCmntsectofAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type CmntSectionCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -6248,7 +6124,6 @@ export type CmntSectionCommentArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CommentOrder>;
 };
-
 
 export type CmntSectionCommentAggregateArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -6308,7 +6183,7 @@ export enum CmntSectionHasFilter {
   LikeDetailsLikesI = 'likeDetails_likes_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CmntSectionOrder = {
@@ -6326,7 +6201,7 @@ export enum CmntSectionOrderable {
   LikeDetailsLikesI = 'likeDetails_likes_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CmntSectionPatch = {
@@ -6382,7 +6257,6 @@ export type Comment = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type CommentCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -6390,11 +6264,9 @@ export type CommentCommentArgs = {
   order?: InputMaybe<CommentOrder>;
 };
 
-
 export type CommentCommentAggregateArgs = {
   filter?: InputMaybe<CommentFilter>;
 };
-
 
 export type CommentCommentofArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -6403,11 +6275,9 @@ export type CommentCommentofArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type CommentCommentofAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type CommentReactedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6416,11 +6286,9 @@ export type CommentReactedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type CommentReactedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type CommentReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -6428,7 +6296,6 @@ export type CommentReactionArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<ReactionOrder>;
 };
-
 
 export type CommentReactionAggregateArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -6510,7 +6377,7 @@ export enum CommentHasFilter {
   Reaction = 'reaction',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CommentOrder = {
@@ -6532,7 +6399,7 @@ export enum CommentOrderable {
   LikesJohnnyhypha1I = 'likes_johnnyhypha1_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type CommentPatch = {
@@ -6605,7 +6472,7 @@ export type CursorFilter = {
 
 export enum CursorHasFilter {
   Cursor = 'cursor',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type CursorOrder = {
@@ -6616,7 +6483,7 @@ export type CursorOrder = {
 
 export enum CursorOrderable {
   Cursor = 'cursor',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type CursorPatch = {
@@ -6757,7 +6624,6 @@ export type Dao = Document & {
   voterAggregate?: Maybe<MemberAggregateResult>;
 };
 
-
 export type DaoAdminArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -6765,11 +6631,9 @@ export type DaoAdminArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoAdminAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
@@ -6778,11 +6642,9 @@ export type DaoAlertArgs = {
   order?: InputMaybe<AlertOrder>;
 };
 
-
 export type DaoAlertAggregateArgs = {
   filter?: InputMaybe<AlertFilter>;
 };
-
 
 export type DaoAnchorchildArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -6791,11 +6653,9 @@ export type DaoAnchorchildArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DaoAnchorchildAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DaoAnchorparentArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -6804,11 +6664,9 @@ export type DaoAnchorparentArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DaoAnchorparentAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DaoApplicantArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6817,11 +6675,9 @@ export type DaoApplicantArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoApplicantAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -6830,11 +6686,9 @@ export type DaoBadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DaoBadgeAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DaoCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -6843,11 +6697,9 @@ export type DaoCalendarArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type DaoCalendarAggregateArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
-
 
 export type DaoChiefdelegateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6856,11 +6708,9 @@ export type DaoChiefdelegateArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoChiefdelegateAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoChiefroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -6869,11 +6719,9 @@ export type DaoChiefroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type DaoChiefroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type DaoChilddraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
@@ -6882,11 +6730,9 @@ export type DaoChilddraftArgs = {
   order?: InputMaybe<DaoDraftOrder>;
 };
 
-
 export type DaoChilddraftAggregateArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
 };
-
 
 export type DaoCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -6895,11 +6741,9 @@ export type DaoCircleArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type DaoCircleAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type DaoClosedpropsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -6908,11 +6752,9 @@ export type DaoClosedpropsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoClosedpropsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoCommemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6921,11 +6763,9 @@ export type DaoCommemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoCommemberAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoCurrentArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -6934,11 +6774,9 @@ export type DaoCurrentArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type DaoCurrentAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type DaoDelegateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6947,11 +6785,9 @@ export type DaoDelegateArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoDelegateAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoElectionArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -6960,11 +6796,9 @@ export type DaoElectionArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoElectionAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoEndArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -6973,11 +6807,9 @@ export type DaoEndArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type DaoEndAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type DaoEnrollerArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -6986,11 +6818,9 @@ export type DaoEnrollerArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoEnrollerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoFailedpropsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -6999,11 +6829,9 @@ export type DaoFailedpropsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoFailedpropsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoHeaddelegateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7012,11 +6840,9 @@ export type DaoHeaddelegateArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoHeaddelegateAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoHeadroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -7025,11 +6851,9 @@ export type DaoHeadroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type DaoHeadroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type DaoMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7038,11 +6862,9 @@ export type DaoMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoMemberAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoNorthstrholdArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7051,11 +6873,9 @@ export type DaoNorthstrholdArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoNorthstrholdAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoOngoingelctArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7064,11 +6884,9 @@ export type DaoOngoingelctArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoOngoingelctAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoOpenmultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
@@ -7077,11 +6895,9 @@ export type DaoOpenmultisigArgs = {
   order?: InputMaybe<MultisigOrder>;
 };
 
-
 export type DaoOpenmultisigAggregateArgs = {
   filter?: InputMaybe<MultisigFilter>;
 };
-
 
 export type DaoOwnerArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7090,11 +6906,9 @@ export type DaoOwnerArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DaoOwnerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DaoOwnsArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -7103,11 +6917,9 @@ export type DaoOwnsArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type DaoOwnsAggregateArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
-
 
 export type DaoPassedpropsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -7116,11 +6928,9 @@ export type DaoPassedpropsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoPassedpropsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -7129,11 +6939,9 @@ export type DaoPayoutArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type DaoPayoutAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type DaoPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -7142,11 +6950,9 @@ export type DaoPeriodArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type DaoPeriodAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type DaoPlanmanagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
@@ -7155,11 +6961,9 @@ export type DaoPlanmanagerArgs = {
   order?: InputMaybe<PlanManagerOrder>;
 };
 
-
 export type DaoPlanmanagerAggregateArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
 };
-
 
 export type DaoPreviouselctArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7168,11 +6972,9 @@ export type DaoPreviouselctArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoPreviouselctAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoProposalArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -7181,11 +6983,9 @@ export type DaoProposalArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoProposalAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
@@ -7194,11 +6994,9 @@ export type DaoQuestcompleArgs = {
   order?: InputMaybe<QuestcompleOrder>;
 };
 
-
 export type DaoQuestcompleAggregateArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
 };
-
 
 export type DaoQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -7207,11 +7005,9 @@ export type DaoQueststartArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type DaoQueststartAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type DaoRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
@@ -7220,11 +7016,9 @@ export type DaoRoleArgs = {
   order?: InputMaybe<RoleOrder>;
 };
 
-
 export type DaoRoleAggregateArgs = {
   filter?: InputMaybe<RoleFilter>;
 };
-
 
 export type DaoRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -7233,11 +7027,9 @@ export type DaoRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type DaoRoundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type DaoSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
@@ -7246,11 +7038,9 @@ export type DaoSalarybandArgs = {
   order?: InputMaybe<SalarybandOrder>;
 };
 
-
 export type DaoSalarybandAggregateArgs = {
   filter?: InputMaybe<SalarybandFilter>;
 };
-
 
 export type DaoSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -7259,11 +7049,9 @@ export type DaoSettingsArgs = {
   order?: InputMaybe<SettingsOrder>;
 };
 
-
 export type DaoSettingsAggregateArgs = {
   filter?: InputMaybe<SettingsFilter>;
 };
-
 
 export type DaoStagingpropArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -7272,11 +7060,9 @@ export type DaoStagingpropArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoStagingpropAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -7285,11 +7071,9 @@ export type DaoStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type DaoStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type DaoSuspendedArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -7298,11 +7082,9 @@ export type DaoSuspendedArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoSuspendedAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
@@ -7311,11 +7093,9 @@ export type DaoTreasuryArgs = {
   order?: InputMaybe<TreasuryOrder>;
 };
 
-
 export type DaoTreasuryAggregateArgs = {
   filter?: InputMaybe<TreasuryFilter>;
 };
-
 
 export type DaoUeElectionArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7324,11 +7104,9 @@ export type DaoUeElectionArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoUeElectionAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoUeOngoingArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7337,11 +7115,9 @@ export type DaoUeOngoingArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoUeOngoingAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoUePreviousArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7350,11 +7126,9 @@ export type DaoUePreviousArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoUePreviousAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoUeUpcomingArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7363,11 +7137,9 @@ export type DaoUeUpcomingArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoUeUpcomingAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoUpcomingelctArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -7376,11 +7148,9 @@ export type DaoUpcomingelctArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type DaoUpcomingelctAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type DaoVotableArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -7389,11 +7159,9 @@ export type DaoVotableArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DaoVotableAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DaoVoterArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7401,7 +7169,6 @@ export type DaoVoterArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type DaoVoterAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -7453,7 +7220,6 @@ export type DaoDraft = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type DaoDraftAnchorparentArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7461,11 +7227,9 @@ export type DaoDraftAnchorparentArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DaoDraftAnchorparentAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DaoDraftSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -7473,7 +7237,6 @@ export type DaoDraftSettingsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<SettingsOrder>;
 };
-
 
 export type DaoDraftSettingsAggregateArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -7521,7 +7284,7 @@ export enum DaoDraftHasFilter {
   DocId = 'docId',
   Settings = 'settings',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DaoDraftOrder = {
@@ -7537,7 +7300,7 @@ export enum DaoDraftOrderable {
   DetailsDaoNameN = 'details_daoName_n',
   DocId = 'docId',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DaoDraftPatch = {
@@ -7645,7 +7408,7 @@ export enum DaoHasFilter {
   Upcomingelct = 'upcomingelct',
   UpdatedDate = 'updatedDate',
   Votable = 'votable',
-  Voter = 'voter'
+  Voter = 'voter',
 }
 
 export type DaoOrder = {
@@ -7666,7 +7429,7 @@ export enum DaoOrderable {
   SystemNodeLabelN = 'system_nodeLabel_n',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DaoPatch = {
@@ -7821,7 +7584,6 @@ export type DeleteAlertPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteAlertPayloadAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7835,7 +7597,6 @@ export type DeleteAssignbadgePayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteAssignbadgePayloadAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -7851,7 +7612,6 @@ export type DeleteAssignmentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteAssignmentPayloadAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7865,7 +7625,6 @@ export type DeleteAttestationPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteAttestationPayloadAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
@@ -7881,7 +7640,6 @@ export type DeleteBadgePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteBadgePayloadBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7895,7 +7653,6 @@ export type DeleteBalancePayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteBalancePayloadBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
@@ -7911,7 +7668,6 @@ export type DeleteBillingInfoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteBillingInfoPayloadBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7925,7 +7681,6 @@ export type DeleteBudgetPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteBudgetPayloadBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
@@ -7941,7 +7696,6 @@ export type DeleteCalendarPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteCalendarPayloadCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7955,7 +7709,6 @@ export type DeleteCirclePayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteCirclePayloadCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -7971,7 +7724,6 @@ export type DeleteCmntSectionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteCmntSectionPayloadCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -7985,7 +7737,6 @@ export type DeleteCommentPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteCommentPayloadCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -8001,7 +7752,6 @@ export type DeleteCursorPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteCursorPayloadCursorArgs = {
   filter?: InputMaybe<CursorFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8015,7 +7765,6 @@ export type DeleteDaoDraftPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteDaoDraftPayloadDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
@@ -8031,7 +7780,6 @@ export type DeleteDaoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteDaoPayloadDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8045,7 +7793,6 @@ export type DeleteDhoPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteDhoPayloadDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
@@ -8061,7 +7808,6 @@ export type DeleteDoccacheConfigPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteDoccacheConfigPayloadDoccacheConfigArgs = {
   filter?: InputMaybe<DoccacheConfigFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8075,7 +7821,6 @@ export type DeleteDocumentPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteDocumentPayloadDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -8091,7 +7836,6 @@ export type DeleteEditPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteEditPayloadEditArgs = {
   filter?: InputMaybe<EditFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8105,7 +7849,6 @@ export type DeleteElectnGroupPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteElectnGroupPayloadElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
@@ -8121,7 +7864,6 @@ export type DeleteElectnRoundPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteElectnRoundPayloadElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8135,7 +7877,6 @@ export type DeleteEventPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteEventPayloadEventArgs = {
   filter?: InputMaybe<EventFilter>;
@@ -8151,7 +7892,6 @@ export type DeleteMemberPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteMemberPayloadMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8165,7 +7905,6 @@ export type DeleteMemoPayload = {
   msg?: Maybe<Scalars['String']['output']>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteMemoPayloadMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
@@ -8181,7 +7920,6 @@ export type DeleteMsigInfoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteMsigInfoPayloadMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8195,7 +7933,6 @@ export type DeleteMultisigPayload = {
   multisig?: Maybe<Array<Maybe<Multisig>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type DeleteMultisigPayloadMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
@@ -8211,7 +7948,6 @@ export type DeleteNotificationPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type DeleteNotificationPayloadNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8225,7 +7961,6 @@ export type DeletePaymentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   payment?: Maybe<Array<Maybe<Payment>>>;
 };
-
 
 export type DeletePaymentPayloadPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -8241,7 +7976,6 @@ export type DeletePayoutPayload = {
   payout?: Maybe<Array<Maybe<Payout>>>;
 };
 
-
 export type DeletePayoutPayloadPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8255,7 +7989,6 @@ export type DeletePeriodPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   period?: Maybe<Array<Maybe<Period>>>;
 };
-
 
 export type DeletePeriodPayloadPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -8271,7 +8004,6 @@ export type DeletePlanManagerPayload = {
   planManager?: Maybe<Array<Maybe<PlanManager>>>;
 };
 
-
 export type DeletePlanManagerPayloadPlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8285,7 +8017,6 @@ export type DeletePolicyPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   policy?: Maybe<Array<Maybe<Policy>>>;
 };
-
 
 export type DeletePolicyPayloadPolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
@@ -8301,7 +8032,6 @@ export type DeletePollPayload = {
   poll?: Maybe<Array<Maybe<Poll>>>;
 };
 
-
 export type DeletePollPayloadPollArgs = {
   filter?: InputMaybe<PollFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8315,7 +8045,6 @@ export type DeletePriceOfferPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   priceOffer?: Maybe<Array<Maybe<PriceOffer>>>;
 };
-
 
 export type DeletePriceOfferPayloadPriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
@@ -8331,7 +8060,6 @@ export type DeletePricingPlanPayload = {
   pricingPlan?: Maybe<Array<Maybe<PricingPlan>>>;
 };
 
-
 export type DeletePricingPlanPayloadPricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8345,7 +8073,6 @@ export type DeleteQuestcomplePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   questcomple?: Maybe<Array<Maybe<Questcomple>>>;
 };
-
 
 export type DeleteQuestcomplePayloadQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
@@ -8361,7 +8088,6 @@ export type DeleteQuestcompletPayload = {
   questcomplet?: Maybe<Array<Maybe<Questcomplet>>>;
 };
 
-
 export type DeleteQuestcompletPayloadQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8375,7 +8101,6 @@ export type DeleteQueststartPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   queststart?: Maybe<Array<Maybe<Queststart>>>;
 };
-
 
 export type DeleteQueststartPayloadQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -8391,7 +8116,6 @@ export type DeleteReactionPayload = {
   reaction?: Maybe<Array<Maybe<Reaction>>>;
 };
 
-
 export type DeleteReactionPayloadReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8405,7 +8129,6 @@ export type DeleteRedemptionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   redemption?: Maybe<Array<Maybe<Redemption>>>;
 };
-
 
 export type DeleteRedemptionPayloadRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -8421,7 +8144,6 @@ export type DeleteRolePayload = {
   role?: Maybe<Array<Maybe<Role>>>;
 };
 
-
 export type DeleteRolePayloadRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8435,7 +8157,6 @@ export type DeleteSalarybandPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   salaryband?: Maybe<Array<Maybe<Salaryband>>>;
 };
-
 
 export type DeleteSalarybandPayloadSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
@@ -8451,7 +8172,6 @@ export type DeleteSettingsPayload = {
   settings?: Maybe<Array<Maybe<Settings>>>;
 };
 
-
 export type DeleteSettingsPayloadSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8465,7 +8185,6 @@ export type DeleteSuspendPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   suspend?: Maybe<Array<Maybe<Suspend>>>;
 };
-
 
 export type DeleteSuspendPayloadSuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
@@ -8481,7 +8200,6 @@ export type DeleteTimesharePayload = {
   timeshare?: Maybe<Array<Maybe<Timeshare>>>;
 };
 
-
 export type DeleteTimesharePayloadTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8495,7 +8213,6 @@ export type DeleteTreasuryPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   treasury?: Maybe<Array<Maybe<Treasury>>>;
 };
-
 
 export type DeleteTreasuryPayloadTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
@@ -8511,7 +8228,6 @@ export type DeleteTrsyPaymentPayload = {
   trsyPayment?: Maybe<Array<Maybe<TrsyPayment>>>;
 };
 
-
 export type DeleteTrsyPaymentPayloadTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8525,7 +8241,6 @@ export type DeleteTypeVersionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   typeVersion?: Maybe<Array<Maybe<TypeVersion>>>;
 };
-
 
 export type DeleteTypeVersionPayloadTypeVersionArgs = {
   filter?: InputMaybe<TypeVersionFilter>;
@@ -8541,7 +8256,6 @@ export type DeleteUpvtElectnPayload = {
   upvtElectn?: Maybe<Array<Maybe<UpvtElectn>>>;
 };
 
-
 export type DeleteUpvtElectnPayloadUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8555,7 +8269,6 @@ export type DeleteUpvtVotePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   upvtVote?: Maybe<Array<Maybe<UpvtVote>>>;
 };
-
 
 export type DeleteUpvtVotePayloadUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
@@ -8571,7 +8284,6 @@ export type DeleteUserPayload = {
   user?: Maybe<Array<Maybe<User>>>;
 };
 
-
 export type DeleteUserPayloadUserArgs = {
   filter?: InputMaybe<UserFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8585,7 +8297,6 @@ export type DeleteVotablePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   votable?: Maybe<Array<Maybe<Votable>>>;
 };
-
 
 export type DeleteVotablePayloadVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
@@ -8601,7 +8312,6 @@ export type DeleteVoteGroupPayload = {
   voteGroup?: Maybe<Array<Maybe<VoteGroup>>>;
 };
 
-
 export type DeleteVoteGroupPayloadVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8616,7 +8326,6 @@ export type DeleteVotePayload = {
   vote?: Maybe<Array<Maybe<Vote>>>;
 };
 
-
 export type DeleteVotePayloadVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8630,7 +8339,6 @@ export type DeleteVoteTallyPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   voteTally?: Maybe<Array<Maybe<VoteTally>>>;
 };
-
 
 export type DeleteVoteTallyPayloadVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -8659,7 +8367,7 @@ export enum DgraphIndex {
   Regexp = 'regexp',
   Term = 'term',
   Trigram = 'trigram',
-  Year = 'year'
+  Year = 'year',
 }
 
 export type Dho = Document & {
@@ -8732,7 +8440,6 @@ export type Dho = Document & {
   weeklyAggregate?: Maybe<CalendarAggregateResult>;
 };
 
-
 export type DhoCx3K2Args = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -8740,11 +8447,9 @@ export type DhoCx3K2Args = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DhoCx3K2AggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DhoEle2Args = {
   filter?: InputMaybe<DaoFilter>;
@@ -8753,11 +8458,9 @@ export type DhoEle2Args = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DhoEle2AggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DhoL2Nep42Args = {
   filter?: InputMaybe<DaoFilter>;
@@ -8766,11 +8469,9 @@ export type DhoL2Nep42Args = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DhoL2Nep42AggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DhoAdminbdgArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8779,11 +8480,9 @@ export type DhoAdminbdgArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoAdminbdgAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
@@ -8792,11 +8491,9 @@ export type DhoAlertArgs = {
   order?: InputMaybe<AlertOrder>;
 };
 
-
 export type DhoAlertAggregateArgs = {
   filter?: InputMaybe<AlertFilter>;
 };
-
 
 export type DhoApplicantArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -8805,11 +8502,9 @@ export type DhoApplicantArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DhoApplicantAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DhoBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8818,11 +8513,9 @@ export type DhoBadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoBadgeAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoChiefdelegateArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8831,11 +8524,9 @@ export type DhoChiefdelegateArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoChiefdelegateAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -8844,11 +8535,9 @@ export type DhoDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type DhoDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type DhoDefbadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8857,11 +8546,9 @@ export type DhoDefbadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoDefbadgeAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoDefbandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
@@ -8870,11 +8557,9 @@ export type DhoDefbandArgs = {
   order?: InputMaybe<SalarybandOrder>;
 };
 
-
 export type DhoDefbandAggregateArgs = {
   filter?: InputMaybe<SalarybandFilter>;
 };
-
 
 export type DhoDefpriceplanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -8883,11 +8568,9 @@ export type DhoDefpriceplanArgs = {
   order?: InputMaybe<PricingPlanOrder>;
 };
 
-
 export type DhoDefpriceplanAggregateArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
 };
-
 
 export type DhoDefroleArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -8896,11 +8579,9 @@ export type DhoDefroleArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DhoDefroleAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DhoDelegateArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8909,11 +8590,9 @@ export type DhoDelegateArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoDelegateAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoEcopriceplanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -8922,11 +8601,9 @@ export type DhoEcopriceplanArgs = {
   order?: InputMaybe<PricingPlanOrder>;
 };
 
-
 export type DhoEcopriceplanAggregateArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
 };
-
 
 export type DhoEnrollerbdgArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8935,11 +8612,9 @@ export type DhoEnrollerbdgArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoEnrollerbdgAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoFailedpropsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -8948,11 +8623,9 @@ export type DhoFailedpropsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DhoFailedpropsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DhoHeaddelegateArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -8961,11 +8634,9 @@ export type DhoHeaddelegateArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type DhoHeaddelegateAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type DhoLunarArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -8974,11 +8645,9 @@ export type DhoLunarArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type DhoLunarAggregateArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
-
 
 export type DhoMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -8987,11 +8656,9 @@ export type DhoMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type DhoMemberAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type DhoPassedpropsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -9000,11 +8667,9 @@ export type DhoPassedpropsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DhoPassedpropsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DhoPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -9013,11 +8678,9 @@ export type DhoPayoutArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type DhoPayoutAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type DhoPricingplanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -9026,11 +8689,9 @@ export type DhoPricingplanArgs = {
   order?: InputMaybe<PricingPlanOrder>;
 };
 
-
 export type DhoPricingplanAggregateArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
 };
-
 
 export type DhoProposalArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -9039,11 +8700,9 @@ export type DhoProposalArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type DhoProposalAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type DhoRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
@@ -9052,11 +8711,9 @@ export type DhoRoleArgs = {
   order?: InputMaybe<RoleOrder>;
 };
 
-
 export type DhoRoleAggregateArgs = {
   filter?: InputMaybe<RoleFilter>;
 };
-
 
 export type DhoSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -9065,11 +8722,9 @@ export type DhoSettingsArgs = {
   order?: InputMaybe<SettingsOrder>;
 };
 
-
 export type DhoSettingsAggregateArgs = {
   filter?: InputMaybe<SettingsFilter>;
 };
-
 
 export type DhoStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -9078,11 +8733,9 @@ export type DhoStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type DhoStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type DhoSuspendedArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -9091,11 +8744,9 @@ export type DhoSuspendedArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type DhoSuspendedAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type DhoWeeklyArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -9103,7 +8754,6 @@ export type DhoWeeklyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CalendarOrder>;
 };
-
 
 export type DhoWeeklyAggregateArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -9182,7 +8832,7 @@ export enum DhoHasFilter {
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
   UpdatedDate = 'updatedDate',
-  Weekly = 'weekly'
+  Weekly = 'weekly',
 }
 
 export type DhoOrder = {
@@ -9199,7 +8849,7 @@ export enum DhoOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DhoPatch = {
@@ -9327,7 +8977,7 @@ export enum DoccacheConfigHasFilter {
   ElasticApiKey = 'elasticApiKey',
   ElasticEndpoint = 'elasticEndpoint',
   EosEndpoint = 'eosEndpoint',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type DoccacheConfigOrder = {
@@ -9343,7 +8993,7 @@ export enum DoccacheConfigOrderable {
   ElasticApiKey = 'elasticApiKey',
   ElasticEndpoint = 'elasticEndpoint',
   EosEndpoint = 'eosEndpoint',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type DoccacheConfigPatch = {
@@ -9411,7 +9061,7 @@ export enum DocumentHasFilter {
   Creator = 'creator',
   DocId = 'docId',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DocumentOrder = {
@@ -9426,7 +9076,7 @@ export enum DocumentOrderable {
   Creator = 'creator',
   DocId = 'docId',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type DocumentPatch = {
@@ -9442,57 +9092,57 @@ export type DocumentRef = {
   docId: Scalars['String']['input'];
 };
 
-export type Edit = Document & Votable & {
-  __typename?: 'Edit';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_assignee_n?: Maybe<Scalars['String']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotDescription_s?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_ballotTitle_s?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_originalDocument_c?: Maybe<Scalars['String']['output']>;
-  details_originalDocument_i?: Maybe<Scalars['Int64']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_role_c?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_c?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_timeShareX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  original?: Maybe<Array<Document>>;
-  originalAggregate?: Maybe<DocumentAggregateResult>;
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Edit = Document &
+  Votable & {
+    __typename?: 'Edit';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_assignee_n?: Maybe<Scalars['String']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotDescription_s?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_ballotTitle_s?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_originalDocument_c?: Maybe<Scalars['String']['output']>;
+    details_originalDocument_i?: Maybe<Scalars['Int64']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_role_c?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_c?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_timeShareX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    original?: Maybe<Array<Document>>;
+    originalAggregate?: Maybe<DocumentAggregateResult>;
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type EditCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -9501,11 +9151,9 @@ export type EditCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type EditCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type EditDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -9514,11 +9162,9 @@ export type EditDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type EditDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type EditOriginalArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -9527,11 +9173,9 @@ export type EditOriginalArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type EditOriginalAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type EditOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -9540,11 +9184,9 @@ export type EditOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type EditOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type EditVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -9553,11 +9195,9 @@ export type EditVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type EditVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type EditVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -9565,7 +9205,6 @@ export type EditVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type EditVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -9743,7 +9382,7 @@ export enum EditHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type EditOrder = {
@@ -9787,7 +9426,7 @@ export enum EditOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type EditPatch = {
@@ -9898,7 +9537,6 @@ export type ElectnGroup = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type ElectnGroupUeGroupWinArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -9906,11 +9544,9 @@ export type ElectnGroupUeGroupWinArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type ElectnGroupUeGroupWinAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type ElectnGroupUeRdMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -9919,11 +9555,9 @@ export type ElectnGroupUeRdMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type ElectnGroupUeRdMemberAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type ElectnGroupUeVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
@@ -9931,7 +9565,6 @@ export type ElectnGroupUeVoteArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<UpvtVoteOrder>;
 };
-
 
 export type ElectnGroupUeVoteAggregateArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
@@ -9996,7 +9629,7 @@ export enum ElectnGroupHasFilter {
   UeGroupWin = 'ueGroupWin',
   UeRdMember = 'ueRdMember',
   UeVote = 'ueVote',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type ElectnGroupOrder = {
@@ -10015,7 +9648,7 @@ export enum ElectnGroupOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type ElectnGroupPatch = {
@@ -10086,7 +9719,6 @@ export type ElectnRound = Document & {
   winnerAggregate?: Maybe<DocumentAggregateResult>;
 };
 
-
 export type ElectnRoundCandidateArgs = {
   filter?: InputMaybe<DocumentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -10094,11 +9726,9 @@ export type ElectnRoundCandidateArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type ElectnRoundCandidateAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type ElectnRoundElectionArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -10107,11 +9737,9 @@ export type ElectnRoundElectionArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type ElectnRoundElectionAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type ElectnRoundNextroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -10120,11 +9748,9 @@ export type ElectnRoundNextroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type ElectnRoundNextroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type ElectnRoundUeElectionArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -10133,11 +9759,9 @@ export type ElectnRoundUeElectionArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type ElectnRoundUeElectionAggregateArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
-
 
 export type ElectnRoundUeGroupLnkArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
@@ -10146,11 +9770,9 @@ export type ElectnRoundUeGroupLnkArgs = {
   order?: InputMaybe<ElectnGroupOrder>;
 };
 
-
 export type ElectnRoundUeGroupLnkAggregateArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
 };
-
 
 export type ElectnRoundUeNextrndArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -10159,11 +9781,9 @@ export type ElectnRoundUeNextrndArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type ElectnRoundUeNextrndAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type ElectnRoundUeWinnerArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -10172,11 +9792,9 @@ export type ElectnRoundUeWinnerArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type ElectnRoundUeWinnerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type ElectnRoundVotedArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -10185,11 +9803,9 @@ export type ElectnRoundVotedArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type ElectnRoundVotedAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type ElectnRoundWinnerArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10197,7 +9813,6 @@ export type ElectnRoundWinnerArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DocumentOrder>;
 };
-
 
 export type ElectnRoundWinnerAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10288,7 +9903,7 @@ export enum ElectnRoundHasFilter {
   UeWinner = 'ueWinner',
   UpdatedDate = 'updatedDate',
   Voted = 'voted',
-  Winner = 'winner'
+  Winner = 'winner',
 }
 
 export type ElectnRoundOrder = {
@@ -10311,7 +9926,7 @@ export enum ElectnRoundOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type ElectnRoundPatch = {
@@ -10375,14 +9990,12 @@ export type Event = {
   notificationsAggregate?: Maybe<NotificationAggregateResult>;
 };
 
-
 export type EventNotificationsArgs = {
   filter?: InputMaybe<NotificationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<NotificationOrder>;
 };
-
 
 export type EventNotificationsAggregateArgs = {
   filter?: InputMaybe<NotificationFilter>;
@@ -10408,7 +10021,7 @@ export type EventFilter = {
 export enum EventHasFilter {
   EventType = 'eventType',
   Name = 'name',
-  Notifications = 'notifications'
+  Notifications = 'notifications',
 }
 
 export type EventOrder = {
@@ -10418,7 +10031,7 @@ export type EventOrder = {
 };
 
 export enum EventOrderable {
-  Name = 'name'
+  Name = 'name',
 }
 
 export type EventPatch = {
@@ -10437,7 +10050,7 @@ export type EventRef = {
 export enum EventType {
   CreatedRecord = 'CREATED_RECORD',
   External = 'EXTERNAL',
-  TimeBased = 'TIME_BASED'
+  TimeBased = 'TIME_BASED',
 }
 
 export type EventType_Hash = {
@@ -10478,7 +10091,7 @@ export enum HttpMethod {
   Get = 'GET',
   Patch = 'PATCH',
   Post = 'POST',
-  Put = 'PUT'
+  Put = 'PUT',
 }
 
 export type Int64Filter = {
@@ -10574,7 +10187,6 @@ export type Member = Document & {
   voteAggregate?: Maybe<VoteAggregateResult>;
 };
 
-
 export type MemberAdminbdgArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -10582,11 +10194,9 @@ export type MemberAdminbdgArgs = {
   order?: InputMaybe<AssignbadgeOrder>;
 };
 
-
 export type MemberAdminbdgAggregateArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
-
 
 export type MemberApplicantofArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10595,11 +10205,9 @@ export type MemberApplicantofArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type MemberApplicantofAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type MemberApplofcircArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -10608,11 +10216,9 @@ export type MemberApplofcircArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type MemberApplofcircAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type MemberApprovemsigArgs = {
   filter?: InputMaybe<MultisigFilter>;
@@ -10621,11 +10227,9 @@ export type MemberApprovemsigArgs = {
   order?: InputMaybe<MultisigOrder>;
 };
 
-
 export type MemberApprovemsigAggregateArgs = {
   filter?: InputMaybe<MultisigFilter>;
 };
-
 
 export type MemberAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -10634,11 +10238,9 @@ export type MemberAssignbadgeArgs = {
   order?: InputMaybe<AssignbadgeOrder>;
 };
 
-
 export type MemberAssignbadgeAggregateArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
-
 
 export type MemberAssignedArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -10647,11 +10249,9 @@ export type MemberAssignedArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type MemberAssignedAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type MemberAttestedArgs = {
   filter?: InputMaybe<AttestationFilter>;
@@ -10660,11 +10260,9 @@ export type MemberAttestedArgs = {
   order?: InputMaybe<AttestationOrder>;
 };
 
-
 export type MemberAttestedAggregateArgs = {
   filter?: InputMaybe<AttestationFilter>;
 };
-
 
 export type MemberElctngroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
@@ -10673,11 +10271,9 @@ export type MemberElctngroupArgs = {
   order?: InputMaybe<VoteGroupOrder>;
 };
 
-
 export type MemberElctngroupAggregateArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
 };
-
 
 export type MemberEnrollerbdgArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -10686,11 +10282,9 @@ export type MemberEnrollerbdgArgs = {
   order?: InputMaybe<AssignbadgeOrder>;
 };
 
-
 export type MemberEnrollerbdgAggregateArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
-
 
 export type MemberEntrustedtoArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -10699,11 +10293,9 @@ export type MemberEntrustedtoArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type MemberEntrustedtoAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type MemberHoldsbadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -10712,11 +10304,9 @@ export type MemberHoldsbadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type MemberHoldsbadgeAggregateArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type MemberMemberofArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10725,11 +10315,9 @@ export type MemberMemberofArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type MemberMemberofAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type MemberMemberofcircArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -10738,11 +10326,9 @@ export type MemberMemberofcircArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type MemberMemberofcircAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type MemberOwnsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10751,11 +10337,9 @@ export type MemberOwnsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type MemberOwnsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type MemberPaidArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -10764,11 +10348,9 @@ export type MemberPaidArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type MemberPaidAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type MemberPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -10777,11 +10359,9 @@ export type MemberPaymentArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type MemberPaymentAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type MemberPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -10790,11 +10370,9 @@ export type MemberPayoutArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type MemberPayoutAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type MemberQuestcompletArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -10803,11 +10381,9 @@ export type MemberQuestcompletArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type MemberQuestcompletAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type MemberReactedtoArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -10816,11 +10392,9 @@ export type MemberReactedtoArgs = {
   order?: InputMaybe<CommentOrder>;
 };
 
-
 export type MemberReactedtoAggregateArgs = {
   filter?: InputMaybe<CommentFilter>;
 };
-
 
 export type MemberReactionlnkArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -10829,11 +10403,9 @@ export type MemberReactionlnkArgs = {
   order?: InputMaybe<ReactionOrder>;
 };
 
-
 export type MemberReactionlnkAggregateArgs = {
   filter?: InputMaybe<ReactionFilter>;
 };
-
 
 export type MemberRedeembalArgs = {
   filter?: InputMaybe<BalanceFilter>;
@@ -10842,11 +10414,9 @@ export type MemberRedeembalArgs = {
   order?: InputMaybe<BalanceOrder>;
 };
 
-
 export type MemberRedeembalAggregateArgs = {
   filter?: InputMaybe<BalanceFilter>;
 };
-
 
 export type MemberTreasurerofArgs = {
   filter?: InputMaybe<TreasuryFilter>;
@@ -10855,11 +10425,9 @@ export type MemberTreasurerofArgs = {
   order?: InputMaybe<TreasuryOrder>;
 };
 
-
 export type MemberTreasurerofAggregateArgs = {
   filter?: InputMaybe<TreasuryFilter>;
 };
-
 
 export type MemberVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -10867,7 +10435,6 @@ export type MemberVoteArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteOrder>;
 };
-
 
 export type MemberVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -10940,7 +10507,7 @@ export enum MemberHasFilter {
   Treasurerof = 'treasurerof',
   Type = 'type',
   UpdatedDate = 'updatedDate',
-  Vote = 'vote'
+  Vote = 'vote',
 }
 
 export type MemberOrder = {
@@ -10957,7 +10524,7 @@ export enum MemberOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MemberPatch = {
@@ -11048,7 +10615,6 @@ export type Memo = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type MemoAssignedArgs = {
   filter?: InputMaybe<AssignmentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -11056,11 +10622,9 @@ export type MemoAssignedArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type MemoAssignedAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type MemoOwnsArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -11069,11 +10633,9 @@ export type MemoOwnsArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type MemoOwnsAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type MemoPaidArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -11082,11 +10644,9 @@ export type MemoPaidArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type MemoPaidAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type MemoPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -11094,7 +10654,6 @@ export type MemoPayoutArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PayoutOrder>;
 };
-
 
 export type MemoPayoutAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -11148,7 +10707,7 @@ export enum MemoHasFilter {
   Payout = 'payout',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MemoOrder = {
@@ -11165,7 +10724,7 @@ export enum MemoOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MemoPatch = {
@@ -11200,7 +10759,7 @@ export type MemoRef = {
 
 export enum Mode {
   Batch = 'BATCH',
-  Single = 'SINGLE'
+  Single = 'SINGLE',
 }
 
 export type MsigInfo = Document & {
@@ -11224,7 +10783,6 @@ export type MsigInfo = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type MsigInfoApprovedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -11232,11 +10790,9 @@ export type MsigInfoApprovedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type MsigInfoApprovedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type MsigInfoPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
@@ -11245,11 +10801,9 @@ export type MsigInfoPaymentArgs = {
   order?: InputMaybe<TrsyPaymentOrder>;
 };
 
-
 export type MsigInfoPaymentAggregateArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
 };
-
 
 export type MsigInfoSignerArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -11257,7 +10811,6 @@ export type MsigInfoSignerArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type MsigInfoSignerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -11324,7 +10877,7 @@ export enum MsigInfoHasFilter {
   Signer = 'signer',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MsigInfoOrder = {
@@ -11344,7 +10897,7 @@ export enum MsigInfoOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MsigInfoPatch = {
@@ -11404,7 +10957,9 @@ export type Multisig = Document & {
   docId: Scalars['String']['output'];
   executedby?: Maybe<Array<Member>>;
   executedbyAggregate?: Maybe<MemberAggregateResult>;
-  settings_communityVotingAlignmentPercent_i?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingAlignmentPercent_i?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_communityVotingDurationSec_i?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingEnabled_i?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingMethod_s?: Maybe<Scalars['String']['output']>;
@@ -11464,7 +11019,6 @@ export type Multisig = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type MultisigApprovedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -11472,11 +11026,9 @@ export type MultisigApprovedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type MultisigApprovedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type MultisigCanceledbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -11485,11 +11037,9 @@ export type MultisigCanceledbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type MultisigCanceledbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type MultisigExecutedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -11497,7 +11047,6 @@ export type MultisigExecutedbyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type MultisigExecutedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -11520,10 +11069,18 @@ export type MultisigAggregateResult = {
   details_owner_nMin?: Maybe<Scalars['String']['output']>;
   docIdMax?: Maybe<Scalars['String']['output']>;
   docIdMin?: Maybe<Scalars['String']['output']>;
-  settings_communityVotingAlignmentPercent_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_communityVotingAlignmentPercent_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingAlignmentPercent_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingAlignmentPercent_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingAlignmentPercent_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_communityVotingDurationSec_iAvg?: Maybe<Scalars['Float']['output']>;
   settings_communityVotingDurationSec_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingDurationSec_iMin?: Maybe<Scalars['Int64']['output']>;
@@ -11534,10 +11091,18 @@ export type MultisigAggregateResult = {
   settings_communityVotingEnabled_iSum?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingMethod_sMax?: Maybe<Scalars['String']['output']>;
   settings_communityVotingMethod_sMin?: Maybe<Scalars['String']['output']>;
-  settings_communityVotingQuorumPercent_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_communityVotingQuorumPercent_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingQuorumPercent_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingQuorumPercent_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingQuorumPercent_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_communityVotingQuorumPercent_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingQuorumPercent_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingQuorumPercent_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_daoTitle_sMax?: Maybe<Scalars['String']['output']>;
   settings_daoTitle_sMin?: Maybe<Scalars['String']['output']>;
   settings_daoUrl_sMax?: Maybe<Scalars['String']['output']>;
@@ -11580,8 +11145,12 @@ export type MultisigAggregateResult = {
   settings_multisigEnabled_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_multisigEnabled_iMin?: Maybe<Scalars['Int64']['output']>;
   settings_multisigEnabled_iSum?: Maybe<Scalars['Int64']['output']>;
-  settings_organisationBackgroundImage_sMax?: Maybe<Scalars['String']['output']>;
-  settings_organisationBackgroundImage_sMin?: Maybe<Scalars['String']['output']>;
+  settings_organisationBackgroundImage_sMax?: Maybe<
+    Scalars['String']['output']
+  >;
+  settings_organisationBackgroundImage_sMin?: Maybe<
+    Scalars['String']['output']
+  >;
   settings_organisationParagraph_sMax?: Maybe<Scalars['String']['output']>;
   settings_organisationParagraph_sMin?: Maybe<Scalars['String']['output']>;
   settings_organisationTitle_sMax?: Maybe<Scalars['String']['output']>;
@@ -11816,7 +11385,7 @@ export enum MultisigHasFilter {
   SettingsVotingQuorumX100I = 'settings_votingQuorumX100_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MultisigOrder = {
@@ -11889,7 +11458,7 @@ export enum MultisigOrderable {
   SettingsVotingQuorumX100I = 'settings_votingQuorumX100_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type MultisigPatch = {
@@ -11902,11 +11471,15 @@ export type MultisigPatch = {
   details_owner_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
   executedby?: InputMaybe<Array<MemberRef>>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_daoTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoUrl_s?: InputMaybe<Scalars['String']['input']>;
   settings_dashboardBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -11925,7 +11498,9 @@ export type MultisigPatch = {
   settings_membersTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_msigApprovalAmount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_multisigEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_patternBase64_s?: InputMaybe<Scalars['String']['input']>;
@@ -11944,7 +11519,9 @@ export type MultisigPatch = {
   settings_textColor_s?: InputMaybe<Scalars['String']['input']>;
   settings_title_s?: InputMaybe<Scalars['String']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateRound_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -11972,11 +11549,15 @@ export type MultisigRef = {
   details_owner_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
   executedby?: InputMaybe<Array<MemberRef>>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_daoTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoUrl_s?: InputMaybe<Scalars['String']['input']>;
   settings_dashboardBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -11995,7 +11576,9 @@ export type MultisigRef = {
   settings_membersTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_msigApprovalAmount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_multisigEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_patternBase64_s?: InputMaybe<Scalars['String']['input']>;
@@ -12014,7 +11597,9 @@ export type MultisigRef = {
   settings_textColor_s?: InputMaybe<Scalars['String']['input']>;
   settings_title_s?: InputMaybe<Scalars['String']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateRound_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -12201,320 +11786,266 @@ export type Mutation = {
   updateVoteTally?: Maybe<UpdateVoteTallyPayload>;
 };
 
-
 export type MutationAddAlertArgs = {
   input: Array<AddAlertInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddAssignbadgeArgs = {
   input: Array<AddAssignbadgeInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddAssignmentArgs = {
   input: Array<AddAssignmentInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddAttestationArgs = {
   input: Array<AddAttestationInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddBadgeArgs = {
   input: Array<AddBadgeInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddBalanceArgs = {
   input: Array<AddBalanceInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddBillingInfoArgs = {
   input: Array<AddBillingInfoInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddBudgetArgs = {
   input: Array<AddBudgetInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddCalendarArgs = {
   input: Array<AddCalendarInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddCircleArgs = {
   input: Array<AddCircleInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddCmntSectionArgs = {
   input: Array<AddCmntSectionInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddCommentArgs = {
   input: Array<AddCommentInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddCursorArgs = {
   input: Array<AddCursorInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddDaoArgs = {
   input: Array<AddDaoInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddDaoDraftArgs = {
   input: Array<AddDaoDraftInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddDhoArgs = {
   input: Array<AddDhoInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddDoccacheConfigArgs = {
   input: Array<AddDoccacheConfigInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddEditArgs = {
   input: Array<AddEditInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddElectnGroupArgs = {
   input: Array<AddElectnGroupInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddElectnRoundArgs = {
   input: Array<AddElectnRoundInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddEventArgs = {
   input: Array<AddEventInput>;
 };
-
 
 export type MutationAddMemberArgs = {
   input: Array<AddMemberInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddMemoArgs = {
   input: Array<AddMemoInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddMsigInfoArgs = {
   input: Array<AddMsigInfoInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddMultisigArgs = {
   input: Array<AddMultisigInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddNotificationArgs = {
   input: Array<AddNotificationInput>;
 };
-
 
 export type MutationAddPaymentArgs = {
   input: Array<AddPaymentInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddPayoutArgs = {
   input: Array<AddPayoutInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddPeriodArgs = {
   input: Array<AddPeriodInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddPlanManagerArgs = {
   input: Array<AddPlanManagerInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddPolicyArgs = {
   input: Array<AddPolicyInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddPollArgs = {
   input: Array<AddPollInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddPriceOfferArgs = {
   input: Array<AddPriceOfferInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddPricingPlanArgs = {
   input: Array<AddPricingPlanInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddQuestcompleArgs = {
   input: Array<AddQuestcompleInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddQuestcompletArgs = {
   input: Array<AddQuestcompletInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddQueststartArgs = {
   input: Array<AddQueststartInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddReactionArgs = {
   input: Array<AddReactionInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddRedemptionArgs = {
   input: Array<AddRedemptionInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddRoleArgs = {
   input: Array<AddRoleInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddSalarybandArgs = {
   input: Array<AddSalarybandInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddSettingsArgs = {
   input: Array<AddSettingsInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddSuspendArgs = {
   input: Array<AddSuspendInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddTimeshareArgs = {
   input: Array<AddTimeshareInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationAddTreasuryArgs = {
   input: Array<AddTreasuryInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddTrsyPaymentArgs = {
   input: Array<AddTrsyPaymentInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddTypeVersionArgs = {
   input: Array<AddTypeVersionInput>;
 };
-
 
 export type MutationAddUpvtElectnArgs = {
   input: Array<AddUpvtElectnInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddUpvtVoteArgs = {
   input: Array<AddUpvtVoteInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddUserArgs = {
   input: Array<AddUserInput>;
 };
-
 
 export type MutationAddVoteArgs = {
   input: Array<AddVoteInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddVoteGroupArgs = {
   input: Array<AddVoteGroupInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationAddVoteTallyArgs = {
   input: Array<AddVoteTallyInput>;
   upsert?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationCreateCheckoutSessionArgs = {
   cancelUrl?: InputMaybe<Scalars['String']['input']>;
@@ -12527,496 +12058,397 @@ export type MutationCreateCheckoutSessionArgs = {
   successUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type MutationDeleteAlertArgs = {
   filter: AlertFilter;
 };
-
 
 export type MutationDeleteAssignbadgeArgs = {
   filter: AssignbadgeFilter;
 };
 
-
 export type MutationDeleteAssignmentArgs = {
   filter: AssignmentFilter;
 };
-
 
 export type MutationDeleteAttestationArgs = {
   filter: AttestationFilter;
 };
 
-
 export type MutationDeleteBadgeArgs = {
   filter: BadgeFilter;
 };
-
 
 export type MutationDeleteBalanceArgs = {
   filter: BalanceFilter;
 };
 
-
 export type MutationDeleteBillingInfoArgs = {
   filter: BillingInfoFilter;
 };
-
 
 export type MutationDeleteBudgetArgs = {
   filter: BudgetFilter;
 };
 
-
 export type MutationDeleteCalendarArgs = {
   filter: CalendarFilter;
 };
-
 
 export type MutationDeleteCircleArgs = {
   filter: CircleFilter;
 };
 
-
 export type MutationDeleteCmntSectionArgs = {
   filter: CmntSectionFilter;
 };
-
 
 export type MutationDeleteCommentArgs = {
   filter: CommentFilter;
 };
 
-
 export type MutationDeleteCursorArgs = {
   filter: CursorFilter;
 };
-
 
 export type MutationDeleteDaoArgs = {
   filter: DaoFilter;
 };
 
-
 export type MutationDeleteDaoDraftArgs = {
   filter: DaoDraftFilter;
 };
-
 
 export type MutationDeleteDhoArgs = {
   filter: DhoFilter;
 };
 
-
 export type MutationDeleteDoccacheConfigArgs = {
   filter: DoccacheConfigFilter;
 };
-
 
 export type MutationDeleteDocumentArgs = {
   filter: DocumentFilter;
 };
 
-
 export type MutationDeleteEditArgs = {
   filter: EditFilter;
 };
-
 
 export type MutationDeleteElectnGroupArgs = {
   filter: ElectnGroupFilter;
 };
 
-
 export type MutationDeleteElectnRoundArgs = {
   filter: ElectnRoundFilter;
 };
-
 
 export type MutationDeleteEventArgs = {
   filter: EventFilter;
 };
 
-
 export type MutationDeleteMemberArgs = {
   filter: MemberFilter;
 };
-
 
 export type MutationDeleteMemoArgs = {
   filter: MemoFilter;
 };
 
-
 export type MutationDeleteMsigInfoArgs = {
   filter: MsigInfoFilter;
 };
-
 
 export type MutationDeleteMultisigArgs = {
   filter: MultisigFilter;
 };
 
-
 export type MutationDeleteNotificationArgs = {
   filter: NotificationFilter;
 };
-
 
 export type MutationDeletePaymentArgs = {
   filter: PaymentFilter;
 };
 
-
 export type MutationDeletePayoutArgs = {
   filter: PayoutFilter;
 };
-
 
 export type MutationDeletePeriodArgs = {
   filter: PeriodFilter;
 };
 
-
 export type MutationDeletePlanManagerArgs = {
   filter: PlanManagerFilter;
 };
-
 
 export type MutationDeletePolicyArgs = {
   filter: PolicyFilter;
 };
 
-
 export type MutationDeletePollArgs = {
   filter: PollFilter;
 };
-
 
 export type MutationDeletePriceOfferArgs = {
   filter: PriceOfferFilter;
 };
 
-
 export type MutationDeletePricingPlanArgs = {
   filter: PricingPlanFilter;
 };
-
 
 export type MutationDeleteQuestcompleArgs = {
   filter: QuestcompleFilter;
 };
 
-
 export type MutationDeleteQuestcompletArgs = {
   filter: QuestcompletFilter;
 };
-
 
 export type MutationDeleteQueststartArgs = {
   filter: QueststartFilter;
 };
 
-
 export type MutationDeleteReactionArgs = {
   filter: ReactionFilter;
 };
-
 
 export type MutationDeleteRedemptionArgs = {
   filter: RedemptionFilter;
 };
 
-
 export type MutationDeleteRoleArgs = {
   filter: RoleFilter;
 };
-
 
 export type MutationDeleteSalarybandArgs = {
   filter: SalarybandFilter;
 };
 
-
 export type MutationDeleteSettingsArgs = {
   filter: SettingsFilter;
 };
-
 
 export type MutationDeleteSuspendArgs = {
   filter: SuspendFilter;
 };
 
-
 export type MutationDeleteTimeshareArgs = {
   filter: TimeshareFilter;
 };
-
 
 export type MutationDeleteTreasuryArgs = {
   filter: TreasuryFilter;
 };
 
-
 export type MutationDeleteTrsyPaymentArgs = {
   filter: TrsyPaymentFilter;
 };
-
 
 export type MutationDeleteTypeVersionArgs = {
   filter: TypeVersionFilter;
 };
 
-
 export type MutationDeleteUpvtElectnArgs = {
   filter: UpvtElectnFilter;
 };
-
 
 export type MutationDeleteUpvtVoteArgs = {
   filter: UpvtVoteFilter;
 };
 
-
 export type MutationDeleteUserArgs = {
   filter: UserFilter;
 };
-
 
 export type MutationDeleteVotableArgs = {
   filter: VotableFilter;
 };
 
-
 export type MutationDeleteVoteArgs = {
   filter: VoteFilter;
 };
-
 
 export type MutationDeleteVoteGroupArgs = {
   filter: VoteGroupFilter;
 };
 
-
 export type MutationDeleteVoteTallyArgs = {
   filter: VoteTallyFilter;
 };
-
 
 export type MutationUpdateAlertArgs = {
   input: UpdateAlertInput;
 };
 
-
 export type MutationUpdateAssignbadgeArgs = {
   input: UpdateAssignbadgeInput;
 };
-
 
 export type MutationUpdateAssignmentArgs = {
   input: UpdateAssignmentInput;
 };
 
-
 export type MutationUpdateAttestationArgs = {
   input: UpdateAttestationInput;
 };
-
 
 export type MutationUpdateBadgeArgs = {
   input: UpdateBadgeInput;
 };
 
-
 export type MutationUpdateBalanceArgs = {
   input: UpdateBalanceInput;
 };
-
 
 export type MutationUpdateBillingInfoArgs = {
   input: UpdateBillingInfoInput;
 };
 
-
 export type MutationUpdateBudgetArgs = {
   input: UpdateBudgetInput;
 };
-
 
 export type MutationUpdateCalendarArgs = {
   input: UpdateCalendarInput;
 };
 
-
 export type MutationUpdateCircleArgs = {
   input: UpdateCircleInput;
 };
-
 
 export type MutationUpdateCmntSectionArgs = {
   input: UpdateCmntSectionInput;
 };
 
-
 export type MutationUpdateCommentArgs = {
   input: UpdateCommentInput;
 };
-
 
 export type MutationUpdateCursorArgs = {
   input: UpdateCursorInput;
 };
 
-
 export type MutationUpdateDaoArgs = {
   input: UpdateDaoInput;
 };
-
 
 export type MutationUpdateDaoDraftArgs = {
   input: UpdateDaoDraftInput;
 };
 
-
 export type MutationUpdateDhoArgs = {
   input: UpdateDhoInput;
 };
-
 
 export type MutationUpdateDoccacheConfigArgs = {
   input: UpdateDoccacheConfigInput;
 };
 
-
 export type MutationUpdateDocumentArgs = {
   input: UpdateDocumentInput;
 };
-
 
 export type MutationUpdateEditArgs = {
   input: UpdateEditInput;
 };
 
-
 export type MutationUpdateElectnGroupArgs = {
   input: UpdateElectnGroupInput;
 };
-
 
 export type MutationUpdateElectnRoundArgs = {
   input: UpdateElectnRoundInput;
 };
 
-
 export type MutationUpdateEventArgs = {
   input: UpdateEventInput;
 };
-
 
 export type MutationUpdateMemberArgs = {
   input: UpdateMemberInput;
 };
 
-
 export type MutationUpdateMemoArgs = {
   input: UpdateMemoInput;
 };
-
 
 export type MutationUpdateMsigInfoArgs = {
   input: UpdateMsigInfoInput;
 };
 
-
 export type MutationUpdateMultisigArgs = {
   input: UpdateMultisigInput;
 };
-
 
 export type MutationUpdateNotificationArgs = {
   input: UpdateNotificationInput;
 };
 
-
 export type MutationUpdatePaymentArgs = {
   input: UpdatePaymentInput;
 };
-
 
 export type MutationUpdatePayoutArgs = {
   input: UpdatePayoutInput;
 };
 
-
 export type MutationUpdatePeriodArgs = {
   input: UpdatePeriodInput;
 };
-
 
 export type MutationUpdatePlanManagerArgs = {
   input: UpdatePlanManagerInput;
 };
 
-
 export type MutationUpdatePolicyArgs = {
   input: UpdatePolicyInput;
 };
-
 
 export type MutationUpdatePollArgs = {
   input: UpdatePollInput;
 };
 
-
 export type MutationUpdatePriceOfferArgs = {
   input: UpdatePriceOfferInput;
 };
-
 
 export type MutationUpdatePricingPlanArgs = {
   input: UpdatePricingPlanInput;
 };
 
-
 export type MutationUpdateQuestcompleArgs = {
   input: UpdateQuestcompleInput;
 };
-
 
 export type MutationUpdateQuestcompletArgs = {
   input: UpdateQuestcompletInput;
 };
 
-
 export type MutationUpdateQueststartArgs = {
   input: UpdateQueststartInput;
 };
-
 
 export type MutationUpdateReactionArgs = {
   input: UpdateReactionInput;
 };
 
-
 export type MutationUpdateRedemptionArgs = {
   input: UpdateRedemptionInput;
 };
-
 
 export type MutationUpdateRoleArgs = {
   input: UpdateRoleInput;
 };
 
-
 export type MutationUpdateSalarybandArgs = {
   input: UpdateSalarybandInput;
 };
 
-
 export type MutationUpdateSettingsArgs = {
   input: UpdateSettingsInput;
 };
-
 
 export type MutationUpdateSubscriptionArgs = {
   daoType?: InputMaybe<Scalars['String']['input']>;
@@ -13025,61 +12457,49 @@ export type MutationUpdateSubscriptionArgs = {
   subscriptionItemId: Scalars['String']['input'];
 };
 
-
 export type MutationUpdateSuspendArgs = {
   input: UpdateSuspendInput;
 };
-
 
 export type MutationUpdateTimeshareArgs = {
   input: UpdateTimeshareInput;
 };
 
-
 export type MutationUpdateTreasuryArgs = {
   input: UpdateTreasuryInput;
 };
-
 
 export type MutationUpdateTrsyPaymentArgs = {
   input: UpdateTrsyPaymentInput;
 };
 
-
 export type MutationUpdateTypeVersionArgs = {
   input: UpdateTypeVersionInput;
 };
-
 
 export type MutationUpdateUpvtElectnArgs = {
   input: UpdateUpvtElectnInput;
 };
 
-
 export type MutationUpdateUpvtVoteArgs = {
   input: UpdateUpvtVoteInput;
 };
-
 
 export type MutationUpdateUserArgs = {
   input: UpdateUserInput;
 };
 
-
 export type MutationUpdateVotableArgs = {
   input: UpdateVotableInput;
 };
-
 
 export type MutationUpdateVoteArgs = {
   input: UpdateVoteInput;
 };
 
-
 export type MutationUpdateVoteGroupArgs = {
   input: UpdateVoteGroupInput;
 };
-
 
 export type MutationUpdateVoteTallyArgs = {
   input: UpdateVoteTallyInput;
@@ -13100,11 +12520,9 @@ export type Notification = {
   user: User;
 };
 
-
 export type NotificationEventArgs = {
   filter?: InputMaybe<EventFilter>;
 };
-
 
 export type NotificationUserArgs = {
   filter?: InputMaybe<UserFilter>;
@@ -13134,7 +12552,7 @@ export enum NotificationHasFilter {
   Event = 'event',
   Read = 'read',
   Time = 'time',
-  User = 'user'
+  User = 'user',
 }
 
 export type NotificationOrder = {
@@ -13145,7 +12563,7 @@ export type NotificationOrder = {
 
 export enum NotificationOrderable {
   Content = 'content',
-  Time = 'time'
+  Time = 'time',
 }
 
 export type NotificationPatch = {
@@ -13263,7 +12681,7 @@ export enum PaymentHasFilter {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PaymentOrder = {
@@ -13288,7 +12706,7 @@ export enum PaymentOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PaymentPatch = {
@@ -13329,88 +12747,88 @@ export type PaymentRef = {
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type Payout = Document & Votable & {
-  __typename?: 'Payout';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  completed?: Maybe<Array<Payout>>;
-  completedAggregate?: Maybe<PayoutAggregateResult>;
-  completedby?: Maybe<Array<Payout>>;
-  completedbyAggregate?: Maybe<PayoutAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_bypassEscrow_i?: Maybe<Scalars['Int64']['output']>;
-  details_content_s?: Maybe<Scalars['String']['output']>;
-  details_contributionDate_t?: Maybe<Scalars['DateTime']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_husdAmount_a?: Maybe<Scalars['String']['output']>;
-  details_hvoiceAmount_a?: Maybe<Scalars['String']['output']>;
-  details_hyphaAmount_a?: Maybe<Scalars['String']['output']>;
-  details_instantHusdPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_isCustom_i?: Maybe<Scalars['Int64']['output']>;
-  details_owner_n?: Maybe<Scalars['String']['output']>;
-  details_paymentDate_t?: Maybe<Scalars['DateTime']['output']>;
-  details_pegAmount_a?: Maybe<Scalars['String']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_proposalSubtype_n?: Maybe<Scalars['String']['output']>;
-  details_proposalType_n?: Maybe<Scalars['String']['output']>;
-  details_proposer_n?: Maybe<Scalars['String']['output']>;
-  details_questStart_i?: Maybe<Scalars['Int64']['output']>;
-  details_recipient_n?: Maybe<Scalars['String']['output']>;
-  details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
-  details_seedsAmount_a?: Maybe<Scalars['String']['output']>;
-  details_seedsEscrowAmount_a?: Maybe<Scalars['String']['output']>;
-  details_seedsInstantAmount_a?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_c?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  details_usdAmount_a?: Maybe<Scalars['String']['output']>;
-  details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  lockedby?: Maybe<Array<Payout>>;
-  lockedbyAggregate?: Maybe<PayoutAggregateResult>;
-  ownedby?: Maybe<Array<Document>>;
-  ownedbyAggregate?: Maybe<DocumentAggregateResult>;
-  payment?: Maybe<Array<Payment>>;
-  paymentAggregate?: Maybe<PaymentAggregateResult>;
-  queststart?: Maybe<Array<Payout>>;
-  queststartAggregate?: Maybe<PayoutAggregateResult>;
-  start?: Maybe<Array<Period>>;
-  startAggregate?: Maybe<PeriodAggregateResult>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
-  system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Payout = Document &
+  Votable & {
+    __typename?: 'Payout';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    completed?: Maybe<Array<Payout>>;
+    completedAggregate?: Maybe<PayoutAggregateResult>;
+    completedby?: Maybe<Array<Payout>>;
+    completedbyAggregate?: Maybe<PayoutAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_bypassEscrow_i?: Maybe<Scalars['Int64']['output']>;
+    details_content_s?: Maybe<Scalars['String']['output']>;
+    details_contributionDate_t?: Maybe<Scalars['DateTime']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_husdAmount_a?: Maybe<Scalars['String']['output']>;
+    details_hvoiceAmount_a?: Maybe<Scalars['String']['output']>;
+    details_hyphaAmount_a?: Maybe<Scalars['String']['output']>;
+    details_instantHusdPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_isCustom_i?: Maybe<Scalars['Int64']['output']>;
+    details_owner_n?: Maybe<Scalars['String']['output']>;
+    details_paymentDate_t?: Maybe<Scalars['DateTime']['output']>;
+    details_pegAmount_a?: Maybe<Scalars['String']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_proposalSubtype_n?: Maybe<Scalars['String']['output']>;
+    details_proposalType_n?: Maybe<Scalars['String']['output']>;
+    details_proposer_n?: Maybe<Scalars['String']['output']>;
+    details_questStart_i?: Maybe<Scalars['Int64']['output']>;
+    details_recipient_n?: Maybe<Scalars['String']['output']>;
+    details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
+    details_seedsAmount_a?: Maybe<Scalars['String']['output']>;
+    details_seedsEscrowAmount_a?: Maybe<Scalars['String']['output']>;
+    details_seedsInstantAmount_a?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_c?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    details_usdAmount_a?: Maybe<Scalars['String']['output']>;
+    details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    lockedby?: Maybe<Array<Payout>>;
+    lockedbyAggregate?: Maybe<PayoutAggregateResult>;
+    ownedby?: Maybe<Array<Document>>;
+    ownedbyAggregate?: Maybe<DocumentAggregateResult>;
+    payment?: Maybe<Array<Payment>>;
+    paymentAggregate?: Maybe<PaymentAggregateResult>;
+    queststart?: Maybe<Array<Payout>>;
+    queststartAggregate?: Maybe<PayoutAggregateResult>;
+    start?: Maybe<Array<Period>>;
+    startAggregate?: Maybe<PeriodAggregateResult>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
+    system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type PayoutCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -13419,11 +12837,9 @@ export type PayoutCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type PayoutCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type PayoutCompletedArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -13432,11 +12848,9 @@ export type PayoutCompletedArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type PayoutCompletedAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type PayoutCompletedbyArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -13445,11 +12859,9 @@ export type PayoutCompletedbyArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type PayoutCompletedbyAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type PayoutDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -13458,11 +12870,9 @@ export type PayoutDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type PayoutDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type PayoutLockedbyArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -13471,11 +12881,9 @@ export type PayoutLockedbyArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type PayoutLockedbyAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type PayoutOwnedbyArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -13484,11 +12892,9 @@ export type PayoutOwnedbyArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type PayoutOwnedbyAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type PayoutPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -13497,11 +12903,9 @@ export type PayoutPaymentArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type PayoutPaymentAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type PayoutQueststartArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -13510,11 +12914,9 @@ export type PayoutQueststartArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type PayoutQueststartAggregateArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type PayoutStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -13523,11 +12925,9 @@ export type PayoutStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type PayoutStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type PayoutVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -13536,11 +12936,9 @@ export type PayoutVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type PayoutVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type PayoutVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -13548,7 +12946,6 @@ export type PayoutVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type PayoutVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -13825,7 +13222,7 @@ export enum PayoutHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type PayoutOrder = {
@@ -13890,7 +13287,7 @@ export enum PayoutOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PayoutPatch = {
@@ -14057,7 +13454,6 @@ export type Period = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type PeriodCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -14065,11 +13461,9 @@ export type PeriodCalendarArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type PeriodCalendarAggregateArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
-
 
 export type PeriodDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -14078,11 +13472,9 @@ export type PeriodDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type PeriodDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type PeriodNextArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -14091,11 +13483,9 @@ export type PeriodNextArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type PeriodNextAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type PeriodPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -14103,7 +13493,6 @@ export type PeriodPaymentArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PaymentOrder>;
 };
-
 
 export type PeriodPaymentAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -14173,7 +13562,7 @@ export enum PeriodHasFilter {
   SystemReadableStartTimeS = 'system_readableStartTime_s',
   SystemUpdatedDateT = 'system_updatedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PeriodOrder = {
@@ -14194,7 +13583,7 @@ export enum PeriodOrderable {
   SystemReadableStartTimeS = 'system_readableStartTime_s',
   SystemUpdatedDateT = 'system_updatedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PeriodPatch = {
@@ -14258,7 +13647,6 @@ export type PlanManager = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type PlanManagerBillArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -14266,11 +13654,9 @@ export type PlanManagerBillArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type PlanManagerBillAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type PlanManagerCurrentbillArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -14279,11 +13665,9 @@ export type PlanManagerCurrentbillArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type PlanManagerCurrentbillAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type PlanManagerLastbillArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -14292,11 +13676,9 @@ export type PlanManagerLastbillArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type PlanManagerLastbillAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type PlanManagerPrevstartbilArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -14305,11 +13687,9 @@ export type PlanManagerPrevstartbilArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type PlanManagerPrevstartbilAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type PlanManagerStartbillArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -14317,7 +13697,6 @@ export type PlanManagerStartbillArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<BillingInfoOrder>;
 };
-
 
 export type PlanManagerStartbillAggregateArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -14376,7 +13755,7 @@ export enum PlanManagerHasFilter {
   Startbill = 'startbill',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PlanManagerOrder = {
@@ -14394,7 +13773,7 @@ export enum PlanManagerOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PlanManagerPatch = {
@@ -14456,55 +13835,55 @@ export type PointRef = {
   longitude: Scalars['Float']['input'];
 };
 
-export type Policy = Document & Votable & {
-  __typename?: 'Policy';
-  ascendant?: Maybe<Array<Policy>>;
-  ascendantAggregate?: Maybe<PolicyAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  descendant?: Maybe<Array<Policy>>;
-  descendantAggregate?: Maybe<PolicyAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_masterPolicy_i?: Maybe<Scalars['Int64']['output']>;
-  details_name_s?: Maybe<Scalars['String']['output']>;
-  details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
-  details_purpose_s?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  masterpolicy?: Maybe<Array<Policy>>;
-  masterpolicyAggregate?: Maybe<PolicyAggregateResult>;
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  parentcircle?: Maybe<Array<Circle>>;
-  parentcircleAggregate?: Maybe<CircleAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Policy = Document &
+  Votable & {
+    __typename?: 'Policy';
+    ascendant?: Maybe<Array<Policy>>;
+    ascendantAggregate?: Maybe<PolicyAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    descendant?: Maybe<Array<Policy>>;
+    descendantAggregate?: Maybe<PolicyAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_masterPolicy_i?: Maybe<Scalars['Int64']['output']>;
+    details_name_s?: Maybe<Scalars['String']['output']>;
+    details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
+    details_purpose_s?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    masterpolicy?: Maybe<Array<Policy>>;
+    masterpolicyAggregate?: Maybe<PolicyAggregateResult>;
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    parentcircle?: Maybe<Array<Circle>>;
+    parentcircleAggregate?: Maybe<CircleAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type PolicyAscendantArgs = {
   filter?: InputMaybe<PolicyFilter>;
@@ -14513,11 +13892,9 @@ export type PolicyAscendantArgs = {
   order?: InputMaybe<PolicyOrder>;
 };
 
-
 export type PolicyAscendantAggregateArgs = {
   filter?: InputMaybe<PolicyFilter>;
 };
-
 
 export type PolicyCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -14526,11 +13903,9 @@ export type PolicyCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type PolicyCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type PolicyDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -14539,11 +13914,9 @@ export type PolicyDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type PolicyDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type PolicyDescendantArgs = {
   filter?: InputMaybe<PolicyFilter>;
@@ -14552,11 +13925,9 @@ export type PolicyDescendantArgs = {
   order?: InputMaybe<PolicyOrder>;
 };
 
-
 export type PolicyDescendantAggregateArgs = {
   filter?: InputMaybe<PolicyFilter>;
 };
-
 
 export type PolicyMasterpolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
@@ -14565,11 +13936,9 @@ export type PolicyMasterpolicyArgs = {
   order?: InputMaybe<PolicyOrder>;
 };
 
-
 export type PolicyMasterpolicyAggregateArgs = {
   filter?: InputMaybe<PolicyFilter>;
 };
-
 
 export type PolicyOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -14578,11 +13947,9 @@ export type PolicyOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type PolicyOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type PolicyParentcircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -14591,11 +13958,9 @@ export type PolicyParentcircleArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type PolicyParentcircleAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type PolicyVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -14604,11 +13969,9 @@ export type PolicyVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type PolicyVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type PolicyVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -14616,7 +13979,6 @@ export type PolicyVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type PolicyVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -14761,7 +14123,7 @@ export enum PolicyHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type PolicyOrder = {
@@ -14797,7 +14159,7 @@ export enum PolicyOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PolicyPatch = {
@@ -14878,43 +14240,43 @@ export type PolicyRef = {
   votetally?: InputMaybe<Array<VoteTallyRef>>;
 };
 
-export type Poll = Document & Votable & {
-  __typename?: 'Poll';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_votingMethod_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Poll = Document &
+  Votable & {
+    __typename?: 'Poll';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_votingMethod_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type PollCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -14923,11 +14285,9 @@ export type PollCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type PollCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type PollDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -14936,11 +14296,9 @@ export type PollDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type PollDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type PollOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -14949,11 +14307,9 @@ export type PollOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type PollOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type PollVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -14962,11 +14318,9 @@ export type PollVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type PollVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type PollVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -14974,7 +14328,6 @@ export type PollVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type PollVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -15095,7 +14448,7 @@ export enum PollHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type PollOrder = {
@@ -15127,7 +14480,7 @@ export enum PollOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PollPatch = {
@@ -15278,7 +14631,7 @@ export enum PriceOfferHasFilter {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PriceOfferOrder = {
@@ -15297,7 +14650,7 @@ export enum PriceOfferOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PriceOfferPatch = {
@@ -15344,14 +14697,12 @@ export type PricingPlan = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type PricingPlanPriceofferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PriceOfferOrder>;
 };
-
 
 export type PricingPlanPriceofferAggregateArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
@@ -15424,7 +14775,7 @@ export enum PricingPlanHasFilter {
   Priceoffer = 'priceoffer',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PricingPlanOrder = {
@@ -15445,7 +14796,7 @@ export enum PricingPlanOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type PricingPlanPatch = {
@@ -15651,559 +15002,448 @@ export type Query = {
   queryVoteTally?: Maybe<Array<Maybe<VoteTally>>>;
 };
 
-
 export type QueryActivePlanArgs = {
   daoUrl: Scalars['String']['input'];
 };
-
 
 export type QueryAggregateAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
 };
 
-
 export type QueryAggregateAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
-
 
 export type QueryAggregateAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
 
-
 export type QueryAggregateAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
 };
-
 
 export type QueryAggregateBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
 
-
 export type QueryAggregateBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
 };
-
 
 export type QueryAggregateBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
 
-
 export type QueryAggregateBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
 };
-
 
 export type QueryAggregateCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
 
-
 export type QueryAggregateCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type QueryAggregateCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
 
-
 export type QueryAggregateCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
 };
-
 
 export type QueryAggregateCursorArgs = {
   filter?: InputMaybe<CursorFilter>;
 };
 
-
 export type QueryAggregateDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type QueryAggregateDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
 };
 
-
 export type QueryAggregateDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
 };
-
 
 export type QueryAggregateDoccacheConfigArgs = {
   filter?: InputMaybe<DoccacheConfigFilter>;
 };
 
-
 export type QueryAggregateDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type QueryAggregateEditArgs = {
   filter?: InputMaybe<EditFilter>;
 };
 
-
 export type QueryAggregateElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
 };
-
 
 export type QueryAggregateElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
 
-
 export type QueryAggregateEventArgs = {
   filter?: InputMaybe<EventFilter>;
 };
-
 
 export type QueryAggregateMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
 
-
 export type QueryAggregateMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
 };
-
 
 export type QueryAggregateMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
 };
 
-
 export type QueryAggregateMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
 };
-
 
 export type QueryAggregateNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
 };
 
-
 export type QueryAggregatePaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type QueryAggregatePayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
 
-
 export type QueryAggregatePeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type QueryAggregatePlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
 };
 
-
 export type QueryAggregatePolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
 };
-
 
 export type QueryAggregatePollArgs = {
   filter?: InputMaybe<PollFilter>;
 };
 
-
 export type QueryAggregatePriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
 };
-
 
 export type QueryAggregatePricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
 };
 
-
 export type QueryAggregateQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
 };
-
 
 export type QueryAggregateQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
 };
 
-
 export type QueryAggregateQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QueryAggregateReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
 };
 
-
 export type QueryAggregateRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
 };
-
 
 export type QueryAggregateRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
 };
 
-
 export type QueryAggregateSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
 };
-
 
 export type QueryAggregateSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
 };
 
-
 export type QueryAggregateSuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
 };
-
 
 export type QueryAggregateTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
 
-
 export type QueryAggregateTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
 };
-
 
 export type QueryAggregateTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
 };
 
-
 export type QueryAggregateTypeVersionArgs = {
   filter?: InputMaybe<TypeVersionFilter>;
 };
-
 
 export type QueryAggregateUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
 
-
 export type QueryAggregateUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
 };
-
 
 export type QueryAggregateUserArgs = {
   filter?: InputMaybe<UserFilter>;
 };
 
-
 export type QueryAggregateVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
 };
-
 
 export type QueryAggregateVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
 
-
 export type QueryAggregateVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
 };
-
 
 export type QueryAggregateVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
 };
 
-
 export type QueryGetAlertArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetAssignbadgeArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetAssignmentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetAttestationArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetBadgeArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetBalanceArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetBillingInfoArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetBudgetArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetCalendarArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetCircleArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetCmntSectionArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetCommentArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetCursorArgs = {
   id: Scalars['String']['input'];
 };
-
 
 export type QueryGetDaoArgs = {
   details_daoName_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryGetDaoDraftArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetDhoArgs = {
   details_rootNode_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryGetDoccacheConfigArgs = {
   id: Scalars['String']['input'];
 };
-
 
 export type QueryGetDocumentArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetEditArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetElectnGroupArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetElectnRoundArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetEventArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryGetInvoicesArgs = {
   daoUrl: Scalars['String']['input'];
 };
-
 
 export type QueryGetMemberArgs = {
   details_member_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryGetMemoArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetMsigInfoArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetMultisigArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetNotificationArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryGetPaymentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetPayoutArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetPeriodArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetPlanManagerArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetPolicyArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetPollArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetPriceOfferArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetPricingPlanArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetQuestcompleArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetQuestcompletArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetQueststartArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetReactionArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetRedemptionArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetRoleArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetSalarybandArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetSettingsArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetSuspendArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetTimeshareArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetTreasuryArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetTrsyPaymentArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetUpvtElectnArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryGetUpvtVoteArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetUserArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryGetVoteArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetVoteGroupArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type QueryGetVoteTallyArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type QueryQueryAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
@@ -16212,14 +15452,12 @@ export type QueryQueryAlertArgs = {
   order?: InputMaybe<AlertOrder>;
 };
 
-
 export type QueryQueryAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<AssignbadgeOrder>;
 };
-
 
 export type QueryQueryAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -16228,14 +15466,12 @@ export type QueryQueryAssignmentArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type QueryQueryAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<AttestationOrder>;
 };
-
 
 export type QueryQueryBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -16244,14 +15480,12 @@ export type QueryQueryBadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type QueryQueryBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<BalanceOrder>;
 };
-
 
 export type QueryQueryBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -16260,14 +15494,12 @@ export type QueryQueryBillingInfoArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type QueryQueryBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<BudgetOrder>;
 };
-
 
 export type QueryQueryCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -16276,14 +15508,12 @@ export type QueryQueryCalendarArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type QueryQueryCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CircleOrder>;
 };
-
 
 export type QueryQueryCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -16292,14 +15522,12 @@ export type QueryQueryCmntSectionArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type QueryQueryCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CommentOrder>;
 };
-
 
 export type QueryQueryCursorArgs = {
   filter?: InputMaybe<CursorFilter>;
@@ -16308,14 +15536,12 @@ export type QueryQueryCursorArgs = {
   order?: InputMaybe<CursorOrder>;
 };
 
-
 export type QueryQueryDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DaoOrder>;
 };
-
 
 export type QueryQueryDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
@@ -16324,14 +15550,12 @@ export type QueryQueryDaoDraftArgs = {
   order?: InputMaybe<DaoDraftOrder>;
 };
 
-
 export type QueryQueryDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DhoOrder>;
 };
-
 
 export type QueryQueryDoccacheConfigArgs = {
   filter?: InputMaybe<DoccacheConfigFilter>;
@@ -16340,14 +15564,12 @@ export type QueryQueryDoccacheConfigArgs = {
   order?: InputMaybe<DoccacheConfigOrder>;
 };
 
-
 export type QueryQueryDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DocumentOrder>;
 };
-
 
 export type QueryQueryEditArgs = {
   filter?: InputMaybe<EditFilter>;
@@ -16356,14 +15578,12 @@ export type QueryQueryEditArgs = {
   order?: InputMaybe<EditOrder>;
 };
 
-
 export type QueryQueryElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<ElectnGroupOrder>;
 };
-
 
 export type QueryQueryElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -16372,14 +15592,12 @@ export type QueryQueryElectnRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type QueryQueryEventArgs = {
   filter?: InputMaybe<EventFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<EventOrder>;
 };
-
 
 export type QueryQueryMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -16388,14 +15606,12 @@ export type QueryQueryMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type QueryQueryMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemoOrder>;
 };
-
 
 export type QueryQueryMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
@@ -16404,14 +15620,12 @@ export type QueryQueryMsigInfoArgs = {
   order?: InputMaybe<MsigInfoOrder>;
 };
 
-
 export type QueryQueryMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MultisigOrder>;
 };
-
 
 export type QueryQueryNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
@@ -16420,14 +15634,12 @@ export type QueryQueryNotificationArgs = {
   order?: InputMaybe<NotificationOrder>;
 };
 
-
 export type QueryQueryPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PaymentOrder>;
 };
-
 
 export type QueryQueryPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -16436,14 +15648,12 @@ export type QueryQueryPayoutArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type QueryQueryPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PeriodOrder>;
 };
-
 
 export type QueryQueryPlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
@@ -16452,14 +15662,12 @@ export type QueryQueryPlanManagerArgs = {
   order?: InputMaybe<PlanManagerOrder>;
 };
 
-
 export type QueryQueryPolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PolicyOrder>;
 };
-
 
 export type QueryQueryPollArgs = {
   filter?: InputMaybe<PollFilter>;
@@ -16468,14 +15676,12 @@ export type QueryQueryPollArgs = {
   order?: InputMaybe<PollOrder>;
 };
 
-
 export type QueryQueryPriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PriceOfferOrder>;
 };
-
 
 export type QueryQueryPricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -16484,14 +15690,12 @@ export type QueryQueryPricingPlanArgs = {
   order?: InputMaybe<PricingPlanOrder>;
 };
 
-
 export type QueryQueryQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<QuestcompleOrder>;
 };
-
 
 export type QueryQueryQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
@@ -16500,14 +15704,12 @@ export type QueryQueryQuestcompletArgs = {
   order?: InputMaybe<QuestcompletOrder>;
 };
 
-
 export type QueryQueryQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<QueststartOrder>;
 };
-
 
 export type QueryQueryReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -16516,14 +15718,12 @@ export type QueryQueryReactionArgs = {
   order?: InputMaybe<ReactionOrder>;
 };
 
-
 export type QueryQueryRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<RedemptionOrder>;
 };
-
 
 export type QueryQueryRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
@@ -16532,14 +15732,12 @@ export type QueryQueryRoleArgs = {
   order?: InputMaybe<RoleOrder>;
 };
 
-
 export type QueryQuerySalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<SalarybandOrder>;
 };
-
 
 export type QueryQuerySettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -16548,14 +15746,12 @@ export type QueryQuerySettingsArgs = {
   order?: InputMaybe<SettingsOrder>;
 };
 
-
 export type QueryQuerySuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<SuspendOrder>;
 };
-
 
 export type QueryQueryTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -16564,14 +15760,12 @@ export type QueryQueryTimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type QueryQueryTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<TreasuryOrder>;
 };
-
 
 export type QueryQueryTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
@@ -16580,14 +15774,12 @@ export type QueryQueryTrsyPaymentArgs = {
   order?: InputMaybe<TrsyPaymentOrder>;
 };
 
-
 export type QueryQueryTypeVersionArgs = {
   filter?: InputMaybe<TypeVersionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<TypeVersionOrder>;
 };
-
 
 export type QueryQueryUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
@@ -16596,14 +15788,12 @@ export type QueryQueryUpvtElectnArgs = {
   order?: InputMaybe<UpvtElectnOrder>;
 };
 
-
 export type QueryQueryUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<UpvtVoteOrder>;
 };
-
 
 export type QueryQueryUserArgs = {
   filter?: InputMaybe<UserFilter>;
@@ -16612,14 +15802,12 @@ export type QueryQueryUserArgs = {
   order?: InputMaybe<UserOrder>;
 };
 
-
 export type QueryQueryVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VotableOrder>;
 };
-
 
 export type QueryQueryVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -16628,14 +15816,12 @@ export type QueryQueryVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type QueryQueryVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteGroupOrder>;
 };
-
 
 export type QueryQueryVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -16644,46 +15830,46 @@ export type QueryQueryVoteTallyArgs = {
   order?: InputMaybe<VoteTallyOrder>;
 };
 
-export type Questcomple = Document & Votable & {
-  __typename?: 'Questcomple';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_pegAmount_a?: Maybe<Scalars['String']['output']>;
-  details_questStart_c?: Maybe<Scalars['String']['output']>;
-  details_recipient_n?: Maybe<Scalars['String']['output']>;
-  details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  payment?: Maybe<Array<Payment>>;
-  paymentAggregate?: Maybe<PaymentAggregateResult>;
-  queststart?: Maybe<Array<Queststart>>;
-  queststartAggregate?: Maybe<QueststartAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Questcomple = Document &
+  Votable & {
+    __typename?: 'Questcomple';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_pegAmount_a?: Maybe<Scalars['String']['output']>;
+    details_questStart_c?: Maybe<Scalars['String']['output']>;
+    details_recipient_n?: Maybe<Scalars['String']['output']>;
+    details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    payment?: Maybe<Array<Payment>>;
+    paymentAggregate?: Maybe<PaymentAggregateResult>;
+    queststart?: Maybe<Array<Queststart>>;
+    queststartAggregate?: Maybe<QueststartAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type QuestcompleDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -16692,11 +15878,9 @@ export type QuestcompleDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type QuestcompleDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type QuestcompleOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -16705,11 +15889,9 @@ export type QuestcompleOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type QuestcompleOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type QuestcomplePaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -16718,11 +15900,9 @@ export type QuestcomplePaymentArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type QuestcomplePaymentAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type QuestcompleQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -16731,11 +15911,9 @@ export type QuestcompleQueststartArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QuestcompleQueststartAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QuestcompleVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -16744,11 +15922,9 @@ export type QuestcompleVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type QuestcompleVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type QuestcompleVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -16756,7 +15932,6 @@ export type QuestcompleVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type QuestcompleVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -16876,7 +16051,7 @@ export enum QuestcompleHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type QuestcompleOrder = {
@@ -16909,7 +16084,7 @@ export enum QuestcompleOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type QuestcomplePatch = {
@@ -16978,48 +16153,48 @@ export type QuestcompleRef = {
   votetally?: InputMaybe<Array<VoteTallyRef>>;
 };
 
-export type Questcomplet = Document & Votable & {
-  __typename?: 'Questcomplet';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  completed?: Maybe<Array<Queststart>>;
-  completedAggregate?: Maybe<QueststartAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_proposalSubtype_n?: Maybe<Scalars['String']['output']>;
-  details_questStart_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  queststart?: Maybe<Array<Queststart>>;
-  queststartAggregate?: Maybe<QueststartAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Questcomplet = Document &
+  Votable & {
+    __typename?: 'Questcomplet';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    completed?: Maybe<Array<Queststart>>;
+    completedAggregate?: Maybe<QueststartAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_proposalSubtype_n?: Maybe<Scalars['String']['output']>;
+    details_questStart_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    queststart?: Maybe<Array<Queststart>>;
+    queststartAggregate?: Maybe<QueststartAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type QuestcompletCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -17028,11 +16203,9 @@ export type QuestcompletCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type QuestcompletCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type QuestcompletCompletedArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -17041,11 +16214,9 @@ export type QuestcompletCompletedArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QuestcompletCompletedAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QuestcompletDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -17054,11 +16225,9 @@ export type QuestcompletDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type QuestcompletDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type QuestcompletOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -17067,11 +16236,9 @@ export type QuestcompletOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type QuestcompletOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type QuestcompletQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -17080,11 +16247,9 @@ export type QuestcompletQueststartArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QuestcompletQueststartAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QuestcompletVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -17093,11 +16258,9 @@ export type QuestcompletVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type QuestcompletVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type QuestcompletVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -17105,7 +16268,6 @@ export type QuestcompletVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type QuestcompletVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -17234,7 +16396,7 @@ export enum QuestcompletHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type QuestcompletOrder = {
@@ -17267,7 +16429,7 @@ export enum QuestcompletOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type QuestcompletPatch = {
@@ -17338,82 +16500,82 @@ export type QuestcompletRef = {
   votetally?: InputMaybe<Array<VoteTallyRef>>;
 };
 
-export type Queststart = Document & Votable & {
-  __typename?: 'Queststart';
-  ascendant?: Maybe<Array<Queststart>>;
-  ascendantAggregate?: Maybe<QueststartAggregateResult>;
-  assignee?: Maybe<Array<Member>>;
-  assigneeAggregate?: Maybe<MemberAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  circle?: Maybe<Array<Circle>>;
-  circleAggregate?: Maybe<CircleAggregateResult>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  completedby?: Maybe<Array<Document>>;
-  completedbyAggregate?: Maybe<DocumentAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  descendant?: Maybe<Array<Queststart>>;
-  descendantAggregate?: Maybe<QueststartAggregateResult>;
-  details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
-  details_assignee_n?: Maybe<Scalars['String']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_circleId_i?: Maybe<Scalars['Int64']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
-  details_parentQuest_i?: Maybe<Scalars['Int64']['output']>;
-  details_pegAmount_a?: Maybe<Scalars['String']['output']>;
-  details_pegCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
-  details_recipient_n?: Maybe<Scalars['String']['output']>;
-  details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
-  details_rewardCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  details_usdAmount_a?: Maybe<Scalars['String']['output']>;
-  details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
-  details_voiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
-  docId: Scalars['String']['output'];
-  failedprops?: Maybe<Array<Questcomplet>>;
-  failedpropsAggregate?: Maybe<QuestcompletAggregateResult>;
-  lockedby?: Maybe<Array<Questcomplet>>;
-  lockedbyAggregate?: Maybe<QuestcompletAggregateResult>;
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  parentquest?: Maybe<Array<Queststart>>;
-  parentquestAggregate?: Maybe<QueststartAggregateResult>;
-  payment?: Maybe<Array<Payment>>;
-  paymentAggregate?: Maybe<PaymentAggregateResult>;
-  start?: Maybe<Array<Period>>;
-  startAggregate?: Maybe<PeriodAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Queststart = Document &
+  Votable & {
+    __typename?: 'Queststart';
+    ascendant?: Maybe<Array<Queststart>>;
+    ascendantAggregate?: Maybe<QueststartAggregateResult>;
+    assignee?: Maybe<Array<Member>>;
+    assigneeAggregate?: Maybe<MemberAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    circle?: Maybe<Array<Circle>>;
+    circleAggregate?: Maybe<CircleAggregateResult>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    completedby?: Maybe<Array<Document>>;
+    completedbyAggregate?: Maybe<DocumentAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    descendant?: Maybe<Array<Queststart>>;
+    descendantAggregate?: Maybe<QueststartAggregateResult>;
+    details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
+    details_assignee_n?: Maybe<Scalars['String']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_circleId_i?: Maybe<Scalars['Int64']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_deferredPercX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_parentCircle_i?: Maybe<Scalars['Int64']['output']>;
+    details_parentQuest_i?: Maybe<Scalars['Int64']['output']>;
+    details_pegAmount_a?: Maybe<Scalars['String']['output']>;
+    details_pegCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_periodCount_i?: Maybe<Scalars['Int64']['output']>;
+    details_recipient_n?: Maybe<Scalars['String']['output']>;
+    details_rewardAmount_a?: Maybe<Scalars['String']['output']>;
+    details_rewardCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    details_usdAmount_a?: Maybe<Scalars['String']['output']>;
+    details_voiceAmount_a?: Maybe<Scalars['String']['output']>;
+    details_voiceCoefficientX10000_i?: Maybe<Scalars['Int64']['output']>;
+    docId: Scalars['String']['output'];
+    failedprops?: Maybe<Array<Questcomplet>>;
+    failedpropsAggregate?: Maybe<QuestcompletAggregateResult>;
+    lockedby?: Maybe<Array<Questcomplet>>;
+    lockedbyAggregate?: Maybe<QuestcompletAggregateResult>;
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    parentquest?: Maybe<Array<Queststart>>;
+    parentquestAggregate?: Maybe<QueststartAggregateResult>;
+    payment?: Maybe<Array<Payment>>;
+    paymentAggregate?: Maybe<PaymentAggregateResult>;
+    start?: Maybe<Array<Period>>;
+    startAggregate?: Maybe<PeriodAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type QueststartAscendantArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -17422,11 +16584,9 @@ export type QueststartAscendantArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QueststartAscendantAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QueststartAssigneeArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -17435,11 +16595,9 @@ export type QueststartAssigneeArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type QueststartAssigneeAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type QueststartCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -17448,11 +16606,9 @@ export type QueststartCircleArgs = {
   order?: InputMaybe<CircleOrder>;
 };
 
-
 export type QueststartCircleAggregateArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
-
 
 export type QueststartCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -17461,11 +16617,9 @@ export type QueststartCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type QueststartCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type QueststartCompletedbyArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -17474,11 +16628,9 @@ export type QueststartCompletedbyArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type QueststartCompletedbyAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type QueststartDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -17487,11 +16639,9 @@ export type QueststartDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type QueststartDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type QueststartDescendantArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -17500,11 +16650,9 @@ export type QueststartDescendantArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QueststartDescendantAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QueststartFailedpropsArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
@@ -17513,11 +16661,9 @@ export type QueststartFailedpropsArgs = {
   order?: InputMaybe<QuestcompletOrder>;
 };
 
-
 export type QueststartFailedpropsAggregateArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
 };
-
 
 export type QueststartLockedbyArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
@@ -17526,11 +16672,9 @@ export type QueststartLockedbyArgs = {
   order?: InputMaybe<QuestcompletOrder>;
 };
 
-
 export type QueststartLockedbyAggregateArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
 };
-
 
 export type QueststartOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -17539,11 +16683,9 @@ export type QueststartOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type QueststartOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type QueststartParentquestArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -17552,11 +16694,9 @@ export type QueststartParentquestArgs = {
   order?: InputMaybe<QueststartOrder>;
 };
 
-
 export type QueststartParentquestAggregateArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
-
 
 export type QueststartPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -17565,11 +16705,9 @@ export type QueststartPaymentArgs = {
   order?: InputMaybe<PaymentOrder>;
 };
 
-
 export type QueststartPaymentAggregateArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
-
 
 export type QueststartStartArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -17578,11 +16716,9 @@ export type QueststartStartArgs = {
   order?: InputMaybe<PeriodOrder>;
 };
 
-
 export type QueststartStartAggregateArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
-
 
 export type QueststartVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -17591,11 +16727,9 @@ export type QueststartVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type QueststartVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type QueststartVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -17603,7 +16737,6 @@ export type QueststartVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type QueststartVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -17832,7 +16965,7 @@ export enum QueststartHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type QueststartOrder = {
@@ -17883,7 +17016,7 @@ export enum QueststartOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type QueststartPatch = {
@@ -18022,7 +17155,6 @@ export type Reaction = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type ReactionReactionlnkrArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -18030,11 +17162,9 @@ export type ReactionReactionlnkrArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type ReactionReactionlnkrAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type ReactionReactionofArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -18042,7 +17172,6 @@ export type ReactionReactionofArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CommentOrder>;
 };
-
 
 export type ReactionReactionofAggregateArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -18094,7 +17223,7 @@ export enum ReactionHasFilter {
   Reactionof = 'reactionof',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type ReactionOrder = {
@@ -18111,7 +17240,7 @@ export enum ReactionOrderable {
   ReactionTypeN = 'reaction_type_n',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type ReactionPatch = {
@@ -18158,14 +17287,12 @@ export type Redemption = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type RedemptionPaidbyArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<TrsyPaymentOrder>;
 };
-
 
 export type RedemptionPaidbyAggregateArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
@@ -18234,7 +17361,7 @@ export enum RedemptionHasFilter {
   Paidby = 'paidby',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type RedemptionOrder = {
@@ -18255,7 +17382,7 @@ export enum RedemptionOrderable {
   LegacyNotesS = 'legacy_notes_s',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type RedemptionPatch = {
@@ -18290,64 +17417,64 @@ export type RedemptionRef = {
   updatedDate?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type Role = Document & Votable & {
-  __typename?: 'Role';
-  assignment?: Maybe<Array<Assignment>>;
-  assignmentAggregate?: Maybe<AssignmentAggregateResult>;
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  cmntsect?: Maybe<Array<CmntSection>>;
-  cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
-  details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_minTimeShareX100_i?: Maybe<Scalars['Int64']['output']>;
-  details_name_s?: Maybe<Scalars['String']['output']>;
-  details_originId_i?: Maybe<Scalars['Int64']['output']>;
-  details_owner_n?: Maybe<Scalars['String']['output']>;
-  details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_suspensionDate_t?: Maybe<Scalars['DateTime']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  details_url_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  system_ballotId_n?: Maybe<Scalars['String']['output']>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_defaultAsset_i?: Maybe<Scalars['Int64']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
-  system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Role = Document &
+  Votable & {
+    __typename?: 'Role';
+    assignment?: Maybe<Array<Assignment>>;
+    assignmentAggregate?: Maybe<AssignmentAggregateResult>;
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    cmntsect?: Maybe<Array<CmntSection>>;
+    cmntsectAggregate?: Maybe<CmntSectionAggregateResult>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_annualUsdSalary_a?: Maybe<Scalars['String']['output']>;
+    details_autoApprove_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_endPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_fulltimeCapacityX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_minDeferredX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_minTimeShareX100_i?: Maybe<Scalars['Int64']['output']>;
+    details_name_s?: Maybe<Scalars['String']['output']>;
+    details_originId_i?: Maybe<Scalars['Int64']['output']>;
+    details_owner_n?: Maybe<Scalars['String']['output']>;
+    details_startPeriod_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_suspensionDate_t?: Maybe<Scalars['DateTime']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    details_url_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    system_ballotId_n?: Maybe<Scalars['String']['output']>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_defaultAsset_i?: Maybe<Scalars['Int64']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_legacyObjectCreatedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_legacyObjectId_i?: Maybe<Scalars['Int64']['output']>;
+    system_legacyObjectScope_n?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    system_selfApproved_i?: Maybe<Scalars['Int64']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type RoleAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -18356,11 +17483,9 @@ export type RoleAssignmentArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type RoleAssignmentAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type RoleCmntsectArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -18369,11 +17494,9 @@ export type RoleCmntsectArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type RoleCmntsectAggregateArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type RoleDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -18382,11 +17505,9 @@ export type RoleDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type RoleDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type RoleOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -18395,11 +17516,9 @@ export type RoleOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type RoleOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type RoleVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -18408,11 +17527,9 @@ export type RoleVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type RoleVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type RoleVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -18420,7 +17537,6 @@ export type RoleVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type RoleVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -18638,7 +17754,7 @@ export enum RoleHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type RoleOrder = {
@@ -18689,7 +17805,7 @@ export enum RoleOrderable {
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   SystemSelfApprovedI = 'system_selfApproved_i',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type RolePatch = {
@@ -18814,7 +17930,6 @@ export type Salaryband = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type SalarybandAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -18822,11 +17937,9 @@ export type SalarybandAssignmentArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type SalarybandAssignmentAggregateArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type SalarybandDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -18834,7 +17947,6 @@ export type SalarybandDaoArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DaoOrder>;
 };
-
 
 export type SalarybandDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -18908,7 +18020,7 @@ export enum SalarybandHasFilter {
   SystemDefaultAssetI = 'system_defaultAsset_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type SalarybandOrder = {
@@ -18929,7 +18041,7 @@ export enum SalarybandOrderable {
   SystemDefaultAssetI = 'system_defaultAsset_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type SalarybandPatch = {
@@ -18986,7 +18098,9 @@ export type Settings = Document & {
   settings_claimEnabled_i?: Maybe<Scalars['Int64']['output']>;
   settings_commentsContract_n?: Maybe<Scalars['String']['output']>;
   settings_commentsContract_s?: Maybe<Scalars['String']['output']>;
-  settings_communityVotingAlignmentPercent_i?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingAlignmentPercent_i?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_communityVotingDurationSec_i?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingEnabled_i?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingMethod_s?: Maybe<Scalars['String']['output']>;
@@ -19581,10 +18695,18 @@ export type SettingsAggregateResult = {
   settings_commentsContract_nMin?: Maybe<Scalars['String']['output']>;
   settings_commentsContract_sMax?: Maybe<Scalars['String']['output']>;
   settings_commentsContract_sMin?: Maybe<Scalars['String']['output']>;
-  settings_communityVotingAlignmentPercent_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_communityVotingAlignmentPercent_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingAlignmentPercent_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingAlignmentPercent_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingAlignmentPercent_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingAlignmentPercent_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_communityVotingDurationSec_iAvg?: Maybe<Scalars['Float']['output']>;
   settings_communityVotingDurationSec_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingDurationSec_iMin?: Maybe<Scalars['Int64']['output']>;
@@ -19595,16 +18717,28 @@ export type SettingsAggregateResult = {
   settings_communityVotingEnabled_iSum?: Maybe<Scalars['Int64']['output']>;
   settings_communityVotingMethod_sMax?: Maybe<Scalars['String']['output']>;
   settings_communityVotingMethod_sMin?: Maybe<Scalars['String']['output']>;
-  settings_communityVotingQuorumPercent_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_communityVotingQuorumPercent_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingQuorumPercent_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_communityVotingQuorumPercent_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_communityVotingQuorumPercent_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_communityVotingQuorumPercent_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingQuorumPercent_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_communityVotingQuorumPercent_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_communityotingQuorumPercent_iAvg?: Maybe<Scalars['Float']['output']>;
   settings_communityotingQuorumPercent_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_communityotingQuorumPercent_iMin?: Maybe<Scalars['Int64']['output']>;
   settings_communityotingQuorumPercent_iSum?: Maybe<Scalars['Int64']['output']>;
-  settings_communityotingQuorumPercent_sMax?: Maybe<Scalars['String']['output']>;
-  settings_communityotingQuorumPercent_sMin?: Maybe<Scalars['String']['output']>;
+  settings_communityotingQuorumPercent_sMax?: Maybe<
+    Scalars['String']['output']
+  >;
+  settings_communityotingQuorumPercent_sMin?: Maybe<
+    Scalars['String']['output']
+  >;
   settings_contractVersion_sMax?: Maybe<Scalars['String']['output']>;
   settings_contractVersion_sMin?: Maybe<Scalars['String']['output']>;
   settings_contractsVersion_sMax?: Maybe<Scalars['String']['output']>;
@@ -19749,8 +18883,12 @@ export type SettingsAggregateResult = {
   settings_nextScheduledId_iSum?: Maybe<Scalars['Int64']['output']>;
   settings_onboarderAccount_nMax?: Maybe<Scalars['String']['output']>;
   settings_onboarderAccount_nMin?: Maybe<Scalars['String']['output']>;
-  settings_organisationBackgroundImage_sMax?: Maybe<Scalars['String']['output']>;
-  settings_organisationBackgroundImage_sMin?: Maybe<Scalars['String']['output']>;
+  settings_organisationBackgroundImage_sMax?: Maybe<
+    Scalars['String']['output']
+  >;
+  settings_organisationBackgroundImage_sMin?: Maybe<
+    Scalars['String']['output']
+  >;
   settings_organisationOverlayColor_sMax?: Maybe<Scalars['String']['output']>;
   settings_organisationOverlayColor_sMin?: Maybe<Scalars['String']['output']>;
   settings_organisationOverlayOpacity_sMax?: Maybe<Scalars['String']['output']>;
@@ -19855,10 +18993,18 @@ export type SettingsAggregateResult = {
   settings_seedsTokenContract_nMin?: Maybe<Scalars['String']['output']>;
   settings_settingsPatternBase64S_sMax?: Maybe<Scalars['String']['output']>;
   settings_settingsPatternBase64S_sMin?: Maybe<Scalars['String']['output']>;
-  settings_settingsVotingAlignmentX100I_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_settingsVotingAlignmentX100I_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_settingsVotingAlignmentX100I_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_settingsVotingAlignmentX100I_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_settingsVotingAlignmentX100I_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_settingsVotingAlignmentX100I_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_settingsVotingAlignmentX100I_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_settingsVotingAlignmentX100I_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_settingsVotingQuorumX100I_iAvg?: Maybe<Scalars['Float']['output']>;
   settings_settingsVotingQuorumX100I_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_settingsVotingQuorumX100I_iMin?: Maybe<Scalars['Int64']['output']>;
@@ -19947,10 +19093,18 @@ export type SettingsAggregateResult = {
   settings_vOTINGDURATIONSEC_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_vOTINGDURATIONSEC_iMin?: Maybe<Scalars['Int64']['output']>;
   settings_vOTINGDURATIONSEC_iSum?: Maybe<Scalars['Int64']['output']>;
-  settings_voiceTokenDecayPerPeriodX10M_iAvg?: Maybe<Scalars['Float']['output']>;
-  settings_voiceTokenDecayPerPeriodX10M_iMax?: Maybe<Scalars['Int64']['output']>;
-  settings_voiceTokenDecayPerPeriodX10M_iMin?: Maybe<Scalars['Int64']['output']>;
-  settings_voiceTokenDecayPerPeriodX10M_iSum?: Maybe<Scalars['Int64']['output']>;
+  settings_voiceTokenDecayPerPeriodX10M_iAvg?: Maybe<
+    Scalars['Float']['output']
+  >;
+  settings_voiceTokenDecayPerPeriodX10M_iMax?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_voiceTokenDecayPerPeriodX10M_iMin?: Maybe<
+    Scalars['Int64']['output']
+  >;
+  settings_voiceTokenDecayPerPeriodX10M_iSum?: Maybe<
+    Scalars['Int64']['output']
+  >;
   settings_voiceTokenDecayPeriod_iAvg?: Maybe<Scalars['Float']['output']>;
   settings_voiceTokenDecayPeriod_iMax?: Maybe<Scalars['Int64']['output']>;
   settings_voiceTokenDecayPeriod_iMin?: Maybe<Scalars['Int64']['output']>;
@@ -21914,7 +21068,7 @@ export enum SettingsHasFilter {
   UrlsUrlZu5Xtqjzo2SqS = 'urls_urlZu5Xtqjzo2Sq_s',
   UrlsUrlZvstjcdyjcgyS = 'urls_urlZvstjcdyjcgy_s',
   UrlsUrlZzcjstecud2TS = 'urls_urlZzcjstecud2T_s',
-  UrlsUrlS = 'urls_url_s'
+  UrlsUrlS = 'urls_url_s',
 }
 
 export type SettingsOrder = {
@@ -22487,7 +21641,7 @@ export enum SettingsOrderable {
   UrlsUrlZu5Xtqjzo2SqS = 'urls_urlZu5Xtqjzo2Sq_s',
   UrlsUrlZvstjcdyjcgyS = 'urls_urlZvstjcdyjcgy_s',
   UrlsUrlZzcjstecud2TS = 'urls_urlZzcjstecud2T_s',
-  UrlsUrlS = 'urls_url_s'
+  UrlsUrlS = 'urls_url_s',
 }
 
 export type SettingsPatch = {
@@ -22509,13 +21663,21 @@ export type SettingsPatch = {
   settings_claimEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_commentsContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_commentsContract_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_s?: InputMaybe<Scalars['String']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_contractVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_contractsVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoDescription_s?: InputMaybe<Scalars['String']['input']>;
@@ -22577,12 +21739,18 @@ export type SettingsPatch = {
   settings_nextScheduleId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_nextScheduledId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_onboarderAccount_n?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationOverlayColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationOverlayOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationOverlayOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationPatternColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationPatternOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationPatternOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationHeader_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationSubtitle_s?: InputMaybe<Scalars['String']['input']>;
@@ -22623,7 +21791,9 @@ export type SettingsPatch = {
   settings_seedsEscrowContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_seedsTokenContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_settingsPatternBase64S_s?: InputMaybe<Scalars['String']['input']>;
-  settings_settingsVotingAlignmentX100I_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_settingsVotingAlignmentX100I_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_settingsVotingQuorumX100I_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_socialChat_s?: InputMaybe<Scalars['String']['input']>;
   settings_splashBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -22642,7 +21812,9 @@ export type SettingsPatch = {
   settings_treasuryTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_updatedDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteChiefDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -22655,7 +21827,9 @@ export type SettingsPatch = {
   settings_usesSeeds_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_utilityTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_vOTINGDURATIONSEC_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_voiceTokenDecayPeriod_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_voiceTokenDecayPeriod_s?: InputMaybe<Scalars['String']['input']>;
   settings_voiceTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -23078,13 +22252,21 @@ export type SettingsRef = {
   settings_claimEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_commentsContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_commentsContract_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingAlignmentPercent_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_communityVotingAlignmentPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_communityVotingDurationSec_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingEnabled_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_communityVotingMethod_s?: InputMaybe<Scalars['String']['input']>;
-  settings_communityVotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_communityotingQuorumPercent_s?: InputMaybe<Scalars['String']['input']>;
+  settings_communityVotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
+  settings_communityotingQuorumPercent_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_contractVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_contractsVersion_s?: InputMaybe<Scalars['String']['input']>;
   settings_daoDescription_s?: InputMaybe<Scalars['String']['input']>;
@@ -23146,12 +22328,18 @@ export type SettingsRef = {
   settings_nextScheduleId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_nextScheduledId_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_onboarderAccount_n?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationBackgroundImage_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationOverlayColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationOverlayOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationOverlayOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationParagraph_s?: InputMaybe<Scalars['String']['input']>;
   settings_organisationPatternColor_s?: InputMaybe<Scalars['String']['input']>;
-  settings_organisationPatternOpacity_s?: InputMaybe<Scalars['String']['input']>;
+  settings_organisationPatternOpacity_s?: InputMaybe<
+    Scalars['String']['input']
+  >;
   settings_organisationTitle_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationHeader_s?: InputMaybe<Scalars['String']['input']>;
   settings_organizationSubtitle_s?: InputMaybe<Scalars['String']['input']>;
@@ -23192,7 +22380,9 @@ export type SettingsRef = {
   settings_seedsEscrowContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_seedsTokenContract_n?: InputMaybe<Scalars['String']['input']>;
   settings_settingsPatternBase64S_s?: InputMaybe<Scalars['String']['input']>;
-  settings_settingsVotingAlignmentX100I_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_settingsVotingAlignmentX100I_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_settingsVotingQuorumX100I_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_socialChat_s?: InputMaybe<Scalars['String']['input']>;
   settings_splashBackgroundImage_s?: InputMaybe<Scalars['String']['input']>;
@@ -23211,7 +22401,9 @@ export type SettingsRef = {
   settings_treasuryTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_updatedDate_t?: InputMaybe<Scalars['DateTime']['input']>;
   settings_upvoteCheifDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_upvoteCheifDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_upvoteCheifDelegateDuration_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_upvoteChiefDelegateCount_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteDuration_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_upvoteHeadDelegateDuration_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -23224,7 +22416,9 @@ export type SettingsRef = {
   settings_usesSeeds_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_utilityTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_vOTINGDURATIONSEC_i?: InputMaybe<Scalars['Int64']['input']>;
-  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<Scalars['Int64']['input']>;
+  settings_voiceTokenDecayPerPeriodX10M_i?: InputMaybe<
+    Scalars['Int64']['input']
+  >;
   settings_voiceTokenDecayPeriod_i?: InputMaybe<Scalars['Int64']['input']>;
   settings_voiceTokenDecayPeriod_s?: InputMaybe<Scalars['String']['input']>;
   settings_voiceTokenMultiplier_i?: InputMaybe<Scalars['Int64']['input']>;
@@ -23911,524 +23105,420 @@ export type Subscription = {
   queryVoteTally?: Maybe<Array<Maybe<VoteTally>>>;
 };
 
-
 export type SubscriptionAggregateAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
 };
-
 
 export type SubscriptionAggregateAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
 };
 
-
 export type SubscriptionAggregateAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
 };
-
 
 export type SubscriptionAggregateAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
 };
 
-
 export type SubscriptionAggregateBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
 };
-
 
 export type SubscriptionAggregateBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
 };
 
-
 export type SubscriptionAggregateBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
 };
-
 
 export type SubscriptionAggregateBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
 };
 
-
 export type SubscriptionAggregateCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
 };
-
 
 export type SubscriptionAggregateCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
 };
 
-
 export type SubscriptionAggregateCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
 };
-
 
 export type SubscriptionAggregateCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
 };
 
-
 export type SubscriptionAggregateDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type SubscriptionAggregateDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
 };
 
-
 export type SubscriptionAggregateDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
 };
-
 
 export type SubscriptionAggregateDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
 
-
 export type SubscriptionAggregateEditArgs = {
   filter?: InputMaybe<EditFilter>;
 };
-
 
 export type SubscriptionAggregateElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
 };
 
-
 export type SubscriptionAggregateElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type SubscriptionAggregateEventArgs = {
   filter?: InputMaybe<EventFilter>;
 };
 
-
 export type SubscriptionAggregateMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type SubscriptionAggregateMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
 };
 
-
 export type SubscriptionAggregateMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
 };
-
 
 export type SubscriptionAggregateMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
 };
 
-
 export type SubscriptionAggregateNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
 };
-
 
 export type SubscriptionAggregatePaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
 };
 
-
 export type SubscriptionAggregatePayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
 };
-
 
 export type SubscriptionAggregatePeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
 };
 
-
 export type SubscriptionAggregatePlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
 };
-
 
 export type SubscriptionAggregatePolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
 };
 
-
 export type SubscriptionAggregatePollArgs = {
   filter?: InputMaybe<PollFilter>;
 };
-
 
 export type SubscriptionAggregatePriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
 };
 
-
 export type SubscriptionAggregatePricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
 };
-
 
 export type SubscriptionAggregateQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
 };
 
-
 export type SubscriptionAggregateQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
 };
-
 
 export type SubscriptionAggregateQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
 };
 
-
 export type SubscriptionAggregateReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
 };
-
 
 export type SubscriptionAggregateRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
 };
 
-
 export type SubscriptionAggregateRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
 };
-
 
 export type SubscriptionAggregateSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
 };
 
-
 export type SubscriptionAggregateSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
 };
-
 
 export type SubscriptionAggregateSuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
 };
 
-
 export type SubscriptionAggregateTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
 };
-
 
 export type SubscriptionAggregateTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
 };
 
-
 export type SubscriptionAggregateTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
 };
-
 
 export type SubscriptionAggregateUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
 };
 
-
 export type SubscriptionAggregateUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
 };
-
 
 export type SubscriptionAggregateUserArgs = {
   filter?: InputMaybe<UserFilter>;
 };
 
-
 export type SubscriptionAggregateVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
 };
-
 
 export type SubscriptionAggregateVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
 
-
 export type SubscriptionAggregateVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
 };
-
 
 export type SubscriptionAggregateVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
 };
 
-
 export type SubscriptionGetAlertArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetAssignbadgeArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetAssignmentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetAttestationArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetBadgeArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetBalanceArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetBillingInfoArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetBudgetArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetCalendarArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetCircleArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetCmntSectionArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetCommentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetDaoArgs = {
   details_daoName_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type SubscriptionGetDaoDraftArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetDhoArgs = {
   details_rootNode_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type SubscriptionGetDocumentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetEditArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetElectnGroupArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetElectnRoundArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetEventArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type SubscriptionGetMemberArgs = {
   details_member_n?: InputMaybe<Scalars['String']['input']>;
   docId?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type SubscriptionGetMemoArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetMsigInfoArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetMultisigArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetNotificationArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type SubscriptionGetPaymentArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetPayoutArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetPeriodArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetPlanManagerArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetPolicyArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetPollArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetPriceOfferArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetPricingPlanArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetQuestcompleArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetQuestcompletArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetQueststartArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetReactionArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetRedemptionArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetRoleArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetSalarybandArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetSettingsArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetSuspendArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetTimeshareArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetTreasuryArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetTrsyPaymentArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetUpvtElectnArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionGetUpvtVoteArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetUserArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type SubscriptionGetVoteArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetVoteGroupArgs = {
   docId: Scalars['String']['input'];
 };
 
-
 export type SubscriptionGetVoteTallyArgs = {
   docId: Scalars['String']['input'];
 };
-
 
 export type SubscriptionQueryAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
@@ -24437,14 +23527,12 @@ export type SubscriptionQueryAlertArgs = {
   order?: InputMaybe<AlertOrder>;
 };
 
-
 export type SubscriptionQueryAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<AssignbadgeOrder>;
 };
-
 
 export type SubscriptionQueryAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
@@ -24453,14 +23541,12 @@ export type SubscriptionQueryAssignmentArgs = {
   order?: InputMaybe<AssignmentOrder>;
 };
 
-
 export type SubscriptionQueryAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<AttestationOrder>;
 };
-
 
 export type SubscriptionQueryBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
@@ -24469,14 +23555,12 @@ export type SubscriptionQueryBadgeArgs = {
   order?: InputMaybe<BadgeOrder>;
 };
 
-
 export type SubscriptionQueryBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<BalanceOrder>;
 };
-
 
 export type SubscriptionQueryBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
@@ -24485,14 +23569,12 @@ export type SubscriptionQueryBillingInfoArgs = {
   order?: InputMaybe<BillingInfoOrder>;
 };
 
-
 export type SubscriptionQueryBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<BudgetOrder>;
 };
-
 
 export type SubscriptionQueryCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
@@ -24501,14 +23583,12 @@ export type SubscriptionQueryCalendarArgs = {
   order?: InputMaybe<CalendarOrder>;
 };
 
-
 export type SubscriptionQueryCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CircleOrder>;
 };
-
 
 export type SubscriptionQueryCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
@@ -24517,14 +23597,12 @@ export type SubscriptionQueryCmntSectionArgs = {
   order?: InputMaybe<CmntSectionOrder>;
 };
 
-
 export type SubscriptionQueryCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<CommentOrder>;
 };
-
 
 export type SubscriptionQueryDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -24533,14 +23611,12 @@ export type SubscriptionQueryDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type SubscriptionQueryDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DaoDraftOrder>;
 };
-
 
 export type SubscriptionQueryDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
@@ -24549,14 +23625,12 @@ export type SubscriptionQueryDhoArgs = {
   order?: InputMaybe<DhoOrder>;
 };
 
-
 export type SubscriptionQueryDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DocumentOrder>;
 };
-
 
 export type SubscriptionQueryEditArgs = {
   filter?: InputMaybe<EditFilter>;
@@ -24565,14 +23639,12 @@ export type SubscriptionQueryEditArgs = {
   order?: InputMaybe<EditOrder>;
 };
 
-
 export type SubscriptionQueryElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<ElectnGroupOrder>;
 };
-
 
 export type SubscriptionQueryElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -24581,14 +23653,12 @@ export type SubscriptionQueryElectnRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type SubscriptionQueryEventArgs = {
   filter?: InputMaybe<EventFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<EventOrder>;
 };
-
 
 export type SubscriptionQueryMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -24597,14 +23667,12 @@ export type SubscriptionQueryMemberArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type SubscriptionQueryMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemoOrder>;
 };
-
 
 export type SubscriptionQueryMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
@@ -24613,14 +23681,12 @@ export type SubscriptionQueryMsigInfoArgs = {
   order?: InputMaybe<MsigInfoOrder>;
 };
 
-
 export type SubscriptionQueryMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MultisigOrder>;
 };
-
 
 export type SubscriptionQueryNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
@@ -24629,14 +23695,12 @@ export type SubscriptionQueryNotificationArgs = {
   order?: InputMaybe<NotificationOrder>;
 };
 
-
 export type SubscriptionQueryPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PaymentOrder>;
 };
-
 
 export type SubscriptionQueryPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
@@ -24645,14 +23709,12 @@ export type SubscriptionQueryPayoutArgs = {
   order?: InputMaybe<PayoutOrder>;
 };
 
-
 export type SubscriptionQueryPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PeriodOrder>;
 };
-
 
 export type SubscriptionQueryPlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
@@ -24661,14 +23723,12 @@ export type SubscriptionQueryPlanManagerArgs = {
   order?: InputMaybe<PlanManagerOrder>;
 };
 
-
 export type SubscriptionQueryPolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PolicyOrder>;
 };
-
 
 export type SubscriptionQueryPollArgs = {
   filter?: InputMaybe<PollFilter>;
@@ -24677,14 +23737,12 @@ export type SubscriptionQueryPollArgs = {
   order?: InputMaybe<PollOrder>;
 };
 
-
 export type SubscriptionQueryPriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<PriceOfferOrder>;
 };
-
 
 export type SubscriptionQueryPricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
@@ -24693,14 +23751,12 @@ export type SubscriptionQueryPricingPlanArgs = {
   order?: InputMaybe<PricingPlanOrder>;
 };
 
-
 export type SubscriptionQueryQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<QuestcompleOrder>;
 };
-
 
 export type SubscriptionQueryQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
@@ -24709,14 +23765,12 @@ export type SubscriptionQueryQuestcompletArgs = {
   order?: InputMaybe<QuestcompletOrder>;
 };
 
-
 export type SubscriptionQueryQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<QueststartOrder>;
 };
-
 
 export type SubscriptionQueryReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
@@ -24725,14 +23779,12 @@ export type SubscriptionQueryReactionArgs = {
   order?: InputMaybe<ReactionOrder>;
 };
 
-
 export type SubscriptionQueryRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<RedemptionOrder>;
 };
-
 
 export type SubscriptionQueryRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
@@ -24741,14 +23793,12 @@ export type SubscriptionQueryRoleArgs = {
   order?: InputMaybe<RoleOrder>;
 };
 
-
 export type SubscriptionQuerySalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<SalarybandOrder>;
 };
-
 
 export type SubscriptionQuerySettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -24757,14 +23807,12 @@ export type SubscriptionQuerySettingsArgs = {
   order?: InputMaybe<SettingsOrder>;
 };
 
-
 export type SubscriptionQuerySuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<SuspendOrder>;
 };
-
 
 export type SubscriptionQueryTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -24773,14 +23821,12 @@ export type SubscriptionQueryTimeshareArgs = {
   order?: InputMaybe<TimeshareOrder>;
 };
 
-
 export type SubscriptionQueryTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<TreasuryOrder>;
 };
-
 
 export type SubscriptionQueryTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
@@ -24789,14 +23835,12 @@ export type SubscriptionQueryTrsyPaymentArgs = {
   order?: InputMaybe<TrsyPaymentOrder>;
 };
 
-
 export type SubscriptionQueryUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<UpvtElectnOrder>;
 };
-
 
 export type SubscriptionQueryUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
@@ -24805,14 +23849,12 @@ export type SubscriptionQueryUpvtVoteArgs = {
   order?: InputMaybe<UpvtVoteOrder>;
 };
 
-
 export type SubscriptionQueryUserArgs = {
   filter?: InputMaybe<UserFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<UserOrder>;
 };
-
 
 export type SubscriptionQueryVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
@@ -24821,14 +23863,12 @@ export type SubscriptionQueryVotableArgs = {
   order?: InputMaybe<VotableOrder>;
 };
 
-
 export type SubscriptionQueryVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteOrder>;
 };
-
 
 export type SubscriptionQueryVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
@@ -24837,7 +23877,6 @@ export type SubscriptionQueryVoteGroupArgs = {
   order?: InputMaybe<VoteGroupOrder>;
 };
 
-
 export type SubscriptionQueryVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -24845,46 +23884,46 @@ export type SubscriptionQueryVoteTallyArgs = {
   order?: InputMaybe<VoteTallyOrder>;
 };
 
-export type Suspend = Document & Votable & {
-  __typename?: 'Suspend';
-  ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
-  ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
-  ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
-  contract: Scalars['String']['output'];
-  createdDate: Scalars['DateTime']['output'];
-  creator: Scalars['String']['output'];
-  dao?: Maybe<Array<Dao>>;
-  daoAggregate?: Maybe<DaoAggregateResult>;
-  details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
-  details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
-  details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
-  details_dao_i?: Maybe<Scalars['Int64']['output']>;
-  details_description_s?: Maybe<Scalars['String']['output']>;
-  details_originalDocument_c?: Maybe<Scalars['String']['output']>;
-  details_originalDocument_i?: Maybe<Scalars['Int64']['output']>;
-  details_state_s?: Maybe<Scalars['String']['output']>;
-  details_title_s?: Maybe<Scalars['String']['output']>;
-  docId: Scalars['String']['output'];
-  ownedby?: Maybe<Array<Member>>;
-  ownedbyAggregate?: Maybe<MemberAggregateResult>;
-  suspend?: Maybe<Array<Document>>;
-  suspendAggregate?: Maybe<DocumentAggregateResult>;
-  system_clientVersion_s?: Maybe<Scalars['String']['output']>;
-  system_commentName_n?: Maybe<Scalars['String']['output']>;
-  system_contractVersion_s?: Maybe<Scalars['String']['output']>;
-  system_description_s?: Maybe<Scalars['String']['output']>;
-  system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
-  system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
-  type: Scalars['String']['output'];
-  updatedDate: Scalars['DateTime']['output'];
-  vote?: Maybe<Array<Vote>>;
-  voteAggregate?: Maybe<VoteAggregateResult>;
-  votetally?: Maybe<Array<VoteTally>>;
-  votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
-};
-
+export type Suspend = Document &
+  Votable & {
+    __typename?: 'Suspend';
+    ballotOptions_abstain_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_fail_n?: Maybe<Scalars['String']['output']>;
+    ballotOptions_pass_n?: Maybe<Scalars['String']['output']>;
+    ballot_expiration_t?: Maybe<Scalars['DateTime']['output']>;
+    contract: Scalars['String']['output'];
+    createdDate: Scalars['DateTime']['output'];
+    creator: Scalars['String']['output'];
+    dao?: Maybe<Array<Dao>>;
+    daoAggregate?: Maybe<DaoAggregateResult>;
+    details_ballotAlignment_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotQuorum_a?: Maybe<Scalars['String']['output']>;
+    details_ballotQuorum_i?: Maybe<Scalars['Int64']['output']>;
+    details_ballotSupply_a?: Maybe<Scalars['String']['output']>;
+    details_dao_i?: Maybe<Scalars['Int64']['output']>;
+    details_description_s?: Maybe<Scalars['String']['output']>;
+    details_originalDocument_c?: Maybe<Scalars['String']['output']>;
+    details_originalDocument_i?: Maybe<Scalars['Int64']['output']>;
+    details_state_s?: Maybe<Scalars['String']['output']>;
+    details_title_s?: Maybe<Scalars['String']['output']>;
+    docId: Scalars['String']['output'];
+    ownedby?: Maybe<Array<Member>>;
+    ownedbyAggregate?: Maybe<MemberAggregateResult>;
+    suspend?: Maybe<Array<Document>>;
+    suspendAggregate?: Maybe<DocumentAggregateResult>;
+    system_clientVersion_s?: Maybe<Scalars['String']['output']>;
+    system_commentName_n?: Maybe<Scalars['String']['output']>;
+    system_contractVersion_s?: Maybe<Scalars['String']['output']>;
+    system_description_s?: Maybe<Scalars['String']['output']>;
+    system_nodeLabel_s?: Maybe<Scalars['String']['output']>;
+    system_originalApprovedDate_t?: Maybe<Scalars['DateTime']['output']>;
+    type: Scalars['String']['output'];
+    updatedDate: Scalars['DateTime']['output'];
+    vote?: Maybe<Array<Vote>>;
+    voteAggregate?: Maybe<VoteAggregateResult>;
+    votetally?: Maybe<Array<VoteTally>>;
+    votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
+  };
 
 export type SuspendDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -24893,11 +23932,9 @@ export type SuspendDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type SuspendDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type SuspendOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -24906,11 +23943,9 @@ export type SuspendOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type SuspendOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type SuspendSuspendArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -24919,11 +23954,9 @@ export type SuspendSuspendArgs = {
   order?: InputMaybe<DocumentOrder>;
 };
 
-
 export type SuspendSuspendAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
-
 
 export type SuspendVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
@@ -24932,11 +23965,9 @@ export type SuspendVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type SuspendVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type SuspendVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -24944,7 +23975,6 @@ export type SuspendVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type SuspendVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -25079,7 +24109,7 @@ export enum SuspendHasFilter {
   Type = 'type',
   UpdatedDate = 'updatedDate',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type SuspendOrder = {
@@ -25114,7 +24144,7 @@ export enum SuspendOrderable {
   SystemNodeLabelS = 'system_nodeLabel_s',
   SystemOriginalApprovedDateT = 'system_originalApprovedDate_t',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type SuspendPatch = {
@@ -25202,14 +24232,12 @@ export type Timeshare = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type TimeshareNextimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<TimeshareOrder>;
 };
-
 
 export type TimeshareNextimeshareAggregateArgs = {
   filter?: InputMaybe<TimeshareFilter>;
@@ -25276,7 +24304,7 @@ export enum TimeshareHasFilter {
   Nextimeshare = 'nextimeshare',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TimeshareOrder = {
@@ -25296,7 +24324,7 @@ export enum TimeshareOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TimesharePatch = {
@@ -25351,7 +24379,6 @@ export type Treasury = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type TreasuryPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25359,11 +24386,9 @@ export type TreasuryPaymentArgs = {
   order?: InputMaybe<TrsyPaymentOrder>;
 };
 
-
 export type TreasuryPaymentAggregateArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
 };
-
 
 export type TreasuryRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -25372,11 +24397,9 @@ export type TreasuryRedemptionArgs = {
   order?: InputMaybe<RedemptionOrder>;
 };
 
-
 export type TreasuryRedemptionAggregateArgs = {
   filter?: InputMaybe<RedemptionFilter>;
 };
-
 
 export type TreasurySettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
@@ -25385,11 +24408,9 @@ export type TreasurySettingsArgs = {
   order?: InputMaybe<SettingsOrder>;
 };
 
-
 export type TreasurySettingsAggregateArgs = {
   filter?: InputMaybe<SettingsFilter>;
 };
-
 
 export type TreasuryTreasurerArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -25398,11 +24419,9 @@ export type TreasuryTreasurerArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type TreasuryTreasurerAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type TreasuryTreasuryofArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -25410,7 +24429,6 @@ export type TreasuryTreasuryofArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DaoOrder>;
 };
-
 
 export type TreasuryTreasuryofAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -25467,7 +24485,7 @@ export enum TreasuryHasFilter {
   Treasurer = 'treasurer',
   Treasuryof = 'treasuryof',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TreasuryOrder = {
@@ -25484,7 +24502,7 @@ export enum TreasuryOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TreasuryPatch = {
@@ -25546,7 +24564,6 @@ export type TrsyPayment = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type TrsyPaymentAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25554,11 +24571,9 @@ export type TrsyPaymentAttestationArgs = {
   order?: InputMaybe<AttestationOrder>;
 };
 
-
 export type TrsyPaymentAttestationAggregateArgs = {
   filter?: InputMaybe<AttestationFilter>;
 };
-
 
 export type TrsyPaymentMsiginfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
@@ -25567,11 +24582,9 @@ export type TrsyPaymentMsiginfoArgs = {
   order?: InputMaybe<MsigInfoOrder>;
 };
 
-
 export type TrsyPaymentMsiginfoAggregateArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
 };
-
 
 export type TrsyPaymentPaysArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -25579,7 +24592,6 @@ export type TrsyPaymentPaysArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<RedemptionOrder>;
 };
-
 
 export type TrsyPaymentPaysAggregateArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -25674,7 +24686,7 @@ export enum TrsyPaymentHasFilter {
   Pays = 'pays',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TrsyPaymentOrder = {
@@ -25700,7 +24712,7 @@ export enum TrsyPaymentOrderable {
   LegacyRedemptionIdI = 'legacy_redemptionId_i',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type TrsyPaymentPatch = {
@@ -25775,7 +24787,7 @@ export type TypeVersionFilter = {
 
 export enum TypeVersionHasFilter {
   Type = 'type',
-  Version = 'version'
+  Version = 'version',
 }
 
 export type TypeVersionOrder = {
@@ -25786,7 +24798,7 @@ export type TypeVersionOrder = {
 
 export enum TypeVersionOrderable {
   Type = 'type',
-  Version = 'version'
+  Version = 'version',
 }
 
 export type TypeVersionPatch = {
@@ -25811,7 +24823,6 @@ export type UpdateAlertPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateAlertPayloadAlertArgs = {
   filter?: InputMaybe<AlertFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25830,7 +24841,6 @@ export type UpdateAssignbadgePayload = {
   assignbadge?: Maybe<Array<Maybe<Assignbadge>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateAssignbadgePayloadAssignbadgeArgs = {
   filter?: InputMaybe<AssignbadgeFilter>;
@@ -25851,7 +24861,6 @@ export type UpdateAssignmentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateAssignmentPayloadAssignmentArgs = {
   filter?: InputMaybe<AssignmentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25870,7 +24879,6 @@ export type UpdateAttestationPayload = {
   attestation?: Maybe<Array<Maybe<Attestation>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateAttestationPayloadAttestationArgs = {
   filter?: InputMaybe<AttestationFilter>;
@@ -25891,7 +24899,6 @@ export type UpdateBadgePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateBadgePayloadBadgeArgs = {
   filter?: InputMaybe<BadgeFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25910,7 +24917,6 @@ export type UpdateBalancePayload = {
   balance?: Maybe<Array<Maybe<Balance>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateBalancePayloadBalanceArgs = {
   filter?: InputMaybe<BalanceFilter>;
@@ -25931,7 +24937,6 @@ export type UpdateBillingInfoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateBillingInfoPayloadBillingInfoArgs = {
   filter?: InputMaybe<BillingInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25950,7 +24955,6 @@ export type UpdateBudgetPayload = {
   budget?: Maybe<Array<Maybe<Budget>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateBudgetPayloadBudgetArgs = {
   filter?: InputMaybe<BudgetFilter>;
@@ -25971,7 +24975,6 @@ export type UpdateCalendarPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateCalendarPayloadCalendarArgs = {
   filter?: InputMaybe<CalendarFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -25990,7 +24993,6 @@ export type UpdateCirclePayload = {
   circle?: Maybe<Array<Maybe<Circle>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateCirclePayloadCircleArgs = {
   filter?: InputMaybe<CircleFilter>;
@@ -26011,7 +25013,6 @@ export type UpdateCmntSectionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateCmntSectionPayloadCmntSectionArgs = {
   filter?: InputMaybe<CmntSectionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26030,7 +25031,6 @@ export type UpdateCommentPayload = {
   comment?: Maybe<Array<Maybe<Comment>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateCommentPayloadCommentArgs = {
   filter?: InputMaybe<CommentFilter>;
@@ -26051,7 +25051,6 @@ export type UpdateCursorPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateCursorPayloadCursorArgs = {
   filter?: InputMaybe<CursorFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26070,7 +25069,6 @@ export type UpdateDaoDraftPayload = {
   daoDraft?: Maybe<Array<Maybe<DaoDraft>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateDaoDraftPayloadDaoDraftArgs = {
   filter?: InputMaybe<DaoDraftFilter>;
@@ -26091,7 +25089,6 @@ export type UpdateDaoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateDaoPayloadDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26110,7 +25107,6 @@ export type UpdateDhoPayload = {
   dho?: Maybe<Array<Maybe<Dho>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateDhoPayloadDhoArgs = {
   filter?: InputMaybe<DhoFilter>;
@@ -26131,7 +25127,6 @@ export type UpdateDoccacheConfigPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateDoccacheConfigPayloadDoccacheConfigArgs = {
   filter?: InputMaybe<DoccacheConfigFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26150,7 +25145,6 @@ export type UpdateDocumentPayload = {
   document?: Maybe<Array<Maybe<Document>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateDocumentPayloadDocumentArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -26171,7 +25165,6 @@ export type UpdateEditPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateEditPayloadEditArgs = {
   filter?: InputMaybe<EditFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26190,7 +25183,6 @@ export type UpdateElectnGroupPayload = {
   electnGroup?: Maybe<Array<Maybe<ElectnGroup>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateElectnGroupPayloadElectnGroupArgs = {
   filter?: InputMaybe<ElectnGroupFilter>;
@@ -26211,7 +25203,6 @@ export type UpdateElectnRoundPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateElectnRoundPayloadElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26230,7 +25221,6 @@ export type UpdateEventPayload = {
   event?: Maybe<Array<Maybe<Event>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateEventPayloadEventArgs = {
   filter?: InputMaybe<EventFilter>;
@@ -26251,7 +25241,6 @@ export type UpdateMemberPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateMemberPayloadMemberArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26270,7 +25259,6 @@ export type UpdateMemoPayload = {
   memo?: Maybe<Array<Maybe<Memo>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateMemoPayloadMemoArgs = {
   filter?: InputMaybe<MemoFilter>;
@@ -26291,7 +25279,6 @@ export type UpdateMsigInfoPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateMsigInfoPayloadMsigInfoArgs = {
   filter?: InputMaybe<MsigInfoFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26310,7 +25297,6 @@ export type UpdateMultisigPayload = {
   multisig?: Maybe<Array<Maybe<Multisig>>>;
   numUids?: Maybe<Scalars['Int']['output']>;
 };
-
 
 export type UpdateMultisigPayloadMultisigArgs = {
   filter?: InputMaybe<MultisigFilter>;
@@ -26331,7 +25317,6 @@ export type UpdateNotificationPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
 };
 
-
 export type UpdateNotificationPayloadNotificationArgs = {
   filter?: InputMaybe<NotificationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26350,7 +25335,6 @@ export type UpdatePaymentPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   payment?: Maybe<Array<Maybe<Payment>>>;
 };
-
 
 export type UpdatePaymentPayloadPaymentArgs = {
   filter?: InputMaybe<PaymentFilter>;
@@ -26371,7 +25355,6 @@ export type UpdatePayoutPayload = {
   payout?: Maybe<Array<Maybe<Payout>>>;
 };
 
-
 export type UpdatePayoutPayloadPayoutArgs = {
   filter?: InputMaybe<PayoutFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26390,7 +25373,6 @@ export type UpdatePeriodPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   period?: Maybe<Array<Maybe<Period>>>;
 };
-
 
 export type UpdatePeriodPayloadPeriodArgs = {
   filter?: InputMaybe<PeriodFilter>;
@@ -26411,7 +25393,6 @@ export type UpdatePlanManagerPayload = {
   planManager?: Maybe<Array<Maybe<PlanManager>>>;
 };
 
-
 export type UpdatePlanManagerPayloadPlanManagerArgs = {
   filter?: InputMaybe<PlanManagerFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26430,7 +25411,6 @@ export type UpdatePolicyPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   policy?: Maybe<Array<Maybe<Policy>>>;
 };
-
 
 export type UpdatePolicyPayloadPolicyArgs = {
   filter?: InputMaybe<PolicyFilter>;
@@ -26451,7 +25431,6 @@ export type UpdatePollPayload = {
   poll?: Maybe<Array<Maybe<Poll>>>;
 };
 
-
 export type UpdatePollPayloadPollArgs = {
   filter?: InputMaybe<PollFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26470,7 +25449,6 @@ export type UpdatePriceOfferPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   priceOffer?: Maybe<Array<Maybe<PriceOffer>>>;
 };
-
 
 export type UpdatePriceOfferPayloadPriceOfferArgs = {
   filter?: InputMaybe<PriceOfferFilter>;
@@ -26491,7 +25469,6 @@ export type UpdatePricingPlanPayload = {
   pricingPlan?: Maybe<Array<Maybe<PricingPlan>>>;
 };
 
-
 export type UpdatePricingPlanPayloadPricingPlanArgs = {
   filter?: InputMaybe<PricingPlanFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26510,7 +25487,6 @@ export type UpdateQuestcomplePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   questcomple?: Maybe<Array<Maybe<Questcomple>>>;
 };
-
 
 export type UpdateQuestcomplePayloadQuestcompleArgs = {
   filter?: InputMaybe<QuestcompleFilter>;
@@ -26531,7 +25507,6 @@ export type UpdateQuestcompletPayload = {
   questcomplet?: Maybe<Array<Maybe<Questcomplet>>>;
 };
 
-
 export type UpdateQuestcompletPayloadQuestcompletArgs = {
   filter?: InputMaybe<QuestcompletFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26550,7 +25525,6 @@ export type UpdateQueststartPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   queststart?: Maybe<Array<Maybe<Queststart>>>;
 };
-
 
 export type UpdateQueststartPayloadQueststartArgs = {
   filter?: InputMaybe<QueststartFilter>;
@@ -26571,7 +25545,6 @@ export type UpdateReactionPayload = {
   reaction?: Maybe<Array<Maybe<Reaction>>>;
 };
 
-
 export type UpdateReactionPayloadReactionArgs = {
   filter?: InputMaybe<ReactionFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26590,7 +25563,6 @@ export type UpdateRedemptionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   redemption?: Maybe<Array<Maybe<Redemption>>>;
 };
-
 
 export type UpdateRedemptionPayloadRedemptionArgs = {
   filter?: InputMaybe<RedemptionFilter>;
@@ -26611,7 +25583,6 @@ export type UpdateRolePayload = {
   role?: Maybe<Array<Maybe<Role>>>;
 };
 
-
 export type UpdateRolePayloadRoleArgs = {
   filter?: InputMaybe<RoleFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26630,7 +25601,6 @@ export type UpdateSalarybandPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   salaryband?: Maybe<Array<Maybe<Salaryband>>>;
 };
-
 
 export type UpdateSalarybandPayloadSalarybandArgs = {
   filter?: InputMaybe<SalarybandFilter>;
@@ -26651,7 +25621,6 @@ export type UpdateSettingsPayload = {
   settings?: Maybe<Array<Maybe<Settings>>>;
 };
 
-
 export type UpdateSettingsPayloadSettingsArgs = {
   filter?: InputMaybe<SettingsFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26670,7 +25639,6 @@ export type UpdateSuspendPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   suspend?: Maybe<Array<Maybe<Suspend>>>;
 };
-
 
 export type UpdateSuspendPayloadSuspendArgs = {
   filter?: InputMaybe<SuspendFilter>;
@@ -26691,7 +25659,6 @@ export type UpdateTimesharePayload = {
   timeshare?: Maybe<Array<Maybe<Timeshare>>>;
 };
 
-
 export type UpdateTimesharePayloadTimeshareArgs = {
   filter?: InputMaybe<TimeshareFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26710,7 +25677,6 @@ export type UpdateTreasuryPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   treasury?: Maybe<Array<Maybe<Treasury>>>;
 };
-
 
 export type UpdateTreasuryPayloadTreasuryArgs = {
   filter?: InputMaybe<TreasuryFilter>;
@@ -26731,7 +25697,6 @@ export type UpdateTrsyPaymentPayload = {
   trsyPayment?: Maybe<Array<Maybe<TrsyPayment>>>;
 };
 
-
 export type UpdateTrsyPaymentPayloadTrsyPaymentArgs = {
   filter?: InputMaybe<TrsyPaymentFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26750,7 +25715,6 @@ export type UpdateTypeVersionPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   typeVersion?: Maybe<Array<Maybe<TypeVersion>>>;
 };
-
 
 export type UpdateTypeVersionPayloadTypeVersionArgs = {
   filter?: InputMaybe<TypeVersionFilter>;
@@ -26771,7 +25735,6 @@ export type UpdateUpvtElectnPayload = {
   upvtElectn?: Maybe<Array<Maybe<UpvtElectn>>>;
 };
 
-
 export type UpdateUpvtElectnPayloadUpvtElectnArgs = {
   filter?: InputMaybe<UpvtElectnFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26790,7 +25753,6 @@ export type UpdateUpvtVotePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   upvtVote?: Maybe<Array<Maybe<UpvtVote>>>;
 };
-
 
 export type UpdateUpvtVotePayloadUpvtVoteArgs = {
   filter?: InputMaybe<UpvtVoteFilter>;
@@ -26811,7 +25773,6 @@ export type UpdateUserPayload = {
   user?: Maybe<Array<Maybe<User>>>;
 };
 
-
 export type UpdateUserPayloadUserArgs = {
   filter?: InputMaybe<UserFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26830,7 +25791,6 @@ export type UpdateVotablePayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   votable?: Maybe<Array<Maybe<Votable>>>;
 };
-
 
 export type UpdateVotablePayloadVotableArgs = {
   filter?: InputMaybe<VotableFilter>;
@@ -26851,7 +25811,6 @@ export type UpdateVoteGroupPayload = {
   voteGroup?: Maybe<Array<Maybe<VoteGroup>>>;
 };
 
-
 export type UpdateVoteGroupPayloadVoteGroupArgs = {
   filter?: InputMaybe<VoteGroupFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26871,7 +25830,6 @@ export type UpdateVotePayload = {
   vote?: Maybe<Array<Maybe<Vote>>>;
 };
 
-
 export type UpdateVotePayloadVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26890,7 +25848,6 @@ export type UpdateVoteTallyPayload = {
   numUids?: Maybe<Scalars['Int']['output']>;
   voteTally?: Maybe<Array<Maybe<VoteTally>>>;
 };
-
 
 export type UpdateVoteTallyPayloadVoteTallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -26935,7 +25892,6 @@ export type UpvtElectn = Document & {
   updatedDate: Scalars['DateTime']['output'];
 };
 
-
 export type UpvtElectnChiefroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -26943,11 +25899,9 @@ export type UpvtElectnChiefroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnChiefroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnCurrentroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -26956,11 +25910,9 @@ export type UpvtElectnCurrentroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnCurrentroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnDaoArgs = {
   filter?: InputMaybe<DaoFilter>;
@@ -26969,11 +25921,9 @@ export type UpvtElectnDaoArgs = {
   order?: InputMaybe<DaoOrder>;
 };
 
-
 export type UpvtElectnDaoAggregateArgs = {
   filter?: InputMaybe<DaoFilter>;
 };
-
 
 export type UpvtElectnHeadroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -26982,11 +25932,9 @@ export type UpvtElectnHeadroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnHeadroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -26995,11 +25943,9 @@ export type UpvtElectnRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnRoundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnStartroundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -27008,11 +25954,9 @@ export type UpvtElectnStartroundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnStartroundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnUeCurrndArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -27021,11 +25965,9 @@ export type UpvtElectnUeCurrndArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnUeCurrndAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnUeRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -27034,11 +25976,9 @@ export type UpvtElectnUeRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type UpvtElectnUeRoundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type UpvtElectnUeStartrndArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -27046,7 +25986,6 @@ export type UpvtElectnUeStartrndArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<ElectnRoundOrder>;
 };
-
 
 export type UpvtElectnUeStartrndAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
@@ -27135,7 +26074,7 @@ export enum UpvtElectnHasFilter {
   UeCurrnd = 'ueCurrnd',
   UeRound = 'ueRound',
   UeStartrnd = 'ueStartrnd',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type UpvtElectnOrder = {
@@ -27158,7 +26097,7 @@ export enum UpvtElectnOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type UpvtElectnPatch = {
@@ -27278,7 +26217,7 @@ export enum UpvtVoteHasFilter {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type UpvtVoteOrder = {
@@ -27296,7 +26235,7 @@ export enum UpvtVoteOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type UpvtVotePatch = {
@@ -27333,14 +26272,12 @@ export type User = {
   notificationsAggregate?: Maybe<NotificationAggregateResult>;
 };
 
-
 export type UserNotificationsArgs = {
   filter?: InputMaybe<NotificationFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<NotificationOrder>;
 };
-
 
 export type UserNotificationsAggregateArgs = {
   filter?: InputMaybe<NotificationFilter>;
@@ -27372,7 +26309,7 @@ export enum UserHasFilter {
   Email = 'email',
   EosAccountName = 'eosAccountName',
   Name = 'name',
-  Notifications = 'notifications'
+  Notifications = 'notifications',
 }
 
 export type UserOrder = {
@@ -27384,7 +26321,7 @@ export type UserOrder = {
 export enum UserOrderable {
   Email = 'email',
   EosAccountName = 'eosAccountName',
-  Name = 'name'
+  Name = 'name',
 }
 
 export type UserPatch = {
@@ -27412,7 +26349,6 @@ export type Votable = {
   votetallyAggregate?: Maybe<VoteTallyAggregateResult>;
 };
 
-
 export type VotableVoteArgs = {
   filter?: InputMaybe<VoteFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -27420,11 +26356,9 @@ export type VotableVoteArgs = {
   order?: InputMaybe<VoteOrder>;
 };
 
-
 export type VotableVoteAggregateArgs = {
   filter?: InputMaybe<VoteFilter>;
 };
-
 
 export type VotableVotetallyArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -27432,7 +26366,6 @@ export type VotableVotetallyArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<VoteTallyOrder>;
 };
-
 
 export type VotableVotetallyAggregateArgs = {
   filter?: InputMaybe<VoteTallyFilter>;
@@ -27464,7 +26397,7 @@ export enum VotableHasFilter {
   DetailsDescriptionS = 'details_description_s',
   DetailsTitleS = 'details_title_s',
   Vote = 'vote',
-  Votetally = 'votetally'
+  Votetally = 'votetally',
 }
 
 export type VotableOrder = {
@@ -27476,7 +26409,7 @@ export type VotableOrder = {
 export enum VotableOrderable {
   BallotExpirationT = 'ballot_expiration_t',
   DetailsDescriptionS = 'details_description_s',
-  DetailsTitleS = 'details_title_s'
+  DetailsTitleS = 'details_title_s',
 }
 
 export type VotablePatch = {
@@ -27507,7 +26440,6 @@ export type Vote = Document & {
   voteonAggregate?: Maybe<DocumentAggregateResult>;
 };
 
-
 export type VoteOwnedbyArgs = {
   filter?: InputMaybe<MemberFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -27515,11 +26447,9 @@ export type VoteOwnedbyArgs = {
   order?: InputMaybe<MemberOrder>;
 };
 
-
 export type VoteOwnedbyAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
 };
-
 
 export type VoteVoteonArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -27527,7 +26457,6 @@ export type VoteVoteonArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<DocumentOrder>;
 };
-
 
 export type VoteVoteonAggregateArgs = {
   filter?: InputMaybe<DocumentFilter>;
@@ -27597,7 +26526,6 @@ export type VoteGroup = Document & {
   voteAggregate?: Maybe<MemberAggregateResult>;
 };
 
-
 export type VoteGroupRoundArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -27605,11 +26533,9 @@ export type VoteGroupRoundArgs = {
   order?: InputMaybe<ElectnRoundOrder>;
 };
 
-
 export type VoteGroupRoundAggregateArgs = {
   filter?: InputMaybe<ElectnRoundFilter>;
 };
-
 
 export type VoteGroupVoteArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -27617,7 +26543,6 @@ export type VoteGroupVoteArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<MemberOrder>;
 };
-
 
 export type VoteGroupVoteAggregateArgs = {
   filter?: InputMaybe<MemberFilter>;
@@ -27671,7 +26596,7 @@ export enum VoteGroupHasFilter {
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
   UpdatedDate = 'updatedDate',
-  Vote = 'vote'
+  Vote = 'vote',
 }
 
 export type VoteGroupOrder = {
@@ -27688,7 +26613,7 @@ export enum VoteGroupOrderable {
   DocId = 'docId',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type VoteGroupPatch = {
@@ -27731,7 +26656,7 @@ export enum VoteHasFilter {
   VoteVotePowerA = 'vote_votePower_a',
   VoteVoteS = 'vote_vote_s',
   VoteVoterN = 'vote_voter_n',
-  Voteon = 'voteon'
+  Voteon = 'voteon',
 }
 
 export type VoteOrder = {
@@ -27752,7 +26677,7 @@ export enum VoteOrderable {
   VoteNotesS = 'vote_notes_s',
   VoteVotePowerA = 'vote_votePower_a',
   VoteVoteS = 'vote_vote_s',
-  VoteVoterN = 'vote_voter_n'
+  VoteVoterN = 'vote_voter_n',
 }
 
 export type VotePatch = {
@@ -27855,7 +26780,7 @@ export enum VoteTallyHasFilter {
   PassVotePowerA = 'pass_votePower_a',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type VoteTallyOrder = {
@@ -27874,7 +26799,7 @@ export enum VoteTallyOrderable {
   PassVotePowerA = 'pass_votePower_a',
   SystemNodeLabelS = 'system_nodeLabel_s',
   Type = 'type',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
 }
 
 export type VoteTallyPatch = {
@@ -27911,8 +26836,23 @@ export type ActiveDaoQueryVariables = Exact<{
   regexp: Scalars['String']['input'];
 }>;
 
-
-export type ActiveDaoQuery = { __typename?: 'Query', queryDao?: Array<{ __typename?: 'Dao', docId: string, details_daoName_n: string, settings?: Array<{ __typename?: 'Settings', settings_daoDescription_s?: string | null, settings_daoTitle_s?: string | null, settings_daoName_n?: string | null, settings_logo_s?: string | null, settings_primaryColor_s?: string | null, settings_secondaryColor_s?: string | null }> | null } | null> | null };
+export type ActiveDaoQuery = {
+  __typename?: 'Query';
+  queryDao?: Array<{
+    __typename?: 'Dao';
+    docId: string;
+    details_daoName_n: string;
+    settings?: Array<{
+      __typename?: 'Settings';
+      settings_daoDescription_s?: string | null;
+      settings_daoTitle_s?: string | null;
+      settings_daoName_n?: string | null;
+      settings_logo_s?: string | null;
+      settings_primaryColor_s?: string | null;
+      settings_secondaryColor_s?: string | null;
+    }> | null;
+  } | null> | null;
+};
 
 export type DaoListQueryVariables = Exact<{
   order?: InputMaybe<DaoOrder>;
@@ -27921,8 +26861,33 @@ export type DaoListQueryVariables = Exact<{
   offset: Scalars['Int']['input'];
 }>;
 
-
-export type DaoListQuery = { __typename?: 'Query', queryDao?: Array<{ __typename?: 'Dao', docId: string, details_daoName_n: string, createdDate: any, settings?: Array<{ __typename?: 'Settings', settings_daoDescription_s?: string | null, settings_daoTitle_s?: string | null, settings_daoName_n?: string | null, settings_logo_s?: string | null, settings_primaryColor_s?: string | null, settings_secondaryColor_s?: string | null, settings_daoUrl_s?: string | null }> | null, memberAggregate?: { __typename?: 'MemberAggregateResult', count?: number | null } | null, proposalAggregate?: { __typename?: 'DocumentAggregateResult', count?: number | null } | null } | null> | null };
+export type DaoListQuery = {
+  __typename?: 'Query';
+  queryDao?: Array<{
+    __typename?: 'Dao';
+    docId: string;
+    details_daoName_n: string;
+    createdDate: any;
+    settings?: Array<{
+      __typename?: 'Settings';
+      settings_daoDescription_s?: string | null;
+      settings_daoTitle_s?: string | null;
+      settings_daoName_n?: string | null;
+      settings_logo_s?: string | null;
+      settings_primaryColor_s?: string | null;
+      settings_secondaryColor_s?: string | null;
+      settings_daoUrl_s?: string | null;
+    }> | null;
+    memberAggregate?: {
+      __typename?: 'MemberAggregateResult';
+      count?: number | null;
+    } | null;
+    proposalAggregate?: {
+      __typename?: 'DocumentAggregateResult';
+      count?: number | null;
+    } | null;
+  } | null> | null;
+};
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -27954,7 +26919,10 @@ export const ActiveDaoDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<ActiveDaoQuery, ActiveDaoQueryVariables>;
+    `) as unknown as TypedDocumentString<
+  ActiveDaoQuery,
+  ActiveDaoQueryVariables
+>;
 export const DaoListDocument = new TypedDocumentString(`
     query daoList($order: DaoOrder, $filter: DaoFilter, $first: Int!, $offset: Int!) {
   queryDao(order: $order, filter: $filter, first: $first, offset: $offset) {

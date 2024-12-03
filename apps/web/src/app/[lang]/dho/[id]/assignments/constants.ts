@@ -5,5 +5,8 @@ import { PATH_SEGMENT_LANG } from '../../../constants';
 export const PATH_ASSIGNMENTS = `${PATH_DHO}/assignments`;
 
 export const getAssignmentsPath = (lang: Locale, id: string) => {
-  return PATH_ASSIGNMENTS.replace(PATH_SEGMENT_LANG, lang).replace(PATH_SEGMENT_DHO_ID, id);
+  return PATH_ASSIGNMENTS.replace(PATH_SEGMENT_LANG, lang).replace(
+    PATH_SEGMENT_DHO_ID,
+    id
+  );
 };

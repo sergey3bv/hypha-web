@@ -8,5 +8,6 @@ export * from './container';
 export * from './badge';
 export * from './filter-menu';
 export * from './carousel';
+export * from './skeleton';
 
 export * from './organisms/editor';

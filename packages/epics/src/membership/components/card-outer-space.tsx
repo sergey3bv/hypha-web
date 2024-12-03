@@ -1,4 +1,11 @@
-import { Avatar, AvatarImage, Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
+import {
+  Avatar,
+  AvatarImage,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@hypha-platform/ui';
 
 type CardOuterSpaceProps = {
   logo: string;
@@ -9,25 +16,28 @@ type CardOuterSpaceProps = {
 };
 
 const customCardHeaderStyles: React.CSSProperties = {
-  height: '150px'
-}
+  height: '150px',
+};
 
 const customCardTitleStyles: React.CSSProperties = {
   fontSize: '18px',
   whiteSpace: 'nowrap',
-  fontWeight: '500'
-}
+  fontWeight: '500',
+};
 
 const customAvatarStyles: React.CSSProperties = {
   width: '64px',
   height: '64px',
   position: 'absolute',
-  top: '-54px'
-}
+  top: '-54px',
+};
 
-const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (inputText, maxLength) => {
+const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (
+  inputText,
+  maxLength
+) => {
   if (inputText.length > maxLength) {
-      return inputText.slice(0, maxLength) + '...';
+    return inputText.slice(0, maxLength) + '...';
   }
   return inputText;
 };
@@ -37,21 +47,26 @@ export const CardOuterSpace: React.FC<CardOuterSpaceProps> = ({
   logo,
   members,
   projects,
-  title
+  title,
 }) => {
   return (
     <Card className="h-full w-full">
-      <CardHeader style={customCardHeaderStyles} className='p-0 rounded-tl-md rounded-tr-md overflow-hidden'>
-        <img className='rounded-tl-xl rounded-tr-xl object-cover w-full h-full' src={logo} alt={title}></img>
+      <CardHeader
+        style={customCardHeaderStyles}
+        className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
+      >
+        <img
+          className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
+          src={logo}
+          alt={title}
+        ></img>
       </CardHeader>
       <CardContent className="pt-5 relative">
         <Avatar style={customAvatarStyles}>
           <AvatarImage src={logo} alt="logo" />
         </Avatar>
         <div className="flex items-center justify-between mb-4">
-          <CardTitle style={customCardTitleStyles}>
-            {title}
-          </CardTitle>
+          <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
         </div>
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           {truncateWithEllipsis(description, 100)}

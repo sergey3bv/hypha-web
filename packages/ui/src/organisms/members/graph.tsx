@@ -1,1 +1,1 @@
-export {ReactComponent as MembersGraph} from './graph.svg';
+export { ReactComponent as MembersGraph } from './graph.svg';

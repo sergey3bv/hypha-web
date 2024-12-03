@@ -1,1 +1,1 @@
-export * from "./components/client/select-language"
+export * from './components/client/select-language';

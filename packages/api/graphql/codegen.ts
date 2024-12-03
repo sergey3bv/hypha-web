@@ -11,15 +11,15 @@ const config: CodegenConfig = {
     './packages/api/graphql/src/gql/': {
       preset: 'client',
       config: {
-        documentMode: 'string'
-      }
+        documentMode: 'string',
+      },
     },
     './packages/api/graphql/schema.graphql': {
       plugins: ['schema-ast'],
       config: {
-        includeDirectives: true
-      }
-    }
+        includeDirectives: true,
+      },
+    },
   },
 };
 export default config;
