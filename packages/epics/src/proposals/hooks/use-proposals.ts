@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { useState, useCallback } from 'react';
-import { data } from '../data.mock';
+import { useState, useMemo } from 'react';
+import { data } from '../useProposals.mock';
 
 type ProposalItem = {
   title: string;
@@ -12,11 +12,11 @@ type ProposalItem = {
 type UseProposalsReturn = {
   proposals: ProposalItem[];
   proposalsCount: number;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
+  activeStatus: string;
+  setActiveStatus: (status: string) => void;
   loadMore: () => void;
-  filterProposalsByStatus: (status: string) => ProposalItem[];
-  filterProposals: () => ProposalItem[];
+  filteredProposals: ProposalItem[];
+  isLoading: boolean;
 };
 
 const fetchProposals = async () => {
@@ -31,9 +31,12 @@ const fetchProposals = async () => {
 };
 
 export const useProposals = (): UseProposalsReturn => {
-  const { data: fetchedData } = useSWR('proposals', fetchProposals);
+  const { data: fetchedData, isValidating } = useSWR(
+    'proposals',
+    fetchProposals
+  );
 
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeStatus, setActiveStatus] = useState('all');
   const [proposals, setProposals] = useState<ProposalItem[]>([]);
 
   const loadInitialData = () => {
@@ -55,30 +58,21 @@ export const useProposals = (): UseProposalsReturn => {
     }
   };
 
-  const filterProposalsByStatus = useCallback(
-    (status: string) => {
-      const filteredProposals =
-        status === 'all'
-          ? proposals
-          : proposals.filter((proposal) => proposal.status === status);
-      return filteredProposals;
-    },
-    [proposals]
-  );
-
-  const filterProposals = () => {
-    return proposals;
-  };
+  const filteredProposals = useMemo(() => {
+    return activeStatus === 'all'
+      ? proposals
+      : proposals.filter((proposal) => proposal.status === activeStatus);
+  }, [activeStatus, proposals]);
 
   const proposalsCount = proposals.length;
 
   return {
     proposals,
     proposalsCount,
-    activeTab,
-    setActiveTab,
+    activeStatus,
+    setActiveStatus,
     loadMore,
-    filterProposalsByStatus,
-    filterProposals,
+    filteredProposals,
+    isLoading: isValidating || proposals.length === 0,
   };
 };

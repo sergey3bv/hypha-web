@@ -10,16 +10,12 @@ type ProposalSectionProps = Record<string, never>;
 export const ProposalsSection: FC<ProposalSectionProps> = () => {
   const {
     proposalsCount,
-    activeTab,
-    setActiveTab,
+    activeStatus,
+    setActiveStatus,
     loadMore,
-    filterProposalsByStatus,
-    proposals,
+    filteredProposals,
+    isLoading,
   } = useProposals();
-
-  const filteredProposals = filterProposalsByStatus(activeTab);
-
-  const isLoading = proposals.length === 0;
 
   const renderContent = () => {
     if (isLoading) {
@@ -29,11 +25,11 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
     return (
       <>
         <ProposalsFilter
-          value={activeTab}
+          value={activeStatus}
           count={proposalsCount}
-          onChange={setActiveTab}
+          onChange={setActiveStatus}
         />
-        <ProposalTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        <ProposalTabs activeTab={activeStatus} setActiveTab={setActiveStatus} />
         <ProposalList proposals={filteredProposals} onLoadMore={loadMore} />
       </>
     );
