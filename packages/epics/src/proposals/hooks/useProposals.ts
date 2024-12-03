@@ -20,7 +20,10 @@ type UseProposalsReturn = {
 };
 
 const fetchProposals = async () => {
-  return new Promise<{ proposals: ProposalItem[], newProposals: ProposalItem[] }>((resolve) => {
+  return new Promise<{
+    proposals: ProposalItem[];
+    newProposals: ProposalItem[];
+  }>((resolve) => {
     setTimeout(() => {
       resolve(data);
     }, 1000);
@@ -45,14 +48,23 @@ export const useProposals = (): UseProposalsReturn => {
 
   const loadMore = () => {
     if (fetchedData) {
-      setProposals((prevProposals) => [...prevProposals, ...fetchedData.newProposals]);
+      setProposals((prevProposals) => [
+        ...prevProposals,
+        ...fetchedData.newProposals,
+      ]);
     }
   };
 
-  const filterProposalsByStatus = useCallback((status: string) => {
-    const filteredProposals = status === 'all' ? proposals : proposals.filter(proposal => proposal.status === status);
-    return filteredProposals;
-  }, [proposals]);
+  const filterProposalsByStatus = useCallback(
+    (status: string) => {
+      const filteredProposals =
+        status === 'all'
+          ? proposals
+          : proposals.filter((proposal) => proposal.status === status);
+      return filteredProposals;
+    },
+    [proposals]
+  );
 
   const filterProposals = () => {
     return proposals;
@@ -67,6 +79,6 @@ export const useProposals = (): UseProposalsReturn => {
     setActiveTab,
     loadMore,
     filterProposalsByStatus,
-    filterProposals
+    filterProposals,
   };
 };

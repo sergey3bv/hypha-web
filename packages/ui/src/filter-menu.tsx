@@ -21,7 +21,11 @@ export const FilterMenu = ({ value, onChange, options }: FilterMenuProps) => {
   };
 
   return (
-    <SelectMenu variant="ghost" value={selectedOption} onValueChange={handleFilterChange}>
+    <SelectMenu
+      variant="ghost"
+      value={selectedOption}
+      onValueChange={handleFilterChange}
+    >
       {options.map((opt) => (
         <SelectItem key={opt.value} value={opt.value}>
           {opt.label}

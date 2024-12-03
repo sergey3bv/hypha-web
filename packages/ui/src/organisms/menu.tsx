@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Logo, } from '../atoms';
+import { Logo } from '../atoms';
 
 type MenuProps = {
   home?: string;

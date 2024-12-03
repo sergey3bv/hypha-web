@@ -4,9 +4,10 @@ export const data = {
     {
       title: 'Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
@@ -14,9 +15,10 @@ export const data = {
     {
       title: 'Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'voting',
@@ -24,9 +26,10 @@ export const data = {
     {
       title: 'Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'completed',
@@ -34,21 +37,23 @@ export const data = {
     {
       title: 'Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'rejected',
-    }
+    },
   ],
   newProposals: [
     {
       title: 'New Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
@@ -56,12 +61,13 @@ export const data = {
     {
       title: 'New Proposal Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
     },
-  ]
-}
+  ],
+};

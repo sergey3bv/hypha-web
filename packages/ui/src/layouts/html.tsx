@@ -17,7 +17,15 @@ const sourceSans = Source_Sans_3({
 
 export const Html: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html lang="en" suppressHydrationWarning className={clsx(lato.variable, sourceSans.variable, 'fixed top-0 left-0 right-0 bottom-0')}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={clsx(
+        lato.variable,
+        sourceSans.variable,
+        'fixed top-0 left-0 right-0 bottom-0'
+      )}
+    >
       <body className="flex w-full h-full">{children}</body>
     </html>
   );

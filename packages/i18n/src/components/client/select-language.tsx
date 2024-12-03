@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { SelectItem, SelectMenu } from '@hypha-platform/ui/server';
 import { usePathname, useRouter } from 'next/navigation';
@@ -8,15 +8,18 @@ type LangSelectProps = {
   languages: readonly string[];
 };
 
-export const SelectLanguage: React.FC<LangSelectProps> = ({currentLanguage, languages}) => {
-  const {push} = useRouter()
-  const path = usePathname()
+export const SelectLanguage: React.FC<LangSelectProps> = ({
+  currentLanguage,
+  languages,
+}) => {
+  const { push } = useRouter();
+  const path = usePathname();
 
   const handleLangChange = (value: string) => {
-    const newPath = path.replace(/^\/[a-z]{2}/, `/${value}`)
-    console.debug("handleLangChange", {path, value, newPath})
-    push(newPath)
-  }
+    const newPath = path.replace(/^\/[a-z]{2}/, `/${value}`);
+    console.debug('handleLangChange', { path, value, newPath });
+    push(newPath);
+  };
 
   return (
     <SelectMenu value={currentLanguage} onValueChange={handleLangChange}>

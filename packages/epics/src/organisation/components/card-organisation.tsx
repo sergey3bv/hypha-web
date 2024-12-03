@@ -1,4 +1,12 @@
-import { Avatar, AvatarImage, Badge, Card, CardContent, CardHeader, CardTitle } from '@hypha-platform/ui';
+import {
+  Avatar,
+  AvatarImage,
+  Badge,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@hypha-platform/ui';
 
 type DaoCardProps = {
   createdDate: string;
@@ -12,23 +20,26 @@ type DaoCardProps = {
 };
 
 const customCardHeaderStyles: React.CSSProperties = {
-  height: '150px'
-}
+  height: '150px',
+};
 
 const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px'
-}
+  fontSize: '18px',
+};
 
 const customAvatarStyles: React.CSSProperties = {
   width: '64px',
   height: '64px',
   position: 'absolute',
-  top: '-54px'
-}
+  top: '-54px',
+};
 
-const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (inputText, maxLength) => {
+const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (
+  inputText,
+  maxLength
+) => {
   if (inputText.length > maxLength) {
-      return inputText.slice(0, maxLength) + '...';
+    return inputText.slice(0, maxLength) + '...';
   }
   return inputText;
 };
@@ -41,30 +52,39 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   agreements,
   activeAgreements,
   openDiscussions,
-  title
+  title,
 }) => {
   return (
     <Card className="h-full w-full">
-      <CardHeader style={customCardHeaderStyles} className='p-0 rounded-tl-md rounded-tr-md overflow-hidden'>
-        <img className='rounded-tl-xl rounded-tr-xl object-cover w-full h-full' src={icon} alt={title}></img>
+      <CardHeader
+        style={customCardHeaderStyles}
+        className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
+      >
+        <img
+          className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
+          src={icon}
+          alt={title}
+        ></img>
       </CardHeader>
       <CardContent className="pt-5 relative">
         <Avatar style={customAvatarStyles}>
           <AvatarImage src={icon} alt="logo" />
         </Avatar>
         <div className="flex items-center justify-between mb-4">
-          <CardTitle style={customCardTitleStyles}>
-            {title}
-          </CardTitle>
+          <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
           <div className="flex">
             <div>
               {activeAgreements ? (
-                <Badge variant="positive">{activeAgreements} Active Agreements</Badge>
+                <Badge variant="positive">
+                  {activeAgreements} Active Agreements
+                </Badge>
               ) : null}
             </div>
             <div className="ml-2">
               {openDiscussions ? (
-                <Badge variant="warning">{openDiscussions} Open Discussions</Badge>
+                <Badge variant="warning">
+                  {openDiscussions} Open Discussions
+                </Badge>
               ) : null}
             </div>
           </div>

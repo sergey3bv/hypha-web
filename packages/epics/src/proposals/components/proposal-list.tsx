@@ -20,7 +20,7 @@ const ProposalList: FC<ProposalListProps> = ({ proposals, onLoadMore }) => {
       {proposals.map((proposal, index) => (
         <ProposalCard key={index} {...proposal} />
       ))}
-    <ProposalLoadMore onClick={onLoadMore} label="Load more proposals"/>
+      <ProposalLoadMore onClick={onLoadMore} label="Load more proposals" />
     </div>
   );
 };

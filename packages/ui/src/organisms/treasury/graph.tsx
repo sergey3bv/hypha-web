@@ -1,1 +1,1 @@
-export {ReactComponent as TreasuryGraph} from './graph.svg';
+export { ReactComponent as TreasuryGraph } from './graph.svg';

@@ -5,11 +5,17 @@ import { ProposalTabs } from './proposal-tabs';
 import { ProposalsFilter } from './proposal-filter';
 import ProposalList from './proposal-list';
 
-type ProposalSectionProps = Record<string, never>
+type ProposalSectionProps = Record<string, never>;
 
 export const ProposalsSection: FC<ProposalSectionProps> = () => {
-  const { proposalsCount, activeTab, setActiveTab, loadMore, 
-          filterProposalsByStatus, proposals } = useProposals();
+  const {
+    proposalsCount,
+    activeTab,
+    setActiveTab,
+    loadMore,
+    filterProposalsByStatus,
+    proposals,
+  } = useProposals();
 
   const filteredProposals = filterProposalsByStatus(activeTab);
 
@@ -22,22 +28,19 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
 
     return (
       <>
-        <ProposalsFilter 
-          value={activeTab} 
-          count={proposalsCount} 
-          onChange={setActiveTab} 
+        <ProposalsFilter
+          value={activeTab}
+          count={proposalsCount}
+          onChange={setActiveTab}
         />
-        <ProposalTabs 
-          activeTab={activeTab} 
-          setActiveTab={setActiveTab} 
-        />
+        <ProposalTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <ProposalList proposals={filteredProposals} onLoadMore={loadMore} />
       </>
     );
   };
 
   return (
-    <div className='flex flex-col w-full justify-center items-center'>
+    <div className="flex flex-col w-full justify-center items-center">
       {renderContent()}
     </div>
   );

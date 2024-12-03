@@ -1,56 +1,56 @@
-import { Button, FilterMenu } from "@hypha-platform/ui";
+import { Button, FilterMenu } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { CardOuterSpace } from './card-outer-space';
 
 type SpaceType = {
-  logo: string,
-  title: string,
-  description: string,
-  members: number,
-  projects: number
-}
+  logo: string;
+  title: string;
+  description: string;
+  members: number;
+  projects: number;
+};
 
 type ListOuterSpacesProps = {
-  spaces: SpaceType[],
-  outerSpacesCount: number,
-  onLoadMore: () => void
+  spaces: SpaceType[];
+  outerSpacesCount: number;
+  onLoadMore: () => void;
 };
 
 type OptionType = {
-  label: string,
-  value: string
-}
+  label: string;
+  value: string;
+};
 
 type FilterType = {
-  value: string,
-  options: OptionType[]
-}
+  value: string;
+  options: OptionType[];
+};
 
 const outerSpacesFilterSettings: FilterType = {
   value: 'most-recent',
   options: [
     { label: 'All', value: 'all' },
-    { label: 'Most recent', value: 'most-recent' }
+    { label: 'Most recent', value: 'most-recent' },
   ],
 };
 
 export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = ({
   spaces,
   outerSpacesCount,
-  onLoadMore
+  onLoadMore,
 }) => {
   return (
     <div>
-      <div className='flex justify-between items-center mt-6'>
-        <Text className='text-lg'>Outer Spaces | {outerSpacesCount}</Text>
-        <div className='flex items-center'>
+      <div className="flex justify-between items-center mt-6">
+        <Text className="text-lg">Outer Spaces | {outerSpacesCount}</Text>
+        <div className="flex items-center">
           <FilterMenu
             value={outerSpacesFilterSettings.value}
             options={outerSpacesFilterSettings.options}
           />
-          <Button className='ml-2' variant="action" size="sm">
-            <PlusIcon className='mr-2'/>
+          <Button className="ml-2" variant="action" size="sm">
+            <PlusIcon className="mr-2" />
             Invite space
           </Button>
         </div>
@@ -68,7 +68,12 @@ export const ListOuterSpaces: React.FC<ListOuterSpacesProps> = ({
         ))}
       </div>
       <div className="my-6 flex justify-center">
-        <Button onClick={onLoadMore} className="rounded-lg" variant="outline" size="sm">
+        <Button
+          onClick={onLoadMore}
+          className="rounded-lg"
+          variant="outline"
+          size="sm"
+        >
           Load more outer spaces
         </Button>
       </div>

@@ -33,10 +33,7 @@ export const MenuTop = ({
       <div id="menu-top-active-dao" className="flex-grow">
         {activeDao && <h1 className="text-2xl">{activeDao.title}</h1>}
       </div>
-      <div
-        id="menu-top-actions"
-        className="flex justify-center gap-2"
-      >
+      <div id="menu-top-actions" className="flex justify-center gap-2">
         {navItems.map((item) => (
           <ButtonNavItem key={item.href} href={item.href} label={item.label} />
         ))}
@@ -47,7 +44,5 @@ export const MenuTop = ({
 };
 
 MenuTop.RightSlot = ({ children }: { children: React.ReactNode }) => (
-  <div id="menu-top-profile">
-    {children}
-  </div>
+  <div id="menu-top-profile">{children}</div>
 );

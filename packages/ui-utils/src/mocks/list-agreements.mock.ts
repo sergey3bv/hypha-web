@@ -4,9 +4,10 @@ export const listAgreementsData = {
     {
       title: 'Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
@@ -16,9 +17,10 @@ export const listAgreementsData = {
     {
       title: 'Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'voting',
@@ -28,9 +30,10 @@ export const listAgreementsData = {
     {
       title: 'Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'completed',
@@ -40,23 +43,25 @@ export const listAgreementsData = {
     {
       title: 'Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'rejected',
       views: 59,
       comments: 16,
-    }
+    },
   ],
   newAgreements: [
     {
       title: 'New Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
@@ -66,14 +71,15 @@ export const listAgreementsData = {
     {
       title: 'New Project Title',
       creator: {
-        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop",
+        avatar:
+          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
         name: 'Jane',
-        surname: 'Doe'
+        surname: 'Doe',
       },
       commitment: 50,
       status: 'active',
       views: 59,
       comments: 16,
     },
-  ]
-}
+  ],
+};

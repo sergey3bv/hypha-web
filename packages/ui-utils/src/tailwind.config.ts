@@ -65,7 +65,7 @@ export function buildConfig(appDir: string): Config {
           },
           action: {
             DEFAULT: 'rgb(62, 99, 221)',
-            foreground: 'rgb(32, 58, 119)'
+            foreground: 'rgb(32, 58, 119)',
           },
           'action-light': {
             DEFAULT: 'hsl(var(--action-light))',
@@ -78,15 +78,15 @@ export function buildConfig(appDir: string): Config {
           sm: 'calc(var(--radius) - 4px)',
         },
         fontSize: {
-          "1": '14px',
-          "2": '16px',
-          "3": '18px',
-          "4": '20px',
-          "5": '24px',
-          "6": '30px',
-          "7": '36px',
-          "8": '48px',
-          "9": '60px'
+          '1': '14px',
+          '2': '16px',
+          '3': '18px',
+          '4': '20px',
+          '5': '24px',
+          '6': '30px',
+          '7': '36px',
+          '8': '48px',
+          '9': '60px',
         },
         keyframes: {
           'accordion-down': {
@@ -101,7 +101,7 @@ export function buildConfig(appDir: string): Config {
         animation: {
           'accordion-down': 'accordion-down 0.2s ease-out',
           'accordion-up': 'accordion-up 0.2s ease-out',
-        }
+        },
       },
     },
     plugins: [TailwindAnimate],

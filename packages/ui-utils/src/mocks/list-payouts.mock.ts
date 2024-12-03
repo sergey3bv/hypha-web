@@ -2,7 +2,8 @@ export const listPayoutsData = {
   totalValue: 126587.14,
   payouts: [
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -11,7 +12,8 @@ export const listPayoutsData = {
       status: 'completed',
     },
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -20,7 +22,8 @@ export const listPayoutsData = {
       status: 'completed',
     },
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -29,7 +32,8 @@ export const listPayoutsData = {
       status: 'rejected',
     },
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -40,7 +44,8 @@ export const listPayoutsData = {
   ],
   newPayouts: [
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -49,7 +54,8 @@ export const listPayoutsData = {
       status: 'completed',
     },
     {
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
       name: 'Name',
       surname: 'Surname',
       value: 1950,
@@ -57,5 +63,5 @@ export const listPayoutsData = {
       date: '2024/09/23',
       status: 'rejected',
     },
-  ]
-}
+  ],
+};
