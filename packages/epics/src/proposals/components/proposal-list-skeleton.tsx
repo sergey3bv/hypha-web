@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Skeleton } from '@hypha-platform/ui';
 import { Card } from '@hypha-platform/ui';
 
-type ProposalListSkeletonProps = Record<string,never>
+type ProposalListSkeletonProps = Record<string, never>;
 
 const ProposalListSkeleton: FC<ProposalListSkeletonProps> = () => {
   const skeletonCount = 4;
@@ -10,7 +10,10 @@ const ProposalListSkeleton: FC<ProposalListSkeletonProps> = () => {
   return (
     <div className="proposal-list w-full">
       {Array.from({ length: skeletonCount }).map((_, index) => (
-        <Card key={index} className="proposal-card-skeleton w-full h-full p-6 mb-2 flex animate-pulse">
+        <Card
+          key={index}
+          className="proposal-card-skeleton w-full h-full p-6 mb-2 flex animate-pulse"
+        >
           <Skeleton className="rounded-lg mr-3" width={64} height={64} />
 
           <div className="flex justify-between items-center w-full">
@@ -23,7 +26,7 @@ const ProposalListSkeleton: FC<ProposalListSkeletonProps> = () => {
               </div>
 
               <Skeleton className="mb-2" width="60%" height={20} />
-              
+
               <Skeleton width="40%" height={12} />
             </div>
 

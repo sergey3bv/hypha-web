@@ -20,7 +20,11 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
 
   const renderContent = () => {
     if (isLoading) {
-      return <div className='w-full'><ProposalListSkeleton /></div>;
+      return (
+        <div className="w-full">
+          <ProposalListSkeleton />
+        </div>
+      );
     }
 
     return (
