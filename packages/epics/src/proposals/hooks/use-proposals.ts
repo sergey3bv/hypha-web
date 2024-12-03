@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useState, useMemo } from 'react';
-import { data } from '../useProposals.mock';
+import { data } from './use-proposals.mock';
 
 type ProposalItem = {
   title: string;
@@ -31,7 +31,7 @@ const fetchProposals = async () => {
 };
 
 export const useProposals = (): UseProposalsReturn => {
-  const { data: fetchedData, isValidating } = useSWR(
+  const { data: fetchedData, isLoading } = useSWR(
     'proposals',
     fetchProposals
   );
@@ -64,7 +64,7 @@ export const useProposals = (): UseProposalsReturn => {
       : proposals.filter((proposal) => proposal.status === activeStatus);
   }, [activeStatus, proposals]);
 
-  const proposalsCount = proposals.length;
+  const proposalsCount = useMemo(() => proposals.length, [proposals])
 
   return {
     proposals,
@@ -73,6 +73,6 @@ export const useProposals = (): UseProposalsReturn => {
     setActiveStatus,
     loadMore,
     filteredProposals,
-    isLoading: isValidating || proposals.length === 0,
+    isLoading: isLoading,
   };
 };
