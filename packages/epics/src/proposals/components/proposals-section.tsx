@@ -4,7 +4,6 @@ import { useProposals } from '../hooks/use-proposals';
 import { ProposalTabs } from './proposal-tabs';
 import { ProposalsFilter } from './proposal-filter';
 import ProposalList from './proposal-list';
-import ProposalListSkeleton from './proposal-list-skeleton';
 
 type ProposalSectionProps = Record<string, never>;
 
@@ -19,14 +18,6 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
   } = useProposals();
 
   const renderContent = () => {
-    if (isLoading) {
-      return (
-        <div className="w-full">
-          <ProposalListSkeleton />
-        </div>
-      );
-    }
-
     return (
       <>
         <ProposalsFilter
@@ -35,7 +26,11 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
           onChange={setActiveStatus}
         />
         <ProposalTabs activeTab={activeStatus} setActiveTab={setActiveStatus} />
-        <ProposalList proposals={filteredProposals} onLoadMore={loadMore} />
+        <ProposalList
+          isLoading={isLoading}
+          proposals={filteredProposals}
+          onLoadMore={loadMore}
+        />
       </>
     );
   };
