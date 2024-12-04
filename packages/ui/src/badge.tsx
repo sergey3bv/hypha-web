@@ -3,6 +3,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@hypha-platform/ui-utils';
 
+import { Skeleton } from './skeleton';
+
 const badgeVariants = cva(
   'inline-flex items-center rounded-lg border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
@@ -31,9 +33,19 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  isLoading?: boolean | undefined;
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({
+  className,
+  variant,
+  isLoading = false,
+  ...props
+}: BadgeProps) {
+  if (isLoading) {
+    return <Skeleton width={50} height={16} />;
+  }
   return (
     <div className={cn(badgeVariants({ variant }), className)} {...props} />
   );

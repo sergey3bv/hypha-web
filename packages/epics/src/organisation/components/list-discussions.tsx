@@ -95,7 +95,7 @@ export const ListDiscussions: React.FC<ListDiscussionsProps> = ({
                 />
               ))}
             </div>
-            <div className="my-6 flex justify-center">
+            <div className="mt-6 flex justify-center">
               <Button
                 onClick={onLoadMore}
                 className="rounded-lg"

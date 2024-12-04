@@ -1,8 +1,8 @@
-export const listProposalsData = {
-  proposalsCount: 32,
-  proposals: [
+export const data = {
+  agreementsCount: 148,
+  agreements: [
     {
-      title: 'Proposal Title',
+      title: 'Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -11,9 +11,11 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'active',
+      views: 59,
+      comments: 16,
     },
     {
-      title: 'Proposal Title',
+      title: 'Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -22,9 +24,11 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'voting',
+      views: 59,
+      comments: 16,
     },
     {
-      title: 'Proposal Title',
+      title: 'Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -33,9 +37,11 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'completed',
+      views: 59,
+      comments: 16,
     },
     {
-      title: 'Proposal Title',
+      title: 'Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -44,11 +50,13 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'rejected',
+      views: 59,
+      comments: 16,
     },
   ],
-  newProposals: [
+  newAgreements: [
     {
-      title: 'New Proposal Title',
+      title: 'New Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -57,9 +65,11 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'active',
+      views: 59,
+      comments: 16,
     },
     {
-      title: 'New Proposal Title',
+      title: 'New Project Title',
       creator: {
         avatar:
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
@@ -68,6 +78,8 @@ export const listProposalsData = {
       },
       commitment: 50,
       status: 'active',
+      views: 59,
+      comments: 16,
     },
   ],
 };
