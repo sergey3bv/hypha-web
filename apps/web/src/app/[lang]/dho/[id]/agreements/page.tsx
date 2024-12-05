@@ -1,32 +1,17 @@
-'use client';
 import { Locale } from '@hypha-platform/i18n';
 import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import Link from 'next/link';
 import {
-  ListDiscussions,
+  DiscussionsSection,
   AgreementsSection,
   ProposalsSection,
 } from '@hypha-platform/epics';
-import { listDiscussionsData } from '@hypha-platform/ui-utils';
-import { useState } from 'react';
 
 type PageProps = {
   params: { lang: Locale; id: string };
 };
 
 export default function AgreementsPage({ params: { lang, id } }: PageProps) {
-  const [discussions, setDiscussions] = useState(
-    listDiscussionsData.discussions
-  );
-
-  const loadMoreDiscussions = () => {
-    const newDiscussions = listDiscussionsData.newDiscussions;
-    setDiscussions((prevDiscussions) => [
-      ...prevDiscussions,
-      ...newDiscussions,
-    ]);
-  };
-
   return (
     <div>
       <Tabs value="agreements" className="w-full mt-16">
@@ -74,11 +59,7 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
             </Link>
           </TabsTrigger>
         </TabsList>
-        <ListDiscussions
-          discussions={discussions}
-          discussionsCount={listDiscussionsData.discussionsCount}
-          onLoadMore={loadMoreDiscussions}
-        />
+        <DiscussionsSection />
         <ProposalsSection />
         <AgreementsSection />
       </Tabs>

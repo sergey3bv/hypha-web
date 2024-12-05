@@ -1,3 +1,8 @@
 export * from './card-organisation';
-export * from './card-discussion';
-export * from './list-discussions';
+
+export * from './discussion-card';
+export * from './discussion-filter';
+export * from './discussion-list';
+export * from './discussion-tabs';
+export * from './discussions-load-more';
+export * from './discussions-section';
