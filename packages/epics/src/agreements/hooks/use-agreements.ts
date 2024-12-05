@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { data } from './use-agreements.mock';
 
 type Creator = { avatar: string; name: string; surname: string };
@@ -21,62 +21,69 @@ type UseAgreementsReturn = {
   loadMore: () => void;
   filteredAgreements: AgreementItem[];
   isLoading: boolean;
+  hasMore: boolean;
 };
 
-const fetchAgreements = async () => {
+const fetchAgreements = async (page: number, limit: number) => {
   return new Promise<{
     agreements: AgreementItem[];
-    newAgreements: AgreementItem[];
+    total: number;
   }>((resolve) => {
     setTimeout(() => {
-      resolve(data);
+      const start = (page - 1) * limit;
+      const end = page * limit;
+      const agreements = data.slice(start, end);
+      resolve({
+        agreements,
+        total: data.length,
+      });
     }, 1000);
   });
 };
 
 export const useAgreements = (): UseAgreementsReturn => {
+  const [activeStatus, setActiveStatus] = useState('all');
+  const [page, setPage] = useState(1);
+  const limit = 4;
+
   const { data: fetchedData, isLoading } = useSWR(
-    'agreements',
-    fetchAgreements
+    ['agreements', page, limit], 
+    () => fetchAgreements(page, limit),
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
 
-  const [activeStatus, setActiveStatus] = useState('all');
-  const [agreements, setAgreements] = useState<AgreementItem[]>([]);
+  const [allAgreements, setAllAgreements] = useState<AgreementItem[]>([]);
 
-  const loadInitialData = () => {
+  useEffect(() => {
     if (fetchedData) {
-      setAgreements(fetchedData.agreements);
+      setAllAgreements((prev) => [...prev, ...fetchedData.agreements]);
     }
-  };
-
-  if (fetchedData && agreements.length === 0) {
-    loadInitialData();
-  }
-
-  const loadMore = () => {
-    if (fetchedData) {
-      setAgreements((prevAgreements) => [
-        ...prevAgreements,
-        ...fetchedData.newAgreements,
-      ]);
-    }
-  };
+  }, [fetchedData]);
 
   const filteredAgreements = useMemo(() => {
     return activeStatus === 'all'
-      ? agreements
-      : agreements.filter((agreement) => agreement.status === activeStatus);
-  }, [activeStatus, agreements]);
+      ? allAgreements
+      : allAgreements.filter((agreement) => agreement.status === activeStatus);
+  }, [activeStatus, allAgreements]);
 
-  const agreementsCount = useMemo(() => agreements.length, [agreements]);
+  const agreementsCount = useMemo(() => filteredAgreements.length, [filteredAgreements]);
+
+  const hasMore = fetchedData ? fetchedData.total > allAgreements.length : false;
+
+  const loadMore = () => {
+    if (hasMore) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   return {
-    agreements,
+    agreements: filteredAgreements,
     agreementsCount,
     activeStatus,
     setActiveStatus,
     loadMore,
     filteredAgreements,
-    isLoading: isLoading,
+    isLoading,
+    hasMore,
   };
 };

@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Skeleton } from '@hypha-platform/ui';
+import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 
@@ -17,35 +17,6 @@ type AgreementCardProps = {
   views?: number;
   comments?: number;
   isLoading?: boolean | undefined;
-};
-
-const statusBadge = (status: string, isLoading: boolean | undefined) => {
-  switch (status) {
-    case 'active':
-      return (
-        <Badge isLoading={isLoading} variant="positive">
-          Active
-        </Badge>
-      );
-    case 'voting':
-      return (
-        <Badge isLoading={isLoading} variant="warning">
-          On voting
-        </Badge>
-      );
-    case 'completed':
-      return (
-        <Badge isLoading={isLoading} variant="action">
-          Completed
-        </Badge>
-      );
-    case 'rejected':
-      return (
-        <Badge isLoading={isLoading} variant="destructive">
-          Rejected
-        </Badge>
-      );
-  }
 };
 
 export const AgreementCard: React.FC<AgreementCardProps> = ({
@@ -86,7 +57,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
             <Badge isLoading={isLoading} variant="actionOutline">
               {commitment}%
             </Badge>
-            {status ? statusBadge(status, isLoading) : null}
+            <StatusBadge status={status} isLoading={isLoading} />
           </div>
           {isLoading ? (
             <Skeleton height={26} width={160} className="my-1" />

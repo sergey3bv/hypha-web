@@ -3,12 +3,12 @@ import { Button } from '@hypha-platform/ui';
 
 type AgreementsLoadMoreProps = {
   onClick: () => void;
-  label: string;
+  children?: React.ReactNode;
 };
 
 export const AgreementsLoadMore: FC<AgreementsLoadMoreProps> = ({
   onClick,
-  label,
+  children
 }) => {
   return (
     <div className="w-full flex justify-center mb-8">
@@ -18,7 +18,7 @@ export const AgreementsLoadMore: FC<AgreementsLoadMoreProps> = ({
         variant="outline"
         size="sm"
       >
-        {label}
+        {children}
       </Button>
     </div>
   );

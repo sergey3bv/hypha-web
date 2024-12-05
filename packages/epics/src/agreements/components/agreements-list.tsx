@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { AgreementCard } from './agreement-card';
 import { AgreementsLoadMore } from './agreements-load-more';
+import { Text } from '@radix-ui/themes';
 
 type AgreementItem = {
   title: string;
@@ -37,7 +38,9 @@ const AgreementsList: FC<AgreementsListProps> = ({
           <AgreementCard key={index} {...agreement} isLoading={isLoading} />
         ))
       )}
-      <AgreementsLoadMore onClick={onLoadMore} label="Load more agreements" />
+      <AgreementsLoadMore onClick={onLoadMore}>
+        <Text>Load more agreements</Text>
+      </AgreementsLoadMore>
     </div>
   );
 };
