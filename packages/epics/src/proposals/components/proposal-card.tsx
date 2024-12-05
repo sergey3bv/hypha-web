@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Button, Badge } from '@hypha-platform/ui';
+import { Card, Button, Badge, StatusBadge } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { Skeleton } from '@hypha-platform/ui';
 
@@ -15,35 +15,6 @@ type ProposalCardProps = {
   commitment?: number;
   status?: string;
   isLoading?: boolean | undefined;
-};
-
-const statusBadge = (status: string, isLoading: boolean | undefined) => {
-  switch (status) {
-    case 'active':
-      return (
-        <Badge isLoading={isLoading} variant="positive">
-          Active
-        </Badge>
-      );
-    case 'voting':
-      return (
-        <Badge isLoading={isLoading} variant="warning">
-          On voting
-        </Badge>
-      );
-    case 'completed':
-      return (
-        <Badge isLoading={isLoading} variant="action">
-          Completed
-        </Badge>
-      );
-    case 'rejected':
-      return (
-        <Badge isLoading={isLoading} variant="destructive">
-          Rejected
-        </Badge>
-      );
-  }
 };
 
 const voted = false;
@@ -84,7 +55,7 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
             <Badge isLoading={isLoading} variant="actionOutline">
               {commitment}%
             </Badge>
-            {status ? statusBadge(status, isLoading) : null}
+            <StatusBadge status={status} isLoading={isLoading} />
           </div>
           {isLoading ? (
             <Skeleton height={26} width={160} className="my-1" />

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { ProposalCard } from './proposal-card';
 import { ProposalLoadMore } from './proposals-load-more';
+import { Text } from '@radix-ui/themes';
 
 type ProposalItem = {
   title: string;
@@ -35,7 +36,9 @@ const ProposalList: FC<ProposalListProps> = ({
         ))
       )}
       {}
-      <ProposalLoadMore onClick={onLoadMore} label="Load more proposals" />
+      <ProposalLoadMore onClick={onLoadMore}>
+        <Text>Load more proposals</Text>
+      </ProposalLoadMore>
     </div>
   );
 };

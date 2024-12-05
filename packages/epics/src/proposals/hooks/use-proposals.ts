@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { data } from './use-proposals.mock';
 
 type ProposalItem = {
@@ -17,43 +17,40 @@ type UseProposalsReturn = {
   loadMore: () => void;
   filteredProposals: ProposalItem[];
   isLoading: boolean;
+  hasMore: boolean;
 };
 
-const fetchProposals = async () => {
-  return new Promise<{
-    proposals: ProposalItem[];
-    newProposals: ProposalItem[];
-  }>((resolve) => {
+const fetchProposals = async (page: number, limit: number) => {
+  return new Promise<{ proposals: ProposalItem[]; total: number }>((resolve) => {
     setTimeout(() => {
-      resolve(data);
+      const start = (page - 1) * limit;
+      const end = page * limit;
+      const proposals = data.slice(start, end);
+      resolve({
+        proposals,
+        total: data.length,
+      });
     }, 1000);
   });
 };
 
 export const useProposals = (): UseProposalsReturn => {
-  const { data: fetchedData, isLoading } = useSWR('proposals', fetchProposals);
-
   const [activeStatus, setActiveStatus] = useState('all');
+  const [page, setPage] = useState(1);
+  const limit = 4;
+
+  const { data, isLoading } = useSWR(
+    ['proposals', page, limit], 
+    () => fetchProposals(page, limit)
+  );
+
   const [proposals, setProposals] = useState<ProposalItem[]>([]);
 
-  const loadInitialData = () => {
-    if (fetchedData) {
-      setProposals(fetchedData.proposals);
+  useEffect(() => {
+    if (data && data.proposals.length > 0) {
+      setProposals((prev) => [...prev, ...data.proposals]);
     }
-  };
-
-  if (fetchedData && proposals.length === 0) {
-    loadInitialData();
-  }
-
-  const loadMore = () => {
-    if (fetchedData) {
-      setProposals((prevProposals) => [
-        ...prevProposals,
-        ...fetchedData.newProposals,
-      ]);
-    }
-  };
+  }, [data]);
 
   const filteredProposals = useMemo(() => {
     return activeStatus === 'all'
@@ -61,15 +58,24 @@ export const useProposals = (): UseProposalsReturn => {
       : proposals.filter((proposal) => proposal.status === activeStatus);
   }, [activeStatus, proposals]);
 
-  const proposalsCount = useMemo(() => proposals.length, [proposals]);
+  const proposalsCount = useMemo(() => filteredProposals.length, [filteredProposals]);
+
+  const hasMore = data ? data.total > proposals.length : false;
+
+  const loadMore = () => {
+    if (hasMore) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   return {
-    proposals,
+    proposals: filteredProposals,
     proposalsCount,
     activeStatus,
     setActiveStatus,
     loadMore,
     filteredProposals,
-    isLoading: isLoading,
+    isLoading,
+    hasMore,
   };
 };
