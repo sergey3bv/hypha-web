@@ -36,13 +36,13 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
       ))}
       <AgreementsLoadMore
         onClick={loadMore}
-        disabled={!pagination?.hasNextPage}
+        disabled={pagination?.totalPages === pages}
         isLoading={isLoading}
       >
         <Text>
-          {pagination?.hasNextPage
-            ? 'Load more agreements'
-            : 'No more agreements'}
+          {pagination?.totalPages === pages
+            ? 'No more agreements'
+            : 'Load more agreements'}
         </Text>
       </AgreementsLoadMore>
     </div>
