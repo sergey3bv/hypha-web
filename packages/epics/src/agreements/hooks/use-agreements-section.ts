@@ -6,7 +6,6 @@ export const useAgreementsSection = () => {
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, pagination } = useAgreements({
-    page: 1,
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
 

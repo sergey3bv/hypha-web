@@ -8,10 +8,10 @@ type UseAgreementsReturn = {
 };
 
 export const useAgreements = ({
-  page,
+  page = 1,
   filter,
 }: {
-  page: number;
+  page?: number;
   filter?: FilterParams;
 }): UseAgreementsReturn => {
   const { data, isLoading } = useSWR(['agreements', page, filter], () =>
