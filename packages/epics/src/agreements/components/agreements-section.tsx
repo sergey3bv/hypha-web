@@ -20,8 +20,6 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
     pagination,
   } = useAgreements();
 
-  console.debug("AgreementsSection", {filteredAgreements});
-
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <AgreementFilter

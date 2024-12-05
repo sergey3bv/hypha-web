@@ -16,15 +16,12 @@ type AgreementsListProps = {
   isLoading: boolean | undefined;
 };
 
-const AgreementsList: FC<AgreementsListProps> = ({
-  agreements,
-  isLoading,
-}) => {
+const AgreementsList: FC<AgreementsListProps> = ({ agreements, isLoading }) => {
   return (
     <div className="agreement-list w-full">
       {agreements.map((agreement, index) => (
-          <AgreementCard key={index} {...agreement} isLoading={isLoading} />
-        ))}
+        <AgreementCard key={index} {...agreement} isLoading={isLoading} />
+      ))}
       {isLoading ? (
         <div>
           <AgreementCard isLoading={isLoading} />

@@ -74,9 +74,8 @@ export const useAgreements = (): UseAgreementsReturn => {
   const [activeStatus, setActiveStatus] = useState('all');
   const [pageSize, setPageSize] = useState(4);
 
-  const { data, isLoading } = useSWR(
-    ['agreements', pageSize],
-    () => fetchAgreements({ pageSize }),
+  const { data, isLoading } = useSWR(['agreements', pageSize], () =>
+    fetchAgreements({ pageSize })
   );
 
   const filteredAgreements = useMemo(() => {
@@ -90,7 +89,6 @@ export const useAgreements = (): UseAgreementsReturn => {
     () => filteredAgreements?.length || 0,
     [filteredAgreements]
   );
-
 
   const loadMore = useCallback(() => {
     if (!data?.pagination.hasNextPage) return;
