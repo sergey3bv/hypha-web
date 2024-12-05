@@ -10,7 +10,7 @@ type AgreementsListProps = {
 const AgreementsList: FC<AgreementsListProps> = ({ page, activeFilter }) => {
   const { agreements, isLoading } = useAgreements({
     page,
-    filter: { status: activeFilter },
+    ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
   return (
     <div className="agreement-list w-full">

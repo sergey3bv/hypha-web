@@ -1,4 +1,4 @@
-import { data } from "./list.mock";
+import { data } from './list.mock';
 
 export type Creator = { avatar: string; name: string; surname: string };
 
@@ -43,10 +43,7 @@ export const fetchAgreements = async ({
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter
-        ? data.filter(
-            (agreement) =>
-              agreement.status === filter.status || filter.status === 'all'
-          )
+        ? data.filter((agreement) => agreement.status === filter.status)
         : data;
 
       const start = (page - 1) * pageSize;
