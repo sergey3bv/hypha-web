@@ -12,14 +12,29 @@ type ProposalItem = {
 type ProposalListProps = {
   proposals: ProposalItem[];
   onLoadMore: () => void;
+  isLoading: boolean | undefined;
 };
 
-const ProposalList: FC<ProposalListProps> = ({ proposals, onLoadMore }) => {
+const ProposalList: FC<ProposalListProps> = ({
+  proposals,
+  onLoadMore,
+  isLoading,
+}) => {
   return (
     <div className="proposal-list w-full">
-      {proposals.map((proposal, index) => (
-        <ProposalCard key={index} {...proposal} />
-      ))}
+      {isLoading ? (
+        <div>
+          <ProposalCard isLoading={isLoading} />
+          <ProposalCard isLoading={isLoading} />
+          <ProposalCard isLoading={isLoading} />
+          <ProposalCard isLoading={isLoading} />
+        </div>
+      ) : (
+        proposals.map((proposal, index) => (
+          <ProposalCard key={index} {...proposal} isLoading={isLoading} />
+        ))
+      )}
+      {}
       <ProposalLoadMore onClick={onLoadMore} label="Load more proposals" />
     </div>
   );
