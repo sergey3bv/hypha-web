@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { data } from './use-agreements.mock';
 
 type Creator = { avatar: string; name: string; surname: string };
@@ -13,82 +13,98 @@ type AgreementItem = {
   comments: number;
 };
 
+type PaginationMetadata = {
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+};
+
+type PaginatedResponse<T> = {
+  agreements: T[];
+  pagination: PaginationMetadata;
+};
+
+type PaginationParams = {
+  page?: number;
+  pageSize?: number;
+};
+
+const fetchAgreements = async ({
+  page = 1,
+  pageSize = 10,
+}: PaginationParams): Promise<PaginatedResponse<AgreementItem>> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const start = (page - 1) * pageSize;
+      const end = start + pageSize;
+      const agreements = data.slice(start, end);
+      const total = data.length;
+      const totalPages = Math.ceil(total / pageSize);
+
+      resolve({
+        agreements,
+        pagination: {
+          total,
+          page,
+          pageSize,
+          totalPages,
+          hasNextPage: page < totalPages,
+          hasPreviousPage: page > 1,
+        },
+      });
+    }, 1000);
+  });
+};
+
 type UseAgreementsReturn = {
   agreements: AgreementItem[];
+  pagination?: PaginationMetadata;
   agreementsCount: number;
   activeStatus: string;
   setActiveStatus: (status: string) => void;
   loadMore: () => void;
   filteredAgreements: AgreementItem[];
   isLoading: boolean;
-  hasMore: boolean;
-};
-
-const fetchAgreements = async (page: number, limit: number) => {
-  return new Promise<{
-    agreements: AgreementItem[];
-    total: number;
-  }>((resolve) => {
-    setTimeout(() => {
-      const start = (page - 1) * limit;
-      const end = page * limit;
-      const agreements = data.slice(start, end);
-      resolve({
-        agreements,
-        total: data.length,
-      });
-    }, 1000);
-  });
 };
 
 export const useAgreements = (): UseAgreementsReturn => {
   const [activeStatus, setActiveStatus] = useState('all');
-  const [page, setPage] = useState(1);
-  const limit = 4;
+  const [pageSize, setPageSize] = useState(4);
 
-  const { data: fetchedData, isLoading } = useSWR(
-    ['agreements', page, limit],
-    () => fetchAgreements(page, limit),
-    { revalidateOnFocus: false, revalidateOnReconnect: false }
+  const { data, isLoading } = useSWR(
+    ['agreements', pageSize],
+    () => fetchAgreements({ pageSize }),
   );
 
-  const [allAgreements, setAllAgreements] = useState<AgreementItem[]>([]);
-
-  useEffect(() => {
-    if (fetchedData) {
-      setAllAgreements((prev) => [...prev, ...fetchedData.agreements]);
-    }
-  }, [fetchedData]);
-
   const filteredAgreements = useMemo(() => {
+    const agreements = data?.agreements || [];
     return activeStatus === 'all'
-      ? allAgreements
-      : allAgreements.filter((agreement) => agreement.status === activeStatus);
-  }, [activeStatus, allAgreements]);
+      ? agreements
+      : agreements.filter((agreement) => agreement.status === activeStatus);
+  }, [activeStatus, data?.agreements]);
 
   const agreementsCount = useMemo(
-    () => filteredAgreements.length,
+    () => filteredAgreements?.length || 0,
     [filteredAgreements]
   );
 
-  const hasMore = fetchedData
-    ? fetchedData.total > allAgreements.length
-    : false;
 
-  const loadMore = () => {
-    if (hasMore) {
-      setPage((prev) => prev + 1);
-    }
-  };
+  const loadMore = useCallback(() => {
+    if (!data?.pagination.hasNextPage) return;
+    setPageSize(pageSize + 4);
+  }, [pageSize, data?.pagination.hasNextPage]);
 
   return {
-    agreements: filteredAgreements,
+    agreements: data?.agreements || [],
+    pagination: data?.pagination,
     agreementsCount,
     activeStatus,
     setActiveStatus,
     loadMore,
     filteredAgreements,
     isLoading,
-    hasMore,
   };
 };
