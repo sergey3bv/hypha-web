@@ -1,22 +1,17 @@
 import { FC } from 'react';
 import { AgreementCard } from './agreement-card';
-
-type AgreementItem = {
-  title: string;
-  creator: { avatar: string; name: string; surname: string };
-  commitment: number;
-  status: string;
-  views: number;
-  comments: number;
-  isLoading?: boolean | undefined;
-};
+import { useAgreements } from '../hooks/use-agreements';
 
 type AgreementsListProps = {
-  agreements: AgreementItem[];
-  isLoading: boolean | undefined;
+  page: number;
+  activeFilter: string;
 };
 
-const AgreementsList: FC<AgreementsListProps> = ({ agreements, isLoading }) => {
+const AgreementsList: FC<AgreementsListProps> = ({ page, activeFilter }) => {
+  const { agreements, isLoading } = useAgreements({
+    page,
+    filter: { status: activeFilter },
+  });
   return (
     <div className="agreement-list w-full">
       {agreements.map((agreement, index) => (

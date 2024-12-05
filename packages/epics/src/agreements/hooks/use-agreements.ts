@@ -27,21 +27,41 @@ type PaginatedResponse<T> = {
   pagination: PaginationMetadata;
 };
 
+type FilterParams = {
+  status?: string;
+};
+
 type PaginationParams = {
   page?: number;
   pageSize?: number;
+  filter?: FilterParams;
 };
 
 const fetchAgreements = async ({
   page = 1,
-  pageSize = 10,
+  pageSize = 4,
+  filter,
 }: PaginationParams): Promise<PaginatedResponse<AgreementItem>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
+      const filteredData = filter
+        ? data.filter(
+            (agreement) =>
+              agreement.status === filter.status || filter.status === 'all'
+          )
+        : data;
+      console.debug('fetchAgreements', {
+        data,
+        filteredData,
+        page,
+        pageSize,
+        filter,
+      });
+
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
-      const agreements = data.slice(start, end);
-      const total = data.length;
+      const agreements = filteredData.slice(start, end);
+      const total = filteredData.length;
       const totalPages = Math.ceil(total / pageSize);
 
       resolve({
@@ -62,47 +82,25 @@ const fetchAgreements = async ({
 type UseAgreementsReturn = {
   agreements: AgreementItem[];
   pagination?: PaginationMetadata;
-  agreementsCount: number;
-  activeStatus: string;
-  setActiveStatus: (status: string) => void;
-  loadMore: () => void;
-  filteredAgreements: AgreementItem[];
   isLoading: boolean;
 };
 
-export const useAgreements = (): UseAgreementsReturn => {
-  const [activeStatus, setActiveStatus] = useState('all');
-  const [pageSize, setPageSize] = useState(4);
-
-  const { data, isLoading } = useSWR(['agreements', pageSize], () =>
-    fetchAgreements({ pageSize })
+export const useAgreements = ({
+  page,
+  filter,
+}: {
+  page: number;
+  filter?: FilterParams;
+}): UseAgreementsReturn => {
+  const { data, isLoading } = useSWR(['agreements', page, filter], () =>
+    fetchAgreements({ page, filter })
   );
 
-  const filteredAgreements = useMemo(() => {
-    const agreements = data?.agreements || [];
-    return activeStatus === 'all'
-      ? agreements
-      : agreements.filter((agreement) => agreement.status === activeStatus);
-  }, [activeStatus, data?.agreements]);
-
-  const agreementsCount = useMemo(
-    () => filteredAgreements?.length || 0,
-    [filteredAgreements]
-  );
-
-  const loadMore = useCallback(() => {
-    if (!data?.pagination.hasNextPage) return;
-    setPageSize(pageSize + 4);
-  }, [pageSize, data?.pagination.hasNextPage]);
+  console.debug('useAgreements', { data });
 
   return {
     agreements: data?.agreements || [],
     pagination: data?.pagination,
-    agreementsCount,
-    activeStatus,
-    setActiveStatus,
-    loadMore,
-    filteredAgreements,
     isLoading,
   };
 };
