@@ -21,17 +21,19 @@ type UseProposalsReturn = {
 };
 
 const fetchProposals = async (page: number, limit: number) => {
-  return new Promise<{ proposals: ProposalItem[]; total: number }>((resolve) => {
-    setTimeout(() => {
-      const start = (page - 1) * limit;
-      const end = page * limit;
-      const proposals = data.slice(start, end);
-      resolve({
-        proposals,
-        total: data.length,
-      });
-    }, 1000);
-  });
+  return new Promise<{ proposals: ProposalItem[]; total: number }>(
+    (resolve) => {
+      setTimeout(() => {
+        const start = (page - 1) * limit;
+        const end = page * limit;
+        const proposals = data.slice(start, end);
+        resolve({
+          proposals,
+          total: data.length,
+        });
+      }, 1000);
+    }
+  );
 };
 
 export const useProposals = (): UseProposalsReturn => {
@@ -39,9 +41,8 @@ export const useProposals = (): UseProposalsReturn => {
   const [page, setPage] = useState(1);
   const limit = 4;
 
-  const { data, isLoading } = useSWR(
-    ['proposals', page, limit], 
-    () => fetchProposals(page, limit)
+  const { data, isLoading } = useSWR(['proposals', page, limit], () =>
+    fetchProposals(page, limit)
   );
 
   const [proposals, setProposals] = useState<ProposalItem[]>([]);
@@ -58,7 +59,10 @@ export const useProposals = (): UseProposalsReturn => {
       : proposals.filter((proposal) => proposal.status === activeStatus);
   }, [activeStatus, proposals]);
 
-  const proposalsCount = useMemo(() => filteredProposals.length, [filteredProposals]);
+  const proposalsCount = useMemo(
+    () => filteredProposals.length,
+    [filteredProposals]
+  );
 
   const hasMore = data ? data.total > proposals.length : false;
 

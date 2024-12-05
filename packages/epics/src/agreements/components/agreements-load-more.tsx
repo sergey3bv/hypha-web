@@ -8,7 +8,7 @@ type AgreementsLoadMoreProps = {
 
 export const AgreementsLoadMore: FC<AgreementsLoadMoreProps> = ({
   onClick,
-  children
+  children,
 }) => {
   return (
     <div className="w-full flex justify-center mb-8">

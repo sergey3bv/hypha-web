@@ -1,6 +1,6 @@
-import { Badge } from "./badge";
+import { Badge } from './badge';
 
-type BadgeProps = {}
+type BadgeProps = {};
 
 const BADGE_VARIANTS: Record<string, BadgeProps> = {
   active: { variant: 'positive', children: 'Active' },

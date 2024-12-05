@@ -47,7 +47,7 @@ export const useAgreements = (): UseAgreementsReturn => {
   const limit = 4;
 
   const { data: fetchedData, isLoading } = useSWR(
-    ['agreements', page, limit], 
+    ['agreements', page, limit],
     () => fetchAgreements(page, limit),
     { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
@@ -66,9 +66,14 @@ export const useAgreements = (): UseAgreementsReturn => {
       : allAgreements.filter((agreement) => agreement.status === activeStatus);
   }, [activeStatus, allAgreements]);
 
-  const agreementsCount = useMemo(() => filteredAgreements.length, [filteredAgreements]);
+  const agreementsCount = useMemo(
+    () => filteredAgreements.length,
+    [filteredAgreements]
+  );
 
-  const hasMore = fetchedData ? fetchedData.total > allAgreements.length : false;
+  const hasMore = fetchedData
+    ? fetchedData.total > allAgreements.length
+    : false;
 
   const loadMore = () => {
     if (hasMore) {

@@ -24,10 +24,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
         count={proposalsCount}
         onChange={setActiveStatus}
       />
-      <ProposalTabs
-        activeTab={activeStatus}
-        setActiveTab={setActiveStatus}
-      />
+      <ProposalTabs activeTab={activeStatus} setActiveTab={setActiveStatus} />
       <ProposalList
         isLoading={isLoading}
         proposals={filteredProposals}

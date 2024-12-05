@@ -129,4 +129,4 @@ export const data = [
     views: 59,
     comments: 16,
   },
-]
+];
