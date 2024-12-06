@@ -9,7 +9,6 @@ export const useAgreementsSection = () => {
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
 
-
   React.useEffect(() => {
     setPages(1);
   }, [activeFilter]);
