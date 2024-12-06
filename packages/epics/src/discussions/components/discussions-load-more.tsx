@@ -3,22 +3,27 @@ import { Button } from '@hypha-platform/ui';
 
 type DiscussionsLoadMoreProps = {
   onClick: () => void;
-  label: string;
+  children?: React.ReactNode;
+  isLoading?: boolean;
+  disabled?: boolean;
 };
 
 export const DiscussionsLoadMore: FC<DiscussionsLoadMoreProps> = ({
   onClick,
-  label,
+  children,
+  isLoading,
+  disabled,
 }) => {
   return (
-    <div className="w-full flex justify-center mb-4 mt-2">
+    <div className="w-full flex justify-center mb-8">
       <Button
+        disabled={disabled || isLoading}
         onClick={onClick}
         className="rounded-lg w-fit mt-4"
         variant="outline"
         size="sm"
       >
-        {label}
+        {children}
       </Button>
     </div>
   );

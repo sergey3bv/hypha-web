@@ -14,7 +14,7 @@ export const DiscussionTabs: FC<DiscussionTabsProps> = ({
     <Tabs
       value={activeTab}
       onValueChange={setActiveTab}
-      className="w-full mt-3"
+      className="w-full mt-3 mb-4"
     >
       <TabsList>
         <TabsTrigger value="all" variant="outlined">
