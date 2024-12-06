@@ -3,16 +3,21 @@ import { Button } from '@hypha-platform/ui';
 
 type ProposalLoadMoreProps = {
   onClick: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  isLoading?: boolean;
+  disabled?: boolean;
 };
 
 export const ProposalLoadMore: FC<ProposalLoadMoreProps> = ({
   onClick,
   children,
+  isLoading,
+  disabled,
 }) => {
   return (
     <div className="w-full flex justify-center">
       <Button
+        disabled={disabled || isLoading}
         onClick={onClick}
         className="rounded-lg w-fit mt-4"
         variant="outline"
