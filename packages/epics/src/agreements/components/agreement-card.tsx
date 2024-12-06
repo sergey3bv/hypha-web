@@ -1,29 +1,31 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Button, Badge, StatusBadge } from '@hypha-platform/ui';
+import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
 import Image from 'next/image';
-import { Skeleton } from '@hypha-platform/ui';
+import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 
-type CreatorType = {
+type Creator = {
   avatar?: string;
   name?: string;
   surname?: string;
 };
 
-type ProposalCardProps = {
-  creator?: CreatorType;
+type AgreementCardProps = {
+  creator?: Creator;
   title?: string;
   commitment?: number;
   status?: string;
+  views?: number;
+  comments?: number;
   isLoading?: boolean | undefined;
 };
 
-const voted = false;
-
-export const ProposalCard: React.FC<ProposalCardProps> = ({
+export const AgreementCard: React.FC<AgreementCardProps> = ({
   commitment,
   status,
   title,
   creator,
+  views,
+  comments,
   isLoading,
 }) => {
   return (
@@ -47,7 +49,7 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
         <div className="flex flex-col">
           <div className="flex gap-x-1">
             <Badge isLoading={isLoading} variant="action">
-              Proposal
+              Agreement
             </Badge>
             <Badge isLoading={isLoading} variant="actionOutline">
               Recurring
@@ -70,30 +72,21 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
             </Text>
           )}
         </div>
-        <div>
+        <div className="flex flex-grow gap-2 text-xs text-gray-500 items-end justify-end h-full">
           {isLoading ? (
-            <div>
-              <Skeleton height={32} width={86} className="rounded-lg" />
-            </div>
+            <Skeleton width={16} height={16} />
           ) : (
-            <div>
-              {voted ? (
-                <Button
-                  className="rounded-lg w-fit"
-                  variant="actionOutlineChecked"
-                  size="sm"
-                >
-                  You voted yes
-                </Button>
-              ) : (
-                <Button
-                  className="rounded-lg w-fit"
-                  variant="actionOutline"
-                  size="sm"
-                >
-                  Vote now
-                </Button>
-              )}
+            <div className="flex">
+              <EyeOpenIcon className="mr-1" width={16} />
+              <div>{views}</div>
+            </div>
+          )}
+          {isLoading ? (
+            <Skeleton width={16} height={16} />
+          ) : (
+            <div className="flex ml-3">
+              <ChatBubbleIcon className="mr-1" width={16} />
+              <div>{comments}</div>
             </div>
           )}
         </div>

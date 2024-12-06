@@ -4,13 +4,10 @@ import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import Link from 'next/link';
 import {
   ListDiscussions,
-  ListAgreements,
+  AgreementsSection,
   ProposalsSection,
 } from '@hypha-platform/epics';
-import {
-  listDiscussionsData,
-  listAgreementsData,
-} from '@hypha-platform/ui-utils';
+import { listDiscussionsData } from '@hypha-platform/ui-utils';
 import { useState } from 'react';
 
 type PageProps = {
@@ -21,7 +18,6 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
   const [discussions, setDiscussions] = useState(
     listDiscussionsData.discussions
   );
-  const [agreements, setAgreements] = useState(listAgreementsData.agreements);
 
   const loadMoreDiscussions = () => {
     const newDiscussions = listDiscussionsData.newDiscussions;
@@ -29,10 +25,6 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
       ...prevDiscussions,
       ...newDiscussions,
     ]);
-  };
-  const loadMoreAgreements = () => {
-    const newAgreements = listAgreementsData.newAgreements;
-    setAgreements((prevAgreements) => [...prevAgreements, ...newAgreements]);
   };
 
   return (
@@ -88,11 +80,7 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
           onLoadMore={loadMoreDiscussions}
         />
         <ProposalsSection />
-        <ListAgreements
-          agreements={agreements}
-          agreementsCount={listAgreementsData.agreementsCount}
-          onLoadMore={loadMoreAgreements}
-        />
+        <AgreementsSection />
       </Tabs>
     </div>
   );

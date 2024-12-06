@@ -9,5 +9,6 @@ export * from './badge';
 export * from './filter-menu';
 export * from './carousel';
 export * from './skeleton';
+export * from './status-badge';
 
 export * from './organisms/editor';

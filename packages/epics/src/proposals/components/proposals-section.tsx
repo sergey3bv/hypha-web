@@ -17,27 +17,19 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
     isLoading,
   } = useProposals();
 
-  const renderContent = () => {
-    return (
-      <>
-        <ProposalsFilter
-          value={activeStatus}
-          count={proposalsCount}
-          onChange={setActiveStatus}
-        />
-        <ProposalTabs activeTab={activeStatus} setActiveTab={setActiveStatus} />
-        <ProposalList
-          isLoading={isLoading}
-          proposals={filteredProposals}
-          onLoadMore={loadMore}
-        />
-      </>
-    );
-  };
-
   return (
     <div className="flex flex-col w-full justify-center items-center">
-      {renderContent()}
+      <ProposalsFilter
+        value={activeStatus}
+        count={proposalsCount}
+        onChange={setActiveStatus}
+      />
+      <ProposalTabs activeTab={activeStatus} setActiveTab={setActiveStatus} />
+      <ProposalList
+        isLoading={isLoading}
+        proposals={filteredProposals}
+        onLoadMore={loadMore}
+      />
     </div>
   );
 };
