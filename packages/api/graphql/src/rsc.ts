@@ -6,3 +6,4 @@ export * from './query/dao/user-daos';
 export * from './fetch-access-token';
 export * from './query/agreements/list';
 export * from './query/proposals/list';
+export * from './query/discussions/list';
