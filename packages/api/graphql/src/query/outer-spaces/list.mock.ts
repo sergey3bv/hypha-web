@@ -63,4 +63,4 @@ export const data = [
     members: 11,
     projects: 6,
   },
-]
+];

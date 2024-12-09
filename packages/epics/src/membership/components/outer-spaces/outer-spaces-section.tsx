@@ -9,14 +9,8 @@ import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
 type OuterSpacesSectionProps = Record<string, never>;
 
 export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
-  const {
-    pages,
-    activeSort,
-    setSort,
-    isLoading,
-    loadMore,
-    pagination,
-  } = useOuterSpacesSection();
+  const { pages, activeSort, setSort, isLoading, loadMore, pagination } =
+    useOuterSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
@@ -26,11 +20,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
         count={pagination?.total || 0}
       />
       {Array.from({ length: pages }).map((_, index) => (
-        <OuterSpacesList
-          page={index + 1}
-          key={index}
-          activeSort={activeSort}
-        />
+        <OuterSpacesList page={index + 1} key={index} activeSort={activeSort} />
       ))}
       <OuterSpacesLoadMore
         onClick={loadMore}

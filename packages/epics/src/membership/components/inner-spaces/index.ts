@@ -1,2 +1,5 @@
-export * from './card-inner-space';
-export * from './list-inner-spaces';
+export * from './inner-space-card';
+export * from './inner-spaces-filter';
+export * from './inner-spaces-list';
+export * from './inner-spaces-load-more';
+export * from './inner-spaces-section';

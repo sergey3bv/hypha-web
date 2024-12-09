@@ -10,7 +10,12 @@ type OuterSpacesListProps = {
 const OuterSpacesList: FC<OuterSpacesListProps> = ({ page, activeSort }) => {
   const { outerSpaces, isLoading } = useOuterSpaces({
     page,
-    sort: activeSort === 'all' ? { sort: 'all' } : activeSort === 'most-recent' ? { sort: 'most-recent' } : undefined,
+    sort:
+      activeSort === 'all'
+        ? { sort: 'all' }
+        : activeSort === 'most-recent'
+        ? { sort: 'most-recent' }
+        : undefined,
   });
   return (
     <div>

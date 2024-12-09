@@ -1,11 +1,11 @@
 import React from 'react';
-import { useOuterSpaces } from './use-outer-spaces';
+import { useInnerSpaces } from './use-inner-spaces';
 
-export const useOuterSpacesSection = () => {
+export const useInnerSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
   const [pages, setPages] = React.useState(1);
 
-  const { isLoading, pagination } = useOuterSpaces({
+  const { isLoading, pagination } = useInnerSpaces({
     page: pages,
     sort:
       activeSort === 'all'
