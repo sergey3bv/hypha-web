@@ -1,2 +1,5 @@
-export * from './card-outer-space';
-export * from './list-outer-spaces';
+export * from './outer-space-card';
+export * from './outer-spaces-filter';
+export * from './outer-spaces-list';
+export * from './outer-spaces-load-more';
+export * from './outer-spaces-section';
