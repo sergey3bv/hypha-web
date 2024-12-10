@@ -1,4 +1,3 @@
-'use client';
 import { Locale } from '@hypha-platform/i18n';
 import {
   Tabs,
@@ -10,22 +9,14 @@ import Link from 'next/link';
 import {
   OuterSpacesSection,
   InnerSpacesSection,
-  ListMembers,
+  MembersSection,
 } from '@hypha-platform/epics';
-import { listMembersData } from '@hypha-platform/ui-utils';
-import { useState } from 'react';
 
 type PageProps = {
   params: { lang: Locale; id: string };
 };
 
 export default function MembershipPage({ params: { lang, id } }: PageProps) {
-  const [members, setMembers] = useState(listMembersData.members);
-
-  const loadMoreMembers = () => {
-    const newMembers = listMembersData.newMembers;
-    setMembers((prevMembers) => [...prevMembers, ...newMembers]);
-  };
   return (
     <div>
       <Tabs value="membership" className="w-full mt-16">
@@ -77,11 +68,7 @@ export default function MembershipPage({ params: { lang, id } }: PageProps) {
           <div className="flex flex-col items-center mt-4">
             <OuterSpacesSection />
             <InnerSpacesSection />
-            <ListMembers
-              members={members}
-              membersCount={listMembersData.membersCount}
-              onLoadMore={loadMoreMembers}
-            />
+            <MembersSection />
           </div>
         </TabsContent>
       </Tabs>

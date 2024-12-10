@@ -9,8 +9,15 @@ import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
 type OuterSpacesSectionProps = Record<string, never>;
 
 export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
-  const { pages, activeSort, setSort, isLoading, loadMore, pagination, totalCount } =
-    useOuterSpacesSection();
+  const {
+    pages,
+    activeSort,
+    setSort,
+    isLoading,
+    loadMore,
+    pagination,
+    totalCount,
+  } = useOuterSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">

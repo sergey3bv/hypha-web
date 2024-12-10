@@ -1,17 +1,14 @@
 import { data } from './list.mock';
 
-export type MemberType = {
-  avatar: string;
+export type MemberItem = {
   name: string;
   surname: string;
-};
-
-export type InnerSpaceType = {
-  image: string;
-  title: string;
-  description: string;
-  members: MemberType[];
-  joinedStatus: boolean;
+  nickname: string;
+  location: string;
+  avatar: string;
+  commitment: number;
+  status: string;
+  isLoading?: boolean;
 };
 
 type PaginationMetadata = {
@@ -24,41 +21,39 @@ type PaginationMetadata = {
 };
 
 type PaginatedResponse<T> = {
-  innerSpaces: T[];
+  members: T[];
   pagination: PaginationMetadata;
 };
 
-type SortParams = {
-  sort?: 'all' | 'most-recent';
+type FilterParams = {
+  status?: string;
 };
 
 type PaginationParams = {
   page?: number;
   pageSize?: number;
-  sort?: SortParams;
+  filter?: FilterParams;
 };
 
-export const fetchInnerSpaces = async ({
+export const fetchMembers = async ({
   page = 1,
-  pageSize = 3,
-  sort,
-}: PaginationParams): Promise<PaginatedResponse<InnerSpaceType>> => {
+  pageSize = 4,
+  filter,
+}: PaginationParams): Promise<PaginatedResponse<MemberItem>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      let sortedData = data;
-
-      if (sort?.sort === 'most-recent') {
-        sortedData = data.sort((a, b) => b.members.length - a.members.length);
-      }
+      const filteredData = filter
+        ? data.filter((member) => member.status === filter.status)
+        : data;
 
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
-      const innerSpaces = sortedData.slice(start, end);
-      const total = sortedData.length;
+      const members = filteredData.slice(start, end);
+      const total = filteredData.length;
       const totalPages = Math.ceil(total / pageSize);
 
       resolve({
-        innerSpaces,
+        members,
         pagination: {
           total,
           page,

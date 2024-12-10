@@ -9,8 +9,15 @@ import { useInnerSpacesSection } from '../../hooks/use-inner-spaces-section';
 type InnerSpacesSectionProps = Record<string, never>;
 
 export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
-  const { pages, activeSort, setSort, isLoading, loadMore, pagination, totalCount } =
-    useInnerSpacesSection();
+  const {
+    pages,
+    activeSort,
+    setSort,
+    isLoading,
+    loadMore,
+    pagination,
+    totalCount,
+  } = useInnerSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">

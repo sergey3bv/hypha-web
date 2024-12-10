@@ -39,6 +39,6 @@ export const useInnerSpacesSection = () => {
     setPages,
     activeSort,
     setSort,
-    totalCount
+    totalCount,
   };
 };
