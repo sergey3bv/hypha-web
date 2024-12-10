@@ -9,7 +9,7 @@ import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
 type OuterSpacesSectionProps = Record<string, never>;
 
 export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
-  const { pages, activeSort, setSort, isLoading, loadMore, pagination } =
+  const { pages, activeSort, setSort, isLoading, loadMore, pagination, totalCount } =
     useOuterSpacesSection();
 
   return (
@@ -17,7 +17,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
       <OuterSpacesFilter
         value={activeSort}
         onChange={setSort}
-        count={pagination?.total || 0}
+        count={totalCount}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <OuterSpacesList page={index + 1} key={index} activeSort={activeSort} />

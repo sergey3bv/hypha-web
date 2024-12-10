@@ -4,6 +4,7 @@ import { useInnerSpaces } from './use-inner-spaces';
 export const useInnerSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
   const [pages, setPages] = React.useState(1);
+  const [totalCount, setTotalCount] = React.useState<number>(0);
 
   const { isLoading, pagination } = useInnerSpaces({
     page: pages,
@@ -19,6 +20,12 @@ export const useInnerSpacesSection = () => {
     setPages(1);
   }, [activeSort]);
 
+  React.useEffect(() => {
+    if (pagination?.total !== undefined) {
+      setTotalCount(pagination.total);
+    }
+  }, [pagination?.total]);
+
   const loadMore = React.useCallback(() => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
@@ -32,5 +39,6 @@ export const useInnerSpacesSection = () => {
     setPages,
     activeSort,
     setSort,
+    totalCount
   };
 };

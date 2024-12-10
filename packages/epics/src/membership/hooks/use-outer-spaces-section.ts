@@ -4,6 +4,7 @@ import { useOuterSpaces } from './use-outer-spaces';
 export const useOuterSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
   const [pages, setPages] = React.useState(1);
+  const [totalCount, setTotalCount] = React.useState<number>(0);
 
   const { isLoading, pagination } = useOuterSpaces({
     page: pages,
@@ -19,6 +20,12 @@ export const useOuterSpacesSection = () => {
     setPages(1);
   }, [activeSort]);
 
+  React.useEffect(() => {
+    if (pagination?.total !== undefined) {
+      setTotalCount(pagination.total);
+    }
+  }, [pagination?.total]);
+
   const loadMore = React.useCallback(() => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
@@ -32,5 +39,6 @@ export const useOuterSpacesSection = () => {
     setPages,
     activeSort,
     setSort,
+    totalCount,
   };
 };

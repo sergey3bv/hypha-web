@@ -9,7 +9,7 @@ import { useInnerSpacesSection } from '../../hooks/use-inner-spaces-section';
 type InnerSpacesSectionProps = Record<string, never>;
 
 export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
-  const { pages, activeSort, setSort, isLoading, loadMore, pagination } =
+  const { pages, activeSort, setSort, isLoading, loadMore, pagination, totalCount } =
     useInnerSpacesSection();
 
   return (
@@ -17,7 +17,7 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
       <InnerSpacesFilter
         value={activeSort}
         onChange={setSort}
-        count={pagination?.total || 0}
+        count={totalCount}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <InnerSpacesList page={index + 1} key={index} activeSort={activeSort} />
