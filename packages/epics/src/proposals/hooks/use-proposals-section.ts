@@ -6,6 +6,14 @@ const filterOptions = [
   { label: 'Most recent', value: 'most-recent' },
 ];
 
+const tabs = [
+  { label: 'All', value: 'all' },
+  { label: 'Active', value: 'active' },
+  { label: 'On voting', value: 'voting' },
+  { label: 'Completed', value: 'completed' },
+  { label: 'Rejected', value: 'rejected' },
+];
+
 export const useProposalsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
@@ -22,14 +30,6 @@ export const useProposalsSection = () => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
-
-  const tabs = [
-    { label: 'All', value: 'all' },
-    { label: 'Active', value: 'active' },
-    { label: 'On voting', value: 'voting' },
-    { label: 'Completed', value: 'completed' },
-    { label: 'Rejected', value: 'rejected' },
-  ];
 
   return {
     isLoading,

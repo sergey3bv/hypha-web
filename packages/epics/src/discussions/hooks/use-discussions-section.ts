@@ -6,6 +6,12 @@ const filterOptions = [
   { label: 'Most recent', value: 'most-recent' },
 ];
 
+const tabs = [
+  { label: 'All', value: 'all' },
+  { label: 'Open', value: 'open' },
+  { label: 'Closed', value: 'closed' },
+];
+
 export const useDiscussionsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
@@ -22,12 +28,6 @@ export const useDiscussionsSection = () => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
-
-  const tabs = [
-    { label: 'All', value: 'all' },
-    { label: 'Open', value: 'open' },
-    { label: 'Closed', value: 'closed' },
-  ];
 
   return {
     isLoading,
