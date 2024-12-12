@@ -17,7 +17,7 @@ function Skeleton({
   ...props
 }: SkeletonProps) {
   if (!loading) {
-    return <>{children}</>;
+    return children;
   }
 
   return (
@@ -25,7 +25,7 @@ function Skeleton({
       className={cn('animate-pulse rounded-md bg-muted', className)}
       style={{ width, height }}
       {...props}
-    ></div>
+    />
   );
 }
 
