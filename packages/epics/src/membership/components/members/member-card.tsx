@@ -26,7 +26,12 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 }) => {
   return (
     <Card className="w-full h-full p-6 mb-2 flex">
-      <Skeleton width="64px" height="64px" loading={isLoading} className="rounded-lg mr-3">
+      <Skeleton
+        width="64px"
+        height="64px"
+        loading={isLoading}
+        className="rounded-lg mr-3"
+      >
         <Image
           className="rounded-lg mr-3"
           src={avatar ?? ''}
@@ -48,7 +53,12 @@ export const MemberCard: React.FC<MemberCardProps> = ({
             <StatusBadge isLoading={isLoading} status={status} />
           </div>
 
-          <Skeleton height="26px" width="160px" loading={isLoading} className="my-1">
+          <Skeleton
+            height="26px"
+            width="160px"
+            loading={isLoading}
+            className="my-1"
+          >
             <Text className="text-3">
               {name} {surname}
             </Text>

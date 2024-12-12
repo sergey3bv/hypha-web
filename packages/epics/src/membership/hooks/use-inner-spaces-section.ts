@@ -45,6 +45,6 @@ export const useInnerSpacesSection = () => {
     activeSort,
     setSort,
     totalCount,
-    filterOptions
+    filterOptions,
   };
 };

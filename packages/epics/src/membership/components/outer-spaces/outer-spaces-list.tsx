@@ -7,7 +7,10 @@ type OuterSpacesListProps = {
   activeSort: string;
 };
 
-export const OuterSpacesList: FC<OuterSpacesListProps> = ({ page, activeSort }) => {
+export const OuterSpacesList: FC<OuterSpacesListProps> = ({
+  page,
+  activeSort,
+}) => {
   const { outerSpaces, isLoading } = useOuterSpaces({
     page,
     sort:

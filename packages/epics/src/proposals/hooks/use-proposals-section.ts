@@ -29,7 +29,7 @@ export const useProposalsSection = () => {
     { label: 'On voting', value: 'voting' },
     { label: 'Completed', value: 'completed' },
     { label: 'Rejected', value: 'rejected' },
-  ]
+  ];
 
   return {
     isLoading,
@@ -40,6 +40,6 @@ export const useProposalsSection = () => {
     activeFilter,
     setActiveFilter,
     filterOptions,
-    tabs
+    tabs,
   };
 };

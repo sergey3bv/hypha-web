@@ -3,7 +3,11 @@ import { FC } from 'react';
 import { DiscussionsList } from './discussion-list';
 import { Text } from '@radix-ui/themes';
 import { useDiscussionsSection } from '../hooks/use-discussions-section';
-import { SectionFilter, SectionLoadMore, SectionTabs } from '@hypha-platform/ui/server';
+import {
+  SectionFilter,
+  SectionLoadMore,
+  SectionTabs,
+} from '@hypha-platform/ui/server';
 
 type DiscussionSectionProps = Record<string, never>;
 
@@ -16,7 +20,7 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
     loadMore,
     pagination,
     filterOptions,
-    tabs
+    tabs,
   } = useDiscussionsSection();
 
   const renderContent = () => {
@@ -26,7 +30,7 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
           value={activeFilter}
           onChange={setActiveFilter}
           count={pagination?.total || 0}
-          label='Discussions'
+          label="Discussions"
           filterOptions={filterOptions}
         />
         <SectionTabs

@@ -45,6 +45,6 @@ export const useOuterSpacesSection = () => {
     activeSort,
     setSort,
     totalCount,
-    filterOptions
+    filterOptions,
   };
 };

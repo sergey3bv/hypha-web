@@ -27,7 +27,7 @@ export const useDiscussionsSection = () => {
     { label: 'All', value: 'all' },
     { label: 'Open', value: 'open' },
     { label: 'Closed', value: 'closed' },
-  ]
+  ];
 
   return {
     isLoading,
@@ -38,6 +38,6 @@ export const useDiscussionsSection = () => {
     activeFilter,
     setActiveFilter,
     filterOptions,
-    tabs
+    tabs,
   };
 };

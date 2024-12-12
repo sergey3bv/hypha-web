@@ -16,7 +16,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
     loadMore,
     pagination,
     totalCount,
-    filterOptions
+    filterOptions,
   } = useOuterSpacesSection();
 
   return (
@@ -25,7 +25,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
         value={activeSort}
         onChange={setSort}
         count={totalCount}
-        label='Outer Spaces'
+        label="Outer Spaces"
         filterOptions={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (

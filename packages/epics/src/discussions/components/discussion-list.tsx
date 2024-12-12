@@ -7,7 +7,10 @@ type DiscussionsListProps = {
   activeFilter: string;
 };
 
-export const DiscussionsList: FC<DiscussionsListProps> = ({ page, activeFilter }) => {
+export const DiscussionsList: FC<DiscussionsListProps> = ({
+  page,
+  activeFilter,
+}) => {
   const { discussions, isLoading } = useDiscussions({
     page,
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),

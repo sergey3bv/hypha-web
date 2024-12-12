@@ -7,7 +7,10 @@ type AgreementsListProps = {
   activeFilter: string;
 };
 
-export const AgreementsList: FC<AgreementsListProps> = ({ page, activeFilter }) => {
+export const AgreementsList: FC<AgreementsListProps> = ({
+  page,
+  activeFilter,
+}) => {
   const { agreements, isLoading } = useAgreements({
     page,
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),

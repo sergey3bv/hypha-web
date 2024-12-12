@@ -29,7 +29,7 @@ export const useAgreementsSection = () => {
     { label: 'On voting', value: 'voting' },
     { label: 'Completed', value: 'completed' },
     { label: 'Rejected', value: 'rejected' },
-  ]
+  ];
 
   return {
     isLoading,
@@ -40,6 +40,6 @@ export const useAgreementsSection = () => {
     activeFilter,
     setActiveFilter,
     filterOptions,
-    tabs
+    tabs,
   };
 };

@@ -16,7 +16,7 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
     loadMore,
     pagination,
     totalCount,
-    filterOptions
+    filterOptions,
   } = useInnerSpacesSection();
 
   return (
@@ -25,7 +25,7 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
         value={activeSort}
         onChange={setSort}
         count={totalCount}
-        label='Inner Spaces'
+        label="Inner Spaces"
         filterOptions={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (

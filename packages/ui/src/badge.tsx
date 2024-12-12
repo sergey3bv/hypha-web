@@ -44,7 +44,7 @@ function Badge({
   ...props
 }: BadgeProps) {
   return (
-    <Skeleton width='50px' height='16px' loading={isLoading}>
+    <Skeleton width="50px" height="16px" loading={isLoading}>
       <div className={cn(badgeVariants({ variant }), className)} {...props} />
     </Skeleton>
   );

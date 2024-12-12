@@ -3,7 +3,11 @@ import { FC } from 'react';
 import { ProposalList } from './proposal-list';
 import { Text } from '@radix-ui/themes';
 import { useProposalsSection } from '../hooks/use-proposals-section';
-import { SectionFilter, SectionLoadMore, SectionTabs } from '@hypha-platform/ui/server';
+import {
+  SectionFilter,
+  SectionLoadMore,
+  SectionTabs,
+} from '@hypha-platform/ui/server';
 
 type ProposalSectionProps = Record<string, never>;
 
@@ -16,7 +20,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
     loadMore,
     pagination,
     filterOptions,
-    tabs
+    tabs,
   } = useProposalsSection();
 
   return (
@@ -25,10 +29,14 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
-        label='Proposals'
+        label="Proposals"
         filterOptions={filterOptions}
       />
-      <SectionTabs activeTab={activeFilter} setActiveTab={setActiveFilter} tabs={tabs}/>
+      <SectionTabs
+        activeTab={activeFilter}
+        setActiveTab={setActiveFilter}
+        tabs={tabs}
+      />
       {Array.from({ length: pages }).map((_, index) => (
         <ProposalList
           page={index + 1}

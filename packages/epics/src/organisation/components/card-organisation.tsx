@@ -48,8 +48,8 @@ const truncatedDescription: React.CSSProperties = {
   display: '-webkit-box',
   WebkitLineClamp: 3,
   WebkitBoxOrient: 'vertical',
-  overflow: 'hidden'
-}
+  overflow: 'hidden',
+};
 
 export const CardOrganisation: React.FC<DaoCardProps> = ({
   createdDate,
@@ -96,7 +96,10 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-grow text-xs text-gray-500 mb-4" style={truncatedDescription}>
+        <div
+          className="flex flex-grow text-xs text-gray-500 mb-4"
+          style={truncatedDescription}
+        >
           {description}
         </div>
         <div className="flex flex-grow gap-2 text-xs items-center">

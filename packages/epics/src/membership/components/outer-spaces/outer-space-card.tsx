@@ -38,7 +38,7 @@ const truncatedDescription: React.CSSProperties = {
   display: '-webkit-box',
   WebkitLineClamp: 3,
   WebkitBoxOrient: 'vertical',
-  overflow: 'hidden'
+  overflow: 'hidden',
 };
 
 export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
@@ -55,7 +55,12 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
         style={customCardHeaderStyles}
         className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
       >
-        <Skeleton width="100%" height="100%" loading={isLoading} className="rounded-tl-xl rounded-tr-xl object-cover">
+        <Skeleton
+          width="100%"
+          height="100%"
+          loading={isLoading}
+          className="rounded-tl-xl rounded-tr-xl object-cover"
+        >
           <img
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={logo}
@@ -79,9 +84,7 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
 
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           <Skeleton width="328px" height="28px" loading={isLoading}>
-            <div style={truncatedDescription}>
-              {description}
-            </div>
+            <div style={truncatedDescription}>{description}</div>
           </Skeleton>
         </div>
 
@@ -90,7 +93,12 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
             <Skeleton width="16px" height="16px" loading={isLoading}>
               <div className="font-bold">{members}</div>
             </Skeleton>
-            <Skeleton width="52px" height="16px" loading={isLoading} className="ml-1">
+            <Skeleton
+              width="52px"
+              height="16px"
+              loading={isLoading}
+              className="ml-1"
+            >
               <div className="text-gray-500 ml-1">Members</div>
             </Skeleton>
           </div>
@@ -99,7 +107,12 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
             <Skeleton width="16px" height="16px" loading={isLoading}>
               <div className="font-bold">{projects}</div>
             </Skeleton>
-            <Skeleton width="52px" height="16px" loading={isLoading} className="ml-1">
+            <Skeleton
+              width="52px"
+              height="16px"
+              loading={isLoading}
+              className="ml-1"
+            >
               <div className="text-gray-500 ml-1">Projects</div>
             </Skeleton>
           </div>

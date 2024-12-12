@@ -28,8 +28,8 @@ export const useMembersSection = () => {
     { label: 'Active', value: 'active' },
     { label: 'Inactive', value: 'inactive' },
     { label: 'Applicants', value: 'applicant' },
-    { label: 'Rejected', value: 'rejected' }
-  ]
+    { label: 'Rejected', value: 'rejected' },
+  ];
 
   return {
     isLoading,
@@ -40,6 +40,6 @@ export const useMembersSection = () => {
     activeFilter,
     setActiveFilter,
     filterOptions,
-    tabs
+    tabs,
   };
 };

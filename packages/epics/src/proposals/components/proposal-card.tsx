@@ -27,7 +27,12 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
 }) => {
   return (
     <Card className="w-full h-full p-6 mb-2 flex">
-      <Skeleton width="64px" height="64px" loading={isLoading} className="rounded-lg mr-3">
+      <Skeleton
+        width="64px"
+        height="64px"
+        loading={isLoading}
+        className="rounded-lg mr-3"
+      >
         <Image
           className="rounded-lg mr-3"
           src={creator?.avatar ?? ''}
@@ -56,7 +61,12 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
             <StatusBadge isLoading={isLoading} status={status} />
           </div>
 
-          <Skeleton height="26px" width="160px" loading={isLoading} className="my-1">
+          <Skeleton
+            height="26px"
+            width="160px"
+            loading={isLoading}
+            className="my-1"
+          >
             <Text className="text-3">{title}</Text>
           </Skeleton>
 
@@ -68,7 +78,12 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
         </div>
 
         <div>
-          <Skeleton height="32px" width="86px" loading={isLoading} className="rounded-lg">
+          <Skeleton
+            height="32px"
+            width="86px"
+            loading={isLoading}
+            className="rounded-lg"
+          >
             <div>
               {voted ? (
                 <Button

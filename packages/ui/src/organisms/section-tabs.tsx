@@ -4,18 +4,18 @@ import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 type Tab = {
   label: string;
   value: string;
-}
+};
 
 type SectionTabsProps = {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  tabs: Tab[]
+  tabs: Tab[];
 };
 
 export const SectionTabs: FC<SectionTabsProps> = ({
   activeTab,
   setActiveTab,
-  tabs
+  tabs,
 }) => {
   return (
     <Tabs

@@ -3,7 +3,11 @@ import { FC } from 'react';
 import { MembersList } from './members-list';
 import { Text } from '@radix-ui/themes';
 import { useMembersSection } from '../../hooks/use-members-section';
-import { SectionFilter, SectionLoadMore, SectionTabs } from '@hypha-platform/ui/server';
+import {
+  SectionFilter,
+  SectionLoadMore,
+  SectionTabs,
+} from '@hypha-platform/ui/server';
 
 type MemberSectionProps = Record<string, never>;
 
@@ -16,7 +20,7 @@ export const MembersSection: FC<MemberSectionProps> = () => {
     loadMore,
     pagination,
     filterOptions,
-    tabs
+    tabs,
   } = useMembersSection();
 
   return (
@@ -25,10 +29,14 @@ export const MembersSection: FC<MemberSectionProps> = () => {
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
-        label='Members'
+        label="Members"
         filterOptions={filterOptions}
       />
-      <SectionTabs activeTab={activeFilter} setActiveTab={setActiveFilter} tabs={tabs}/>
+      <SectionTabs
+        activeTab={activeFilter}
+        setActiveTab={setActiveFilter}
+        tabs={tabs}
+      />
       {Array.from({ length: pages }).map((_, index) => (
         <MembersList page={index + 1} key={index} activeFilter={activeFilter} />
       ))}

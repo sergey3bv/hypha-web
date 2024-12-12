@@ -8,7 +8,14 @@ interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
-function Skeleton({ className, width, height, loading = true, children, ...props }: SkeletonProps) {
+function Skeleton({
+  className,
+  width,
+  height,
+  loading = true,
+  children,
+  ...props
+}: SkeletonProps) {
   if (!loading) {
     return <>{children}</>;
   }
@@ -18,8 +25,7 @@ function Skeleton({ className, width, height, loading = true, children, ...props
       className={cn('animate-pulse rounded-md bg-muted', className)}
       style={{ width, height }}
       {...props}
-    >
-    </div>
+    ></div>
   );
 }
 
