@@ -12,7 +12,7 @@ type SectionFilterProps = {
   onChange: (value: string) => void;
   count: number;
   label: string;
-  filterOptions: FilterOption[];
+  sortOptions: FilterOption[];
 };
 
 export const SectionFilter: FC<SectionFilterProps> = ({
@@ -20,7 +20,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
   onChange,
   count,
   label,
-  filterOptions,
+  sortOptions,
 }) => {
   return (
     <div className="flex justify-between items-center mt-6 w-full">
@@ -28,7 +28,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
         {label} | {count}
       </Text>
       <div className="flex items-center">
-        <FilterMenu value={value} onChange={onChange} options={filterOptions} />
+        <FilterMenu value={value} onChange={onChange} options={sortOptions} />
       </div>
     </div>
   );

@@ -19,8 +19,8 @@ export const MembersSection: FC<MemberSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
+    sortOptions,
     filterOptions,
-    tabs,
   } = useMembersSection();
 
   return (
@@ -30,12 +30,12 @@ export const MembersSection: FC<MemberSectionProps> = () => {
         onChange={setActiveFilter}
         count={pagination?.total || 0}
         label="Members"
-        filterOptions={filterOptions}
+        sortOptions={sortOptions}
       />
       <SectionTabs
         activeTab={activeFilter}
         setActiveTab={setActiveFilter}
-        tabs={tabs}
+        tabs={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <MembersList page={index + 1} key={index} activeFilter={activeFilter} />

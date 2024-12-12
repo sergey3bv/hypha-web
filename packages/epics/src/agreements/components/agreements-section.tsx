@@ -19,8 +19,8 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
+    sortOptions,
     filterOptions,
-    tabs,
   } = useAgreementsSection();
 
   return (
@@ -30,12 +30,12 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
         onChange={setActiveFilter}
         count={pagination?.total || 0}
         label="Agreements"
-        filterOptions={filterOptions}
+        sortOptions={sortOptions}
       />
       <SectionTabs
         activeTab={activeFilter}
         setActiveTab={setActiveFilter}
-        tabs={tabs}
+        tabs={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <AgreementsList

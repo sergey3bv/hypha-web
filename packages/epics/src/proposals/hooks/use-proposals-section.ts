@@ -1,12 +1,12 @@
 import React from 'react';
 import { useProposals } from './use-proposals';
 
-const filterOptions = [
+const sortOptions = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
 
-const tabs = [
+const filterOptions = [
   { label: 'All', value: 'all' },
   { label: 'Active', value: 'active' },
   { label: 'On voting', value: 'voting' },
@@ -39,7 +39,7 @@ export const useProposalsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    sortOptions,
     filterOptions,
-    tabs,
   };
 };

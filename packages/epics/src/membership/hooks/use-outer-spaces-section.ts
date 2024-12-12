@@ -2,7 +2,7 @@ import React from 'react';
 import { useOuterSpaces } from './use-outer-spaces';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 
-const filterOptions = [
+const sortOptions = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
@@ -41,6 +41,6 @@ export const useOuterSpacesSection = () => {
     activeSort,
     setSort,
     totalCount,
-    filterOptions,
+    sortOptions,
   };
 };

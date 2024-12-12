@@ -1,12 +1,12 @@
 import React from 'react';
 import { useMembers } from './use-members';
 
-const filterOptions = [
+const sortOptions = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
 
-const tabs = [
+const filterOptions = [
   { label: 'All', value: 'all' },
   { label: 'Active', value: 'active' },
   { label: 'Inactive', value: 'inactive' },
@@ -39,7 +39,7 @@ export const useMembersSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    sortOptions,
     filterOptions,
-    tabs,
   };
 };

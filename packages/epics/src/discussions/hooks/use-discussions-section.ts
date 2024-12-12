@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDiscussions } from './use-discussions';
 
-const filterOptions = [
+const sortOptions = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
 
-const tabs = [
+const filterOptions = [
   { label: 'All', value: 'all' },
   { label: 'Open', value: 'open' },
   { label: 'Closed', value: 'closed' },
@@ -37,7 +37,7 @@ export const useDiscussionsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    sortOptions,
     filterOptions,
-    tabs,
   };
 };

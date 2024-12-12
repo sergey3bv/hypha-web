@@ -1,13 +1,13 @@
 import React from 'react';
 import { useAgreements } from './use-agreements';
 
-const filterOptions = [
+const sortOptions = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
 
 
-const tabs = [
+const filterOptions = [
   { label: 'All', value: 'all' },
   { label: 'Active', value: 'active' },
   { label: 'On voting', value: 'voting' },
@@ -40,7 +40,7 @@ export const useAgreementsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    sortOptions,
     filterOptions,
-    tabs,
   };
 };

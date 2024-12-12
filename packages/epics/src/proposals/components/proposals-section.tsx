@@ -19,8 +19,8 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
+    sortOptions,
     filterOptions,
-    tabs,
   } = useProposalsSection();
 
   return (
@@ -30,12 +30,12 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
         onChange={setActiveFilter}
         count={pagination?.total || 0}
         label="Proposals"
-        filterOptions={filterOptions}
+        sortOptions={sortOptions}
       />
       <SectionTabs
         activeTab={activeFilter}
         setActiveTab={setActiveFilter}
-        tabs={tabs}
+        tabs={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <ProposalList

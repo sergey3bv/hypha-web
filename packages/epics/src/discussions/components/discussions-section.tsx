@@ -19,8 +19,8 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
+    sortOptions,
     filterOptions,
-    tabs,
   } = useDiscussionsSection();
 
   const renderContent = () => {
@@ -31,12 +31,12 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
           onChange={setActiveFilter}
           count={pagination?.total || 0}
           label="Discussions"
-          filterOptions={filterOptions}
+          sortOptions={sortOptions}
         />
         <SectionTabs
           activeTab={activeFilter}
           setActiveTab={setActiveFilter}
-          tabs={tabs}
+          tabs={filterOptions}
         />
         {Array.from({ length: pages }).map((_, index) => (
           <DiscussionsList
