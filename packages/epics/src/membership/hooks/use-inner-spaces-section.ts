@@ -1,6 +1,5 @@
 import React from 'react';
 import { useInnerSpaces } from './use-inner-spaces';
-import { SortParams } from '@hypha-platform/graphql/rsc';
 
 const sortOptions = [
   { label: 'All', value: 'all' },
@@ -8,7 +7,7 @@ const sortOptions = [
 ];
 
 export const useInnerSpacesSection = () => {
-  const [activeSort, setSort] = React.useState<SortParams['sort']>('all');
+  const [activeSort, setSort] = React.useState('all');
   const [pages, setPages] = React.useState(1);
   const [totalCount, setTotalCount] = React.useState<number>(0);
 

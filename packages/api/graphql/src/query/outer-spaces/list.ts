@@ -23,7 +23,7 @@ type PaginatedResponse<T> = {
 };
 
 export type SortParams = {
-  sort?: 'all' | 'most-recent';
+  sort?: string;
 };
 
 type PaginationParams = {
