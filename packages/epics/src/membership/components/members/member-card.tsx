@@ -26,49 +26,45 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 }) => {
   return (
     <Card className="w-full h-full p-6 mb-2 flex">
-      {isLoading ? (
-        <Skeleton width={64} height={64} className="rounded-lg mr-3" />
-      ) : (
+      <Skeleton width="64px" height="64px" loading={isLoading} className="rounded-lg mr-3">
         <Image
           className="rounded-lg mr-3"
           src={avatar ?? ''}
           height={64}
           width={64}
           alt={nickname ?? ''}
-        ></Image>
-      )}
+        />
+      </Skeleton>
+
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="actionOutline">
-              Recurring
-            </Badge>
-            <Badge isLoading={isLoading} variant="actionOutline">
-              {commitment}%
-            </Badge>
-            <StatusBadge status={status} isLoading={isLoading} />
+            <Skeleton width="auto" height="auto" loading={isLoading}>
+              <Badge variant="actionOutline">Recurring</Badge>
+            </Skeleton>
+            <Skeleton width="auto" height="auto" loading={isLoading}>
+              <Badge variant="actionOutline">{commitment}%</Badge>
+            </Skeleton>
+            <StatusBadge isLoading={isLoading} status={status} />
           </div>
-          {isLoading ? (
-            <Skeleton height={26} width={160} className="my-1" />
-          ) : (
+
+          <Skeleton height="26px" width="160px" loading={isLoading} className="my-1">
             <Text className="text-3">
               {name} {surname}
             </Text>
-          )}
-          {isLoading ? (
-            <Skeleton height={16} width={80} />
-          ) : (
+          </Skeleton>
+
+          <Skeleton height="16px" width="80px" loading={isLoading}>
             <Text className="text-xs text-gray-500">@{nickname}</Text>
-          )}
+          </Skeleton>
         </div>
-        {isLoading ? (
-          <Skeleton height={16} width={96} />
-        ) : (
+
+        <Skeleton width="96px" height="16px" loading={isLoading}>
           <div className="flex h-full justify-end items-end text-gray-500">
             <SewingPinFilledIcon className="mr-1" />
             <Text className="text-xs">{location}</Text>
           </div>
-        )}
+        </Skeleton>
       </div>
     </Card>
   );

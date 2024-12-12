@@ -39,7 +39,7 @@ const truncatedDescription: React.CSSProperties = {
   WebkitLineClamp: 3,
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden'
-}
+};
 
 export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
   description,
@@ -55,67 +55,61 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
         style={customCardHeaderStyles}
         className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
       >
-        {isLoading ? (
-          <Skeleton className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full" />
-        ) : (
+        <Skeleton
+          width="100%"
+          height="100%"
+          loading={isLoading}
+          className="rounded-tl-xl rounded-tr-xl object-cover"
+        >
           <img
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={image}
             alt={title}
-          ></img>
-        )}
+          />
+        </Skeleton>
       </CardHeader>
+
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
-          {isLoading ? (
-            <Skeleton height={18} width={150} />
-          ) : (
+          <Skeleton width="150px" height="18px" loading={isLoading}>
             <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
-          )}
+          </Skeleton>
         </div>
+
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
-          {isLoading ? (
-            <Skeleton width={200} height={48} />
-          ) : (
+          <Skeleton width="200px" height="48px" loading={isLoading}>
             <div style={truncatedDescription}>
               {description}
             </div>
-          )}
+          </Skeleton>
         </div>
+
         <div className="flex gap-1 mb-4">
-          {isLoading ? (
-            <div className="flex gap-1">
-              <Skeleton width={24} height={24} className="rounded-lg" />
-              <Skeleton width={24} height={24} className="rounded-lg" />
-              <Skeleton width={24} height={24} className="rounded-lg" />
-            </div>
-          ) : (
+          <Skeleton width="24px" height="24px" loading={isLoading}>
             <div className="flex gap-1">
               {members
-                ? members.slice(0, 3).map((member) => (
-                    <Avatar>
+                ? members.slice(0, 3).map((member, index) => (
+                    <Avatar key={index}>
                       <AvatarImage
                         className="rounded-lg"
                         src={member.avatar}
                         width={24}
                         height={24}
-                      ></AvatarImage>
+                      />
                     </Avatar>
                   ))
                 : null}
             </div>
-          )}
-          {isLoading ? (
-            <Skeleton width={106} height={24} />
-          ) : (
+          </Skeleton>
+
+          <Skeleton width="106px" height="24px" loading={isLoading}>
             <Text className="ml-2 flex items-center text-xs text-action-light text-nowrap">
               + other {members ? members.length - 3 : null} members
             </Text>
-          )}
+          </Skeleton>
         </div>
-        {isLoading ? (
-          <Skeleton width={200} height={32} className="rounded-lg" />
-        ) : (
+
+        <Skeleton width="200px" height="32px" loading={isLoading}>
           <div>
             {joinedStatus ? (
               <Button
@@ -135,7 +129,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
               </Button>
             )}
           </div>
-        )}
+        </Skeleton>
       </CardContent>
     </Card>
   );
