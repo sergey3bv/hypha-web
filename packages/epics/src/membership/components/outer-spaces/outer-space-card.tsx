@@ -77,7 +77,7 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
 
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           <Skeleton width="328px" height="28px" loading={isLoading}>
-            <div className='line-clamp-3'>{description}</div>
+            <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
 

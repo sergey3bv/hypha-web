@@ -6,7 +6,6 @@ const sortOptions = [
   { label: 'Most recent', value: 'most-recent' },
 ];
 
-
 const filterOptions = [
   { label: 'All', value: 'all' },
   { label: 'Active', value: 'active' },

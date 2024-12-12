@@ -14,7 +14,7 @@ export const useOuterSpacesSection = () => {
 
   const { isLoading, pagination } = useOuterSpaces({
     page: pages,
-    sort: { sort: activeSort }
+    sort: { sort: activeSort },
   });
 
   React.useEffect(() => {

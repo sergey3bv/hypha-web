@@ -79,9 +79,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
             </div>
           </div>
         </div>
-        <div
-          className="flex flex-grow text-xs text-gray-500 mb-4 line-clamp-3"
-        >
+        <div className="flex flex-grow text-xs text-gray-500 mb-4 line-clamp-3">
           {description}
         </div>
         <div className="flex flex-grow gap-2 text-xs items-center">

@@ -92,7 +92,7 @@ export const DiscussionCard: React.FC<DiscussionCardProps> = ({
         </div>
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           <Skeleton width="200px" height="48px" loading={isLoading}>
-            <div className='line-clamp-3'>{description}</div>
+            <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
         <div className="flex flex-grow gap-2 text-xs text-gray-500 items-center">
