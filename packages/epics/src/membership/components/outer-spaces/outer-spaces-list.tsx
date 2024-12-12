@@ -7,7 +7,7 @@ type OuterSpacesListProps = {
   activeSort: string;
 };
 
-const OuterSpacesList: FC<OuterSpacesListProps> = ({ page, activeSort }) => {
+export const OuterSpacesList: FC<OuterSpacesListProps> = ({ page, activeSort }) => {
   const { outerSpaces, isLoading } = useOuterSpaces({
     page,
     sort:
@@ -33,5 +33,3 @@ const OuterSpacesList: FC<OuterSpacesListProps> = ({ page, activeSort }) => {
     </div>
   );
 };
-
-export default OuterSpacesList;

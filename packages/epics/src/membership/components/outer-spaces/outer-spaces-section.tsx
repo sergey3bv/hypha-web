@@ -1,10 +1,9 @@
 'use client';
 import { FC } from 'react';
-import { OuterSpacesFilter } from './outer-spaces-filter';
-import OuterSpacesList from './outer-spaces-list';
-import { OuterSpacesLoadMore } from './outer-spaces-load-more';
+import { OuterSpacesList } from './outer-spaces-list';
 import { Text } from '@radix-ui/themes';
 import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 
 type OuterSpacesSectionProps = Record<string, never>;
 
@@ -17,19 +16,22 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
     loadMore,
     pagination,
     totalCount,
+    filterOptions
   } = useOuterSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
-      <OuterSpacesFilter
+      <SectionFilter
         value={activeSort}
         onChange={setSort}
         count={totalCount}
+        label='Outer Spaces'
+        filterOptions={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (
         <OuterSpacesList page={index + 1} key={index} activeSort={activeSort} />
       ))}
-      <OuterSpacesLoadMore
+      <SectionLoadMore
         onClick={loadMore}
         disabled={pagination?.totalPages === pages}
         isLoading={isLoading}
@@ -39,7 +41,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
             ? 'No more outer spaces'
             : 'Load more outer spaces'}
         </Text>
-      </OuterSpacesLoadMore>
+      </SectionLoadMore>
     </div>
   );
 };

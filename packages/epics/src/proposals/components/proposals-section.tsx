@@ -1,11 +1,10 @@
 'use client';
 import { FC } from 'react';
 import { ProposalTabs } from './proposal-tabs';
-import { ProposalsFilter } from './proposal-filter';
-import { ProposalLoadMore } from './proposals-load-more';
-import ProposalList from './proposal-list';
+import { ProposalList } from './proposal-list';
 import { Text } from '@radix-ui/themes';
 import { useProposalsSection } from '../hooks/use-proposals-section';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 
 type ProposalSectionProps = Record<string, never>;
 
@@ -17,14 +16,17 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
+    filterOptions
   } = useProposalsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
-      <ProposalsFilter
+      <SectionFilter
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
+        label='Proposals'
+        filterOptions={filterOptions}
       />
       <ProposalTabs activeTab={activeFilter} setActiveTab={setActiveFilter} />
       {Array.from({ length: pages }).map((_, index) => (
@@ -34,7 +36,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
           activeFilter={activeFilter}
         />
       ))}
-      <ProposalLoadMore
+      <SectionLoadMore
         onClick={loadMore}
         disabled={pagination?.totalPages === pages}
         isLoading={isLoading}
@@ -44,7 +46,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
             ? 'No more proposals'
             : 'Load more proposals'}
         </Text>
-      </ProposalLoadMore>
+      </SectionLoadMore>
     </div>
   );
 };

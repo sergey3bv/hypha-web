@@ -7,7 +7,7 @@ type InnerSpacesListProps = {
   activeSort: string;
 };
 
-const InnerSpacesList: FC<InnerSpacesListProps> = ({ page, activeSort }) => {
+export const InnerSpacesList: FC<InnerSpacesListProps> = ({ page, activeSort }) => {
   const { innerSpaces, isLoading } = useInnerSpaces({
     page,
     sort:
@@ -34,5 +34,3 @@ const InnerSpacesList: FC<InnerSpacesListProps> = ({ page, activeSort }) => {
     </div>
   );
 };
-
-export default InnerSpacesList;

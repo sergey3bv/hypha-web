@@ -31,6 +31,11 @@ export const useOuterSpacesSection = () => {
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
 
+  const filterOptions = [
+    { label: 'All', value: 'all' },
+    { label: 'Most recent', value: 'most-recent' },
+  ];
+
   return {
     isLoading,
     loadMore,
@@ -40,5 +45,6 @@ export const useOuterSpacesSection = () => {
     activeSort,
     setSort,
     totalCount,
+    filterOptions
   };
 };

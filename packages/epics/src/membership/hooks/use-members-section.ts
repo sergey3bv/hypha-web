@@ -18,6 +18,11 @@ export const useMembersSection = () => {
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
 
+  const filterOptions = [
+    { label: 'All', value: 'all' },
+    { label: 'Most recent', value: 'most-recent' },
+  ];
+
   return {
     isLoading,
     loadMore,
@@ -26,5 +31,6 @@ export const useMembersSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    filterOptions
   };
 };

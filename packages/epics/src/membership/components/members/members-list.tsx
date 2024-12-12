@@ -7,7 +7,7 @@ type MembersListProps = {
   activeFilter: string;
 };
 
-const MembersList: FC<MembersListProps> = ({ page, activeFilter }) => {
+export const MembersList: FC<MembersListProps> = ({ page, activeFilter }) => {
   const { members, isLoading } = useMembers({
     page,
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
@@ -28,5 +28,3 @@ const MembersList: FC<MembersListProps> = ({ page, activeFilter }) => {
     </div>
   );
 };
-
-export default MembersList;
