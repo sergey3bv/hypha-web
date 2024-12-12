@@ -34,16 +34,6 @@ const customAvatarStyles: React.CSSProperties = {
   top: '-54px',
 };
 
-const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (
-  inputText,
-  maxLength
-) => {
-  if (inputText.length > maxLength) {
-    return inputText.slice(0, maxLength) + '...';
-  }
-  return inputText;
-};
-
 const truncatedDescription: React.CSSProperties = {
   display: '-webkit-box',
   WebkitLineClamp: 3,
