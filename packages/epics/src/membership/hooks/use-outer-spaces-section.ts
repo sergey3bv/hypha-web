@@ -1,19 +1,15 @@
 import React from 'react';
 import { useOuterSpaces } from './use-outer-spaces';
+import { SortParams } from '@hypha-platform/graphql/rsc';
 
 export const useOuterSpacesSection = () => {
-  const [activeSort, setSort] = React.useState('all');
+  const [activeSort, setSort] = React.useState<SortParams['sort']>('all');
   const [pages, setPages] = React.useState(1);
   const [totalCount, setTotalCount] = React.useState<number>(0);
 
   const { isLoading, pagination } = useOuterSpaces({
     page: pages,
-    sort:
-      activeSort === 'all'
-        ? { sort: 'all' }
-        : activeSort === 'most-recent'
-        ? { sort: 'most-recent' }
-        : undefined,
+    sort: { sort: activeSort }
   });
 
   React.useEffect(() => {
