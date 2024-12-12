@@ -7,7 +7,6 @@ import {
   CardTitle,
   Skeleton,
 } from '@hypha-platform/ui';
-import { truncateWithEllipsis } from '@hypha-platform/ui-utils';
 
 type OuterSpaceCardProps = {
   logo?: string;
@@ -34,6 +33,13 @@ const customAvatarStyles: React.CSSProperties = {
   position: 'absolute',
   top: '-54px',
 };
+
+const truncatedDescription: React.CSSProperties = {
+  display: '-webkit-box',
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden'
+}
 
 export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
   description,
@@ -74,8 +80,8 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
           {isLoading ? (
             <Skeleton width={328} height={28} />
           ) : (
-            <div>
-              {description ? truncateWithEllipsis(description, 100) : null}
+            <div style={truncatedDescription}>
+              {description}
             </div>
           )}
         </div>

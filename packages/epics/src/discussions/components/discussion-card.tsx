@@ -33,15 +33,12 @@ const customCardTitleStyles: React.CSSProperties = {
   fontSize: '18px',
 };
 
-const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (
-  inputText,
-  maxLength
-) => {
-  if (inputText.length > maxLength) {
-    return inputText.slice(0, maxLength) + '...';
-  }
-  return inputText;
-};
+const truncatedDescription: React.CSSProperties = {
+  display: '-webkit-box',
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden'
+}
 
 export const DiscussionCard: React.FC<DiscussionCardProps> = ({
   description,
@@ -102,8 +99,8 @@ export const DiscussionCard: React.FC<DiscussionCardProps> = ({
           {isLoading ? (
             <Skeleton width={200} height={48} />
           ) : (
-            <div>
-              {description ? truncateWithEllipsis(description, 100) : null}
+            <div style={truncatedDescription}>
+              {description}
             </div>
           )}
         </div>

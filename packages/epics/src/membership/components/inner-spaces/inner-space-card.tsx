@@ -8,7 +8,6 @@ import {
 } from '@hypha-platform/ui';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Text } from '@radix-ui/themes';
-import { truncateWithEllipsis } from '@hypha-platform/ui-utils';
 
 type Member = {
   avatar: string;
@@ -34,6 +33,13 @@ const customCardTitleStyles: React.CSSProperties = {
   whiteSpace: 'nowrap',
   fontWeight: '500',
 };
+
+const truncatedDescription: React.CSSProperties = {
+  display: '-webkit-box',
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden'
+}
 
 export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
   description,
@@ -71,8 +77,8 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
           {isLoading ? (
             <Skeleton width={200} height={48} />
           ) : (
-            <div>
-              {description ? truncateWithEllipsis(description, 100) : null}
+            <div style={truncatedDescription}>
+              {description}
             </div>
           )}
         </div>
