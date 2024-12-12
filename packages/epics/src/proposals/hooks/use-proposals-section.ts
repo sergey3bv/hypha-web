@@ -1,6 +1,11 @@
 import React from 'react';
 import { useProposals } from './use-proposals';
 
+const filterOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'Most recent', value: 'most-recent' },
+];
+
 export const useProposalsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
@@ -17,11 +22,6 @@ export const useProposalsSection = () => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
-
-  const filterOptions = [
-    { label: 'All', value: 'all' },
-    { label: 'Most recent', value: 'most-recent' },
-  ];
 
   const tabs = [
     { label: 'All', value: 'all' },

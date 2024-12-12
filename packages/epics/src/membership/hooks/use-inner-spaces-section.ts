@@ -2,6 +2,11 @@ import React from 'react';
 import { useInnerSpaces } from './use-inner-spaces';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 
+const filterOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'Most recent', value: 'most-recent' },
+];
+
 export const useInnerSpacesSection = () => {
   const [activeSort, setSort] = React.useState<SortParams['sort']>('all');
   const [pages, setPages] = React.useState(1);
@@ -26,11 +31,6 @@ export const useInnerSpacesSection = () => {
     if (!pagination?.hasNextPage) return;
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
-
-  const filterOptions = [
-    { label: 'All', value: 'all' },
-    { label: 'Most recent', value: 'most-recent' },
-  ];
 
   return {
     isLoading,
