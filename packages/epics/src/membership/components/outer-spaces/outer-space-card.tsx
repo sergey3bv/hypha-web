@@ -34,13 +34,6 @@ const customAvatarStyles: React.CSSProperties = {
   top: '-54px',
 };
 
-const truncatedDescription: React.CSSProperties = {
-  display: '-webkit-box',
-  WebkitLineClamp: 3,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden',
-};
-
 export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
   description,
   logo,
@@ -84,7 +77,7 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
 
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           <Skeleton width="328px" height="28px" loading={isLoading}>
-            <div style={truncatedDescription}>{description}</div>
+            <div className='line-clamp-3'>{description}</div>
           </Skeleton>
         </div>
 

@@ -34,13 +34,6 @@ const customAvatarStyles: React.CSSProperties = {
   top: '-54px',
 };
 
-const truncatedDescription: React.CSSProperties = {
-  display: '-webkit-box',
-  WebkitLineClamp: 3,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden',
-};
-
 export const CardOrganisation: React.FC<DaoCardProps> = ({
   createdDate,
   description,
@@ -87,8 +80,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
           </div>
         </div>
         <div
-          className="flex flex-grow text-xs text-gray-500 mb-4"
-          style={truncatedDescription}
+          className="flex flex-grow text-xs text-gray-500 mb-4 line-clamp-3"
         >
           {description}
         </div>

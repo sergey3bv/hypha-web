@@ -34,13 +34,6 @@ const customCardTitleStyles: React.CSSProperties = {
   fontWeight: '500',
 };
 
-const truncatedDescription: React.CSSProperties = {
-  display: '-webkit-box',
-  WebkitLineClamp: 3,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden',
-};
-
 export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
   description,
   image,
@@ -78,7 +71,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
 
         <div className="flex flex-grow text-xs text-gray-500 mb-4">
           <Skeleton width="200px" height="48px" loading={isLoading}>
-            <div style={truncatedDescription}>{description}</div>
+            <div className='line-clamp-3'>{description}</div>
           </Skeleton>
         </div>
 
