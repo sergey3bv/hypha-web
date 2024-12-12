@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { InnerSpaceCard } from './inner-space-card';
 import { useInnerSpaces } from '../../hooks/use-inner-spaces';
+import { SortParams } from '@hypha-platform/graphql/rsc';
 
 type InnerSpacesListProps = {
   page: number;
-  activeSort: string;
+  activeSort?: SortParams['sort'];
 };
 
 export const InnerSpacesList: FC<InnerSpacesListProps> = ({
@@ -13,12 +14,7 @@ export const InnerSpacesList: FC<InnerSpacesListProps> = ({
 }) => {
   const { innerSpaces, isLoading } = useInnerSpaces({
     page,
-    sort:
-      activeSort === 'all'
-        ? { sort: 'all' }
-        : activeSort === 'most-recent'
-        ? { sort: 'most-recent' }
-        : undefined,
+    sort: { sort: activeSort },
   });
   return (
     <div>

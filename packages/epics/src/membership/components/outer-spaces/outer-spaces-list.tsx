@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { OuterSpaceCard } from './outer-space-card';
 import { useOuterSpaces } from '../../hooks/use-outer-spaces';
+import { SortParams } from '@hypha-platform/graphql/rsc';
 
 type OuterSpacesListProps = {
   page: number;
-  activeSort: string;
+  activeSort: SortParams['sort'];
 };
 
 export const OuterSpacesList: FC<OuterSpacesListProps> = ({
@@ -13,12 +14,7 @@ export const OuterSpacesList: FC<OuterSpacesListProps> = ({
 }) => {
   const { outerSpaces, isLoading } = useOuterSpaces({
     page,
-    sort:
-      activeSort === 'all'
-        ? { sort: 'all' }
-        : activeSort === 'most-recent'
-        ? { sort: 'most-recent' }
-        : undefined,
+    sort: { sort: activeSort },
   });
   return (
     <div>
