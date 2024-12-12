@@ -1,10 +1,9 @@
 'use client';
 import { FC } from 'react';
-import { DiscussionTabs } from './discussion-tabs';
 import { DiscussionsList } from './discussion-list';
 import { Text } from '@radix-ui/themes';
 import { useDiscussionsSection } from '../hooks/use-discussions-section';
-import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore, SectionTabs } from '@hypha-platform/ui/server';
 
 type DiscussionSectionProps = Record<string, never>;
 
@@ -16,7 +15,8 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
-    filterOptions
+    filterOptions,
+    tabs
   } = useDiscussionsSection();
 
   const renderContent = () => {
@@ -29,9 +29,10 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
           label='Discussions'
           filterOptions={filterOptions}
         />
-        <DiscussionTabs
+        <SectionTabs
           activeTab={activeFilter}
           setActiveTab={setActiveFilter}
+          tabs={tabs}
         />
         {Array.from({ length: pages }).map((_, index) => (
           <DiscussionsList

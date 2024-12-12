@@ -23,6 +23,12 @@ export const useDiscussionsSection = () => {
     { label: 'Most recent', value: 'most-recent' },
   ];
 
+  const tabs = [
+    { label: 'All', value: 'all' },
+    { label: 'Open', value: 'open' },
+    { label: 'Closed', value: 'closed' },
+  ]
+
   return {
     isLoading,
     loadMore,
@@ -31,6 +37,7 @@ export const useDiscussionsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
-    filterOptions
+    filterOptions,
+    tabs
   };
 };

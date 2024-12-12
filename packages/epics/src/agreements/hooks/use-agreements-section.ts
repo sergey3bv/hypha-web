@@ -23,6 +23,14 @@ export const useAgreementsSection = () => {
     { label: 'Most recent', value: 'most-recent' },
   ];
 
+  const tabs = [
+    { label: 'All', value: 'all' },
+    { label: 'Active', value: 'active' },
+    { label: 'On voting', value: 'voting' },
+    { label: 'Completed', value: 'completed' },
+    { label: 'Rejected', value: 'rejected' },
+  ]
+
   return {
     isLoading,
     loadMore,
@@ -31,6 +39,7 @@ export const useAgreementsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
-    filterOptions
+    filterOptions,
+    tabs
   };
 };

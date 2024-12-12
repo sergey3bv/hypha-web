@@ -23,6 +23,14 @@ export const useMembersSection = () => {
     { label: 'Most recent', value: 'most-recent' },
   ];
 
+  const tabs = [
+    { label: 'All', value: 'all' },
+    { label: 'Active', value: 'active' },
+    { label: 'Inactive', value: 'inactive' },
+    { label: 'Applicants', value: 'applicant' },
+    { label: 'Rejected', value: 'rejected' }
+  ]
+
   return {
     isLoading,
     loadMore,
@@ -31,6 +39,7 @@ export const useMembersSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
-    filterOptions
+    filterOptions,
+    tabs
   };
 };

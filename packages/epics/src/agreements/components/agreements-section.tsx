@@ -1,10 +1,9 @@
 'use client';
 import { FC } from 'react';
-import { AgreementTabs } from './agreement-tabs';
 import { AgreementsList } from './agreements-list';
 import { Text } from '@radix-ui/themes';
 import { useAgreementsSection } from '../hooks/use-agreements-section';
-import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore, SectionTabs } from '@hypha-platform/ui/server';
 
 type AgreementsSectionProps = Record<string, never>;
 
@@ -16,7 +15,8 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
-    filterOptions
+    filterOptions,
+    tabs
   } = useAgreementsSection();
 
   return (
@@ -28,7 +28,7 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
         label="Agreements"
         filterOptions={filterOptions}
       />
-      <AgreementTabs activeTab={activeFilter} setActiveTab={setActiveFilter} />
+      <SectionTabs activeTab={activeFilter} setActiveTab={setActiveFilter} tabs={tabs}/>
       {Array.from({ length: pages }).map((_, index) => (
         <AgreementsList
           page={index + 1}
