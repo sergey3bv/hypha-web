@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { MySpaces } from './pages/my-spaces.page';
 
-test('has title', async ({ page }) => {
-  await page.goto('/my-spaces');
+test('should display spaces list', async ({ page }) => {
+  const mySpacesPage = new MySpaces(page);
 
-  // TODO: write useful tests
-  await expect(page.getByTestId('dho-list-container')).toBeVisible();
+  await mySpacesPage.open();
+  await expect(await mySpacesPage.isListContainerVisible()).toBeTruthy();
 });
