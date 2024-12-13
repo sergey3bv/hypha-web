@@ -24,7 +24,7 @@ export class MySpaces extends BasePage {
 
     return {
       memberSpaces: memberSpacesVisible,
-      recommendedSpaces: recommendedSpacesVisible
+      recommendedSpaces: recommendedSpacesVisible,
     };
   }
 }

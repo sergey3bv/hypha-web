@@ -91,26 +91,26 @@ export default async function Index({ params: { lang } }: PageProps) {
           <Text className="text-3">Spaces you might like</Text>
           <Carousel className="my-8">
             <CarouselContent>
-            {daos.map((dao) => (
-              <CarouselItem
-                key={dao.name}
-                className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
-              >
-                <Link
-                  className="w-96"
-                  href={getDhoPathAgreements(lang, dao.url as string)}
+              {daos.map((dao) => (
+                <CarouselItem
+                  key={dao.name}
+                  className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
                 >
-                  <CardOrganisation
-                    createdDate={dao.date}
-                    description={dao.description as string}
-                    icon={dao.logo}
-                    members={0}
-                    agreements={0}
-                    title={dao.title as string}
-                  />
-                </Link>
-              </CarouselItem>
-            ))}
+                  <Link
+                    className="w-96"
+                    href={getDhoPathAgreements(lang, dao.url as string)}
+                  >
+                    <CardOrganisation
+                      createdDate={dao.date}
+                      description={dao.description as string}
+                      icon={dao.logo}
+                      members={0}
+                      agreements={0}
+                      title={dao.title as string}
+                    />
+                  </Link>
+                </CarouselItem>
+              ))}
             </CarouselContent>
           </Carousel>
         </div>
