@@ -45,4 +45,4 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - run: npx nx affected --parallel 1 -t e2e-ci
+      - run: npx nx affected --parallel 1 -t e2e
