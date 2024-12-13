@@ -1,3 +1,3 @@
 export * from './assets/assets-section';
-export * from './requests/list-requests';
+export * from './requests/requests-section';
 export * from './payouts/list-payouts';

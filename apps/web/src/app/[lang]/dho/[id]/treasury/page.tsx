@@ -10,9 +10,9 @@ import Link from 'next/link';
 import {
   AssetsSection,
   ListPayouts,
-  ListRequests,
+  RequestsSection,
 } from '@hypha-platform/epics';
-import { listRequestsData, listPayoutsData } from '@hypha-platform/ui-utils';
+import { listPayoutsData } from '@hypha-platform/ui-utils';
 import { useState } from 'react';
 
 type PageProps = {
@@ -20,13 +20,7 @@ type PageProps = {
 };
 
 export default function TreasuryPage({ params: { lang, id } }: PageProps) {
-  const [requests, setRequests] = useState(listRequestsData.requests);
   const [payouts, setPayouts] = useState(listPayoutsData.payouts);
-
-  const loadMoreRequests = () => {
-    const newRequests = listRequestsData.newRequests;
-    setRequests((prevRequests) => [...prevRequests, ...newRequests]);
-  };
 
   const loadMorePayouts = () => {
     const newPayouts = listPayoutsData.newPayouts;
@@ -83,11 +77,7 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
         <TabsContent value="treasury">
           <div className="flex flex-col justify-between items-center mt-4">
             <AssetsSection />
-            <ListRequests
-              requests={requests}
-              totalValue={listRequestsData.totalValue}
-              onLoadMore={loadMoreRequests}
-            />
+            <RequestsSection />
             <ListPayouts
               payouts={payouts}
               totalValue={listPayoutsData.totalValue}

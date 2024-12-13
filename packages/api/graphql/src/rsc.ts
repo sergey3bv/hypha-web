@@ -11,3 +11,4 @@ export * from './query/outer-spaces/list';
 export * from './query/inner-spaces/list';
 export * from './query/members/list';
 export * from './query/assets/list';
+export * from './query/requests/list';
