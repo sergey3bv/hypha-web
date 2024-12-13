@@ -1,12 +1,16 @@
-import { Page, Locator } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { BasePage } from './base.page';
+import { MemberSpaces } from '../components/member-spaces.component';
+import { RecommendedSpaces } from '../components/recommended-spaces.component';
 
 export class MySpaces extends BasePage {
-  readonly listContainer: Locator;
+  readonly memberSpaces: MemberSpaces;
+  readonly recommendedSpaces: RecommendedSpaces;
 
   constructor(page: Page) {
     super(page);
-    this.listContainer = page.getByTestId('dho-list-container');
+    this.memberSpaces = new MemberSpaces(page);
+    this.recommendedSpaces = new RecommendedSpaces(page);
   }
 
   async open() {
@@ -14,7 +18,13 @@ export class MySpaces extends BasePage {
     await this.waitForPageLoad();
   }
 
-  async isListContainerVisible() {
-    return await this.listContainer.isVisible();
+  async testVisibility() {
+    const memberSpacesVisible = await this.memberSpaces.isVisible();
+    const recommendedSpacesVisible = await this.recommendedSpaces.isVisible();
+
+    return {
+      memberSpaces: memberSpacesVisible,
+      recommendedSpaces: recommendedSpacesVisible
+    };
   }
 }

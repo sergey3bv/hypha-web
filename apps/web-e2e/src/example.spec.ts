@@ -1,9 +1,18 @@
 import { test, expect } from '@playwright/test';
 import { MySpaces } from './pages/my-spaces.page';
 
-test('should display spaces list', async ({ page }) => {
-  const mySpacesPage = new MySpaces(page);
+test.describe('My Spaces Page', () => {
+  let mySpacesPage: MySpaces;
 
-  await mySpacesPage.open();
-  await expect(await mySpacesPage.isListContainerVisible()).toBeTruthy();
+  test.beforeEach(async ({ page }) => {
+    mySpacesPage = new MySpaces(page);
+    await mySpacesPage.open();
+  });
+
+  test('should display both member and recommended spaces sections', async () => {
+    const visibility = await mySpacesPage.testVisibility();
+
+    expect(visibility.memberSpaces).toBeTruthy();
+    expect(visibility.recommendedSpaces).toBeTruthy();
+  });
 });

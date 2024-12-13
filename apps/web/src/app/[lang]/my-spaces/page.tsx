@@ -69,7 +69,7 @@ export default async function Index({ params: { lang } }: PageProps) {
             </Button>
           </div>
         </div>
-        <div data-testid="dho-list-container" className="w-full">
+        <div data-testid="member-spaces-container" className="w-full">
           {daos.map((dao) => (
             <div key={dao.name} className="mb-5">
               <Link href={getDhoPathAgreements(lang, dao.url as string)}>
@@ -87,9 +87,10 @@ export default async function Index({ params: { lang } }: PageProps) {
             </div>
           ))}
         </div>
-        <Text className="text-3">Spaces you might like</Text>
-        <Carousel className="my-8">
-          <CarouselContent>
+        <div data-testid="recommended-spaces-container" className="w-full">
+          <Text className="text-3">Spaces you might like</Text>
+          <Carousel className="my-8">
+            <CarouselContent>
             {daos.map((dao) => (
               <CarouselItem
                 key={dao.name}
@@ -110,8 +111,9 @@ export default async function Index({ params: { lang } }: PageProps) {
                 </Link>
               </CarouselItem>
             ))}
-          </CarouselContent>
-        </Carousel>
+            </CarouselContent>
+          </Carousel>
+        </div>
       </Container>
       <Footer />
     </div>
