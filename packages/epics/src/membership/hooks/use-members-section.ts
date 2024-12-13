@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDiscussions } from './use-discussions';
+import { useMembers } from './use-members';
 
 const sortOptions = [
   { label: 'All', value: 'all' },
@@ -8,15 +8,17 @@ const sortOptions = [
 
 const filterOptions = [
   { label: 'All', value: 'all' },
-  { label: 'Open', value: 'open' },
-  { label: 'Closed', value: 'closed' },
+  { label: 'Active', value: 'active' },
+  { label: 'Inactive', value: 'inactive' },
+  { label: 'Applicants', value: 'applicant' },
+  { label: 'Rejected', value: 'rejected' },
 ];
 
-export const useDiscussionsSection = () => {
+export const useMembersSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
 
-  const { isLoading, pagination } = useDiscussions({
+  const { isLoading, pagination } = useMembers({
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
 

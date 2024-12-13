@@ -1,6 +1,19 @@
 import React from 'react';
 import { useAgreements } from './use-agreements';
 
+const sortOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'Most recent', value: 'most-recent' },
+];
+
+const filterOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'Active', value: 'active' },
+  { label: 'On voting', value: 'voting' },
+  { label: 'Completed', value: 'completed' },
+  { label: 'Rejected', value: 'rejected' },
+];
+
 export const useAgreementsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
@@ -26,5 +39,7 @@ export const useAgreementsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
+    sortOptions,
+    filterOptions,
   };
 };

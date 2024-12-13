@@ -34,16 +34,6 @@ const customAvatarStyles: React.CSSProperties = {
   top: '-54px',
 };
 
-const truncateWithEllipsis: (inputText: string, maxLength: number) => string = (
-  inputText,
-  maxLength
-) => {
-  if (inputText.length > maxLength) {
-    return inputText.slice(0, maxLength) + '...';
-  }
-  return inputText;
-};
-
 export const CardOrganisation: React.FC<DaoCardProps> = ({
   createdDate,
   description,
@@ -89,8 +79,8 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-grow text-xs text-gray-500 mb-4">
-          {truncateWithEllipsis(description, 100)}
+        <div className="flex flex-grow text-xs text-gray-500 mb-4 line-clamp-3">
+          {description}
         </div>
         <div className="flex flex-grow gap-2 text-xs items-center">
           <div className="flex">
