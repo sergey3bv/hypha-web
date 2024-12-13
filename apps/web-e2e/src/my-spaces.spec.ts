@@ -9,7 +9,7 @@ test.describe('My Spaces Page', () => {
     await mySpacesPage.open();
   });
 
-  test('should display both member and recommended spaces sections', async () => {
+  test('should display all sections', async () => {
     const visibility = await mySpacesPage.testVisibility();
 
     expect(visibility.memberSpaces).toBeTruthy();
