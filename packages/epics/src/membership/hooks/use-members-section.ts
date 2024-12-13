@@ -1,18 +1,10 @@
 import React from 'react';
 import { useMembers } from './use-members';
+import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
 
-const sortOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Most recent', value: 'most-recent' },
-];
+const sortOptions = SORT_OPTIONS;
 
-const filterOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Active', value: 'active' },
-  { label: 'Inactive', value: 'inactive' },
-  { label: 'Applicants', value: 'applicant' },
-  { label: 'Rejected', value: 'rejected' },
-];
+const filterOptions = FILTER_OPTIONS.MEMBERS;
 
 export const useMembersSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');

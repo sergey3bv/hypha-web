@@ -1,10 +1,8 @@
 import React from 'react';
 import { useOuterSpaces } from './use-outer-spaces';
+import { SORT_OPTIONS } from '../../common/constants';
 
-const sortOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Most recent', value: 'most-recent' },
-];
+const sortOptions = SORT_OPTIONS;
 
 export const useOuterSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
