@@ -8,6 +8,8 @@ import {
   SectionLoadMore,
   SectionTabs,
 } from '@hypha-platform/ui/server';
+import { Button } from '@hypha-platform/ui';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 type DiscussionSectionProps = Record<string, never>;
 
@@ -32,7 +34,12 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
           count={pagination?.total || 0}
           label="Discussions"
           sortOptions={sortOptions}
-        />
+        >
+          <Button className="ml-2" variant="action" size="sm">
+            <PlusIcon className="mr-2" />
+            Create
+          </Button>
+        </SectionFilter>
         <SectionTabs
           activeTab={activeFilter}
           setActiveTab={setActiveFilter}

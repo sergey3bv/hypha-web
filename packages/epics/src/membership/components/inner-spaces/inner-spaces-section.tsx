@@ -4,6 +4,8 @@ import { InnerSpacesList } from './inner-spaces-list';
 import { Text } from '@radix-ui/themes';
 import { useInnerSpacesSection } from '../../hooks/use-inner-spaces-section';
 import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
+import { Button } from '@hypha-platform/ui';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 type InnerSpacesSectionProps = Record<string, never>;
 
@@ -27,7 +29,12 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
         count={totalCount}
         label="Inner Spaces"
         sortOptions={sortOptions}
-      />
+      >
+        <Button className="ml-2" variant="action" size="sm">
+          <PlusIcon className="mr-2" />
+          Create
+        </Button>
+      </SectionFilter>
       {Array.from({ length: pages }).map((_, index) => (
         <InnerSpacesList page={index + 1} key={index} activeSort={activeSort} />
       ))}
