@@ -1,18 +1,10 @@
 import React from 'react';
 import { useProposals } from './use-proposals';
+import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
 
-const sortOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Most recent', value: 'most-recent' },
-];
+const sortOptions = SORT_OPTIONS;
 
-const filterOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'Active', value: 'active' },
-  { label: 'On voting', value: 'voting' },
-  { label: 'Completed', value: 'completed' },
-  { label: 'Rejected', value: 'rejected' },
-];
+const filterOptions = FILTER_OPTIONS.PROPOSALS;
 
 export const useProposalsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
