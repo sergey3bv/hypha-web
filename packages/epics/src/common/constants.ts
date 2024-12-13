@@ -25,6 +25,12 @@ export const FILTER_OPTIONS = {
     { label: 'Completed', value: 'completed' },
     { label: 'Rejected', value: 'rejected' },
   ],
+  ASSETS: [
+    { label: 'All', value: 'all' },
+    { label: 'Utility', value: 'utility' },
+    { label: 'Liquid', value: 'liquid' },
+    { label: 'Voice', value: 'voice' },
+  ],
 };
 
 export const SORT_OPTIONS = [

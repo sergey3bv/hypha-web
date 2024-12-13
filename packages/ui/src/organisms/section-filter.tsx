@@ -10,9 +10,10 @@ type FilterOption = {
 type SectionFilterProps = {
   value: string;
   onChange: (value: string) => void;
-  count: number;
+  count: number | string;
   label: string;
   sortOptions: FilterOption[];
+  children?: React.ReactNode;
 };
 
 export const SectionFilter: FC<SectionFilterProps> = ({
@@ -21,6 +22,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
   count,
   label,
   sortOptions,
+  children,
 }) => {
   return (
     <div className="flex justify-between items-center mt-6 w-full">
@@ -29,6 +31,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
       </Text>
       <div className="flex items-center">
         <FilterMenu value={value} onChange={onChange} options={sortOptions} />
+        {children}
       </div>
     </div>
   );
