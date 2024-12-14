@@ -146,7 +146,7 @@ export default async function DhoLayout({
                   className="w-4"
                   color="bg-primary-foreground"
                   icon={faXTwitter}
-                ></FontAwesomeIcon>
+                />
                 <Text className="ml-1 text-xs">@HyphaDAO</Text>
               </div>
             </Button>
