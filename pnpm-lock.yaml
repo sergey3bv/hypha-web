@@ -280,8 +280,8 @@ importers:
         specifier: ^2.6.2
         version: 2.8.8
       shadcn-ui:
-        specifier: ^0.8.0
-        version: 0.8.0(typescript@5.6.3)
+        specifier: ^0.9.4
+        version: 0.9.4(typescript@5.6.3)
       storybook:
         specifier: 8.4.7
         version: 8.4.7(prettier@2.8.8)
@@ -7111,9 +7111,6 @@ packages:
     resolution: {integrity: sha512-gvVijfZvn7R+2qyPX8mAuKcFGDf6Nc61GdvGafQsHL0sBIxfKzA+usWn4GFC/bk+QdwPUD4kWFJLhElipq+0VA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  lodash._reinterpolate@3.0.0:
-    resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
-
   lodash.clonedeepwith@4.5.0:
     resolution: {integrity: sha512-QRBRSxhbtsX1nc0baxSkkK5WlVTTm/s48DSukcGcWZwIyI8Zz+lB+kFiELJXtzfH4Aj6kMWQ1VWW4U5uUDgZMA==}
 
@@ -7131,12 +7128,6 @@ packages:
 
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
-
-  lodash.template@4.5.0:
-    resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
-
-  lodash.templatesettings@4.2.0:
-    resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
 
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
@@ -8748,8 +8739,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn-ui@0.8.0:
-    resolution: {integrity: sha512-avqRgjJ6PIQQXdfvoCAWQpyLTLk6oHhtU5DQKmLeYcgu1ZIsgMqA9MKWAkr0HpEdCAenCCZvFbvJ2C2m5ZXRiA==}
+  shadcn-ui@0.9.4:
+    resolution: {integrity: sha512-75nqu4+y4mlhNXGfHPoPd1r2fgqGQgSEPzPe8TV39WRinafKHuBX2xkgoQOwu+NhiRPKV5TrRSCZ5ytGrFU1oQ==}
     hasBin: true
 
   shallow-clone@3.0.1:
@@ -18886,8 +18877,6 @@ snapshots:
     dependencies:
       p-locate: 6.0.0
 
-  lodash._reinterpolate@3.0.0: {}
-
   lodash.clonedeepwith@4.5.0: {}
 
   lodash.debounce@4.0.8: {}
@@ -18899,15 +18888,6 @@ snapshots:
   lodash.merge@4.6.2: {}
 
   lodash.sortby@4.7.0: {}
-
-  lodash.template@4.5.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
-      lodash.templatesettings: 4.2.0
-
-  lodash.templatesettings@4.2.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
 
   lodash.uniq@4.5.0: {}
 
@@ -20700,7 +20680,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn-ui@0.8.0(typescript@5.6.3):
+  shadcn-ui@0.9.4(typescript@5.6.3):
     dependencies:
       '@antfu/ni': 0.21.12
       '@babel/core': 7.25.2
@@ -20714,7 +20694,7 @@ snapshots:
       fast-glob: 3.3.2
       fs-extra: 11.2.0
       https-proxy-agent: 6.2.1
-      lodash.template: 4.5.0
+      lodash: 4.17.21
       node-fetch: 3.3.2
       ora: 6.3.1
       prompts: 2.4.2
