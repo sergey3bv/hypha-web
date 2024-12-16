@@ -1,6 +1,9 @@
 import React from 'react';
 import { useAgreements } from './use-agreements';
-import { FILTER_OPTIONS_AGREEMENTS, SORT_OPTIONS } from '../../common/constants';
+import {
+  FILTER_OPTIONS_AGREEMENTS,
+  SORT_OPTIONS,
+} from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 

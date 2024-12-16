@@ -1,6 +1,9 @@
 import React from 'react';
 import { useDiscussions } from './use-discussions';
-import { FILTER_OPTIONS_DISCUSSIONS, SORT_OPTIONS } from '../../common/constants';
+import {
+  FILTER_OPTIONS_DISCUSSIONS,
+  SORT_OPTIONS,
+} from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
