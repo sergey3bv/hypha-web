@@ -1,10 +1,10 @@
 import React from 'react';
 import { useMembers } from './use-members';
-import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_MEMBERS, SORT_OPTIONS } from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS.MEMBERS;
+const filterOptions = FILTER_OPTIONS_MEMBERS;
 
 export const useMembersSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDiscussions } from './use-discussions';
-import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_DISCUSSIONS, SORT_OPTIONS } from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS.DISCUSSIONS;
+const filterOptions = FILTER_OPTIONS_DISCUSSIONS;
 
 export const useDiscussionsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
