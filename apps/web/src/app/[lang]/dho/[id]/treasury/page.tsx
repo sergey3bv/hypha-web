@@ -7,12 +7,12 @@ import {
   TabsContent,
 } from '@hypha-platform/ui/server';
 import Link from 'next/link';
-import { ListAssets, ListPayouts, ListRequests } from '@hypha-platform/epics';
 import {
-  listRequestsData,
-  listPayoutsData,
-  listAssetsData,
-} from '@hypha-platform/ui-utils';
+  AssetsSection,
+  ListPayouts,
+  RequestsSection,
+} from '@hypha-platform/epics';
+import { listPayoutsData } from '@hypha-platform/ui-utils';
 import { useState } from 'react';
 
 type PageProps = {
@@ -20,23 +20,11 @@ type PageProps = {
 };
 
 export default function TreasuryPage({ params: { lang, id } }: PageProps) {
-  const [requests, setRequests] = useState(listRequestsData.requests);
   const [payouts, setPayouts] = useState(listPayoutsData.payouts);
-  const [assets, setAssets] = useState(listAssetsData.assets);
-
-  const loadMoreRequests = () => {
-    const newRequests = listRequestsData.newRequests;
-    setRequests((prevRequests) => [...prevRequests, ...newRequests]);
-  };
 
   const loadMorePayouts = () => {
     const newPayouts = listPayoutsData.newPayouts;
     setPayouts((prevRequests) => [...prevRequests, ...newPayouts]);
-  };
-
-  const loadMoreAssets = () => {
-    const newAssets = listAssetsData.newAssets;
-    setAssets((prevRequests) => [...prevRequests, ...newAssets]);
   };
 
   return (
@@ -88,16 +76,8 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
         </TabsList>
         <TabsContent value="treasury">
           <div className="flex flex-col justify-between items-center mt-4">
-            <ListAssets
-              assets={assets}
-              balance={listAssetsData.balance}
-              onLoadMore={loadMoreAssets}
-            />
-            <ListRequests
-              requests={requests}
-              totalValue={listRequestsData.totalValue}
-              onLoadMore={loadMoreRequests}
-            />
+            <AssetsSection />
+            <RequestsSection />
             <ListPayouts
               payouts={payouts}
               totalValue={listPayoutsData.totalValue}

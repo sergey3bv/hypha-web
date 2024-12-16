@@ -1,10 +1,10 @@
 import React from 'react';
 import { useProposals } from './use-proposals';
-import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_PROPOSALS, SORT_OPTIONS } from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS.PROPOSALS;
+const filterOptions = FILTER_OPTIONS_PROPOSALS;
 
 export const useProposalsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');

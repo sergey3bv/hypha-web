@@ -1,16 +1,17 @@
 import React from 'react';
-import { useMembers } from './use-members';
-import { FILTER_OPTIONS_MEMBERS, SORT_OPTIONS } from '../../common/constants';
+import { useAssets } from './use-assets';
+import { FILTER_OPTIONS_ASSETS, SORT_OPTIONS } from '../../common/constants';
+import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS_MEMBERS;
+const filterOptions = FILTER_OPTIONS_ASSETS;
 
-export const useMembersSection = () => {
+export const useAssetsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
 
-  const { isLoading, pagination } = useMembers({
+  const { isLoading, pagination, balance } = useAssets({
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
 
@@ -23,6 +24,8 @@ export const useMembersSection = () => {
     setPages(pages + 1);
   }, [pages, pagination?.hasNextPage, setPages]);
 
+  const totalBalance = `$ ${formatCurrencyValue(balance)}`;
+
   return {
     isLoading,
     loadMore,
@@ -33,5 +36,6 @@ export const useMembersSection = () => {
     setActiveFilter,
     sortOptions,
     filterOptions,
+    totalBalance,
   };
 };

@@ -1,10 +1,13 @@
 import React from 'react';
 import { useAgreements } from './use-agreements';
-import { FILTER_OPTIONS, SORT_OPTIONS } from '../../common/constants';
+import {
+  FILTER_OPTIONS_AGREEMENTS,
+  SORT_OPTIONS,
+} from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS.AGREEMENTS;
+const filterOptions = FILTER_OPTIONS_AGREEMENTS;
 
 export const useAgreementsSection = () => {
   const [activeFilter, setActiveFilter] = React.useState('all');

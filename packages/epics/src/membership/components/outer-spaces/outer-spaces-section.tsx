@@ -4,6 +4,8 @@ import { OuterSpacesList } from './outer-spaces-list';
 import { Text } from '@radix-ui/themes';
 import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
 import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
+import { Button } from '@hypha-platform/ui';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 type OuterSpacesSectionProps = Record<string, never>;
 
@@ -27,7 +29,12 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
         count={totalCount}
         label="Outer Spaces"
         sortOptions={sortOptions}
-      />
+      >
+        <Button className="ml-2" variant="action" size="sm">
+          <PlusIcon className="mr-2" />
+          Invite space
+        </Button>
+      </SectionFilter>
       {Array.from({ length: pages }).map((_, index) => (
         <OuterSpacesList page={index + 1} key={index} activeSort={activeSort} />
       ))}

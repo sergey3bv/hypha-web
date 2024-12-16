@@ -11,3 +11,4 @@ export * from './tabs';
 export * from './section-filter';
 export * from './section-load-more';
 export * from './section-tabs';
+export * from './amount';

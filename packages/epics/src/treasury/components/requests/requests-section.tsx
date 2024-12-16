@@ -1,51 +1,42 @@
 'use client';
 import { FC } from 'react';
-import { MembersList } from './members-list';
+import { RequestsList } from './requests-list';
 import { Text } from '@radix-ui/themes';
-import { useMembersSection } from '../../hooks/use-members-section';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { useRequestsSection } from '../../hooks/use-requests-section';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-type MemberSectionProps = Record<string, never>;
+type RequestsSectionProps = Record<string, never>;
 
-export const MembersSection: FC<MemberSectionProps> = () => {
+export const RequestsSection: FC<RequestsSectionProps> = () => {
   const {
     pages,
-    activeFilter,
-    setActiveFilter,
+    activeSort,
+    setSort,
     isLoading,
     loadMore,
     pagination,
     sortOptions,
-    filterOptions,
-  } = useMembersSection();
+    totalRequestsValue,
+  } = useRequestsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={pagination?.total || 0}
-        label="Members"
+        value={activeSort}
+        onChange={setSort}
+        count={totalRequestsValue}
+        label="Requests"
         sortOptions={sortOptions}
       >
         <Button className="ml-2" variant="action" size="sm">
           <PlusIcon className="mr-2" />
-          Invite member
+          Payout Request
         </Button>
       </SectionFilter>
-      <SectionTabs
-        activeTab={activeFilter}
-        setActiveTab={setActiveFilter}
-        tabs={filterOptions}
-      />
       {Array.from({ length: pages }).map((_, index) => (
-        <MembersList page={index + 1} key={index} activeFilter={activeFilter} />
+        <RequestsList page={index + 1} key={index} activeSort={activeSort} />
       ))}
       <SectionLoadMore
         onClick={loadMore}
@@ -54,8 +45,8 @@ export const MembersSection: FC<MemberSectionProps> = () => {
       >
         <Text>
           {pagination?.totalPages === pages
-            ? 'No more members'
-            : 'Load more members'}
+            ? 'No more requests'
+            : 'Load more requests'}
         </Text>
       </SectionLoadMore>
     </div>
