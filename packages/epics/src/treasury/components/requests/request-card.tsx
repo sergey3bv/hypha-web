@@ -2,8 +2,9 @@ import { Text } from '@radix-ui/themes';
 import { Card, Badge } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { formatCurrencyValue, formatDate } from '@hypha-platform/ui-utils';
+import { formatDate } from '@hypha-platform/ui-utils';
 import { Skeleton } from '@hypha-platform/ui';
+import { Amount } from '@hypha-platform/ui/server';
 
 type RequestCardProps = {
   name?: string;
@@ -34,10 +35,10 @@ export const RequestCard: React.FC<RequestCardProps> = ({
       >
         <Image
           className="rounded-lg mr-3"
-          src={avatar ? avatar : ''}
+          src={avatar ?? ''}
           height={64}
           width={64}
-          alt={name ? name : ''}
+          alt={name ?? ''}
         />
       </Skeleton>
       <div className="flex justify-between items-center w-full">
@@ -50,16 +51,7 @@ export const RequestCard: React.FC<RequestCardProps> = ({
               Pending
             </Badge>
           </div>
-          <Skeleton
-            height="26px"
-            width="160px"
-            loading={isLoading}
-            className="my-1"
-          >
-            <Text className="text-3">
-              $ {value ? formatCurrencyValue(value) : null}
-            </Text>
-          </Skeleton>
+          <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton loading={isLoading} width="80px" height="16px">
             <Text className="text-xs text-gray-500">
               {name} {surname}
