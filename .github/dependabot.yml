@@ -15,3 +15,6 @@ updates:
       fontawesome:
         patterns:
           - "@fortawesome/*"
+      radixui:
+        patterns:
+          - "@radix-ui/*"
