@@ -11,3 +11,10 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-name: '@nx/*'
+    groups:
+      fontawesome:
+        patterns:
+          - "@fortawesome/*"
+      radixui:
+        patterns:
+          - "@radix-ui/*"
