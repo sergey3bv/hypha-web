@@ -35,6 +35,12 @@ export const FILTER_OPTIONS_ASSETS = [
   { label: 'Voice', value: 'voice' },
 ];
 
+export const FILTER_OPTIONS_PAYOUTS = [
+  { label: 'All', value: 'all' },
+  { label: 'Completed', value: 'completed' },
+  { label: 'Rejected', value: 'rejected' },
+];
+
 export const SORT_OPTIONS = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },

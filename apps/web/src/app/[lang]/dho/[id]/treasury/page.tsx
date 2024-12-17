@@ -1,4 +1,3 @@
-'use client';
 import { Locale } from '@hypha-platform/i18n';
 import {
   Tabs,
@@ -9,24 +8,15 @@ import {
 import Link from 'next/link';
 import {
   AssetsSection,
-  ListPayouts,
+  PayoutsSection,
   RequestsSection,
 } from '@hypha-platform/epics';
-import { listPayoutsData } from '@hypha-platform/ui-utils';
-import { useState } from 'react';
 
 type PageProps = {
   params: { lang: Locale; id: string };
 };
 
 export default function TreasuryPage({ params: { lang, id } }: PageProps) {
-  const [payouts, setPayouts] = useState(listPayoutsData.payouts);
-
-  const loadMorePayouts = () => {
-    const newPayouts = listPayoutsData.newPayouts;
-    setPayouts((prevRequests) => [...prevRequests, ...newPayouts]);
-  };
-
   return (
     <div>
       <Tabs value="treasury" className="w-full mt-16">
@@ -78,11 +68,7 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
           <div className="flex flex-col justify-between items-center mt-4">
             <AssetsSection />
             <RequestsSection />
-            <ListPayouts
-              payouts={payouts}
-              totalValue={listPayoutsData.totalValue}
-              onLoadMore={loadMorePayouts}
-            />
+            <PayoutsSection />
           </div>
         </TabsContent>
       </Tabs>
