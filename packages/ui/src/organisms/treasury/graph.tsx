@@ -6,7 +6,10 @@ type TreasuryGraphProps = {
   height?: number;
 };
 
-export const TreasuryGraph = ({ width = 600, height = 600 }: TreasuryGraphProps) => (
+export const TreasuryGraph = ({
+  width = 600,
+  height = 600,
+}: TreasuryGraphProps) => (
   <Image
     src={TreasuryGraphSrc}
     alt="Treasury Graph"

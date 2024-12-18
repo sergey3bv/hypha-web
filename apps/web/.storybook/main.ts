@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
-
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { mergeConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';

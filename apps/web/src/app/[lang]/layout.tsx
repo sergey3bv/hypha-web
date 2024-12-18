@@ -33,7 +33,6 @@ export default function RootLayout({
   console.debug('RootLayout', { modal });
   return (
     <Html className={clsx(lato.variable, sourceSans.variable)}>
-
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

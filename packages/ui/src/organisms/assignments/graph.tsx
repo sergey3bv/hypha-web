@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import AssignmentsGraphSrc from './graph.svg';
 

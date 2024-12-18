@@ -10,7 +10,6 @@ const meta: Meta<typeof AgreementCard> = {
 export default meta;
 type Story = StoryObj<typeof AgreementCard>;
 
-
 export const Primary: Story = {
   args: {
     commitment: 100,

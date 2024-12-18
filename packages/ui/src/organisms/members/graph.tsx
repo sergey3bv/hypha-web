@@ -6,7 +6,10 @@ type MembersGraphProps = {
   height?: number;
 };
 
-export const MembersGraph = ({ width = 600, height = 600 }: MembersGraphProps) => (
+export const MembersGraph = ({
+  width = 600,
+  height = 600,
+}: MembersGraphProps) => (
   <Image
     src={MembersGraphSrc}
     alt="Members Graph"
