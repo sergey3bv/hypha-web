@@ -10,19 +10,8 @@ const meta: Meta<typeof AgreementCard> = {
 export default meta;
 type Story = StoryObj<typeof AgreementCard>;
 
-export const Primary = {
-  args: {
-    commitment: '',
-    status: '',
-    title: '',
-    creator: '',
-    views: '',
-    comments: '',
-    isLoading: '',
-  },
-};
 
-export const Heading: Story = {
+export const Primary: Story = {
   args: {
     commitment: 100,
     status: 'active',
@@ -38,6 +27,6 @@ export const Heading: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to AgreementCard!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Agreement Title/gi)).toBeTruthy();
   },
 };
