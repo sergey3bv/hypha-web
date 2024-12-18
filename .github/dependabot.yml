@@ -12,9 +12,31 @@ updates:
     ignore:
       - dependency-name: '@nx/*'
     groups:
+      babel:
+        patterns:
+          - "@babel/*"
+          - "babel*"
+
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "*-eslint*"
+
       fontawesome:
         patterns:
           - "@fortawesome/*"
       radix-ui:
         patterns:
           - "@radix-ui/*"
+
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+
+      types:
+        patterns:
+          - "@types/*"
+
+
