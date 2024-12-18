@@ -2,10 +2,14 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { mergeConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
-  stories: ['../src/app/**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
+  stories: [
+    '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../../packages/epics/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+  ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',
@@ -14,7 +18,8 @@ const config: StorybookConfig = {
 
   viteFinal: async (config) =>
     mergeConfig(config, {
-      plugins: [react(), nxViteTsPaths()],
+      plugins: [nxViteTsPaths(), svgr()],
+      define: { 'process.env': {} },
     }),
 };
 

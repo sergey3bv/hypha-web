@@ -4,23 +4,5 @@
   "projectType": "application",
   "sourceRoot": "apps/storybook/src",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "main": "apps/storybook/src/main.ts",
-        "outputPath": "dist/apps/storybook",
-        "tsConfig": "apps/storybook/tsconfig.app.json"
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "dependsOn": ["build"],
-      "options": {
-        "buildTarget": "storybook:build",
-        "spa": true
-      }
-    }
-  }
+  "targets": {}
 }

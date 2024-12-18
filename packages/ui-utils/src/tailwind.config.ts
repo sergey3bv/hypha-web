@@ -13,6 +13,8 @@ export function buildConfig(appDir: string): Config {
         appDir,
         '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'
       ),
+      '../../packages/ui/src/**/*!(*.stories|*.spec).{ts,tsx,html}',
+      '../../packages/epics/src/**/*!(*.stories|*.spec).{ts,tsx,html}',
       ...createGlobPatternsForDependencies(appDir),
     ],
     theme: {
