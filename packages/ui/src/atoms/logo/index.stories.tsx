@@ -6,7 +6,7 @@ import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof Logo> = {
   component: Logo,
-  title: 'atoms/Logo',
+  title: 'UI/atoms/Logo',
 };
 export default meta;
 type Story = StoryObj<typeof Logo>;

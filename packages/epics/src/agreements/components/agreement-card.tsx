@@ -1,6 +1,6 @@
 import { Text } from '@radix-ui/themes';
 import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Image } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 
 type Creator = {

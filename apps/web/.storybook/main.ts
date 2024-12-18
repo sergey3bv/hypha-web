@@ -5,7 +5,11 @@ import { mergeConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: [
+    '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../../packages/epics/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+  ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',

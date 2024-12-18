@@ -1,24 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tiptap } from './editor';
-
+import { Badge } from './badge';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<typeof Tiptap> = {
-  component: Tiptap,
-  title: 'Tiptap',
+const meta: Meta<typeof Badge> = {
+  component: Badge,
+  title: 'UI/Badge',
 };
 export default meta;
-type Story = StoryObj<typeof Tiptap>;
+type Story = StoryObj<typeof Badge>;
 
 export const Primary = {
-  args: {},
+  args: {
+    isLoading: false,
+    children: 'Badge',
+  },
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    isLoading: false,
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Tiptap!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Welcome to Badge!/gi)).toBeTruthy();
   },
 };

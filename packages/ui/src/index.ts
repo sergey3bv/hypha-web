@@ -7,6 +7,7 @@ export * from './button-nav-item';
 export * from './container';
 export * from './badge';
 export * from './filter-menu';
+export * from './image';
 export * from './carousel';
 export * from './skeleton';
 export * from './status-badge';
