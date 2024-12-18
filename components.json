@@ -10,6 +10,9 @@
   },
   "aliases": {
     "components": "@hypha-platform/ui",
-    "utils": "@hypha-platform/ui-utils"
+    "utils": "@hypha-platform/ui-utils",
+    "lib": "@hypha-platform/ui-utils",
+    "ui": "packages/ui/src",
+    "hooks": "packages/ui/src/hooks"
   }
 }
