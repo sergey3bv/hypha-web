@@ -10,7 +10,6 @@ const meta: Meta<typeof FormInput> = {
 export default meta;
 type Story = StoryObj<typeof FormInput>;
 
-
 export const Primary: Story = {
   args: {},
   play: async ({ canvasElement }) => {

@@ -1,9 +1,9 @@
-import * as React from "react"
-import { cn } from "@hypha-platform/ui-utils"
+import * as React from 'react';
+import { cn } from '@hypha-platform/ui-utils';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -18,10 +18,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "flex h-6 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-            "placeholder:text-muted-foreground placeholder:text-2 placeholder:text-medium",
-            leftIcon && "pl-12",
-            rightIcon && "pr-12",
+            'flex h-6 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+            'placeholder:text-muted-foreground placeholder:text-2 placeholder:text-medium',
+            leftIcon && 'pl-12',
+            rightIcon && 'pr-12',
             className
           )}
           ref={ref}
@@ -33,9 +33,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
       </div>
-    )
+    );
   }
-)
-Input.displayName = "Input"
+);
+Input.displayName = 'Input';
 
-export { Input }
+export { Input };
