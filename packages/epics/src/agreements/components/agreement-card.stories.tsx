@@ -5,7 +5,7 @@ import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof AgreementCard> = {
   component: AgreementCard,
-  title: 'AgreementCard',
+  title: 'Epics/Agreements/AgreementCard',
 };
 export default meta;
 type Story = StoryObj<typeof AgreementCard>;
