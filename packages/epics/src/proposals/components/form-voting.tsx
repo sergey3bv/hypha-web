@@ -38,12 +38,12 @@ export const FormVoting = ({
   onReject: () => void;
 }) => {
   return (
-    <div className="flex flex-col gap-4">
-      <ProgressLine label="Unity" value={unity} indicatorColor="bg-blue-500" />
+    <div className="flex flex-col gap-4 text-neutral-11">
+      <ProgressLine label="Unity" value={unity} indicatorColor="bg-accent-9" />
       <ProgressLine
         label="Quorum"
         value={quorum}
-        indicatorColor="bg-gray-500"
+        indicatorColor="bg-accent-12"
       />
       <div className="flex items-center justify-between">
         <div>{formatTimeRemaining(date)}</div>
