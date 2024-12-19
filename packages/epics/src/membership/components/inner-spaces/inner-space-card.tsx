@@ -103,19 +103,11 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
         <Skeleton width="200px" height="32px" loading={isLoading}>
           <div>
             {joinedStatus ? (
-              <Button
-                className="rounded-lg w-full"
-                variant="outline"
-                size="sm"
-              >
+              <Button className="rounded-lg w-full" variant="outline" size="sm">
                 Joined
               </Button>
             ) : (
-              <Button
-                className="rounded-lg w-full"
-                variant="outline"
-                size="sm"
-              >
+              <Button className="rounded-lg w-full" variant="outline" size="sm">
                 Join
               </Button>
             )}
