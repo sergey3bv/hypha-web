@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 import { Card, Button, Skeleton } from '@hypha-platform/ui';
 import { CreatorType, ProposalHead } from './proposal-head';
-=======
-import { Card, Button,  Skeleton } from '@hypha-platform/ui';
-import { CreatorType, ProposalHead } from './proposal-head';
-
-
->>>>>>> ddd7fb6 (feat(#73): add ProposalDetail Component)
 
 type ProposalCardProps = {
   creator?: CreatorType;

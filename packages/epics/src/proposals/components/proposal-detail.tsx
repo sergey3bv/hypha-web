@@ -3,12 +3,8 @@ import { formatISO } from 'date-fns';
 import { FormVoting } from './form-voting';
 import { ProposalHead, ProposalHeadProps } from './proposal-head';
 import { Button, Separator } from '@hypha-platform/ui';
-<<<<<<< HEAD
 import { RxCross1 } from 'react-icons/rx';
-=======
-import { RxCross1 } from "react-icons/rx";
 
->>>>>>> ddd7fb6 (feat(#73): add ProposalDetail Component)
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
