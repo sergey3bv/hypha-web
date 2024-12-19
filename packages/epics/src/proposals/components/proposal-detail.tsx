@@ -3,8 +3,7 @@ import { formatISO } from 'date-fns';
 import { FormVoting } from './form-voting';
 import { ProposalHead, ProposalHeadProps } from './proposal-head';
 import { Button, Separator } from '@hypha-platform/ui';
-import { RxCross1 } from "react-icons/rx";
-
+import { RxCross1 } from 'react-icons/rx';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -38,9 +37,7 @@ export const ProposalDetail = ({
         </Button>
       </div>
       <Separator />
-      <div>
-        {content}
-      </div>
+      <div>{content}</div>
       <Separator />
       <FormVoting
         unity={50}

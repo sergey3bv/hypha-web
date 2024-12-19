@@ -12,7 +12,8 @@ type Story = StoryObj<typeof CardComment>;
 
 export const Primary: Story = {
   args: {
-    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+    comment:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     author: {
       avatar: 'https://github.com/shadcn.png',
       name: 'John',

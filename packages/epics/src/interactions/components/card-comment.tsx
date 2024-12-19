@@ -1,7 +1,6 @@
 import { Button, Card, CardHeader, CardTitle, Image } from '@hypha-platform/ui';
 import { Author } from '../../profile/components/author';
-import { RxHeart } from "react-icons/rx";
-
+import { RxHeart } from 'react-icons/rx';
 
 export type User = {
   avatar?: string;

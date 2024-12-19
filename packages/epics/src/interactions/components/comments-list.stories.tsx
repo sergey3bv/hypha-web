@@ -13,7 +13,6 @@ const meta: Meta<typeof CommentsList> = {
 export default meta;
 type Story = StoryObj<typeof CommentsList>;
 
-
 export const Primary: Story = {
   args: {
     activeFilter: 'most-recent',
@@ -33,7 +32,8 @@ export const Primary: Story = {
     comments: [
       {
         id: '1',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
         author: {
           avatar: 'https://github.com/shadcn.png',
           name: 'John',

@@ -1,6 +1,3 @@
-
-
-
 type AuthorProps = {
   author: {
     name?: string;
