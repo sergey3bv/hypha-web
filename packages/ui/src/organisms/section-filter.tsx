@@ -25,7 +25,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
   children,
 }) => {
   return (
-    <div className="flex justify-between items-center mt-6 w-full">
+    <div className="flex justify-between items-center w-full">
       <Text className="text-lg">
         {label} | {count}
       </Text>

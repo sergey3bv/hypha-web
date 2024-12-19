@@ -4,7 +4,7 @@ import { FormVoting } from './form-voting';
 import { ProposalHead, ProposalHeadProps } from './proposal-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-
+import { CommentsList } from '../../interactions/components/comments-list';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -38,9 +38,7 @@ export const ProposalDetail = ({
         </Button>
       </div>
       <Separator />
-      <div>
-        {content}
-      </div>
+      <div>{content}</div>
       <Separator />
       <FormVoting
         unity={50}
@@ -54,6 +52,36 @@ export const ProposalDetail = ({
         }}
       />
       <Separator />
+      <CommentsList
+        activeFilter="most-recent"
+        setActiveFilter={() => {}}
+        pagination={{
+          total: 1,
+        }}
+        sortOptions={[
+          {
+            label: 'Most Recent',
+            value: 'most-recent',
+          },
+          {
+            label: 'Oldest',
+            value: 'oldest',
+          },
+        ]}
+        comments={[
+          {
+            id: '1',
+            comment:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+            author: {
+              avatar: 'https://github.com/shadcn.png',
+              name: 'John',
+              surname: 'Doe',
+            },
+            likes: 10,
+          },
+        ]}
+      />
     </div>
   );
 };
