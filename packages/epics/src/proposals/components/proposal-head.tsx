@@ -1,35 +1,29 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
-import { Image } from '@hypha-platform/ui';
-import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
+import { Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
 
-type Creator = {
+export type CreatorType = {
   avatar?: string;
   name?: string;
   surname?: string;
 };
 
-type AgreementCardProps = {
-  creator?: Creator;
+export type ProposalHeadProps = {
+  creator?: CreatorType;
   title?: string;
   commitment?: number;
   status?: string;
-  views?: number;
-  comments?: number;
   isLoading?: boolean;
 };
 
-export const AgreementCard: React.FC<AgreementCardProps> = ({
+export const ProposalHead = ({
+  creator,
+  title,
   commitment,
   status,
-  title,
-  creator,
-  views,
-  comments,
   isLoading,
-}) => {
+}: ProposalHeadProps) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex">
+    <div className="flex items-center">
       <Skeleton
         width="64px"
         height="64px"
@@ -52,14 +46,14 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading}>Agreement</Badge>
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge isLoading={isLoading}>Proposal</Badge>
+            <Badge variant="actionOutline" isLoading={isLoading}>
               Recurring
             </Badge>
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge variant="actionOutline" isLoading={isLoading}>
               {commitment}%
             </Badge>
-            <StatusBadge status={status} isLoading={isLoading} />
+            <StatusBadge isLoading={isLoading} status={status} />
           </div>
 
           <Skeleton
@@ -77,23 +71,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
             </Text>
           </Skeleton>
         </div>
-
-        <div className="flex flex-grow gap-2 text-xs text-gray-500 items-end justify-end h-full">
-          <Skeleton width="16px" height="16px" loading={isLoading}>
-            <div className="flex">
-              <EyeOpenIcon className="mr-1" width={16} />
-              <div>{views}</div>
-            </div>
-          </Skeleton>
-
-          <Skeleton width="16px" height="16px" loading={isLoading}>
-            <div className="flex ml-3">
-              <ChatBubbleIcon className="mr-1" width={16} />
-              <div>{comments}</div>
-            </div>
-          </Skeleton>
-        </div>
       </div>
-    </Card>
+    </div>
   );
 };

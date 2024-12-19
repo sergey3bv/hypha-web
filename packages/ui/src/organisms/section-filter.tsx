@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FilterMenu } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
 
-type FilterOption = {
+export type FilterOption = {
   label: string;
   value: string;
 };
