@@ -1,13 +1,17 @@
-import * as React from "react"
-import { Progress } from "@hypha-platform/ui"
+import * as React from 'react';
+import { Progress } from '@hypha-platform/ui';
 
 interface ProgressLineProps {
-  label: string
-  value: number
-  indicatorColor?: string
+  label: string;
+  value: number;
+  indicatorColor?: string;
 }
 
-export function ProgressLine({ label, value, indicatorColor }: ProgressLineProps) {
+export function ProgressLine({
+  label,
+  value,
+  indicatorColor,
+}: ProgressLineProps) {
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between">
@@ -16,5 +20,5 @@ export function ProgressLine({ label, value, indicatorColor }: ProgressLineProps
       </div>
       <Progress value={value} indicatorColor={indicatorColor} className="h-1" />
     </div>
-  )
+  );
 }
