@@ -9,6 +9,8 @@ export * from './carousel';
 export * from './container';
 export * from './filter-menu';
 export * from './input';
+export * from './progress';
+export * from './separator';
 export * from './image';
 export * from './skeleton';
 export * from './status-badge';
