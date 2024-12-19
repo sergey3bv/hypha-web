@@ -9,6 +9,7 @@ import { CommentsList } from '../../interactions/components/comments-list';
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
   onReject: () => void;
+  onSetActiveFilter: (value: string) => void;
   content: string;
 };
 
@@ -21,6 +22,7 @@ export const ProposalDetail = ({
   onAccept,
   onReject,
   content,
+  onSetActiveFilter,
 }: ProposalDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -54,7 +56,7 @@ export const ProposalDetail = ({
       <Separator />
       <CommentsList
         activeFilter="most-recent"
-        setActiveFilter={() => {}}
+        setActiveFilter={onSetActiveFilter}
         pagination={{
           total: 1,
         }}
