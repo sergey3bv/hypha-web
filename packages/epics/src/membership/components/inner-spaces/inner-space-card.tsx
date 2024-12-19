@@ -105,7 +105,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
             {joinedStatus ? (
               <Button
                 className="rounded-lg w-full"
-                variant="actionOutlineChecked"
+                variant="outline"
                 size="sm"
               >
                 Joined
@@ -113,7 +113,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
             ) : (
               <Button
                 className="rounded-lg w-full"
-                variant="actionOutline"
+                variant="outline"
                 size="sm"
               >
                 Join
