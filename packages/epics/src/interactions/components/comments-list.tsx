@@ -1,5 +1,6 @@
-import { FilterOption, SectionFilter } from "@hypha-platform/ui/server"
-import { CardComment, CardCommentProps } from "./card-comment";
+import { FilterOption, SectionFilter } from '@hypha-platform/ui/server';
+import { CardComment, CardCommentProps } from './card-comment';
+import { FormInput } from './form-input';
 
 type CommentsListProps = {
   activeFilter: string;
@@ -9,7 +10,7 @@ type CommentsListProps = {
   };
   sortOptions: FilterOption[];
   comments?: CardCommentProps[];
-}
+};
 
 export const CommentsList = ({
   activeFilter,
@@ -27,9 +28,12 @@ export const CommentsList = ({
         label="Comments"
         sortOptions={sortOptions}
       />
-      {comments?.map((comment) => (
-        <CardComment key={comment.id} {...comment} />
-      )) || <div>No comments</div>}
+      <div className="flex flex-col gap-2">
+        {comments?.map((comment) => (
+          <CardComment key={comment.id} {...comment} />
+        )) || <div>No comments</div>}
+        <FormInput />
+      </div>
     </div>
   );
 };
