@@ -21,5 +21,6 @@ export default defineConfig({
       reportsDirectory: '../../coverage/packages/ui',
       provider: 'v8',
     },
+    passWithNoTests: true,
   },
 });
