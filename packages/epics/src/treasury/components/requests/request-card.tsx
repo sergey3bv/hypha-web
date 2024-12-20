@@ -44,10 +44,14 @@ export const RequestCard: React.FC<RequestCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="action">
+            <Badge
+              isLoading={isLoading}
+              variant="surface"
+              colorVariant="accent"
+            >
               {symbol}
             </Badge>
-            <Badge isLoading={isLoading} variant="warning">
+            <Badge isLoading={isLoading} variant="surface" colorVariant="warn">
               Pending
             </Badge>
           </div>

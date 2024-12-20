@@ -1,8 +1,7 @@
-import { Badge } from '../index';
+import { Badge, BadgeProps } from '../badge';
 
-type BadgeConfig = {
+type BadgeConfig = BadgeProps & {
   label: string;
-  variant: 'action' | 'positive' | 'destructive' | 'default';
 };
 
 type BadgesListProps = {
@@ -10,10 +9,7 @@ type BadgesListProps = {
   isLoading?: boolean;
 };
 
-export const BadgesList: React.FC<BadgesListProps> = ({
-  badges,
-  isLoading,
-}) => {
+export const BadgesList = ({ badges, isLoading = false }: BadgesListProps) => {
   return (
     <div className="flex gap-x-1">
       {badges.map((badge, index) => (
@@ -21,6 +17,7 @@ export const BadgesList: React.FC<BadgesListProps> = ({
           key={`${badge.label}-${index}`}
           isLoading={isLoading}
           variant={badge.variant}
+          colorVariant={badge.colorVariant}
         >
           {badge.label}
         </Badge>

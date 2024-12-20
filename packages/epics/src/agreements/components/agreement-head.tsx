@@ -46,13 +46,13 @@ export const AgreementHead = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge variant="actionFilled" isLoading={isLoading}>
+            <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
               Agreement
             </Badge>
-            <Badge variant="action" isLoading={isLoading}>
+            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
               Recurring
             </Badge>
-            <Badge variant="action" isLoading={isLoading}>
+            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
               {commitment}%
             </Badge>
             <StatusBadge isLoading={isLoading} status={status} />

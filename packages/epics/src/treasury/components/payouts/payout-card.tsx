@@ -47,11 +47,13 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
             badges={[
               {
                 label: symbol ?? '',
-                variant: 'action',
+                variant: 'surface',
+                colorVariant: 'accent',
               },
               {
                 label: status === 'completed' ? 'Completed' : 'Rejected',
-                variant: status === 'completed' ? 'positive' : 'destructive',
+                variant: status === 'completed' ? 'surface' : 'surface',
+                colorVariant: status === 'completed' ? 'success' : 'error',
               },
             ]}
             isLoading={isLoading}
