@@ -21,7 +21,7 @@ export const SectionTabs: FC<SectionTabsProps> = ({
     <Tabs
       value={activeTab}
       onValueChange={setActiveTab}
-      className="w-full mt-3 mb-4"
+      className="w-full mb-5"
     >
       <TabsList>
         {tabs.map((tab) => (

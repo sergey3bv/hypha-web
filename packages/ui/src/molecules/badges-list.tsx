@@ -2,7 +2,7 @@ import { Badge } from '../index';
 
 type BadgeConfig = {
   label: string;
-  variant: 'actionOutline' | 'positive' | 'destructive' | 'default';
+  variant: 'action' | 'positive' | 'destructive' | 'default';
 };
 
 type BadgesListProps = {

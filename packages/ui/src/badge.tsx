@@ -6,7 +6,7 @@ import { cn } from '@hypha-platform/ui-utils';
 import { Skeleton } from './skeleton';
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-lg border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'inline-flex items-center rounded-lg border px-2.5 py-0.5 h-5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-1',
   {
     variants: {
       variant: {
@@ -15,14 +15,13 @@ const badgeVariants = cva(
         secondary:
           'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
         destructive:
-          'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
-        positive: 'border-emerald-300 bg-green-500 text-green-500 bg-opacity-5',
-        warning: 'border-amber-400 bg-orange-400 text-orange-400 bg-opacity-5',
+          'border-error-11 bg-error-3 text-error-11 font-medium',
+        positive: 'border-success-11 bg-success-3 text-success-11 font-medium',
+        warning: 'border-warning-11 bg-warning-3 text-warning-11 font-medium',
         outline: 'text-foreground',
         action:
-          'text-white rounded-lg bg-action hover:bg-action-foreground w-fit',
-        actionOutline:
-          'bg-action bg-opacity-20 border-blue-500/90 text-action-light',
+          'border-accent-11 bg-accent-3 text-accent-11 font-medium',
+        actionFilled: 'bg-accent-9 text-white font-medium'
       },
     },
     defaultVariants: {
@@ -45,7 +44,7 @@ function Badge({
 }: BadgeProps) {
   return (
     <Skeleton width="50px" height="16px" loading={isLoading}>
-      <div className={cn(badgeVariants({ variant }), className)} {...props} />
+      <div style={{fontSize: '12px'}} className={cn(badgeVariants({ variant }), className)} {...props} />
     </Skeleton>
   );
 }
