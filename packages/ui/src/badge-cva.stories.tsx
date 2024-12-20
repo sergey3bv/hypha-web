@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BadgeCva } from './badge-cva';
+import { Badge } from './badge-cva';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<typeof BadgeCva> = {
-  component: BadgeCva,
+const meta: Meta<typeof Badge> = {
+  component: Badge,
   title: 'UI/BadgeCva',
   argTypes: {
     size: {
@@ -33,7 +33,7 @@ const meta: Meta<typeof BadgeCva> = {
   },
 };
 export default meta;
-type Story = StoryObj<typeof BadgeCva>;
+type Story = StoryObj<typeof Badge>;
 
 export const Primary: Story = {
   args: {

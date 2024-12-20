@@ -1,4 +1,4 @@
-import { BadgeCva } from '../badge-cva';
+import { Badge } from '../badge-cva';
 
 type BadgeVariant = 'solid' | 'soft' | 'outline' | 'surface';
 type BadgeColorVariant = 'accent' | 'error' | 'warn' | 'neutral' | 'success';
@@ -18,14 +18,14 @@ export const BadgesList = ({ badges, isLoading = false }: BadgesListProps) => {
   return (
     <div className="flex gap-x-1">
       {badges.map((badge, index) => (
-        <BadgeCva
+        <Badge
           key={`${badge.label}-${index}`}
           isLoading={isLoading}
           variant={badge.variant}
           colorVariant={badge.colorVariant}
         >
           {badge.label}
-        </BadgeCva>
+        </Badge>
       ))}
     </div>
   );

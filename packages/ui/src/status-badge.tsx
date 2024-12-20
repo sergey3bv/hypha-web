@@ -1,4 +1,4 @@
-import { BadgeCva } from './badge-cva';
+import { Badge } from './badge-cva';
 
 type StatusBadgeProps = {
   status?: string;
@@ -37,5 +37,5 @@ export const StatusBadge = ({
   isLoading = false,
 }: StatusBadgeProps) => {
   const badge = BADGE_VARIANTS[status as keyof typeof BADGE_VARIANTS];
-  return status ? <BadgeCva isLoading={isLoading} {...badge} /> : null;
+  return status ? <Badge isLoading={isLoading} {...badge} /> : null;
 };

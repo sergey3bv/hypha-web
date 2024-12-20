@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { BadgeCva, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
+import { Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
 
 export type CreatorType = {
   avatar?: string;
@@ -46,27 +46,15 @@ export const AgreementHead = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <BadgeCva
-              variant="solid"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
+            <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
               Agreement
-            </BadgeCva>
-            <BadgeCva
-              variant="soft"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
+            </Badge>
+            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
               Recurring
-            </BadgeCva>
-            <BadgeCva
-              variant="soft"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
+            </Badge>
+            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
               {commitment}%
-            </BadgeCva>
+            </Badge>
             <StatusBadge isLoading={isLoading} status={status} />
           </div>
 

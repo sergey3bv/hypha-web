@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, BadgeCva, StatusBadge, Skeleton } from '@hypha-platform/ui';
+import { Card, Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { SewingPinFilledIcon } from '@radix-ui/react-icons';
 
@@ -44,20 +44,20 @@ export const MemberCard: React.FC<MemberCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <BadgeCva
+            <Badge
               variant="surface"
               colorVariant="accent"
               isLoading={isLoading}
             >
               Recurring
-            </BadgeCva>
-            <BadgeCva
+            </Badge>
+            <Badge
               variant="surface"
               colorVariant="accent"
               isLoading={isLoading}
             >
               {commitment}%
-            </BadgeCva>
+            </Badge>
             <StatusBadge isLoading={isLoading} status={status} />
           </div>
 

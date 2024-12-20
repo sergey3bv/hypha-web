@@ -62,14 +62,14 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
           <div className="flex">
             <div>
               {activeAgreements ? (
-                <Badge variant="positive">
+                <Badge variant="surface" colorVariant="success">
                   {activeAgreements} Active Agreements
                 </Badge>
               ) : null}
             </div>
             <div className="ml-2">
               {openDiscussions ? (
-                <Badge variant="warning">
+                <Badge variant="surface" colorVariant="warn">
                   {openDiscussions} Open Discussions
                 </Badge>
               ) : null}

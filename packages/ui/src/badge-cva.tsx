@@ -183,26 +183,20 @@ const badgeVariants = cva(
   }
 );
 
-export interface BadgeCvaProps
+export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {
   isLoading?: boolean | undefined;
 }
 
-function BadgeCva({
+function Badge({
   className,
   size,
   variant,
   colorVariant,
   isLoading = false,
   ...props
-}: BadgeCvaProps) {
-  console.debug('BadgeCva', {
-    cva: badgeVariants({ size, variant, colorVariant }),
-    size,
-    variant,
-    colorVariant,
-  });
+}: BadgeProps) {
   return (
     <Skeleton width="50px" height="16px" loading={isLoading}>
       <div
@@ -216,8 +210,4 @@ function BadgeCva({
   );
 }
 
-export {
-  BadgeCva,
-  badgeVariants as badgeCvaVariants,
-  parameters as badgeCvaParameters,
-};
+export { Badge, badgeVariants, parameters };
