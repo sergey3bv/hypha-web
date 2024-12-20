@@ -23,10 +23,6 @@ const customCardHeaderStyles: React.CSSProperties = {
   height: '150px',
 };
 
-const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px',
-};
-
 const customAvatarStyles: React.CSSProperties = {
   width: '64px',
   height: '64px',
@@ -35,7 +31,6 @@ const customAvatarStyles: React.CSSProperties = {
 };
 
 export const CardOrganisation: React.FC<DaoCardProps> = ({
-  createdDate,
   description,
   icon,
   members,
@@ -61,7 +56,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
           <AvatarImage src={icon} alt="logo" />
         </Avatar>
         <div className="flex items-center justify-between mb-4">
-          <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
+          <CardTitle className='font-medium tracking-normal text-4'>{title}</CardTitle>
           <div className="flex">
             <div>
               {activeAgreements ? (
@@ -79,17 +74,17 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-grow text-xs text-gray-500 mb-4 line-clamp-3">
+        <div className="flex flex-grow text-1 text-gray-500 mb-4 line-clamp-3">
           {description}
         </div>
         <div className="flex flex-grow gap-2 text-xs items-center">
           <div className="flex">
-            <div className="font-bold">{members}</div>
-            <div className="text-gray-500 ml-1">Members</div>
+            <div className="font-bold text-1">{members}</div>
+            <div className="text-gray-500 ml-1 text-1">Members</div>
           </div>
           <div className="flex ml-3">
-            <div className="font-bold">{agreements}</div>
-            <div className="text-gray-500 ml-1">Agreements</div>
+            <div className="font-bold text-1">{agreements}</div>
+            <div className="text-gray-500 ml-1 text-1">Agreements</div>
           </div>
         </div>
       </CardContent>
