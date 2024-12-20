@@ -23,7 +23,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex flex-col justify-between">
+    <Card className="w-full h-full p-5 mb-2 flex flex-col justify-between">
       <div className="w-full flex flex-row items-center mb-2">
         <div className="mr-5">
           <Skeleton
@@ -47,12 +47,12 @@ export const AssetCard: React.FC<AssetCardProps> = ({
             loading={isLoading}
             className="mb-1"
           >
-            <Text className="text-lg font-medium text-secondary-foreground">
+            <Text className="text-4 font-medium text-secondary-foreground">
               {name}
             </Text>
           </Skeleton>
           <Skeleton width="80px" height="16px" loading={isLoading}>
-            <Text className="text-xs text-gray-500">{symbol}</Text>
+            <Text className="text-1 text-gray-500">{symbol}</Text>
           </Skeleton>
         </div>
       </div>
