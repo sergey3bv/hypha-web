@@ -25,7 +25,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex">
       <Skeleton
         width="64px"
         height="64px"
@@ -44,10 +44,10 @@ export const MemberCard: React.FC<MemberCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="action" isLoading={isLoading}>
               Recurring
             </Badge>
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="action" isLoading={isLoading}>
               {commitment}%
             </Badge>
             <StatusBadge isLoading={isLoading} status={status} />
@@ -59,20 +59,20 @@ export const MemberCard: React.FC<MemberCardProps> = ({
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-3">
+            <Text className="text-4">
               {name} {surname}
             </Text>
           </Skeleton>
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
-            <Text className="text-xs text-gray-500">@{nickname}</Text>
+            <Text className="text-1 text-gray-500">@{nickname}</Text>
           </Skeleton>
         </div>
 
         <Skeleton width="96px" height="16px" loading={isLoading}>
           <div className="flex h-full justify-end items-end text-gray-500">
             <SewingPinFilledIcon className="mr-1" />
-            <Text className="text-xs">{location}</Text>
+            <Text className="text-1">{location}</Text>
           </div>
         </Skeleton>
       </div>

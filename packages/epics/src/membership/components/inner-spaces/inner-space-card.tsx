@@ -28,12 +28,6 @@ const customCardHeaderStyles: React.CSSProperties = {
   height: '150px',
 };
 
-const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px',
-  whiteSpace: 'nowrap',
-  fontWeight: '500',
-};
-
 export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
   description,
   image,
@@ -65,11 +59,11 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
           <Skeleton width="150px" height="18px" loading={isLoading}>
-            <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
           </Skeleton>
         </div>
 
-        <div className="flex flex-grow text-xs text-gray-500 mb-4">
+        <div className="flex flex-grow text-1 text-gray-500 mb-4">
           <Skeleton width="200px" height="48px" loading={isLoading}>
             <div className="line-clamp-3">{description}</div>
           </Skeleton>
@@ -94,7 +88,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
           </Skeleton>
 
           <Skeleton width="106px" height="24px" loading={isLoading}>
-            <Text className="ml-2 flex items-center text-xs text-action-light text-nowrap">
+            <Text className="ml-2 flex items-center text-1 text-action-light text-nowrap">
               + other {members ? members.length - 3 : null} members
             </Text>
           </Skeleton>
@@ -103,11 +97,11 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
         <Skeleton width="200px" height="32px" loading={isLoading}>
           <div>
             {joinedStatus ? (
-              <Button className="rounded-lg w-full" variant="outline" size="sm">
+              <Button className="rounded-lg w-full" variant="outline">
                 Joined
               </Button>
             ) : (
-              <Button className="rounded-lg w-full" variant="outline" size="sm">
+              <Button className="rounded-lg w-full" variant="outline">
                 Join
               </Button>
             )}

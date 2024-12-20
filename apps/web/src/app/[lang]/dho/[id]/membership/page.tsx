@@ -20,7 +20,7 @@ export default function MembershipPage({ params: { lang, id } }: PageProps) {
   return (
     <div>
       <Tabs value="membership" className="w-full mt-16">
-        <TabsList className="w-full">
+        <TabsList className="w-full mb-7">
           <TabsTrigger
             asChild
             value="agreements"
@@ -64,13 +64,9 @@ export default function MembershipPage({ params: { lang, id } }: PageProps) {
             </Link>
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="membership">
-          <div className="flex flex-col items-center mt-4">
-            <OuterSpacesSection />
-            <InnerSpacesSection />
-            <MembersSection />
-          </div>
-        </TabsContent>
+        <OuterSpacesSection />
+        <InnerSpacesSection />
+        <MembersSection />
       </Tabs>
     </div>
   );

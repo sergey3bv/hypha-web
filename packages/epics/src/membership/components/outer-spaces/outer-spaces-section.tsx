@@ -30,7 +30,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
         label="Outer Spaces"
         sortOptions={sortOptions}
       >
-        <Button className="ml-2" size="sm">
+        <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Invite space
         </Button>
