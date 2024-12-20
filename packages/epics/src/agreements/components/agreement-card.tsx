@@ -52,13 +52,25 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="surface"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               Agreement
             </BadgeCva>
-            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="surface"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               Recurring
             </BadgeCva>
-            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="surface"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               {commitment}%
             </BadgeCva>
             <StatusBadge status={status} isLoading={isLoading} />

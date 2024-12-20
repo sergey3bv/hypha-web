@@ -46,13 +46,25 @@ export const ProposalHead = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <BadgeCva variant="solid" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="solid"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               Proposal
             </BadgeCva>
-            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="surface"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               Recurring
             </BadgeCva>
-            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
+            <BadgeCva
+              variant="surface"
+              colorVariant="accent"
+              isLoading={isLoading}
+            >
               {commitment}%
             </BadgeCva>
             <StatusBadge isLoading={isLoading} status={status} />

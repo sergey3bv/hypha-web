@@ -216,4 +216,8 @@ function BadgeCva({
   );
 }
 
-export { BadgeCva, badgeVariants as badgeCvaVariants, parameters as badgeCvaParameters };
+export {
+  BadgeCva,
+  badgeVariants as badgeCvaVariants,
+  parameters as badgeCvaParameters,
+};
