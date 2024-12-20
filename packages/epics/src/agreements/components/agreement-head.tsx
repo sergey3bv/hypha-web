@@ -7,7 +7,7 @@ export type CreatorType = {
   surname?: string;
 };
 
-export type ProposalHeadProps = {
+export type AgreementHeadProps = {
   creator?: CreatorType;
   title?: string;
   commitment?: number;
@@ -21,7 +21,7 @@ export const AgreementHead = ({
   commitment,
   status,
   isLoading,
-}: ProposalHeadProps) => {
+}: AgreementHeadProps) => {
   return (
     <div className="flex items-center">
       <Skeleton
@@ -46,11 +46,13 @@ export const AgreementHead = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading}>Agreement</Badge>
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="actionFilled" isLoading={isLoading}>
+              Agreement
+            </Badge>
+            <Badge variant="action" isLoading={isLoading}>
               Recurring
             </Badge>
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="action" isLoading={isLoading}>
               {commitment}%
             </Badge>
             <StatusBadge isLoading={isLoading} status={status} />

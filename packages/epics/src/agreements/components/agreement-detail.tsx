@@ -1,10 +1,10 @@
-import { AgreementHead, ProposalHeadProps } from './agreement-head';
+import { AgreementHead, AgreementHeadProps } from './agreement-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import { CardCommentProps } from '../../interactions/components/card-comment';
 
-type ProposalDetailProps = ProposalHeadProps & {
+type AgreementDetailProps = AgreementHeadProps & {
   onSetActiveFilter: (value: string) => void;
   content: string;
   comments: CardCommentProps[];
@@ -14,7 +14,7 @@ type ProposalDetailProps = ProposalHeadProps & {
   }[];
 };
 
-export const ProposalDetail = ({
+export const AgreementDetail = ({
   creator,
   title,
   commitment,
@@ -24,7 +24,7 @@ export const ProposalDetail = ({
   onSetActiveFilter,
   comments,
   sortOptions,
-}: ProposalDetailProps) => {
+}: AgreementDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">

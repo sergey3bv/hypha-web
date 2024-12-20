@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { ProposalDetail } from './agreement-detail';
+import { AgreementDetail } from './agreement-detail';
 
-const meta: Meta<typeof ProposalDetail> = {
-  component: ProposalDetail,
+const meta: Meta<typeof AgreementDetail> = {
+  component: AgreementDetail,
   title: 'Epics/Agreements/AgreementDetail',
 };
 export default meta;
-type Story = StoryObj<typeof ProposalDetail>;
+type Story = StoryObj<typeof AgreementDetail>;
 
 export const Primary: Story = {
   args: {
