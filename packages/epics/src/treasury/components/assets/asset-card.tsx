@@ -1,7 +1,6 @@
 import { Text } from '@radix-ui/themes';
 import { Card, Skeleton } from '@hypha-platform/ui';
 import Image from 'next/image';
-import { formatCurrencyValue } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
 
 type AssetCardProps = {
