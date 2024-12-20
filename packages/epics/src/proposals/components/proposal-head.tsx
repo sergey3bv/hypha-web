@@ -46,11 +46,11 @@ export const ProposalHead = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading}>Proposal</Badge>
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="actionFilled" isLoading={isLoading}>Proposal</Badge>
+            <Badge variant="action" isLoading={isLoading}>
               Recurring
             </Badge>
-            <Badge variant="actionOutline" isLoading={isLoading}>
+            <Badge variant="action" isLoading={isLoading}>
               {commitment}%
             </Badge>
             <StatusBadge isLoading={isLoading} status={status} />
@@ -62,11 +62,11 @@ export const ProposalHead = ({
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-3">{title}</Text>
+            <Text className="text-4">{title}</Text>
           </Skeleton>
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
-            <Text className="text-xs text-gray-500">
+            <Text className="text-1 text-gray-500">
               {creator?.name} {creator?.surname}
             </Text>
           </Skeleton>

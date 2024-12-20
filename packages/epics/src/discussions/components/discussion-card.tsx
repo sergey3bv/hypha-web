@@ -29,10 +29,6 @@ const customCardHeaderStyles: React.CSSProperties = {
   height: '150px',
 };
 
-const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px',
-};
-
 export const DiscussionCard: React.FC<DiscussionCardProps> = ({
   description,
   image,
@@ -59,7 +55,7 @@ export const DiscussionCard: React.FC<DiscussionCardProps> = ({
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
           <Skeleton width="120px" height="18px" loading={isLoading}>
-            <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
           </Skeleton>
           <div className="mt-2 flex items-center">
             <Skeleton
@@ -84,18 +80,18 @@ export const DiscussionCard: React.FC<DiscussionCardProps> = ({
               className="ml-2"
               loading={isLoading}
             >
-              <Text className="ml-2 text-xs text-gray-500">
+              <Text className="ml-2 text-1 text-gray-500">
                 {creator?.name} {creator?.surname}
               </Text>
             </Skeleton>
           </div>
         </div>
-        <div className="flex flex-grow text-xs text-gray-500 mb-4">
+        <div className="flex flex-grow text-1 text-gray-500 mb-4">
           <Skeleton width="200px" height="48px" loading={isLoading}>
             <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
-        <div className="flex flex-grow gap-2 text-xs text-gray-500 items-center">
+        <div className="flex flex-grow gap-2 text-1 text-gray-500 items-center">
           <Skeleton width="16px" height="16px" loading={isLoading}>
             <div className="flex">
               <EyeOpenIcon className="mr-1" width={16} />

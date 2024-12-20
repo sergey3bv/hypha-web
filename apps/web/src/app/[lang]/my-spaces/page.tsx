@@ -48,7 +48,7 @@ export default async function Index({ params: { lang } }: PageProps) {
     <div className="w-full overflow-auto">
       <Container>
         <Heading
-          className="mb-10 mt-3"
+          className="mb-9 mt-3"
           size="9"
           color="secondary"
           weight="medium"
@@ -88,8 +88,8 @@ export default async function Index({ params: { lang } }: PageProps) {
           ))}
         </div>
         <div data-testid="recommended-spaces-container" className="w-full">
-          <Text className="text-3">Spaces you might like</Text>
-          <Carousel className="my-8">
+          <Text className="text-4 font-medium">Spaces you might like</Text>
+          <Carousel className="my-6">
             <CarouselContent>
               {daos.map((dao) => (
                 <CarouselItem
