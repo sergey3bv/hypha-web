@@ -56,7 +56,9 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
           <AvatarImage src={icon} alt="logo" />
         </Avatar>
         <div className="flex items-center justify-between mb-4">
-          <CardTitle className='font-medium tracking-normal text-4'>{title}</CardTitle>
+          <CardTitle className="font-medium tracking-normal text-4">
+            {title}
+          </CardTitle>
           <div className="flex">
             <div>
               {activeAgreements ? (

@@ -14,14 +14,12 @@ const badgeVariants = cva(
           'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
         secondary:
           'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        destructive:
-          'border-error-11 bg-error-3 text-error-11 font-medium',
+        destructive: 'border-error-11 bg-error-3 text-error-11 font-medium',
         positive: 'border-success-11 bg-success-3 text-success-11 font-medium',
         warning: 'border-warning-11 bg-warning-3 text-warning-11 font-medium',
         outline: 'text-foreground',
-        action:
-          'border-accent-11 bg-accent-3 text-accent-11 font-medium',
-        actionFilled: 'bg-accent-9 text-white font-medium'
+        action: 'border-accent-11 bg-accent-3 text-accent-11 font-medium',
+        actionFilled: 'bg-accent-9 text-white font-medium',
       },
     },
     defaultVariants: {
@@ -44,7 +42,11 @@ function Badge({
 }: BadgeProps) {
   return (
     <Skeleton width="50px" height="16px" loading={isLoading}>
-      <div style={{fontSize: '12px'}} className={cn(badgeVariants({ variant }), className)} {...props} />
+      <div
+        style={{ fontSize: '12px' }}
+        className={cn(badgeVariants({ variant }), className)}
+        {...props}
+      />
     </Skeleton>
   );
 }
