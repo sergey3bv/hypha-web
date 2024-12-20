@@ -34,7 +34,7 @@ export const MembersSection: FC<MemberSectionProps> = () => {
         label="Members"
         sortOptions={sortOptions}
       >
-        <Button className="ml-2" size="sm">
+        <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Invite member
         </Button>

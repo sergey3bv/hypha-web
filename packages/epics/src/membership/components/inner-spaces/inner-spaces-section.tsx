@@ -30,7 +30,7 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
         label="Inner Spaces"
         sortOptions={sortOptions}
       >
-        <Button className="ml-2" size="sm">
+        <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Create
         </Button>

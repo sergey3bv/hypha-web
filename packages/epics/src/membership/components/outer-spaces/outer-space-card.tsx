@@ -21,12 +21,6 @@ const customCardHeaderStyles: React.CSSProperties = {
   height: '150px',
 };
 
-const customCardTitleStyles: React.CSSProperties = {
-  fontSize: '18px',
-  whiteSpace: 'nowrap',
-  fontWeight: '500',
-};
-
 const customAvatarStyles: React.CSSProperties = {
   width: '64px',
   height: '64px',
@@ -71,17 +65,17 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
 
         <div className="flex items-center justify-between mb-4">
           <Skeleton width="150px" height="18px" loading={isLoading}>
-            <CardTitle style={customCardTitleStyles}>{title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
           </Skeleton>
         </div>
 
-        <div className="flex flex-grow text-xs text-gray-500 mb-4">
+        <div className="flex flex-grow text-1 text-gray-500 mb-4">
           <Skeleton width="328px" height="28px" loading={isLoading}>
             <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
 
-        <div className="flex flex-grow gap-2 text-xs items-center">
+        <div className="flex flex-grow gap-2 text-1 items-center">
           <div className="flex">
             <Skeleton width="16px" height="16px" loading={isLoading}>
               <div className="font-bold">{members}</div>
