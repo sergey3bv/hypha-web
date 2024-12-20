@@ -32,4 +32,3 @@ export const Default: Story = {
     commentCount: 2,
   },
 };
-

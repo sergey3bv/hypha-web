@@ -1,4 +1,10 @@
-import { BadgesList, Button, Card, CardContent, CardHeader } from '@hypha-platform/ui';
+import {
+  BadgesList,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+} from '@hypha-platform/ui';
 import { Author } from '../../../profile/components/author';
 import { Amount } from '@hypha-platform/ui/server';
 
