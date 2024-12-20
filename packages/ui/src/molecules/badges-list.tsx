@@ -1,12 +1,7 @@
-import { Badge } from '../badge-cva';
+import { Badge, BadgeProps } from '../badge';
 
-type BadgeVariant = 'solid' | 'soft' | 'outline' | 'surface';
-type BadgeColorVariant = 'accent' | 'error' | 'warn' | 'neutral' | 'success';
-
-type BadgeConfig = {
+type BadgeConfig = BadgeProps & {
   label: string;
-  variant: BadgeVariant;
-  colorVariant: BadgeColorVariant;
 };
 
 type BadgesListProps = {

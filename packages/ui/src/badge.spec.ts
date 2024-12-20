@@ -1,5 +1,5 @@
 import { cn } from '@hypha-platform/ui-utils';
-import { badgeVariants, parameters } from './badge-cva';
+import { badgeVariants, parameters } from './badge';
 
 describe('badgeVariants', () => {
   const sizes = [1, 2, 3] as const;

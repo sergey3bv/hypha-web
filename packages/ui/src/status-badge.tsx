@@ -1,4 +1,4 @@
-import { Badge } from './badge-cva';
+import { Badge } from './badge';
 
 type StatusBadgeProps = {
   status?: string;

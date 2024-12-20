@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from './badge-cva';
+import { Badge } from './badge';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
-  title: 'UI/BadgeCva',
+  title: 'UI/Badge',
   argTypes: {
     size: {
       control: 'select',

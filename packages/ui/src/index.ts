@@ -1,7 +1,7 @@
 // Use this file to export React client components (e.g. those with 'use client' directive) or other non-server utilities
 
 export * from './avatar';
-export * from './badge-cva';
+export * from './badge';
 export * from './button-nav-item';
 export * from './button';
 export * from './card';
