@@ -16,3 +16,4 @@ export * from './skeleton';
 export * from './status-badge';
 
 export * from './organisms/editor';
+export * from './molecules/badges-list';
