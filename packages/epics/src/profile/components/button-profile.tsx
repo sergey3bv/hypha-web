@@ -8,7 +8,7 @@ export type ButtonProfileProps = {
 export const ButtonProfile = ({ avatarSrc, userName }: ButtonProfileProps) => {
   return (
     <div>
-      <Avatar className="w-10 h-10 rounded-lg">
+      <Avatar className="w-7 h-7 rounded-lg">
         <AvatarImage src={avatarSrc} alt={`${userName}'s avatar`} />
       </Avatar>
     </div>
