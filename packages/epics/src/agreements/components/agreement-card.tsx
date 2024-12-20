@@ -52,7 +52,9 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge variant="actionFilled" isLoading={isLoading}>Agreement</Badge>
+            <Badge variant="actionFilled" isLoading={isLoading}>
+              Agreement
+            </Badge>
             <Badge isLoading={isLoading} variant="action">
               Recurring
             </Badge>

@@ -36,11 +36,19 @@ export const ProposalCard: React.FC<ProposalCardProps> = ({
         >
           <div>
             {voted ? (
-              <Button colorVariant="accent" className="rounded-lg w-fit" variant="outline">
+              <Button
+                colorVariant="accent"
+                className="rounded-lg w-fit"
+                variant="outline"
+              >
                 You voted yes
               </Button>
             ) : (
-              <Button colorVariant="accent" className="rounded-lg w-fit" variant="outline">
+              <Button
+                colorVariant="accent"
+                className="rounded-lg w-fit"
+                variant="outline"
+              >
                 Vote now
               </Button>
             )}
