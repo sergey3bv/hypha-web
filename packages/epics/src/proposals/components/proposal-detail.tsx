@@ -46,12 +46,8 @@ export const ProposalDetail = ({
         unity={50}
         quorum={25}
         date={formatISO(addDays(new Date(), 2))}
-        onAccept={function (): void {
-          throw new Error('Function not implemented.');
-        }}
-        onReject={function (): void {
-          throw new Error('Function not implemented.');
-        }}
+        onAccept={onAccept}
+        onReject={onReject}
       />
       <Separator />
       <CommentsList
