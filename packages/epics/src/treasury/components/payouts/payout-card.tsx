@@ -1,6 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Skeleton } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Card, Badge, Skeleton, Image, BadgesList } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
@@ -44,20 +43,19 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
       </Skeleton>
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
-          <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="action">
-              {symbol}
-            </Badge>
-            {status === 'completed' ? (
-              <Badge isLoading={isLoading} variant="positive">
-                Completed
-              </Badge>
-            ) : (
-              <Badge isLoading={isLoading} variant="destructive">
-                Rejected
-              </Badge>
-            )}
-          </div>
+          <BadgesList
+            badges={[
+              {
+                label: symbol ?? '',
+                variant: 'action',
+              },
+              {
+                label: status === 'completed' ? 'Completed' : 'Rejected',
+                variant: status === 'completed' ? 'positive' : 'destructive',
+              },
+            ]}
+            isLoading={isLoading}
+          />
           <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton
             height="26px"
