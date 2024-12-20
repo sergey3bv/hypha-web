@@ -58,7 +58,7 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
               </Badge>
             )}
           </div>
-          <Amount isLoading={isLoading} value={value}  withUsdSymbol/>
+          <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton
             height="26px"
             width="160px"
