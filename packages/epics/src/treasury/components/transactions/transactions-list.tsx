@@ -1,4 +1,8 @@
-import { FilterOption, SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
+import {
+  FilterOption,
+  SectionFilter,
+  SectionLoadMore,
+} from '@hypha-platform/ui/server';
 import { TransactionCard, TransactionCardProps } from './transaction-card';
 
 type TransactionsListProps = {
