@@ -29,7 +29,7 @@ export default async function DhoLayout({
           },
         ]}
       />
-      <div className="fixed bottom-0 right-0 flex-grow p-10 overflow-y-auto top-20 left-20 bg-background/5">
+      <div className="fixed bottom-0 right-0 flex-grow p-10 overflow-y-auto top-9 left-20 bg-background/5">
         {children}
       </div>
     </div>

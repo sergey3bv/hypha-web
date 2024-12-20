@@ -35,7 +35,7 @@ export default async function DhoLayout({
           />
         </MenuTop.RightSlot>
       </MenuTop>
-      <div className="fixed bottom-0 right-0 flex-grow overflow-y-auto top-20 w-full bg-background/5">
+      <div className="fixed bottom-0 right-0 flex-grow overflow-y-auto top-9 w-full bg-background/5">
         {children}
       </div>
     </div>

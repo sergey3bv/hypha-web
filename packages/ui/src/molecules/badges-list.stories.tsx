@@ -16,7 +16,7 @@ export const Default: Story = {
     badges: [
       {
         label: 'Badge 1',
-        variant: 'actionOutline',
+        variant: 'action',
       },
       {
         label: 'Badge 2',

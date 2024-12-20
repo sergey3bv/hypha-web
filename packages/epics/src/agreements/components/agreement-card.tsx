@@ -52,11 +52,13 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading}>Agreement</Badge>
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge variant="actionFilled" isLoading={isLoading}>
+              Agreement
+            </Badge>
+            <Badge isLoading={isLoading} variant="action">
               Recurring
             </Badge>
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge isLoading={isLoading} variant="action">
               {commitment}%
             </Badge>
             <StatusBadge status={status} isLoading={isLoading} />
@@ -68,17 +70,17 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-3">{title}</Text>
+            <Text className="text-4">{title}</Text>
           </Skeleton>
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
-            <Text className="text-xs text-gray-500">
+            <Text className="text-1 text-gray-500">
               {creator?.name} {creator?.surname}
             </Text>
           </Skeleton>
         </div>
 
-        <div className="flex flex-grow gap-2 text-xs text-gray-500 items-end justify-end h-full">
+        <div className="flex flex-grow gap-2 text-1 text-gray-500 items-end justify-end h-full">
           <Skeleton width="16px" height="16px" loading={isLoading}>
             <div className="flex">
               <EyeOpenIcon className="mr-1" width={16} />

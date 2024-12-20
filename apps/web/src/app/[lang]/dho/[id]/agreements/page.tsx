@@ -15,7 +15,7 @@ export default function AgreementsPage({ params: { lang, id } }: PageProps) {
   return (
     <div>
       <Tabs value="agreements" className="w-full mt-16">
-        <TabsList className="w-full">
+        <TabsList className="w-full mb-7">
           <TabsTrigger
             asChild
             value="agreements"

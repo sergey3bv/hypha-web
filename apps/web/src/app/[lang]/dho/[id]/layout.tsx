@@ -74,7 +74,7 @@ export default async function DhoLayout({
           />
         </MenuTop.RightSlot>
       </MenuTop>
-      <div className="fixed bottom-0 right-0 flex-grow overflow-y-auto top-20 w-full bg-background/5">
+      <div className="fixed bottom-0 right-0 flex-grow overflow-y-auto top-9 w-full bg-background/5">
         <Container>
           <div className="mb-6 flex items-center">
             <Link
@@ -102,6 +102,7 @@ export default async function DhoLayout({
             <Button
               asChild
               variant="ghost"
+              colorVariant="neutral"
               className="rounded-lg justify-start p-1 cursor-pointer"
             >
               <Share2Icon width={28} height={28} />
@@ -117,7 +118,7 @@ export default async function DhoLayout({
             </Button>
           </div>
           <div className="mt-4">
-            <Text className="text-3xl">{dao.title}</Text>
+            <Text className="text-7">{dao.title}</Text>
           </div>
           <div className="flex gap-6">
             <Button
@@ -127,7 +128,7 @@ export default async function DhoLayout({
             >
               <div>
                 <LinkedInLogoIcon width={16} height={16} />
-                <Text className="ml-1 text-xs">HyphaDAO</Text>
+                <Text className="ml-1 text-1">HyphaDAO</Text>
               </div>
             </Button>
             <Button
@@ -141,7 +142,7 @@ export default async function DhoLayout({
                   color="bg-primary-foreground"
                   icon={faXTwitter}
                 />
-                <Text className="ml-1 text-xs">@HyphaDAO</Text>
+                <Text className="ml-1 text-1">@HyphaDAO</Text>
               </div>
             </Button>
             <Button
@@ -151,29 +152,29 @@ export default async function DhoLayout({
             >
               <div>
                 <Link2Icon width={16} height={16} />
-                <Text className="ml-1 text-xs">hypha.earth</Text>
+                <Text className="ml-1 text-1">hypha.earth</Text>
               </div>
             </Button>
           </div>
           <div className="mt-6">
-            <Text className="text-sm">{dao.description}</Text>
+            <Text className="text-2">{dao.description}</Text>
           </div>
-          <div className="flex flex-grow gap-2 text-xs items-center mt-6">
+          <div className="flex flex-grow gap-2 items-center mt-6">
             <div className="flex">
-              <div className="font-bold">128</div>
-              <div className="text-gray-500 ml-1 text-xs">Members</div>
+              <div className="font-bold text-1">128</div>
+              <div className="text-gray-500 ml-1 text-1">Members</div>
             </div>
             <div className="flex ml-3">
-              <div className="font-bold">58</div>
-              <div className="text-gray-500 ml-1 text-xs">
+              <div className="font-bold text-1">58</div>
+              <div className="text-gray-500 ml-1 text-1">
                 Completed projects
               </div>
             </div>
           </div>
           {children}
           <div className="border-t-2 border-primary-foreground pt-6">
-            <Text className="text-3">Spaces you might like</Text>
-            <Carousel className="my-8">
+            <Text className="text-4 font-medium">Spaces you might like</Text>
+            <Carousel className="my-6">
               <CarouselContent>
                 {daos.map((dao) => (
                   <CarouselItem
