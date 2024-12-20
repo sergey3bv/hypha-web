@@ -1,8 +1,12 @@
-import { Badge } from '../index';
+import { BadgeCva } from '../badge-cva';
+
+type BadgeVariant = 'solid' | 'soft' | 'outline' | 'surface';
+type BadgeColorVariant = 'accent' | 'error' | 'warn' | 'neutral' | 'success';
 
 type BadgeConfig = {
   label: string;
-  variant: 'action' | 'positive' | 'destructive' | 'default';
+  variant: BadgeVariant;
+  colorVariant: BadgeColorVariant;
 };
 
 type BadgesListProps = {
@@ -10,20 +14,18 @@ type BadgesListProps = {
   isLoading?: boolean;
 };
 
-export const BadgesList: React.FC<BadgesListProps> = ({
-  badges,
-  isLoading,
-}) => {
+export const BadgesList = ({ badges, isLoading = false }: BadgesListProps) => {
   return (
     <div className="flex gap-x-1">
       {badges.map((badge, index) => (
-        <Badge
+        <BadgeCva
           key={`${badge.label}-${index}`}
           isLoading={isLoading}
           variant={badge.variant}
+          colorVariant={badge.colorVariant}
         >
           {badge.label}
-        </Badge>
+        </BadgeCva>
       ))}
     </div>
   );

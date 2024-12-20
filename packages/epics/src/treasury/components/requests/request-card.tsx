@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge } from '@hypha-platform/ui';
+import { Card, BadgeCva } from '@hypha-platform/ui';
 import Image from 'next/image';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
@@ -44,12 +44,12 @@ export const RequestCard: React.FC<RequestCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="action">
+            <BadgeCva isLoading={isLoading} variant="surface" colorVariant="accent">
               {symbol}
-            </Badge>
-            <Badge isLoading={isLoading} variant="warning">
+            </BadgeCva>
+            <BadgeCva isLoading={isLoading} variant="surface" colorVariant="warn">
               Pending
-            </Badge>
+            </BadgeCva>
           </div>
           <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton loading={isLoading} width="80px" height="16px">

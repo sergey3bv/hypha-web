@@ -2,6 +2,7 @@
 
 export * from './avatar';
 export * from './badge';
+export * from './badge-cva';
 export * from './button-nav-item';
 export * from './button';
 export * from './card';

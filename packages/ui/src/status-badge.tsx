@@ -1,22 +1,26 @@
-import { Badge } from './badge';
+import { BadgeCva } from './badge-cva';
 
-type BadgeProps = {};
-
-const BADGE_VARIANTS: Record<string, BadgeProps> = {
-  active: { variant: 'positive', children: 'Active' },
-  voting: { variant: 'warning', children: 'On voting' },
-  completed: { variant: 'action', children: 'Completed' },
-  rejected: { variant: 'destructive', children: 'Rejected' },
-  inactive: { variant: 'outlined', children: 'Inactive' },
-  applicant: { variant: 'warning', children: 'Applicant' },
+type StatusBadgeProps = {
+  status?: string;
+  isLoading?: boolean;
 };
+
+type BadgeVariant = 'solid' | 'soft' | 'outline' | 'surface';
+type BadgeColorVariant = 'accent' | 'error' | 'warn' | 'neutral' | 'success';
+
+const BADGE_VARIANTS: Record<string, { variant: BadgeVariant; colorVariant: BadgeColorVariant; children: string }> = {
+  active: { variant: 'surface', colorVariant: 'success', children: 'Active' },
+  voting: { variant: 'surface', colorVariant: 'warn', children: 'On voting' },
+  completed: { variant: 'surface', colorVariant: 'accent', children: 'Completed' },
+  rejected: { variant: 'surface', colorVariant: 'error', children: 'Rejected' },
+  inactive: { variant: 'surface', colorVariant: 'neutral', children: 'Inactive' },
+  applicant: { variant: 'surface', colorVariant: 'warn', children: 'Applicant' },
+};
+
 export const StatusBadge = ({
   status,
-  isLoading,
-}: {
-  status?: string;
-  isLoading: boolean | undefined;
-}) => {
+  isLoading = false,
+}: StatusBadgeProps) => {
   const badge = BADGE_VARIANTS[status as keyof typeof BADGE_VARIANTS];
-  return status ? <Badge isLoading={isLoading} {...badge} /> : null;
+  return status ? <BadgeCva isLoading={isLoading} {...badge} /> : null;
 };

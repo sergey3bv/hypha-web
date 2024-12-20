@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
+import { Card, BadgeCva, Skeleton, StatusBadge } from '@hypha-platform/ui';
 import { Image } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 
@@ -52,15 +52,15 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge variant="actionFilled" isLoading={isLoading}>
+            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
               Agreement
-            </Badge>
-            <Badge isLoading={isLoading} variant="action">
+            </BadgeCva>
+            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
               Recurring
-            </Badge>
-            <Badge isLoading={isLoading} variant="action">
+            </BadgeCva>
+            <BadgeCva variant="surface" colorVariant="accent" isLoading={isLoading}>
               {commitment}%
-            </Badge>
+            </BadgeCva>
             <StatusBadge status={status} isLoading={isLoading} />
           </div>
 
