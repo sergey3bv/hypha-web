@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { TransactionsList } from './transactions-list';
 
@@ -14,8 +15,8 @@ export const Default: Story = {
   args: {
     isLoading: false,
     activeFilter: 'most-recent',
-    setActiveFilter: () => {},
-    loadMore: () => {},
+    setActiveFilter: action('setActiveFilter'),
+    loadMore: action('loadMore'),
     pagination: {
       total: 1,
       totalPages: 1,

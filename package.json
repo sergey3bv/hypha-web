@@ -74,6 +74,7 @@
     "@nx/web": "20.2.2",
     "@nx/workspace": "20.2.2",
     "@playwright/test": "^1.36.0",
+    "@storybook/addon-actions": "^8.4.7",
     "@storybook/addon-essentials": "8.4.7",
     "@storybook/addon-interactions": "8.4.7",
     "@storybook/addon-viewport": "^8.4.7",

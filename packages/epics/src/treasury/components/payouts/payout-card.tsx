@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Skeleton, Image, BadgesList } from '@hypha-platform/ui';
+import { Card, Skeleton, Image, BadgesList } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
