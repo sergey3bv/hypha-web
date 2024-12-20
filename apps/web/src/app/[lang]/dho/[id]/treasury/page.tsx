@@ -20,7 +20,7 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
   return (
     <div>
       <Tabs value="treasury" className="w-full mt-16">
-        <TabsList className="w-full">
+        <TabsList className="w-full mb-7">
           <TabsTrigger
             asChild
             value="agreements"
@@ -64,13 +64,9 @@ export default function TreasuryPage({ params: { lang, id } }: PageProps) {
             </Link>
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="treasury">
-          <div className="flex flex-col justify-between items-center mt-4">
-            <AssetsSection />
-            <RequestsSection />
-            <PayoutsSection />
-          </div>
-        </TabsContent>
+        <AssetsSection />
+        <RequestsSection />
+        <PayoutsSection />
       </Tabs>
     </div>
   );

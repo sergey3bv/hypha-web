@@ -26,7 +26,7 @@ export const RequestCard: React.FC<RequestCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex">
       <Skeleton
         loading={isLoading}
         width="64px"
@@ -44,7 +44,7 @@ export const RequestCard: React.FC<RequestCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge isLoading={isLoading} variant="action">
               {symbol}
             </Badge>
             <Badge isLoading={isLoading} variant="warning">
@@ -53,7 +53,7 @@ export const RequestCard: React.FC<RequestCardProps> = ({
           </div>
           <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton loading={isLoading} width="80px" height="16px">
-            <Text className="text-xs text-gray-500">
+            <Text className="text-1 text-gray-500">
               {name} {surname}
             </Text>
           </Skeleton>
@@ -61,7 +61,7 @@ export const RequestCard: React.FC<RequestCardProps> = ({
         <Skeleton width="96px" height="16px" loading={isLoading}>
           <div className="flex h-full justify-end items-end text-gray-500">
             <CalendarIcon className="mr-1" />
-            <Text className="text-xs">{date ? formatDate(date) : null}</Text>
+            <Text className="text-1">{date ? formatDate(date) : null}</Text>
           </div>
         </Skeleton>
       </div>

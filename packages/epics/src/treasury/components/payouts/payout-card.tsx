@@ -27,7 +27,7 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex">
       <Skeleton
         width="64px"
         height="64px"
@@ -45,7 +45,7 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
-            <Badge isLoading={isLoading} variant="actionOutline">
+            <Badge isLoading={isLoading} variant="action">
               {symbol}
             </Badge>
             {status === 'completed' ? (
@@ -58,14 +58,14 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
               </Badge>
             )}
           </div>
-          <Amount isLoading={isLoading} value={value} />
+          <Amount isLoading={isLoading} value={value} withUsdSymbol />
           <Skeleton
             height="26px"
             width="160px"
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-xs text-gray-500">
+            <Text className="text-1 text-gray-500">
               {name} {surname}
             </Text>
           </Skeleton>
@@ -73,7 +73,7 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
         <Skeleton width="96px" height="16px" loading={isLoading}>
           <div className="flex h-full justify-end items-end text-gray-500">
             <CalendarIcon className="mr-1" />
-            <Text className="text-xs">{date ? formatDate(date) : null}</Text>
+            <Text className="text-1">{date ? formatDate(date) : null}</Text>
           </div>
         </Skeleton>
       </div>

@@ -30,7 +30,7 @@ export const RequestsSection: FC<RequestsSectionProps> = () => {
         label="Requests"
         sortOptions={sortOptions}
       >
-        <Button className="ml-2" size="sm">
+        <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Payout Request
         </Button>
