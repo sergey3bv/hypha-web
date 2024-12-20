@@ -29,6 +29,7 @@ export function buildConfig(appDir: string): Config {
             DEFAULT: 'hsl(var(--accent))',
             foreground: 'hsl(var(--accent-foreground))',
             contrast: 'hsl(var(--accent-contrast))',
+            surface: 'hsl(var(--accent-surface))',
             1: 'hsl(var(--accent-1))',
             2: 'hsl(var(--accent-2))',
             3: 'hsl(var(--accent-3))',
