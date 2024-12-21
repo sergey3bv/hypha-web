@@ -8,10 +8,7 @@ type PageProps = {
 export default async function AssignmentsPage(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang,
-    id
-  } = params;
+  const { lang, id } = params;
 
   const t = await getDictionary(lang);
   return <AssignmentCreate title={t('Create Proposal')} />;

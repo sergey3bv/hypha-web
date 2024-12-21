@@ -8,10 +8,7 @@ type PageProps = {
 export default async function Index(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang,
-    id: daoSlug
-  } = params;
+  const { lang, id: daoSlug } = params;
 
   const newtoken = await getAccessToken();
   const t = await getDictionary(lang);

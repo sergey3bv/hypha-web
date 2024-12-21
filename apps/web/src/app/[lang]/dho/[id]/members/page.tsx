@@ -8,9 +8,7 @@ type PageProps = {
 export default async function MembersPage(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang
-  } = params;
+  const { lang } = params;
 
   return <MembersGraph />;
 }

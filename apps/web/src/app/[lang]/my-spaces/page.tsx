@@ -33,9 +33,7 @@ type SpacesFilterType = {
 export default async function Index(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang
-  } = params;
+  const { lang } = params;
 
   const newtoken = await getAccessToken();
   const daos = await getDaoList({ token: newtoken.accessJWT });

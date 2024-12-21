@@ -11,10 +11,7 @@ type PageProps = {
 export default async function AssignmentsPage(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang,
-    id
-  } = params;
+  const { lang, id } = params;
 
   const createAssignmentPat = PATH_ASSIGNMENTS_CREATE.replace(
     PATH_SEGMENT_LANG,

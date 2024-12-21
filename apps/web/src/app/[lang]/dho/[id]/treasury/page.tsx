@@ -19,10 +19,7 @@ type PageProps = {
 export default async function TreasuryPage(props: PageProps) {
   const params = await props.params;
 
-  const {
-    lang,
-    id
-  } = params;
+  const { lang, id } = params;
 
   return (
     <div>

@@ -2,21 +2,15 @@ import { ButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
 
-export default async function DhoLayout(
-  props: {
-    children: React.ReactNode;
-    params: Promise<{ lang: Locale }>;
-  }
-) {
+export default async function DhoLayout(props: {
+  children: React.ReactNode;
+  params: Promise<{ lang: Locale }>;
+}) {
   const params = await props.params;
 
-  const {
-    lang
-  } = params;
+  const { lang } = params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   return (
     <div className="flex flex-grow w-full h-full">
