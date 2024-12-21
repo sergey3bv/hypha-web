@@ -1,13 +1,23 @@
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
 
-export default async function DhoLayout({
-  children,
-  params: { id: daoSlug, lang },
-}: {
-  children: React.ReactNode;
-  params: { id: string; lang: Locale };
-}) {
+export default async function DhoLayout(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ id: string; lang: Locale }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    id: daoSlug,
+    lang
+  } = params;
+
+  const {
+    children
+  } = props;
+
   return (
     <div className="flex flex-grow w-full h-full">
       <MenuTop
