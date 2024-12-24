@@ -1,10 +1,10 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "default",
-  "rsc": false,
+  "rsc": true,
   "tailwind": {
-    "config": "packages/ui-utils/tailwind.config.js",
-    "css": "packages/ui-utils/global.css",
+    "config": "packages/ui-utils/src/tailwind.config.ts",
+    "css": "packages/ui-utils/src/global.css",
     "baseColor": "neutral",
     "cssVariables": true
   },
