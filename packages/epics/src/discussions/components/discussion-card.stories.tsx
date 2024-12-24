@@ -12,12 +12,10 @@ type Story = StoryObj<typeof DiscussionCard>;
 
 export const Primary: Story = {
   args: {
-    image:
-      'https://github.com/shadcn.png',
+    image: 'https://github.com/shadcn.png',
     title: 'Discussion Title',
     creator: {
-      avatar:
-        'https://github.com/shadcn.png',
+      avatar: 'https://github.com/shadcn.png',
       name: 'Jane',
       surname: 'Doe',
     },
