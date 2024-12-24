@@ -11,6 +11,7 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-name: '@nx/*'
+      - dependency-name: 'nx'
     groups:
       babel:
         patterns:
