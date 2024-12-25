@@ -1,7 +1,6 @@
 import { DiscussionHead, DiscussionHeadProps } from './discussion-head';
 import { Button, Skeleton } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import { CreatorType } from './discussion-head';
 import { Image } from '@hypha-platform/ui';
 import { MagicWandIcon } from '@radix-ui/react-icons';
 import { DiscussionChat } from './discussion-chat';
