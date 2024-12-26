@@ -34,7 +34,7 @@ export const TransactionsList = ({
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
-        label="Comments"
+        label="Transactions"
         sortOptions={sortOptions}
       />
       <div className="flex flex-col gap-2">

@@ -2,7 +2,7 @@ import { Skeleton } from '@hypha-platform/ui';
 import { Image } from '@hypha-platform/ui';
 import { Amount } from '@hypha-platform/ui/server';
 
-type AssetHeadProps = {
+export type AssetHeadProps = {
   icon: string;
   isLoading?: boolean;
   name: string;
