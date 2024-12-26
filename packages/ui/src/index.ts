@@ -14,6 +14,7 @@ export * from './separator';
 export * from './image';
 export * from './skeleton';
 export * from './status-badge';
+export * from './chart';
 
 export * from './organisms/editor';
 export * from './molecules/badges-list';
