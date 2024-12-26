@@ -11,7 +11,6 @@ describe('badgeVariants', () => {
       colorVariants.forEach((colorVariant) => {
         it(`should apply ${size} ${variant} ${colorVariant} classes`, () => {
           const result = cn(badgeVariants({ size, variant, colorVariant }));
-          console.debug(result);
 
           expect(result).toContain(parameters.size[size].text);
           expect(result).toContain(parameters.size[size].px);
