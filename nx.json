@@ -93,5 +93,5 @@
       "inputs": ["production", "^production"]
     }
   },
-  "useLegacyCache": true
+  "useLegacyCache": false
 }
