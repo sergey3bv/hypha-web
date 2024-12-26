@@ -1,7 +1,10 @@
 import { AssetHead, AssetHeadProps } from './asset-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import { TokenBalanceChart, OneChartPoint } from '../../../interactions/components/token-balance-chart';
+import {
+  TokenBalanceChart,
+  OneChartPoint,
+} from '../../../interactions/components/token-balance-chart';
 import { TransactionsList } from '../transactions/transactions-list';
 import { TransactionCardProps } from '../transactions/transaction-card';
 import { FilterOption } from '@hypha-platform/ui/server';
@@ -31,13 +34,13 @@ export const AssetDetail = ({
   transactionsListProps,
   isLoading,
 }: AssetDetailProps) => {
-  const { 
-    activeFilter, 
-    setActiveFilter, 
-    pagination, 
-    sortOptions, 
-    transactions, 
-    loadMore 
+  const {
+    activeFilter,
+    setActiveFilter,
+    pagination,
+    sortOptions,
+    transactions,
+    loadMore,
   } = transactionsListProps;
 
   return (
@@ -54,7 +57,7 @@ export const AssetDetail = ({
         </Button>
       </div>
       <TokenBalanceChart data={chartData} isLoading={isLoading} />
-      <Separator/>
+      <Separator />
       <TransactionsList
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}

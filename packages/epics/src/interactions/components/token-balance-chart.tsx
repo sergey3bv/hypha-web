@@ -1,11 +1,5 @@
 'use client';
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { FilterMenu, Skeleton } from '@hypha-platform/ui';
 import { useState, useEffect } from 'react';
 
@@ -65,11 +59,7 @@ export function TokenBalanceChart({ data, isLoading }: ChartData) {
     }
   }, [filterValue, data]);
   return (
-    <Skeleton
-      width="100%"
-      height="520px"
-      loading={isLoading}
-    >
+    <Skeleton width="100%" height="520px" loading={isLoading}>
       <Card className="bg-transparent border-0 p-0">
         <CardHeader className="flex items-end w-full">
           <FilterMenu

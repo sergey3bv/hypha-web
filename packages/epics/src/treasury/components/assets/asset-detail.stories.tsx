@@ -20,7 +20,7 @@ export const Primary: Story = {
       usdEqual: 335887.76,
       isLoading: false,
     },
-    
+
     chartData: [
       { month: 'January', value: 186000, date: '2024-01-15' },
       { month: 'February', value: 305000, date: '2024-02-10' },
@@ -49,9 +49,7 @@ export const Primary: Story = {
           description: 'Description 1',
           amount: 100,
           withUsdSymbol: true,
-          badges: [
-            { label: 'Tag 1', variant: 'actionOutline' },
-          ],
+          badges: [{ label: 'Tag 1', variant: 'actionOutline' }],
           author: { name: 'John', surname: 'Doe' },
           viewCount: 10,
           commentCount: 2,
@@ -62,9 +60,7 @@ export const Primary: Story = {
           description: 'Description 2',
           amount: 200,
           withUsdSymbol: true,
-          badges: [
-            { label: 'Tag 2', variant: 'positive' },
-          ],
+          badges: [{ label: 'Tag 2', variant: 'positive' }],
           author: { name: 'Jane', surname: 'Doe' },
           viewCount: 15,
           commentCount: 5,
