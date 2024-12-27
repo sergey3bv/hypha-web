@@ -18,6 +18,6 @@ export const Primary: Story = {
     status: 'applicant',
     commitment: 50,
     location: 'Paris, France',
-    isLoading: false
+    isLoading: false,
   },
 };

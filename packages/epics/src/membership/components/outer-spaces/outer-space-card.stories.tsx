@@ -16,6 +16,6 @@ export const Primary: Story = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
     members: 315,
     projects: 72,
-    isLoading: false
+    isLoading: false,
   },
 };

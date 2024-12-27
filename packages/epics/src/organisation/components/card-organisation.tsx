@@ -6,7 +6,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  Skeleton
+  Skeleton,
 } from '@hypha-platform/ui';
 
 type DaoCardProps = {
@@ -48,7 +48,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
         style={customCardHeaderStyles}
         className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
       >
-        <Skeleton loading={isLoading} className='w-full h-full'>
+        <Skeleton loading={isLoading} className="w-full h-full">
           <img
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={icon}
@@ -71,21 +71,34 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
           <div className="flex">
             <div>
               {activeAgreements ? (
-                <Badge isLoading={isLoading} variant="surface" colorVariant="success">
+                <Badge
+                  isLoading={isLoading}
+                  variant="surface"
+                  colorVariant="success"
+                >
                   {activeAgreements} Active Agreements
                 </Badge>
               ) : null}
             </div>
             <div className="ml-2">
               {openDiscussions ? (
-                <Badge isLoading={isLoading} variant="surface" colorVariant="warn">
+                <Badge
+                  isLoading={isLoading}
+                  variant="surface"
+                  colorVariant="warn"
+                >
                   {openDiscussions} Open Discussions
                 </Badge>
               ) : null}
             </div>
           </div>
         </div>
-        <Skeleton loading={isLoading} className="mb-4" width="100%" height="26px">
+        <Skeleton
+          loading={isLoading}
+          className="mb-4"
+          width="100%"
+          height="26px"
+        >
           <div className="flex flex-grow text-1 text-gray-500 mb-4 line-clamp-3">
             {description}
           </div>
