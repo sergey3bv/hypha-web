@@ -1,6 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Card, Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
 import { SewingPinFilledIcon } from '@radix-ui/react-icons';
 
 type MemberCardProps = {
