@@ -6,6 +6,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  Skeleton
 } from '@hypha-platform/ui';
 
 type DaoCardProps = {
@@ -17,6 +18,7 @@ type DaoCardProps = {
   title: string;
   activeAgreements?: number;
   openDiscussions?: number;
+  isLoading?: boolean;
 };
 
 const customCardHeaderStyles: React.CSSProperties = {
@@ -37,6 +39,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   agreements,
   activeAgreements,
   openDiscussions,
+  isLoading,
   title,
 }) => {
   return (
@@ -45,48 +48,60 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
         style={customCardHeaderStyles}
         className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
       >
-        <img
-          className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
-          src={icon}
-          alt={title}
-        ></img>
+        <Skeleton loading={isLoading} className='w-full h-full'>
+          <img
+            className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
+            src={icon}
+            alt={title}
+          />
+        </Skeleton>
       </CardHeader>
       <CardContent className="pt-5 relative">
         <Avatar style={customAvatarStyles}>
-          <AvatarImage src={icon} alt="logo" />
+          <Skeleton width="64px" height="64px" loading={isLoading}>
+            <AvatarImage src={icon} alt="logo" />
+          </Skeleton>
         </Avatar>
         <div className="flex items-center justify-between mb-4">
-          <CardTitle className="font-medium tracking-normal text-4">
-            {title}
-          </CardTitle>
+          <Skeleton loading={isLoading} width="40px" height="26px">
+            <CardTitle className="font-medium tracking-normal text-4">
+              {title}
+            </CardTitle>
+          </Skeleton>
           <div className="flex">
             <div>
               {activeAgreements ? (
-                <Badge variant="surface" colorVariant="success">
+                <Badge isLoading={isLoading} variant="surface" colorVariant="success">
                   {activeAgreements} Active Agreements
                 </Badge>
               ) : null}
             </div>
             <div className="ml-2">
               {openDiscussions ? (
-                <Badge variant="surface" colorVariant="warn">
+                <Badge isLoading={isLoading} variant="surface" colorVariant="warn">
                   {openDiscussions} Open Discussions
                 </Badge>
               ) : null}
             </div>
           </div>
         </div>
-        <div className="flex flex-grow text-1 text-gray-500 mb-4 line-clamp-3">
-          {description}
-        </div>
+        <Skeleton loading={isLoading} className="mb-4" width="100%" height="26px">
+          <div className="flex flex-grow text-1 text-gray-500 mb-4 line-clamp-3">
+            {description}
+          </div>
+        </Skeleton>
         <div className="flex flex-grow gap-2 text-xs items-center">
           <div className="flex">
-            <div className="font-bold text-1">{members}</div>
-            <div className="text-gray-500 ml-1 text-1">Members</div>
+            <Skeleton loading={isLoading} height="16px" width="80px">
+              <div className="font-bold text-1">{members}</div>
+              <div className="text-gray-500 ml-1 text-1">Members</div>
+            </Skeleton>
           </div>
           <div className="flex ml-3">
-            <div className="font-bold text-1">{agreements}</div>
-            <div className="text-gray-500 ml-1 text-1">Agreements</div>
+            <Skeleton loading={isLoading} height="16px" width="80px">
+              <div className="font-bold text-1">{agreements}</div>
+              <div className="text-gray-500 ml-1 text-1">Agreements</div>
+            </Skeleton>
           </div>
         </div>
       </CardContent>

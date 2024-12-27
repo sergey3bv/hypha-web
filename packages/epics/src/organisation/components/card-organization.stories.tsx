@@ -16,6 +16,7 @@ export const Primary: Story = {
     agreements: 0,
     activeAgreements: 1,
     openDiscussions: 2,
-    title: 'Title'
+    title: 'Title',
+    isLoading: false
   },
 };
