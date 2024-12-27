@@ -1,9 +1,7 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Card, Badge, Image, Skeleton } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
-import { Skeleton } from '@hypha-platform/ui';
 import { Amount } from '@hypha-platform/ui/server';
 
 type RequestCardProps = {
