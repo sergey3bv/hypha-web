@@ -5,7 +5,7 @@ import {
 } from '@hypha-platform/ui/server';
 import { TransactionCard, TransactionCardProps } from './transaction-card';
 
-type TransactionsListProps = {
+export type TransactionsListProps = {
   activeFilter: string;
   setActiveFilter: (value: string) => void;
   transactions?: TransactionCardProps[];

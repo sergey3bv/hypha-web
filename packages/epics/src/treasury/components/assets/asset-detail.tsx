@@ -1,30 +1,14 @@
 import { AssetHead, AssetHeadProps } from './asset-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import {
-  TokenBalanceChart,
-  OneChartPoint,
-} from '../../../interactions/components/token-balance-chart';
+import { TokenBalanceChart, OneChartPoint } from './token-balance-chart';
 import { TransactionsList } from '../transactions/transactions-list';
-import { TransactionCardProps } from '../transactions/transaction-card';
-import { FilterOption } from '@hypha-platform/ui/server';
+import { TransactionsListProps } from '../transactions/transactions-list';
 
 export type AssetDetailProps = {
   assetHeadProps: AssetHeadProps;
   chartData: OneChartPoint[];
-  transactionsListProps: {
-    activeFilter: string;
-    setActiveFilter: (value: string) => void;
-    pagination: {
-      total: number;
-      totalPages: number;
-      hasNextPage: boolean;
-    };
-    sortOptions: FilterOption[];
-    transactions: TransactionCardProps[];
-    loadMore: () => void;
-    isLoading?: boolean;
-  };
+  transactionsListProps: TransactionsListProps;
   isLoading?: boolean;
 };
 

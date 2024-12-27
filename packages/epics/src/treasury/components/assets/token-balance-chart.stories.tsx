@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TokenBalanceChart } from './token-balance-chart';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof TokenBalanceChart> = {
   component: TokenBalanceChart,
-  title: 'Epics/Interactions/TokenBalanceChart',
+  title: 'Epics/Treasury/TokenBalanceChart',
 };
 export default meta;
 type Story = StoryObj<typeof TokenBalanceChart>;
@@ -20,9 +18,5 @@ export const Primary: Story = {
       { month: 'May', value: 209000, date: '2024-09-12' },
       { month: 'June', value: 214000, date: '2024-10-10' },
     ],
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to TokenBalanceChart!/gi)).toBeTruthy();
   },
 };
