@@ -11,7 +11,13 @@ type MembersListProps = {
   minimize?: boolean;
 };
 
-export const MembersList: FC<MembersListProps> = ({ page, activeFilter, membersProp, isLoadingProp, minimize }) => {
+export const MembersList: FC<MembersListProps> = ({
+  page,
+  activeFilter,
+  membersProp,
+  isLoadingProp,
+  minimize,
+}) => {
   const { members, isLoading } = useMembers({
     page,
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
@@ -19,7 +25,12 @@ export const MembersList: FC<MembersListProps> = ({ page, activeFilter, membersP
   return (
     <div className="member-list w-full">
       {(membersProp ? membersProp : members).map((member, index) => (
-        <MemberCard minimize={minimize} key={index} {...member} isLoading={isLoading} />
+        <MemberCard
+          minimize={minimize}
+          key={index}
+          {...member}
+          isLoading={isLoading}
+        />
       ))}
 
       {(isLoading || isLoadingProp) && (

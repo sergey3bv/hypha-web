@@ -44,26 +44,25 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
-          {!minimize ?
-          <div className="flex gap-x-1">
-          <Badge
-            variant="surface"
-            colorVariant="accent"
-            isLoading={isLoading}
-          >
-            Recurring
-          </Badge>
-          <Badge
-            variant="surface"
-            colorVariant="accent"
-            isLoading={isLoading}
-          >
-            {commitment}%
-          </Badge>
-          <StatusBadge isLoading={isLoading} status={status} />
-        </div>
-         : null}
-          
+          {!minimize ? (
+            <div className="flex gap-x-1">
+              <Badge
+                variant="surface"
+                colorVariant="accent"
+                isLoading={isLoading}
+              >
+                Recurring
+              </Badge>
+              <Badge
+                variant="surface"
+                colorVariant="accent"
+                isLoading={isLoading}
+              >
+                {commitment}%
+              </Badge>
+              <StatusBadge isLoading={isLoading} status={status} />
+            </div>
+          ) : null}
 
           <Skeleton
             height="26px"

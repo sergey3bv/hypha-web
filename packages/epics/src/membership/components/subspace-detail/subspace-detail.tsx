@@ -16,7 +16,7 @@ export const SubspaceDetail = ({
   title,
   image,
   content,
-  members
+  members,
 }: SubspaceDetailProps) => {
   const {
     isLoading,
@@ -31,8 +31,8 @@ export const SubspaceDetail = ({
     value: activeFilter,
     options: [
       { label: 'All', value: 'all' },
-      { label: 'Most recent', value: 'most-recent' }
-    ]
+      { label: 'Most recent', value: 'most-recent' },
+    ],
   };
 
   return (
@@ -73,9 +73,7 @@ export const SubspaceDetail = ({
         disabled={!pagination.hasNextPage}
         isLoading={isLoading}
       >
-        {!pagination.hasNextPage
-          ? 'No more members'
-          : 'Load more members'}
+        {!pagination.hasNextPage ? 'No more members' : 'Load more members'}
       </SectionLoadMore>
     </div>
   );
