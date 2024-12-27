@@ -1,9 +1,8 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Card, Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
 import { SewingPinFilledIcon } from '@radix-ui/react-icons';
 
-type MemberCardProps = {
+export type MemberCardProps = {
   name?: string;
   surname?: string;
   nickname?: string;
@@ -12,6 +11,7 @@ type MemberCardProps = {
   commitment?: number;
   status?: string;
   isLoading?: boolean;
+  minimize?: boolean;
 };
 
 export const MemberCard: React.FC<MemberCardProps> = ({
@@ -23,43 +23,47 @@ export const MemberCard: React.FC<MemberCardProps> = ({
   commitment,
   status,
   isLoading,
+  minimize,
 }) => {
   return (
     <Card className="w-full h-full p-5 mb-2 flex">
       <Skeleton
-        width="64px"
-        height="64px"
+        width={minimize ? '40px' : '64px'}
+        height={minimize ? '40px' : '64px'}
         loading={isLoading}
         className="rounded-lg mr-3"
       >
         <Image
           className="rounded-lg mr-3"
           src={avatar ?? ''}
-          height={64}
-          width={64}
+          height={minimize ? 40 : 64}
+          width={minimize ? 40 : 64}
           alt={nickname ?? ''}
         />
       </Skeleton>
 
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
+          {!minimize ?
           <div className="flex gap-x-1">
-            <Badge
-              variant="surface"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
-              Recurring
-            </Badge>
-            <Badge
-              variant="surface"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
-              {commitment}%
-            </Badge>
-            <StatusBadge isLoading={isLoading} status={status} />
-          </div>
+          <Badge
+            variant="surface"
+            colorVariant="accent"
+            isLoading={isLoading}
+          >
+            Recurring
+          </Badge>
+          <Badge
+            variant="surface"
+            colorVariant="accent"
+            isLoading={isLoading}
+          >
+            {commitment}%
+          </Badge>
+          <StatusBadge isLoading={isLoading} status={status} />
+        </div>
+         : null}
+          
 
           <Skeleton
             height="26px"
