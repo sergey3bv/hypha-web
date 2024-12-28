@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
   Skeleton,
+  Image,
 } from '@hypha-platform/ui';
 
 type DaoCardProps = {
@@ -49,7 +50,9 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
         className="p-0 rounded-tl-md rounded-tr-md overflow-hidden"
       >
         <Skeleton loading={isLoading} className="w-full h-full">
-          <img
+          <Image
+            width={454}
+            height={150}
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={icon}
             alt={title}
