@@ -40,7 +40,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   agreements,
   activeAgreements,
   openDiscussions,
-  isLoading,
+  isLoading = false,
   title,
 }) => {
   return (
