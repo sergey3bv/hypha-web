@@ -8,9 +8,9 @@ export const Html: React.FC<{
     <html
       lang="en"
       suppressHydrationWarning
-      className={clsx(className, 'fixed top-0 left-0 right-0 bottom-0')}
+      className={className}
     >
-      <body className="flex w-full h-full">{children}</body>
+      <body className="flex flex-col w-full h-full">{children}</body>
     </html>
   );
 };
