@@ -119,7 +119,6 @@ export default async function Index(props: PageProps) {
           </Carousel>
         </div>
       </Container>
-      <Footer />
     </div>
   );
 }

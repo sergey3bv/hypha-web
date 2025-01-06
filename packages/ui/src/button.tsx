@@ -119,7 +119,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({ variant, size, className, colorVariant })
         )}
         ref={ref}
-        {...props}
+        {...rest}
       />
     );
   }
