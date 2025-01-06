@@ -15,10 +15,12 @@ export default async function AgreementsPage(props: PageProps) {
 
   const { lang, id } = params;
 
+  const basePath = `/${lang}/dho/${id}/agreements`;
+
   return (
     <div>
       <NavigationTabs lang={lang} id={id} activeTab="agreements" />
-      <DiscussionsSection />
+      <DiscussionsSection basePath={basePath} />
       <ProposalsSection />
       <AgreementsSection />
     </div>

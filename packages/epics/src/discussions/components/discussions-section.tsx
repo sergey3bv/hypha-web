@@ -11,9 +11,13 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-type DiscussionSectionProps = Record<string, never>;
+type DiscussionSectionProps = {
+  basePath: string;
+};
 
-export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
+export const DiscussionsSection: FC<DiscussionSectionProps> = ({
+  basePath,
+}) => {
   const {
     pages,
     activeFilter,
@@ -50,6 +54,7 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = () => {
             page={index + 1}
             key={index}
             activeFilter={activeFilter}
+            basePath={basePath}
           />
         ))}
         <SectionLoadMore
