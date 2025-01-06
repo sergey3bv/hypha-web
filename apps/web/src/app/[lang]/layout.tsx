@@ -1,4 +1,9 @@
-import { Footer, Html, MenuTop, ThemeProvider } from '@hypha-platform/ui/server';
+import {
+  Footer,
+  Html,
+  MenuTop,
+  ThemeProvider,
+} from '@hypha-platform/ui/server';
 import '@hypha-platform/ui-utils/global.css';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
