@@ -1,4 +1,4 @@
-import { PaginationMetadata } from "../types";
+import { PaginationMetadata } from '../types';
 
 type Creator = { avatar: string; name: string; surname: string };
 
