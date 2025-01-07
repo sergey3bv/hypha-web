@@ -1,3 +1,5 @@
+import { PaginationMetadata } from "../types";
+
 type Creator = { avatar: string; name: string; surname: string };
 
 export type DiscussionItem = {
@@ -13,26 +15,7 @@ export type DiscussionItem = {
   views?: number;
 };
 
-type PaginationMetadata = {
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-};
-
-export type PaginatedResponse<T> = {
-  discussions: T[];
+export type PaginatedDiscussionsResponse = {
+  discussions: DiscussionItem[];
   pagination: PaginationMetadata;
-};
-
-type FilterParams = {
-  status?: string;
-};
-
-export type PaginationParams = {
-  page?: number;
-  pageSize?: number;
-  filter?: FilterParams;
 };

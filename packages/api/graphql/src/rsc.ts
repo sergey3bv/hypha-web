@@ -15,3 +15,5 @@ export * from './query/outer-spaces/list';
 export * from './query/payouts/list';
 export * from './query/proposals/list';
 export * from './query/requests/list';
+
+export * from './query/types';

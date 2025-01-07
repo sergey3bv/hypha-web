@@ -1,11 +1,12 @@
 import { data } from './list.mock';
-import { DiscussionItem, PaginationParams, PaginatedResponse } from './types';
+import { PaginatedDiscussionsResponse } from './types';
+import { PaginationParams } from '../types';
 
 export const fetchDiscussions = async ({
   page = 1,
   pageSize = 3,
   filter,
-}: PaginationParams): Promise<PaginatedResponse<DiscussionItem>> => {
+}: PaginationParams): Promise<PaginatedDiscussionsResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter

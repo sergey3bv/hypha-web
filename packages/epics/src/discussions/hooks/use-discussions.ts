@@ -3,9 +3,9 @@
 import useSWR from 'swr';
 import {
   DiscussionItem,
-  PaginationMetadata,
-  FilterParams,
   fetchDiscussions,
+  PaginationMetadata,
+  PaginationParams,
 } from '@hypha-platform/graphql/rsc';
 
 type UseDiscussionsReturn = {
@@ -17,10 +17,7 @@ type UseDiscussionsReturn = {
 export const useDiscussions = ({
   page = 1,
   filter,
-}: {
-  page?: number;
-  filter?: FilterParams;
-}): UseDiscussionsReturn => {
+}: PaginationParams): UseDiscussionsReturn => {
   const { data, isLoading } = useSWR(['discussions', page, filter], () =>
     fetchDiscussions({ page, filter })
   );

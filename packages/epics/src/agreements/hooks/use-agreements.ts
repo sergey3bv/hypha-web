@@ -3,8 +3,8 @@
 import useSWR from 'swr';
 import {
   AgreementItem,
-  PaginationMetadata,
   FilterParams,
+  PaginationMetadata,
   fetchAgreements,
 } from '@hypha-platform/graphql/rsc';
 
