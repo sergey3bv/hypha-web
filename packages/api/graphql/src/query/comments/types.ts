@@ -1,4 +1,5 @@
-import { Creator } from "../members/types";
+import { Creator } from '../members/types';
+
 export type Comment = {
   creator?: Creator;
   date?: string;
@@ -6,4 +7,4 @@ export type Comment = {
   replies: Comment[];
   isReply?: boolean;
   isLoading?: boolean;
-}
+};

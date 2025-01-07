@@ -1,7 +1,6 @@
 import { Creator } from '../members/types';
 import { data } from './list.mock';
 
-
 export type AgreementItem = {
   title: string;
   creator: Creator;

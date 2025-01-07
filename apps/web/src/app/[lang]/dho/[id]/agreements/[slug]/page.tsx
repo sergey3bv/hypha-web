@@ -3,7 +3,7 @@ import { getDiscussionBySlug } from '@hypha-platform/graphql/rsc';
 import { getCommentsByDiscussionSlug } from '@hypha-platform/graphql/rsc';
 
 type PageProps = {
-  params: Promise<{ slug: string, id: string, lang: string }>;
+  params: Promise<{ slug: string; id: string; lang: string }>;
 };
 
 export default async function Agreements(props: PageProps) {

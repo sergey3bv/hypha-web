@@ -1,4 +1,4 @@
-import { DiscussionDetail } from "@hypha-platform/epics";
+import { DiscussionDetail } from '@hypha-platform/epics';
 
 export default function Loading() {
   return (

@@ -1,9 +1,11 @@
-import { DiscussionDetail } from "@hypha-platform/epics";
-import { getCommentsByDiscussionSlug, getDiscussionBySlug } from "@hypha-platform/graphql/rsc";
-import router from "next/router";
+import { DiscussionDetail } from '@hypha-platform/epics';
+import {
+  getCommentsByDiscussionSlug,
+  getDiscussionBySlug,
+} from '@hypha-platform/graphql/rsc';
 
 type PageProps = {
-  params: Promise<{ slug: string, id: string, lang: string }>;
+  params: Promise<{ slug: string; id: string; lang: string }>;
 };
 
 export default async function Agreements(props: PageProps) {
