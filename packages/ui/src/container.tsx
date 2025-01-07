@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
 type Props = {
   children?: React.ReactNode;
@@ -6,5 +6,7 @@ type Props = {
 };
 
 export const Container = ({ children, className }: Props) => {
-  return <div className={clsx("container mx-auto px-10", className)}>{children}</div>;
+  return (
+    <div className={clsx('container mx-auto px-10', className)}>{children}</div>
+  );
 };
