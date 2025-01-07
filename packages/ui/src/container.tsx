@@ -7,6 +7,6 @@ type Props = {
 
 export const Container = ({ children, className }: Props) => {
   return (
-    <div className={clsx('container mx-auto px-10', className)}>{children}</div>
+    <div className={clsx('container mx-auto', className)}>{children}</div>
   );
 };

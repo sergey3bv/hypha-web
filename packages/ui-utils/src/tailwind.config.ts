@@ -20,6 +20,23 @@ export function buildConfig(appDir: string): Config {
       ...createGlobPatternsForDependencies(appDir),
     ],
     theme: {
+      screens: {
+        sm: 'var(--spacing-container-sm)', //     => @media (min-width: 640px) { ... }
+        md: 'var(--spacing-container-md)', //     => @media (min-width: 812px) { ... }
+        lg: 'var(--spacing-container-lg)', //    => @media (min-width: 812px) { ... }
+        xl: 'var(--spacing-container-xl)', //    => @media (min-width: 812px) { ... }
+        '2xl': 'var(--spacing-container-2xl)', // => @media (min-width: 812px) { ... }
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: 'var(--spacing-container-sm)',
+          sm: 'var(--spacing-container-sm)',
+          lg: 'var(--spacing-container-lg)',
+          xl: 'var(--spacing-container-xl)',
+          '2xl': 'var(--spacing-container-2xl)',
+        },
+      },
       extend: {
         colors: {
           border: 'hsl(var(--border))',
@@ -260,6 +277,11 @@ export function buildConfig(appDir: string): Config {
           '7': 'var(--spacing-7)',
           '8': 'var(--spacing-8)',
           '9': 'var(--spacing-9)',
+          'container-sm': 'var(--spacing-container-sm)',
+          'container-md': 'var(--spacing-container-md)',
+          'container-lg': 'var(--spacing-container-lg)',
+          'container-xl': 'var(--spacing-container-xl)',
+          'container-2xl': 'var(--spacing-container-2xl)',
         },
       },
     },

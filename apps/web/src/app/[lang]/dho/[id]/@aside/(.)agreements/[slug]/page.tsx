@@ -15,7 +15,7 @@ export default async function Agreements(props: PageProps) {
   const discussion = await getDiscussionBySlug(slug);
 
   return (
-    <div className="sticky p-9 top-9 h-full bg-neutral-2 w-full flex-grow">
+    <div className="sticky p-9 top-9 h-full bg-neutral-2 w-container-md">
       <DiscussionDetail
         creator={discussion?.creator}
         title={discussion?.title}
