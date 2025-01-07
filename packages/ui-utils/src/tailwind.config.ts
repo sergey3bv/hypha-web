@@ -21,20 +21,20 @@ export function buildConfig(appDir: string): Config {
     ],
     theme: {
       screens: {
-        sm: 'var(--spacing-container-sm)', //     => @media (min-width: 640px) { ... }
-        md: 'var(--spacing-container-md)', //     => @media (min-width: 812px) { ... }
-        lg: 'var(--spacing-container-lg)', //    => @media (min-width: 812px) { ... }
-        xl: 'var(--spacing-container-xl)', //    => @media (min-width: 812px) { ... }
-        '2xl': 'var(--spacing-container-2xl)', // => @media (min-width: 812px) { ... }
+        sm: '64rem', //     => @media (min-width: 640px) { ... }
+        md: '81.2rem', //     => @media (min-width: 812px) { ... }
+        lg: '81.2rem', //    => @media (min-width: 812px) { ... }
+        xl: '81.2rem', //    => @media (min-width: 812px) { ... }
+        '2xl': '81.2rem', // => @media (min-width: 812px) { ... }
       },
       container: {
         center: true,
         padding: {
-          DEFAULT: 'var(--spacing-container-sm)',
-          sm: 'var(--spacing-container-sm)',
-          lg: 'var(--spacing-container-lg)',
-          xl: 'var(--spacing-container-xl)',
-          '2xl': 'var(--spacing-container-2xl)',
+          DEFAULT: 'var(--spacing-5)',
+          sm: 'var(--spacing-5)',
+          lg: 'var(--spacing-5)',
+          xl: 'var(--spacing-5)',
+          '2xl': 'var(--spacing-5)',
         },
       },
       extend: {
