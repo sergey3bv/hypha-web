@@ -178,7 +178,7 @@ export default async function DhoLayout({
           </Carousel>
         </div>
       </Container>
-      <div className="sticky top-9">{aside}</div>
+      <div className="sticky top-9 h-full">{aside}</div>
     </div>
   );
 }
