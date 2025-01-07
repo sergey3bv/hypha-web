@@ -6,11 +6,13 @@ import { MagicWandIcon } from '@radix-ui/react-icons';
 import { DiscussionChat } from './discussion-chat';
 
 import { DiscussionMessageProps } from './discussion-message';
+import Link from 'next/link';
 
 export type DiscussionDetailProps = DiscussionHeadProps & {
   content: string;
   messages: DiscussionMessageProps[];
   image: string;
+  closeUrl: string;
 };
 
 export const DiscussionDetail = ({
@@ -20,19 +22,22 @@ export const DiscussionDetail = ({
   content,
   image,
   messages,
+  closeUrl,
 }: DiscussionDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <DiscussionHead creator={creator} title={title} isLoading={isLoading} />
-        <Button
-          variant="ghost"
-          colorVariant="neutral"
-          className="flex items-center"
-        >
-          Close
-          <RxCross1 className="ml-2" />
-        </Button>
+        <Link href={closeUrl}>
+          <Button
+            variant="ghost"
+            colorVariant="neutral"
+            className="flex items-center"
+          >
+            Close
+            <RxCross1 className="ml-2" />
+          </Button>
+        </Link>
       </div>
       <Skeleton
         width="100%"

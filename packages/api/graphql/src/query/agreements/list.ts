@@ -1,6 +1,6 @@
+import { Creator } from '../members/types';
 import { data } from './list.mock';
 
-export type Creator = { avatar: string; name: string; surname: string };
 
 export type AgreementItem = {
   title: string;

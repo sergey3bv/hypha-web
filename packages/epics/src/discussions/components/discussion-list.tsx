@@ -19,7 +19,7 @@ export const DiscussionsList: FC<DiscussionsListProps> = ({
     ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
   });
   return (
-    <div className="discussion-list w-full">
+    <div className="w-full">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
         {discussions.map((discussion, index) => (
           <Link href={`${basePath}/${discussion.slug}`} key={index}>
