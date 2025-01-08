@@ -1,8 +1,9 @@
 import { DiscussionDetail } from '@hypha-platform/epics';
+import { SidePanel } from '../../_components/side-panel';
 
 export default function Loading() {
   return (
-    <div className="sticky p-9 top-9 h-full bg-neutral-2 w-full flex-grow">
+    <SidePanel>
       <DiscussionDetail
         isLoading
         creator={{}}
@@ -12,6 +13,6 @@ export default function Loading() {
         messages={[]}
         closeUrl={''}
       />
-    </div>
+    </SidePanel>
   );
 }
