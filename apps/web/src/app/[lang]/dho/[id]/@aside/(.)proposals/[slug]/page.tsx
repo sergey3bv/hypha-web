@@ -4,11 +4,7 @@ import { SidePanel } from '../../_components/side-panel';
 import { useProposalBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 
-type PageProps = {
-  params: { slug: string; id: string; lang: string };
-};
-
-export default function Agreements(props: PageProps) {
+export default function Agreements() {
   const { slug, id, lang } = useParams();
   const { data, isLoading } = useProposalBySlug(slug as string);
 
