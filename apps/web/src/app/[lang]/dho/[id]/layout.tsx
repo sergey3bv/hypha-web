@@ -39,9 +39,11 @@ const alreadyMember = true;
 
 export default async function DhoLayout({
   children,
+  aside,
   ...props
 }: {
   children: React.ReactNode;
+  aside: React.ReactNode;
   params: Promise<{ id: string; lang: Locale }>;
 }) {
   const params = await props.params;
@@ -52,7 +54,7 @@ export default async function DhoLayout({
   const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
   const daos = await getDaoList({ token: newtoken.accessJWT });
   return (
-    <div className="flex flex-grow w-full h-full">
+    <div className="flex">
       <Container>
         <div className="mb-6 flex items-center">
           <Link
@@ -137,7 +139,7 @@ export default async function DhoLayout({
         <div className="mt-6">
           <Text className="text-2">{dao.description}</Text>
         </div>
-        <div className="flex flex-grow gap-2 items-center mt-6">
+        <div className="flex gap-2 items-center mt-6">
           <div className="flex">
             <div className="font-bold text-1">128</div>
             <div className="text-gray-500 ml-1 text-1">Members</div>
@@ -176,6 +178,7 @@ export default async function DhoLayout({
           </Carousel>
         </div>
       </Container>
+      {aside}
     </div>
   );
 }

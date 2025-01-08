@@ -8,7 +8,7 @@ import {
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Text } from '@radix-ui/themes';
-
+import Link from 'next/link';
 type CreatorType = {
   avatar?: string;
   name?: string;
@@ -23,6 +23,7 @@ type DiscussionCardProps = {
   views?: number;
   comments?: number;
   isLoading?: boolean | undefined;
+  href?: string;
 };
 
 const customCardHeaderStyles: React.CSSProperties = {
@@ -37,6 +38,7 @@ export const DiscussionCard: React.FC<DiscussionCardProps> = ({
   title,
   creator,
   isLoading,
+  href,
 }) => {
   return (
     <Card className="h-full w-full">

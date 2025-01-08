@@ -75,7 +75,7 @@ export default async function RootLayout({
             />
           </MenuTop.RightSlot>
         </MenuTop>
-        <div className="pt-9">{children}</div>
+        <div className="pt-9 w-screen">{children}</div>
         {modal}
         <Footer />
       </ThemeProvider>

@@ -20,6 +20,23 @@ export function buildConfig(appDir: string): Config {
       ...createGlobPatternsForDependencies(appDir),
     ],
     theme: {
+      screens: {
+        sm: '64rem', //     => @media (min-width: 640px) { ... }
+        md: '81.2rem', //     => @media (min-width: 812px) { ... }
+        lg: '81.2rem', //    => @media (min-width: 812px) { ... }
+        xl: '81.2rem', //    => @media (min-width: 812px) { ... }
+        '2xl': '81.2rem', // => @media (min-width: 812px) { ... }
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: 'var(--spacing-5)',
+          sm: 'var(--spacing-5)',
+          lg: 'var(--spacing-5)',
+          xl: 'var(--spacing-5)',
+          '2xl': 'var(--spacing-5)',
+        },
+      },
       extend: {
         colors: {
           border: 'hsl(var(--border))',
@@ -260,6 +277,11 @@ export function buildConfig(appDir: string): Config {
           '7': 'var(--spacing-7)',
           '8': 'var(--spacing-8)',
           '9': 'var(--spacing-9)',
+          'container-sm': 'var(--spacing-container-sm)',
+          'container-md': 'var(--spacing-container-md)',
+          'container-lg': 'var(--spacing-container-lg)',
+          'container-xl': 'var(--spacing-container-xl)',
+          'container-2xl': 'var(--spacing-container-2xl)',
         },
       },
     },
