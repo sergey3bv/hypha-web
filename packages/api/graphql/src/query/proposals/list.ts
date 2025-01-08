@@ -1,43 +1,12 @@
+import { PaginatedProposalResponse} from './types';
+import { PaginationParams } from '../types';
 import { data } from './list.mock';
-
-type Creator = { avatar: string; name: string; surname: string };
-
-export type ProposalItem = {
-  title: string;
-  creator: Creator;
-  commitment: number;
-  status: string;
-};
-
-type PaginationMetadata = {
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-};
-
-type PaginatedResponse<T> = {
-  proposals: T[];
-  pagination: PaginationMetadata;
-};
-
-type FilterParams = {
-  status?: string;
-};
-
-type PaginationParams = {
-  page?: number;
-  pageSize?: number;
-  filter?: FilterParams;
-};
 
 export const fetchProposals = async ({
   page = 1,
   pageSize = 4,
   filter,
-}: PaginationParams): Promise<PaginatedResponse<ProposalItem>> => {
+}: PaginationParams): Promise<PaginatedProposalResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter

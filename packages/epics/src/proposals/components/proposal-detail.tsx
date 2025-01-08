@@ -5,12 +5,14 @@ import { ProposalHead, ProposalHeadProps } from './proposal-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
+import Link from 'next/link';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
   onReject: () => void;
   onSetActiveFilter: (value: string) => void;
-  content: string;
+  content?: string;
+  closeUrl: string;
 };
 
 export const ProposalDetail = ({
@@ -23,6 +25,7 @@ export const ProposalDetail = ({
   onReject,
   content,
   onSetActiveFilter,
+  closeUrl,
 }: ProposalDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -34,10 +37,12 @@ export const ProposalDetail = ({
           status={status}
           isLoading={isLoading}
         />
-        <Button variant="ghost" colorVariant="neutral">
-          Close
-          <RxCross1 />
-        </Button>
+        <Link href={closeUrl}>
+          <Button variant="ghost" colorVariant="neutral">
+            Close
+            <RxCross1 />
+          </Button>
+        </Link>
       </div>
       <Separator />
       <div>{content}</div>

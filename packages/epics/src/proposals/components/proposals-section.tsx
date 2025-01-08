@@ -11,9 +11,13 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-type ProposalSectionProps = Record<string, never>;
+type ProposalSectionProps = {
+  basePath: string;
+};
 
-export const ProposalsSection: FC<ProposalSectionProps> = () => {
+export const ProposalsSection: FC<ProposalSectionProps> = ({
+  basePath,
+}) => {
   const {
     pages,
     activeFilter,
@@ -46,6 +50,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = () => {
       />
       {Array.from({ length: pages }).map((_, index) => (
         <ProposalList
+          basePath={basePath}
           page={index + 1}
           key={index}
           activeFilter={activeFilter}

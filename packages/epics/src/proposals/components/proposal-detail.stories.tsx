@@ -12,6 +12,7 @@ type Story = StoryObj<typeof ProposalDetail>;
 
 export const Primary: Story = {
   args: {
+    closeUrl: '',
     creator: {
       avatar: 'https://github.com/shadcn.png',
       name: 'John',

@@ -13,7 +13,7 @@ export * from './query/inner-spaces/list';
 export * from './query/members/list';
 export * from './query/outer-spaces/list';
 export * from './query/payouts/list';
-export * from './query/proposals/list';
+export * from './query/proposals';
 export * from './query/requests/list';
 
 export * from './query/types';

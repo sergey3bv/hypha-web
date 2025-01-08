@@ -21,7 +21,7 @@ export default async function AgreementsPage(props: PageProps) {
     <div>
       <NavigationTabs lang={lang} id={id} activeTab="agreements" />
       <DiscussionsSection basePath={`${basePath}/discussions`} />
-      <ProposalsSection />
+      <ProposalsSection basePath={`${basePath}/proposals`} />
       <AgreementsSection />
     </div>
   );
