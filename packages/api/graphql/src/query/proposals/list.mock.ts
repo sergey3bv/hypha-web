@@ -9,7 +9,8 @@ export const data = [
       surname: 'Doe',
     },
     commitment: 50,
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
     status: 'active',
   },
   {
@@ -23,7 +24,8 @@ export const data = [
     },
     commitment: 50,
     status: 'voting',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 3',
@@ -36,7 +38,8 @@ export const data = [
     },
     commitment: 50,
     status: 'completed',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 4',
@@ -49,7 +52,8 @@ export const data = [
     },
     commitment: 50,
     status: 'rejected',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 5',
@@ -62,7 +66,8 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 6',
@@ -75,7 +80,8 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 7',
@@ -88,7 +94,8 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 8',
@@ -101,7 +108,8 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 9',
@@ -114,7 +122,8 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
   {
     title: 'Proposal Title 10',
@@ -127,6 +136,7 @@ export const data = [
     },
     commitment: 50,
     status: 'active',
-    content: 'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
+    content:
+      'irure deserunt laboris incididunt proident ea consectetur officia ipsum ad ipsum reprehenderit eiusmod id ut nostrud occaecat elit ut labore cupidatat quis commodo labore anim ad cupidatat eu proident et Lorem ut aliquip minim laboris sunt veniam do in sunt id veniam excepteur duis sit adipisicing cupidatat nulla eu et ipsum duis proident cillum ut in reprehenderit reprehenderit quis irure dolore fugiat irure voluptate anim consequat aliqua incididunt sunt ipsum dolore eu amet et laboris id ut ea ex id minim sit laboris pariatur amet anim eu et ad reprehenderit commodo aliquip aliquip sint laboris aliquip in irure aute duis',
   },
 ];

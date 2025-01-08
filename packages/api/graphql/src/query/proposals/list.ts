@@ -1,4 +1,4 @@
-import { PaginatedProposalResponse} from './types';
+import { PaginatedProposalResponse } from './types';
 import { PaginationParams } from '../types';
 import { data } from './list.mock';
 

@@ -15,9 +15,7 @@ type ProposalSectionProps = {
   basePath: string;
 };
 
-export const ProposalsSection: FC<ProposalSectionProps> = ({
-  basePath,
-}) => {
+export const ProposalsSection: FC<ProposalSectionProps> = ({ basePath }) => {
   const {
     pages,
     activeFilter,
