@@ -15,6 +15,7 @@ export const Primary: Story = {
       name: 'John',
       surname: 'Doe',
     },
+    closeUrl: '',
     title: 'Discussion Title',
     isLoading: false,
     content:
@@ -77,7 +78,6 @@ export const Primary: Story = {
         replies: [],
       },
     ],
-    image:
-      'https://s3-alpha-sig.figma.com/img/c889/6f0a/3adc833b2ffa10c90cbad7d66cf542cc?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LgIpT47FbgZcRP-ySpC5UFVkhib1vaupivEJJCW3Ovg9zqYMkLzUZihdkVZopGQaRfC4Jk8f9wJCjTpdRdiC3y5U3I3Hq32EAP~HVVcKjKmfBWfgn2a1i6b~ZJk0nHv28eZfcgKRD8HImTrwX1SbTNb9IG38NwEx-nhYUHb4bbH3llwS7XwcBzpwiQK2do4tWSba~hToD5Q4ids0pL9b1qHQRmPp1DAkR1pxaUUH-bBFxlhXeTcwgl-w4-z457L~Eas4orcllKNjj4K38s4AMW09QTtDMxpt9XQgNvOxuEYaT8P1v7ySYh1oALxs8IxDWJsfzZmjudZCgPH~82-YZA__',
+    image: 'https://github.com/shadcn.png',
   },
 };

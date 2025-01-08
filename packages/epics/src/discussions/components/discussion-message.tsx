@@ -12,6 +12,7 @@ export type DiscussionMessageProps = {
   date?: string;
   message?: string;
   replies: DiscussionMessageProps[];
+  id?: string;
   isReply?: boolean;
   isLoading?: boolean;
 };
