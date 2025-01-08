@@ -78,7 +78,6 @@ export const Primary: Story = {
         replies: [],
       },
     ],
-    image:
-      'https://github.com/shadcn.png',
+    image: 'https://github.com/shadcn.png',
   },
 };
