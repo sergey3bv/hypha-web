@@ -16,11 +16,17 @@ export const Default: Story = {
     badges: [
       {
         label: 'Badge 1',
-        variant: 'action',
+        variant: 'solid',
       },
       {
         label: 'Badge 2',
-        variant: 'positive',
+        variant: 'soft',
+        colorVariant: 'success',
+      },
+      {
+        label: 'Badge 3',
+        variant: 'surface',
+        colorVariant: 'warn',
       },
     ],
   },
