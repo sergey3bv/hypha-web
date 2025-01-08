@@ -3,6 +3,7 @@ import {
   getCommentsByDiscussionSlug,
   getDiscussionBySlug,
 } from '@hypha-platform/graphql/rsc';
+import { SidePanel } from '../../_components/side-panel';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -15,7 +16,7 @@ export default async function Agreements(props: PageProps) {
   const discussion = await getDiscussionBySlug(slug);
 
   return (
-    <div className="sticky p-9 top-9 h-[calc(100vh-72px)] bg-neutral-2 w-container-md overflow-y-auto">
+    <SidePanel>
       <DiscussionDetail
         creator={discussion?.creator}
         title={discussion?.title}
@@ -25,6 +26,6 @@ export default async function Agreements(props: PageProps) {
         messages={data}
         closeUrl={`/${lang}/dho/${id}/agreements`}
       />
-    </div>
+    </SidePanel>
   );
 }
