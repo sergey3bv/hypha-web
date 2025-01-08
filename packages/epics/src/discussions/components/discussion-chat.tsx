@@ -16,6 +16,7 @@ export const DiscussionChat = ({
       <div className="flex flex-col mb-4">
         {messages.map((message) => (
           <DiscussionMessage
+            key={message.id}
             replies={message.replies}
             isLoading={isLoading}
             message={message.message}
