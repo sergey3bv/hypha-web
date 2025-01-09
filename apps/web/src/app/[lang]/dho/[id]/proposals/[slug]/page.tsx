@@ -1,8 +1,6 @@
 'use client';
 
 import { ProposalDetail, useProposalBySlug } from '@hypha-platform/epics';
-import { getDiscussionBySlug } from '@hypha-platform/graphql/rsc';
-import { getCommentsByDiscussionSlug } from '@hypha-platform/graphql/rsc';
 import { useParams } from 'next/navigation';
 
 type PageProps = {
