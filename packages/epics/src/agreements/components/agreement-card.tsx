@@ -29,7 +29,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-6 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex">
       <Skeleton
         width="64px"
         height="64px"
