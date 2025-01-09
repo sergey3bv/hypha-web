@@ -7,7 +7,7 @@ type CommentProps = {
   author: Creator;
   likes: number;
   id: string;
-}; 
+};
 
 export type AgreementItem = {
   id: string;
