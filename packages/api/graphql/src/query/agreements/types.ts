@@ -1,7 +1,13 @@
 import { PaginationMetadata } from '../types';
-import { CardCommentProps } from '../../../../../epics/src/interactions/components/card-comment';
 
 export type Creator = { avatar: string; name: string; surname: string };
+
+type CommentProps = {
+  comment: string;
+  author: Creator;
+  likes: number;
+  id: string;
+}; 
 
 export type AgreementItem = {
   id: string;
@@ -11,7 +17,7 @@ export type AgreementItem = {
   commitment: number;
   status: string;
   views: number;
-  comments: CardCommentProps[];
+  comments: CommentProps[];
   content: string;
 };
 
