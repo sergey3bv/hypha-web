@@ -1,15 +1,18 @@
 import { FC } from 'react';
 import { AgreementCard } from './agreement-card';
 import { useAgreements } from '../hooks/use-agreements';
+import Link from 'next/link';
 
 type AgreementsListProps = {
   page: number;
   activeFilter: string;
+  basePath: string;
 };
 
 export const AgreementsList: FC<AgreementsListProps> = ({
   page,
   activeFilter,
+  basePath,
 }) => {
   const { agreements, isLoading } = useAgreements({
     page,
@@ -18,7 +21,9 @@ export const AgreementsList: FC<AgreementsListProps> = ({
   return (
     <div className="agreement-list w-full">
       {agreements.map((agreement, index) => (
-        <AgreementCard key={index} {...agreement} isLoading={isLoading} />
+        <Link href={`${basePath}/${agreement.slug}`} key={index}>
+          <AgreementCard key={index} {...agreement} isLoading={isLoading} />
+        </Link>
       ))}
       {isLoading ? (
         <div>

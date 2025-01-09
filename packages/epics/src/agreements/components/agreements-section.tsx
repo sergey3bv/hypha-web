@@ -9,9 +9,11 @@ import {
   SectionTabs,
 } from '@hypha-platform/ui/server';
 
-type AgreementsSectionProps = Record<string, never>;
+type AgreementsSectionProps = {
+  basePath: string;
+};
 
-export const AgreementsSection: FC<AgreementsSectionProps> = () => {
+export const AgreementsSection: FC<AgreementsSectionProps> = ({ basePath }) => {
   const {
     pages,
     activeFilter,
@@ -42,6 +44,7 @@ export const AgreementsSection: FC<AgreementsSectionProps> = () => {
           page={index + 1}
           key={index}
           activeFilter={activeFilter}
+          basePath={basePath}
         />
       ))}
       <SectionLoadMore

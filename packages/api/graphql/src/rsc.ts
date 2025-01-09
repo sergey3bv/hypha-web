@@ -2,7 +2,7 @@
 
 export * from './fetch-access-token';
 
-export * from './query/agreements/list';
+export * from './query/agreements';
 export * from './query/assets/list';
 export * from './query/comments';
 export * from './query/dao/detail';

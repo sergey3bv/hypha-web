@@ -2,6 +2,7 @@ import { Text } from '@radix-ui/themes';
 import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
 import { Image } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
+import { CardCommentProps } from '../../interactions/components/card-comment';
 
 type Creator = {
   avatar?: string;
@@ -15,7 +16,7 @@ type AgreementCardProps = {
   commitment?: number;
   status?: string;
   views?: number;
-  comments?: number;
+  comments?: CardCommentProps[];
   isLoading?: boolean;
 };
 
@@ -103,7 +104,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
           <Skeleton width="16px" height="16px" loading={isLoading}>
             <div className="flex ml-3">
               <ChatBubbleIcon className="mr-1" width={16} />
-              <div>{comments}</div>
+              <div>{comments?.length}</div>
             </div>
           </Skeleton>
         </div>

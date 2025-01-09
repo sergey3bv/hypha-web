@@ -1,7 +1,7 @@
 import { Text } from '@radix-ui/themes';
 import { Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
 
-export type CreatorType = {
+type CreatorType = {
   avatar?: string;
   name?: string;
   surname?: string;
