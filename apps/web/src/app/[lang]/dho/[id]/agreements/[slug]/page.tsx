@@ -1,28 +1,27 @@
 'use client';
 
-import { ProposalDetail, useProposalBySlug } from '@hypha-platform/epics';
+import { AgreementDetail, useAgreementBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
 };
 
-export default function Proposal(props: PageProps) {
+export default function Agreements(props: PageProps) {
   const { slug, id, lang } = useParams();
-  const { data, isLoading } = useProposalBySlug(slug as string);
+  const { data, isLoading } = useAgreementBySlug(slug as string);
 
   return (
-    <ProposalDetail
+    <AgreementDetail
       closeUrl={`/${lang}/dho/${id}/agreements`}
-      onAccept={() => console.log('accept')}
-      onReject={() => console.log('reject')}
       onSetActiveFilter={() => console.log('set active filter')}
-      content={data?.content}
+      content={data?.content || ''}
       creator={data?.creator}
       title={data?.title}
       commitment={data?.commitment}
       status={data?.status}
       isLoading={isLoading}
+      comments={data?.comments}
     />
   );
 }

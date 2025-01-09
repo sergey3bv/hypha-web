@@ -2,16 +2,14 @@ import { AgreementHead, AgreementHeadProps } from './agreement-head';
 import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
+import Link from 'next/link';
 import { CardCommentProps } from '../../interactions/components/card-comment';
 
 type AgreementDetailProps = AgreementHeadProps & {
   onSetActiveFilter: (value: string) => void;
   content: string;
-  comments: CardCommentProps[];
-  sortOptions: {
-    label: string;
-    value: string;
-  }[];
+  closeUrl: string;
+  comments?: CardCommentProps[];
 };
 
 export const AgreementDetail = ({
@@ -22,8 +20,8 @@ export const AgreementDetail = ({
   isLoading,
   content,
   onSetActiveFilter,
+  closeUrl,
   comments,
-  sortOptions,
 }: AgreementDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -35,10 +33,12 @@ export const AgreementDetail = ({
           status={status}
           isLoading={isLoading}
         />
-        <Button variant="ghost" colorVariant="neutral">
-          Close
-          <RxCross1 />
-        </Button>
+        <Link href={closeUrl}>
+          <Button variant="ghost" colorVariant="neutral">
+            Close
+            <RxCross1 />
+          </Button>
+        </Link>
       </div>
       <Separator />
       <div>{content}</div>
@@ -48,9 +48,15 @@ export const AgreementDetail = ({
         activeFilter="most-recent"
         setActiveFilter={onSetActiveFilter}
         pagination={{
-          total: 1,
+          total: comments?.length ?? 0,
         }}
-        sortOptions={sortOptions}
+        sortOptions={[
+          { label: 'All', value: 'all' },
+          {
+            label: 'Most recent',
+            value: 'most-recent',
+          },
+        ]}
         comments={comments}
       />
     </div>

@@ -1,20 +1,6 @@
-import { Creator } from '../members/types';
-import { PaginationMetadata, PaginationParams } from '../types';
+import { PaginationParams } from '../types';
+import { PaginatedAgreementsResponse } from './types';
 import { data } from './list.mock';
-
-export type AgreementItem = {
-  title: string;
-  creator: Creator;
-  commitment: number;
-  status: string;
-  views: number;
-  comments: number;
-};
-
-export type PaginatedAgreementsResponse = {
-  agreements: AgreementItem[];
-  pagination: PaginationMetadata;
-};
 
 export const fetchAgreements = async ({
   page = 1,

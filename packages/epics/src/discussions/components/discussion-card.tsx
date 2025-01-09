@@ -8,7 +8,7 @@ import {
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Text } from '@radix-ui/themes';
-import Link from 'next/link';
+
 type CreatorType = {
   avatar?: string;
   name?: string;
