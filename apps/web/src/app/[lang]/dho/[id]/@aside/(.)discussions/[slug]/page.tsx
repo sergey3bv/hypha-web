@@ -9,7 +9,7 @@ type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
 };
 
-export default async function Agreements(props: PageProps) {
+export default async function Subspace(props: PageProps) {
   const params = await props.params;
   const { slug, id, lang } = params;
   const data = await getCommentsByDiscussionSlug({ slug });

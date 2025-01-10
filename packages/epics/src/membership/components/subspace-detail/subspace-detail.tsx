@@ -1,15 +1,17 @@
-import { Button, Image, Separator, FilterMenu } from '@hypha-platform/ui';
+import { Button, Separator, FilterMenu } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { MemberCardProps } from '../members/member-card';
 import { MembersList } from '../members';
 import { useSubspaceDetails } from '../../hooks/use-subspace-details';
 import { SectionLoadMore } from '@hypha-platform/ui/server';
+import Link from 'next/link';
 
 type SubspaceDetailProps = {
-  title: string;
-  image: string;
-  content: string;
-  members: MemberCardProps[];
+  title?: string;
+  image?: string;
+  content?: string;
+  members?: MemberCardProps[];
+  closeUrl?: string;
 };
 
 export const SubspaceDetail = ({
@@ -17,6 +19,7 @@ export const SubspaceDetail = ({
   image,
   content,
   members,
+  closeUrl,
 }: SubspaceDetailProps) => {
   const {
     isLoading,
@@ -25,7 +28,7 @@ export const SubspaceDetail = ({
     paginatedMembers,
     activeFilter,
     setActiveFilter,
-  } = useSubspaceDetails(members);
+  } = useSubspaceDetails(members ?? []);
 
   const filterSettings = {
     value: activeFilter,
@@ -39,17 +42,17 @@ export const SubspaceDetail = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <div className="text-4 font-medium flex items-center">{title}</div>
-        <Button variant="ghost" colorVariant="neutral">
-          Close
-          <RxCross1 className="ml-2" />
-        </Button>
+        <Link href={closeUrl ?? ''}>
+          <Button variant="ghost" colorVariant="neutral">
+            Close
+            <RxCross1 className="ml-2" />
+          </Button>
+        </Link>
       </div>
-      <Image
-        height={150}
-        width={554}
+      <img
         className="rounded-xl max-h-[150px] w-full object-cover"
-        src={image}
-        alt={image}
+        src={image ?? ''}
+        alt={title ?? ''}
       />
       <div className="text-2 text-gray-500">{content}</div>
       <Separator />

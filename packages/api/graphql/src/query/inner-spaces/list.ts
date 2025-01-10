@@ -1,27 +1,6 @@
 import { data } from './list.mock';
-
-export type MemberType = {
-  avatar: string;
-  name: string;
-  surname: string;
-};
-
-export type InnerSpaceType = {
-  image: string;
-  title: string;
-  description: string;
-  members: MemberType[];
-  joinedStatus: boolean;
-};
-
-type PaginationMetadata = {
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-};
+import { InnerSpaceType } from './types';
+import { PaginationMetadata } from '../types';
 
 type PaginatedResponse<T> = {
   innerSpaces: T[];

@@ -15,11 +15,13 @@ export default async function MembershipPage(props: PageProps) {
 
   const { lang, id } = params;
 
+  const basePath = `/${lang}/dho/${id}/membership`;
+
   return (
     <div>
       <NavigationTabs lang={lang} id={id} activeTab="membership" />
       <OuterSpacesSection />
-      <InnerSpacesSection />
+      <InnerSpacesSection basePath={`${basePath}/space`} />
       <MembersSection />
     </div>
   );
