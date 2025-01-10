@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Separator, FilterMenu } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { MemberCardProps } from '../members/member-card';

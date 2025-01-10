@@ -1,16 +1,14 @@
-import { DiscussionDetail } from '@hypha-platform/epics';
 import { SidePanel } from '../../../_components/side-panel';
+import { SubspaceDetail } from '@hypha-platform/epics';
 
 export default function Loading() {
   return (
     <SidePanel>
-      <DiscussionDetail
-        isLoading
-        creator={{}}
+      <SubspaceDetail
         title={''}
-        content={''}
         image={''}
-        messages={[]}
+        content={''}
+        members={[]}
         closeUrl={''}
       />
     </SidePanel>
