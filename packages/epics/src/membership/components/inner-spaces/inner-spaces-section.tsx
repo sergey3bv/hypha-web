@@ -7,9 +7,13 @@ import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-type InnerSpacesSectionProps = Record<string, never>;
+type InnerSpacesSectionProps = {
+  basePath: string;
+};
 
-export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
+export const InnerSpacesSection: FC<InnerSpacesSectionProps> = ({
+  basePath,
+}) => {
   const {
     pages,
     activeSort,
@@ -36,7 +40,12 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = () => {
         </Button>
       </SectionFilter>
       {Array.from({ length: pages }).map((_, index) => (
-        <InnerSpacesList page={index + 1} key={index} activeSort={activeSort} />
+        <InnerSpacesList
+          basePath={basePath}
+          page={index + 1}
+          key={index}
+          activeSort={activeSort}
+        />
       ))}
       <SectionLoadMore
         onClick={loadMore}
