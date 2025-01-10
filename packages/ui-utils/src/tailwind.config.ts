@@ -1,6 +1,8 @@
 import { createGlobPatternsForDependencies } from '@nx/react/tailwind';
 import { join } from 'node:path';
 import TailwindAnimate from 'tailwindcss-animate';
+import TailwindTypography from '@tailwindcss/typography';
+import type { PluginUtils } from 'tailwindcss/types/config';
 
 import type { Config } from 'tailwindcss';
 
@@ -241,7 +243,7 @@ export function buildConfig(appDir: string): Config {
           base: ['var(--font-size-base)', 'var(--line-height-3)'],
           lg: ['var(--font-size-lg)', 'var(--line-height-5)'],
           xl: ['var(--font-size-xl)', 'var(--line-height-5)'],
-          '2xl': ['var(--font-size-2xl)', '32rem'],
+          '2xl': ['var(--font-size-2xl)', 'var(--line-height-6)'],
           '3xl': ['var(--font-size-3xl)', 'var(--line-height-7)'],
           '4xl': ['var(--font-size-4xl)', 'var(--line-height-8)'],
           '5xl': ['var(--font-size-5xl)', '1'],
@@ -283,8 +285,54 @@ export function buildConfig(appDir: string): Config {
           'container-xl': 'var(--spacing-container-xl)',
           'container-2xl': 'var(--spacing-container-2xl)',
         },
+        typography: ({ theme }: PluginUtils) => ({
+          DEFAULT: {
+            css: {
+              // ADDED FOR REFERENCE. ADJUST AS NEEDED.
+              // https://github.com/tailwindlabs/tailwindcss-typography/blob/main/README.md#adding-custom-color-themes
+              '--tw-prose-body': theme('colors.foreground'),
+              '--tw-prose-headings': theme('colors.foreground'),
+              '--tw-prose-lead': 'var(--tw-prose-lead)',
+              '--tw-prose-links': theme('colors.accent[11]'),
+              '--tw-prose-bold': 'var(--tw-prose-bold)',
+              '--tw-prose-counters': 'var(--tw-prose-counters)',
+              '--tw-prose-bullets': 'var(--tw-prose-bullets)',
+              '--tw-prose-hr': 'var(--tw-prose-hr)',
+              '--tw-prose-quotes': 'var(--tw-prose-quotes)',
+              '--tw-prose-quote-borders': theme('colors.accent[6]'),
+              '--tw-prose-captions': 'var(--tw-prose-captions)',
+              '--tw-prose-kbd': 'var(--tw-prose-kbd)',
+              '--tw-prose-kbd-shadows': 'var(--tw-prose-kbd-shadows)',
+              '--tw-prose-code': 'var(--tw-prose-code)',
+              '--tw-prose-pre-code': 'var(--tw-prose-pre-code)',
+              '--tw-prose-pre-bg': 'var(--tw-prose-pre-bg)',
+              '--tw-prose-th-borders': 'var(--tw-prose-th-borders)',
+              '--tw-prose-td-borders': 'var(--tw-prose-td-borders)',
+              // INVERTED COLORS
+              '--tw-prose-invert-body': theme('colors.foreground'),
+              '--tw-prose-invert-headings': theme('colors.foreground'),
+              '--tw-prose-invert-lead': 'var(--tw-prose-invert-lead)',
+              '--tw-prose-invert-links': 'var(--tw-prose-invert-links)',
+              '--tw-prose-invert-bold': 'var(--tw-prose-invert-bold)',
+              '--tw-prose-invert-counters': 'var(--tw-prose-invert-counters)',
+              '--tw-prose-invert-bullets': 'var(--tw-prose-invert-bullets)',
+              '--tw-prose-invert-hr': 'var(--tw-prose-invert-hr)',
+              '--tw-prose-invert-quotes': 'var(--tw-prose-invert-quotes)',
+              '--tw-prose-invert-quote-borders': theme('colors.accent[6]'),
+              '--tw-prose-invert-captions': 'var(--tw-prose-invert-captions)',
+              '--tw-prose-invert-kbd': 'var(--tw-prose-invert-kbd)',
+              '--tw-prose-invert-code': 'var(--tw-prose-invert-code)',
+              '--tw-prose-invert-pre-code': 'var(--tw-prose-invert-pre-code)',
+              '--tw-prose-invert-pre-bg': 'var(--tw-prose-invert-pre-bg)',
+              '--tw-prose-invert-th-borders':
+                'var(--tw-prose-invert-th-borders)',
+              '--tw-prose-invert-td-borders':
+                'var(--tw-prose-invert-td-borders)',
+            },
+          },
+        }),
       },
     },
-    plugins: [TailwindAnimate],
+    plugins: [TailwindAnimate, TailwindTypography],
   };
 }
