@@ -4,7 +4,7 @@ import { accounts } from '../accounts.mock';
 
 describe('SpaceFactory Contract', () => {
   describe('isMember', () => {
-    it('should return true for a valid member', async () => {
+    it('should return true if a valid member', async () => {
       const spaceId = 17;
       const userAddress = accounts[0].address;
 
@@ -12,7 +12,7 @@ describe('SpaceFactory Contract', () => {
 
       expect(response).toBe(true);
     });
-    it('should return false for a valid member', async () => {
+    it('should return false if not a valid member', async () => {
       const spaceId = 17;
       const userAddress = '0x0000000000000000000000000000000000000000';
 
