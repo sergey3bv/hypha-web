@@ -42,11 +42,11 @@ export const Default: Story = {
         badges: [
           {
             label: 'Tag 1',
-            variant: 'actionOutline',
+            variant: 'outline',
           },
           {
             label: 'Tag 2',
-            variant: 'positive',
+            variant: 'outline',
           },
         ],
         author: {
@@ -65,11 +65,11 @@ export const Default: Story = {
         badges: [
           {
             label: 'Expense',
-            variant: 'destructive',
+            variant: 'outline',
           },
           {
             label: 'Tag 2',
-            variant: 'actionOutline',
+            variant: 'outline',
           },
         ],
         author: {

@@ -25,7 +25,7 @@ type TransactionCardProps = {
   withUsdSymbol?: boolean;
   badges: {
     label: string;
-    variant: 'actionOutline' | 'positive' | 'destructive' | 'default';
+    variant: 'solid' | 'soft' | 'outline' | 'surface';
   }[];
   author: {
     name: string;
