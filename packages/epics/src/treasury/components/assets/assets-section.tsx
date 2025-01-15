@@ -51,7 +51,7 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
         <AssetsList
           basePath={basePath}
           page={index + 1}
-          key={index}
+          key={`${basePath}-${index + 1}`}
           activeFilter={activeFilter}
         />
       ))}
