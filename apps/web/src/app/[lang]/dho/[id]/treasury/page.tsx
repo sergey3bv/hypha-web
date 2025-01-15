@@ -1,12 +1,5 @@
 import { Locale } from '@hypha-platform/i18n';
 import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from '@hypha-platform/ui/server';
-import Link from 'next/link';
-import {
   AssetsSection,
   PayoutsSection,
   RequestsSection,
@@ -22,10 +15,12 @@ export default async function TreasuryPage(props: PageProps) {
 
   const { lang, id } = params;
 
+  const basePath = `/${lang}/dho/${id}/treasury`;
+
   return (
     <div>
       <NavigationTabs lang={lang} id={id} activeTab="treasury" />
-      <AssetsSection />
+      <AssetsSection basePath={`${basePath}/token`} />
       <RequestsSection />
       <PayoutsSection />
     </div>

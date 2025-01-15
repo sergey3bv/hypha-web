@@ -21,7 +21,7 @@ export const Default: Story = {
     badges: [
       {
         label: 'Tag 1',
-        variant: 'actionOutline',
+        variant: 'outline',
       },
     ],
     author: {

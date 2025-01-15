@@ -11,9 +11,11 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-type AssetSectionProps = Record<string, never>;
+type AssetSectionProps = {
+  basePath: string;
+};
 
-export const AssetsSection: FC<AssetSectionProps> = () => {
+export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
   const {
     pages,
     activeFilter,
@@ -46,7 +48,12 @@ export const AssetsSection: FC<AssetSectionProps> = () => {
         tabs={filterOptions}
       />
       {Array.from({ length: pages }).map((_, index) => (
-        <AssetsList page={index + 1} key={index} activeFilter={activeFilter} />
+        <AssetsList
+          basePath={basePath}
+          page={index + 1}
+          key={`${basePath}-${index + 1}`}
+          activeFilter={activeFilter}
+        />
       ))}
       <SectionLoadMore
         onClick={loadMore}

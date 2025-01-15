@@ -1,37 +1,11 @@
 import { data } from './list.mock';
-
-export type AssetItem = {
-  icon: string;
-  name: string;
-  symbol: string;
-  value: number;
-  usdEqual: number;
-  status: string;
-};
-
-type PaginationMetadata = {
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-};
+import { AssetItem } from './types';
+import { PaginationMetadata, PaginationParams } from '../types';
 
 type PaginatedResponse<T> = {
   assets: T[];
   pagination: PaginationMetadata;
   balance?: number;
-};
-
-type FilterParams = {
-  status?: string;
-};
-
-type PaginationParams = {
-  page?: number;
-  pageSize?: number;
-  filter?: FilterParams;
 };
 
 export const fetchAssets = async ({
