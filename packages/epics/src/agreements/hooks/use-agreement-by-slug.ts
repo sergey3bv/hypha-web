@@ -1,3 +1,5 @@
+'use client';
+
 import { getAgreementBySlug } from '@hypha-platform/graphql/rsc';
 import useSWR from 'swr';
 

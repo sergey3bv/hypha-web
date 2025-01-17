@@ -1,3 +1,5 @@
+'use client';
+
 import { getSubspaceBySlug } from '@hypha-platform/graphql/rsc';
 import useSWR from 'swr';
 

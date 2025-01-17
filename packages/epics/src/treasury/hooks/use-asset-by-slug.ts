@@ -1,3 +1,5 @@
+'use client';
+
 import { getAssetBySlug } from '@hypha-platform/graphql/rsc';
 import useSWR from 'swr';
 
