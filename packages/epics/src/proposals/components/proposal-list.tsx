@@ -20,7 +20,7 @@ export const ProposalList: FC<ProposalListProps> = ({
   });
   return (
     <div className="proposal-list w-full">
-      {proposals.map((proposal, index) => (
+      {proposals.map((proposal) => (
         <Link
           href={`${basePath}/${proposal.slug}`}
           key={proposal.slug}

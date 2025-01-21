@@ -22,7 +22,7 @@ export const AgreementsList: FC<AgreementsListProps> = ({
   });
   return (
     <div className="agreement-list w-full">
-      {agreements.map((agreement, index) => (
+      {agreements.map((agreement) => (
         <Link
           href={`${basePath}/${agreement.slug}`}
           key={agreement.slug}
