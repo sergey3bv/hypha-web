@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { InnerSpaceCard } from './inner-space-card';
-import { useInnerSpaces } from '../../hooks/use-inner-spaces';
+import { useSpaces } from '../../hooks/use-spaces';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 import Link from 'next/link';
 
@@ -15,20 +15,20 @@ export const InnerSpacesList: FC<InnerSpacesListProps> = ({
   activeSort,
   basePath,
 }) => {
-  const { innerSpaces, isLoading } = useInnerSpaces({
+  const { spaces, isLoading } = useSpaces({
     page,
     sort: { sort: activeSort },
   });
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
-        {innerSpaces.map((innerSpace, index) => (
+        {spaces.map((space, index) => (
           <Link
-            href={`${basePath}/${innerSpace.slug}`}
+            href={`${basePath}/${space.slug}`}
             key={index}
             scroll={false}
           >
-            <InnerSpaceCard {...innerSpace} isLoading={isLoading} />
+            <InnerSpaceCard {...space} isLoading={isLoading} />
           </Link>
         ))}
       </div>

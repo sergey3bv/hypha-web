@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { OuterSpacesList } from './outer-spaces-list';
 import { Text } from '@radix-ui/themes';
-import { useOuterSpacesSection } from '../../hooks/use-outer-spaces-section';
+import { useSpacesSection } from '../../hooks/use-spaces-section';
 import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
@@ -19,7 +19,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
     pagination,
     totalCount,
     sortOptions,
-  } = useOuterSpacesSection();
+  } = useSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">

@@ -2,31 +2,31 @@
 
 import useSWR from 'swr';
 import {
-  InnerSpaceType,
+  SpaceType,
   PaginationMetadata,
   SortParams,
-  fetchInnerSpaces,
+  fetchSpaces,
 } from '@hypha-platform/graphql/rsc';
 
-type UseInnerSpacesReturn = {
-  innerSpaces: InnerSpaceType[];
+type UseSpacesReturn = {
+  spaces: SpaceType[];
   pagination?: PaginationMetadata;
   isLoading: boolean;
 };
 
-export const useInnerSpaces = ({
+export const useSpaces = ({
   page = 1,
   sort,
 }: {
   page?: number;
   sort?: SortParams;
-}): UseInnerSpacesReturn => {
-  const { data, isLoading } = useSWR(['innerSpaces', page, sort], () =>
-    fetchInnerSpaces({ page, sort }),
+}): UseSpacesReturn => {
+  const { data, isLoading } = useSWR(['spaces', page, sort], () =>
+    fetchSpaces({ page, sort }),
   );
 
   return {
-    innerSpaces: data?.innerSpaces || [],
+    spaces: data?.spaces || [],
     pagination: data?.pagination,
     isLoading,
   };

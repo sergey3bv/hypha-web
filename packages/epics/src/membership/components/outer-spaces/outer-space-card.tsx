@@ -7,10 +7,11 @@ import {
   CardTitle,
   Skeleton,
 } from '@hypha-platform/ui';
+import { MemberType } from '@hypha-platform/graphql/rsc';
 
 type OuterSpaceCardProps = {
   logo?: string;
-  members?: number;
+  members?: MemberType[];
   title?: string;
   description?: string;
   projects?: number;
@@ -78,7 +79,7 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
         <div className="flex flex-grow gap-2 text-1 items-center">
           <div className="flex">
             <Skeleton width="16px" height="16px" loading={isLoading}>
-              <div className="font-bold">{members}</div>
+              <div className="font-bold">{members?.length}</div>
             </Skeleton>
             <Skeleton
               width="52px"
