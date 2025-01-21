@@ -21,9 +21,9 @@ export const DiscussionsList: FC<DiscussionsListProps> = ({
   return (
     <div className="w-full">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
-        {discussions.map((discussion, index) => (
-          <Link href={`${basePath}/${discussion.slug}`} key={index}>
-            <DiscussionCard key={index} {...discussion} isLoading={isLoading} />
+        {discussions.map((discussion) => (
+          <Link href={`${basePath}/${discussion.slug}`} key={discussion.slug}>
+            <DiscussionCard {...discussion} isLoading={isLoading} />
           </Link>
         ))}
       </div>

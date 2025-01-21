@@ -21,8 +21,12 @@ export const AssetsList: FC<AssetsListProps> = ({
   return (
     <div className="w-full">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-        {assets.map((asset, index) => (
-          <Link key={index} href={`${basePath}/${asset.slug}`} scroll={false}>
+        {assets.map((asset) => (
+          <Link
+            key={asset.slug}
+            href={`${basePath}/${asset.slug}`}
+            scroll={false}
+          >
             <AssetCard {...asset} isLoading={isLoading} />
           </Link>
         ))}
