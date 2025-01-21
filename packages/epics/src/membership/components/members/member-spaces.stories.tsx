@@ -39,8 +39,8 @@ export const Primary: Story = {
           },
         ],
         projects: 72,
-      }
+      },
     ],
-    isLoading: false
+    isLoading: false,
   },
 };

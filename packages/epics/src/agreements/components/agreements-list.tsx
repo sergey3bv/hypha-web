@@ -39,7 +39,7 @@ export const AgreementsList: FC<AgreementsListProps> = ({
               isLoading={isLoading}
             />
           </Link>
-        )
+        ),
       )}
       {isLoading ? (
         <div>

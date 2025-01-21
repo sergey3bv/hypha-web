@@ -10,16 +10,13 @@ export type SpaceType = {
 };
 
 export type MemberSpacesProps = {
-  spaces?: SpaceType[]
-  isLoading?: boolean
+  spaces?: SpaceType[];
+  isLoading?: boolean;
 };
 
-export const MemberSpaces = ({
-  spaces,
-  isLoading
-}: MemberSpacesProps) => {
+export const MemberSpaces = ({ spaces, isLoading }: MemberSpacesProps) => {
   return (
-    <div className='flex justify-between items-center'>
+    <div className="flex justify-between items-center">
       {isLoading ? (
         <Skeleton
           width="60px"
@@ -55,7 +52,7 @@ export const MemberSpaces = ({
         <div className="flex flex-row gap-3 overflow-x-auto">
           {spaces?.map((space) => (
             <Image
-              className='rounded-full'
+              className="rounded-full"
               width={40}
               height={40}
               src={space.logo ?? ''}

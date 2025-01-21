@@ -27,7 +27,7 @@ export const MemberDetail = ({
   isLoading,
   closeUrl,
   member,
-  basePath
+  basePath,
 }: MemberDetailProps) => {
   const { spaces } = useSpaces({});
 
@@ -56,9 +56,9 @@ export const MemberDetail = ({
         <div className="text-2 text-neutral-11">{member.about}</div>
       </Skeleton>
       <Separator />
-      <MemberSpaces spaces={spaces}/>
+      <MemberSpaces spaces={spaces} />
       <Separator />
-      <AgreementsSection basePath={basePath}/>
+      <AgreementsSection basePath={basePath} />
     </div>
   );
 };
