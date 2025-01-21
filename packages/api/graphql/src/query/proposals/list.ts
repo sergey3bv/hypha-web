@@ -1,12 +1,13 @@
 import { PaginatedProposalResponse } from './types';
 import { PaginationParams } from '../types';
 import { data } from './list.mock';
+import { ProposalItem } from './types';
 
 export const fetchProposals = async ({
   page = 1,
   pageSize = 4,
   filter,
-}: PaginationParams): Promise<PaginatedProposalResponse> => {
+}: PaginationParams<ProposalItem>): Promise<PaginatedProposalResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter

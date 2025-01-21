@@ -12,12 +12,12 @@ export type PaginatedResponse<T> = {
   pagination: PaginationMetadata;
 };
 
-export type FilterParams = {
-  status?: string;
+export type FilterParams<T> = {
+  [key in keyof T]?: string;
 };
 
-export type PaginationParams = {
+export type PaginationParams<T> = {
   page?: number;
   pageSize?: number;
-  filter?: FilterParams;
+  filter?: FilterParams<T>;
 };
