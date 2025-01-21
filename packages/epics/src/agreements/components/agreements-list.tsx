@@ -26,7 +26,6 @@ export const AgreementsList: FC<AgreementsListProps> = ({
         <Link href={`${basePath}/${agreement.slug}`} key={agreement.slug} scroll={false}>
           <AgreementCard
             hasAvatar={hasAvatar}
-            key={index}
             {...agreement}
             isLoading={isLoading}
           />
