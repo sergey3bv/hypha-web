@@ -4,7 +4,7 @@ import { RxCross1 } from 'react-icons/rx';
 import Link from 'next/link';
 import { AgreementsSection } from '../../../agreements/components/agreements-section';
 import { MemberSpaces } from './member-spaces';
-import { useSpaces } from '../../hooks/use-spaces';
+import { SpaceType } from './member-spaces';
 
 type MemberType = {
   avatar?: string;
@@ -21,6 +21,7 @@ export type MemberDetailProps = {
   member: MemberType;
   isLoading: boolean;
   basePath: string;
+  spaces: SpaceType[];
 };
 
 export const MemberDetail = ({
@@ -28,9 +29,8 @@ export const MemberDetail = ({
   closeUrl,
   member,
   basePath,
+  spaces,
 }: MemberDetailProps) => {
-  const { spaces } = useSpaces({});
-
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
