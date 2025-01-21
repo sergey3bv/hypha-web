@@ -1,12 +1,13 @@
 import { PaginationParams } from '../types';
 import { PaginatedAgreementsResponse } from './types';
 import { data } from './list.mock';
+import { AgreementItem } from './types';
 
 export const fetchAgreements = async ({
   page = 1,
   pageSize = 4,
   filter,
-}: PaginationParams): Promise<PaginatedAgreementsResponse> => {
+}: PaginationParams<AgreementItem>): Promise<PaginatedAgreementsResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter
