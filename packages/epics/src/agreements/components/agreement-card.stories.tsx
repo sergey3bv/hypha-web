@@ -21,7 +21,19 @@ export const Primary: Story = {
       surname: 'Doe',
     },
     views: 100,
-    comments: 100,
+    comments: [
+      {
+        id: '1',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        author: {
+          avatar: 'https://github.com/shadcn.png',
+          name: 'John',
+          surname: 'Doe',
+        },
+        likes: 10,
+      },
+    ],
     isLoading: false,
     hasAvatar: false,
   },
