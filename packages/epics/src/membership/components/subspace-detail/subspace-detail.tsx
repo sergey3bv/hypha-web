@@ -69,7 +69,6 @@ export const SubspaceDetail = ({
       <MembersList
         page={pagination.totalPages}
         activeFilter={activeFilter}
-        membersProp={paginatedMembers}
         isLoadingProp={isLoading}
         minimize={true}
       />
