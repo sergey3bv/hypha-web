@@ -1,29 +1,54 @@
 'use client';
 
 import { useAuthentication } from '@hypha-platform/authentication';
-import { Avatar, AvatarImage, Button } from '@hypha-platform/ui';
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@hypha-platform/ui';
+import { PersonAvatar } from './person-avatar';
+import { useProfile } from '../hooks/use-profile';
+import { EthAddress } from './eth-address';
 
 export type ButtonProfileProps = {
-  avatarSrc: string;
+  avatarSrc?: string;
   userName?: string;
+  address?: string;
   isConnected: boolean;
   login: () => void;
+  logout: () => void;
 };
 
 export const ButtonProfile = ({
   avatarSrc,
   userName,
   isConnected,
+  address,
   login,
+  logout,
 }: ButtonProfileProps) => {
   return (
     <div>
       {isConnected ? (
-        <Avatar className="w-7 h-7 rounded-lg">
-          <AvatarImage src={avatarSrc} alt={`${userName}'s avatar`} />
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <PersonAvatar avatarSrc={avatarSrc} userName={userName} />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <EthAddress address={address} />
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       ) : (
-        <Button onClick={login}>Connect</Button>
+        <Button onClick={login}>Sign in</Button>
       )}
     </div>
   );
@@ -38,15 +63,17 @@ export const ConnectedButtonProfile = ({
   avatarSrc,
   userName,
 }: ConnectedButtonProfileProps) => {
-  const { isAuthenticated, login } = useAuthentication();
+  const { isAuthenticated, login, logout, user } = useAuthentication();
+  const { profile } = useProfile({ address: user?.address });
 
-  console.log('ButtonProfile', { isAuthenticated });
   return (
     <ButtonProfile
-      avatarSrc={avatarSrc}
-      userName={userName}
+      avatarSrc={profile?.avatar}
+      userName={profile?.name}
+      address={user?.address}
       isConnected={isAuthenticated}
       login={login}
+      logout={logout}
     />
   );
 };
