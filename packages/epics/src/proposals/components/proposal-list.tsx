@@ -21,8 +21,12 @@ export const ProposalList: FC<ProposalListProps> = ({
   return (
     <div className="proposal-list w-full">
       {proposals.map((proposal, index) => (
-        <Link href={`${basePath}/${proposal.slug}`} key={index} scroll={false}>
-          <ProposalCard key={index} {...proposal} isLoading={isLoading} />
+        <Link
+          href={`${basePath}/${proposal.slug}`}
+          key={proposal.slug}
+          scroll={false}
+        >
+          <ProposalCard {...proposal} isLoading={isLoading} />
         </Link>
       ))}
       {isLoading ? (

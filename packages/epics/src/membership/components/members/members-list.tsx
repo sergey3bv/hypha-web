@@ -21,10 +21,10 @@ export const MembersList: FC<MembersListProps> = ({
   });
   return (
     <div className="member-list w-full">
-      {members.map((member, index) => (
+      {members.map((member) => (
         <MemberCard
           minimize={minimize}
-          key={index}
+          key={member.nickname}
           {...member}
           isLoading={isLoading}
         />

@@ -20,7 +20,7 @@ export const OuterSpacesList: FC<OuterSpacesListProps> = ({
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
         {spaces.map((space, index) => (
-          <OuterSpaceCard key={index} {...space} isLoading={isLoading} />
+          <OuterSpaceCard key={space.slug} {...space} isLoading={isLoading} />
         ))}
       </div>
       {isLoading ? (

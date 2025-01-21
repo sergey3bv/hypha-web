@@ -74,7 +74,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
             <div className="flex gap-1">
               {members
                 ? members.slice(0, 3).map((member, index) => (
-                    <Avatar key={index}>
+                    <Avatar key={`${member.name} ${member.surname}`}>
                       <AvatarImage
                         className="rounded-lg"
                         src={member.avatar}

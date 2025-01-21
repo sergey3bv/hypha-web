@@ -15,8 +15,12 @@ export const RequestsList: FC<RequestsListProps> = ({ page, activeSort }) => {
   });
   return (
     <div className="w-full mt-2">
-      {requests.map((request, index) => (
-        <RequestCard key={index} {...request} isLoading={isLoading} />
+      {requests.map((request) => (
+        <RequestCard
+          key={`${request.name} ${request.surname} ${request.value}`}
+          {...request}
+          isLoading={isLoading}
+        />
       ))}
       {isLoading ? (
         <div className="w-full grid grid-cols-1 gap-2 mt-2">
