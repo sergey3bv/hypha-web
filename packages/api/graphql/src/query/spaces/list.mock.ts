@@ -98,7 +98,7 @@ export const data = [
       },
     ],
     joinedStatus: true,
-    projects: 3
+    projects: 3,
   },
   {
     slug: 'solutions-and-technology',
@@ -199,7 +199,7 @@ export const data = [
       },
     ],
     joinedStatus: false,
-    projects: 3
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
@@ -300,7 +300,7 @@ export const data = [
       },
     ],
     joinedStatus: false,
-    projects: 3
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
@@ -401,7 +401,7 @@ export const data = [
       },
     ],
     joinedStatus: false,
-    projects: 3
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
@@ -502,6 +502,6 @@ export const data = [
       },
     ],
     joinedStatus: false,
-    projects: 3
+    projects: 3,
   },
 ];

@@ -23,11 +23,7 @@ export const InnerSpacesList: FC<InnerSpacesListProps> = ({
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
         {spaces.map((space, index) => (
-          <Link
-            href={`${basePath}/${space.slug}`}
-            key={index}
-            scroll={false}
-          >
+          <Link href={`${basePath}/${space.slug}`} key={index} scroll={false}>
             <InnerSpaceCard {...space} isLoading={isLoading} />
           </Link>
         ))}
