@@ -4,30 +4,5 @@
   "sourceRoot": "packages/authentication/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/authentication",
-        "main": "packages/authentication/src/index.ts",
-        "tsConfig": "packages/authentication/tsconfig.lib.json",
-        "assets": ["packages/authentication/*.md"]
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/authentication/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/authentication/jest.config.ts"
-      }
-    }
-  }
+  "targets": {}
 }
