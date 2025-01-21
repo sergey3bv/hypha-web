@@ -19,7 +19,7 @@ export const useMembers = ({
   filter,
 }: {
   page?: number;
-  filter?: FilterParams;
+  filter?: FilterParams<MemberItem>;
 }): UseMembersReturn => {
   const { data, isLoading } = useSWR(['members', page, filter], () =>
     fetchMembers({ page, filter }),
