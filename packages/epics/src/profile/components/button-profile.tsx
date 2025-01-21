@@ -54,15 +54,7 @@ export const ButtonProfile = ({
   );
 };
 
-export type ConnectedButtonProfileProps = Omit<
-  ButtonProfileProps,
-  'login' | 'isConnected'
->;
-
-export const ConnectedButtonProfile = ({
-  avatarSrc,
-  userName,
-}: ConnectedButtonProfileProps) => {
+export const ConnectedButtonProfile = () => {
   const { isAuthenticated, login, logout, user } = useAuthentication();
   const { profile } = useProfile({ address: user?.address });
 

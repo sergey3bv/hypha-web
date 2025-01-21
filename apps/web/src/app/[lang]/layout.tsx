@@ -77,10 +77,7 @@ export default async function RootLayout({
             ]}
           >
             <MenuTop.RightSlot>
-              <ConnectedButtonProfile
-                avatarSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop"
-                userName="Jane Doe"
-              />
+              <ConnectedButtonProfile />
             </MenuTop.RightSlot>
           </MenuTop>
           <div className="pt-9 w-screen flex justify-normal">
