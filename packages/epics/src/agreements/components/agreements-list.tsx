@@ -23,7 +23,7 @@ export const AgreementsList: FC<AgreementsListProps> = ({
   return (
     <div className="agreement-list w-full">
       {agreements.map((agreement, index) => (
-        <Link href={`${basePath}/${agreement.slug}`} key={index} scroll={false}>
+        <Link href={`${basePath}/${agreement.slug}`} key={agreement.slug} scroll={false}>
           <AgreementCard
             hasAvatar={hasAvatar}
             key={index}
