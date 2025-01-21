@@ -17,7 +17,7 @@ type UseDiscussionsReturn = {
 export const useDiscussions = ({
   page = 1,
   filter,
-}: PaginationParams): UseDiscussionsReturn => {
+}: PaginationParams<DiscussionItem>): UseDiscussionsReturn => {
   const { data, isLoading } = useSWR(['discussions', page, filter], () =>
     fetchDiscussions({ page, filter }),
   );

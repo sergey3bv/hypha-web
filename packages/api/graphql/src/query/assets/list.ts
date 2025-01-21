@@ -12,7 +12,7 @@ export const fetchAssets = async ({
   page = 1,
   pageSize = 2,
   filter,
-}: PaginationParams): Promise<PaginatedResponse<AssetItem>> => {
+}: PaginationParams<AssetItem>): Promise<PaginatedResponse<AssetItem>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const filteredData = filter
