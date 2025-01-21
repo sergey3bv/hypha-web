@@ -8,7 +8,7 @@ import '@hypha-platform/ui-utils/global.css';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
 import clsx from 'clsx';
-import { ButtonProfile } from '@hypha-platform/epics';
+import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { AuthProvider } from '@hypha-platform/authentication';
 const lato = Lato({
@@ -77,7 +77,7 @@ export default async function RootLayout({
             ]}
           >
             <MenuTop.RightSlot>
-              <ButtonProfile
+              <ConnectedButtonProfile
                 avatarSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop"
                 userName="Jane Doe"
               />

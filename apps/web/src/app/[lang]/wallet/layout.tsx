@@ -1,4 +1,4 @@
-import { ButtonProfile } from '@hypha-platform/epics';
+import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
 
@@ -32,7 +32,7 @@ export default async function DhoLayout(props: {
         ]}
       >
         <MenuTop.RightSlot>
-          <ButtonProfile
+          <ConnectedButtonProfile
             avatarSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop"
             userName="Jane Doe"
           />
