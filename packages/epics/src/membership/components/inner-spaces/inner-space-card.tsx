@@ -17,7 +17,7 @@ type Member = {
 
 type InnerSpaceCardProps = {
   members?: Member[];
-  image?: string;
+  logo?: string;
   title?: string;
   description?: string;
   joinedStatus?: boolean;
@@ -30,7 +30,7 @@ const customCardHeaderStyles: React.CSSProperties = {
 
 export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
   description,
-  image,
+  logo,
   title,
   members,
   joinedStatus,
@@ -50,7 +50,7 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
         >
           <img
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
-            src={image}
+            src={logo}
             alt={title}
           />
         </Skeleton>

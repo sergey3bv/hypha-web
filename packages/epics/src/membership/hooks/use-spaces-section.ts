@@ -1,15 +1,15 @@
 import React from 'react';
-import { useInnerSpaces } from './use-inner-spaces';
+import { useSpaces } from './use-spaces';
 import { SORT_OPTIONS } from '../../common/constants';
 
 const sortOptions = SORT_OPTIONS;
 
-export const useInnerSpacesSection = () => {
+export const useSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
   const [pages, setPages] = React.useState(1);
   const [totalCount, setTotalCount] = React.useState<number>(0);
 
-  const { isLoading, pagination } = useInnerSpaces({
+  const { isLoading, pagination } = useSpaces({
     page: pages,
     sort: { sort: activeSort },
   });

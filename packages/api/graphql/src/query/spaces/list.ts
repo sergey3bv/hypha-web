@@ -1,9 +1,9 @@
 import { data } from './list.mock';
-import { InnerSpaceType } from './types';
+import { SpaceType } from './types';
 import { PaginationMetadata } from '../types';
 
 type PaginatedResponse<T> = {
-  innerSpaces: T[];
+  spaces: T[];
   pagination: PaginationMetadata;
 };
 
@@ -17,11 +17,11 @@ type PaginationParams = {
   sort?: SortParams;
 };
 
-export const fetchInnerSpaces = async ({
+export const fetchSpaces = async ({
   page = 1,
   pageSize = 3,
   sort,
-}: PaginationParams): Promise<PaginatedResponse<InnerSpaceType>> => {
+}: PaginationParams): Promise<PaginatedResponse<SpaceType>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       let sortedData = data;
@@ -32,12 +32,12 @@ export const fetchInnerSpaces = async ({
 
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
-      const innerSpaces = sortedData.slice(start, end);
+      const spaces = sortedData.slice(start, end);
       const total = sortedData.length;
       const totalPages = Math.ceil(total / pageSize);
 
       resolve({
-        innerSpaces,
+        spaces,
         pagination: {
           total,
           page,

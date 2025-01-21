@@ -1,7 +1,7 @@
 export const data = [
   {
     slug: 'legal-and-regulatory',
-    image: 'https://picsum.photos/200/300',
+    logo: 'https://github.com/shadcn.png',
     title: 'Legal & Regulatory',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
@@ -98,10 +98,11 @@ export const data = [
       },
     ],
     joinedStatus: true,
+    projects: 3,
   },
   {
     slug: 'solutions-and-technology',
-    image: 'https://picsum.photos/200/300',
+    logo: 'https://github.com/shadcn.png',
     title: 'Solutions & Technology',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
@@ -198,10 +199,11 @@ export const data = [
       },
     ],
     joinedStatus: false,
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
-    image: 'https://picsum.photos/200/300',
+    logo: 'https://github.com/shadcn.png',
     title: 'Pilots & Sales',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
@@ -298,10 +300,11 @@ export const data = [
       },
     ],
     joinedStatus: false,
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
-    image: 'https://picsum.photos/200/300',
+    logo: 'https://github.com/shadcn.png',
     title: 'Pilots & Sales',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
@@ -398,10 +401,11 @@ export const data = [
       },
     ],
     joinedStatus: false,
+    projects: 3,
   },
   {
     slug: 'pilots-and-sales',
-    image: 'https://picsum.photos/200/300',
+    logo: 'https://github.com/shadcn.png',
     title: 'Pilots & Sales',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
@@ -498,5 +502,6 @@ export const data = [
       },
     ],
     joinedStatus: false,
+    projects: 3,
   },
 ];

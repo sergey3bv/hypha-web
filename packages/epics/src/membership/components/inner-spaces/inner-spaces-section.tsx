@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { InnerSpacesList } from './inner-spaces-list';
 import { Text } from '@radix-ui/themes';
-import { useInnerSpacesSection } from '../../hooks/use-inner-spaces-section';
+import { useSpacesSection } from '../../hooks/use-spaces-section';
 import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
@@ -23,7 +23,7 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = ({
     pagination,
     totalCount,
     sortOptions,
-  } = useInnerSpacesSection();
+  } = useSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center">

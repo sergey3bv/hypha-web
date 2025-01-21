@@ -4,11 +4,16 @@ export type MemberType = {
   surname: string;
 };
 
-export type InnerSpaceType = {
+export type SpaceType = {
   image?: string;
   title?: string;
   description?: string;
   members?: MemberType[];
   joinedStatus?: boolean;
   slug?: string;
+  projects: number;
+};
+
+export type SortParams = {
+  sort?: string;
 };

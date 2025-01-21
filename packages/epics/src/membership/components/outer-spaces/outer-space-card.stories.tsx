@@ -14,7 +14,28 @@ export const Primary: Story = {
     title: 'Hypha Energy Hub',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...',
-    members: 315,
+    members: [
+      {
+        avatar: 'https://github.com/shadcn.png',
+        name: 'Jane',
+        surname: 'Doe',
+      },
+      {
+        avatar: 'https://github.com/shadcn.png',
+        name: 'Jane',
+        surname: 'Doe',
+      },
+      {
+        avatar: 'https://github.com/shadcn.png',
+        name: 'Jane',
+        surname: 'Doe',
+      },
+      {
+        avatar: 'https://github.com/shadcn.png',
+        name: 'Jane',
+        surname: 'Doe',
+      },
+    ],
     projects: 72,
     isLoading: false,
   },
