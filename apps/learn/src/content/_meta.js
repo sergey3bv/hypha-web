@@ -1,7 +1,4 @@
 export default {
-  index: '',
-  'get-started': '',
-  features: '',
-  themes: '',
-  advanced: ''
-}
+  index: 'Hypha Platform v3',
+  nextra: 'How To Use These Docs',
+};
