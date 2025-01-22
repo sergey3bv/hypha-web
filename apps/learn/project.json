@@ -12,12 +12,20 @@
         "cwd": "apps/learn"
       }
     },
+    "reset-next": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf .next",
+        "cwd": "apps/learn"
+      }
+    },
     "build": {
       "executor": "nx:run-commands",
       "options": {
         "command": "next build",
         "cwd": "apps/learn"
-      }
+      },
+      "dependsOn": ["reset-next"]
     },
     "build-pages-index": {
       "executor": "nx:run-commands",
