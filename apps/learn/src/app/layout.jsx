@@ -50,7 +50,7 @@ export default async function RootLayout({ children }) {
           navbar={navbar}
           footer={<Footer />}
           editLink="Edit this page on GitHub"
-          docsRepositoryBase="https://github.com/hypha-dao/hypha-web"
+          docsRepositoryBase="https://github.com/hypha-dao/hypha-web/blob/main/apps/learn"
           sidebar={{ defaultMenuCollapseLevel: 1 }}
           pageMap={await getPageMap()}
         >
