@@ -52,6 +52,7 @@ export const MemberSpaces = ({ spaces, isLoading }: MemberSpacesProps) => {
         <div className="flex flex-row gap-3 overflow-x-auto">
           {spaces?.map((space) => (
             <Image
+              key={`key ${space.title}`}
               className="rounded-full"
               width={40}
               height={40}

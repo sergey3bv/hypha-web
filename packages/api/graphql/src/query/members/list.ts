@@ -1,15 +1,5 @@
 import { data } from './list.mock';
-
-export type MemberItem = {
-  name: string;
-  surname: string;
-  nickname: string;
-  location: string;
-  avatar: string;
-  commitment: number;
-  status: string;
-  isLoading?: boolean;
-};
+import { MemberItem } from './types';
 
 type PaginationMetadata = {
   total: number;
