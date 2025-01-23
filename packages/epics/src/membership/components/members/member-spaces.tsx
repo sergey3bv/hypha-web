@@ -50,8 +50,10 @@ export const MemberSpaces = ({ spaces, isLoading }: MemberSpacesProps) => {
         </div>
       ) : (
         <div className="flex flex-row gap-3 overflow-x-auto">
-          {spaces?.map((space) => (
+          {spaces?.map((space, index) => (
             <Image
+              // TODO: space doesn't have id field yet
+              key={index}
               className="rounded-full"
               width={40}
               height={40}

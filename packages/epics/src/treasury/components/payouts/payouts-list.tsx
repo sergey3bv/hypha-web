@@ -14,9 +14,9 @@ export const PayoutsList: FC<PayoutsListProps> = ({ page, activeFilter }) => {
   });
   return (
     <div className="payouts-list w-full">
-      {payouts.map((payout) => (
+      {payouts.map((payout, index) => (
         <PayoutCard
-          key={`${payout.name} ${payout.surname} ${payout.value}`}
+          key={`${payout.name} ${payout.surname} - ${index}`}
           {...payout}
           isLoading={isLoading}
         />
