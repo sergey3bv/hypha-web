@@ -11,7 +11,8 @@ import { toast } from 'sonner';
 
 import { cn, formatBytes } from '@hypha-platform/ui-utils';
 import { useControllableState } from '@hypha-platform/ui-utils';
-import { Button, Progress, ScrollArea } from '@hypha-platform/ui';
+import { Button, Progress, ScrollArea, Textarea } from '@hypha-platform/ui';
+import { SelectMenu, SelectItem } from './molecules';
 
 interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -241,6 +242,13 @@ export function FileUploader(props: FileUploaderProps) {
           </div>
         </ScrollArea>
       ) : null}
+      <Textarea placeholder="Type a brief description here..." />
+      <div className="row mt-1 flex justify-between w-full">
+        <span className="text-2 text-neutral-11 font-medium">Outcome</span>
+        <SelectMenu variant="default" value={'select-one'}>
+          <SelectItem value="select-one">Select one</SelectItem>
+        </SelectMenu>
+      </div>
     </div>
   );
 }
