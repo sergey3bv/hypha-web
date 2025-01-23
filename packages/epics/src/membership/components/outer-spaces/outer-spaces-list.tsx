@@ -14,6 +14,7 @@ export const OuterSpacesList: FC<OuterSpacesListProps> = ({
 }) => {
   const { spaces, isLoading } = useSpaces({
     page,
+    pageSize: 2,
     sort: { sort: activeSort },
   });
   return (

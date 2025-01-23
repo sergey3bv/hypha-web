@@ -16,13 +16,16 @@ type UseSpacesReturn = {
 
 export const useSpaces = ({
   page = 1,
+  pageSize = 10,
   sort,
 }: {
   page?: number;
+  pageSize?: number;
   sort?: SortParams;
 }): UseSpacesReturn => {
-  const { data, isLoading } = useSWR(['spaces', page, sort], () =>
-    fetchSpaces({ page, sort }),
+  const { data, isLoading } = useSWR(
+    ['spaces', page, pageSize, sort],
+    ([_, page, pageSize, sort]) => fetchSpaces({ page, pageSize, sort }),
   );
 
   return {
