@@ -15,6 +15,8 @@ export * from './image';
 export * from './skeleton';
 export * from './status-badge';
 export * from './chart';
+export * from './scroll-area';
+export * from './file-upload';
 
 export * from './organisms/editor';
 export * from './molecules/badges-list';
