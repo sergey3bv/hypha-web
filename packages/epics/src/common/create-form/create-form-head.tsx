@@ -49,7 +49,7 @@ export const CreateFormHead = ({
             className="my-1"
           >
             <Input
-              className="border-0 text-4 p-0 placeholder:text-4"
+              className="border-0 text-4 p-0 placeholder:text-4 bg-inherit"
               placeholder="Type a title..."
             />
           </Skeleton>
