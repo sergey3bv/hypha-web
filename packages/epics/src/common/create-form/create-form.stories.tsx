@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CreateFormHead } from './create-form-head';
+import { CreateForm } from './create-form';
 
 const meta = {
-  component: CreateFormHead,
-  title: 'Epics/Common/CreateFormHead',
-} satisfies Meta<typeof CreateFormHead>;
+  component: CreateForm,
+  title: 'Epics/Common/CreateForm',
+} satisfies Meta<typeof CreateForm>;
 
 export default meta;
 
@@ -20,5 +20,6 @@ export const Default: Story = {
     },
     type: 'Space',
     isLoading: false,
+    closeUrl: '',
   },
 };

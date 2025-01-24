@@ -2,17 +2,17 @@ import { Text } from '@radix-ui/themes';
 import { Badge, Skeleton, Image, Input } from '@hypha-platform/ui';
 import { Creator } from '@hypha-platform/graphql/rsc';
 
-export type CreateDiscussionHeadProps = {
+export type CreateFormHeadProps = {
   creator?: Creator;
   isLoading?: boolean;
   type?: string;
 };
 
-export const CreateDiscussionHead = ({
+export const CreateFormHead = ({
   creator,
   isLoading,
-  type
-}: CreateDiscussionHeadProps) => {
+  type,
+}: CreateFormHeadProps) => {
   return (
     <div className="flex items-center">
       <Skeleton
