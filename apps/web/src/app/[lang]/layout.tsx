@@ -33,10 +33,12 @@ export const metadata = {
 export default async function RootLayout({
   children,
   modal,
+  aside,
   ...props
 }: {
   children: React.ReactNode;
   modal: React.ReactNode;
+  aside: React.ReactNode;
   params: Promise<{ lang: Locale }>;
 }) {
   console.debug('RootLayout', { modal });
@@ -75,7 +77,10 @@ export default async function RootLayout({
             />
           </MenuTop.RightSlot>
         </MenuTop>
-        <div className="pt-9 w-screen">{children}</div>
+        <div className="pt-9 w-screen flex justify-normal">
+          <div className="w-full">{children}</div>
+          <div className="col">{aside}</div>
+        </div>
         {modal}
         <Footer />
       </ThemeProvider>

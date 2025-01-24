@@ -12,7 +12,6 @@ import {
   CarouselContent,
 } from '@hypha-platform/ui';
 import { Heading } from 'packages/ui/src/atoms/heading';
-import { Footer } from '@hypha-platform/ui/server';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 
@@ -67,10 +66,12 @@ export default async function Index(props: PageProps) {
               value={filterSettings.value}
               options={filterSettings.options}
             />
-            <Button className="ml-2">
-              <PlusIcon className="mr-2" />
-              Create Space
-            </Button>
+            <Link href={`/${lang}/my-spaces/create`} scroll={false}>
+              <Button className="ml-2">
+                <PlusIcon className="mr-2" />
+                Create Space
+              </Button>
+            </Link>
           </div>
         </div>
         <div data-testid="member-spaces-container" className="w-full">
