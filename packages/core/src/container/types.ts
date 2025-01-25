@@ -1,6 +1,7 @@
 import { CoreConfig } from '../config/types';
 
-// Base interface for all repositories
+// Base Repository interface
+// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
 export interface Repository {}
 
 export interface Container {
