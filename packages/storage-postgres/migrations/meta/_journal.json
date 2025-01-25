@@ -15,6 +15,13 @@
       "when": 1737579636833,
       "tag": "0001_grey_power_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1737804157512,
+      "tag": "0002_reflective_union_jack",
+      "breakpoints": true
     }
   ]
 }
