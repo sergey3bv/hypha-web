@@ -73,7 +73,7 @@ jobs:
       - name: Run Migrations
         run: npx nx run storage-postgres:migrate
         env:
-          DATABASE_URL: '${{ steps.create_neon_branch.outputs.db_url_with_pooler }}'
+          POSTGRES_URL: '${{ steps.create_neon_branch.outputs.db_url_with_pooler }}'
 
       - name: Post Schema Diff Comment to PR
         uses: neondatabase/schema-diff-action@v1
