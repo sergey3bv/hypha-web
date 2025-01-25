@@ -20,6 +20,13 @@
         "cwd": "packages/storage-postgres"
       }
     },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit migrate",
+        "cwd": "packages/storage-postgres"
+      }
+    },
     "studio": {
       "executor": "nx:run-commands",
       "options": {
