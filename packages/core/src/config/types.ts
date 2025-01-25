@@ -1,3 +1,5 @@
+import { RepositoryToken } from '../container/repository-registry';
+
 export type StorageType = 'memory' | 'postgres';
 
 export interface StorageConfig {
@@ -20,4 +22,4 @@ export type ImplementationMap = Partial<
   Record<StorageType, RepositoryConstructor>
 >;
 
-export type RepositoryMap = Map<symbol, ImplementationMap>;
+export type RepositoryMap = Map<RepositoryToken<any>, ImplementationMap>;

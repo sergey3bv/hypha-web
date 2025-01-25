@@ -1,10 +1,14 @@
 import { defaultRepositoryMap } from '../config/defaults';
 import { StorageType } from '../config/types';
+import { Repository } from './types';
 
-export function getRepositoryImplementation(
-  token: symbol,
+// Type to ensure repository token matches repository type
+export type RepositoryToken<T extends Repository> = symbol & { __type: T };
+
+export function getRepositoryImplementation<T extends Repository>(
+  token: RepositoryToken<T>,
   storageType: StorageType,
-): any {
+): T {
   const implementations = defaultRepositoryMap.get(token);
   if (!implementations) {
     throw new Error(`No implementations found for token: ${token.toString()}`);
@@ -17,5 +21,5 @@ export function getRepositoryImplementation(
     );
   }
 
-  return new Implementation();
+  return new Implementation() as T;
 }
