@@ -44,19 +44,20 @@ jobs:
           database: ${{ env.NEON_DATABASE_NAME }}
           api_key: ${{ env.NEON_API_KEY }}
 
-      - name: Run Migrations
-        run: |
-          echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} >> .env
-
-          cat .env
-
-          npx nx run storage-postgres:migrate:production
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Run Migrations
+        run: |
+          sed -i '/^DATABASE_URL=/d' .vercel/.env.preview.local
+          echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} >> .vercel/.env.preview.local
+
+          echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} >> .env
+
+          npx nx run storage-postgres:migrate:production
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ env.VERCEL_TOKEN }}
