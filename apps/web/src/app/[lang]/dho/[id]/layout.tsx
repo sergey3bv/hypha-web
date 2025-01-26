@@ -51,8 +51,8 @@ export default async function DhoLayout({
 
   const { id: daoSlug, lang } = params;
 
-  const space = await readSpaceBySlug(daoSlug);
-  console.debug('DhoLayout', { space });
+  const spaceFromDb = await readSpaceBySlug(daoSlug);
+  console.debug('DhoLayout', { spaceFromDb });
 
   const newtoken = await getAccessToken();
   const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });

@@ -22,6 +22,13 @@
       "when": 1737804157512,
       "tag": "0002_reflective_union_jack",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1737887490200,
+      "tag": "0003_seed-daos",
+      "breakpoints": true
     }
   ]
 }
