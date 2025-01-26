@@ -3,6 +3,9 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import { WebSocket } from 'ws';
 
 const connectionString = process.env.DATABASE_URL;
+const nodeEnv = process.env.NODE_ENV;
+console.debug('DB', { connectionString, nodeEnv });
+
 if (!connectionString) {
   throw new Error('DATABASE_URL is not set');
 }
