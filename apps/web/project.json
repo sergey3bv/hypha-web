@@ -11,6 +11,17 @@
         "port": 6006,
         "configDir": "apps/web/.storybook"
       }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "local",
+      "options": {
+        "command": "next dev --port 3000",
+        "cwd": "apps/web"
+      },
+      "configurations": {
+        "local": {}
+      }
     }
   }
 }
