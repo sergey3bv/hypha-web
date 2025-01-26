@@ -66,12 +66,20 @@ jobs:
         env:
           DATABASE_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
+      - name: Decode Private Key
+        id: decode
+        run: |
+          echo "${{ secrets.HYPHA_COMMENT_BOT_PRIVATE_KEY }}" | base64 -d > private-key.pem
+          PRIVATE_KEY=$(cat private-key.pem)
+          echo "private_key=${PRIVATE_KEY}" >> $GITHUB_OUTPUT
+          rm private-key.pem
+
       - name: Generate GitHub App Token
         id: generate-token
         uses: tibdex/github-app-token@v2
         with:
           app_id: ${{ secrets.HYPHA_COMMENT_BOT_APP_ID }}
-          private_key: ${{ secrets.HYPHA_COMMENT_BOT_PRIVATE_KEY }}
+          private_key: ${{ steps.decode.outputs.private_key }}
 
       - name: Comment on Pull Request
         uses: thollander/actions-comment-pull-request@v2
