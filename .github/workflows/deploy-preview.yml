@@ -51,20 +51,20 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
 
       - name: Run Migrations
-        run: |
-          sed -i '/^DATABASE_URL=/d' .vercel/.env.preview.local
-          echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} >> .vercel/.env.preview.local
-
-          echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} >> .env
-
-          npx nx run storage-postgres:migrate:production
+        run: npx nx run storage-postgres:migrate:production
+        env:
+          DATABASE_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ env.VERCEL_TOKEN }}
+        env:
+          DATABASE_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
       - name: Deploy Preview to Vercel
         id: deploy
         run: echo preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
+        env:
+          DATABASE_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
       - name: Generate GitHub App Token
         id: generate-token
