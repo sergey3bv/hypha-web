@@ -68,6 +68,7 @@ jobs:
         env:
           PREVIEW_URL: ${{ steps.deploy.outputs.deploymentUrl }}
         with:
+          debug: true
           script: |
             // Get pull requests that are open for current ref.
             const pullRequests = await github.rest.pulls.list({
@@ -90,7 +91,7 @@ jobs:
                 return comment.user.type === 'Bot' && comment.body.includes('Deployed at')
             })
 
-            const output = "Deployed at 🚀" + ${{ env.PREVIEW_URL }}
+            const output = `Deployed at 🚀 ${process.env.PREVIEW_URL}`
 
             // If we have a comment, update it, otherwise create a new one
             if (botComment) {
