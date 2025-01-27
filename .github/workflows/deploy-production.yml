@@ -1,18 +1,17 @@
 name: Deploy Production
 
+concurrency: production
+
 on:
   push:
     branches:
       - 'main'
 
-env:
-  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  DATABASE_URL: ${{ secrets.POSTGRES_URL }}
-
 jobs:
   deploy-production:
     permissions: write-all
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +30,7 @@ jobs:
 
       - name: Run DB Migration
         run: |
+          echo "DATABASE_URL: ${{ secrets.POSTGRES_URL }}" >> .env
           npx nx run storage-postgres:migrate:production
 
       - name: Install Vercel CLI
