@@ -48,7 +48,7 @@ out
 
 # Environment Variables
 .env
-
+.env.*
 
 storybook-static
 vite.config.*.timestamp*
