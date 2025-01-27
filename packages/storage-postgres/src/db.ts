@@ -7,10 +7,12 @@ import path from 'path';
 
 const cwd = path.join(process.cwd(), '../../');
 
-const { parsedEnv } = loadEnvConfig(cwd);
+const { combinedEnv, parsedEnv, loadedEnvFiles } = loadEnvConfig(cwd);
 
-const connectionString = parsedEnv.DATABASE_URL;
-const nodeEnv = parsedEnv.NODE_ENV;
+console.debug('db.ts', { combinedEnv, parsedEnv, loadedEnvFiles });
+
+const connectionString = combinedEnv?.DATABASE_URL;
+const nodeEnv = combinedEnv?.NODE_ENV;
 console.debug('DB', { connectionString, nodeEnv });
 
 if (!connectionString) {
