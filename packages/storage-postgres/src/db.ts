@@ -7,13 +7,9 @@ import path from 'path';
 
 const cwd = path.join(process.cwd(), '../../');
 
-const { combinedEnv, parsedEnv, loadedEnvFiles } = loadEnvConfig(cwd);
-
-console.debug('db.ts', { combinedEnv, parsedEnv, loadedEnvFiles });
+const { combinedEnv } = loadEnvConfig(cwd);
 
 const connectionString = combinedEnv?.DATABASE_URL;
-const nodeEnv = combinedEnv?.NODE_ENV;
-console.debug('DB', { connectionString, nodeEnv });
 
 if (!connectionString) {
   throw new Error('DATABASE_URL is not set');
