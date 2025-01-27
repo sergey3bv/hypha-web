@@ -2,8 +2,15 @@ import { neonConfig, Pool } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
 import { WebSocket } from 'ws';
 
-const connectionString = process.env.DATABASE_URL;
-const nodeEnv = process.env.NODE_ENV;
+import { loadEnvConfig } from '@next/env';
+import path from 'path';
+
+const cwd = path.join(process.cwd(), '../../');
+
+const { parsedEnv } = loadEnvConfig(cwd);
+
+const connectionString = parsedEnv.DATABASE_URL;
+const nodeEnv = parsedEnv.NODE_ENV;
 console.debug('DB', { connectionString, nodeEnv });
 
 if (!connectionString) {
