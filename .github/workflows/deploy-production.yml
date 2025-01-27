@@ -29,7 +29,7 @@ jobs:
       - run: pnpm i
       - uses: nrwl/nx-set-shas@v4
 
-      - name: Run Prisma Migrate
+      - name: Run DB Migration
         run: |
           npx nx run storage-postgres:migrate:production
 
