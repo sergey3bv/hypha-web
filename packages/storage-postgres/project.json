@@ -10,27 +10,76 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "drizzle-kit generate",
+        "forwardAllArgs": true,
         "cwd": "packages/storage-postgres"
       }
     },
     "push": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "local",
       "options": {
         "command": "drizzle-kit push",
         "cwd": "packages/storage-postgres"
+      },
+      "configurations": {
+        "local": {
+          "dependsOn": ["db:start"]
+        }
       }
     },
     "migrate": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "local",
       "options": {
         "command": "drizzle-kit migrate",
         "cwd": "packages/storage-postgres"
+      },
+      "configurations": {
+        "local": {
+          "dependsOn": ["db:start"]
+        },
+        "production": {}
       }
     },
     "studio": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "local",
       "options": {
         "command": "drizzle-kit studio",
+        "cwd": "packages/storage-postgres"
+      },
+      "configurations": {
+        "local": {
+          "dependsOn": ["db:start"]
+        },
+        "production": {}
+      }
+    },
+    "db:start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose up -d",
+        "cwd": "packages/storage-postgres"
+      }
+    },
+    "db:stop": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose down",
+        "cwd": "packages/storage-postgres"
+      }
+    },
+    "db:reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose down -v && docker-compose up -d",
+        "cwd": "packages/storage-postgres"
+      }
+    },
+    "db:logs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose logs -f",
         "cwd": "packages/storage-postgres"
       }
     }

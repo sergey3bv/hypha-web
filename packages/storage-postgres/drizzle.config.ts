@@ -1,11 +1,11 @@
 import { defineConfig } from 'drizzle-kit';
 
+const url = process.env.POSTGRES_URL;
+if (!url) throw new Error(`Connection string to Postgres not found.`);
+
 export default defineConfig({
-  schema: './src/schema/index.ts',
-  out: './migrations',
+  dbCredentials: { url },
   dialect: 'postgresql',
-  dbCredentials: {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    url: process.env.POSTGRES_URL!,
-  },
+  out: './migrations',
+  schema: './src/schema/index.ts',
 });
