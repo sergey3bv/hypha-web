@@ -88,7 +88,7 @@ jobs:
                 return comment.user.type === 'Bot' && comment.body.includes('Deployed at')
             })
 
-            const output = `Deployed at 🚀 ${{ steps.deploy.outputs.deploymentUrl }}`
+            const output = `Deployed at 🚀 ${{ steps.deploy.outputs.preview_url }}`
 
             // If we have a comment, update it, otherwise create a new one
             if (botComment) {
