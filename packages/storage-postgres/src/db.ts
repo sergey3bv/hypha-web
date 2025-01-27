@@ -2,9 +2,17 @@ import { neonConfig, Pool } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
 import { WebSocket } from 'ws';
 
-const connectionString = process.env.POSTGRES_URL;
+import { loadEnvConfig } from '@next/env';
+import path from 'path';
+
+const cwd = path.join(process.cwd(), '../../');
+
+const { combinedEnv } = loadEnvConfig(cwd);
+
+const connectionString = combinedEnv?.DATABASE_URL;
+
 if (!connectionString) {
-  throw new Error('POSTGRES_URL is not set');
+  throw new Error('DATABASE_URL is not set');
 }
 
 if (process.env.NODE_ENV === 'production') {

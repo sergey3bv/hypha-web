@@ -10,7 +10,7 @@ pkgs.mkShell {
   shellHook = ''
     # Set PostgreSQL data directory
     export PGDATA="$PWD/.postgres"
-    export POSTGRES_URL="postgresql://postgres:postgres@localhost:5432/hypha"
+    export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/hypha"
 
     # Function to stop PostgreSQL
     pg_stop() {
@@ -53,7 +53,7 @@ pkgs.mkShell {
     fi
 
     echo "PostgreSQL is running on port 5432"
-    echo "Database URL: $POSTGRES_URL"
+    echo "Database URL: $DATABASE_URL"
     echo ""
     echo "Available commands:"
     echo "  pg_stop    - Stop the PostgreSQL server"
