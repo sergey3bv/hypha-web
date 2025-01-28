@@ -30,7 +30,7 @@ jobs:
 
       - name: Run DB Migration
         run: |
-          echo "DATABASE_URL: ${{ secrets.POSTGRES_URL }}" >> .env
+          echo "DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}" >> .env
           npx nx run storage-postgres:migrate:production
 
       - name: Install Vercel CLI

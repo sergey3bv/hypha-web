@@ -8,6 +8,7 @@ env:
   NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
   NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}
 
 jobs:
   deploy-preview:
@@ -30,11 +31,20 @@ jobs:
       - run: pnpm i
       - uses: nrwl/nx-set-shas@v4
 
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            migrations:
+              - 'packages/storage-postgres/migrations/**'
+
       - name: Get branch name
+        if: steps.changes.outputs.migrations == 'true'
         id: branch-name
         uses: tj-actions/branch-names@v8
 
       - name: Create Neon Branch
+        if: steps.changes.outputs.migrations == 'true'
         id: create-branch
         uses: neondatabase/create-branch-action@v5
         with:
@@ -46,6 +56,7 @@ jobs:
           api_key: ${{ env.NEON_API_KEY }}
 
       - name: Post Schema Diff Comment to PR
+        if: steps.changes.outputs.migrations == 'true'
         uses: neondatabase/schema-diff-action@v1
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
@@ -59,8 +70,9 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
 
       - name: Run Migrations
+        if: steps.changes.outputs.migrations == 'true'
         run: |
-          echo "DATABASE_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
+          echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:migrate:production
 
       - name: Build Project Artifacts

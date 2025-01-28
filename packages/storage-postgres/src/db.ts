@@ -9,10 +9,13 @@ const cwd = path.join(process.cwd(), '../../');
 
 const { combinedEnv } = loadEnvConfig(cwd);
 
-const connectionString = combinedEnv?.DATABASE_URL;
+const connectionString =
+  combinedEnv?.BRANCH_DB_URL || combinedEnv?.DEFAULT_DB_URL;
 
 if (!connectionString) {
-  throw new Error('DATABASE_URL is not set');
+  throw new Error(
+    'db connectionString (BRANCH_DB_URL or DEFAULT_DB_URL) is not set',
+  );
 }
 
 if (process.env.NODE_ENV === 'production') {
