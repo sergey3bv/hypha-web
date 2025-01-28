@@ -79,7 +79,7 @@ export default async function RootLayout({
         </MenuTop>
         <div className="pt-9 w-screen flex justify-normal">
           <div className="w-full">{children}</div>
-          <div className="col">{aside}</div>
+          {aside}
         </div>
         {modal}
         <Footer />
