@@ -10,6 +10,7 @@ import {
 } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 
 type DiscussionSectionProps = {
   basePath: string;
@@ -38,10 +39,12 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = ({
         label="Discussions"
         sortOptions={sortOptions}
       >
-        <Button className="ml-2">
-          <PlusIcon className="mr-2" />
-          Create
-        </Button>
+        <Link href={`${basePath}/create`} scroll={false}>
+          <Button className="ml-2">
+            <PlusIcon className="mr-2" />
+            Create
+          </Button>
+        </Link>
       </SectionFilter>
       <SectionTabs
         activeTab={activeFilter}
