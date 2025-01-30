@@ -1,3 +1,4 @@
+import { AgreementItem } from '../agreements/types';
 export type MemberType = {
   avatar: string;
   name: string;
@@ -12,6 +13,8 @@ export type SpaceType = {
   joinedStatus?: boolean;
   slug?: string;
   projects: number;
+  agreements?: AgreementItem[];
+  createdDate?: string;
 };
 
 export type SortParams = {
