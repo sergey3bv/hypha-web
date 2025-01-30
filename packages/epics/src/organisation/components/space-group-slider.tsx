@@ -13,10 +13,10 @@ import { Locale } from '@hypha-platform/i18n';
 import { CardOrganisation } from '@hypha-platform/epics';
 
 type SpaceGroupSliderProps = {
-  spaces: SpaceType[];
-  isLoading: boolean;
-  lang: Locale;
-  type: string;
+  spaces?: SpaceType[];
+  isLoading?: boolean;
+  lang?: Locale;
+  type?: string;
 };
 
 export const SpaceGroupSlider = ({
@@ -33,7 +33,7 @@ export const SpaceGroupSlider = ({
     <div className="border-t-2 border-primary-foreground pt-6">
       <div className="flex justify-between items-center">
         <Text className="text-4 font-medium">
-          {type} | {spaces.length}
+          {type} | {spaces?.length}
         </Text>
         <Button variant="ghost" className="text-accent-11">
           See all
@@ -41,14 +41,14 @@ export const SpaceGroupSlider = ({
       </div>
       <Carousel className="my-6">
         <CarouselContent>
-          {spaces.map((space) => (
+          {spaces?.map((space) => (
             <CarouselItem
               key={space.title}
               className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
             >
               <Link
                 className="w-96"
-                href={getDhoPathAgreements(lang, space.slug as string)}
+                href={getDhoPathAgreements(lang || 'en', space.slug as string)}
               >
                 <CardOrganisation
                   createdDate={space.createdDate ?? ''}
