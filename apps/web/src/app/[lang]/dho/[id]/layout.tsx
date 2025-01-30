@@ -1,8 +1,3 @@
-import {
-  getAccessToken,
-  getDaoDetail,
-  getDaoList,
-} from '@hypha-platform/graphql/rsc';
 import { CardOrganisation } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -26,7 +21,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
 import { getDhoPathAgreements } from './constants';
-import { readSpaceBySlug } from '../../../actions/space';
+import { readAllSpaces, readSpaceBySlug } from '../../../actions/space';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',
@@ -52,11 +47,8 @@ export default async function DhoLayout({
   const { id: daoSlug, lang } = params;
 
   const spaceFromDb = await readSpaceBySlug(daoSlug);
-  console.debug('DhoLayout', { spaceFromDb });
 
-  const newtoken = await getAccessToken();
-  const dao = await getDaoDetail({ token: newtoken.accessJWT, daoSlug });
-  const daos = await getDaoList({ token: newtoken.accessJWT });
+  const spaces = await readAllSpaces();
   return (
     <div className="flex">
       <Container>
@@ -68,18 +60,24 @@ export default async function DhoLayout({
             <ChevronLeftIcon width={16} height={16} />
             <Text className="text-sm">My Spaces</Text>
           </Link>
-          <Text className="text-sm text-gray-400 ml-1"> / {dao.title}</Text>
+          <Text className="text-sm text-gray-400 ml-1">
+            {' '}
+            / {spaceFromDb.title}
+          </Text>
         </div>
         <Card className="relative">
           <Image
             width={768}
             height={270}
             className="rounded-xl max-h-[270px] w-full object-cover"
-            src={dao.logo}
-            alt={dao.title}
+            src={spaceFromDb.leadImage || '/placeholder/space-lead-image.png'}
+            alt={spaceFromDb.title}
           ></Image>
           <Avatar style={customLogoStyles} className="border-4">
-            <AvatarImage src={dao.logo} alt="logo" />
+            <AvatarImage
+              src={spaceFromDb.logoUrl || '/placeholder/space-avatar-image.png'}
+              alt="logo"
+            />
           </Avatar>
         </Card>
         <div className="flex justify-end mt-2">
@@ -102,7 +100,7 @@ export default async function DhoLayout({
           </Button>
         </div>
         <div className="mt-4">
-          <Text className="text-7">{dao.title}</Text>
+          <Text className="text-7">{spaceFromDb.title}</Text>
         </div>
         <div className="flex gap-6">
           <Button
@@ -141,7 +139,7 @@ export default async function DhoLayout({
           </Button>
         </div>
         <div className="mt-6">
-          <Text className="text-2">{dao.description}</Text>
+          <Text className="text-2">{spaceFromDb.description}</Text>
         </div>
         <div className="flex gap-2 items-center mt-6">
           <div className="flex">
@@ -158,22 +156,24 @@ export default async function DhoLayout({
           <Text className="text-4 font-medium">Spaces you might like</Text>
           <Carousel className="my-6">
             <CarouselContent>
-              {daos.map((dao) => (
+              {spaces.map((space) => (
                 <CarouselItem
-                  key={dao.name}
+                  key={space.id}
                   className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
                 >
                   <Link
                     className="w-96"
-                    href={getDhoPathAgreements(lang, dao.url as string)}
+                    href={getDhoPathAgreements(lang, space.slug as string)}
                   >
                     <CardOrganisation
-                      createdDate={dao.date}
-                      description={dao.description as string}
-                      icon={dao.logo}
+                      createdDate={space.createdAt.toISOString()}
+                      description={space.description as string}
+                      icon={
+                        space.logoUrl || '/placeholder/space-avatar-image.png'
+                      }
                       members={0}
                       agreements={0}
-                      title={dao.title as string}
+                      title={space.title as string}
                     />
                   </Link>
                 </CarouselItem>

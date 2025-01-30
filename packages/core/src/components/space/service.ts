@@ -10,6 +10,10 @@ export class SpaceService {
     this.repository = container.get(Tokens.SpaceRepository);
   }
 
+  async getAll(): Promise<Space[]> {
+    return this.repository.findAll();
+  }
+
   async getById(id: number): Promise<Space> {
     const space = await this.repository.findById(id);
     if (!space) {
