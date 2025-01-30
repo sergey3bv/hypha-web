@@ -73,6 +73,8 @@ export const SelectItem = React.forwardRef<
   );
 });
 
+SelectItem.displayName = 'SelectItem';
+
 export const SelectGroup = Select.Group;
 export const SelectLabel = Select.Label;
 export const SelectSeparator = Select.Separator;

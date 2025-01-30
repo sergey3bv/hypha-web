@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
+import { Tabs, TabsList, TabsTrigger } from '../server';
 
 type Tab = {
   label: string;

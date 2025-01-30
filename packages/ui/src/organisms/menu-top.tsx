@@ -43,6 +43,9 @@ export const MenuTop = ({
   );
 };
 
-MenuTop.RightSlot = ({ children }: { children: React.ReactNode }) => (
+const RightSlot: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div id="menu-top-profile">{children}</div>
 );
+
+RightSlot.displayName = 'MenuTop.RightSlot';
+MenuTop.RightSlot = RightSlot;

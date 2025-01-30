@@ -1,29 +1,30 @@
 {
-  "name": "learn",
+  "name": "www",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/learn",
+  "sourceRoot": "apps/www",
   "projectType": "application",
   "tags": [],
+  "// targets": "to see all targets run: nx show project www --web",
   "targets": {
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "next --turbopack --port 4000",
-        "cwd": "apps/learn"
+        "command": "next dev --port 4000",
+        "cwd": "apps/www"
       }
     },
     "reset-next": {
       "executor": "nx:run-commands",
       "options": {
         "command": "rm -rf .next",
-        "cwd": "apps/learn"
+        "cwd": "apps/www"
       }
     },
     "build": {
       "executor": "nx:run-commands",
       "options": {
         "command": "next build",
-        "cwd": "apps/learn"
+        "cwd": "apps/www"
       },
       "dependsOn": ["reset-next"]
     },
@@ -31,7 +32,7 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "pagefind --site .next/server/app --output-path public/_pagefind",
-        "cwd": "apps/learn"
+        "cwd": "apps/www"
       },
       "dependsOn": ["build"]
     },
@@ -39,7 +40,7 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "next start --port 4000",
-        "cwd": "apps/learn"
+        "cwd": "apps/www"
       },
       "dependsOn": ["build-pages-index"]
     }

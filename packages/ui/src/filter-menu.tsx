@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { SelectMenu, SelectItem } from '@hypha-platform/ui/server';
+import { SelectItem } from './server';
+import { SelectMenu } from './server';
 
 type FilterMenuProps = {
   value: string;

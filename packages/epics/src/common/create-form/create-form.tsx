@@ -4,6 +4,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { SelectItem, SelectMenu } from '@hypha-platform/ui/server';
 
 import Link from 'next/link';
+import React from 'react';
 
 export type CreateFormProps = CreateFormHeadProps & {
   closeUrl: string;
@@ -15,6 +16,7 @@ export const CreateForm = ({
   closeUrl,
   type,
 }: CreateFormProps) => {
+  const [files, setFiles] = React.useState<File[]>([]);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
@@ -36,7 +38,11 @@ export const CreateForm = ({
         loading={isLoading}
         className="rounded-lg"
       >
-        <FileUploader />
+        <FileUploader
+          value={files}
+          onValueChange={setFiles}
+          onUpload={() => Promise.resolve()}
+        />
       </Skeleton>
       <Skeleton
         width="100%"
