@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { FilterMenu } from '@hypha-platform/ui';
+import { FilterMenu } from '../filter-menu';
 import { Text } from '@radix-ui/themes';
 
 export type FilterOption = {

@@ -4,8 +4,6 @@ import { Link } from '@radix-ui/themes';
 import { Text } from '@radix-ui/themes';
 import { Logo } from '../atoms';
 
-type FooterProps = {};
-
 const customLinkStyles: React.CSSProperties = {
   fontSize: '14px',
   fontWeight: '400',
@@ -17,7 +15,7 @@ const customLabelStyles: React.CSSProperties = {
   marginBottom: '12px',
 };
 
-export const Footer = ({}: FooterProps) => {
+export const Footer = () => {
   return (
     <div className="bg-zinc-900">
       <Container>

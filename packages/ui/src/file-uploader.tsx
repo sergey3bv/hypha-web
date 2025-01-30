@@ -11,7 +11,9 @@ import { toast } from 'sonner';
 
 import { cn, formatBytes } from '@hypha-platform/ui-utils';
 import { useControllableState } from '@hypha-platform/ui-utils';
-import { Button, Progress, ScrollArea } from '@hypha-platform/ui';
+import { ScrollArea } from './scroll-area';
+import { Progress } from './progress';
+import { Button } from './button';
 
 interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -179,8 +181,7 @@ export function FileUploader(props: FileUploaderProps) {
         }
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [files]);
 
   const isDisabled = disabled || (files?.length ?? 0) >= maxFileCount;
 

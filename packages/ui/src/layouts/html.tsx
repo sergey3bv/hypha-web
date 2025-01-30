@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 export const Html: React.FC<{
   children: React.ReactNode;
   className?: string;

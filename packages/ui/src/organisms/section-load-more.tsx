@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from '@hypha-platform/ui';
+import { Button } from '../button';
 
 type SectionLoadMoreProps = {
   onClick: () => void;

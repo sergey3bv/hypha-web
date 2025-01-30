@@ -42,7 +42,6 @@ function Amount({
   children,
   value,
   isLoading,
-  ...props
 }: AmountProps) {
   return (
     <div className={className}>
