@@ -6,18 +6,18 @@ import { useMDXComponents } from '../../../mdx-components';
 export const generateStaticParams = generateStaticParamsFor('mdxPath');
 
 export async function generateMetadata(props: {
-  params: { mdxPath: string[] };
+  params: Promise<{ mdxPath: string[] }>;
 }) {
   const params = await props.params;
   const { metadata } = await importPage(params.mdxPath);
   return metadata;
 }
 
-const Wrapper = useMDXComponents().wrapper;
+const Wrapper = useMDXComponents({}).wrapper;
 
 export default async function Page(props: {
-  params: { mdxPath: string[] };
-  searchParams: Record<string, string>;
+  params: Promise<{ mdxPath: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await props.params;
   const result = await importPage(params.mdxPath);

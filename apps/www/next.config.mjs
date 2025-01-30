@@ -4,7 +4,6 @@
 import { composePlugins, withNx } from '@nx/next';
 import nextra from 'nextra';
 
-// @ts-ignore
 const withNextra = nextra({
   latex: true,
   search: {
