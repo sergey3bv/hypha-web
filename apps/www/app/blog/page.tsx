@@ -1,4 +1,4 @@
-export const metadata = {}
+export const metadata = {};
 
 export default function BlogPage() {
   return (
@@ -7,10 +7,10 @@ export default function BlogPage() {
         textAlign: 'center',
         fontSize: 64,
         margin: '25vh 0',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       }}
     >
       Blog page
     </h1>
-  )
+  );
 }

@@ -28,11 +28,11 @@
       "@hypha-platform/storage-postgres": [
         "packages/storage-postgres/src/index.ts"
       ],
+      "@hypha-platform/ui": ["packages/ui/src/index.ts"],
       "@hypha-platform/ui-utils": ["packages/ui-utils/src/index.ts"],
       "@hypha-platform/ui-utils/global.css": [
         "packages/ui-utils/src/global.css"
       ],
-      "@hypha-platform/ui": ["packages/ui/src/index.ts"],
       "@hypha-platform/ui/server": ["packages/ui/src/server.ts"]
     }
   },
