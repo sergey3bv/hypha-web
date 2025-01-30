@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SpaceGroupSlider } from './SpaceGroupSlider';
+import { SpaceGroupSlider } from './space-group-slider';
 
 const meta = {
   component: SpaceGroupSlider,

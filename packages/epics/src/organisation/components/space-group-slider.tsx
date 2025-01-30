@@ -10,8 +10,7 @@ import {
 import Link from 'next/link';
 import { SpaceType } from '@hypha-platform/graphql/rsc';
 import { Locale } from '@hypha-platform/i18n';
-import { getDhoPathAgreements } from '../../../../../../apps/web/src/app/[lang]/dho/[id]/constants';
-import { CardOrganisation } from '../../../organisation/components/card-organisation';
+import { CardOrganisation } from '@hypha-platform/epics';
 
 type SpaceGroupSliderProps = {
   spaces: SpaceType[];
@@ -26,6 +25,10 @@ export const SpaceGroupSlider = ({
   lang,
   type,
 }: SpaceGroupSliderProps) => {
+  const getDhoPathAgreements = (lang: Locale, id: string) => {
+    return `/${lang}/dho/${id}/agreements`;
+  };
+
   return (
     <div className="border-t-2 border-primary-foreground pt-6">
       <div className="flex justify-between items-center">
