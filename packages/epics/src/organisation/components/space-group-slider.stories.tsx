@@ -90,8 +90,10 @@ export const Primary: Story = {
         createdDate: '',
       },
     ],
-    lang: 'en',
     isLoading: false,
     type: 'Energy',
+    getHref: (id: string) => {
+      return id;
+    },
   },
 };

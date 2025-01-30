@@ -15,20 +15,16 @@ import { CardOrganisation } from './card-organisation';
 type SpaceGroupSliderProps = {
   spaces?: SpaceType[];
   isLoading?: boolean;
-  lang?: Locale;
   type?: string;
+  getHref: (id: string) => string;
 };
 
 export const SpaceGroupSlider = ({
   spaces,
   isLoading,
-  lang,
   type,
+  getHref,
 }: SpaceGroupSliderProps) => {
-  const getDhoPathAgreements = (lang: Locale, id: string) => {
-    return `/${lang}/dho/${id}/agreements`;
-  };
-
   return (
     <div className="border-t-2 border-primary-foreground pt-6">
       <div className="flex justify-between items-center">
@@ -46,10 +42,7 @@ export const SpaceGroupSlider = ({
               key={space.title}
               className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
             >
-              <Link
-                className="w-96"
-                href={getDhoPathAgreements(lang || 'en', space.slug as string)}
-              >
+              <Link className="w-96" href={getHref(space.slug as string)}>
                 <CardOrganisation
                   createdDate={space.createdDate ?? ''}
                   description={space.description as string}
