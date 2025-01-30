@@ -6,8 +6,6 @@ import type { PluginUtils } from 'tailwindcss/types/config';
 
 import type { Config } from 'tailwindcss';
 
-const fontConfig = {};
-
 export function buildConfig(appDir: string): Config {
   return {
     darkMode: ['class'],

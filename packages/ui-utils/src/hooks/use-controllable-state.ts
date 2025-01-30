@@ -9,7 +9,7 @@ import { useCallbackRef } from './use-callback-ref';
 type UseControllableStateParams<T> = {
   prop?: T | undefined;
   defaultProp?: T | undefined;
-  onChange?: (state: T) => void;
+  onChange: (state: T) => void;
 };
 
 type SetStateFn<T> = (prevState?: T) => T;
@@ -17,7 +17,7 @@ type SetStateFn<T> = (prevState?: T) => T;
 function useControllableState<T>({
   prop,
   defaultProp,
-  onChange = () => {},
+  onChange,
 }: UseControllableStateParams<T>) {
   const [uncontrolledProp, setUncontrolledProp] = useUncontrolledState({
     defaultProp,
