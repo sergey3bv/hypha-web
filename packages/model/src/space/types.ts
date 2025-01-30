@@ -6,4 +6,5 @@ export interface Space {
   description: string | null;
   slug: string;
   parentId?: number | null;
+  createdAt: Date;
 }

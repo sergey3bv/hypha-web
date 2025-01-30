@@ -1,4 +1,8 @@
-import { CoreConfig, getScopedContainer } from '@hypha-platform/core';
+import {
+  CoreConfig,
+  getContainer,
+  getScopedContainer,
+} from '@hypha-platform/core';
 import { SpaceService } from '@hypha-platform/core';
 
 const config: CoreConfig = {
@@ -9,6 +13,15 @@ const config: CoreConfig = {
     comment: 'postgres',
   },
 };
+
+export async function readAllSpaces() {
+  'use server';
+
+  const container = getContainer(config);
+  const spaceService = new SpaceService(container);
+
+  return spaceService.getAll();
+}
 
 export async function readSpaceById(id: number) {
   'use server';

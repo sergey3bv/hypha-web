@@ -1,4 +1,3 @@
-import { getAccessToken, getDaoList } from '@hypha-platform/graphql/rsc';
 import { CardOrganisation } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
@@ -14,6 +13,7 @@ import {
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
+import { readAllSpaces } from '../../actions/space';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -34,8 +34,7 @@ export default async function Index(props: PageProps) {
 
   const { lang } = params;
 
-  const newtoken = await getAccessToken();
-  const daos = await getDaoList({ token: newtoken.accessJWT });
+  const spaces = await readAllSpaces();
 
   const mySpacesCount = 2;
 
@@ -75,18 +74,18 @@ export default async function Index(props: PageProps) {
           </div>
         </div>
         <div data-testid="member-spaces-container" className="w-full">
-          {daos.map((dao) => (
-            <div key={dao.name} className="mb-5">
-              <Link href={getDhoPathAgreements(lang, dao.url as string)}>
+          {spaces.map((space) => (
+            <div key={space.id} className="mb-5">
+              <Link href={getDhoPathAgreements(lang, space.slug as string)}>
                 <CardOrganisation
-                  createdDate={dao.date}
-                  description={dao.description as string}
-                  icon={dao.logo}
+                  createdDate={space.createdAt.toISOString()}
+                  description={space.description as string}
+                  icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
                   members={0}
                   agreements={0}
                   activeAgreements={1}
                   openDiscussions={1}
-                  title={dao.title as string}
+                  title={space.title as string}
                 />
               </Link>
             </div>
@@ -96,22 +95,24 @@ export default async function Index(props: PageProps) {
           <Text className="text-4 font-medium">Spaces you might like</Text>
           <Carousel className="my-6">
             <CarouselContent>
-              {daos.map((dao) => (
+              {spaces.map((space) => (
                 <CarouselItem
-                  key={dao.name}
+                  key={space.id}
                   className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
                 >
                   <Link
                     className="w-96"
-                    href={getDhoPathAgreements(lang, dao.url as string)}
+                    href={getDhoPathAgreements(lang, space.slug as string)}
                   >
                     <CardOrganisation
-                      createdDate={dao.date}
-                      description={dao.description as string}
-                      icon={dao.logo}
+                      createdDate={space.createdAt.toISOString()}
+                      description={space.description as string}
+                      icon={
+                        space.logoUrl || '/placeholder/space-avatar-image.png'
+                      }
                       members={0}
                       agreements={0}
-                      title={dao.title as string}
+                      title={space.title as string}
                     />
                   </Link>
                 </CarouselItem>
