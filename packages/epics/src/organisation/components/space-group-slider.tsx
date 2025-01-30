@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import { SpaceType } from '@hypha-platform/graphql/rsc';
 import { Locale } from '@hypha-platform/i18n';
-import { CardOrganisation } from '@hypha-platform/epics';
+import { CardOrganisation } from './card-organisation';
 
 type SpaceGroupSliderProps = {
   spaces?: SpaceType[];
