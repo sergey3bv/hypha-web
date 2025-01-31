@@ -4,6 +4,7 @@ import { Search } from './search';
 
 const meta = {
   component: Search,
+  title: 'Epics/Organisation/Search',
 } satisfies Meta<typeof Search>;
 
 export default meta;
