@@ -7,7 +7,7 @@ import {
 } from '@hypha-platform/ui';
 import Link from 'next/link';
 import { CardOrganisation } from './card-organisation';
-import { Space } from '@hypha-platform/model'
+import { Space } from '@hypha-platform/model';
 
 type SpaceGroupSliderProps = {
   spaces?: Space[];
