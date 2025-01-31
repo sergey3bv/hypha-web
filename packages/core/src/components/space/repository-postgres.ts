@@ -3,7 +3,7 @@ import { db, spaces } from '@hypha-platform/storage-postgres';
 import { Space } from './types';
 import { SpaceRepository } from './repository';
 
-export class PostgresSpaceRepository implements SpaceRepository {
+export class SpacePostgresRepository implements SpaceRepository {
   async findAll(): Promise<Space[]> {
     const results = await db.select().from(spaces).orderBy(asc(spaces.title));
     return results;

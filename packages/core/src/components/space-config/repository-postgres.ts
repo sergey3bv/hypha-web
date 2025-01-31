@@ -4,7 +4,7 @@ import { db } from '@hypha-platform/storage-postgres';
 import { spaceConfigs } from '@hypha-platform/storage-postgres';
 import { SpaceConfigRepository } from './repository';
 
-export class PostgresSpaceConfigRepository implements SpaceConfigRepository {
+export class SpaceConfigPostgresRepository implements SpaceConfigRepository {
   async findBySpaceSlug(spaceSlug: string): Promise<SpaceConfig | null> {
     const [result] = await db
       .select()
