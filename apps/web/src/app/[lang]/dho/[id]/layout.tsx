@@ -166,7 +166,6 @@ export default async function DhoLayout({
                     href={getDhoPathAgreements(lang, space.slug as string)}
                   >
                     <CardOrganisation
-                      createdDate={space.createdAt.toISOString()}
                       description={space.description as string}
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'

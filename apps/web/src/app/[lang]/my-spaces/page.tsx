@@ -78,7 +78,6 @@ export default async function Index(props: PageProps) {
             <div key={space.id} className="mb-5">
               <Link href={getDhoPathAgreements(lang, space.slug as string)}>
                 <CardOrganisation
-                  createdDate={space.createdAt.toISOString()}
                   description={space.description as string}
                   icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
                   members={0}
@@ -105,7 +104,6 @@ export default async function Index(props: PageProps) {
                     href={getDhoPathAgreements(lang, space.slug as string)}
                   >
                     <CardOrganisation
-                      createdDate={space.createdAt.toISOString()}
                       description={space.description as string}
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'

@@ -11,11 +11,10 @@ import {
 } from '@hypha-platform/ui';
 
 type DaoCardProps = {
-  createdDate: string;
   description: string;
   icon: string;
-  members: number;
-  agreements: number;
+  members?: number;
+  agreements?: number;
   title: string;
   activeAgreements?: number;
   openDiscussions?: number;
