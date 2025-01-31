@@ -1,7 +1,7 @@
 import { Space } from './types';
 import { SpaceRepository } from './repository';
 
-export class InMemorySpaceRepository implements SpaceRepository {
+export class SpaceInMemoryRepository implements SpaceRepository {
   async findAll(): Promise<Space[]> {
     throw new Error('Not implemented');
   }
