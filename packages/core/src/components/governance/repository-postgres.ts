@@ -6,9 +6,12 @@ import {
 } from '@hypha-platform/storage-postgres';
 import { Document, DocumentState } from './types';
 import { DocumentRepository } from './repository';
+import invariant from 'tiny-invariant';
 
 export class DocumentRepositoryPostgres implements DocumentRepository {
   private mapToDocument(dbDocument: DbDocument): Document {
+    // invariant(dbDocument.createdAt, 'Document createdAt is required');
+    // invariant(dbDocument.updatedAt, 'Document updatedAt is required');
     return {
       id: dbDocument.id,
       creatorId: dbDocument.creatorId,

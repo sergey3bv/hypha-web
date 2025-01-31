@@ -9,3 +9,12 @@ export interface SpaceConfig {
   createdAt?: Date | null;
   updatedAt?: Date | null;
 }
+
+export type NewSpaceConfig = Omit<
+  SpaceConfig,
+  'id' | 'createdAt' | 'updatedAt'
+>;
+
+export type UpdateSpaceConfig = Partial<
+  Omit<SpaceConfig, 'createdAt' | 'updatedAt'>
+>;
