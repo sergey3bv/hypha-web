@@ -1,5 +1,3 @@
-'use client';
-
 import { Text } from '@radix-ui/themes';
 import {
   Carousel,
@@ -8,11 +6,11 @@ import {
   Button,
 } from '@hypha-platform/ui';
 import Link from 'next/link';
-import { SpaceType } from '@hypha-platform/graphql/rsc';
 import { CardOrganisation } from './card-organisation';
+import { Space } from '@hypha-platform/model';
 
 type SpaceGroupSliderProps = {
-  spaces?: SpaceType[];
+  spaces?: Space[];
   isLoading?: boolean;
   type?: string;
   getHref: (id: string) => string;
@@ -25,7 +23,7 @@ export const SpaceGroupSlider = ({
   getHref,
 }: SpaceGroupSliderProps) => {
   return (
-    <div className="border-t-2 border-primary-foreground pt-6">
+    <div className="border-b-2 border-primary-foreground pt-6">
       <div className="flex justify-between items-center">
         <Text className="text-4 font-medium">
           {type} | {spaces?.length}
@@ -43,13 +41,12 @@ export const SpaceGroupSlider = ({
             >
               <Link className="w-96" href={getHref(space.slug as string)}>
                 <CardOrganisation
-                  createdDate={space.createdDate ?? ''}
                   description={space.description as string}
-                  icon={space.image ?? ''}
-                  members={space.members?.length ?? 0}
-                  agreements={space.agreements?.length ?? 0}
+                  icon={space.logoUrl ?? ''}
                   title={space.title as string}
                   isLoading={isLoading}
+                  members={0}
+                  agreements={0}
                 />
               </Link>
             </CarouselItem>
