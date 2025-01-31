@@ -1,16 +1,17 @@
-import { PostgresSpaceConfigRepository } from '../components/space-config/repository-postgres';
-import { InMemorySpaceRepository } from '../components/space/repository-memory';
-import { PostgresSpaceRepository } from '../components/space/repository-postgres';
+import { DocumentRepositoryPostgres } from '../components/governance/repository-postgres';
+import { SpaceConfigPostgresRepository } from '../components/space-config/repository-postgres';
+import { SpaceInMemoryRepository } from '../components/space/repository-memory';
+import { SpacePostgresRepository } from '../components/space/repository-postgres';
 import { RepositoryToken } from '../container/repository-registry';
 import { Tokens } from '../container/tokens';
 import { CoreConfig, ImplementationMap } from './types';
 
 export const defaultConfig: CoreConfig = {
   storage: {
-    space: 'memory',
-    agreement: 'memory',
-    member: 'memory',
-    comment: 'memory',
+    space: 'postgres',
+    agreement: 'postgres',
+    member: 'postgres',
+    comment: 'postgres',
   },
   defaultPageSize: 10,
 };
@@ -23,14 +24,20 @@ export const defaultRepositoryMap = new Map<
   [
     Tokens.SpaceRepository,
     {
-      postgres: PostgresSpaceRepository,
-      memory: InMemorySpaceRepository,
+      postgres: SpacePostgresRepository,
+      memory: SpaceInMemoryRepository,
     },
   ],
   [
     Tokens.SpaceConfigRepository,
     {
-      postgres: PostgresSpaceConfigRepository,
+      postgres: SpaceConfigPostgresRepository,
+    },
+  ],
+  [
+    Tokens.DocumentRepository,
+    {
+      postgres: DocumentRepositoryPostgres,
     },
   ],
 ]);

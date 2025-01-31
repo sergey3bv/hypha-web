@@ -55,14 +55,6 @@ jobs:
           database: ${{ env.NEON_DATABASE_NAME }}
           api_key: ${{ env.NEON_API_KEY }}
 
-      - name: Post Schema Diff Comment to PR
-        if: steps.changes.outputs.migrations == 'true'
-        uses: neondatabase/schema-diff-action@v1
-        with:
-          project_id: ${{ secrets.NEON_PROJECT_ID }}
-          compare_branch: preview/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
-          api_key: ${{ secrets.NEON_API_KEY }}
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
@@ -74,6 +66,14 @@ jobs:
         run: |
           echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:migrate:production
+
+      - name: Post Schema Diff Comment to PR
+        if: steps.changes.outputs.migrations == 'true'
+        uses: neondatabase/schema-diff-action@v1
+        with:
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
+          compare_branch: preview/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
+          api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ env.VERCEL_TOKEN }}
