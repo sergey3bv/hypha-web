@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import * as jose from 'jose';
+import type { JSONWebKeySet } from 'jose';
 
 const JWKS_URLS = {
   social: 'https://api-auth.web3auth.io/jwks',
   wallet: 'https://authjs.web3auth.io/jwks',
 };
 
-type JWKSResponse = jose.JSONWebKeySet;
+type JWKSResponse = JSONWebKeySet;
 
 // This function handles GET requests to /.well-known/jwks.json
 export async function GET() {
