@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@hypha-platform/authentication": [
+        "packages/authentication/src/index.ts"
+      ],
       "@hypha-platform/cookie": ["packages/cookie/src/index.ts"],
       "@hypha-platform/core": ["packages/core/src/index.ts"],
       "@hypha-platform/epics": ["packages/epics/src/index.ts"],

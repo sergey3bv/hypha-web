@@ -8,9 +8,9 @@ import '@hypha-platform/ui-utils/global.css';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
 import clsx from 'clsx';
-import { ButtonProfile } from '@hypha-platform/epics';
+import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
-
+import { AuthProvider } from '@hypha-platform/authentication';
 const lato = Lato({
   subsets: ['latin'],
   display: 'swap',
@@ -47,43 +47,47 @@ export default async function RootLayout({
   const { lang } = params;
   return (
     <Html className={clsx(lato.variable, sourceSans.variable)}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
+      <AuthProvider
+        config={{
+          type: 'privy',
+          appId: process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
+        }}
       >
-        <MenuTop
-          withLogo={true}
-          navItems={[
-            {
-              label: 'Network',
-              href: `/${lang}/network`,
-            },
-            {
-              label: 'My Spaces',
-              href: `/${lang}/my-spaces`,
-            },
-            {
-              label: 'Wallet',
-              href: `/${lang}/wallet`,
-            },
-          ]}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <MenuTop.RightSlot>
-            <ButtonProfile
-              avatarSrc="https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop"
-              userName="Jane Doe"
-            />
-          </MenuTop.RightSlot>
-        </MenuTop>
-        <div className="pt-9 w-screen flex justify-normal">
-          <div className="w-full">{children}</div>
-          {aside}
-        </div>
-        {modal}
-        <Footer />
-      </ThemeProvider>
+          <MenuTop
+            withLogo={true}
+            navItems={[
+              {
+                label: 'Network',
+                href: `/${lang}/network`,
+              },
+              {
+                label: 'My Spaces',
+                href: `/${lang}/my-spaces`,
+              },
+              {
+                label: 'Wallet',
+                href: `/${lang}/wallet`,
+              },
+            ]}
+          >
+            <MenuTop.RightSlot>
+              <ConnectedButtonProfile />
+            </MenuTop.RightSlot>
+          </MenuTop>
+          <div className="pt-9 w-screen flex justify-normal">
+            <div className="w-full">{children}</div>
+            {aside}
+          </div>
+          {modal}
+          <Footer />
+        </ThemeProvider>
+      </AuthProvider>
     </Html>
   );
 }
