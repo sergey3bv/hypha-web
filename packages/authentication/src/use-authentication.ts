@@ -1,18 +1,13 @@
 'use client';
 
-import { usePrivy } from '@privy-io/react-auth';
+import React, { useContext } from 'react';
+import { AuthContext } from './shared/context';
 
 export const useAuthentication = () => {
-  const { login, authenticated, logout, user } = usePrivy();
-  console.debug('useAuthentication', { user });
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuthentication must be used within AuthProvider');
+  }
 
-  return {
-    login,
-    isAuthenticated: authenticated,
-    logout,
-    ...(authenticated &&
-      user?.wallet?.address && {
-        user: { address: user?.wallet?.address },
-      }),
-  };
+  return context;
 };

@@ -2,6 +2,7 @@
 
 import { PrivyProvider, PrivyProviderProps } from '@privy-io/react-auth';
 import React from 'react';
+import { PrivyAuthProvider } from './privy/provider';
 
 export type AuthProviderConfig = {
   type: 'privy';
@@ -19,7 +20,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   switch (providerProps.config.type) {
     case 'privy':
       return (
-        <PrivyProvider {...providerProps.config}>{children}</PrivyProvider>
+        <PrivyProvider {...providerProps.config}>
+          <PrivyAuthProvider>{children}</PrivyAuthProvider>
+        </PrivyProvider>
       );
     default:
       throw new Error(`Unsupported auth type: ${providerProps.config.type}`);
