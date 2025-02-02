@@ -7,9 +7,10 @@ import { AuthHook } from '../shared/types';
 
 import React from 'react';
 import useSWR from 'swr';
+import invariant from 'tiny-invariant';
 
 export const useWeb3AuthAuthenticationAdapter = (): AuthHook => {
-  const { status, connect, logout, provider } = useWeb3Auth();
+  const { status, connect, logout, provider, web3Auth } = useWeb3Auth();
 
   const isConnected = React.useMemo(
     () => status === ADAPTER_STATUS.CONNECTED,
@@ -28,7 +29,12 @@ export const useWeb3AuthAuthenticationAdapter = (): AuthHook => {
     },
   );
 
-  console.debug('useWeb3AuthAuthenticationAdapter', { address });
+  const getAccessToken = React.useCallback(async () => {
+    invariant(web3Auth, 'Web3Auth is not initialized');
+
+    const { idToken } = await web3Auth.authenticateUser();
+    return idToken;
+  }, [web3Auth]);
 
   return {
     isAuthenticated: isConnected,
@@ -36,8 +42,6 @@ export const useWeb3AuthAuthenticationAdapter = (): AuthHook => {
     login,
     logout,
     user: { id: address, wallet: { address } },
-    getAccessToken: async () => {
-      throw new Error('Not implemented');
-    },
+    getAccessToken,
   };
 };
