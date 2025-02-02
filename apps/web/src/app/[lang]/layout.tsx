@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { AuthProvider } from '@hypha-platform/authentication';
+
 const lato = Lato({
   subsets: ['latin'],
   display: 'swap',
@@ -49,8 +50,9 @@ export default async function RootLayout({
     <Html className={clsx(lato.variable, sourceSans.variable)}>
       <AuthProvider
         config={{
-          type: 'privy',
-          appId: process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
+          type: 'web3auth',
+          // type: 'privy',
+          // appId: process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
         }}
       >
         <ThemeProvider

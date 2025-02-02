@@ -40,6 +40,18 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          crypto: 'empty-module',
+        },
+      },
+    };
+  },
 };
 
 const plugins = [

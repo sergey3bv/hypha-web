@@ -1,3 +1,5 @@
+'use client';
+
 import { AuthContext } from '../shared/context';
 
 import { usePrivyAuthenticationAdapter } from './use-privy-authentication-adapter';
