@@ -5,12 +5,14 @@ import {
   ThemeProvider,
 } from '@hypha-platform/ui/server';
 import '@hypha-platform/ui-utils/global.css';
+import { VercelToolbar } from '@vercel/toolbar/next';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
 import clsx from 'clsx';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { AuthProvider } from '@hypha-platform/authentication';
+import { enableWeb3Auth } from '@hypha-platform/feature-flags';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -46,14 +48,22 @@ export default async function RootLayout({
   const params = await props.params;
 
   const { lang } = params;
+  const isWeb3AuthEnabled = await enableWeb3Auth();
+  const shouldInjectToolbar = process.env.NODE_ENV === 'development';
   return (
     <Html className={clsx(lato.variable, sourceSans.variable)}>
       <AuthProvider
-        config={{
-          type: 'web3auth',
-          // type: 'privy',
-          // appId: process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
-        }}
+        config={
+          isWeb3AuthEnabled
+            ? {
+                type: 'web3auth' as const,
+                clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID!,
+              }
+            : {
+                type: 'privy' as const,
+                appId: process.env.NEXT_PUBLIC_PRIVY_APP_ID!,
+              }
+        }
       >
         <ThemeProvider
           attribute="class"
@@ -90,6 +100,7 @@ export default async function RootLayout({
           <Footer />
         </ThemeProvider>
       </AuthProvider>
+      {shouldInjectToolbar && <VercelToolbar />}
     </Html>
   );
 }

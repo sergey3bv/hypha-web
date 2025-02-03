@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const { withVercelToolbar } = require('@vercel/toolbar/plugins/next');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -57,6 +58,7 @@ const nextConfig = {
 const plugins = [
   // Add more Next.js plugins to this list if needed.
   withNx,
+  withVercelToolbar(),
 ];
 
 module.exports = composePlugins(...plugins)(nextConfig);
