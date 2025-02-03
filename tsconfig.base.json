@@ -21,6 +21,7 @@
       "@hypha-platform/cookie": ["packages/cookie/src/index.ts"],
       "@hypha-platform/core": ["packages/core/src/index.ts"],
       "@hypha-platform/epics": ["packages/epics/src/index.ts"],
+      "@hypha-platform/feature-flags": ["packages/feature-flags/src/index.ts"],
       "@hypha-platform/graphql": ["packages/api/graphql/src/index.ts"],
       "@hypha-platform/graphql/rsc": ["packages/api/graphql/src/rsc.ts"],
       "@hypha-platform/i18n": ["packages/i18n/src/index.ts"],
