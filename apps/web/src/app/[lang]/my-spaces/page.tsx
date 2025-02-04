@@ -1,7 +1,6 @@
 import { CardOrganisation } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
-import { getDhoPathAgreements } from '../dho/[id]/constants';
 import {
   Button,
   Container,
@@ -14,6 +13,7 @@ import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { readAllSpaces } from '../../actions/space';
+import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;

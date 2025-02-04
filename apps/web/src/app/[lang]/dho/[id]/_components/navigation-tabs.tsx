@@ -1,6 +1,7 @@
 import { Locale } from '@hypha-platform/i18n';
 import { Tabs, TabsList, TabsTrigger } from '@hypha-platform/ui/server';
 import Link from 'next/link';
+import { getDhoPathAgreements } from '../agreements/constants';
 
 export function NavigationTabs({
   lang,
@@ -21,7 +22,7 @@ export function NavigationTabs({
           variant="ghost"
         >
           <Link
-            href={`/${lang}/dho/${id}/agreements`}
+            href={getDhoPathAgreements(lang, id)}
             className="w-full"
             passHref
           >
