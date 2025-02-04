@@ -1,4 +1,3 @@
-import { people } from '@hypha-platform/storage-postgres';
 import { Person } from './types';
 
 export interface PeopleRepository {
