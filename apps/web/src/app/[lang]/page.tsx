@@ -1,9 +1,6 @@
 import { Locale } from '@hypha-platform/i18n';
-import { Container } from '@hypha-platform/ui';
-import { Text } from '@radix-ui/themes';
-import { SpaceGroupSlider, Search } from '@hypha-platform/epics';
-import { readAllSpaces } from '../actions/space';
-import { getDhoPathAgreements } from './dho/[id]/agreements/constants';
+import { Button } from '@hypha-platform/ui';
+import Link from 'next/link';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -14,19 +11,18 @@ export default async function Index(props: PageProps) {
 
   const { lang } = params;
 
-  const getHref = (id: string) => {
-    return getDhoPathAgreements(lang, id);
-  };
-
-  const spaces = await readAllSpaces();
-
   return (
-    <Container>
-      <Text className="text-9 text-center flex mb-8">
-        Explore hundreds of Spaces in the Hypha Network
-      </Text>
-      <Search />
-      <SpaceGroupSlider spaces={spaces} type="Hypha" getHref={getHref} />
-    </Container>
+    <div>
+      <div>IndexPage</div>
+      <div>
+        <Button
+          asChild
+          variant="ghost"
+          className="rounded-lg justify-start text-gray-400 px-0"
+        >
+          <Link href={`${lang}/my-spaces/`}>My Spaces</Link>
+        </Button>
+      </div>
+    </div>
   );
 }
