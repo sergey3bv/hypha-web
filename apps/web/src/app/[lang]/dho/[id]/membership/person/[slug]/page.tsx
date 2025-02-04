@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { useSpaces } from 'packages/epics/src/membership/hooks/use-spaces';
 import { getDhoPathAgreements } from '../../../agreements/constants';
 import { Locale } from '@hypha-platform/i18n';
+import { getDhoPathMembership } from '../../constants';
 
 export default function Member() {
   const { slug, id, lang } = useParams();
@@ -16,7 +17,7 @@ export default function Member() {
 
   return (
     <MemberDetail
-      closeUrl={`/${lang}/dho/${id}/membership`}
+      closeUrl={getDhoPathMembership(lang as Locale, id as string)}
       member={{
         avatar: data?.avatar,
         name: data?.name,

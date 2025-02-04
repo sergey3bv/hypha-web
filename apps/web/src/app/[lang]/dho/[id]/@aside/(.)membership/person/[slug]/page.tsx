@@ -6,6 +6,7 @@ import { SidePanel } from '../../../_components/side-panel';
 import { useSpaces } from 'packages/epics/src/membership/hooks/use-spaces';
 import { Locale } from '@hypha-platform/i18n';
 import { getDhoPathAgreements } from '../../../../agreements/constants';
+import { getDhoPathMembership } from '../../../../membership/constants';
 
 export default function Member() {
   const { slug, id, lang } = useParams();
@@ -18,7 +19,7 @@ export default function Member() {
   return (
     <SidePanel>
       <MemberDetail
-        closeUrl={`/${lang}/dho/${id}/membership`}
+        closeUrl={getDhoPathMembership(lang as Locale, id as string)}
         member={{
           avatar: data?.avatar,
           name: data?.name,
