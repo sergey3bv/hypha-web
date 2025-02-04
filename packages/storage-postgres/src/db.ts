@@ -31,3 +31,4 @@ if (process.env.NODE_ENV === 'production') {
 const pool = new Pool({ connectionString });
 
 export const db = drizzle(pool);
+export type Database = typeof db;
