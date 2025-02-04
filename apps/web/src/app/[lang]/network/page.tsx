@@ -1,8 +1,7 @@
 import { Locale } from '@hypha-platform/i18n';
 import { Container } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
-import { SpaceGroupSlider, Search } from '@hypha-platform/epics';
-import { readAllSpaces } from '../../actions/space';
+import { SpaceGroupSlider, Search, readAllSpaces } from '@hypha-platform/epics';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
 
 type PageProps = {

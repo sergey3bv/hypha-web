@@ -7,7 +7,7 @@ export type MemberCardProps = {
   surname?: string;
   nickname?: string;
   location?: string;
-  avatar?: string;
+  avatarUrl?: string;
   commitment?: number;
   status?: string;
   isLoading?: boolean;
@@ -19,7 +19,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({
   surname,
   nickname,
   location,
-  avatar,
+  avatarUrl,
   commitment,
   status,
   isLoading,
@@ -35,7 +35,10 @@ export const MemberCard: React.FC<MemberCardProps> = ({
       >
         <Image
           className="rounded-lg mr-3"
-          src={avatar ?? ''}
+          src={
+            avatarUrl ??
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop'
+          }
           height={minimize ? 40 : 64}
           width={minimize ? 40 : 64}
           alt={nickname ?? ''}

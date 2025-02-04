@@ -30,7 +30,8 @@
     "../../packages/i18n/src/get-dictionaries.ts",
     "../../packages/i18n/src/i18n-config.ts",
     "../../packages/i18n/src/middleware.ts",
-    "src/app/.well-known/**/*.ts"
+    "src/app/.well-known/**/*.ts",
+    "../../packages/epics/src/space/actions/space.ts"
   ],
   "exclude": ["node_modules", "jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
 }

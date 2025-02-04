@@ -2,7 +2,7 @@ import { Skeleton, Image, Badge, StatusBadge } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
 
 export type MemberHeadProps = {
-  avatar?: string;
+  avatarUrl?: string;
   name?: string;
   surname?: string;
   nickname?: string;
@@ -12,7 +12,7 @@ export type MemberHeadProps = {
 };
 
 export const MemberHead = ({
-  avatar,
+  avatarUrl,
   name,
   surname,
   nickname,
@@ -30,7 +30,10 @@ export const MemberHead = ({
       >
         <Image
           className="rounded-lg mr-3"
-          src={avatar ?? ''}
+          src={
+            avatarUrl ??
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop'
+          }
           height={64}
           width={64}
           alt={nickname ?? ''}

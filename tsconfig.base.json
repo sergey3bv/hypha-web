@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@web/*": ["apps/web/src/*"],
       "@hypha-platform/authentication": [
         "packages/authentication/src/index.ts"
       ],

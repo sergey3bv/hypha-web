@@ -1,4 +1,4 @@
-import { CardOrganisation } from '@hypha-platform/epics';
+import { CardOrganisation, readAllSpaces } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -12,7 +12,6 @@ import {
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
-import { readAllSpaces } from '../../actions/space';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
 
 type PageProps = {

@@ -4,8 +4,14 @@ import { commonDateFields } from './shared';
 
 export const people = pgTable('people', {
   id: serial('id').primaryKey(),
-  name: text('name').notNull(),
-  email: text('email').notNull().unique(),
+  slug: text('slug').unique(),
+  avatarUrl: text('avatar_url'),
+  description: text('description'),
+  email: text('email').unique(),
+  location: text('location'),
+  name: text('name'),
+  surname: text('surname'),
+  nickname: text('nickname'),
   ...commonDateFields,
 });
 

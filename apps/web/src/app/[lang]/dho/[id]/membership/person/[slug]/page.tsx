@@ -19,7 +19,7 @@ export default function Member() {
     <MemberDetail
       closeUrl={getDhoPathMembership(lang as Locale, id as string)}
       member={{
-        avatar: data?.avatar,
+        avatarUrl: data?.avatar,
         name: data?.name,
         surname: data?.surname,
         nickname: data?.nickname,
