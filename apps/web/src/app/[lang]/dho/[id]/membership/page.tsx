@@ -5,6 +5,7 @@ import {
   MembersSection,
 } from '@hypha-platform/epics';
 import { NavigationTabs } from '../_components/navigation-tabs';
+import { getDhoPathMembership } from './constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -15,7 +16,7 @@ export default async function MembershipPage(props: PageProps) {
 
   const { lang, id } = params;
 
-  const basePath = `/${lang}/dho/${id}/membership`;
+  const basePath = getDhoPathMembership(lang as Locale, id as string);
 
   return (
     <div>
