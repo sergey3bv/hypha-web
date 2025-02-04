@@ -20,7 +20,7 @@ const SPACE_LEAD_IMAGE_URLS = Array.from({ length: 10 }, () =>
 );
 
 async function main() {
-  const db = drizzle(process.env.DEFAULT_DB_URL! || process.env.BRANCH_DB_URL!);
+  const db = drizzle(process.env.BRANCH_DB_URL! || process.env.DEFAULT_DB_URL!);
   await reset(db, { people, memberships, spaces });
   await seed(db, { people, memberships, spaces }).refine((f) => {
     return {
