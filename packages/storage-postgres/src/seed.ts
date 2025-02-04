@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import { seed, reset } from 'drizzle-seed';
 
-import { people, memberships, spaces } from '../schema';
+import { people, memberships, spaces, documents } from './schema';
 
 const AVATAR_URLS = Array.from({ length: 10 }, () => faker.image.avatar());
 const SPACE_LOGO_URLS = Array.from({ length: 10 }, () =>
@@ -21,12 +21,13 @@ const SPACE_LEAD_IMAGE_URLS = Array.from({ length: 10 }, () =>
 
 async function main() {
   const db = drizzle(process.env.BRANCH_DB_URL! || process.env.DEFAULT_DB_URL!);
-  await reset(db, { people, memberships, spaces });
-  await seed(db, { people, memberships, spaces }).refine((f) => {
+  await reset(db, { people, memberships, spaces, documents });
+  await seed(db, { people, memberships, spaces, documents }).refine((f) => {
     return {
       people: {
         with: {
           memberships: 2,
+          documents: 2,
         },
         columns: {
           avatarUrl: f.valuesFromArray({
@@ -36,6 +37,15 @@ async function main() {
           surname: f.lastName(),
           description: f.loremIpsum(),
           location: f.city(),
+        },
+      },
+      documents: {
+        columns: {
+          title: f.loremIpsum(),
+          description: f.loremIpsum({ sentencesCount: 10 }),
+          state: f.valuesFromArray({
+            values: ['discussion', 'proposal', 'agreement'],
+          }),
         },
       },
       spaces: {

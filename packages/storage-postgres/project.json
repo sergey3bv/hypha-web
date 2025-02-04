@@ -44,7 +44,7 @@
     "seed": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsx src/seeds/people.ts",
+        "command": "tsx src/seeds.ts",
         "cwd": "packages/storage-postgres"
       },
       "configurations": {
