@@ -3,7 +3,8 @@ import { ProposalDetail } from '@hypha-platform/epics';
 import { SidePanel } from '../../_components/side-panel';
 import { useProposalBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
-
+import { getDhoPathAgreements } from '../../../agreements/constants';
+import { Locale } from '@hypha-platform/i18n';
 export default function Agreements() {
   const { slug, id, lang } = useParams();
   const { data, isLoading } = useProposalBySlug(slug as string);
@@ -11,7 +12,7 @@ export default function Agreements() {
   return (
     <SidePanel>
       <ProposalDetail
-        closeUrl={`/${lang}/dho/${id}/agreements`}
+        closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
         onAccept={() => console.log('accept')}
         onReject={() => console.log('reject')}
         onSetActiveFilter={() => console.log('set active filter')}

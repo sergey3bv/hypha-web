@@ -2,6 +2,8 @@
 
 import { ProposalDetail, useProposalBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
+import { getDhoPathAgreements } from '../../agreements/constants';
+import { Locale } from '@hypha-platform/i18n';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -13,7 +15,7 @@ export default function Proposal(props: PageProps) {
 
   return (
     <ProposalDetail
-      closeUrl={`/${lang}/dho/${id}/agreements`}
+      closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
       onAccept={() => console.log('accept')}
       onReject={() => console.log('reject')}
       onSetActiveFilter={() => console.log('set active filter')}

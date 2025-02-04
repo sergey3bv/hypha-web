@@ -2,6 +2,8 @@
 
 import { CreateForm } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
+import { getDhoPathAgreements } from '../../agreements/constants';
+import { Locale } from '@hypha-platform/i18n';
 
 export default function Discussion() {
   const { id, lang } = useParams();
@@ -14,7 +16,7 @@ export default function Discussion() {
         name: 'Name',
         surname: 'Surname',
       }}
-      closeUrl={`/${lang}/dho/${id}/agreements`}
+      closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
       type="Discussion"
     />
   );

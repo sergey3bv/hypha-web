@@ -2,6 +2,8 @@
 
 import { AgreementDetail, useAgreementBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
+import { getDhoPathAgreements } from '../constants';
+import { Locale } from '@hypha-platform/i18n';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -13,7 +15,7 @@ export default function Agreements(props: PageProps) {
 
   return (
     <AgreementDetail
-      closeUrl={`/${lang}/dho/${id}/agreements`}
+      closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
       onSetActiveFilter={() => console.log('set active filter')}
       content={data?.content || ''}
       creator={data?.creator}

@@ -20,8 +20,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
-import { getDhoPathAgreements } from './constants';
 import { readAllSpaces, readSpaceBySlug } from '../../../actions/space';
+import { getDhoPathAgreements } from './agreements/constants';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',
