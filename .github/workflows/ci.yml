@@ -4,8 +4,13 @@ on:
   push:
     branches:
       - main
-  pull_request:
   merge_group:
+  workflow_run:
+    workflows: ['Deploy Preview']
+    types:
+      - completed
+    branches-ignore:
+      - main
 
 permissions:
   actions: read
@@ -13,10 +18,24 @@ permissions:
 
 jobs:
   main:
+    if: |
+      github.event_name == 'push' ||
+      github.event_name == 'merge_group' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     env:
       DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}
+      # Use BRANCH_DB_URL from deploy-preview if available, otherwise use DEFAULT_DB_URL
+      BRANCH_DB_URL: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.outputs.branch_db_url || secrets.POSTGRES_URL }}
+
     steps:
+      # Debug step to understand the context
+      - name: Debug Event
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Workflow conclusion: ${{ github.event.workflow_run.conclusion }}"
+          echo "Branch DB URL available: ${{ github.event.workflow_run.outputs.branch_db_url != '' }}"
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0

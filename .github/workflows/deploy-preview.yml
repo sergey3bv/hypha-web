@@ -14,9 +14,15 @@ jobs:
   deploy-preview:
     permissions: write-all
     runs-on: ubuntu-latest
+    outputs:
+      branch_db_url: ${{ steps.set-db-url.outputs.url }}
 
     steps:
       - uses: actions/checkout@v4
+
+      # Debug step
+      - name: Debug Workflow
+        run: echo "Running Deploy Preview workflow for PR ${{ github.event.pull_request.number }}"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -66,6 +72,12 @@ jobs:
         run: |
           echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:migrate:production
+
+      - name: Run Seeds
+        if: steps.changes.outputs.migrations == 'true'
+        run: |
+          echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
+          npx nx run storage-postgres:seed:production
 
       - name: Post Schema Diff Comment to PR
         if: steps.changes.outputs.migrations == 'true'
@@ -148,3 +160,13 @@ jobs:
                     body: output
                 })
             }
+
+      # Set DB URL regardless of migrations
+      - name: Set DB URL
+        id: set-db-url
+        run: |
+          if [ "${{ steps.changes.outputs.migrations }}" == "true" ]; then
+            echo "url=${{ steps.create-branch.outputs.db_url_with_pooler }}" >> $GITHUB_OUTPUT
+          else
+            echo "url=${{ env.DEFAULT_DB_URL }}" >> $GITHUB_OUTPUT
+          fi
