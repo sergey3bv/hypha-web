@@ -80,3 +80,17 @@ jobs:
         run: npx playwright install --with-deps
 
       - run: npx nx affected --parallel 1 -t e2e
+
+      - name: Update PR Status
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/statuses/${{ github.event.workflow_run.head_sha }} \
+            -f state='success' \
+            -f target_url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
+            -f description='CI checks completed' \
+            -f context='ci-workflow'
