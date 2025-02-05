@@ -25,8 +25,10 @@ async function main() {
   await seed(db, { people, memberships, spaces, documents }).refine((f) => {
     return {
       people: {
+        // count: 1000,
         with: {
           memberships: 2,
+          // documents: 10,
           documents: 2,
         },
         columns: {
@@ -49,6 +51,7 @@ async function main() {
         },
       },
       spaces: {
+        // count: 1000,
         with: {
           memberships: 2,
         },

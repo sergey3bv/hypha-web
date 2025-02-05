@@ -8,7 +8,7 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core';
 import { commonDateFields } from './shared';
-
+import { people } from './people';
 export const documentStateEnum = pgEnum('document_state', [
   'discussion',
   'proposal',
@@ -17,7 +17,9 @@ export const documentStateEnum = pgEnum('document_state', [
 
 export const documents = pgTable('documents', {
   id: serial('id').primaryKey(),
-  creatorId: integer('creator_id').notNull(),
+  creatorId: integer('creator_id')
+    .notNull()
+    .references(() => people.id),
   title: text('title'),
   description: text('description'),
   state: documentStateEnum('state').default('discussion'),

@@ -71,6 +71,13 @@
       "when": 1738666973782,
       "tag": "0009_last_red_wolf",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1738743437884,
+      "tag": "0010_aromatic_makkari",
+      "breakpoints": true
     }
   ]
 }
