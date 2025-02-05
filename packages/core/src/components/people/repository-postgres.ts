@@ -9,14 +9,13 @@ import {
 import { eq } from 'drizzle-orm';
 import type { Database } from '@hypha-platform/storage-postgres';
 import { nullToUndefined } from '../../utils/null-to-undefined';
+import invariant from 'tiny-invariant';
 
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(private db: Database = defaultDb) {}
 
   private mapToDomainPerson(dbPerson: DbPerson): Person {
-    if (!dbPerson.slug) {
-      throw new Error('Person must have a slug');
-    }
+    invariant(dbPerson.slug, 'Person must have a slug');
 
     return {
       id: dbPerson.id,
@@ -62,10 +61,6 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
       .from(people)
       .where(eq(people.slug, slug))
       .limit(1);
-
-    if (!dbPerson) {
-      throw new Error(`Person with slug ${slug} not found`);
-    }
 
     return this.mapToDomainPerson(dbPerson);
   }
