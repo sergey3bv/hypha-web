@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request: # We need this back for GitHub to register the check
   merge_group:
   workflow_run:
     workflows: ['Deploy Preview']
@@ -17,7 +18,18 @@ permissions:
   contents: read
 
 jobs:
+  # Add a new job to handle the initial PR trigger
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Deploy Preview
+        run: |
+          echo "This check will be skipped, actual checks will run after Deploy Preview completes"
+          exit 0
+
   main:
+    # Skip this job on the initial PR trigger
     if: |
       github.event_name == 'push' ||
       github.event_name == 'merge_group' ||
