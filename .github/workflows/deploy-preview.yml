@@ -170,3 +170,36 @@ jobs:
           else
             echo "url=${{ env.DEFAULT_DB_URL }}" >> $GITHUB_OUTPUT
           fi
+
+  main:
+    needs: deploy-preview
+    runs-on: ubuntu-latest
+    env:
+      BRANCH_DB_URL: ${{ needs.deploy-preview.outputs.branch_db_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.19.1
+          cache: 'pnpm'
+
+      - run: pnpm install
+      - uses: nrwl/nx-set-shas@v4
+
+      - run: pnpm run format:check
+
+      - run: npx nx affected -t lint test build
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - run: npx nx affected --parallel 1 -t e2e
