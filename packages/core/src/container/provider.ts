@@ -26,6 +26,11 @@ function initializeContainer(config: CoreConfig): Container {
     getRepositoryImplementation(Tokens.DocumentRepository, 'postgres'),
   );
 
+  container.register(
+    Tokens.PeopleRepository,
+    getRepositoryImplementation(Tokens.PeopleRepository, 'postgres'),
+  );
+
   return container;
 }
 

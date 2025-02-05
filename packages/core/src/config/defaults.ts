@@ -1,4 +1,5 @@
 import { DocumentRepositoryPostgres } from '../components/governance/repository-postgres';
+import { PeopleRepositoryPostgres } from '../components/people/repository-postgres';
 import { SpaceConfigPostgresRepository } from '../components/space-config/repository-postgres';
 import { SpaceInMemoryRepository } from '../components/space/repository-memory';
 import { SpacePostgresRepository } from '../components/space/repository-postgres';
@@ -9,9 +10,9 @@ import { CoreConfig, ImplementationMap } from './types';
 export const defaultConfig: CoreConfig = {
   storage: {
     space: 'postgres',
-    agreement: 'postgres',
-    member: 'postgres',
+    documents: 'postgres',
     comment: 'postgres',
+    people: 'postgres',
   },
   defaultPageSize: 10,
 };
@@ -38,6 +39,12 @@ export const defaultRepositoryMap = new Map<
     Tokens.DocumentRepository,
     {
       postgres: DocumentRepositoryPostgres,
+    },
+  ],
+  [
+    Tokens.PeopleRepository,
+    {
+      postgres: PeopleRepositoryPostgres,
     },
   ],
 ]);

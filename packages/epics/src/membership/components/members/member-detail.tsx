@@ -7,7 +7,7 @@ import { MemberSpaces } from './member-spaces';
 import { SpaceType } from './member-spaces';
 
 type MemberType = {
-  avatar?: string;
+  avatarUrl?: string;
   name?: string;
   surname?: string;
   nickname?: string;

@@ -41,6 +41,19 @@
         "production": {}
       }
     },
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/seed.ts",
+        "cwd": "packages/storage-postgres"
+      },
+      "configurations": {
+        "local": {
+          "dependsOn": ["db:start"]
+        },
+        "production": {}
+      }
+    },
     "studio": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "local",

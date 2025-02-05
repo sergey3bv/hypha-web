@@ -1,12 +1,15 @@
 import { RepositoryToken } from '../container/repository-registry';
 
-export type StorageType = 'memory' | 'postgres';
+export type StorageTypePostgres = 'postgres';
+export type StorageTypeMemory = 'memory';
+
+export type StorageType = StorageTypePostgres | StorageTypeMemory;
 
 export interface StorageConfig {
-  space: StorageType;
-  agreement: StorageType;
-  member: StorageType;
-  comment: StorageType;
+  space: StorageTypePostgres | StorageTypeMemory;
+  documents: StorageTypePostgres;
+  comment: StorageTypePostgres;
+  people: StorageTypePostgres;
 }
 
 export interface CoreConfig {

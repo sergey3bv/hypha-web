@@ -21,13 +21,13 @@ export default function Member() {
       <MemberDetail
         closeUrl={getDhoPathMembership(lang as Locale, id as string)}
         member={{
-          avatar: data?.avatar,
+          avatarUrl: data?.avatarUrl,
           name: data?.name,
           surname: data?.surname,
           nickname: data?.nickname,
-          commitment: data?.commitment,
-          status: data?.status,
-          about: data?.about,
+          commitment: 50, // TODO: get commitment
+          status: 'active', // TODO: get status
+          about: data?.description,
         }}
         isLoading={isLoading}
         basePath={getDhoPathAgreements(lang as Locale, id as string)}

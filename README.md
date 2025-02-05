@@ -25,28 +25,54 @@
 
 - [apps/web](./apps/web/README.md): NextJS Platform Frontend Application
 - [apps/web-e2e](./apps/web-e2e/README.md): EndToEnd Testing Environment
+- [apps/www](./apps/www/README.md): Public Website Application
 
 ### Packages
 
-- [api/*](./packages/api/README.md): Packages to integrate relevant systems via api
+- [api](./packages/api/README.md): Packages to integrate relevant systems via API
+- [authentication](./packages/authentication/README.md): Package that handles authentication functionality
 - [cookie](./packages/cookie/README.md): Package that hosts the cookie integration
+- [core](./packages/core/README.md): Core functionality and business logic
+- [epics](./packages/epics/README.md): Package for managing epics functionality
+- [feature-flags](./packages/feature-flags/README.md): Package for managing feature flags
 - [i18n](./packages/i18n/README.md): Package that hosts the internationalisation configuration and helpers
+- [model](./packages/model/README.md): Data models and type definitions
+- [storage-postgres](./packages/storage-postgres/README.md): PostgreSQL storage implementation
+- [tools](./packages/tools/README.md): Utility tools and helpers
 - [ui](./packages/ui/README.md): Package that hosts the UI component library
-- [ui-utils](./packages/ui-utils/README.md): Package that hosts the UI component library
+- [ui-utils](./packages/ui-utils/README.md): Package that hosts UI utility functions and helpers
 
-## Start the application
+## Local Development
 
-Run `pnpm run dev` to start the development server. Happy coding!
+### Setup Database
+
+**Start the database (requires Docker to be installed)**
+
+```bash
+npx nx run storage-postgres:db:start
+```
+
+**Run migrations**
+
+```bash
+npx nx run storage-postgres:migrate
+```
+
+**Seed the database**
+
+```bash
+npx nx run storage-postgres:seed
+```
+
+**Start the development server**
+
+```bash
+npx nx run web:dev:local
+```
 
 ## Build for production
 
 Run `pnpm run build` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
-
-## Integrate this nx.dev workspace with editors
-
-Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console
-provides an interactive UI to view your projects, run tasks, generate code, and more! Available for VSCode, IntelliJ and
-comes with a LSP for Vim users.
 
 ## Running arbitrary tasks within different packages
 
@@ -70,17 +96,15 @@ npx nx run-many -t <target1> <target2> -p <proj1> <proj2>
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/features/run-tasks).
 
-## Set up CI!
-
-Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
-
-- [Set up remote caching](https://nx.dev/features/share-your-cache)
-- [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
-- [Learn more how to setup CI](https://nx.dev/recipes/ci)
-
 ## Explore the project graph
 
 Run `npx nx graph` to show the graph of the workspace.
 It will show tasks that you can run with Nx.
 
 - [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
+
+## Integrate this nx.dev workspace with editors
+
+Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console
+provides an interactive UI to view your projects, run tasks, generate code, and more! Available for VSCode, IntelliJ and
+comes with a LSP for Vim users.

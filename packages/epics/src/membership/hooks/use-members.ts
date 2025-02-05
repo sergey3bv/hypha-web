@@ -5,11 +5,12 @@ import {
   MemberItem,
   PaginationMetadata,
   FilterParams,
-  fetchMembers,
 } from '@hypha-platform/graphql/rsc';
+import { fetchMembers } from '../actions/fetch-members';
+import { Person } from '@hypha-platform/core';
 
 type UseMembersReturn = {
-  members: MemberItem[];
+  members: Person[];
   pagination?: PaginationMetadata;
   isLoading: boolean;
 };
@@ -21,13 +22,12 @@ export const useMembers = ({
   page?: number;
   filter?: FilterParams<MemberItem>;
 }): UseMembersReturn => {
-  const { data, isLoading } = useSWR(['members', page, filter], () =>
-    fetchMembers({ page, filter }),
+  const { data: members, isLoading } = useSWR(['members', page, filter], () =>
+    fetchMembers({ spaceId: 1 }),
   );
 
   return {
-    members: data?.members || [],
-    pagination: data?.pagination,
+    members: members || [],
     isLoading,
   };
 };

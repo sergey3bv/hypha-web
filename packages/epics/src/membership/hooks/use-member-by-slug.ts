@@ -1,11 +1,11 @@
 'use client';
 
-import { getMemberBySlug } from '@hypha-platform/graphql/rsc';
 import useSWR from 'swr';
+import { fetchMemberBySlug } from '../actions/fetch-members';
 
 export const useMemberBySlug = (slug: string) => {
   const { data, isLoading } = useSWR(['member-by-slug', slug], ([_, slug]) =>
-    getMemberBySlug(slug),
+    fetchMemberBySlug({ slug }),
   );
   return { data, isLoading };
 };
