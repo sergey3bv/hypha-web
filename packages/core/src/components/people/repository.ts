@@ -1,7 +1,12 @@
 import { Person } from './types';
+import { PaginationParams, PaginatedResponse } from '@hypha-platform/core';
+
+export type PeopleFindAllConfig = {
+  pagination: PaginationParams<Person>;
+};
 
 export interface PeopleRepository {
-  findAll(): Promise<Person[]>;
+  findAll(config: PeopleFindAllConfig): Promise<PaginatedResponse<Person>>;
   findById(id: number): Promise<Person | null>;
   findBySpaceId({ spaceId }: { spaceId: number }): Promise<Person[]>;
   findBySlug({ slug }: { slug: string }): Promise<Person>;

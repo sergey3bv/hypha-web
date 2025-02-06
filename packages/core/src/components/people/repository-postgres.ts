@@ -1,4 +1,4 @@
-import { PeopleRepository } from './repository';
+import { PeopleRepository, PeopleFindAllConfig } from './repository';
 import { Person } from './types';
 import {
   db as defaultDb,
@@ -6,10 +6,11 @@ import {
   people,
   Person as DbPerson,
 } from '@hypha-platform/storage-postgres';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import type { Database } from '@hypha-platform/storage-postgres';
 import { nullToUndefined } from '../../utils/null-to-undefined';
 import invariant from 'tiny-invariant';
+import { PaginatedResponse } from '../../shared/types';
 
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(private db: Database = defaultDb) {}
@@ -30,9 +31,49 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
     };
   }
 
-  async findAll(): Promise<Person[]> {
-    const dbPeople = await this.db.select().from(people);
-    return dbPeople.map(this.mapToDomainPerson);
+  async findAll(
+    config: PeopleFindAllConfig = { pagination: { page: 1, pageSize: 10 } },
+  ): Promise<PaginatedResponse<Person>> {
+    const {
+      pagination: { page, pageSize, filter },
+    } = config;
+
+    const offset = (page - 1) * pageSize;
+
+    type ResultRow = DbPerson & { total: number };
+    const dbPeople = (await this.db
+      .select({
+        id: people.id,
+        slug: people.slug,
+        avatarUrl: people.avatarUrl,
+        description: people.description,
+        email: people.email,
+        location: people.location,
+        name: people.name,
+        surname: people.surname,
+        nickname: people.nickname,
+        createdAt: people.createdAt,
+        updatedAt: people.updatedAt,
+        total: sql<number>`count(*) over()`,
+      })
+      .from(people)
+      .limit(pageSize)
+      .offset(offset)) as ResultRow[];
+
+    const total = dbPeople[0]?.total ?? 0;
+    const totalPages = Math.ceil(total / pageSize);
+
+    return {
+      data: dbPeople.map((row) => this.mapToDomainPerson(row)),
+      pagination: {
+        total,
+        page,
+        pageSize,
+        totalPages,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1,
+      },
+    };
   }
 
   async findById(id: number): Promise<Person | null> {

@@ -1,7 +1,8 @@
-import { PeopleRepository } from './repository';
+import { PeopleRepository, PeopleFindAllConfig } from './repository';
 import { Container } from '../../container/types';
 import { Tokens } from '../../container/tokens';
 import { Person } from './types';
+import { PaginatedResponse } from '@hypha-platform/core';
 
 export class PeopleService {
   private repository: PeopleRepository;
@@ -22,8 +23,10 @@ export class PeopleService {
     return this.repository.create(person);
   }
 
-  async readAll(): Promise<Person[]> {
-    return this.repository.findAll();
+  async readAll(
+    config: PeopleFindAllConfig,
+  ): Promise<PaginatedResponse<Person>> {
+    return this.repository.findAll(config);
   }
 
   async update(person: Person): Promise<Person> {
