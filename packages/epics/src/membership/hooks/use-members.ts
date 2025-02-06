@@ -6,8 +6,9 @@ import {
   PaginationMetadata,
   FilterParams,
 } from '@hypha-platform/graphql/rsc';
-import { fetchMembers } from '../actions/fetch-members';
+import { fetchSpaceMemberBySpaceSlug } from '../actions/fetch-members';
 import { Person } from '@hypha-platform/core';
+import { useSpaceSlug } from '../../space/hooks/use-space-slug';
 
 type UseMembersReturn = {
   members: Person[];
@@ -22,12 +23,18 @@ export const useMembers = ({
   page?: number;
   filter?: FilterParams<MemberItem>;
 }): UseMembersReturn => {
-  const { data: members, isLoading } = useSWR(['members', page, filter], () =>
-    fetchMembers({ spaceId: 1 }),
+  const spaceSlug = useSpaceSlug();
+
+  const { data: response, isLoading } = useSWR(['members', page, filter], () =>
+    fetchSpaceMemberBySpaceSlug(
+      { spaceSlug },
+      { pagination: { page, pageSize: 10 } },
+    ),
   );
 
   return {
-    members: members || [],
+    members: response?.data || [],
+    pagination: response?.pagination,
     isLoading,
   };
 };
