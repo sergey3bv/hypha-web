@@ -37,10 +37,10 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
   }
 
   async findAll(
-    config: PeopleFindAllConfig = { pagination: { page: 1, pageSize: 10 } },
+    config: PeopleFindAllConfig,
   ): Promise<PaginatedResponse<Person>> {
     const {
-      pagination: { page, pageSize, filter },
+      pagination: { page = 1, pageSize = 10 },
     } = config;
 
     const offset = (page - 1) * pageSize;
@@ -93,12 +93,10 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
 
   async findBySpaceId(
     { spaceId }: { spaceId: number },
-    config: PeopleFindBySpaceConfig = {
-      pagination: { page: 1, pageSize: 10 },
-    },
+    config: PeopleFindBySpaceConfig,
   ): Promise<PaginatedResponse<Person>> {
     const {
-      pagination: { page, pageSize, filter },
+      pagination: { page = 1, pageSize = 10 },
     } = config;
 
     const offset = (page - 1) * pageSize;
@@ -150,7 +148,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
     config: PeopleFindBySpaceConfig,
   ): Promise<PaginatedResponse<Person>> {
     const {
-      pagination: { page, pageSize, filter },
+      pagination: { page = 1, pageSize = 10 },
     } = config;
 
     const offset = (page - 1) * pageSize;

@@ -8,8 +8,7 @@ import {
 import { eq } from 'drizzle-orm';
 import { PeopleRepositoryPostgres } from './repository-postgres';
 
-// TODO: enable after we have test branches #384
-describe.skip('PeopleRepositoryPostgres', () => {
+describe('PeopleRepositoryPostgres', () => {
   const repository = new PeopleRepositoryPostgres(db);
 
   const peopleToDelete = [];
