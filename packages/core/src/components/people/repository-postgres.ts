@@ -59,7 +59,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
         nickname: people.nickname,
         createdAt: people.createdAt,
         updatedAt: people.updatedAt,
-        total: sql<number>`count(*) over()`,
+        total: sql<number>`cast(count(*) over() as integer)`,
       })
       .from(people)
       .limit(pageSize)
@@ -117,7 +117,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
         nickname: people.nickname,
         createdAt: people.createdAt,
         updatedAt: people.updatedAt,
-        total: sql<number>`count(*) over()`,
+        total: sql<number>`cast(count(*) over() as integer)`,
       })
       .from(people)
       .innerJoin(memberships, eq(memberships.personId, people.id))
@@ -169,7 +169,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
         nickname: people.nickname,
         createdAt: people.createdAt,
         updatedAt: people.updatedAt,
-        total: sql<number>`count(*) over()`,
+        total: sql<number>`cast(count(*) over() as integer)`,
       })
       .from(people)
       .innerJoin(memberships, eq(memberships.personId, people.id))
