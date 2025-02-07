@@ -121,12 +121,10 @@ jobs:
       - run: pnpm run format:check
 
       - name: Get branch name
-        if: needs.detect-changes.outputs.has_migrations == 'true'
         id: branch-name
         uses: tj-actions/branch-names@v8
 
       - name: Create Neon Branch
-        if: needs.detect-changes.outputs.has_migrations == 'true'
         id: create-branch
         uses: neondatabase/create-branch-action@v5
         with:
