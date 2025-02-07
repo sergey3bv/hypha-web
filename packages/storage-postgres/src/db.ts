@@ -2,12 +2,16 @@ import { neonConfig, Pool } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
 import { WebSocket } from 'ws';
 import * as schema from './schema';
-
 import { loadEnvConfig } from '@next/env';
 import path from 'path';
+import { drizzle as drizzleNode } from 'drizzle-orm/node-postgres';
+import { Client } from 'pg';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { NeonHttpDatabase } from 'drizzle-orm/neon-http';
+
+type Database = NodePgDatabase<typeof schema> | NeonHttpDatabase<typeof schema>;
 
 const cwd = path.join(process.cwd(), '../../');
-
 const { combinedEnv } = loadEnvConfig(cwd);
 
 const connectionString =
@@ -19,17 +23,18 @@ if (!connectionString) {
   );
 }
 
+let db: Database;
+
 if (process.env.NODE_ENV === 'production') {
   neonConfig.webSocketConstructor = WebSocket;
   neonConfig.poolQueryViaFetch = true;
+  const pool = new Pool({ connectionString });
+  db = drizzle(pool, { schema });
 } else {
-  neonConfig.wsProxy = (host) => `${host}:5433/v1`;
-  neonConfig.useSecureWebSocket = false;
-  neonConfig.pipelineTLS = false;
-  neonConfig.pipelineConnect = false;
+  const client = new Client({ connectionString });
+  client.connect();
+  db = drizzleNode(client, { schema });
 }
 
-const pool = new Pool({ connectionString });
-
-export const db = drizzle(pool, { schema });
-export type Database = typeof db;
+export { db };
+export type { Database };
