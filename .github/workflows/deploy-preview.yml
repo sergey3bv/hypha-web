@@ -11,11 +11,20 @@ env:
   DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}
 
 jobs:
-  deploy-preview:
-    permissions: write-all
+  detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      branch_db_url: ${{ steps.set-db-url.outputs.url }}
+      has_migrations: ${{ steps.detect.outputs.has_migrations }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect Changes
+        id: detect
+        uses: ./.github/actions/detect-changes
+
+  deploy-preview:
+    needs: detect-changes
+    permissions: write-all
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -37,20 +46,13 @@ jobs:
       - run: pnpm i
       - uses: nrwl/nx-set-shas@v4
 
-      - uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            migrations:
-              - 'packages/storage-postgres/migrations/**'
-
       - name: Get branch name
-        if: steps.changes.outputs.migrations == 'true'
+        if: needs.detect-changes.outputs.has_migrations == 'true'
         id: branch-name
         uses: tj-actions/branch-names@v8
 
       - name: Create Neon Branch
-        if: steps.changes.outputs.migrations == 'true'
+        if: needs.detect-changes.outputs.has_migrations == 'true'
         id: create-branch
         uses: neondatabase/create-branch-action@v5
         with:
@@ -68,19 +70,19 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
 
       - name: Run Migrations
-        if: steps.changes.outputs.migrations == 'true'
+        if: needs.detect-changes.outputs.has_migrations == 'true'
         run: |
           echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:migrate:production
 
       - name: Run Seeds
-        if: steps.changes.outputs.migrations == 'true'
+        if: needs.detect-changes.outputs.has_migrations == 'true'
         run: |
           echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:seed:production
 
       - name: Post Schema Diff Comment to PR
-        if: steps.changes.outputs.migrations == 'true'
+        if: needs.detect-changes.outputs.has_migrations == 'true'
         uses: neondatabase/schema-diff-action@v1
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
@@ -94,88 +96,9 @@ jobs:
         id: deploy
         run: echo preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
 
-      - name: Comment URL to PR
-        uses: actions/github-script@v6
-        id: comment-deployment-url-script
-        with:
-          script: |
-            // Get pull requests that are open for current ref.
-            const pullRequests = await github.rest.pulls.list({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                state: 'open',
-                head: `${context.repo.owner}:${context.ref.replace('refs/heads/', '')}`
-            })
-
-            // Set issue number for following calls from context (if on pull request event) or from above variable.
-            const issueNumber = context.issue.number || pullRequests.data[0].number
-
-            // Retrieve existing bot comments for the PR
-            const {data: comments} = await github.rest.issues.listComments({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-            })
-            const botComment = comments.find(comment => {
-                return comment.user.type === 'Bot' && comment.body.includes('The latest updates on your projects')
-            })
-
-            const previewUrl = '${{ steps.deploy.outputs.preview_url }}'
-            const projectName = context.repo.repo
-            const currentTime = new Date().toLocaleString('en-US', {
-                timeZone: 'UTC',
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            })
-
-            const tableHeader = '| Name | Status | Preview | Comments | Updated (UTC) |'
-            const tableDivider = '| :--- | :----- | :------ | :------- | :------ |'
-            const tableRow = `| **${projectName}** | ✅ Ready ([Inspect](${previewUrl})) | [Visit Preview](${previewUrl}) | 💬 [**Add feedback**](https://vercel.live/open-feedback/${previewUrl.split('//')[1]}?via=pr-comment-feedback-link) | ${currentTime} |`
-
-            const output = [
-                '**The latest updates on your projects**. Learn more about [Vercel for Git ↗︎](https://vercel.link/github-learn-more)',
-                '',
-                tableHeader,
-                tableDivider,
-                tableRow
-            ].join('\n')
-
-            // If we have a comment, update it, otherwise create a new one
-            if (botComment) {
-                github.rest.issues.updateComment({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    comment_id: botComment.id,
-                    body: output
-                })
-            } else {
-                github.rest.issues.createComment({
-                    issue_number: issueNumber,
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    body: output
-                })
-            }
-
-      # Set DB URL regardless of migrations
-      - name: Set DB URL
-        id: set-db-url
-        run: |
-          if [ "${{ steps.changes.outputs.migrations }}" == "true" ]; then
-            echo "url=${{ steps.create-branch.outputs.db_url_with_pooler }}" >> $GITHUB_OUTPUT
-          else
-            echo "url=${{ env.DEFAULT_DB_URL }}" >> $GITHUB_OUTPUT
-          fi
-
   main:
-    needs: deploy-preview
+    needs: [deploy-preview, detect-changes]
     runs-on: ubuntu-latest
-    env:
-      BRANCH_DB_URL: ${{ needs.deploy-preview.outputs.branch_db_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -197,9 +120,35 @@ jobs:
 
       - run: pnpm run format:check
 
+      - name: Get branch name
+        if: needs.detect-changes.outputs.has_migrations == 'true'
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Create Neon Branch
+        if: needs.detect-changes.outputs.has_migrations == 'true'
+        id: create-branch
+        uses: neondatabase/create-branch-action@v5
+        with:
+          project_id: ${{ env.NEON_PROJECT_ID }}
+          # parent: dev # optional (defaults to your primary branch)
+          branch_name: test/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
+          username: ${{ env.NEON_DATABASE_USERNAME }}
+          database: ${{ env.NEON_DATABASE_NAME }}
+          api_key: ${{ env.NEON_API_KEY }}
+
       - run: npx nx affected -t lint test build
+        env:
+          BRANCH_DB_URL: ${{ needs.create-branch.outputs.db_url_with_pooler }}
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - run: npx nx affected --parallel 1 -t e2e
+
+      - name: Delete Neon Branch
+        uses: neondatabase/delete-branch-action@v3.1.3
+        with:
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
+          branch: test/pr-${{ github.event.number }}-${{ github.event.pull_request.head.ref }}
+          api_key: ${{ secrets.NEON_API_KEY }}
