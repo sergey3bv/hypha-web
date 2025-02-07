@@ -1,0 +1,17 @@
+name: 'Detect Repository Changes'
+description: 'Detects changes in specific paths of the repository'
+
+outputs:
+  has_migrations:
+    description: 'Whether there are changes in migration files'
+    value: ${{ steps.changes.outputs.migrations }}
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: dorny/paths-filter@v3
+      id: changes
+      with:
+        filters: |
+          migrations:
+            - 'packages/storage-postgres/migrations/**'
