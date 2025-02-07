@@ -1,5 +1,5 @@
+import { PaginatedResponse, PaginationParams } from '../../shared';
 import { Person } from './types';
-import { PaginationParams, PaginatedResponse } from '@hypha-platform/core';
 
 export type PeopleFindAllConfig = {
   pagination: PaginationParams<Person>;

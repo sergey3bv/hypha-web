@@ -6,7 +6,7 @@ import {
 import { Container } from '../../container/types';
 import { Tokens } from '../../container/tokens';
 import { Person } from './types';
-import { PaginatedResponse } from '@hypha-platform/core';
+import { PaginatedResponse } from '../../shared';
 
 export class PeopleService {
   private repository: PeopleRepository;
