@@ -1,19 +1,20 @@
 import { describe, it, expect, afterAll, beforeEach } from 'vitest';
 import {
-  db,
   documents,
   memberships,
   people,
 } from '@hypha-platform/storage-postgres';
 import { eq } from 'drizzle-orm';
 import { PeopleRepositoryPostgres } from './repository-postgres';
+import { db } from '../../test-utils/setup';
 
 describe('PeopleRepositoryPostgres', () => {
-  const repository = new PeopleRepositoryPostgres(db);
+  let repository: PeopleRepositoryPostgres;
 
   const peopleToDelete = [];
 
   beforeEach(async () => {
+    repository = new PeopleRepositoryPostgres(db);
     // Delete in correct order to handle foreign key constraints
     await db.delete(memberships);
     await db.delete(documents);
