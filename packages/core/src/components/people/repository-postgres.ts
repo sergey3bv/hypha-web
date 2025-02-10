@@ -1,24 +1,25 @@
 import { eq, sql } from 'drizzle-orm';
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
+
 import {
   db as defaultDb,
   memberships,
   people,
   Person as DbPerson,
-  spaces,
   schema,
+  spaces,
   type Database,
 } from '@hypha-platform/storage-postgres';
 
-import { nullToUndefined } from '../../utils/null-to-undefined';
-import { PaginatedResponse } from '../../shared/types';
 import {
-  PeopleRepository,
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
+  PeopleRepository,
 } from './repository';
 import { Person } from './types';
+import { nullToUndefined } from '../../utils/null-to-undefined';
+import { PaginatedResponse } from '../../shared/types';
 
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(
