@@ -1,64 +1,46 @@
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
-import {
-  db,
-  documents,
-  memberships,
-  people,
-} from '@hypha-platform/storage-postgres';
-import { eq } from 'drizzle-orm';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { seed, reset } from 'drizzle-seed';
+
+import { people, resetIndexes, schema } from '@hypha-platform/storage-postgres';
+
 import { PeopleRepositoryPostgres } from './repository-postgres';
+import { db } from '../../test-utils/setup';
 
 describe('PeopleRepositoryPostgres', () => {
-  const repository = new PeopleRepositoryPostgres(db);
-
-  const peopleToDelete = [];
+  let peopleRepository: PeopleRepositoryPostgres;
 
   beforeEach(async () => {
-    // Delete in correct order to handle foreign key constraints
-    await db.delete(memberships);
-    await db.delete(documents);
-    await db.delete(people);
+    peopleRepository = new PeopleRepositoryPostgres(db);
+    await reset(db, schema);
   });
 
-  // Clean up the database before each test
+  // Clean up after all tests
   afterAll(async () => {
-    for (const id of peopleToDelete) {
-      // Delete memberships first
-      await db.delete(memberships).where(eq(memberships.personId, id));
-      // Then delete the person
-      await db.delete(people).where(eq(people.id, id));
-    }
+    await reset(db, schema);
   });
 
   describe('findAll', () => {
     it('should return paginated results', async () => {
-      // Arrange: Insert test data
-      const testPeople = [
-        {
-          name: 'John',
-          surname: 'Doe',
-          email: 'john@example.com',
-          slug: 'john-doe',
+      await seed(db, { people }).refine((f) => ({
+        people: {
+          count: 3,
+          columns: {
+            id: f.int({
+              isUnique: true,
+            }),
+            email: f.valuesFromArray({
+              values: ['test@test.com', 'test2@test.com', 'test3@test.com'],
+            }),
+            slug: f.valuesFromArray({
+              values: ['test', 'test2', 'test3'],
+            }),
+          },
         },
-        {
-          name: 'Jane',
-          surname: 'Smith',
-          email: 'jane@example.com',
-          slug: 'jane-smith',
-        },
-        {
-          name: 'Bob',
-          surname: 'Johnson',
-          email: 'bob@example.com',
-          slug: 'bob-johnson',
-        },
-      ];
-
-      const dbPeople = await db.insert(people).values(testPeople).returning();
-      peopleToDelete.push(...dbPeople.map((person) => person.id));
+      }));
+      await resetIndexes(db);
 
       // Act: Call findAll with pagination
-      const result = await repository.findAll({
+      const result = await peopleRepository.findAll({
         pagination: { page: 1, pageSize: 2 },
       });
 
@@ -85,7 +67,7 @@ describe('PeopleRepositoryPostgres', () => {
 
     it('should return empty results when no people exist', async () => {
       // Act
-      const result = await repository.findAll({
+      const result = await peopleRepository.findAll({
         pagination: { page: 1, pageSize: 10 },
       });
 

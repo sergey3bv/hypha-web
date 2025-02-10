@@ -70,6 +70,25 @@ npx nx run storage-postgres:seed
 npx nx run web:dev:local
 ```
 
+### Running Tests
+
+To run tests for affected projects:
+
+```bash
+npx nx affected -t test --parallel=1
+```
+
+Note: We use `--parallel=1` to ensure proper database isolation between tests.
+
+### Database Development Tools
+
+This project includes the VSCode Drizzle ORM extension which provides convenient database development tools:
+
+- **Drizzle Visualizer**: Opens a visual representation of your database schema. Access it by clicking "Open Drizzle Visualizer" in any `drizzle.config.ts` file.
+- **Drizzle Studio**: A GUI for viewing and managing your database data. Access it by clicking "Open Drizzle Studio" in any `drizzle.config.ts` file.
+
+Both tools open as tabs directly in your VSCode editor for a seamless development experience.
+
 ## Build for production
 
 Run `pnpm run build` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.

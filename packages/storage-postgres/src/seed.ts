@@ -3,7 +3,8 @@ import { faker } from '@faker-js/faker';
 
 import { seed, reset } from 'drizzle-seed';
 
-import { people, memberships, spaces, documents } from './schema';
+import { resetIndexes } from './utils/reset-index';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 const AVATAR_URLS = Array.from({ length: 10 }, () => faker.image.avatar());
 const SPACE_LOGO_URLS = Array.from({ length: 10 }, () =>
@@ -68,6 +69,7 @@ async function main() {
       },
     };
   });
+  await resetIndexes(db as unknown as NodePgDatabase<typeof schema>);
 }
 
 main();

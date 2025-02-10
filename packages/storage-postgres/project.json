@@ -68,6 +68,20 @@
         "production": {}
       }
     },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/packages/core"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/core"
+      },
+      "configurations": {
+        "local": {
+          "dependsOn": ["db:start"]
+        },
+        "production": {}
+      }
+    },
     "db:start": {
       "executor": "nx:run-commands",
       "options": {
