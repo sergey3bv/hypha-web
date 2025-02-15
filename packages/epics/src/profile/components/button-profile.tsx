@@ -1,26 +1,27 @@
 'use client';
 
-import { useAuthentication } from '@hypha-platform/authentication';
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@hypha-platform/ui';
 import { PersonAvatar } from './person-avatar';
-import { useProfile } from '../hooks/use-profile';
 import { EthAddress } from './eth-address';
+import { TrashIcon, LogOutIcon } from 'lucide-react';
 
 export type ButtonProfileProps = {
   avatarSrc?: string;
   userName?: string;
   address?: string;
   isConnected: boolean;
-  login: () => void;
-  logout: () => void;
+  onLogin: () => void;
+  onLogout: () => void;
+  onDelete?: () => void;
+  onEdit?: () => void;
+  onProfile?: () => void;
 };
 
 export const ButtonProfile = ({
@@ -28,8 +29,11 @@ export const ButtonProfile = ({
   userName,
   isConnected,
   address,
-  login,
-  logout,
+  onLogin,
+  onLogout,
+  onDelete,
+  onEdit,
+  onProfile,
 }: ButtonProfileProps) => {
   return (
     <div>
@@ -39,33 +43,44 @@ export const ButtonProfile = ({
             <PersonAvatar avatarSrc={avatarSrc} userName={userName} />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            {onProfile && (
+              <DropdownMenuItem onClick={onProfile} className="text-1">
+                My Profile
+              </DropdownMenuItem>
+            )}
+            {onEdit && (
+              <DropdownMenuItem onClick={onProfile} className="text-1">
+                Edit My Profile
+              </DropdownMenuItem>
+            )}
+            {address && (
+              <DropdownMenuItem className="text-1 flex justify-between">
+                <EthAddress address={address} />
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <EthAddress address={address} />
+            {onDelete && (
+              <DropdownMenuItem
+                onClick={onDelete}
+                className="text-1 text-error-11 flex justify-between"
+              >
+                Delete Profile
+                <TrashIcon className="icon-sm" />
+              </DropdownMenuItem>
+            )}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={onLogout}
+              className="text-1 text-error-11 flex justify-between"
+            >
+              Logout
+              <LogOutIcon className="icon-sm" />
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button onClick={login}>Sign in</Button>
+        <Button onClick={onLogin}>Sign in</Button>
       )}
     </div>
-  );
-};
-
-export const ConnectedButtonProfile = () => {
-  const { isAuthenticated, login, logout, user } = useAuthentication();
-  const { profile } = useProfile({ address: user?.wallet?.address });
-
-  return (
-    <ButtonProfile
-      avatarSrc={profile?.avatar}
-      userName={profile?.name}
-      address={user?.wallet?.address}
-      isConnected={isAuthenticated}
-      login={login}
-      logout={logout}
-    />
   );
 };
