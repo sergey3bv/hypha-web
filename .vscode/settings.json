@@ -1,3 +1,7 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.ts, ${capture}.typegen.ts, ${capture}.spec.ts, ${capture}.mock.ts",
+    "*.tsx": "${capture}.tsx, ${capture}.spec.tsx, ${capture}.test.tsx, ${capture}.connected.tsx, ${capture}.stories.tsx"
+  }
 }
