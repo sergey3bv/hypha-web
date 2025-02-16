@@ -1,7 +1,8 @@
-import { Space, SpaceRepository } from '@hypha-platform/model';
 import { Container } from '../../container/types';
 import { Tokens } from '../../container/tokens';
 import { SpaceNotFoundError } from './errors';
+import { SpaceRepository } from './repository';
+import { Space } from './types';
 
 export class SpaceService {
   private repository: SpaceRepository;
