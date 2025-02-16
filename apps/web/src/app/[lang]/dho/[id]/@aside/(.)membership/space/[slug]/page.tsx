@@ -4,9 +4,9 @@ import { useParams } from 'next/navigation';
 import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 
-import { useMembers } from '@web/hooks/use-members';
 import { SidePanel } from '@web/app/[lang]/@aside/_components/side-panel';
 import { getDhoPathMembership } from '../../../../membership/constants';
+import { useMembers } from '@web/hooks/use-members';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
