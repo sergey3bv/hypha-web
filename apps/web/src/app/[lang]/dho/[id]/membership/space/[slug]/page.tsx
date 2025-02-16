@@ -4,6 +4,7 @@ import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 import { getDhoPathMembership } from '../../constants';
 import { Locale } from '@hypha-platform/i18n';
+import { useMembers } from '@web/hooks/use-members';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -11,6 +12,7 @@ type PageProps = {
 
 export default function Subspace(props: PageProps) {
   const { slug, id, lang } = useParams();
+
   const { data } = useSubspaceBySlug(slug as string);
 
   return (
@@ -19,7 +21,8 @@ export default function Subspace(props: PageProps) {
       title={data?.title}
       image={data?.image}
       content={data?.description}
-      members={data?.members}
+      useMembers={useMembers}
+      memberBasePath={''}
     />
   );
 }

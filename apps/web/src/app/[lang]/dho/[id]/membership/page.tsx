@@ -4,6 +4,9 @@ import {
   InnerSpacesSection,
   MembersSection,
 } from '@hypha-platform/epics';
+
+import { useMembers } from '@web/hooks/use-members';
+
 import { NavigationTabs } from '../_components/navigation-tabs';
 import { getDhoPathMembership } from './constants';
 
@@ -23,7 +26,7 @@ export default async function MembershipPage(props: PageProps) {
       <NavigationTabs lang={lang} id={id} activeTab="membership" />
       <OuterSpacesSection />
       <InnerSpacesSection basePath={`${basePath}/space`} />
-      <MembersSection basePath={`${basePath}/person`} />
+      <MembersSection basePath={`${basePath}/person`} useMembers={useMembers} />
     </div>
   );
 }

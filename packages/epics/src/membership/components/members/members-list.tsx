@@ -1,22 +1,22 @@
 import { FC } from 'react';
-import { MemberCard, MemberCardProps } from './member-card';
+import { MemberCard } from './member-card';
 import Link from 'next/link';
-
-type Member = MemberCardProps & { slug: string };
+import { useMembers } from '../../hooks/types';
 
 type MembersListProps = {
-  isLoading?: boolean;
+  page: number;
   minimize?: boolean;
-  basePath?: string;
-  members: Member[];
+  basePath: string;
+  useMembers: useMembers;
 };
 
 export const MembersList: FC<MembersListProps> = ({
-  isLoading,
+  page,
   minimize,
   basePath,
-  members,
+  useMembers,
 }) => {
+  const { members, isLoading } = useMembers({ page });
   return (
     <div className="member-list w-full">
       {members.map((member) => (
