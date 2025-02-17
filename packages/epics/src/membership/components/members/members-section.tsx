@@ -11,13 +11,13 @@ import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
 import { useMembersSection } from '../../hooks/use-members-section';
-import { type useMembers } from '../../hooks/types';
+import { type UseMembers } from '../../hooks/types';
 
 import { MembersList } from './members-list';
 
 type MemberSectionProps = {
   basePath: string;
-  useMembers: useMembers;
+  useMembers: UseMembers;
 };
 
 export const MembersSection: FC<MemberSectionProps> = ({

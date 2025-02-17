@@ -11,4 +11,4 @@ export type UseMembersProps = {
   filter?: FilterParams<Person>;
 };
 
-export type useMembers = (props: UseMembersProps) => UseMembersReturn;
+export type UseMembers = (props: UseMembersProps) => UseMembersReturn;

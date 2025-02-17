@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { FilterParams, Person } from '@hypha-platform/core';
-import { type useMembers } from './types';
+import { type UseMembers } from './types';
 
 type UseSubspaceDetailsProps = {
-  useMembers: useMembers;
+  useMembers: UseMembers;
 };
 
 export const useSubspaceDetails = ({ useMembers }: UseSubspaceDetailsProps) => {

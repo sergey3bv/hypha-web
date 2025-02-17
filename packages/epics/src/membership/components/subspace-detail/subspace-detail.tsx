@@ -6,7 +6,7 @@ import { MembersList } from '../members';
 import { useSubspaceDetails } from '../../hooks/use-subspace-details';
 import { SectionLoadMore } from '@hypha-platform/ui/server';
 import Link from 'next/link';
-import { type useMembers } from '../../hooks/types';
+import { type UseMembers } from '../../hooks/types';
 
 type SubspaceDetailProps = {
   title?: string;
@@ -14,7 +14,7 @@ type SubspaceDetailProps = {
   content?: string;
   closeUrl?: string;
   memberBasePath: string;
-  useMembers: useMembers;
+  useMembers: UseMembers;
 };
 
 export const SubspaceDetail = ({

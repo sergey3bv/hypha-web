@@ -1,4 +1,4 @@
-import { fetchSpaceMemberBySpaceSlug } from '@hypha-platform/epics';
+import { createPeopleService } from '@hypha-platform/core';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -12,7 +12,8 @@ export async function GET(
     const page = parseInt(searchParams.get('page') || '1');
     const pageSize = parseInt(searchParams.get('pageSize') || '10');
 
-    const response = await fetchSpaceMemberBySpaceSlug(
+    const peopleService = createPeopleService();
+    const response = await peopleService.findBySpaceSlug(
       { spaceSlug: spaceSlug },
       { pagination: { page, pageSize } },
     );

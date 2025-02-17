@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { MemberCard } from './member-card';
 import Link from 'next/link';
-import { useMembers } from '../../hooks/types';
+import { UseMembers } from '../../hooks/types';
 
 type MembersListProps = {
   page: number;
   minimize?: boolean;
   basePath: string;
-  useMembers: useMembers;
+  useMembers: UseMembers;
 };
 
 export const MembersList: FC<MembersListProps> = ({

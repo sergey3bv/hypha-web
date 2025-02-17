@@ -4,11 +4,11 @@ import React from 'react';
 import useSWR from 'swr';
 
 import { MemberItem, FilterParams } from '@hypha-platform/graphql/rsc';
-import { type UseMembersReturn } from '@hypha-platform/epics';
+import { type UseMembers, type UseMembersReturn } from '@hypha-platform/epics';
 
 import { useSpaceSlug } from './use-space-slug';
 
-export const useMembers = ({
+export const useMembers: UseMembers = ({
   page = 1,
   filter,
 }: {
