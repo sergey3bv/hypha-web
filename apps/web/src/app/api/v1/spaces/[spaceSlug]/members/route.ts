@@ -1,22 +1,15 @@
-import { createPeopleService } from '@hypha-platform/core';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { createSpaceService } from '@hypha-platform/core';
+
 export async function GET(
-  request: NextRequest,
+  _: NextRequest,
   { params }: { params: Promise<{ spaceSlug: string }> },
 ) {
   const { spaceSlug } = await params;
-  console.debug(`GET /api/v1/spaces/${spaceSlug}/members/`);
   try {
-    const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const pageSize = parseInt(searchParams.get('pageSize') || '10');
-
-    const peopleService = createPeopleService();
-    const response = await peopleService.findBySpaceSlug(
-      { spaceSlug: spaceSlug },
-      { pagination: { page, pageSize } },
-    );
+    const peopleService = createSpaceService();
+    const response = await peopleService.getBySlug({ slug: spaceSlug });
 
     return NextResponse.json(response);
   } catch (error) {

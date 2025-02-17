@@ -1,9 +1,10 @@
-import { readAllSpaces } from '@hypha-platform/epics';
+import { createSpaceService } from '@hypha-platform/core';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const spaces = await readAllSpaces();
+    const spaceService = createSpaceService();
+    const spaces = await spaceService.getAll();
     return NextResponse.json(spaces);
   } catch (error) {
     console.error('Failed to fetch spaces:', error);

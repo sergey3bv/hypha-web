@@ -1,4 +1,4 @@
-import { CardOrganisation, readAllSpaces } from '@hypha-platform/epics';
+import { CardOrganisation } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -13,6 +13,7 @@ import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
+import { createSpaceService } from '@hypha-platform/core';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -33,7 +34,7 @@ export default async function Index(props: PageProps) {
 
   const { lang } = params;
 
-  const spaces = await readAllSpaces();
+  const spaces = await createSpaceService().getAll();
 
   const mySpacesCount = 2;
 

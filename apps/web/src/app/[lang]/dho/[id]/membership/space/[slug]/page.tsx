@@ -1,10 +1,12 @@
 'use client';
 
-import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
-import { getDhoPathMembership } from '../../constants';
+
+import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
+
 import { useMembers } from '@web/hooks/use-members';
+import { getDhoPathMembership } from '../../constants';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;

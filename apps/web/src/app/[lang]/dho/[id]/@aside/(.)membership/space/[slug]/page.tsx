@@ -5,7 +5,7 @@ import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 
 import { SidePanel } from '@web/app/[lang]/@aside/_components/side-panel';
-import { getDhoPathMembership } from '../../../../membership/constants';
+import { getDhoPathMembership } from '@web/app/[lang]/dho/[id]/membership/constants';
 import { useMembers } from '@web/hooks/use-members';
 
 type PageProps = {
