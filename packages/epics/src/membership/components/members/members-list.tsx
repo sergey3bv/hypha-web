@@ -1,27 +1,22 @@
 import { FC } from 'react';
 import { MemberCard } from './member-card';
-import { useMembers } from '../../hooks/use-members';
 import Link from 'next/link';
+import { UseMembers } from '../../hooks/types';
 
 type MembersListProps = {
   page: number;
-  activeFilter: string;
-  isLoadingProp?: boolean;
   minimize?: boolean;
-  basePath?: string;
+  basePath: string;
+  useMembers: UseMembers;
 };
 
 export const MembersList: FC<MembersListProps> = ({
   page,
-  activeFilter,
-  isLoadingProp,
   minimize,
   basePath,
+  useMembers,
 }) => {
-  const { members, isLoading } = useMembers({
-    page,
-    ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
-  });
+  const { members, isLoading } = useMembers({ page });
   return (
     <div className="member-list w-full">
       {members.map((member) => (
@@ -34,7 +29,7 @@ export const MembersList: FC<MembersListProps> = ({
         </Link>
       ))}
 
-      {(isLoading || isLoadingProp) && (
+      {isLoading && (
         <div>
           <MemberCard isLoading={isLoading} />
           <MemberCard isLoading={isLoading} />

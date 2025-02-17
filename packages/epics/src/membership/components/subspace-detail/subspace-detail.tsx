@@ -2,29 +2,31 @@
 
 import { Button, Separator, FilterMenu } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import { MemberCardProps } from '../members/member-card';
 import { MembersList } from '../members';
 import { useSubspaceDetails } from '../../hooks/use-subspace-details';
 import { SectionLoadMore } from '@hypha-platform/ui/server';
 import Link from 'next/link';
+import { type UseMembers } from '../../hooks/types';
 
 type SubspaceDetailProps = {
   title?: string;
   image?: string;
   content?: string;
-  members?: MemberCardProps[];
   closeUrl?: string;
+  memberBasePath: string;
+  useMembers: UseMembers;
 };
 
 export const SubspaceDetail = ({
   title,
   image,
   content,
-  members,
   closeUrl,
+  memberBasePath,
+  useMembers,
 }: SubspaceDetailProps) => {
-  const { isLoading, loadMore, pagination, activeFilter, setActiveFilter } =
-    useSubspaceDetails(members ?? []);
+  const { isLoading, loadMore, pages, pagination, activeFilter } =
+    useSubspaceDetails({ useMembers });
 
   const filterSettings = {
     value: activeFilter,
@@ -54,24 +56,26 @@ export const SubspaceDetail = ({
       <Separator />
       <div className="flex justify-between">
         <div className="text-4 font-medium">Members</div>
-        <FilterMenu
-          value={filterSettings.value}
-          onChange={setActiveFilter}
-          options={filterSettings.options}
-        />
+        <FilterMenu value={'all'} options={filterSettings.options} />
       </div>
-      <MembersList
-        page={pagination.totalPages}
-        activeFilter={activeFilter}
-        isLoadingProp={isLoading}
-        minimize={true}
-      />
+      {pagination?.totalPages === 0 ? (
+        <div className="text-neutral-11 mt-2 mb-6">List is empty</div>
+      ) : (
+        Array.from({ length: pages }).map((_, index) => (
+          <MembersList
+            page={index + 1}
+            minimize={true}
+            basePath={memberBasePath}
+            useMembers={useMembers}
+          />
+        ))
+      )}
       <SectionLoadMore
         onClick={loadMore}
-        disabled={!pagination.hasNextPage}
+        disabled={!pagination?.hasNextPage}
         isLoading={isLoading}
       >
-        {!pagination.hasNextPage ? 'No more members' : 'Load more members'}
+        {!pagination?.hasNextPage ? 'No more members' : 'Load more members'}
       </SectionLoadMore>
     </div>
   );

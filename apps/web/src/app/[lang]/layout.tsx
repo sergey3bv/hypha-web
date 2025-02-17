@@ -35,19 +35,15 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-  modal,
   aside,
-  ...props
+  params,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
   aside: React.ReactNode;
   params: Promise<{ lang: Locale }>;
 }) {
-  console.debug('RootLayout', { modal });
-  const params = await props.params;
+  const { lang } = await params;
 
-  const { lang } = params;
   const isWeb3AuthEnabled = await enableWeb3Auth();
   const shouldInjectToolbar = process.env.NODE_ENV === 'development';
   return (
@@ -96,7 +92,6 @@ export default async function RootLayout({
             <div className="w-full">{children}</div>
             {aside}
           </div>
-          {modal}
           <Footer />
         </ThemeProvider>
       </AuthProvider>

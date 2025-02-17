@@ -23,7 +23,7 @@ export class SpaceService {
     return space;
   }
 
-  async getBySlug(slug: string): Promise<Space> {
+  async getBySlug({ slug }: { slug: string }): Promise<Space> {
     const space = await this.repository.findBySlug(slug);
     if (!space) {
       throw new SpaceNotFoundError(slug);

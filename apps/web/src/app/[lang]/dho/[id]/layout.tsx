@@ -20,8 +20,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
-import { readAllSpaces, readSpaceBySlug } from '@hypha-platform/epics';
 import { getDhoPathAgreements } from './agreements/constants';
+import { createSpaceService } from '@hypha-platform/core';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',
@@ -36,19 +36,19 @@ const alreadyMember = true;
 export default async function DhoLayout({
   children,
   aside,
-  ...props
+  params,
 }: {
   children: React.ReactNode;
   aside: React.ReactNode;
   params: Promise<{ id: string; lang: Locale }>;
 }) {
-  const params = await props.params;
+  const { id: daoSlug, lang } = await params;
 
-  const { id: daoSlug, lang } = params;
+  const spaceService = createSpaceService();
 
-  const spaceFromDb = await readSpaceBySlug(daoSlug);
+  const spaceFromDb = await spaceService.getBySlug({ slug: daoSlug });
+  const spaces = await spaceService.getAll();
 
-  const spaces = await readAllSpaces();
   return (
     <div className="flex">
       <Container>

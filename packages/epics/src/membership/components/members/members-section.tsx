@@ -1,8 +1,7 @@
 'use client';
+
 import { FC } from 'react';
-import { MembersList } from './members-list';
 import { Text } from '@radix-ui/themes';
-import { useMembersSection } from '../../hooks/use-members-section';
 import {
   SectionFilter,
   SectionLoadMore,
@@ -11,27 +10,30 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
+import { useMembersSection } from '../../hooks/use-members-section';
+import { type UseMembers } from '../../hooks/types';
+
+import { MembersList } from './members-list';
+
 type MemberSectionProps = {
-  basePath?: string;
+  basePath: string;
+  useMembers: UseMembers;
 };
 
-export const MembersSection: FC<MemberSectionProps> = ({ basePath }) => {
-  const {
-    pages,
-    activeFilter,
-    setActiveFilter,
-    isLoading,
-    loadMore,
-    pagination,
-    sortOptions,
-    filterOptions,
-  } = useMembersSection();
+export const MembersSection: FC<MemberSectionProps> = ({
+  basePath,
+  useMembers,
+}) => {
+  const { pages, isLoading, loadMore, pagination, sortOptions } =
+    useMembersSection({ useMembers });
 
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
+        value={'all'}
+        onChange={(value) =>
+          console.debug('members-section onChange', { value })
+        }
         count={pagination?.total || 0}
         label="Members"
         sortOptions={sortOptions}
@@ -43,9 +45,19 @@ export const MembersSection: FC<MemberSectionProps> = ({ basePath }) => {
       </SectionFilter>
       {pagination?.total === 0 ? null : (
         <SectionTabs
-          activeTab={activeFilter}
-          setActiveTab={setActiveFilter}
-          tabs={filterOptions}
+          activeTab="all"
+          tabs={[
+            { label: 'All', value: 'all' },
+            { label: 'Active', value: 'active' },
+            { label: 'Inactive', value: 'inactive' },
+            { label: 'Applicant', value: 'applicant' },
+            { label: 'Rejected', value: 'rejected' },
+          ]}
+          setActiveTab={function (tab: string): void {
+            console.error('members-section setActiveTab not implemented', {
+              tab,
+            });
+          }}
         />
       )}
       {pagination?.total === 0 ? (
@@ -56,7 +68,7 @@ export const MembersSection: FC<MemberSectionProps> = ({ basePath }) => {
             basePath={basePath}
             page={index + 1}
             key={index}
-            activeFilter={activeFilter}
+            useMembers={useMembers}
           />
         ))
       )}

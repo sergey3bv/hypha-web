@@ -12,10 +12,31 @@ type Story = StoryObj<typeof MembersList>;
 
 export const Primary: Story = {
   args: {
-    page: 1,
-    activeFilter: 'all',
-    isLoadingProp: false,
-    minimize: false,
+    useMembers: () => ({
+      isLoading: false,
+      members: [
+        {
+          id: 1,
+          avatarUrl:
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+          name: 'Jane',
+          surname: 'Doe',
+          nickname: 'username',
+          location: 'Paris, France',
+          slug: 'member-1',
+        },
+        {
+          id: 2,
+          avatarUrl:
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
+          name: 'Jon',
+          surname: 'Doe',
+          nickname: 'username',
+          location: 'Paris, France',
+          slug: 'member-2',
+        },
+      ],
+    }),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -1,10 +1,12 @@
 'use client';
 
-import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
-import { SidePanel } from '../../../_components/side-panel';
-import { getDhoPathMembership } from '../../../../membership/constants';
+import { SubspaceDetail, useSubspaceBySlug } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
+
+import { SidePanel } from '@web/app/[lang]/@aside/_components/side-panel';
+import { getDhoPathMembership } from '@web/app/[lang]/dho/[id]/membership/constants';
+import { useMembers } from '@web/hooks/use-members';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -21,7 +23,8 @@ export default function Subspace(props: PageProps) {
         title={data?.title}
         image={data?.image}
         content={data?.description || ''}
-        members={data?.members}
+        memberBasePath={''}
+        useMembers={useMembers}
       />
     </SidePanel>
   );

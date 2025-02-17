@@ -1,17 +1,22 @@
-import React from 'react';
-import { useMembers } from './use-members';
+import React, { useState } from 'react';
 import { FILTER_OPTIONS_MEMBERS, SORT_OPTIONS } from '../../common/constants';
+import { type UseMembers } from './types';
+import { FilterParams, Person } from '@hypha-platform/core';
 
 const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_MEMBERS;
 
-export const useMembersSection = () => {
-  const [activeFilter, setActiveFilter] = React.useState('all');
+type UseMembersSectionProps = {
+  useMembers: UseMembers;
+};
+
+export const useMembersSection = ({ useMembers }: UseMembersSectionProps) => {
+  const [activeFilter, setActiveFilter] = useState<FilterParams<Person>>();
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, pagination } = useMembers({
-    ...(activeFilter !== 'all' && { filter: { status: activeFilter } }),
+    ...(activeFilter !== undefined && { filter: activeFilter }),
   });
 
   React.useEffect(() => {

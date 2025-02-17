@@ -1,3 +1,4 @@
+import { useMembers } from '@web/hooks/use-members';
 import { SidePanel } from '../../../_components/side-panel';
 import { SubspaceDetail } from '@hypha-platform/epics';
 
@@ -8,8 +9,9 @@ export default function Loading() {
         title={''}
         image={''}
         content={''}
-        members={[]}
         closeUrl={''}
+        useMembers={useMembers}
+        memberBasePath={''}
       />
     </SidePanel>
   );

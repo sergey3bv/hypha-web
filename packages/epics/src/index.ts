@@ -8,4 +8,3 @@ export * from './treasury';
 export * from './discussions';
 export * from './common/constants';
 export * from './common/create-form';
-export * from './space';
