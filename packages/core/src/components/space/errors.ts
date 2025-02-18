@@ -1,7 +1,9 @@
 export class SpaceNotFoundError extends Error {
   constructor(idOrSlug: number | string) {
     super(
-      `Space with ${typeof idOrSlug === 'number' ? 'id' : 'slug'} ${idOrSlug} not found`,
+      `Space with ${
+        typeof idOrSlug === 'number' ? 'id' : 'slug'
+      } ${idOrSlug} not found`,
     );
     this.name = 'SpaceNotFoundError';
   }

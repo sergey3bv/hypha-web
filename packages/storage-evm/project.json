@@ -1,0 +1,21 @@
+{
+  "name": "storage-evm",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/storage-evm/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "compile": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx hardhat compile --config packages/storage-evm/hardhat.local.config.ts --tsconfig packages/storage-evm/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx hardhat test --config packages/storage-evm/hardhat.local.config.ts --tsconfig packages/storage-evm/tsconfig.json"
+      }
+    }
+  }
+}

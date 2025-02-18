@@ -48,8 +48,9 @@ export const getScopedContainer = cache(
     if (spaceSlug) {
       // Get space-specific storage configuration
       const spaceConfigService = new SpaceConfigService(container);
-      const storageConfig =
-        await spaceConfigService.getStorageConfig(spaceSlug);
+      const storageConfig = await spaceConfigService.getStorageConfig(
+        spaceSlug,
+      );
 
       // Register repositories with space-specific storage
       if (storageConfig.space) {

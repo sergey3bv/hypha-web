@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Separator, FilterMenu } from '@hypha-platform/ui';
+import { Image, Button, Separator, FilterMenu } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { MembersList } from '../members';
 import { useSubspaceDetails } from '../../hooks/use-subspace-details';
@@ -47,7 +47,7 @@ export const SubspaceDetail = ({
           </Button>
         </Link>
       </div>
-      <img
+      <Image
         className="rounded-xl max-h-[150px] w-full object-cover"
         src={image ?? ''}
         alt={title ?? ''}
@@ -63,6 +63,7 @@ export const SubspaceDetail = ({
       ) : (
         Array.from({ length: pages }).map((_, index) => (
           <MembersList
+            key={index}
             page={index + 1}
             minimize={true}
             basePath={memberBasePath}

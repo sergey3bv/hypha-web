@@ -24,7 +24,9 @@ export const generateInsertStatements = (
       return value;
     });
 
-    return `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${values.join(', ')});`;
+    return `INSERT INTO ${tableName} (${columns.join(
+      ', ',
+    )}) VALUES (${values.join(', ')});`;
   });
 
   return statements.join('\n');
