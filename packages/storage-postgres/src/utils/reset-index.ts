@@ -9,7 +9,11 @@ export const resetIndexes = async (
   const tables = ['documents', 'memberships', 'people', 'spaces'].map(
     async (table) => {
       await db.execute(
-        sql`SELECT setval(${table + '_id_seq'}::regclass, COALESCE((SELECT MAX(id) FROM ${sql.identifier(table)}), 1000));`,
+        sql`SELECT setval(${
+          table + '_id_seq'
+        }::regclass, COALESCE((SELECT MAX(id) FROM ${sql.identifier(
+          table,
+        )}), 1000));`,
       );
     },
   );

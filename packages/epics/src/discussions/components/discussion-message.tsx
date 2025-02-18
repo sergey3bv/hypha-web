@@ -84,7 +84,7 @@ export const DiscussionMessage = ({
         </div>
       </div>
       {replies.map((reply) => (
-        <div className="ml-4">
+        <div key={reply.id as string} className="ml-4">
           <DiscussionMessage
             isReply
             replies={reply.replies}

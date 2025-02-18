@@ -20,6 +20,7 @@ export const Search = ({ suggestions }: SearchProps) => {
       <div className="mt-2 flex items-center justify-center w-full gap-2">
         {suggestions?.map((suggestion) => (
           <Button
+            key={suggestion.title}
             className="w-fit h-fit py-1"
             variant="outline"
             colorVariant="neutral"

@@ -5,6 +5,7 @@ import {
   CardTitle,
   Button,
   Skeleton,
+  Image,
 } from '@hypha-platform/ui';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Text } from '@radix-ui/themes';
@@ -48,10 +49,10 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
           loading={isLoading}
           className="rounded-tl-xl rounded-tr-xl object-cover"
         >
-          <img
+          <Image
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
-            src={logo}
-            alt={title}
+            src={logo as string}
+            alt={title as string}
           />
         </Skeleton>
       </CardHeader>

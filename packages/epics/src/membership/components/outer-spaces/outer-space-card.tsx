@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
   Skeleton,
+  Image,
 } from '@hypha-platform/ui';
 import { MemberType } from '@hypha-platform/graphql/rsc';
 
@@ -49,10 +50,10 @@ export const OuterSpaceCard: React.FC<OuterSpaceCardProps> = ({
           loading={isLoading}
           className="rounded-tl-xl rounded-tr-xl object-cover"
         >
-          <img
+          <Image
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
-            src={logo}
-            alt={title}
+            src={logo as string}
+            alt={title as string}
           />
         </Skeleton>
       </CardHeader>
