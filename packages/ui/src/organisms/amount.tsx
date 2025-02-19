@@ -48,7 +48,7 @@ function Amount({
       <Skeleton width="80px" height="16px" loading={isLoading}>
         <Text className={cn(amountVariants({ variant, size }))}>
           {withUsdSymbol ? `$ ` : null}
-          {value ? formatCurrencyValue(value) : null} {children}
+          {value ? formatCurrencyValue(value) : 0} {children}
         </Text>
       </Skeleton>
     </div>
