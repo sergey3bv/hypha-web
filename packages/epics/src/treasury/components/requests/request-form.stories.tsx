@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { RequestForm } from './request-form';
+import { within } from '@storybook/testing-library';
 
 const meta: Meta<typeof RequestForm> = {
   component: RequestForm,
@@ -20,5 +21,10 @@ export const Primary: Story = {
       symbol: 'ETH',
       isLoading: false,
     },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Welcome to RequestForm!/gi)).toBeTruthy();
+    expect(canvas.getByText(/John Doe/gi)).toBeTruthy();
   },
 };

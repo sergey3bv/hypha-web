@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/testing-library';
 
 import { RequestFormHead } from './request-form-head';
 
@@ -18,5 +19,10 @@ export const Default: Story = {
     avatar: 'https://github.com/shadcn.png',
     symbol: 'ETH',
     isLoading: false,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Welcome to RequestFormHead!/gi)).toBeTruthy();
+    expect(canvas.getByText(/John Doe/gi)).toBeTruthy();
   },
 };
