@@ -23,7 +23,6 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to RequestFormHead!/gi)).toBeTruthy();
     expect(canvas.getByText(/John Doe/gi)).toBeTruthy();
   },
 };

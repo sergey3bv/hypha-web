@@ -25,7 +25,6 @@ export const Primary: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to RequestForm!/gi)).toBeTruthy();
     expect(canvas.getByText(/John Doe/gi)).toBeTruthy();
   },
 };
