@@ -3,7 +3,7 @@ import { Amount } from '@hypha-platform/ui/server';
 import { Text } from '@radix-ui/themes';
 
 export type RequestFormHeadProps = {
-  isLoading?: boolean,
+  isLoading?: boolean;
   name?: string;
   surname?: string;
   avatar?: string;
@@ -20,7 +20,7 @@ export const RequestFormHead: React.FC<RequestFormHeadProps> = ({
   symbol,
 }) => {
   return (
-    <div className='flex'>
+    <div className="flex">
       <Skeleton
         loading={isLoading}
         width="64px"
@@ -50,7 +50,12 @@ export const RequestFormHead: React.FC<RequestFormHeadProps> = ({
             </Badge>
           </div>
           <Amount isLoading={isLoading} value={value ?? 0} withUsdSymbol />
-          <Skeleton className='mt-2' loading={isLoading} width="80px" height="16px">
+          <Skeleton
+            className="mt-2"
+            loading={isLoading}
+            width="80px"
+            height="16px"
+          >
             <Text className="text-1 text-gray-500">
               {name} {surname}
             </Text>

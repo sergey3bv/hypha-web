@@ -19,6 +19,6 @@ export const Primary: Story = {
       avatar: 'https://github.com/shadcn.png',
       symbol: 'ETH',
       isLoading: false,
-    }
+    },
   },
 };
