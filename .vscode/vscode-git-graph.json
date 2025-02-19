@@ -1,0 +1,7 @@
+{
+    "issueLinkingConfig": {
+        "issue": "#(\\d+)",
+        "url": "https://github.com/hypha-dao/hypha-web/issues/$1"
+    },
+    "exportedAt": 1739963362412
+}
