@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { CopyIcon } from '@radix-ui/react-icons';
 import { cn } from '@hypha-platform/lib/utils';
+import React from 'react';
 
 interface RequestFormProps {
   isLoading?: boolean;
@@ -25,13 +26,12 @@ export const RequestForm = ({
     eos: false,
   });
 
-  const handleAddressToggle =
+  const handleAddressToggle = React.useCallback(
     (field: keyof typeof activeAddresses) => (isActive: boolean) => {
-      setActiveAddresses((prev) => ({
-        ...prev,
-        [field]: isActive,
-      }));
-    };
+      setActiveAddresses({ ...activeAddresses, [field]: isActive });
+    },
+    [activeAddresses, setActiveAddresses],
+  );
 
   return (
     <div className="flex flex-col gap-5">
