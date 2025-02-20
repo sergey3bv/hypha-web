@@ -1,18 +1,17 @@
 import { Text } from '@radix-ui/themes';
-import { Badge, Skeleton, Image, Input } from '@hypha-platform/ui';
+import { Skeleton, Input } from '@hypha-platform/ui';
 import { Creator } from '@hypha-platform/graphql/rsc';
+import { Pencil1Icon } from '@radix-ui/react-icons';
 
-export type CreateFormHeadProps = {
+export type CreateSpaceFormHeadProps = {
   creator?: Creator;
   isLoading?: boolean;
-  type?: string;
 };
 
-export const CreateFormHead = ({
+export const CreateSpaceFormHead = ({
   creator,
   isLoading,
-  type,
-}: CreateFormHeadProps) => {
+}: CreateSpaceFormHeadProps) => {
   return (
     <div className="flex items-center">
       <Skeleton
@@ -21,27 +20,13 @@ export const CreateFormHead = ({
         loading={isLoading}
         className="rounded-lg mr-3"
       >
-        <Image
-          className="rounded-lg mr-3"
-          src={creator?.avatar ?? ''}
-          height={64}
-          width={64}
-          alt={
-            creator?.name && creator?.surname
-              ? `${creator.name} ${creator.surname}`
-              : 'Creator Avatar'
-          }
-        />
+        <div className="mr-3 min-w-[64px] h-[64px] rounded-xl bg-accent-9 justify-center items-center flex">
+          <Pencil1Icon className="h-5 w-5" />
+        </div>
       </Skeleton>
 
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
-          <div className="flex gap-x-1">
-            <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
-              {type}
-            </Badge>
-          </div>
-
           <Skeleton
             height="26px"
             width="160px"
@@ -56,6 +41,7 @@ export const CreateFormHead = ({
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
             <span className="flex items-center">
+              <Text className="text-1 text-foreground mr-1">Created by</Text>
               <Text className="text-1 text-neutral-11">
                 {creator?.name} {creator?.surname}
               </Text>

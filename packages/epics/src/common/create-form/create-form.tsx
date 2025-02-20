@@ -1,3 +1,4 @@
+'use client';
 import { CreateFormHead, CreateFormHeadProps } from './create-form-head';
 import { Button, Skeleton, FileUploader, Textarea } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
@@ -17,6 +18,7 @@ export const CreateForm = ({
   type,
 }: CreateFormProps) => {
   const [files, setFiles] = React.useState<File[]>([]);
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">

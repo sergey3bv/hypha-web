@@ -1,13 +1,13 @@
 'use client';
 
-import { CreateForm } from '@hypha-platform/epics';
+import { CreateSpaceForm } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 
 export default function Loading() {
   const { lang } = useParams();
 
   return (
-    <CreateForm
+    <CreateSpaceForm
       isLoading={false}
       creator={{
         avatar: 'https://github.com/shadcn.png',
@@ -15,7 +15,6 @@ export default function Loading() {
         surname: 'Surname',
       }}
       closeUrl={`/${lang}/my-spaces`}
-      type="space"
     />
   );
 }

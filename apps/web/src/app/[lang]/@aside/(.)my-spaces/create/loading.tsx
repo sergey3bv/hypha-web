@@ -1,10 +1,10 @@
-import { CreateForm } from '@hypha-platform/epics';
+import { CreateSpaceForm } from '@hypha-platform/epics';
 import { SidePanel } from '../../_components/side-panel';
 
 export default function Loading() {
   return (
     <SidePanel>
-      <CreateForm
+      <CreateSpaceForm
         isLoading={true}
         creator={{
           avatar: '',
@@ -12,7 +12,6 @@ export default function Loading() {
           surname: '',
         }}
         closeUrl={''}
-        type="Space"
       />
     </SidePanel>
   );
