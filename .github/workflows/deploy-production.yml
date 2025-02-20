@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - 'main'
+env:
+  NX_VERCEL_REMOTE_CACHE_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  NX_VERCEL_REMOTE_CACHE_TEAM: ${{ secrets.VERCEL_TEAM_ID }}
 
 jobs:
   deploy-production:
