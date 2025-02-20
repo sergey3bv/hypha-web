@@ -1,6 +1,6 @@
 'use client';
 
-import { CreateForm } from '@hypha-platform/epics';
+import { CreateSpaceForm } from '@hypha-platform/epics';
 import { SidePanel } from '../../_components/side-panel';
 import { useParams } from 'next/navigation';
 
@@ -9,7 +9,7 @@ export default function Loading() {
 
   return (
     <SidePanel>
-      <CreateForm
+      <CreateSpaceForm
         isLoading={false}
         creator={{
           avatar: 'https://github.com/shadcn.png',
@@ -17,7 +17,6 @@ export default function Loading() {
           surname: 'Surname',
         }}
         closeUrl={`/${lang}/my-spaces`}
-        type="Space"
       />
     </SidePanel>
   );
