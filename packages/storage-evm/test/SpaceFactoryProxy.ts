@@ -4,8 +4,8 @@ import { ignition, ethers } from 'hardhat';
 import spaceFactoryProxyModule from '../ignition/modules/SpaceFactoryProxy';
 import spaceFactoryUpgradeModule from '../ignition/modules/SpaceFactoryProxyUpgrade';
 
-describe('Demo Proxy', function () {
-  describe('Proxy interaction', function () {
+describe('SpaceFactoryProxy', function () {
+  describe('SpaceFactoryProxy interaction', function () {
     it('Should be interactable via proxy', async function () {
       const [, otherAccount] = await ethers.getSigners();
 
@@ -17,7 +17,7 @@ describe('Demo Proxy', function () {
     });
   });
 
-  describe('Upgrading', function () {
+  describe('Upgrading SpaceFactory', function () {
     it('Should have upgraded the proxy to SpaceFactoryV2', async function () {
       const [, otherAccount] = await ethers.getSigners();
 
