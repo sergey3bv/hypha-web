@@ -127,3 +127,9 @@ It will show tasks that you can run with Nx.
 Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console
 provides an interactive UI to view your projects, run tasks, generate code, and more! Available for VSCode, IntelliJ and
 comes with a LSP for Vim users.
+
+## Contributors
+
+<a href="https://github.com/hypha-dao/hypha-web/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hypha-dao/hypha-web&max=100&columns=20" alt="hypha platform v3 contributors" />
+</a>
