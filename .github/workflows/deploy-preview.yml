@@ -155,6 +155,8 @@ jobs:
           npx nx run storage-postgres:seed:production
 
       - run: npx nx affected --parallel 1 -t e2e
+        env:
+          BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
