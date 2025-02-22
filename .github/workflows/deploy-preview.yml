@@ -156,6 +156,17 @@ jobs:
 
       - run: npx nx affected --parallel 1 -t e2e
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        if: ${{ failure() }}
+        with:
+          ## If no one connects after 5 minutes, shut down server.
+          wait-timeout-minutes: 5
+          ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+          limit-access-to-actor: true
+          ## limits ssh access and adds the ssh public keys of the listed GitHub users
+          limit-access-to-users: plitzenberger
+
       - name: Delete Neon Branch
         if: always()
         uses: neondatabase/delete-branch-action@v3
