@@ -37,6 +37,7 @@
 - [feature-flags](./packages/feature-flags/README.md): Package for managing feature flags
 - [i18n](./packages/i18n/README.md): Package that hosts the internationalisation configuration and helpers
 - [model](./packages/model/README.md): Data models and type definitions
+- [storage-evm](./packages/storage-evm/README.md): EVM storage implementation
 - [storage-postgres](./packages/storage-postgres/README.md): PostgreSQL storage implementation
 - [tools](./packages/tools/README.md): Utility tools and helpers
 - [ui](./packages/ui/README.md): Package that hosts the UI component library

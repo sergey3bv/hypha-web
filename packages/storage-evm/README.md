@@ -6,6 +6,22 @@ This package contains the Ethereum smart contracts and related infrastructure. I
 
 Run these commands from the root of the workspace:
 
+### Compile the contracts
+
+Using hardhat
+
+```shell
+npx nx run storage-evm:compile
+```
+
+### Build the contracts and typed ABIs
+
+Using wagmi:
+
+```shell
+npx nx run storage-evm:build
+```
+
 ### Run tests
 
 ```shell

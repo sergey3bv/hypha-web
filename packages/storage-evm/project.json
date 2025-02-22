@@ -5,7 +5,7 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
+    "compile": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx hardhat compile --config hardhat.local.config.ts",
@@ -32,6 +32,14 @@
         "command": "npx hardhat ignition deploy",
         "cwd": "packages/storage-evm"
       }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "wagmi generate",
+        "cwd": "packages/storage-evm"
+      },
+      "dependsOn": ["^compile"]
     }
   }
 }
