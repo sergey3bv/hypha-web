@@ -21,6 +21,7 @@ export * from './scroll-area';
 export * from './file-uploader';
 export * from './textarea';
 export * from './switch';
+export * from './slider';
 
 export * from './organisms/editor';
 export * from './molecules/badges-list';
