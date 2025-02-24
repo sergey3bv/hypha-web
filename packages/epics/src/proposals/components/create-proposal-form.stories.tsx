@@ -27,6 +27,10 @@ export const Default: Story = {
         label: 'Payment',
         value: 'payment',
       },
+      {
+        label: 'Payment Another',
+        value: 'another-payment',
+      },
     ],
     numberOfWeekOptions: [
       {

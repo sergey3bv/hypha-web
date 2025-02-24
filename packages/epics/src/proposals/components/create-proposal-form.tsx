@@ -10,6 +10,12 @@ import {
   Separator,
   Input,
   Slider,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { SelectItem, SelectMenu } from '@hypha-platform/ui/server';
@@ -100,17 +106,22 @@ export const CreateProposalForm = ({
           loading={isLoading}
           className="rounded-lg"
         >
-          <SelectMenu
-            variant="default"
-            value={selectedOutcome ?? ''}
-            onValueChange={handleOutcomeChange}
-          >
-            {outcomeOptions.map((opt, index) => (
-              <SelectItem key={opt.label + index + opt.value} value={opt.value}>
-                {opt.label}
-              </SelectItem>
-            ))}
-          </SelectMenu>
+          <Select onValueChange={handleOutcomeChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Outcome" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Outcome</SelectLabel>
+
+                {outcomeOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </Skeleton>
       </div>
       {selectedOutcome === 'payment' ? (
