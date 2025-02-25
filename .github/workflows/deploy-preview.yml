@@ -149,7 +149,6 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Seeds
-        if: needs.detect-changes.outputs.has_migrations == 'true'
         run: |
           echo "BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}" >> .env
           npx nx run storage-postgres:seed:production
