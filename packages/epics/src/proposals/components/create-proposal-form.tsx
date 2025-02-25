@@ -144,20 +144,23 @@ export const CreateProposalForm = ({
                 loading={isLoading}
                 className="rounded-lg"
               >
-                <SelectMenu
-                  variant="default"
-                  value={selectedNumberOfWeeks ?? ''}
-                  onValueChange={handleNumberOfWeeksChange}
-                >
-                  {numberOfWeekOptions.map((opt, index) => (
-                    <SelectItem
-                      key={opt.label + index + opt.value}
-                      value={opt.value}
-                    >
-                      {opt.label}
-                    </SelectItem>
-                  ))}
-                </SelectMenu>
+                <Select onValueChange={handleNumberOfWeeksChange}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select weeks" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {numberOfWeekOptions.map((opt, index) => (
+                        <SelectItem
+                          key={opt.label + index + opt.value}
+                          value={opt.value}
+                        >
+                          {opt.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </Skeleton>
             </div>
             <div className="flex justify-between">
