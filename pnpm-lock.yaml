@@ -63,11 +63,14 @@ importers:
         specifier: ^1.2.2
         version: 1.2.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@radix-ui/react-select':
-        specifier: ^2.1.4
+        specifier: ^2.1.6
         version: 2.1.6(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@radix-ui/react-separator':
         specifier: ^1.1.1
         version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@radix-ui/react-slider':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@radix-ui/react-slot':
         specifier: ^1.1.1
         version: 1.1.2(@types/react@18.3.1)(react@19.0.0)
@@ -257,13 +260,13 @@ importers:
         version: 0.15.9(@nomicfoundation/hardhat-verify@2.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10)))(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
       '@nomicfoundation/hardhat-ignition-ethers':
         specifier: ^0.15.0
-        version: 0.15.9(j52jzkikgs7znq264pgaoqdsca)
+        version: 0.15.9(e712cd41681e6fdda5a3b81c6841fa63)
       '@nomicfoundation/hardhat-network-helpers':
         specifier: ^1.0.0
         version: 1.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
       '@nomicfoundation/hardhat-toolbox':
         specifier: ^5.0.0
-        version: 5.0.0(t2e77cjovzgrxdpjbclfskemye)
+        version: 5.0.0(c3921274dd12e618d334f4c3c4375c6d)
       '@nomicfoundation/hardhat-verify':
         specifier: ^2.0.0
         version: 2.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
@@ -287,7 +290,7 @@ importers:
         version: 20.4.4(@babel/traverse@7.26.9)(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(nx@20.4.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.5.29(@swc/helpers@0.5.15)))(typescript@5.7.2)
       '@nx/next':
         specifier: 20.4.4
-        version: 20.4.4(227jopyakjbkalwymnupzrwj2e)
+        version: 20.4.4(c1b45ccda4a75e290fb584f6f5acb1b8)
       '@nx/node':
         specifier: 20.4.4
         version: 20.4.4(@babel/traverse@7.26.9)(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(@zkochan/js-yaml@0.0.7)(babel-plugin-macros@3.1.0)(eslint@9.18.0(jiti@2.4.2))(nx@20.4.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.5.29(@swc/helpers@0.5.15)))(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)
@@ -18355,7 +18358,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-ignition-ethers@0.15.9(j52jzkikgs7znq264pgaoqdsca)':
+  '@nomicfoundation/hardhat-ignition-ethers@0.15.9(e712cd41681e6fdda5a3b81c6841fa63)':
     dependencies:
       '@nomicfoundation/hardhat-ethers': 3.0.8(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
       '@nomicfoundation/hardhat-ignition': 0.15.9(@nomicfoundation/hardhat-verify@2.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10)))(bufferutil@4.0.9)(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
@@ -18384,11 +18387,11 @@ snapshots:
       ethereumjs-util: 7.1.5
       hardhat: 2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10)
 
-  '@nomicfoundation/hardhat-toolbox@5.0.0(t2e77cjovzgrxdpjbclfskemye)':
+  '@nomicfoundation/hardhat-toolbox@5.0.0(c3921274dd12e618d334f4c3c4375c6d)':
     dependencies:
       '@nomicfoundation/hardhat-chai-matchers': 2.0.8(@nomicfoundation/hardhat-ethers@3.0.8(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10)))(chai@4.5.0)(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
       '@nomicfoundation/hardhat-ethers': 3.0.8(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
-      '@nomicfoundation/hardhat-ignition-ethers': 0.15.9(j52jzkikgs7znq264pgaoqdsca)
+      '@nomicfoundation/hardhat-ignition-ethers': 0.15.9(e712cd41681e6fdda5a3b81c6841fa63)
       '@nomicfoundation/hardhat-network-helpers': 1.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
       '@nomicfoundation/hardhat-verify': 2.0.12(hardhat@2.22.18(bufferutil@4.0.9)(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/node@18.16.20)(typescript@5.7.2))(typescript@5.7.2)(utf-8-validate@5.0.10))
       '@typechain/ethers-v6': 0.5.1(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(typechain@8.3.2(typescript@5.7.2))(typescript@5.7.2)
@@ -18873,7 +18876,7 @@ snapshots:
       - vue-tsc
       - webpack-cli
 
-  '@nx/next@20.4.4(227jopyakjbkalwymnupzrwj2e)':
+  '@nx/next@20.4.4(c1b45ccda4a75e290fb584f6f5acb1b8)':
     dependencies:
       '@babel/plugin-proposal-decorators': 7.25.9(@babel/core@7.26.9)
       '@nx/devkit': 20.4.4(nx@20.4.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.7.2))(@swc/core@1.5.29(@swc/helpers@0.5.15)))

@@ -33,7 +33,7 @@ export const SelectMenu: React.FC<SelectMenuProps> = ({
       )}
       aria-label="Food"
     >
-      <Select.Value placeholder="Select a fruit…" />
+      <Select.Value placeholder="Select a one" />
       <Select.Icon className="text-violet11">
         <ChevronDownIcon />
       </Select.Icon>

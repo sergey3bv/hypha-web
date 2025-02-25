@@ -18,9 +18,11 @@ export * from './skeleton';
 export * from './status-badge';
 export * from './chart';
 export * from './scroll-area';
+export * from './select';
 export * from './file-uploader';
 export * from './textarea';
 export * from './switch';
+export * from './slider';
 
 export * from './organisms/editor';
 export * from './molecules/badges-list';
