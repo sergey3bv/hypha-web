@@ -59,7 +59,7 @@ export const PersonHead = ({
               height={270}
               className="rounded-xl max-h-[270px] w-full object-cover"
               src={background}
-              alt={'Profile Lead Image:' + name + surname}
+              alt={`Profile Lead Image: ${name} ${surname}`}
             />
           </Skeleton>
           <Avatar style={customLogoStyles}>
