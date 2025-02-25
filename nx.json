@@ -4,9 +4,8 @@
     "default": [
       "{projectRoot}/**/*",
       "sharedGlobals",
-      {
-        "env": "DEFAULT_DB_URL"
-      }
+      { "env": "DEFAULT_DB_URL" },
+      { "env": "BRANCH_DB_URL" }
     ],
     "production": [
       "default",
@@ -79,19 +78,12 @@
   },
   "targetDefaults": {
     "e2e-ci--**/*": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "@nx/js:swc": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "useLegacyCache": false
