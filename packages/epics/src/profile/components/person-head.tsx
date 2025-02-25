@@ -66,7 +66,7 @@ export const PersonHead = ({
             <Skeleton loading={isLoading} width={128} height={128}>
               <AvatarImage
                 src={avatar}
-                alt={'Profile Avatar Image:' + name + surname}
+                alt={`Profile Avatar Image: ${name} ${surname}`}
               />
             </Skeleton>
           </Avatar>
