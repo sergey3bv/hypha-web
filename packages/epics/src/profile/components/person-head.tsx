@@ -34,11 +34,11 @@ interface PersonHeadProps {
 
 export const PersonHead = ({
   isLoading,
-  avatar,
+  avatar = '/placeholder/space-avatar-image.png',
   name,
   surname,
   about,
-  background,
+  background = '/placeholder/space-lead-image.png',
   socials,
 }: PersonHeadProps & MemberType) => {
   const customLogoStyles: React.CSSProperties = {
@@ -58,15 +58,15 @@ export const PersonHead = ({
               width={768}
               height={270}
               className="rounded-xl max-h-[270px] w-full object-cover"
-              src={background || '/placeholder/space-lead-image.png'}
-              alt={background + name + surname}
+              src={background}
+              alt={'Profile Lead Image:' + name + surname}
             />
           </Skeleton>
           <Avatar style={customLogoStyles}>
             <Skeleton loading={isLoading} width={128} height={128}>
               <AvatarImage
-                src={avatar || '/placeholder/space-avatar-image.png'}
-                alt="logo"
+                src={avatar}
+                alt={'Profile Avatar Image:' + name + surname}
               />
             </Skeleton>
           </Avatar>
