@@ -12,9 +12,9 @@ import "./interfaces/IExitMethodDirectory.sol";
 
 
 
-contract DAOSpaceFactoryImplementation is 
-    Initializable, 
-    OwnableUpgradeable, 
+contract DAOSpaceFactoryImplementation is
+    Initializable,
+    OwnableUpgradeable,
     UUPSUpgradeable,
     DAOSpaceFactoryStorage,
     IDAOSpaceFactory
@@ -29,7 +29,7 @@ contract DAOSpaceFactoryImplementation is
         __UUPSUpgradeable_init();
         spaceCounter = 0;
     }
-    
+
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     modifier onlySpaceExecutor(uint256 _spaceId) {
@@ -38,7 +38,7 @@ contract DAOSpaceFactoryImplementation is
     }
 
 function setContracts(
-   address _tokenFactoryAddress, 
+   address _tokenFactoryAddress,
    address _joinMethodDirectoryAddress,
    address _exitMethodDirectoryAddress,
    address _proposalManagerAddress
@@ -47,12 +47,12 @@ function setContracts(
    //require(_joinMethodDirectoryAddress != address(0), "Invalid JoinMethodDirectory address");
    //require(_exitMethodDirectoryAddress != address(0), "Invalid ExitMethodDirectory address");
    //require(_proposalManagerAddress != address(0), "Invalid ProposalManager address");
-   
+
    tokenFactoryAddress = _tokenFactoryAddress;
    joinMethodDirectoryAddress = _joinMethodDirectoryAddress;
    exitMethodDirectoryAddress = _exitMethodDirectoryAddress;
    proposalManagerAddress = _proposalManagerAddress;
-   
+
    emit TokenFactoryContractUpdated(_tokenFactoryAddress);
    emit JoinMethodDirectoryContractUpdated(_joinMethodDirectoryAddress);
    emit ExitMethodDirectoryContractUpdated(_exitMethodDirectoryAddress);
@@ -123,20 +123,20 @@ function setContracts(
 function joinSpace(uint256 _spaceId) public {
         require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
         require(joinMethodDirectoryAddress != address(0), "Directory contract not set");
-        
+
         Space storage space = spaces[_spaceId];
-        
+
         for (uint256 i = 0; i < space.members.length; i++) {
             require(space.members[i] != msg.sender, "Already a member");
         }
-        
+
         require(
             IDirectory(joinMethodDirectoryAddress).joincheck(_spaceId, space.joinMethod, msg.sender),
             "Join criteria not met"
         );
-        
+
         space.members.push(msg.sender);
-        
+
         // Check if the joining member is a space executor and add to space members if it is
         for (uint256 i = 1; i <= spaceCounter; i++) {
             if (spaces[i].executor == msg.sender) {
@@ -147,23 +147,23 @@ function joinSpace(uint256 _spaceId) public {
                 break;
             }
         }
-        
+
         emit MemberJoined(_spaceId, msg.sender);
     }
 
     function removeMember(uint256 _spaceId, address _memberToRemove) public {
    require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
    require(exitMethodDirectoryAddress != address(0), "Exit directory contract not set");
-   
+
    Space storage space = spaces[_spaceId];
-   
+
    // If exit method is 1, only executor can remove members
    if (space.exitMethod == 1) {
        require(msg.sender == space.executor, "Only executor can remove members");
    }
 
    // Check if exit is allowed through exit method directory
-    if (space.exitMethod != 1) { 
+    if (space.exitMethod != 1) {
    require(
        IExitMethodDirectory(exitMethodDirectoryAddress).exitcheck(_spaceId, space.exitMethod, _memberToRemove),
        "Exit criteria not met"
@@ -173,7 +173,7 @@ function joinSpace(uint256 _spaceId) public {
    SpaceMembers storage members = spaceMembers[_spaceId];
    bool found = false;
    uint256 memberIndex;
-   
+
    // Find member in regular members
    for (uint256 i = 0; i < space.members.length; i++) {
        if (space.members[i] == _memberToRemove) {
@@ -182,7 +182,7 @@ function joinSpace(uint256 _spaceId) public {
            break;
        }
    }
-   
+
    require(found, "Member not found");
    require(_memberToRemove != space.creator, "Cannot remove space creator");
 
@@ -210,7 +210,7 @@ function joinSpace(uint256 _spaceId) public {
         require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
         require(msg.sender == tokenFactoryAddress, "Only token factory can add tokens");
         require(_tokenAddress != address(0), "Token address cannot be zero");
-    
+
         Space storage space = spaces[_spaceId];
         space.tokenAddresses.push(_tokenAddress);
     }
@@ -222,7 +222,7 @@ function joinSpace(uint256 _spaceId) public {
 
     function hasToken(uint256 _spaceId, address _tokenAddress) external view returns (bool) {
         require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
-        
+
         Space storage space = spaces[_spaceId];
         for (uint256 i = 0; i < space.tokenAddresses.length; i++) {
             if (space.tokenAddresses[i] == _tokenAddress) {
@@ -240,7 +240,7 @@ function joinSpace(uint256 _spaceId) public {
     function isMember(uint256 _spaceId, address _userAddress) external view returns (bool) {
         require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
         Space storage space = spaces[_spaceId];
-        
+
         for (uint256 i = 0; i < space.members.length; i++) {
             if (space.members[i] == _userAddress) {
                 return true;
@@ -269,7 +269,7 @@ function joinSpace(uint256 _spaceId) public {
     ) {
         require(_spaceId > 0 && _spaceId <= spaceCounter, "Invalid space ID");
         Space storage space = spaces[_spaceId];
-        
+
         return (
             space.name,
             space.unity,

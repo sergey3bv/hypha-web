@@ -40,6 +40,12 @@ npx nx run storage-evm:node
 npx nx run storage-evm:deploy ./ignition/modules/SpaceFactory.ts --network localhost --reset
 ```
 
+### Deploy contracts using imperative scripts
+
+```shell
+npx nx run storage-evm:script ./scripts/counter-proxy.deploy.ts --network localhost
+```
+
 ## Development
 
 The package includes sample contracts and tests to help you get started. The main components are:

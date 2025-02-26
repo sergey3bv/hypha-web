@@ -20,7 +20,7 @@ contract CounterV2 is UUPSUpgradeable, OwnableUpgradeable {
     }
 
     // Increments the counter by 1
-    function increment() public { 
+    function increment() public {
         count += 1;
         emit CountChanged(count);
     }
