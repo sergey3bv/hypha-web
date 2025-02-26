@@ -33,17 +33,10 @@
         "cwd": "packages/storage-evm"
       }
     },
-    "node:start": {
+    "node": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx hardhat node",
-        "cwd": "packages/storage-evm"
-      }
-    },
-    "node:stop": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "pkill -f 'hardhat node'",
         "cwd": "packages/storage-evm"
       }
     },
