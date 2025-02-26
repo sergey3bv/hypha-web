@@ -1,6 +1,10 @@
+import 'hardhat-deploy';
+import '@openzeppelin/hardhat-upgrades';
+
 import { expect } from 'chai';
-import { ethers, upgrades } from 'hardhat';
+import { ethers } from 'hardhat';
 import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers';
+import { upgrades } from 'hardhat';
 
 describe('Counter Proxy', function () {
   let counter: any;
