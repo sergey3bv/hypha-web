@@ -1,6 +1,4 @@
 'use client';
-// TODO: refactor
-import { useSpaces } from 'packages/epics/src/membership/hooks/use-spaces';
 
 import { useParams } from 'next/navigation';
 
@@ -15,10 +13,6 @@ import { getDhoPathMembership } from '@web/app/[lang]/dho/[id]/membership/consta
 export default function Member() {
   const { slug, id, lang } = useParams();
   const { person, isLoading } = useMemberBySlug(slug as string);
-  const { spaces } = useSpaces({
-    page: 1,
-    sort: { sort: 'all' },
-  });
 
   return (
     <SidePanel>
@@ -35,7 +29,7 @@ export default function Member() {
         }}
         isLoading={isLoading}
         basePath={getDhoPathAgreements(lang as Locale, id as string)}
-        spaces={spaces}
+        spaces={[]}
       />
     </SidePanel>
   );
