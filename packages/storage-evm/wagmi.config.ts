@@ -1,11 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { hardhat as hardhatChain, base } from '@wagmi/core/chains';
+import { base } from '@wagmi/core/chains';
+// import { hardhat as HHC } from '@wagmi/core/chains';
 
 import { defineConfig } from '@wagmi/cli';
 import { hardhat } from '@wagmi/cli/plugins';
-
-const HARDHAT_CHAIN_ID = hardhatChain.id;
 
 /**
  * Gets the deployed contract address from the deployments JSON file
@@ -13,10 +12,7 @@ const HARDHAT_CHAIN_ID = hardhatChain.id;
  * @returns The deployed contract address
  * @throws Error if contract address not found
  */
-export function getContractAddress(
-  contract: string,
-  chain = 31337,
-): `0x${string}` {
+function getContractAddress(contract: string, chain = 31337): `0x${string}` {
   // Read the deployed addresses file
   const addressesPath = path.join(
     __dirname,
@@ -51,39 +47,39 @@ export default defineConfig({
           [base.id]: '0xff6006c67803a380Db25230F1aEc605790C405a1',
         },
         // SpaceFactoryV1: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryProxyModule#SpaceFactoryV1',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
         // TransparentUpgradeableProxy: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryProxyModule#TransparentUpgradeableProxy',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
         // ProxyAdmin: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryProxyModule#ProxyAdmin',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
         // ProxiedSpaceFactoryV1: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryV1Module#SpaceFactoryV1',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
         // ProxiedSpaceFactoryV2: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryV2Module#SpaceFactoryV2',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
         // SpaceFactoryV2: {
-        //   [HARDHAT_CHAIN_ID]: getContractAddress(
+        //   [HHC.id]: getContractAddress(
         //     'SpaceFactoryProxyUpgradeModule#SpaceFactoryV2',
-        //     HARDHAT_CHAIN_ID,
+        //     HHC.id,
         //   ),
         // },
       },
