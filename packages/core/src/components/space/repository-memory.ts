@@ -27,4 +27,25 @@ export class SpaceInMemoryRepository implements SpaceRepository {
       leadImage: 'https://example.com/lead-image.png',
     };
   }
+
+  async findAllByMemberId(memberId: number): Promise<Space[]> {
+    return [
+      {
+        id: 1,
+        slug: 'mock-space-1',
+        title: 'Mock Space 1',
+        description: 'Mock Space 1 for member ' + memberId,
+        logoUrl: 'https://example.com/logo.png',
+        leadImage: 'https://example.com/lead-image.png',
+      },
+      {
+        id: 2,
+        slug: 'mock-space-2',
+        title: 'Mock Space 2',
+        description: 'Mock Space 2 for member ' + memberId,
+        logoUrl: 'https://example.com/logo.png',
+        leadImage: 'https://example.com/lead-image.png',
+      },
+    ];
+  }
 }
