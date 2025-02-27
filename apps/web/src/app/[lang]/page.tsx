@@ -1,6 +1,7 @@
 import { Locale } from '@hypha-platform/i18n';
 import { Button } from '@hypha-platform/ui';
 import Link from 'next/link';
+import { Profile } from './_profile';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -14,6 +15,7 @@ export default async function Index(props: PageProps) {
   return (
     <div>
       <div>IndexPage</div>
+      <Profile />
       <div>
         <Button
           asChild
