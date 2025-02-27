@@ -23,6 +23,10 @@ export class SpaceService {
     return space;
   }
 
+  async getAllByMemberId(memberId: number): Promise<Space[]> {
+    return this.repository.findAllByMemberId(memberId);
+  }
+
   async getBySlug({ slug }: { slug: string }): Promise<Space> {
     const space = await this.repository.findBySlug(slug);
     if (!space) {
