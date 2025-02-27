@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FaWallet } from 'react-icons/fa';
 import { RxDownload, RxPencil2 } from 'react-icons/rx';
+import Link from 'next/link';
 
 export interface Socials {
   LinkedIn: string;
@@ -91,10 +92,12 @@ export const PersonHead = ({
           </Button>
         </Skeleton>
         <Skeleton loading={isLoading} width={120} height={35}>
-          <Button colorVariant="accent">
-            <RxPencil2 />
-            Edit profile
-          </Button>
+          <Link href={`/profile/edit`} scroll={false}>
+            <Button colorVariant="accent">
+              <RxPencil2 />
+              Edit profile
+            </Button>
+          </Link>
         </Skeleton>
       </div>
       <div className="mt-4">
