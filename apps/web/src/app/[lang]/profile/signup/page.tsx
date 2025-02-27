@@ -104,6 +104,7 @@ export default function SignupPage() {
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
+            required
           />
         </div>
 
