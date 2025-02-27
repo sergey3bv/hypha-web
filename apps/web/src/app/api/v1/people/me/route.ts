@@ -3,8 +3,6 @@ import { neon } from '@neondatabase/serverless';
 import { people } from '@hypha-platform/storage-postgres';
 import { drizzle } from 'drizzle-orm/neon-http';
 
-import { eq, sql } from 'drizzle-orm';
-
 export async function GET(request: NextRequest) {
   const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
 
@@ -14,11 +12,7 @@ export async function GET(request: NextRequest) {
     }),
   );
 
-  const [user] = await db
-    .select()
-    .from(people)
-    .where(sql`auth.user_id() = ${people.sub}`)
-    .limit(1);
+  const [user] = await db.select().from(people).limit(1);
 
   return NextResponse.json({ user });
 }

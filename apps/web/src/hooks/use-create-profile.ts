@@ -19,7 +19,6 @@ export const useCreateProfile = () => {
       description: string;
       location: string;
       nickname: string;
-      sub: string;
     }) => {
       if (!jwt) {
         throw new Error('No JWT token available');
