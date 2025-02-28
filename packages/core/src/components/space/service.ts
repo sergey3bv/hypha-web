@@ -2,12 +2,12 @@ import { inject, injectable } from 'inversify';
 import { type SpaceRepository } from './repository';
 import { Space } from './types';
 import { SpaceNotFoundError } from './errors';
-import { Tokens } from '../../container/tokens';
+import { SYMBOLS } from '../../container/types';
 
 @injectable()
 export class SpaceService {
   constructor(
-    @inject(Tokens.SpaceRepository)
+    @inject(SYMBOLS.Repositories.SpaceRepository)
     private repository: SpaceRepository,
   ) {}
 
@@ -18,7 +18,7 @@ export class SpaceService {
   async getById(id: number): Promise<Space> {
     const space = await this.repository.findById(id);
     if (!space) {
-      throw new SpaceNotFoundError(id);
+      throw new SpaceNotFoundError(`Space with id ${id} not found`);
     }
     return space;
   }
@@ -30,7 +30,7 @@ export class SpaceService {
   async getBySlug({ slug }: { slug: string }): Promise<Space> {
     const space = await this.repository.findBySlug(slug);
     if (!space) {
-      throw new SpaceNotFoundError(slug);
+      throw new SpaceNotFoundError(`Space with slug ${slug} not found`);
     }
     return space;
   }

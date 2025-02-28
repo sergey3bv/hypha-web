@@ -31,7 +31,7 @@ export function initializeContainer(config: CoreConfig): void {
   // Register the database provider
   container.bind(DatabaseProvider).toSelf().inSingletonScope();
 
-  // Register repositories
+  // Register repositories with their symbols
   container
     .bind(SYMBOLS.Repositories.PeopleRepository)
     .to(PeopleRepositoryPostgres)
@@ -49,11 +49,11 @@ export function initializeContainer(config: CoreConfig): void {
     .to(SpaceConfigPostgresRepository)
     .inSingletonScope();
 
-  // Register services
-  container.bind(PeopleService).toSelf();
-  container.bind(SpaceService).toSelf();
-  container.bind(DocumentService).toSelf();
-  container.bind(SpaceConfigService).toSelf();
+  // Register services by their class type
+  container.bind(PeopleService).toSelf().inTransientScope();
+  container.bind(SpaceService).toSelf().inTransientScope();
+  container.bind(DocumentService).toSelf().inTransientScope();
+  container.bind(SpaceConfigService).toSelf().inTransientScope();
 
   console.log('Container initialized with InversifyJS');
 }

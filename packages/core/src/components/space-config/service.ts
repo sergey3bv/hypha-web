@@ -1,13 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { SpaceConfig } from './types';
 import { type SpaceConfigRepository } from './repository';
-import { Tokens } from '../../container/tokens';
+import { SYMBOLS } from '../../container/types';
 import { StorageType } from '../../config/types';
 
 @injectable()
 export class SpaceConfigService {
   constructor(
-    @inject(Tokens.SpaceConfigRepository)
+    @inject(SYMBOLS.Repositories.SpaceConfigRepository)
     private repository: SpaceConfigRepository,
   ) {}
 
