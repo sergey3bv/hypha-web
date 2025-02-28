@@ -51,6 +51,8 @@ export const SubspaceDetail = ({
         className="rounded-xl max-h-[150px] w-full object-cover"
         src={image ?? ''}
         alt={title ?? ''}
+        width={1200}
+        height={400}
       />
       <div className="text-2 text-gray-500">{content}</div>
       <Separator />

@@ -1,15 +1,15 @@
-import { Container } from '../../container/types';
+import { inject, injectable } from 'inversify';
 import { Tokens } from '../../container/tokens';
 import { Document } from './types';
 import { DocumentRepository } from './repository';
 import { DocumentNotFoundError } from './errors';
 
+@injectable()
 export class DocumentService {
-  private repository: DocumentRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.DocumentRepository);
-  }
+  constructor(
+    @inject(Tokens.DocumentRepository)
+    private repository: DocumentRepository,
+  ) {}
 
   async getAll(): Promise<Document[]> {
     return this.repository.findAll();

@@ -1,22 +1,22 @@
 import { defaultConfig } from '../../config/defaults';
 import { getContainer } from '../../container';
-import { SpaceService } from './service';
+import { DocumentService } from './service';
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { schema, db as defaultDb } from '@hypha-platform/storage-postgres';
-import { SpacePostgresRepository } from './repository-postgres';
+import { DocumentRepositoryPostgres } from './repository-postgres';
+import { DocumentRepository } from './repository';
 import { Tokens } from '../../container/tokens';
-import { SpaceRepository } from './repository';
 
-type CreateSpaceServiceProps = {
+type CreateDocumentServiceProps = {
   config?: typeof defaultConfig;
   authToken?: string;
 };
 
-export const createSpaceService = ({
+export const createDocumentService = ({
   config = defaultConfig,
   authToken,
-}: CreateSpaceServiceProps = {}) => {
+}: CreateDocumentServiceProps = {}) => {
   // Get the container
   const container = getContainer(config);
 
@@ -32,17 +32,19 @@ export const createSpaceService = ({
       const db = drizzle(sql, { schema });
 
       // Create a repository with the authenticated connection
-      const repository = new SpacePostgresRepository(db);
+      const repository = new DocumentRepositoryPostgres(db);
 
       // Create and return service with the repository
-      return new SpaceService(repository);
+      return new DocumentService(repository);
     } catch (error) {
       console.error('Failed to create authenticated DB connection:', error);
       // Fall back to standard container approach
     }
   }
 
-  // Default approach - get the repository from the container and create a service
-  const repository = container.get(Tokens.SpaceRepository) as SpaceRepository;
-  return new SpaceService(repository);
+  // Default approach - get the repository from the container
+  const repository = container.get(
+    Tokens.DocumentRepository,
+  ) as DocumentRepository;
+  return new DocumentService(repository);
 };

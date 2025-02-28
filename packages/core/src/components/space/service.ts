@@ -1,15 +1,15 @@
-import { Container } from '../../container/types';
-import { Tokens } from '../../container/tokens';
-import { SpaceNotFoundError } from './errors';
+import { inject, injectable } from 'inversify';
 import { SpaceRepository } from './repository';
 import { Space } from './types';
+import { SpaceNotFoundError } from './errors';
+import { Tokens } from '../../container/tokens';
 
+@injectable()
 export class SpaceService {
-  private repository: SpaceRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.SpaceRepository);
-  }
+  constructor(
+    @inject(Tokens.SpaceRepository)
+    private repository: SpaceRepository,
+  ) {}
 
   async getAll(): Promise<Space[]> {
     return this.repository.findAll();
