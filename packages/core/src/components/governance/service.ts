@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { Tokens } from '../../container/tokens';
 import { Document } from './types';
-import { DocumentRepository } from './repository';
+import { type DocumentRepository } from './repository';
 import { DocumentNotFoundError } from './errors';
 
 @injectable()

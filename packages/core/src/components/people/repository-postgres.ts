@@ -13,6 +13,10 @@ import { SYMBOLS } from '../../container/types';
 import { Database } from '@hypha-platform/storage-postgres';
 import { Person } from './types';
 import { PaginatedResponse } from '../../shared';
+import {
+  DatabaseProvider,
+  DatabaseInstance,
+} from '../../container/database-provider';
 
 import {
   PeopleFindAllConfig,
@@ -43,10 +47,24 @@ type DbPerson = {
 @injectable()
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(
+    @inject(DatabaseProvider)
+    private dbProvider: DatabaseProvider,
     @inject(SYMBOLS.Database.AdminConnection)
     @optional()
-    private db: Database | NodePgDatabase<typeof schema> = defaultDb,
+    private adminDb: Database | NodePgDatabase<typeof schema> = defaultDb,
   ) {}
+
+  // Get the appropriate database connection - use user connection when available
+  private get db(): DatabaseInstance {
+    try {
+      // Try to get user-specific database with RLS
+      return this.dbProvider.getUserDatabase();
+    } catch (error) {
+      // Fall back to admin connection if provider fails
+      console.warn('Falling back to admin database connection');
+      return this.adminDb;
+    }
+  }
 
   private mapToDomainPerson(dbPerson: DbPerson): Person {
     invariant(dbPerson.slug, 'Person must have a slug');

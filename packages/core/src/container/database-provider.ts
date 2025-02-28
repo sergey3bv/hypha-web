@@ -4,7 +4,11 @@
  */
 
 import { injectable } from 'inversify';
-import { db as defaultDb } from '@hypha-platform/storage-postgres';
+import { db as defaultDb, schema } from '@hypha-platform/storage-postgres';
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { NeonHttpDatabase } from 'drizzle-orm/neon-http';
 
 // Define symbols for different DB connections
 export const DB_TOKENS = {
@@ -27,9 +31,13 @@ export interface UserDatabaseOptions {
   role?: 'authenticated' | 'anonymous';
 }
 
+// Define a generic database type that can be either Neon or NodePg
+export type DatabaseInstance =
+  | NodePgDatabase<typeof schema>
+  | NeonHttpDatabase<typeof schema>;
+
 /**
- * Simple database provider that allows injecting different database instances.
- * This is a temporary solution until we fully implement Neon RLS Authorize.
+ * Database provider that manages connection types including RLS-authenticated connections
  */
 @injectable()
 export class DatabaseProvider {
@@ -45,7 +53,7 @@ export class DatabaseProvider {
   /**
    * Get the admin database connection (privileged)
    */
-  getAdminDatabase() {
+  getAdminDatabase(): NodePgDatabase<typeof schema> {
     return defaultDb;
   }
 
@@ -53,15 +61,26 @@ export class DatabaseProvider {
    * Get a user-specific database connection with RLS
    * @param options Override options for this specific request
    */
-  getUserDatabase(options: UserDatabaseOptions = {}) {
-    // For now, just use the default db
-    // Later this will use the auth token with Neon RLS
+  getUserDatabase(options: UserDatabaseOptions = {}): DatabaseInstance {
     // Merge saved options with provided options, with provided taking precedence
     const effectiveOptions = { ...this.userOptions, ...options };
 
-    // TODO: When implementing RLS, create a new connection with the authToken
-    // console.log('Using auth token for DB:', effectiveOptions.authToken);
+    if (effectiveOptions.authToken) {
+      try {
+        // Create Neon connection with auth token for RLS
+        const sql = neon(process.env.DEFAULT_DB_AUTHENTICATED_URL!, {
+          authToken: effectiveOptions.authToken, // This enables RLS with the user's permissions
+        });
 
+        // Create drizzle instance with the authenticated connection
+        return drizzle(sql, { schema });
+      } catch (error) {
+        console.error('Failed to create authenticated DB connection:', error);
+        // Fall back to admin connection if token is invalid
+      }
+    }
+
+    // No auth token or connection failed, use admin connection
     return defaultDb;
   }
 }

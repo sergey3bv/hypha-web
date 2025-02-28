@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { SpaceConfig } from './types';
-import { SpaceConfigRepository } from './repository';
+import { type SpaceConfigRepository } from './repository';
 import { Tokens } from '../../container/tokens';
 import { StorageType } from '../../config/types';
 

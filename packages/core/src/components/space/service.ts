@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { SpaceRepository } from './repository';
+import { type SpaceRepository } from './repository';
 import { Space } from './types';
 import { SpaceNotFoundError } from './errors';
 import { Tokens } from '../../container/tokens';
