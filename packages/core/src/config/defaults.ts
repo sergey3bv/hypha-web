@@ -3,9 +3,7 @@ import { PeopleRepositoryPostgres } from '../components/people/repository-postgr
 import { SpaceConfigPostgresRepository } from '../components/space-config/repository-postgres';
 import { SpaceInMemoryRepository } from '../components/space/repository-memory';
 import { SpacePostgresRepository } from '../components/space/repository-postgres';
-import { RepositoryToken } from '../container/repository-registry';
-import { Tokens } from '../container/tokens';
-import { CoreConfig, ImplementationMap } from './types';
+import { CoreConfig } from './types';
 
 export const defaultConfig: CoreConfig = {
   storage: {
@@ -17,34 +15,21 @@ export const defaultConfig: CoreConfig = {
   defaultPageSize: 10,
 };
 
-// Map storage types to repository implementations
-export const defaultRepositoryMap = new Map<
-  RepositoryToken<any>,
-  ImplementationMap
->([
-  [
-    Tokens.SpaceRepository,
-    {
-      postgres: SpacePostgresRepository,
-      memory: SpaceInMemoryRepository,
-    },
-  ],
-  [
-    Tokens.SpaceConfigRepository,
-    {
-      postgres: SpaceConfigPostgresRepository,
-    },
-  ],
-  [
-    Tokens.DocumentRepository,
-    {
-      postgres: DocumentRepositoryPostgres,
-    },
-  ],
-  [
-    Tokens.PeopleRepository,
-    {
-      postgres: PeopleRepositoryPostgres,
-    },
-  ],
-]);
+// Map of repository implementations - no longer using the old token system
+// This can be refactored or removed in a future update
+// as the new DI system handles this differently
+export const defaultRepositoryImplementations = {
+  space: {
+    postgres: SpacePostgresRepository,
+    memory: SpaceInMemoryRepository,
+  },
+  spaceConfig: {
+    postgres: SpaceConfigPostgresRepository,
+  },
+  document: {
+    postgres: DocumentRepositoryPostgres,
+  },
+  people: {
+    postgres: PeopleRepositoryPostgres,
+  },
+};

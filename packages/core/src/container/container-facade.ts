@@ -1,7 +1,6 @@
 import { container } from './inversify.config';
 import { CoreConfig } from '../config/types';
 import { SYMBOLS } from './types';
-import { DatabaseProvider } from './database-provider';
 import { Container } from 'inversify';
 import { db, schema } from '@hypha-platform/storage-postgres';
 import { neon } from '@neondatabase/serverless';

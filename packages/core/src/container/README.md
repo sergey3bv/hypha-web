@@ -4,53 +4,50 @@ This directory contains the InversifyJS-based dependency injection system for th
 
 ## Architecture Overview
 
-The DI container uses a modular approach to manage dependencies and enable better testing, extensibility, and separation of concerns.
+The DI container uses InversifyJS to manage dependencies and enable better testing, extensibility, and separation of concerns.
 
 ### Key Components
 
-- `inversify.config.ts`: Core container setup and storage context management
-- `types.ts`: Symbol definitions and token utilities
-- `repository.module.ts`: Registration of repository implementations by storage type
-- `repository-adapter.ts`: Backward compatibility adapter for the old system
-- `token-mapping.ts`: Maps old tokens to new symbols
-- `bootstrap.ts`: Initializes the container at startup
+- `inversify.config.ts`: Core container setup with the global container instance
+- `types.ts`: Symbol definitions for all injectable tokens
+- `bootstrap.ts`: Initializes the container at startup with all services and repositories
+- `container-facade.ts`: Provides convenient access to container functions
+- `database-provider.ts`: Manages database connections including authenticated connections for RLS
 
 ## Usage
 
-### Getting a Repository with Storage Type Context
+### Getting a Service or Repository
 
 ```typescript
-import { StorageContext } from './container/inversify.config';
-import { container } from './container/inversify.config';
+import { getContainer } from './container/container-facade';
 import { SYMBOLS } from './container/types';
-import { UserRepository } from './repositories/user.repository';
+import { PeopleService } from './components/people/service';
 
-// Set the storage context type
-StorageContext.storageType = 'postgres';
+// Get a service by class
+const peopleService = getContainer().get(PeopleService);
 
-// Get the repository instance
-const userRepository = container.get<UserRepository>(SYMBOLS.Repositories.UserRepository);
+// Or get a repository by symbol
+const peopleRepository = getContainer().get(SYMBOLS.Repositories.PeopleRepository);
 ```
 
-### Migration from Old Repository System
+### Creating Authenticated Requests
 
-During the migration, both systems will work in parallel using the adapter pattern:
+For operations that need Row-Level Security (RLS):
 
 ```typescript
-// Old way (will continue to work during migration)
-import { getRepositoryImplementation } from './container/repository-registry';
-import { Tokens } from './container/tokens';
-
-const repository = getRepositoryImplementation(Tokens.SpaceRepository, 'postgres');
-
-// New way (preferred)
-import { injectable, inject } from 'inversify';
+import { createRequestScope } from './container/container-facade';
 import { SYMBOLS } from './container/types';
 
-@injectable()
-class MyService {
-  constructor(@inject(SYMBOLS.Repositories.SpaceRepository) private repository: SpaceRepository) {}
-}
+// Create a request-scoped container with authentication
+const requestContainer = createRequestScope({ authToken: 'user-jwt-token' });
+
+// Get the authenticated database connection
+const userDb = requestContainer.get(SYMBOLS.Database.UserConnection);
+
+// Or use it with service factories
+import { createPeopleService } from './components/people/service.factory';
+
+const peopleService = createPeopleService({ authToken: 'user-jwt-token' });
 ```
 
 ## Container Initialization
@@ -69,16 +66,23 @@ initializeContainer(defaultConfig);
 
 To add a new injectable class:
 
-1. Define a symbol in `types.ts`
+1. Define a symbol in `types.ts` if needed
 2. Add the `@injectable()` decorator to your class
 3. Use `@inject(SYMBOL)` in constructors for dependencies
+4. Register the class in `bootstrap.ts`
 
-## Token Mapping System
+## Service Factory Pattern
 
-The token mapping system bridges between the old token-based DI and the new InversifyJS container:
+Service factories provide an easy way to create services with authenticated database connections:
 
-1. Old tokens from `Tokens` are mapped to new symbols in `SYMBOLS.Repositories`
-2. Both are registered in the container, allowing gradual migration
-3. The `repository-adapter.ts` provides backward compatibility
+```typescript
+import { createSpaceService } from './components/space/service.factory';
 
-This dual-registration approach ensures all existing code continues to work while new code can use the more powerful InversifyJS features.
+// Create with authentication
+const spaceService = createSpaceService({ authToken: 'user-jwt-token' });
+
+// Or use admin connection
+const adminSpaceService = createSpaceService();
+```
+
+This pattern ensures proper Row-Level Security while maintaining a clean architecture.

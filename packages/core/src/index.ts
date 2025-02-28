@@ -9,7 +9,6 @@ initializeContainer(defaultConfig);
 // Export components
 export * from './components';
 export * from './container';
-export * from './container/tokens';
 export * from './context/types';
 export * from './shared';
 

@@ -34,7 +34,7 @@ type DbPerson = {
   name: string | null;
   surname: string | null;
   email: string | null;
-  slug: string;
+  slug: string | null;
   avatarUrl: string | null;
   description: string | null;
   location: string | null;

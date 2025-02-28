@@ -1,7 +1,6 @@
-import { Repository } from '../../container/types';
 import { Space } from './types';
 
-export interface SpaceRepository extends Repository {
+export interface SpaceRepository {
   findById(id: number): Promise<Space | null>;
   findBySlug(slug: string): Promise<Space | null>;
   findAll(): Promise<Space[]>;
