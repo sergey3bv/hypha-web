@@ -16,6 +16,12 @@ export const SYMBOLS = {
   // Core system symbols
   StorageType: Symbol('StorageType'),
 
+  // Database connections
+  Database: {
+    AdminConnection: Symbol('Database.AdminConnection'),
+    UserConnection: Symbol('Database.UserConnection'),
+  },
+
   // Repository symbols
   // These will replace the existing repository tokens
   Repositories: {

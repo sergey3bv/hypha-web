@@ -1,28 +1,50 @@
 import { eq, sql } from 'drizzle-orm';
+import {
+  people,
+  spaces,
+  memberships,
+  schema,
+  db as defaultDb,
+} from '@hypha-platform/storage-postgres';
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
-
-import {
-  db as defaultDb,
-  memberships,
-  people,
-  Person as DbPerson,
-  schema,
-  spaces,
-  type Database,
-} from '@hypha-platform/storage-postgres';
+import { injectable, inject, optional } from 'inversify';
+import { SYMBOLS } from '../../container/types';
+import { Database } from '@hypha-platform/storage-postgres';
+import { Person } from './types';
+import { PaginatedResponse } from '../../shared';
 
 import {
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
   PeopleRepository,
 } from './repository';
-import { Person } from './types';
-import { nullToUndefined } from '../../utils/null-to-undefined';
-import { PaginatedResponse } from '../../shared/types';
 
+// Helper function to convert null to undefined
+const nullToUndefined = <T>(value: T | null): T | undefined =>
+  value === null ? undefined : value;
+
+// Type from the database
+type DbPerson = {
+  id: number;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  slug: string;
+  avatarUrl: string | null;
+  description: string | null;
+  location: string | null;
+  nickname: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
+  total?: number;
+};
+
+@injectable()
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(
+    @inject(SYMBOLS.Database.AdminConnection)
+    @optional()
     private db: Database | NodePgDatabase<typeof schema> = defaultDb,
   ) {}
 

@@ -3,17 +3,17 @@ import {
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
 } from './repository';
-import { Container } from '../../container/types';
-import { Tokens } from '../../container/tokens';
 import { Person } from './types';
 import { PaginatedResponse } from '../../shared';
+import { injectable, inject } from 'inversify';
+import { SYMBOLS } from '../../container/types';
 
+@injectable()
 export class PeopleService {
-  private repository: PeopleRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.PeopleRepository);
-  }
+  constructor(
+    @inject(SYMBOLS.Repositories.PeopleRepository)
+    private repository: PeopleRepository,
+  ) {}
 
   async findBySpaceId(
     { spaceId }: { spaceId: number },
