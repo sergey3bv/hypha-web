@@ -17,7 +17,6 @@ export { Container } from 'inversify';
 // Database provider
 export {
   DatabaseProvider,
-  DB_TOKENS,
   type UserDatabaseOptions,
   type DatabaseInstance,
 } from './database-provider';

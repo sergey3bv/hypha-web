@@ -9,12 +9,7 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { NeonHttpDatabase } from 'drizzle-orm/neon-http';
-
-// Define symbols for different DB connections
-export const DB_TOKENS = {
-  AdminConnection: Symbol('AdminConnection'),
-  UserConnection: Symbol('UserConnection'),
-};
+import invariant from 'tiny-invariant';
 
 /**
  * Options for creating a user-specific database connection
@@ -24,11 +19,6 @@ export interface UserDatabaseOptions {
    * JWT token for user authentication with Neon RLS
    */
   authToken?: string;
-
-  /**
-   * The role to use (default: 'authenticated')
-   */
-  role?: 'authenticated' | 'anonymous';
 }
 
 // Define a generic database type that can be either Neon or NodePg
@@ -65,22 +55,14 @@ export class DatabaseProvider {
     // Merge saved options with provided options, with provided taking precedence
     const effectiveOptions = { ...this.userOptions, ...options };
 
-    if (effectiveOptions.authToken) {
-      try {
-        // Create Neon connection with auth token for RLS
-        const sql = neon(process.env.DEFAULT_DB_AUTHENTICATED_URL!, {
-          authToken: effectiveOptions.authToken, // This enables RLS with the user's permissions
-        });
+    invariant(effectiveOptions.authToken, 'AuthToken is required');
 
-        // Create drizzle instance with the authenticated connection
-        return drizzle(sql, { schema });
-      } catch (error) {
-        console.error('Failed to create authenticated DB connection:', error);
-        // Fall back to admin connection if token is invalid
-      }
-    }
+    // Create Neon connection with auth token for RLS
+    const sql = neon(process.env.DEFAULT_DB_AUTHENTICATED_URL!, {
+      authToken: effectiveOptions.authToken, // This enables RLS with the user's permissions
+    });
 
-    // No auth token or connection failed, use admin connection
-    return defaultDb;
+    // Create drizzle instance with the authenticated connection
+    return drizzle(sql, { schema });
   }
 }
