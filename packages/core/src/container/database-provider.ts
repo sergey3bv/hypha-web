@@ -33,16 +33,35 @@ export interface UserDatabaseOptions {
  */
 @injectable()
 export class DatabaseProvider {
-  // For now, just return the default database
-  // In future implementations, this will be enhanced to support RLS
+  private userOptions?: UserDatabaseOptions;
+
+  /**
+   * Configure the user context for future database operations
+   */
+  configureUser(options: UserDatabaseOptions): void {
+    this.userOptions = options;
+  }
+
+  /**
+   * Get the admin database connection (privileged)
+   */
   getAdminDatabase() {
     return defaultDb;
   }
 
-  // This will be implemented once we have the infrastructure for user tokens
+  /**
+   * Get a user-specific database connection with RLS
+   * @param options Override options for this specific request
+   */
   getUserDatabase(options: UserDatabaseOptions = {}) {
     // For now, just use the default db
     // Later this will use the auth token with Neon RLS
+    // Merge saved options with provided options, with provided taking precedence
+    const effectiveOptions = { ...this.userOptions, ...options };
+
+    // TODO: When implementing RLS, create a new connection with the authToken
+    // console.log('Using auth token for DB:', effectiveOptions.authToken);
+
     return defaultDb;
   }
 }

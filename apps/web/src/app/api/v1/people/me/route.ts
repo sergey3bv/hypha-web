@@ -1,18 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { neon } from '@neondatabase/serverless';
-import { people } from '@hypha-platform/storage-postgres';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { createPeopleService } from '@hypha-platform/core';
 
 export async function GET(request: NextRequest) {
-  const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
+  try {
+    const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
+    if (!authToken) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
-  const db = drizzle(
-    neon(process.env.DEFAULT_DB_AUTHENTICATED_URL!, {
-      authToken: authToken, // Pass the generated JWT here
-    }),
-  );
+    // Get the PeopleService using the factory method and pass the auth token
+    const peopleService = createPeopleService({ authToken });
 
-  const [user] = await db.select().from(people).limit(1);
+    // Get the current user using the new findMe method
+    const user = await peopleService.findMe();
 
-  return NextResponse.json({ user });
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ user });
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 },
+    );
+  }
 }

@@ -225,4 +225,30 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
   async delete(id: number): Promise<void> {
     await this.db.delete(people).where(eq(people.id, id));
   }
+
+  /**
+   * Find the current authenticated user based on their JWT token
+   * This uses auth.user_id() provided by Neon RLS Authorize
+   * matching against the sub column in the people table
+   */
+  async findMe(): Promise<Person | null> {
+    try {
+      // Use Neon's auth.user_id() to get the JWT subject ID
+      // and match it against the sub column in the people table
+      const [dbPerson] = await this.db
+        .select()
+        .from(schema.people)
+        .where(sql`sub = auth.user_id()`)
+        .limit(1);
+
+      if (!dbPerson) {
+        return null;
+      }
+
+      return this.mapToDomainPerson(dbPerson);
+    } catch (error) {
+      console.error('Error finding authenticated user:', error);
+      return null;
+    }
+  }
 }
