@@ -19,9 +19,16 @@ export const SYMBOLS = {
   // Repository symbols
   // These will replace the existing repository tokens
   Repositories: {
-    // Add your repository symbols here, for example:
-    // UserRepository: Symbol('UserRepository'),
-    // ProductRepository: Symbol('ProductRepository'),
+    // Main repositories from the existing system
+    SpaceRepository: Symbol('SpaceRepository'),
+    SpaceConfigRepository: Symbol('SpaceConfigRepository'),
+    DocumentRepository: Symbol('DocumentRepository'),
+    PeopleRepository: Symbol('PeopleRepository'),
+
+    // Additional repositories that appear in the tokens file
+    AgreementRepository: Symbol('AgreementRepository'),
+    MemberRepository: Symbol('MemberRepository'),
+    CommentRepository: Symbol('CommentRepository'),
   },
 };
 

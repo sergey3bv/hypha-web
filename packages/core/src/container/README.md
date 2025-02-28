@@ -11,7 +11,9 @@ The DI container uses a modular approach to manage dependencies and enable bette
 - `inversify.config.ts`: Core container setup and storage context management
 - `types.ts`: Symbol definitions and token utilities
 - `repository.module.ts`: Registration of repository implementations by storage type
-- `repository-registry.ts` (legacy): Will be deprecated in favor of the new DI system
+- `repository-adapter.ts`: Backward compatibility adapter for the old system
+- `token-mapping.ts`: Maps old tokens to new symbols
+- `bootstrap.ts`: Initializes the container at startup
 
 ## Usage
 
@@ -32,18 +34,35 @@ const userRepository = container.get<UserRepository>(SYMBOLS.Repositories.UserRe
 
 ### Migration from Old Repository System
 
-During the migration, both systems will work in parallel. The old `getRepositoryImplementation` function will gradually be replaced with direct container injections.
+During the migration, both systems will work in parallel using the adapter pattern:
+
+```typescript
+// Old way (will continue to work during migration)
+import { getRepositoryImplementation } from './container/repository-registry';
+import { Tokens } from './container/tokens';
+
+const repository = getRepositoryImplementation(Tokens.SpaceRepository, 'postgres');
+
+// New way (preferred)
+import { injectable, inject } from 'inversify';
+import { SYMBOLS } from './container/types';
+
+@injectable()
+class MyService {
+  constructor(@inject(SYMBOLS.Repositories.SpaceRepository) private repository: SpaceRepository) {}
+}
+```
 
 ## Container Initialization
 
-When the application starts, we load the repository module:
+When the application starts, initialize the container:
 
 ```typescript
-import { container } from './container/inversify.config';
-import { createRepositoryModule } from './container/repository.module';
+import { initializeContainer } from './container/bootstrap';
+import { defaultConfig } from './config/defaults';
 
-// Load repository module
-container.load(createRepositoryModule());
+// Bootstrap the container
+initializeContainer(defaultConfig);
 ```
 
 ## Adding New Dependencies
@@ -53,3 +72,13 @@ To add a new injectable class:
 1. Define a symbol in `types.ts`
 2. Add the `@injectable()` decorator to your class
 3. Use `@inject(SYMBOL)` in constructors for dependencies
+
+## Token Mapping System
+
+The token mapping system bridges between the old token-based DI and the new InversifyJS container:
+
+1. Old tokens from `Tokens` are mapped to new symbols in `SYMBOLS.Repositories`
+2. Both are registered in the container, allowing gradual migration
+3. The `repository-adapter.ts` provides backward compatibility
+
+This dual-registration approach ensures all existing code continues to work while new code can use the more powerful InversifyJS features.

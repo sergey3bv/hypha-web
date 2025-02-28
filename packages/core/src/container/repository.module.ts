@@ -1,7 +1,8 @@
 import { ContainerModule } from 'inversify';
 import { defaultRepositoryMap } from '../config/defaults';
-import { Repository, RepositoryToken } from './types';
+import { Repository } from './types';
 import { StorageContext } from './inversify.config';
+import { getSymbolForToken } from './token-mapping';
 
 /**
  * Creates a container module that registers all repositories with their corresponding
@@ -11,7 +12,12 @@ export function createRepositoryModule(): ContainerModule {
   return new ContainerModule((bind) => {
     // Register all repositories from the default repository map
     for (const [token, implementations] of defaultRepositoryMap.entries()) {
-      registerRepositoryToken(bind, token, implementations);
+      // Register with both the old token (for the adapter pattern) and the new symbol
+      const symbol = getSymbolForToken(token);
+
+      // Register repository implementation factories
+      registerRepositoryImplementation(bind, token, implementations);
+      registerRepositoryImplementation(bind, symbol, implementations);
     }
   });
 }
@@ -20,12 +26,12 @@ export function createRepositoryModule(): ContainerModule {
  * Registers a repository token with its implementations for different storage types.
  * Uses a factory function that selects the appropriate implementation based on the current storage type.
  */
-function registerRepositoryToken<T extends Repository>(
+function registerRepositoryImplementation<T extends Repository>(
   bind: any, // Using any for now to avoid type issues
-  token: RepositoryToken<T>,
+  tokenOrSymbol: symbol,
   implementations: Record<string, new (...args: any[]) => T>,
 ): void {
-  bind(token).toDynamicValue(() => {
+  bind(tokenOrSymbol).toDynamicValue(() => {
     const storageType = StorageContext.storageType;
 
     if (!storageType) {
@@ -36,7 +42,7 @@ function registerRepositoryToken<T extends Repository>(
 
     if (!Implementation) {
       throw new Error(
-        `No implementation found for storage type ${storageType} and token ${token.toString()}`,
+        `No implementation found for storage type ${storageType} and token ${tokenOrSymbol.toString()}`,
       );
     }
 
