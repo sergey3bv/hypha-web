@@ -2,7 +2,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'BTC-1',
-    icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WKbApXaHtAPBNnR6KqMimW97IWDpBh2NgCwxs2OBPnmQ4NbG2mGtLV~WmYT~pISVpXV5XY3sjryTCHxVLVvyvTVSliQFGsepOB2PUHsAFGESRVC1A1yHIeBV1xWsZ5RVv8gTULSGt4mpoW1bJcVYxKE6LoaTxDsTrvKa7BEGVcRcxfW82x2WGp2gVLPptXQO-~mE2f6iG2pch6TX05fC6UF-Rb59zgyfJgMf11JyVYgPg40-dosnelxbqs0UfhgODqdKWQLSpSklya0ZzWp7auuJTAC4fneNtQF8LqsZZXyVUxn3zNos~G0GLvNLm5cvrJUPwCV16mwqmkjhjas6zQ__',
+    icon: '/placeholder/btc.png',
     name: 'Bitcoin',
     symbol: 'BTC',
     value: 5.25791,
@@ -44,7 +44,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'ETH-1',
-    icon: 'https://s3-alpha-sig.figma.com/img/aa94/0f1c/549bd8537863aa03286c4d4bf31a73c7?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B2OKc-ZWzWIpiRKBKgWaghRjhISnp7U~GknTb6e03FlV5V7y7a9ffofM3JhBW5Rb3KG2C3N2PUZhQx5YB75vwsmcLVz55uFTrc96Pn0Wxu7pijKKKx3Vq~s8QF31OpmURfgPhFIKFj8pCtxn7flPSMZwzdG0bmqc-Xx3N~8ml83~9MkOqPEtCcQGCBt2YCIo2HT~Eyee-TOA8pdouINnTf2I4A2xgIZ532vzZCsX5vqvKVRou0W-CMh6bsmqLu06IFNVHHcJ2MPXrTF9Q8-77ETN8rfzxAksdtfiZ7E1xJokoIVWzK8sUi5dKDmDrkOzPEy~YPVV9zDUWNC0iwYVvA__',
+    icon: '/placeholder/eth.png',
     name: 'Ethereum',
     symbol: 'ETH',
     value: 5.25791,
@@ -86,7 +86,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'BTC-2',
-    icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WKbApXaHtAPBNnR6KqMimW97IWDpBh2NgCwxs2OBPnmQ4NbG2mGtLV~WmYT~pISVpXV5XY3sjryTCHxVLVvyvTVSliQFGsepOB2PUHsAFGESRVC1A1yHIeBV1xWsZ5RVv8gTULSGt4mpoW1bJcVYxKE6LoaTxDsTrvKa7BEGVcRcxfW82x2WGp2gVLPptXQO-~mE2f6iG2pch6TX05fC6UF-Rb59zgyfJgMf11JyVYgPg40-dosnelxbqs0UfhgODqdKWQLSpSklya0ZzWp7auuJTAC4fneNtQF8LqsZZXyVUxn3zNos~G0GLvNLm5cvrJUPwCV16mwqmkjhjas6zQ__',
+    icon: '/placeholder/btc.png',
     name: 'Bitcoin',
     symbol: 'BTC',
     value: 5.25791,
@@ -128,7 +128,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'ETH-2',
-    icon: 'https://s3-alpha-sig.figma.com/img/aa94/0f1c/549bd8537863aa03286c4d4bf31a73c7?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B2OKc-ZWzWIpiRKBKgWaghRjhISnp7U~GknTb6e03FlV5V7y7a9ffofM3JhBW5Rb3KG2C3N2PUZhQx5YB75vwsmcLVz55uFTrc96Pn0Wxu7pijKKKx3Vq~s8QF31OpmURfgPhFIKFj8pCtxn7flPSMZwzdG0bmqc-Xx3N~8ml83~9MkOqPEtCcQGCBt2YCIo2HT~Eyee-TOA8pdouINnTf2I4A2xgIZ532vzZCsX5vqvKVRou0W-CMh6bsmqLu06IFNVHHcJ2MPXrTF9Q8-77ETN8rfzxAksdtfiZ7E1xJokoIVWzK8sUi5dKDmDrkOzPEy~YPVV9zDUWNC0iwYVvA__',
+    icon: '/placeholder/eth.png',
     name: 'Ethereum',
     symbol: 'ETH',
     value: 5.25791,
@@ -170,7 +170,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'BTC-3',
-    icon: 'https://s3-alpha-sig.figma.com/img/245b/338d/4199c4b76377fa29775a7d395db0e05d?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=WKbApXaHtAPBNnR6KqMimW97IWDpBh2NgCwxs2OBPnmQ4NbG2mGtLV~WmYT~pISVpXV5XY3sjryTCHxVLVvyvTVSliQFGsepOB2PUHsAFGESRVC1A1yHIeBV1xWsZ5RVv8gTULSGt4mpoW1bJcVYxKE6LoaTxDsTrvKa7BEGVcRcxfW82x2WGp2gVLPptXQO-~mE2f6iG2pch6TX05fC6UF-Rb59zgyfJgMf11JyVYgPg40-dosnelxbqs0UfhgODqdKWQLSpSklya0ZzWp7auuJTAC4fneNtQF8LqsZZXyVUxn3zNos~G0GLvNLm5cvrJUPwCV16mwqmkjhjas6zQ__',
+    icon: '/placeholder/btc.png',
     name: 'Bitcoin',
     symbol: 'BTC',
     value: 5.25791,
@@ -212,7 +212,7 @@ export const data = [
   {
     closeUrl: '',
     slug: 'ETH-3',
-    icon: 'https://s3-alpha-sig.figma.com/img/aa94/0f1c/549bd8537863aa03286c4d4bf31a73c7?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B2OKc-ZWzWIpiRKBKgWaghRjhISnp7U~GknTb6e03FlV5V7y7a9ffofM3JhBW5Rb3KG2C3N2PUZhQx5YB75vwsmcLVz55uFTrc96Pn0Wxu7pijKKKx3Vq~s8QF31OpmURfgPhFIKFj8pCtxn7flPSMZwzdG0bmqc-Xx3N~8ml83~9MkOqPEtCcQGCBt2YCIo2HT~Eyee-TOA8pdouINnTf2I4A2xgIZ532vzZCsX5vqvKVRou0W-CMh6bsmqLu06IFNVHHcJ2MPXrTF9Q8-77ETN8rfzxAksdtfiZ7E1xJokoIVWzK8sUi5dKDmDrkOzPEy~YPVV9zDUWNC0iwYVvA__',
+    icon: '/placeholder/eth.png',
     name: 'Ethereum',
     symbol: 'ETH',
     value: 5.25791,
