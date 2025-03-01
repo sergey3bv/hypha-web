@@ -47,6 +47,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'a.storyblok.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'private-user-images.githubusercontent.com',
+      },
     ],
   },
   webpack: (config) => {
