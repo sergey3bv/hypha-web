@@ -6,7 +6,7 @@ import { useAuthentication } from '@hypha-platform/authentication';
 
 export const useMe = () => {
   const { getAccessToken, user } = useAuthentication();
-  const endpoint = React.useMemo(() => `/api/v1/people/me/`, []);
+  const endpoint = React.useMemo(() => `/api/v1/people/me`, []);
 
   const { data: jwt } = useSWR(user ? [user.id] : null, () => getAccessToken());
 
