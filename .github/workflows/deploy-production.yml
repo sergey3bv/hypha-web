@@ -34,12 +34,6 @@ jobs:
         env:
           DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}
 
-      - name: 'Run Seeds (TODO: remove for production)'
-        run: |
-          npx nx run storage-postgres:seed:production
-        env:
-          DEFAULT_DB_URL: ${{ secrets.POSTGRES_URL }}
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
