@@ -8,18 +8,25 @@ import { FilterParams } from '@hypha-platform/graphql/rsc';
 
 import { useSpaceSlug } from './use-space-slug';
 import { Document } from '@hypha-platform/core';
+import { UseDocuments, UseDocumentsReturn } from '@hypha-platform/epics';
 
-export const useSpaceDocuments = ({
+export const useSpaceDocuments: UseDocuments = ({
   page = 1,
+  pageSize = 4,
   filter,
 }: {
   page?: number;
+  pageSize?: number;
   filter?: FilterParams<Pick<Document, 'state'>>;
-}) => {
+}): UseDocumentsReturn => {
   const spaceSlug = useSpaceSlug();
 
   const queryParams = React.useMemo(() => {
-    const effectiveFilter = { page, ...(filter ? { ...filter } : {}) };
+    const effectiveFilter = {
+      page,
+      pageSize,
+      ...(filter ? { ...filter } : {}),
+    };
     if (!effectiveFilter || Object.keys(effectiveFilter).length === 0)
       return '';
     return `?${queryString.stringify(effectiveFilter)}`;

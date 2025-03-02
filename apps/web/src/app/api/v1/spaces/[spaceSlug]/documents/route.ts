@@ -20,11 +20,9 @@ export async function GET(
     const pageSize = parseInt(url.searchParams.get('pageSize') || '10', 10);
     const state = url.searchParams.get('state');
 
-    // Get filter parameters if any
     const filter = {
       ...(state ? { state } : {}),
     };
-    // Add any filter logic here if needed in the future
 
     const paginatedDocuments = await documentsService.getAllBySpaceSlug(
       { spaceSlug },
