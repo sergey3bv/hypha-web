@@ -15,6 +15,14 @@ export class DocumentService {
     return this.repository.findAll();
   }
 
+  async getAllBySpaceSlug({
+    spaceSlug,
+  }: {
+    spaceSlug: string;
+  }): Promise<Document[]> {
+    return this.repository.findAllBySpaceSlug({ spaceSlug });
+  }
+
   async getById(id: number): Promise<Document> {
     const document = await this.repository.findById(id);
     if (!document) {

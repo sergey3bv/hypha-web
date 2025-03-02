@@ -3,6 +3,7 @@ import {
   documents,
   Document as DbDocument,
   db as defaultDb,
+  spaces,
 } from '@hypha-platform/storage-postgres';
 import { Document, DocumentState } from './types';
 import { DocumentRepository } from './repository';
@@ -52,6 +53,22 @@ export class DocumentRepositoryPostgres implements DocumentRepository {
   async findAll(): Promise<Document[]> {
     const results = await this.db.select().from(documents);
     return results.map(this.mapToDocument);
+  }
+
+  async findAllBySpaceSlug({
+    spaceSlug,
+  }: {
+    spaceSlug: string;
+  }): Promise<Document[]> {
+    const results = await this.db
+      .select({
+        document: documents,
+      })
+      .from(documents)
+      .innerJoin(spaces, eq(documents.spaceId, spaces.id))
+      .where(eq(spaces.slug, spaceSlug));
+
+    return results.map((result) => this.mapToDocument(result.document));
   }
 
   async findMostRecent(): Promise<Document | null> {

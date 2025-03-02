@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createPeopleService } from '@hypha-platform/core';
+
+import { createDocumentService } from '@hypha-platform/core';
 
 export async function GET(
   request: NextRequest,
@@ -8,22 +9,17 @@ export async function GET(
   const { spaceSlug } = await params;
 
   // Get token from Authorization header
-  const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
 
+  const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
   try {
-    // Create the people service with the auth token to get members for this space
-    const peopleService = createPeopleService({ authToken });
+    const documentsService = createDocumentService();
 
     // Get URL parameters for pagination
     const url = new URL(request.url);
     const page = parseInt(url.searchParams.get('page') || '1', 10);
     const pageSize = parseInt(url.searchParams.get('pageSize') || '10', 10);
 
-    // Get members by space slug with pagination
-    const members = await peopleService.findBySpaceSlug(
-      { spaceSlug },
-      { pagination: { page, pageSize } },
-    );
+    const members = await documentsService.getAllBySpaceSlug({ spaceSlug });
 
     return NextResponse.json(members);
   } catch (error) {
