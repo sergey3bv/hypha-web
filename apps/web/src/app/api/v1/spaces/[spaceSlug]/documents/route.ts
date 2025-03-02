@@ -29,13 +29,6 @@ export async function GET(
       { pagination: { page, pageSize }, filter },
     );
 
-    console.debug(`route GET /api/v1/spaces/${spaceSlug}/documents`, {
-      total: paginatedDocuments.pagination.total,
-      page,
-      pageSize,
-      state,
-    });
-
     return NextResponse.json(paginatedDocuments);
   } catch (error) {
     console.error('Failed to fetch documents:', error);

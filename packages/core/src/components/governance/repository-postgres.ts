@@ -83,8 +83,7 @@ export class DocumentRepositoryPostgres implements DocumentRepository {
           eq(spaces.slug, spaceSlug),
           eq(
             documents.state,
-            (filter.state as 'discussion' | 'proposal' | 'agreement') ||
-              'discussion',
+            filter.state as 'discussion' | 'proposal' | 'agreement',
           ),
         ),
       )
