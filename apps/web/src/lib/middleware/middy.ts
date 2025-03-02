@@ -35,7 +35,7 @@ export function withMiddyRoute(
     ) => {
       return handler(request, context);
     },
-  );
+  ) as MiddyNextRouteHandler;
 }
 
 /**

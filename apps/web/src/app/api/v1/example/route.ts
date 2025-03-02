@@ -1,15 +1,9 @@
-import {
-  withMiddyRoute,
-  withCommonMiddleware,
-} from '@web/lib/middleware/middy';
+import { NextRequest } from 'next/server';
 
 /**
  * GET handler for example API route
  */
-async function GET(
-  request: Request,
-  context: { params: Record<string, string | string[]> },
-) {
+export async function GET(request: Request | NextRequest): Promise<Response> {
   // Parse query parameters
   const { searchParams } = new URL(request.url);
   const name = searchParams.get('name') || 'World';
@@ -31,10 +25,7 @@ async function GET(
 /**
  * POST handler for example API route
  */
-async function POST(
-  request: Request,
-  context: { params: Record<string, string | string[]> },
-) {
+export async function POST(request: Request | NextRequest): Promise<Response> {
   try {
     // Parse request body
     const body = await request.json();
@@ -58,14 +49,17 @@ async function POST(
       },
     );
   } catch (error) {
-    // If error occurs, it will be handled by errorHandlerMiddleware
-    throw new Error('Failed to process request');
+    // Return error response
+    return new Response(
+      JSON.stringify({
+        error: 'Failed to process request',
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
   }
 }
-
-// Apply Middy middleware to handlers
-export const GET_handler = withCommonMiddleware(withMiddyRoute(GET));
-export const POST_handler = withCommonMiddleware(withMiddyRoute(POST));
-
-// Export handlers for Next.js App Router
-export { GET_handler as GET, POST_handler as POST };
