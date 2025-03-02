@@ -4,6 +4,7 @@ import { Image } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { CardCommentProps } from '../../interactions/components/card-comment';
 
+// TODO: load creator data
 const AVATAR_PLACEHOLDER =
   'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop';
 
