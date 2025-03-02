@@ -2,14 +2,21 @@ import { createPeopleService, createSpaceService } from '@hypha-platform/core';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
-  _: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ personSlug: string }> },
 ) {
   const { personSlug } = await params;
   console.debug(`GET /api/v1/people/${personSlug}/spaces`);
+
+  const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
+
+  if (!authToken) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     // First, get the person by slug
-    const peopleService = createPeopleService();
+    const peopleService = createPeopleService({ authToken });
     const person = await peopleService.findBySlug({ slug: personSlug });
 
     // Then, get all spaces for this person using their ID
