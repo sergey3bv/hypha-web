@@ -1,15 +1,15 @@
-import { Container } from '../../container/types';
-import { Tokens } from '../../container/tokens';
+import { inject, injectable } from 'inversify';
+import { SYMBOLS } from '../../container/types';
 import { Document } from './types';
-import { DocumentRepository } from './repository';
+import { type DocumentRepository } from './repository';
 import { DocumentNotFoundError } from './errors';
 
+@injectable()
 export class DocumentService {
-  private repository: DocumentRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.DocumentRepository);
-  }
+  constructor(
+    @inject(SYMBOLS.Repositories.DocumentRepository)
+    private repository: DocumentRepository,
+  ) {}
 
   async getAll(): Promise<Document[]> {
     return this.repository.findAll();
@@ -18,7 +18,7 @@ export class DocumentService {
   async getById(id: number): Promise<Document> {
     const document = await this.repository.findById(id);
     if (!document) {
-      throw new DocumentNotFoundError(id);
+      throw new DocumentNotFoundError(`Document with id ${id} not found`);
     }
     return document;
   }
@@ -26,7 +26,7 @@ export class DocumentService {
   async getBySlug(slug: string): Promise<Document> {
     const document = await this.repository.findBySlug(slug);
     if (!document) {
-      throw new DocumentNotFoundError(slug);
+      throw new DocumentNotFoundError(`Document with slug ${slug} not found`);
     }
     return document;
   }

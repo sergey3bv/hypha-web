@@ -1,4 +1,4 @@
-import { Container } from '../container/types';
+import { Container } from 'inversify';
 
 export interface Context {
   container: Container;

@@ -35,7 +35,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
               height={40}
               width={40}
               alt={name ? name : ''}
-            ></Image>
+            />
           </Skeleton>
         </div>
         <div className="flex flex-col justify-center">

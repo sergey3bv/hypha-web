@@ -1,19 +1,16 @@
-import {
-  PeopleRepository,
-  PeopleFindAllConfig,
-  PeopleFindBySpaceConfig,
-} from './repository';
-import { Container } from '../../container/types';
-import { Tokens } from '../../container/tokens';
+import { PeopleFindAllConfig, PeopleFindBySpaceConfig } from './repository';
+import type { PeopleRepository } from './repository';
 import { Person } from './types';
 import { PaginatedResponse } from '../../shared';
+import { injectable, inject } from 'inversify';
+import { SYMBOLS } from '../../container/types';
 
+@injectable()
 export class PeopleService {
-  private repository: PeopleRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.PeopleRepository);
-  }
+  constructor(
+    @inject(SYMBOLS.Repositories.PeopleRepository)
+    private repository: PeopleRepository,
+  ) {}
 
   async findBySpaceId(
     { spaceId }: { spaceId: number },
@@ -47,5 +44,14 @@ export class PeopleService {
 
   async update(person: Person): Promise<Person> {
     return this.repository.update(person);
+  }
+
+  /**
+   * Returns the current user's profile
+   * Uses auth.user_id() provided by Neon RLS Authorize to identify the user
+   */
+  async findMe(): Promise<Person | null> {
+    // Use the repository's findMe method which queries based on auth.user_id()
+    return this.repository.findMe();
   }
 }

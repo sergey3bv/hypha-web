@@ -1,15 +1,13 @@
-import { defaultConfig } from '../../config/defaults';
-import { getContainer } from '../../container';
 import { PeopleService } from './service';
+import { createRequestScope } from '../../container';
 
 type CreatePeopleServiceProps = {
-  config?: typeof defaultConfig;
+  authToken: string;
 };
 
 export const createPeopleService = ({
-  config = defaultConfig,
-}: CreatePeopleServiceProps = {}) => {
-  const container = getContainer(config);
-  const peopleService = new PeopleService(container);
-  return peopleService;
+  authToken,
+}: CreatePeopleServiceProps) => {
+  const requestContainer = createRequestScope({ authToken });
+  return requestContainer.get(PeopleService);
 };

@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
-import { people } from '@hypha-platform/storage-postgres';
+import { createPeopleService, Person } from '@hypha-platform/core';
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,12 +8,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const db = drizzle(
-      neon(process.env.DEFAULT_DB_AUTHENTICATED_URL!, {
-        authToken: authToken,
-      }),
-    );
+    // Get the PeopleService using the factory method and pass the auth token
+    const peopleService = createPeopleService({ authToken });
 
+    // Get request body
     const body = await request.json();
     const { name, surname, email, avatarUrl, description, location, nickname } =
       body;
@@ -27,18 +23,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const [newProfile] = await db
-      .insert(people)
-      .values({
-        name,
-        surname,
-        email,
-        avatarUrl,
-        description,
-        location,
-        nickname,
-      })
-      .returning();
+    // Prepare the person object with all required fields
+    // Note: id and slug will be handled by the repository
+    const personData: Partial<Person> = {
+      name,
+      surname,
+      email,
+      avatarUrl,
+      description,
+      location,
+      nickname,
+    };
+
+    // Use the PeopleService to create the profile
+    const newProfile = await peopleService.create(personData as Person);
 
     return NextResponse.json({ profile: newProfile }, { status: 201 });
   } catch (error) {

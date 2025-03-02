@@ -53,6 +53,8 @@ export const InnerSpaceCard: React.FC<InnerSpaceCardProps> = ({
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={logo as string}
             alt={title as string}
+            width={1200}
+            height={400}
           />
         </Skeleton>
       </CardHeader>

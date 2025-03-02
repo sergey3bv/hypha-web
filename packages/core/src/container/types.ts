@@ -1,12 +1,27 @@
-import { CoreConfig } from '../config/types';
+/**
+ * Symbol definitions for all injectable tokens
+ */
+export const SYMBOLS = {
+  // Core system symbols
+  StorageType: Symbol('StorageType'),
 
-// Base Repository interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-empty-object-type
-export interface Repository {}
+  // Database connections
+  Database: {
+    AdminConnection: Symbol('Database.AdminConnection'),
+    UserConnection: Symbol('Database.UserConnection'),
+  },
 
-export interface Container {
-  config: CoreConfig;
-  get<T>(token: symbol): T;
-  register<T>(token: symbol, value: T): void;
-  createScope(): Container;
-}
+  // Repository symbols
+  Repositories: {
+    // Main repositories
+    SpaceRepository: Symbol('SpaceRepository'),
+    SpaceConfigRepository: Symbol('SpaceConfigRepository'),
+    DocumentRepository: Symbol('DocumentRepository'),
+    PeopleRepository: Symbol('PeopleRepository'),
+
+    // Additional repositories
+    AgreementRepository: Symbol('AgreementRepository'),
+    MemberRepository: Symbol('MemberRepository'),
+    CommentRepository: Symbol('CommentRepository'),
+  },
+};

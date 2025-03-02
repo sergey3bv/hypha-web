@@ -1,30 +1,70 @@
 import { eq, sql } from 'drizzle-orm';
+import {
+  people,
+  spaces,
+  memberships,
+  schema,
+  db as defaultDb,
+} from '@hypha-platform/storage-postgres';
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
-
+import { injectable, inject, optional } from 'inversify';
+import { SYMBOLS } from '../../container/types';
+import { Database } from '@hypha-platform/storage-postgres';
+import { Person } from './types';
+import { PaginatedResponse } from '../../shared';
 import {
-  db as defaultDb,
-  memberships,
-  people,
-  Person as DbPerson,
-  schema,
-  spaces,
-  type Database,
-} from '@hypha-platform/storage-postgres';
+  DatabaseProvider,
+  DatabaseInstance,
+} from '../../container/database-provider';
 
 import {
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
   PeopleRepository,
 } from './repository';
-import { Person } from './types';
-import { nullToUndefined } from '../../utils/null-to-undefined';
-import { PaginatedResponse } from '../../shared/types';
 
+// Helper function to convert null to undefined
+const nullToUndefined = <T>(value: T | null): T | undefined =>
+  value === null ? undefined : value;
+
+// Type from the database
+type DbPerson = {
+  id: number;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  slug: string | null;
+  avatarUrl: string | null;
+  description: string | null;
+  location: string | null;
+  nickname: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
+  total?: number;
+};
+
+@injectable()
 export class PeopleRepositoryPostgres implements PeopleRepository {
   constructor(
-    private db: Database | NodePgDatabase<typeof schema> = defaultDb,
+    @inject(DatabaseProvider)
+    private dbProvider: DatabaseProvider,
+    @inject(SYMBOLS.Database.AdminConnection)
+    @optional()
+    private adminDb: Database | NodePgDatabase<typeof schema> = defaultDb,
   ) {}
+
+  // Get the appropriate database connection - use user connection when available
+  private get db(): DatabaseInstance {
+    try {
+      // Try to get user-specific database with RLS
+      return this.dbProvider.getUserDatabase();
+    } catch (error) {
+      // Fall back to admin connection if provider fails
+      console.warn('Falling back to admin database connection');
+      return this.adminDb;
+    }
+  }
 
   private mapToDomainPerson(dbPerson: DbPerson): Person {
     invariant(dbPerson.slug, 'Person must have a slug');
@@ -202,5 +242,31 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
 
   async delete(id: number): Promise<void> {
     await this.db.delete(people).where(eq(people.id, id));
+  }
+
+  /**
+   * Find the current authenticated user based on their JWT token
+   * This uses auth.user_id() provided by Neon RLS Authorize
+   * matching against the sub column in the people table
+   */
+  async findMe(): Promise<Person | null> {
+    try {
+      // Use Neon's auth.user_id() to get the JWT subject ID
+      // and match it against the sub column in the people table
+      const [dbPerson] = await this.db
+        .select()
+        .from(schema.people)
+        .where(sql`sub = auth.user_id()`)
+        .limit(1);
+
+      if (!dbPerson) {
+        return null;
+      }
+
+      return this.mapToDomainPerson(dbPerson);
+    } catch (error) {
+      console.error('Error finding authenticated user:', error);
+      return null;
+    }
   }
 }

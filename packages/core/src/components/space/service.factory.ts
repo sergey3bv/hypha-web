@@ -1,15 +1,13 @@
-import { defaultConfig } from '../../config/defaults';
-import { getContainer } from '../../container';
+import { createRequestScope } from '../../container';
 import { SpaceService } from './service';
 
 type CreateSpaceServiceProps = {
-  config?: typeof defaultConfig;
+  authToken?: string;
 };
 
 export const createSpaceService = ({
-  config = defaultConfig,
+  authToken,
 }: CreateSpaceServiceProps = {}) => {
-  const container = getContainer(config);
-  const peopleService = new SpaceService(container);
-  return peopleService;
+  const requestContainer = createRequestScope({ authToken });
+  return requestContainer.get(SpaceService);
 };

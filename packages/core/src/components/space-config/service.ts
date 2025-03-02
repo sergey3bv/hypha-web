@@ -1,15 +1,15 @@
+import { inject, injectable } from 'inversify';
 import { SpaceConfig } from './types';
-import { SpaceConfigRepository } from './repository';
-import { Container } from '../../container/types';
-import { Tokens } from '../../container/tokens';
+import { type SpaceConfigRepository } from './repository';
+import { SYMBOLS } from '../../container/types';
 import { StorageType } from '../../config/types';
 
+@injectable()
 export class SpaceConfigService {
-  private repository: SpaceConfigRepository;
-
-  constructor(private container: Container) {
-    this.repository = container.get(Tokens.SpaceConfigRepository);
-  }
+  constructor(
+    @inject(SYMBOLS.Repositories.SpaceConfigRepository)
+    private repository: SpaceConfigRepository,
+  ) {}
 
   async getStorageConfig(spaceSlug: string): Promise<SpaceConfig['storage']> {
     const config = await this.repository.findBySpaceSlug(spaceSlug);
