@@ -23,7 +23,7 @@ export class DocumentRepositoryPostgres implements DocumentRepository {
       id: dbDocument.id,
       creatorId: dbDocument.creatorId,
       title: dbDocument.title ?? '',
-      description: dbDocument.description ?? null,
+      description: dbDocument.description ?? undefined,
       slug: dbDocument.slug ?? '',
       state: dbDocument.state as DocumentState,
       createdAt: dbDocument.createdAt,
