@@ -26,12 +26,13 @@ This middleware architecture provides:
 
 ```
 /src
-  /middleware
-    index.ts          - Main exports
-    types.ts          - Type definitions
-    middy.ts          - Middy adapters for Next.js
-    next.ts           - Next.js middleware utilities
-  middleware.ts       - Next.js Edge middleware configuration
+  /lib                 - Utility libraries
+    /middleware        - Middleware utilities
+      index.ts         - Main exports
+      types.ts         - Type definitions
+      middy.ts         - Middy adapters for Next.js
+      next.ts          - Next.js middleware utilities
+  middleware.ts        - Next.js Edge middleware configuration
 ```
 
 ## Using the Middleware
@@ -44,7 +45,7 @@ To customize:
 
 ```typescript
 // src/middleware.ts
-import { composeMiddleware, corsMiddleware, loggingMiddleware, authMiddleware } from './middleware/next';
+import { composeMiddleware, corsMiddleware, loggingMiddleware, authMiddleware } from './lib/middleware/next';
 
 // Create a custom middleware chain
 const middlewareChain = composeMiddleware([
@@ -62,7 +63,7 @@ Wrap your API handlers with Middy middleware:
 
 ```typescript
 // src/app/api/example/route.ts
-import { withMiddyRoute, withCommonMiddleware } from '../../../middleware/middy';
+import { withMiddyRoute, withCommonMiddleware } from '../../../lib/middleware/middy';
 
 async function GET(request: Request, context: { params: Record<string, string> }) {
   // Your handler logic
@@ -104,3 +105,4 @@ const handler = withMiddyRoute(myHandler).use(customMiddleware()).use(otherMiddl
 - If TypeScript errors occur with Middy, ensure `@types/aws-lambda` is installed even though we're not using AWS Lambda directly
 - For issues with Next.js middleware, check that your matcher patterns in `middleware.ts` are correctly configured
 - When working with binary data in API routes, adjust your middleware to handle binary responses properly
+- If you see "duplicate page" warnings, ensure your middleware modules are placed in the `/src/lib/middleware` directory and not in a location that Next.js scans for page components

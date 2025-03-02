@@ -3,7 +3,7 @@ import {
   corsMiddleware,
   loggingMiddleware,
   authMiddleware,
-} from './middleware/next';
+} from './lib/middleware/next';
 
 // Import i18n middleware
 import { middleware as i18nMiddleware } from '@hypha-platform/i18n';
@@ -15,7 +15,7 @@ const middlewareChain = composeMiddleware([
   // The i18n middleware must be called after CORS but before auth
   i18nMiddleware,
   // Add auth middleware with routes that don't require auth can be added here
-  authMiddleware(false), // Enable auth for all routes by default
+  authMiddleware(false), // TODO: Setup protected routes
 ]);
 
 // Export the middleware chain as the main middleware

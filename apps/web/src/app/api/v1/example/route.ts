@@ -1,4 +1,7 @@
-import { withMiddyRoute, withCommonMiddleware } from '@web/middleware/middy';
+import {
+  withMiddyRoute,
+  withCommonMiddleware,
+} from '@web/lib/middleware/middy';
 
 /**
  * GET handler for example API route

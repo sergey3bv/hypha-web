@@ -57,7 +57,7 @@ Adapts Middy for use with Next.js API routes:
 
 ```typescript
 // src/middleware.ts
-import { composeMiddleware, corsMiddleware, loggingMiddleware, authMiddleware } from './middleware/next';
+import { composeMiddleware, corsMiddleware, loggingMiddleware, authMiddleware } from './lib/middleware/next';
 
 export const middleware = composeMiddleware([loggingMiddleware(), corsMiddleware(), authMiddleware(true)]);
 ```
@@ -66,7 +66,7 @@ export const middleware = composeMiddleware([loggingMiddleware(), corsMiddleware
 
 ```typescript
 // src/app/api/example/route.ts
-import { withMiddyRoute, withCommonMiddleware } from '../../../middleware/middy';
+import { withMiddyRoute, withCommonMiddleware } from '@web/lib/middleware/middy';
 
 async function GET(request: Request) {
   return new Response(JSON.stringify({ message: 'Hello World' }));
@@ -79,7 +79,7 @@ export const GET = withCommonMiddleware(withMiddyRoute(GET));
 
 ```typescript
 // src/pages/api/example.ts
-import { withMiddyApi, withCommonMiddleware } from '../../middleware/middy';
+import { withMiddyApi, withCommonMiddleware } from '../../lib/middleware/middy';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -126,3 +126,8 @@ export function myMiddyMiddleware() {
 - **Reusability**: Shared middleware between different parts of the application
 - **Separation of Concerns**: Clear separation between Edge and API middleware
 - **Extensibility**: Easy to add new middleware
+
+## Important Notes
+
+- This middleware is placed in the `/lib` directory to avoid Next.js treating it as a page component
+- Modifying middleware requires restarting the development server for changes to take effect
