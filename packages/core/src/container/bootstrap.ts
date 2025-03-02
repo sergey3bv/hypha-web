@@ -6,7 +6,6 @@
 import { container } from './inversify.config';
 import { SYMBOLS } from './types';
 import { CoreConfig } from '../config/types';
-import { DatabaseProvider } from './database-provider';
 import { db as defaultDb } from '@hypha-platform/storage-postgres';
 import { PeopleService } from '../components/people/service';
 import { SpaceService } from '../components/space/service';
@@ -27,9 +26,6 @@ export function initializeContainer(config: CoreConfig): void {
 
   // Register database connections
   container.bind(SYMBOLS.Database.AdminConnection).toConstantValue(defaultDb);
-
-  // Register the database provider
-  container.bind(DatabaseProvider).toSelf().inSingletonScope();
 
   // Register repositories with their symbols
   container

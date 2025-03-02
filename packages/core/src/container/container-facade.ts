@@ -27,16 +27,13 @@ export function configureContainer(config: CoreConfig): void {
 /**
  * Create a scoped container for a specific request context
  */
-export function createRequestScope(context: { authToken?: string }) {
+export function createRequestScope(context: { authToken?: string } = {}) {
   // Create a new container for the request scope
   const scopedContiner = new Container({ parent: container });
   scopedContiner.bind(DatabaseProvider).toSelf().inSingletonScope();
 
-  // If we have auth token, configure database access
-  if (context.authToken) {
-    const dbProvider = scopedContiner.get(DatabaseProvider);
-    dbProvider.configureUser({ authToken: context.authToken });
-  }
+  const dbProvider = scopedContiner.get(DatabaseProvider);
+  dbProvider.configureUser({ authToken: context.authToken });
 
   return scopedContiner;
 }
