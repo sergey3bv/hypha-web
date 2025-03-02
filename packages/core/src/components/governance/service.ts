@@ -1,8 +1,12 @@
 import { inject, injectable } from 'inversify';
 import { SYMBOLS } from '../../container/types';
 import { Document } from './types';
-import { type DocumentRepository } from './repository';
+import {
+  type DocumentRepository,
+  FindAllBySpaceSlugConfig,
+} from './repository';
 import { DocumentNotFoundError } from './errors';
+import { PaginatedResponse } from '../../shared';
 
 @injectable()
 export class DocumentService {
@@ -15,12 +19,15 @@ export class DocumentService {
     return this.repository.findAll();
   }
 
-  async getAllBySpaceSlug({
-    spaceSlug,
-  }: {
-    spaceSlug: string;
-  }): Promise<Document[]> {
-    return this.repository.findAllBySpaceSlug({ spaceSlug });
+  async getAllBySpaceSlug(
+    {
+      spaceSlug,
+    }: {
+      spaceSlug: string;
+    },
+    config: FindAllBySpaceSlugConfig,
+  ): Promise<PaginatedResponse<Document>> {
+    return this.repository.findAllBySpaceSlug({ spaceSlug }, config);
   }
 
   async getById(id: number): Promise<Document> {
