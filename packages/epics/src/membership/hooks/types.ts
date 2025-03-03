@@ -12,3 +12,10 @@ export type UseMembersProps = {
 };
 
 export type UseMembers = (props: UseMembersProps) => UseMembersReturn;
+
+export type UseMemberSpacesReturn = {
+  members: Person[];
+  pagination?: PaginationMetadata;
+  isLoading: boolean;
+};
+export type UseMemberSpaces = () => UseMemberSpacesReturn;

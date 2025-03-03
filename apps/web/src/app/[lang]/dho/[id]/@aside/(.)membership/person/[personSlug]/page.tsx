@@ -11,11 +11,13 @@ import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/agreements/consta
 import { getDhoPathMembership } from '@web/app/[lang]/dho/[id]/membership/constants';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
 import { usePersonSlug } from '@web/hooks/use-person-slug';
+import { useSpacesByMemberSlug } from '@web/hooks/use-spaces-by-member-slug';
 
 export default function Member() {
   const { id, lang } = useParams();
   const personSlug = usePersonSlug();
   const { person, isLoading } = useMemberBySlug(personSlug);
+  const { spaces } = useSpacesByMemberSlug(personSlug);
 
   return (
     <SidePanel>
@@ -32,7 +34,7 @@ export default function Member() {
         }}
         isLoading={isLoading}
         basePath={getDhoPathAgreements(lang as Locale, id as string)}
-        spaces={[]}
+        spaces={spaces}
         useDocuments={useSpaceDocuments}
       />
     </SidePanel>
