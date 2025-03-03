@@ -19,6 +19,7 @@ type DaoCardProps = {
   activeAgreements?: number;
   openDiscussions?: number;
   isLoading?: boolean;
+  leadImage?: string;
 };
 
 const customCardHeaderStyles: React.CSSProperties = {
@@ -41,6 +42,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
   openDiscussions,
   isLoading = false,
   title,
+  leadImage,
 }) => {
   return (
     <Card className="h-full w-full">
@@ -53,7 +55,7 @@ export const CardOrganisation: React.FC<DaoCardProps> = ({
             width={454}
             height={150}
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
-            src={icon}
+            src={leadImage || '/placeholder/space-lead-image.png'}
             alt={title}
           />
         </Skeleton>

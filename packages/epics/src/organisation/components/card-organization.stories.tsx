@@ -19,5 +19,6 @@ export const Primary: Story = {
     openDiscussions: 2,
     title: 'Title',
     isLoading: false,
+    leadImage: '/placeholder/space-lead-image.png',
   },
 };
