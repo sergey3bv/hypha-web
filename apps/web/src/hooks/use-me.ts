@@ -4,6 +4,7 @@ import React from 'react';
 import useSWR from 'swr';
 import { useAuthentication } from '@hypha-platform/authentication';
 import { Person } from '@hypha-platform/storage-postgres';
+<<<<<<< HEAD
 import { useRouter } from 'next/navigation';
 
 interface UseMeHookProps {
@@ -14,6 +15,10 @@ export const useMe = ({ newUserRedirectPath = '' }: UseMeHookProps = {}): {
   person: Person | undefined;
   isLoading: boolean;
 } => {
+=======
+
+export const useMe = (): { person: Person; isLoading: boolean } => {
+>>>>>>> 32eacbc (feat(#405): fixed types in use-me hook)
   const { getAccessToken, user } = useAuthentication();
   const endpoint = React.useMemo(() => `/api/v1/people/me`, []);
 
