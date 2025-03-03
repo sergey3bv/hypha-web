@@ -40,7 +40,7 @@ export const SubspaceDetail = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <div className="text-4 font-medium flex items-center">{title}</div>
-        <Link href={closeUrl ?? ''}>
+        <Link href={closeUrl ?? ''} scroll={false}>
           <Button variant="ghost" colorVariant="neutral">
             Close
             <RxCross1 className="ml-2" />
