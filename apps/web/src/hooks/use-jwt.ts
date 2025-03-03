@@ -6,6 +6,7 @@ export const useJwt = () => {
   const { data: jwt, isLoading: isLoadingJwt } = useSWR(
     user?.id ? [user.id, 'jwt'] : null,
     () => getAccessToken(),
+    { refreshInterval: 1000 },
   );
 
   return { jwt, isLoadingJwt };
