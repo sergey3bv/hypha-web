@@ -22,6 +22,8 @@ import {
 import { useMe } from '@web/hooks/use-me';
 import { useParams } from 'next/navigation';
 import { Locale } from '@hypha-platform/i18n';
+import { useSpaceDocuments } from '@web/hooks/use-space-documents';
+
 
 export default function Profile() {
   const { lang } = useParams();
@@ -74,13 +76,13 @@ export default function Profile() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="agreements">
-          <AgreementsSection basePath="" />
+          <AgreementsSection basePath="" useDocuments={useSpaceDocuments}/>
         </TabsContent>
         <TabsContent value="proposals">
-          <ProposalsSection basePath="" />
+          <ProposalsSection basePath="" useDocuments={useSpaceDocuments}/>
         </TabsContent>
         <TabsContent value="discussions">
-          <DiscussionsSection basePath="" />
+          <DiscussionsSection basePath="" useDocuments={useSpaceDocuments}/>
         </TabsContent>
       </Tabs>
       <SpaceGroupSlider spaces={[]} type="Hypha" getHref={getHref} />
