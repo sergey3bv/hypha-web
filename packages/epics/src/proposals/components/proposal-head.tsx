@@ -2,10 +2,6 @@ import { Text } from '@radix-ui/themes';
 import { Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
 import { PersonAvatar } from '../../profile/components/person-avatar';
 
-// TODO: load creator data
-const AVATAR_PLACEHOLDER =
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop';
-
 export type CreatorType = {
   avatar?: string;
   name?: string;
