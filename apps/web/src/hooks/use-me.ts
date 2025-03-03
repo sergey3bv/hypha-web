@@ -2,9 +2,8 @@
 
 import React from 'react';
 import useSWR from 'swr';
-import { useAuthentication } from '@hypha-platform/authentication';
-import { useRouter } from 'next/navigation';
 import { Person } from '@hypha-platform/core';
+import { useJwt } from './use-jwt';
 
 interface UseMeHookProps {
   newUserRedirectPath?: string;
@@ -14,14 +13,9 @@ export const useMe = ({ newUserRedirectPath = '' }: UseMeHookProps = {}): {
   person: Person | undefined;
   isLoading: boolean;
 } => {
-  const { getAccessToken, user } = useAuthentication();
-  const endpoint = React.useMemo(() => `/api/v1/people/me`, []);
+  const { jwt, isLoadingJwt } = useJwt();
 
-  const { data: jwt, isLoading: isLoadingJwt } = useSWR(
-    user ? [user.id] : null,
-    () => getAccessToken(),
-  );
-  const router = useRouter();
+  const endpoint = React.useMemo(() => `/api/v1/people/me`, []);
 
   const { data: person, isLoading: isLoadingPerson } = useSWR(
     jwt ? [endpoint, jwt] : null,
