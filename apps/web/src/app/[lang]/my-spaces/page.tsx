@@ -73,9 +73,12 @@ export default async function Index(props: PageProps) {
             </Link>
           </div>
         </div>
-        <div data-testid="member-spaces-container" className="w-full">
+        <div
+          data-testid="member-spaces-container"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+        >
           {spaces.map((space) => (
-            <div key={space.id} className="mb-5">
+            <div key={space.id} className="mb-1">
               <Link href={getDhoPathAgreements(lang, space.slug as string)}>
                 <CardOrganisation
                   description={space.description as string}
@@ -85,6 +88,9 @@ export default async function Index(props: PageProps) {
                   activeAgreements={1}
                   openDiscussions={1}
                   title={space.title as string}
+                  leadImage={
+                    space.leadImage || '/placeholder/space-lead-image.png'
+                  }
                 />
               </Link>
             </div>
