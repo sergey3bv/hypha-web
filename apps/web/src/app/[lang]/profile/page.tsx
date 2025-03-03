@@ -36,7 +36,7 @@ export default function Profile() {
     avatar: person?.avatarUrl ?? '',
     name: person?.name ?? '',
     surname: person?.surname ?? '',
-    background: person?.avatarUrl ?? '',
+    background: person?.leadImageUrl ?? '',
     socials: {
       LinkedIn: person?.nickname ?? '',
       X: person?.nickname ?? '',

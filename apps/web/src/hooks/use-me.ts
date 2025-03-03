@@ -20,7 +20,6 @@ export const useMe = ({ newUserRedirectPath = '' }: UseMeHookProps = {}): {
   const { data: jwt } = useSWR(user ? [user.id] : null, () => getAccessToken());
   const router = useRouter();
 
-  console.debug('useMe', { endpoint });
   const { data: person, isLoading } = useSWR(
     jwt ? [endpoint, jwt] : null,
     ([endpoint, jwt]) =>

@@ -36,6 +36,7 @@ type DbPerson = {
   email: string | null;
   slug: string | null;
   avatarUrl: string | null;
+  leadImageUrl: string | null;
   description: string | null;
   location: string | null;
   nickname: string | null;
@@ -76,6 +77,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
       email: nullToUndefined(dbPerson.email),
       slug: dbPerson.slug,
       avatarUrl: nullToUndefined(dbPerson.avatarUrl),
+      leadImageUrl: nullToUndefined(dbPerson.leadImageUrl),
       description: nullToUndefined(dbPerson.description),
       location: nullToUndefined(dbPerson.location),
       nickname: nullToUndefined(dbPerson.nickname),

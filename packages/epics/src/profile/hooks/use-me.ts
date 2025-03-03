@@ -11,7 +11,6 @@ export const useMe = (): { person: Person | undefined; isLoading: boolean } => {
 
   const { data: jwt } = useSWR(user ? [user.id] : null, () => getAccessToken());
 
-  console.debug('useMe', { endpoint });
   const { data: person, isLoading } = useSWR(
     jwt ? [endpoint, jwt] : null,
     ([endpoint, jwt]) =>

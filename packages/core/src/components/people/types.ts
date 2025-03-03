@@ -5,6 +5,7 @@ export interface Person {
   email?: string;
   slug: string;
   avatarUrl?: string;
+  leadImageUrl?: string;
   description?: string;
   location?: string;
   nickname?: string;
