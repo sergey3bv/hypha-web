@@ -69,7 +69,7 @@ export default async function DhoLayout({
           <Image
             width={768}
             height={270}
-            className="rounded-xl max-h-[270px] w-full object-cover"
+            className="rounded-xl min-h-[270px] max-h-[270px] w-full object-cover"
             src={spaceFromDb.leadImage || '/placeholder/space-lead-image.png'}
             alt={spaceFromDb.title}
           ></Image>
