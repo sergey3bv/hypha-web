@@ -38,7 +38,8 @@ export class DocumentService {
     return document;
   }
 
-  async getBySlug(slug: string): Promise<Document> {
+  async getBySlug({ slug }: { slug: string }): Promise<Document> {
+    console.debug('getBySlug', { slug });
     const document = await this.repository.findBySlug(slug);
     if (!document) {
       throw new DocumentNotFoundError(`Document with slug ${slug} not found`);
