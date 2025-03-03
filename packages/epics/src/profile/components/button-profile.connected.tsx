@@ -1,14 +1,24 @@
 'use client';
 
-import { useAuthentication } from '@hypha-platform/authentication';
 import { ButtonProfile } from './button-profile';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
-import { useMe } from '../hooks/use-me';
+import { UseAuthentication } from 'packages/authentication/src/shared/types';
+import { UseMe } from '../hooks/types';
 
-export const ConnectedButtonProfile = () => {
+type ConnectedButtonProfileProps = {
+  useAuthentication: UseAuthentication;
+  useMe: UseMe;
+  newUserRedirectPath: string;
+};
+
+export const ConnectedButtonProfile = ({
+  useAuthentication,
+  useMe,
+  newUserRedirectPath,
+}: ConnectedButtonProfileProps) => {
   const { isAuthenticated, login, logout, user } = useAuthentication();
-  const { person } = useMe();
+  const { person } = useMe({ newUserRedirectPath });
 
   const router = useRouter();
   const { lang } = useParams();

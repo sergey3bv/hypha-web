@@ -11,8 +11,12 @@ import { Lato, Source_Sans_3 } from 'next/font/google';
 import clsx from 'clsx';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
-import { AuthProvider } from '@hypha-platform/authentication';
+import {
+  AuthProvider,
+  useAuthentication,
+} from '@hypha-platform/authentication';
 import { enableWeb3Auth } from '@hypha-platform/feature-flags';
+import { useMe } from '@web/hooks/use-me';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -85,7 +89,11 @@ export default async function RootLayout({
             ]}
           >
             <MenuTop.RightSlot>
-              <ConnectedButtonProfile />
+              <ConnectedButtonProfile
+                useAuthentication={useAuthentication}
+                useMe={useMe}
+                newUserRedirectPath="/profile/signup"
+              />
             </MenuTop.RightSlot>
           </MenuTop>
           <div className="pt-9 w-screen flex justify-normal">

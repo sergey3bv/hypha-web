@@ -1,6 +1,8 @@
+import { useAuthentication } from '@hypha-platform/authentication';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
+import { useMe } from '@web/hooks/use-me';
 
 export default async function DhoLayout(props: {
   children: React.ReactNode;
@@ -32,7 +34,11 @@ export default async function DhoLayout(props: {
         ]}
       >
         <MenuTop.RightSlot>
-          <ConnectedButtonProfile />
+          <ConnectedButtonProfile
+            useAuthentication={useAuthentication}
+            useMe={useMe}
+            newUserRedirectPath="/profile/signup"
+          />
         </MenuTop.RightSlot>
       </MenuTop>
       <div className="fixed bottom-0 right-0 flex-grow overflow-y-auto top-9 w-full bg-background/5">
