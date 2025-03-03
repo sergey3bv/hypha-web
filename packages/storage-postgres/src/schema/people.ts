@@ -12,6 +12,7 @@ export const people = pgTable(
       .default(sql`(auth.user_id())`),
     slug: text('slug').unique(),
     avatarUrl: text('avatar_url'),
+    leadImageUrl: text('lead_image_url'),
     description: text('description'),
     email: text('email').unique(),
     location: text('location'),
