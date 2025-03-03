@@ -10,10 +10,12 @@ import { SidePanel } from '@web/app/[lang]/@aside/_components/side-panel';
 import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/agreements/constants';
 import { getDhoPathMembership } from '@web/app/[lang]/dho/[id]/membership/constants';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
+import { usePersonSlug } from '@web/hooks/use-person-slug';
 
 export default function Member() {
-  const { slug, id, lang } = useParams();
-  const { person, isLoading } = useMemberBySlug(slug as string);
+  const { id, lang } = useParams();
+  const personSlug = usePersonSlug();
+  const { person, isLoading } = useMemberBySlug(personSlug);
 
   return (
     <SidePanel>
