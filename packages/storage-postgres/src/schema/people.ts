@@ -25,7 +25,7 @@ export const people = pgTable(
     // Apply RLS policy
     crudPolicy({
       role: authenticatedRole,
-      read: authUid(table.sub),
+      read: true,
       modify: authUid(table.sub),
     }),
   ],
