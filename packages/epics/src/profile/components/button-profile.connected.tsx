@@ -1,21 +1,39 @@
 'use client';
 
-import { useAuthentication } from '@hypha-platform/authentication';
-import { useProfile } from '../hooks/use-profile';
 import { ButtonProfile } from './button-profile';
+import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { UseAuthentication } from 'packages/authentication/src/shared/types';
+import { UseMe } from '../hooks/types';
 
-export const ConnectedButtonProfile = () => {
+type ConnectedButtonProfileProps = {
+  useAuthentication: UseAuthentication;
+  useMe: UseMe;
+  newUserRedirectPath: string;
+};
+
+export const ConnectedButtonProfile = ({
+  useAuthentication,
+  useMe,
+  newUserRedirectPath,
+}: ConnectedButtonProfileProps) => {
   const { isAuthenticated, login, logout, user } = useAuthentication();
-  const { profile } = useProfile({ address: user?.wallet?.address });
+  const { person } = useMe({ newUserRedirectPath });
+
+  const router = useRouter();
+  const { lang } = useParams();
 
   return (
     <ButtonProfile
-      avatarSrc={profile?.avatar}
-      userName={profile?.name}
+      avatarSrc={person?.avatarUrl ?? ''}
+      userName={person?.name ?? ''}
       address={user?.wallet?.address}
       isConnected={isAuthenticated}
       onLogin={login}
       onLogout={logout}
+      onProfile={() => {
+        router.push(`/${lang}/profile/`);
+      }}
     />
   );
 };

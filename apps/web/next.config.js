@@ -59,6 +59,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'private-user-images.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.licdn.com',
+      },
     ],
   },
   webpack: (config) => {
