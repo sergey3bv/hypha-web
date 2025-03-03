@@ -58,7 +58,7 @@ export const EditPersonSection = ({
           id={id}
           isLoading={isLoading}
         />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"

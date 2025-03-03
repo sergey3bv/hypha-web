@@ -28,7 +28,7 @@ export const DiscussionDetail = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <DiscussionHead creator={creator} title={title} isLoading={isLoading} />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"

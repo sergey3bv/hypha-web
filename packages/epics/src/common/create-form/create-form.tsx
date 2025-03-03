@@ -23,7 +23,7 @@ export const CreateForm = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <CreateFormHead creator={creator} isLoading={isLoading} type={type} />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"
