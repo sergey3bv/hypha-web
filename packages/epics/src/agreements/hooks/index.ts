@@ -1,1 +1,2 @@
-export * from './use-agreement-by-slug';
+export * from './use-agreements-section';
+export * from './use-agreements';
