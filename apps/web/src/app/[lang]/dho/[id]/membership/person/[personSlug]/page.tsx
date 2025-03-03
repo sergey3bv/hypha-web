@@ -1,5 +1,3 @@
-'use client';
-
 import { useParams } from 'next/navigation';
 import { getDhoPathAgreements } from '../../../agreements/constants';
 import { Locale } from '@hypha-platform/i18n';
