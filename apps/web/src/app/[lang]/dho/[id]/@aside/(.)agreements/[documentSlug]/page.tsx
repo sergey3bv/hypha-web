@@ -5,10 +5,12 @@ import { useParams } from 'next/navigation';
 import { getDhoPathAgreements } from '../../../agreements/constants';
 import { Locale } from '@hypha-platform/i18n';
 import { useDocumentBySlug } from '@web/hooks/use-document-by-slug';
+import { useDocumentSlug } from '@web/hooks/use-document-slug';
 
 export default function Agreements() {
-  const { slug, id, lang } = useParams();
-  const { document, isLoading } = useDocumentBySlug(slug as string);
+  const { id, lang } = useParams();
+  const documentSlug = useDocumentSlug();
+  const { document, isLoading } = useDocumentBySlug(documentSlug);
 
   return (
     <SidePanel>
