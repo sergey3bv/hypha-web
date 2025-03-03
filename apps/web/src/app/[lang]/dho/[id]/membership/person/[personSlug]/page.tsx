@@ -8,7 +8,7 @@ import { useMemberBySlug } from '@web/hooks/use-member-by-slug';
 import { MemberDetail } from '@hypha-platform/epics';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
 
-export default async function Member() {
+export default function Member() {
   const { slug, id, lang } = useParams();
   const { person, isLoading } = useMemberBySlug(slug as string);
 
