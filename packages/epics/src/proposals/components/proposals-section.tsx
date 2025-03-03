@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { ProposalList } from './proposal-list';
 import { Text } from '@radix-ui/themes';
-import { useProposalsSection } from '../hooks/use-proposals-section';
+import { useProposalsSection } from '../hooks';
 import {
   SectionFilter,
   SectionLoadMore,

@@ -1,1 +1,1 @@
-export * from './use-proposal-by-slug';
+export * from './use-proposals-section';
