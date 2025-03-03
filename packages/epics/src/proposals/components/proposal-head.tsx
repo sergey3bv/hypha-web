@@ -39,7 +39,7 @@ export const ProposalHead = ({
       </Skeleton>
 
       <div className="flex justify-between items-center w-full">
-        <div className="flex flex-col">
+        <div className="grid">
           <div className="flex gap-x-1">
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
               Proposal
@@ -67,7 +67,9 @@ export const ProposalHead = ({
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-4">{title}</Text>
+            <Text className="text-4 text-ellipsis overflow-hidden text-nowrap mr-3">
+              {title}
+            </Text>
           </Skeleton>
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
