@@ -60,7 +60,7 @@ export const CreateProposalForm = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <CreateProposalFormHead creator={creator} isLoading={isLoading} />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"

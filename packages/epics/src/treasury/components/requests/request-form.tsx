@@ -37,7 +37,7 @@ export const RequestForm = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between mb-2">
         <RequestFormHead {...headProps} isLoading={isLoading} />
-        <Link href={closeUrl ?? ''}>
+        <Link href={closeUrl ?? ''} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"

@@ -38,7 +38,7 @@ export const MemberDetail = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <MemberHead {...member} isLoading={isLoading} />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button
             variant="ghost"
             colorVariant="neutral"

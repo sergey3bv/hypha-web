@@ -37,7 +37,7 @@ export const ProposalDetail = ({
           status={status}
           isLoading={isLoading}
         />
-        <Link href={closeUrl}>
+        <Link href={closeUrl} scroll={false}>
           <Button variant="ghost" colorVariant="neutral">
             Close
             <RxCross1 />

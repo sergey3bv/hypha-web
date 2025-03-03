@@ -22,7 +22,11 @@ export const DiscussionsList: FC<DiscussionsListProps> = ({
     <div className="w-full">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
         {discussions.map((discussion) => (
-          <Link href={`${basePath}/${discussion.slug}`} key={discussion.slug}>
+          <Link
+            href={`${basePath}/${discussion.slug}`}
+            key={discussion.slug}
+            scroll={false}
+          >
             <DiscussionCard {...discussion} isLoading={isLoading} />
           </Link>
         ))}
