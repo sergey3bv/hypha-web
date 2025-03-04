@@ -1,9 +1,6 @@
 import { Text } from '@radix-ui/themes';
-import { Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
-
-// TODO: load creator data
-const AVATAR_PLACEHOLDER =
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop';
+import { Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
+import { PersonAvatar } from '../../profile/components/person-avatar';
 
 export type CreatorType = {
   avatar?: string;
@@ -34,16 +31,10 @@ export const ProposalHead = ({
         loading={isLoading}
         className="rounded-lg mr-3"
       >
-        <Image
-          className="rounded-lg mr-3"
-          src={creator?.avatar ?? AVATAR_PLACEHOLDER}
-          height={64}
-          width={64}
-          alt={
-            creator?.name && creator?.surname
-              ? `${creator.name} ${creator.surname}`
-              : 'Creator Avatar'
-          }
+        <PersonAvatar
+          className="min-w-[64px] min-h-[64px] mr-3"
+          avatarSrc={creator?.avatar}
+          userName={`${creator?.name} ${creator?.surname}`}
         />
       </Skeleton>
 

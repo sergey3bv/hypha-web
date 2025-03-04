@@ -4,9 +4,11 @@ import { UserIcon } from 'lucide-react';
 export const PersonAvatar = ({
   avatarSrc,
   userName,
+  className = 'w-7 h-7',
 }: {
   avatarSrc?: string;
   userName?: string;
+  className?: string;
 }) => {
   const getFallbackContent = () => {
     if (!userName) {
@@ -22,7 +24,7 @@ export const PersonAvatar = ({
   };
 
   return (
-    <Avatar className="w-7 h-7 rounded-lg">
+    <Avatar className={`${className} rounded-lg`}>
       <AvatarImage src={avatarSrc} alt={`${userName}'s avatar`} />
       <AvatarFallback>{getFallbackContent()}</AvatarFallback>
     </Avatar>
