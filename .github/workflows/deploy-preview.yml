@@ -98,7 +98,7 @@ jobs:
         run: echo preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}) >> $GITHUB_OUTPUT
 
   main:
-    needs: [deploy-preview, detect-changes]
+    needs: [detect-changes]
     runs-on: ubuntu-latest
 
     steps:
