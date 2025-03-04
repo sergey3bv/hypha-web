@@ -11,6 +11,7 @@ export const useSpacesSection = () => {
 
   const { isLoading, pagination } = useSpaces({
     page: pages,
+    pageSize: 3,
     sort: { sort: activeSort },
   });
 
