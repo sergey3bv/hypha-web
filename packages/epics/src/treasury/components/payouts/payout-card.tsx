@@ -1,8 +1,9 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Skeleton, Image, BadgesList } from '@hypha-platform/ui';
+import { Card, Skeleton, BadgesList } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
+import { PersonAvatar } from '../../../profile/components/person-avatar';
 
 type PayoutCardProps = {
   name?: string;
@@ -33,12 +34,10 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
         loading={isLoading}
         className="rounded-lg mr-3"
       >
-        <Image
-          className="rounded-lg mr-3"
-          src={avatar ?? ''}
-          height={64}
-          width={64}
-          alt={name ?? ''}
+        <PersonAvatar
+          className="min-w-[64px] min-h-[64px] mr-3"
+          avatarSrc={avatar}
+          userName={`${name} ${surname}`}
         />
       </Skeleton>
       <div className="flex justify-between items-center w-full">
