@@ -17,6 +17,7 @@ export const InnerSpacesList: FC<InnerSpacesListProps> = ({
 }) => {
   const { spaces, isLoading } = useSpaces({
     page,
+    pageSize: 3,
     sort: { sort: activeSort },
   });
   return (
