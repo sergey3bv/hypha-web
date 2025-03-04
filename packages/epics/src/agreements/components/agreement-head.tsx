@@ -1,5 +1,6 @@
 import { Text } from '@radix-ui/themes';
-import { Badge, StatusBadge, Skeleton, Image } from '@hypha-platform/ui';
+import { Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
+import { PersonAvatar } from '../../profile/components/person-avatar';
 
 type CreatorType = {
   avatar?: string;
@@ -30,16 +31,10 @@ export const AgreementHead = ({
         loading={isLoading}
         className="rounded-lg mr-3"
       >
-        <Image
-          className="rounded-lg mr-3"
-          src={creator?.avatar ?? ''}
-          height={64}
-          width={64}
-          alt={
-            creator?.name && creator?.surname
-              ? `${creator.name} ${creator.surname}`
-              : 'Creator Avatar'
-          }
+        <PersonAvatar
+          className="min-w-[64px] min-h-[64px] mr-3"
+          avatarSrc={creator?.avatar}
+          userName={`${creator?.name} ${creator?.surname}`}
         />
       </Skeleton>
 
