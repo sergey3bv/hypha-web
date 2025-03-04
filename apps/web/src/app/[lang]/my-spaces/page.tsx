@@ -83,14 +83,14 @@ export default async function Index(props: PageProps) {
                 <CardOrganisation
                   description={space.description as string}
                   icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
+                  leadImage={
+                    space.leadImage || '/placeholder/space-lead-image.png'
+                  }
                   members={0}
                   agreements={0}
                   activeAgreements={1}
                   openDiscussions={1}
                   title={space.title as string}
-                  leadImage={
-                    space.leadImage || '/placeholder/space-lead-image.png'
-                  }
                 />
               </Link>
             </div>
@@ -113,6 +113,9 @@ export default async function Index(props: PageProps) {
                       description={space.description as string}
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'
+                      }
+                      leadImage={
+                        space.leadImage || '/placeholder/space-lead-image.png'
                       }
                       members={0}
                       agreements={0}
