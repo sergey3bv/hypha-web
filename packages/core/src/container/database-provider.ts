@@ -59,7 +59,6 @@ export class DatabaseProvider {
     const effectiveOptions = { ...this.userOptions, ...options };
 
     const url = effectiveOptions.authToken ? AUTHENTICATED : ANONYMOUS;
-    console.debug('getUserDatabase', { url });
 
     invariant(url, 'connection string is missing');
 

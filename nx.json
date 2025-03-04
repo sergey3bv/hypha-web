@@ -6,6 +6,7 @@
       "sharedGlobals",
       { "env": "DEFAULT_DB_URL" },
       { "env": "DEFAULT_DB_AUTHENTICATED_URL" },
+      { "env": "DEFAULT_DB_ANONYMOUS_URL" },
       { "env": "BRANCH_DB_URL" },
       { "env": "NEXT_PUBLIC_PRIVY_APP_ID" },
       { "env": "PRIVY_APP_SECRET" }

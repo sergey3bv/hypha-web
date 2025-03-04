@@ -1,25 +1,17 @@
 'use client';
 
-import React, { useId } from 'react';
+import React from 'react';
 import useSWR from 'swr';
 import { Person } from '@hypha-platform/core';
 import { useJwt } from './use-jwt';
 
-interface UseMeHookProps {
-  newUserRedirectPath?: string;
-}
-
-export const useMe = ({ newUserRedirectPath = '' }: UseMeHookProps = {}): {
+export const useMe = (): {
   person: Person | undefined;
   isLoading: boolean;
 } => {
   const { jwt, isLoadingJwt } = useJwt();
-  const randomId = useId();
 
-  const endpoint = React.useMemo(
-    () => `/api/v1/people/me/${randomId}`,
-    [randomId],
-  );
+  const endpoint = React.useMemo(() => '/api/v1/people/me', []);
 
   const { data: person, isLoading: isLoadingPerson } = useSWR(
     jwt ? [endpoint, jwt] : null,
