@@ -147,7 +147,7 @@ jobs:
           BRANCH_DB_URL: ${{ steps.create-branch.outputs.db_url_with_pooler }}
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install chromium firefox webkit --with-deps
 
       - name: Run Seeds
         run: |
