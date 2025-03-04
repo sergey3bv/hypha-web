@@ -1,8 +1,9 @@
 import { Text } from '@radix-ui/themes';
-import { Card, Badge, Image, Skeleton } from '@hypha-platform/ui';
+import { Card, Badge, Skeleton } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
+import { PersonAvatar } from '../../../profile/components/person-avatar';
 
 type RequestCardProps = {
   name?: string;
@@ -31,12 +32,10 @@ export const RequestCard: React.FC<RequestCardProps> = ({
         height="64px"
         className="rounded-lg mr-3"
       >
-        <Image
-          className="rounded-lg mr-3"
-          src={avatar ?? ''}
-          height={64}
-          width={64}
-          alt={name ?? ''}
+        <PersonAvatar
+          className="min-w-[64px] min-h-[64px] mr-3"
+          avatarSrc={avatar}
+          userName={`${name} ${surname}`}
         />
       </Skeleton>
       <div className="flex justify-between items-center w-full">
