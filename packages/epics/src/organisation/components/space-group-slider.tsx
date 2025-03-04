@@ -42,7 +42,10 @@ export const SpaceGroupSlider = ({
               <Link className="w-96" href={getHref(space.slug as string)}>
                 <CardOrganisation
                   description={space.description as string}
-                  icon={space.logoUrl ?? ''}
+                  icon={space.logoUrl ?? '/placeholder/space-avatar-image.png'}
+                  leadImage={
+                    space.leadImage || '/placeholder/space-lead-image.png'
+                  }
                   title={space.title as string}
                   isLoading={isLoading}
                   members={0}

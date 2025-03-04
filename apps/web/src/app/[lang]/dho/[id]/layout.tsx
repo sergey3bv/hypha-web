@@ -170,6 +170,9 @@ export default async function DhoLayout({
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'
                       }
+                      leadImage={
+                        space.leadImage || '/placeholder/space-lead-image.png'
+                      }
                       members={0}
                       agreements={0}
                       title={space.title as string}
