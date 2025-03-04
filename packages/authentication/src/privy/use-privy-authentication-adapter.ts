@@ -12,15 +12,8 @@ export function usePrivyAuthenticationAdapter(): AuthHook {
     ready,
     login: privyLogin,
     logout: privyLogout,
+    getAccessToken,
   } = usePrivy();
-
-  const getAccessToken = React.useCallback(async (): Promise<string> => {
-    const token = await getPrivyAccessToken();
-    if (!token) {
-      throw new Error('No access token found');
-    }
-    return token;
-  }, [getPrivyAccessToken]);
 
   const login = React.useCallback(async (): Promise<void> => {
     privyLogin();

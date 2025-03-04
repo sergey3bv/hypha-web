@@ -13,7 +13,7 @@ export interface AuthHook {
   user: AuthUser | null;
   login: () => void;
   logout: () => void;
-  getAccessToken: () => Promise<string>;
+  getAccessToken: () => Promise<string | null>;
 }
 
 export type UseAuthentication = () => AuthHook;

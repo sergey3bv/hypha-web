@@ -15,6 +15,7 @@ import { PeopleRepositoryPostgres } from '../components/people/repository-postgr
 import { SpacePostgresRepository } from '../components/space/repository-postgres';
 import { DocumentRepositoryPostgres } from '../components/governance/repository-postgres';
 import { SpaceConfigPostgresRepository } from '../components/space-config/repository-postgres';
+import { DatabaseProvider } from './database-provider';
 
 /**
  * Initialize the container with all required dependencies.
@@ -26,6 +27,8 @@ export function initializeContainer(config: CoreConfig): void {
 
   // Register database connections
   container.bind(SYMBOLS.Database.AdminConnection).toConstantValue(defaultDb);
+
+  container.bind(DatabaseProvider).toSelf().inSingletonScope();
 
   // Register repositories with their symbols
   container

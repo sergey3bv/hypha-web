@@ -26,7 +26,7 @@ import { useSpaceDocuments } from '@web/hooks/use-space-documents';
 
 export default function Profile() {
   const { lang } = useParams();
-  const { person } = useMe({ newUserRedirectPath: `/${lang}/profile/signup` });
+  const { person } = useMe();
 
   const getHref = (id: string) => {
     return getDhoPathAgreements(lang as Locale, id);
