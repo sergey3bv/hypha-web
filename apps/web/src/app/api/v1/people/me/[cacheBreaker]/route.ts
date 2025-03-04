@@ -7,7 +7,13 @@ const NO_CACHE_HEADERS = {
   Expires: '0',
 } as const;
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ cacheBreaker: string }> },
+) {
+  const { cacheBreaker } = await params;
+  console.debug(`GET /api/v1/people/me/${cacheBreaker}`);
+
   try {
     const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
     if (!authToken) {
