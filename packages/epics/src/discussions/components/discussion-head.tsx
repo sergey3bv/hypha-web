@@ -1,5 +1,6 @@
 import { Text } from '@radix-ui/themes';
-import { Skeleton, Image } from '@hypha-platform/ui';
+import { Skeleton } from '@hypha-platform/ui';
+import { PersonAvatar } from '../../profile/components/person-avatar';
 
 export type CreatorType = {
   avatar?: string;
@@ -30,16 +31,10 @@ export const DiscussionHead = ({
           loading={isLoading}
           className="rounded-lg mr-2"
         >
-          <Image
-            className="rounded-lg mr-2 max-h-[12px]"
-            src={creator?.avatar ?? ''}
-            height={12}
-            width={12}
-            alt={
-              creator?.name && creator?.surname
-                ? `${creator.name} ${creator.surname}`
-                : 'Creator Avatar'
-            }
+          <PersonAvatar
+            className="min-w-[12px] min-h-[12px] max-h-[12px] max-w-[12px] mr-2"
+            avatarSrc={creator?.avatar}
+            userName={`${creator?.name} ${creator?.surname}`}
           />
         </Skeleton>
         <Skeleton height="16px" width="80px" loading={isLoading}>
