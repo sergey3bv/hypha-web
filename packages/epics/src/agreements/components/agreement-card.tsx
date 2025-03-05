@@ -35,7 +35,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-5 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex items-center">
       <Skeleton
         width="64px"
         height="64px"
@@ -50,7 +50,7 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       </Skeleton>
 
       <div className="flex justify-between items-center w-full">
-        <div className="flex flex-col">
+        <div className="grid">
           <div className="flex gap-x-1">
             <Badge
               variant="surface"
@@ -82,7 +82,9 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
             loading={isLoading}
             className="my-1"
           >
-            <Text className="text-4">{title}</Text>
+            <Text className="text-4 text-ellipsis overflow-hidden text-nowrap mr-3">
+              {title}
+            </Text>
           </Skeleton>
 
           <Skeleton height="16px" width="80px" loading={isLoading}>
