@@ -69,8 +69,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'bovzk9ehhu.ufs.sh',
+        hostname: 'static.licdn.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'bovzk9ehhu.ufs.sh',
+      }
     ],
   },
   webpack: (config) => {
