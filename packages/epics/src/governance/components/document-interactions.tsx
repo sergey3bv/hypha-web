@@ -1,8 +1,7 @@
 import { DocumentStats } from './document-stats';
-import { DocumentState } from '@hypha-platform/core';
 
 interface DocumentInteractionsProps {
-  state?: DocumentState;
+  state?: string;
   isLoading?: boolean;
 }
 

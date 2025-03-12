@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DocumentCard } from './document-card';
+import { CreatorInfo } from './creator-info';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 const meta = {
-  component: DocumentCard,
-  title: 'Epics/Governance/DocumentCard',
-} satisfies Meta<typeof DocumentCard>;
+  component: CreatorInfo,
+  title: 'Epics/People/CreatorInfo',
+} satisfies Meta<typeof CreatorInfo>;
 
 export default meta;
 
-type Story = StoryObj<typeof DocumentCard>;
+type Story = StoryObj<typeof CreatorInfo>;
 
 export const Default: Story = {
   args: {
@@ -21,13 +21,9 @@ export const Default: Story = {
       avatarUrl: 'https://github.com/shadcn.png',
     },
     isLoading: false,
-    leadImage: 'https://github.com/shadcn.png',
-    title: 'Title',
-    description: 'Description',
-    state: 'agreement',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Title/gi)).toBeTruthy();
+    expect(canvas.getByText(/Name Surname/gi)).toBeTruthy();
   },
 };
