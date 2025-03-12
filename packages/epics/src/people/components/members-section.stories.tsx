@@ -1,19 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MembersList } from './members-list';
+import { MembersSection } from './members-section';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<typeof MembersList> = {
-  component: MembersList,
-  title: 'Epics/Membership/MembersList',
+const meta: Meta<typeof MembersSection> = {
+  component: MembersSection,
+  title: 'Epics/People/MembersSection',
 };
 export default meta;
-type Story = StoryObj<typeof MembersList>;
+type Story = StoryObj<typeof MembersSection>;
 
 export const Primary: Story = {
   args: {
     useMembers: () => ({
       isLoading: false,
+      pagination: {
+        hasNextPage: false,
+        hasPreviousPage: false,
+        page: 1,
+        pageSize: 10,
+        total: 2,
+        totalPages: 1,
+      },
       members: [
         {
           id: 1,
@@ -40,9 +48,6 @@ export const Primary: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/^Applicant/gi)).toBeTruthy();
-    expect(canvas.getByText(/^Active/gi)).toBeTruthy();
-    expect(canvas.getByText(/^Inactive/gi)).toBeTruthy();
-    expect(canvas.getByText(/^Rejected/gi)).toBeTruthy();
+    expect(canvas.getByText(/Members \|/gi)).toBeTruthy();
   },
 };

@@ -3,7 +3,7 @@ import { MemberHead } from './member-head';
 
 const meta: Meta<typeof MemberHead> = {
   component: MemberHead,
-  title: 'Epics/Membership/MemberHead',
+  title: 'Epics/People/MemberHead',
 };
 export default meta;
 type Story = StoryObj<typeof MemberHead>;

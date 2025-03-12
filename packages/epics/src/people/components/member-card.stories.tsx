@@ -3,7 +3,7 @@ import { MemberCard } from './member-card';
 
 const meta: Meta<typeof MemberCard> = {
   component: MemberCard,
-  title: 'Epics/Membership/MemberCard',
+  title: 'Epics/People/MemberCard',
 };
 export default meta;
 type Story = StoryObj<typeof MemberCard>;

@@ -10,10 +10,9 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 
-import { useMembersSection } from '../../hooks/use-members-section';
-import { type UseMembers } from '../../hooks/types';
-
 import { MembersList } from './members-list';
+import { useMembersSection } from '../hooks/use-members-section';
+import { UseMembers } from '../hooks/types';
 
 type MemberSectionProps = {
   basePath: string;

@@ -3,7 +3,7 @@ import { MemberSpaces } from './member-spaces';
 
 const meta: Meta<typeof MemberSpaces> = {
   component: MemberSpaces,
-  title: 'Epics/Membership/MemberSpaces',
+  title: 'Epics/People/MemberSpaces',
 };
 export default meta;
 type Story = StoryObj<typeof MemberSpaces>;

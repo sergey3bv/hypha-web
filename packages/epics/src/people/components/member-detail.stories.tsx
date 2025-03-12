@@ -3,7 +3,7 @@ import { MemberDetail } from './member-detail';
 
 const meta: Meta<typeof MemberDetail> = {
   component: MemberDetail,
-  title: 'Epics/Membership/MemberDetail',
+  title: 'Epics/People/MemberDetail',
 };
 export default meta;
 type Story = StoryObj<typeof MemberDetail>;
@@ -41,5 +41,9 @@ export const Primary: Story = {
         projects: 3,
       },
     ],
+    useDocuments: () => ({
+      documents: [],
+      isLoading: false,
+    }),
   },
 };

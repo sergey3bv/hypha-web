@@ -2,10 +2,10 @@ import { MemberHead } from './member-head';
 import { Skeleton, Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import Link from 'next/link';
-import { AgreementsSection } from '../../../agreements/components/agreements-section';
 import { MemberSpaces } from './member-spaces';
 import { Space } from '@hypha-platform/core';
-import { type UseDocuments } from '../../../governance';
+import { UseDocuments } from '../../governance';
+import { AgreementsSection } from '../../agreements';
 
 type MemberType = {
   avatarUrl?: string;
