@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { InnerSpaceCard } from './inner-space-card';
-import { useSpaces } from '../../hooks/use-spaces';
+import { useSpaces } from '../hooks';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 import Link from 'next/link';
 

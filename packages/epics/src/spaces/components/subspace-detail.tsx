@@ -2,11 +2,11 @@
 
 import { Image, Button, Separator, FilterMenu } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import { MembersList } from '../members';
-import { useSubspaceDetails } from '../../hooks/use-subspace-details';
+import { MembersList } from '../../people';
+import { useSubspaceDetails } from '../hooks';
 import { SectionLoadMore } from '@hypha-platform/ui/server';
 import Link from 'next/link';
-import { type UseMembers } from '../../hooks/types';
+import { type UseMembers } from '../hooks/types';
 
 type SubspaceDetailProps = {
   title?: string;

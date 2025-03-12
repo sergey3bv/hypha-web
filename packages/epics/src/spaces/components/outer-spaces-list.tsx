@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { OuterSpaceCard } from './outer-space-card';
-import { useSpaces } from '../../hooks/use-spaces';
+import { useSpaces } from '../hooks';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 
 type OuterSpacesListProps = {

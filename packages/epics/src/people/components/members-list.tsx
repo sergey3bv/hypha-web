@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { MemberCard } from './member-card';
 import Link from 'next/link';
-import { UseMembers } from '../../hooks/types';
+import { type UseMembers } from '@hypha-platform/epics';
 
 type MembersListProps = {
   page: number;
