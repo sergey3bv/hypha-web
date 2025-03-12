@@ -3,7 +3,7 @@ import { InnerSpaceCard } from './inner-space-card';
 
 const meta: Meta<typeof InnerSpaceCard> = {
   component: InnerSpaceCard,
-  title: 'Epics/Membership/InnerSpaceCard',
+  title: 'Epics/Spaces/InnerSpaceCard',
 };
 export default meta;
 type Story = StoryObj<typeof InnerSpaceCard>;

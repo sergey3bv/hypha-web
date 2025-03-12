@@ -3,7 +3,7 @@ import { SubspaceDetail } from './subspace-detail';
 
 const meta: Meta<typeof SubspaceDetail> = {
   component: SubspaceDetail,
-  title: 'Epics/Membership/SubspaceDetail',
+  title: 'Epics/Spaces/SubspaceDetail',
 };
 export default meta;
 type Story = StoryObj<typeof SubspaceDetail>;

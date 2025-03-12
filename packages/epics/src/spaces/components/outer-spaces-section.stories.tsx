@@ -4,7 +4,7 @@ import { OuterSpacesSection } from './outer-spaces-section';
 
 const meta = {
   component: OuterSpacesSection,
-  title: 'Epics/Membership/OuterSpacesSection',
+  title: 'Epics/Spaces/OuterSpacesSection',
 } satisfies Meta<typeof OuterSpacesSection>;
 
 export default meta;

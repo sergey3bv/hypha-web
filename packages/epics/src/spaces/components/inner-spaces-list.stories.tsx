@@ -4,7 +4,7 @@ import { InnerSpacesList } from './inner-spaces-list';
 
 const meta = {
   component: InnerSpacesList,
-  title: 'Epics/Membership/InnerSpacesList',
+  title: 'Epics/Spaces/InnerSpacesList',
 } satisfies Meta<typeof InnerSpacesList>;
 
 export default meta;

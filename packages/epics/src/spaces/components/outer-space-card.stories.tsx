@@ -3,7 +3,7 @@ import { OuterSpaceCard } from './outer-space-card';
 
 const meta: Meta<typeof OuterSpaceCard> = {
   component: OuterSpaceCard,
-  title: 'Epics/Membership/OuterSpaceCard',
+  title: 'Epics/Spaces/OuterSpaceCard',
 };
 export default meta;
 type Story = StoryObj<typeof OuterSpaceCard>;
