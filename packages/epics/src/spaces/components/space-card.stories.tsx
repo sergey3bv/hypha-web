@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CardOrganisation } from './card-organisation';
+import { SpaceCard } from './space-card';
 
-const meta: Meta<typeof CardOrganisation> = {
-  component: CardOrganisation,
-  title: 'Epics/Organisation/CardOrganisation',
+const meta: Meta<typeof SpaceCard> = {
+  component: SpaceCard,
+  title: 'Epics/Spaces/SpaceCard',
 };
 export default meta;
-type Story = StoryObj<typeof CardOrganisation>;
+type Story = StoryObj<typeof SpaceCard>;
 
 export const Primary: Story = {
   args: {

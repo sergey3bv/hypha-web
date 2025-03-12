@@ -6,7 +6,7 @@ import { expect } from '@storybook/jest';
 
 const meta = {
   component: CreateSpaceFormHead,
-  title: 'Epics/Organisation/CreateSpaceFormHead',
+  title: 'Epics/Spaces/CreateSpaceFormHead',
 } satisfies Meta<typeof CreateSpaceFormHead>;
 
 export default meta;

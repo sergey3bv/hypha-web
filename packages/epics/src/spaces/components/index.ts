@@ -1,4 +1,4 @@
-export * from './card-organisation';
+export * from './space-card';
 export * from './space-group-slider';
-export * from './search';
+export * from './space-search';
 export * from './create-space-form';

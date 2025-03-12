@@ -6,11 +6,11 @@ type Suggestion = {
   title: string;
 };
 
-type SearchProps = {
+type SpaceSearchProps = {
   suggestions?: Suggestion[];
 };
 
-export const Search = ({ suggestions }: SearchProps) => {
+export const SpaceSearch = ({ suggestions }: SpaceSearchProps) => {
   return (
     <div>
       <Input

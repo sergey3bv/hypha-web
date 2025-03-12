@@ -6,7 +6,7 @@ import {
   Button,
 } from '@hypha-platform/ui';
 import Link from 'next/link';
-import { CardOrganisation } from './card-organisation';
+import { SpaceCard } from './space-card';
 import { Space } from '@hypha-platform/core';
 
 type SpaceGroupSliderProps = {
@@ -40,7 +40,7 @@ export const SpaceGroupSlider = ({
               className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
             >
               <Link className="w-96" href={getHref(space.slug as string)}>
-                <CardOrganisation
+                <SpaceCard
                   description={space.description as string}
                   icon={space.logoUrl ?? '/placeholder/space-avatar-image.png'}
                   leadImage={

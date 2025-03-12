@@ -10,7 +10,7 @@ import {
   Image,
 } from '@hypha-platform/ui';
 
-type DaoCardProps = {
+type SpaceCardProps = {
   description: string;
   icon: string;
   members?: number;
@@ -33,7 +33,7 @@ const customAvatarStyles: React.CSSProperties = {
   top: '-54px',
 };
 
-export const CardOrganisation: React.FC<DaoCardProps> = ({
+export const SpaceCard: React.FC<SpaceCardProps> = ({
   description,
   icon,
   members,

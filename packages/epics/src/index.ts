@@ -1,4 +1,4 @@
-export * from './organisation';
+export * from './spaces';
 export * from './governance';
 export * from './people';
 export * from './proposals';
