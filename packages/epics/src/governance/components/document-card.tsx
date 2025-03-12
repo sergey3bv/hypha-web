@@ -56,8 +56,8 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
       </CardHeader>
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
-          <Badge className='mb-2' isLoading={isLoading} variant="solid" colorVariant="accent">
-            {state?.toUpperCase()}
+          <Badge className='mb-2 capitalize' isLoading={isLoading} variant="solid" colorVariant="accent">
+            {state}
           </Badge>
           <Skeleton
             className="min-w-full"
