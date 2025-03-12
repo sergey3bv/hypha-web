@@ -1,4 +1,4 @@
-import { CardOrganisation } from '@hypha-platform/epics';
+import { SpaceCard } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import {
   Container,
@@ -165,7 +165,7 @@ export default async function DhoLayout({
                     className="w-96"
                     href={getDhoPathAgreements(lang, space.slug as string)}
                   >
-                    <CardOrganisation
+                    <SpaceCard
                       description={space.description as string}
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'

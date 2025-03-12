@@ -1,7 +1,7 @@
 import { Locale } from '@hypha-platform/i18n';
 import { Container } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
-import { SpaceGroupSlider, Search } from '@hypha-platform/epics';
+import { SpaceGroupSlider, SpaceSearch } from '@hypha-platform/epics';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
 import { createSpaceService } from '@hypha-platform/core';
 
@@ -25,7 +25,7 @@ export default async function Index(props: PageProps) {
       <Text className="text-9 text-center flex mb-8">
         Explore hundreds of Spaces in the Hypha Network
       </Text>
-      <Search />
+      <SpaceSearch />
       <SpaceGroupSlider spaces={spaces} type="Hypha" getHref={getHref} />
     </Container>
   );

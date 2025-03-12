@@ -1,4 +1,4 @@
-import { CardOrganisation } from '@hypha-platform/epics';
+import { SpaceCard } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -80,7 +80,7 @@ export default async function Index(props: PageProps) {
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
               <Link href={getDhoPathAgreements(lang, space.slug as string)}>
-                <CardOrganisation
+                <SpaceCard
                   description={space.description as string}
                   icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
                   leadImage={
@@ -109,7 +109,7 @@ export default async function Index(props: PageProps) {
                     className="w-96"
                     href={getDhoPathAgreements(lang, space.slug as string)}
                   >
-                    <CardOrganisation
+                    <SpaceCard
                       description={space.description as string}
                       icon={
                         space.logoUrl || '/placeholder/space-avatar-image.png'

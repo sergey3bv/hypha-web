@@ -1,5 +1,5 @@
 import { Button, Card, Image } from '@hypha-platform/ui';
-import { Author } from '../../profile/components/author';
+import { Author } from '../../people/components/author';
 import { RxHeart } from 'react-icons/rx';
 
 export type User = {

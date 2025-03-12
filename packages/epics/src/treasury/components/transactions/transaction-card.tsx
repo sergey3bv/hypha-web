@@ -5,7 +5,7 @@ import {
   CardContent,
   CardHeader,
 } from '@hypha-platform/ui';
-import { Author } from '../../../profile/components/author';
+import { Author } from '../../../people/components/author';
 import { Amount } from '@hypha-platform/ui/server';
 
 import { RxEyeOpen, RxChatBubble } from 'react-icons/rx';
