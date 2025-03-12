@@ -3,11 +3,7 @@
  */
 
 // Core container exports
-export {
-  getContainer,
-  configureContainer,
-  createRequestScope,
-} from './container-facade';
+export { getContainer, createRequestScope } from './container-facade';
 export { initializeContainer } from './bootstrap';
 
 // Type system

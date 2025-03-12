@@ -1,6 +1,4 @@
 import { container } from './inversify.config';
-import { CoreConfig } from '../config/types';
-import { SYMBOLS } from './types';
 import { Container } from 'inversify';
 import { DatabaseProvider } from './database-provider';
 
@@ -9,19 +7,6 @@ import { DatabaseProvider } from './database-provider';
  */
 export function getContainer(): Container {
   return container;
-}
-
-/**
- * Configure the container with application config
- */
-export function configureContainer(config: CoreConfig): void {
-  // Update config in container
-  if (container.isBound(SYMBOLS.StorageType)) {
-    container.unbind(SYMBOLS.StorageType);
-    container.bind(SYMBOLS.StorageType).toConstantValue(config);
-  } else {
-    container.bind(SYMBOLS.StorageType).toConstantValue(config);
-  }
 }
 
 /**
