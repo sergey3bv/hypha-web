@@ -4,7 +4,7 @@ import { ButtonProfile } from './button-profile';
 
 const meta = {
   component: ButtonProfile,
-  title: 'UI/Profile/ButtonProfile',
+  title: 'Epics/People/ButtonProfile',
 } satisfies Meta<typeof ButtonProfile>;
 
 export default meta;

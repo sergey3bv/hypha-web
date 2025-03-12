@@ -3,7 +3,7 @@ import { Card, Badge, Skeleton } from '@hypha-platform/ui';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { formatDate } from '@hypha-platform/ui-utils';
 import { Amount } from '@hypha-platform/ui/server';
-import { PersonAvatar } from '../../../profile/components/person-avatar';
+import { PersonAvatar } from '../../../people/components/person-avatar';
 
 type RequestCardProps = {
   name?: string;

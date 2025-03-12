@@ -1,6 +1,6 @@
 export * from './organisation';
 export * from './governance';
-export * from './profile';
+export * from './people';
 export * from './proposals';
 export * from './agreements';
 export * from './membership';

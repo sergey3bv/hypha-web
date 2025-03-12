@@ -4,7 +4,7 @@ import { PersonAvatar } from './person-avatar';
 
 const meta = {
   component: PersonAvatar,
-  title: 'UI/Profile/PersonAvatar',
+  title: 'Epics/People/PersonAvatar',
 } satisfies Meta<typeof PersonAvatar>;
 
 export default meta;

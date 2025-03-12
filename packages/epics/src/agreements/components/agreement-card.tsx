@@ -2,7 +2,7 @@ import { Text } from '@radix-ui/themes';
 import { Card, Badge, Skeleton, StatusBadge } from '@hypha-platform/ui';
 import { EyeOpenIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { CardCommentProps } from '../../interactions/components/card-comment';
-import { PersonAvatar } from '../../profile/components/person-avatar';
+import { PersonAvatar } from '../../people/components/person-avatar';
 
 // TODO: load creator data
 const AVATAR_PLACEHOLDER =

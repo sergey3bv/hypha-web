@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EditPersonSection } from './edit-person-section';
+import { EditPersonHead } from './edit-person-head';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 const meta = {
-  component: EditPersonSection,
-  title: 'UI/Profile/EditPersonSection',
-} satisfies Meta<typeof EditPersonSection>;
+  component: EditPersonHead,
+  title: 'Epics/People/EditPersonHead',
+} satisfies Meta<typeof EditPersonHead>;
 
 export default meta;
 
@@ -20,7 +20,6 @@ export const Default: Story = {
     surname: 'Surname',
     id: 'ndb9suh3qh9q2hlP2120dsxzf',
     isLoading: false,
-    closeUrl: '',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

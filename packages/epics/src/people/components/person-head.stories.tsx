@@ -6,7 +6,7 @@ import { PersonHead } from './person-head';
 
 const meta = {
   component: PersonHead,
-  title: 'UI/Profile/PersonHead',
+  title: 'Epics/People/PersonHead',
 } satisfies Meta<typeof PersonHead>;
 
 export default meta;

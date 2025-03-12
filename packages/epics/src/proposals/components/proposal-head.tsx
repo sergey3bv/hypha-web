@@ -1,6 +1,6 @@
 import { Text } from '@radix-ui/themes';
 import { Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
-import { PersonAvatar } from '../../profile/components/person-avatar';
+import { PersonAvatar } from '../../people/components/person-avatar';
 
 export type CreatorType = {
   avatar?: string;
