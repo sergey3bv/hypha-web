@@ -5,7 +5,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/core',
   plugins: [nxViteTsPaths()],
   test: {
-    setupFiles: ['./src/test-utils/setup.ts'],
+    setupFiles: ['./setup-tests.ts'],
     globals: true,
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

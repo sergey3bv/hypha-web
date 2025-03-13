@@ -20,7 +20,7 @@ src/
 ## Usage
 
 ```typescript
-import { Container, CoreConfig } from '@hypha-platform/core';
+import { Container, CoreConfig } from '@hypha-platform/core/server';
 
 // Configure storage
 const config: CoreConfig = {
