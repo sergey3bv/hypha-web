@@ -4,9 +4,8 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-  Badge,
 } from '@hypha-platform/ui';
-import Image from 'next/image';
+import { Image } from '@hypha-platform/ui';
 import { DocumentInteractions } from './document-interactions';
 import { CreatorInfo } from '../../people/components/creator-info';
 import { type Creator } from '../../people/components/creator-info';
