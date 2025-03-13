@@ -9,7 +9,7 @@ export interface Creator {
 }
 
 interface PersonLabelProps {
-  creator: Creator;
+  creator?: Creator;
   isLoading: boolean;
   hasAvatar?: boolean;
 }
@@ -25,7 +25,7 @@ export const PersonLabel = ({
         <PersonAvatar
           isLoading={isLoading}
           size="sm"
-          avatarSrc={creator.avatarUrl}
+          avatarSrc={creator?.avatarUrl}
           userName={`${creator?.name} ${creator?.surname}`}
         />
       ) : null}
