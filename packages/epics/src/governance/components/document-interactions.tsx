@@ -1,7 +1,8 @@
 import { DocumentStats } from './document-stats';
+import { DocumentVoteButton } from './document-vote-button';
 
 interface DocumentInteractionsProps {
-  state?: string;
+  state?: 'agreement' | 'discussion' | 'proposal';
   isLoading?: boolean;
   comments?: number;
   views?: number;
@@ -13,7 +14,14 @@ export const DocumentInteractions = ({
   comments,
   views,
 }: DocumentInteractionsProps) => {
-  return (
-    <DocumentStats isLoading={isLoading} comments={comments} views={views} />
-  );
+  if (state === 'agreement' || state === 'discussion') {
+    return (
+      <DocumentStats isLoading={isLoading} comments={comments} views={views} />
+    );
+  }
+
+  if (state === 'proposal') {
+    return <DocumentVoteButton isLoading={isLoading} voted={false} />;
+  }
+  return null;
 };
