@@ -17,7 +17,7 @@ interface Document {
   title: string;
   description?: string;
   slug: string;
-  state: string;
+  state: 'agreement' | 'discussion' | 'proposal';
   createdAt: Date;
   updatedAt: Date;
 }
