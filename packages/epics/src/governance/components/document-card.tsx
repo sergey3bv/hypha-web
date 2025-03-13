@@ -8,16 +8,11 @@ import {
 import { Image } from '@hypha-platform/ui';
 import { PersonLabel } from '../../people/components/person-label';
 import { type Creator } from '../../people/components/person-label';
-import { DocumentBadges, type BadgeItem } from './document-badges';
+import { type BadgeItem, BadgesList } from '@hypha-platform/ui';
 
 interface Document {
-  id: number;
-  creatorId: number;
   title: string;
   description?: string;
-  slug: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 interface DocumentCardProps {
@@ -29,9 +24,9 @@ interface DocumentCardProps {
 }
 
 export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
-  isLoading,
   title,
   description,
+  isLoading,
   leadImage,
   creator,
   badges,
@@ -57,7 +52,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
       </CardHeader>
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
-          <DocumentBadges
+          <BadgesList
             className="mb-2"
             isLoading={isLoading}
             badges={badges ?? []}
