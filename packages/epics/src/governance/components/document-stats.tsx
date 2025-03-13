@@ -13,7 +13,7 @@ export const DocumentStats = ({
   comments,
 }: DocumentStatsProps) => {
   return (
-    <div className="flex flex-grow gap-2 text-1 text-gray-500 items-center">
+    <div className="flex flex-grow gap-2 text-1 text-neutral-11 items-center">
       <Skeleton width="16px" height="16px" loading={isLoading}>
         <div className="flex">
           <EyeOpenIcon className="mr-1" width={16} />
