@@ -7,7 +7,7 @@ import {
 } from '@hypha-platform/ui';
 import Link from 'next/link';
 import { SpaceCard } from './space-card';
-// TODO: declare UI interface separately
+// TODO: #594 declare UI interface separately
 import { Space } from '@hypha-platform/core/client';
 
 type SpaceGroupSliderProps = {

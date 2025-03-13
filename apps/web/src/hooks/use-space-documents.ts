@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { FilterParams } from '@hypha-platform/graphql/rsc';
 
 import { useSpaceSlug } from './use-space-slug';
-// TODO: declare UI interface separately
+// TODO: #594 declare UI interface separately
 import { Document } from '@hypha-platform/core/client';
 import { UseDocuments, UseDocumentsReturn } from '@hypha-platform/epics';
 
