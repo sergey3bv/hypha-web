@@ -3,7 +3,7 @@ import {
   DocumentInteractions,
   type DocumentInteractionsProps,
 } from './document-interactions';
-import { type Creator } from '../../people/components/creator-info';
+import { type Creator } from '../../people/components/person-label';
 import { DocumentBadges, type BadgeItem } from './document-badges';
 import { PersonAvatar } from '../../people/components/person-avatar';
 import { Text } from '@radix-ui/themes';
@@ -30,18 +30,13 @@ export const DocumentListCard: React.FC<
 > = ({ isLoading, title, state, creator, badges, comments, views }) => {
   return (
     <Card className="w-full h-full p-5 flex items-center">
-      <Skeleton
-        width="64px"
-        height="64px"
-        loading={isLoading}
-        className="rounded-lg mr-3"
-      >
-        <PersonAvatar
-          className="min-w-[64px] min-h-[64px] mr-3"
-          avatarSrc={creator?.avatarUrl}
-          userName={`${creator?.name} ${creator?.surname}`}
-        />
-      </Skeleton>
+      <PersonAvatar
+        className="mr-3"
+        avatarSrc={creator?.avatarUrl}
+        userName={`${creator?.name} ${creator?.surname}`}
+        isLoading={isLoading}
+        size="lg"
+      />
       <div className="flex justify-between items-center w-full">
         <div className="grid">
           <DocumentBadges isLoading={isLoading} badges={badges ?? []} />

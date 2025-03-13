@@ -7,8 +7,8 @@ import {
 } from '@hypha-platform/ui';
 import { Image } from '@hypha-platform/ui';
 import { DocumentInteractions } from './document-interactions';
-import { CreatorInfo } from '../../people/components/creator-info';
-import { type Creator } from '../../people/components/creator-info';
+import { PersonLabel } from '../../people/components/person-label';
+import { type Creator } from '../../people/components/person-label';
 import { DocumentBadges, type BadgeItem } from './document-badges';
 import { type DocumentInteractionsProps } from './document-interactions';
 
@@ -76,7 +76,7 @@ export const DocumentCard: React.FC<
           >
             <CardTitle>{title}</CardTitle>
           </Skeleton>
-          <CreatorInfo isLoading={isLoading} creator={creator} />
+          <PersonLabel isLoading={isLoading} creator={creator} />
         </div>
         <div className="flex flex-grow text-1 text-neutral-11 mb-4">
           <Skeleton

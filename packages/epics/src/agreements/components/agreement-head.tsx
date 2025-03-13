@@ -25,18 +25,13 @@ export const AgreementHead = ({
 }: AgreementHeadProps) => {
   return (
     <div className="flex items-center">
-      <Skeleton
-        width="64px"
-        height="64px"
-        loading={isLoading}
-        className="rounded-lg mr-3"
-      >
-        <PersonAvatar
-          className="min-w-[64px] min-h-[64px] mr-3"
-          avatarSrc={creator?.avatar}
-          userName={`${creator?.name} ${creator?.surname}`}
-        />
-      </Skeleton>
+      <PersonAvatar
+        className="mr-3"
+        size="lg"
+        isLoading={isLoading}
+        avatarSrc={creator?.avatar}
+        userName={`${creator?.name} ${creator?.surname}`}
+      />
 
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">

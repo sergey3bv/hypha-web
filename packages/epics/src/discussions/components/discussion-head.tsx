@@ -25,18 +25,13 @@ export const DiscussionHead = ({
         <Text className="text-4 text-primary">{title}</Text>
       </Skeleton>
       <div className="flex row items-center">
-        <Skeleton
-          width="12px"
-          height="12px"
-          loading={isLoading}
-          className="rounded-lg mr-2"
-        >
-          <PersonAvatar
-            className="min-w-[12px] min-h-[12px] max-h-[12px] max-w-[12px] mr-2"
-            avatarSrc={creator?.avatar}
-            userName={`${creator?.name} ${creator?.surname}`}
-          />
-        </Skeleton>
+        <PersonAvatar
+          className="mr-3"
+          size="xs"
+          isLoading={isLoading}
+          avatarSrc={creator?.avatar}
+          userName={`${creator?.name} ${creator?.surname}`}
+        />
         <Skeleton height="16px" width="80px" loading={isLoading}>
           <Text className="text-1 text-gray-500">
             {creator?.name} {creator?.surname}

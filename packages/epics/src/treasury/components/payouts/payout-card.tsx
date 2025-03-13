@@ -28,18 +28,13 @@ export const PayoutCard: React.FC<PayoutCardProps> = ({
 }) => {
   return (
     <Card className="w-full h-full p-5 mb-2 flex">
-      <Skeleton
-        width="64px"
-        height="64px"
-        loading={isLoading}
-        className="rounded-lg mr-3"
-      >
-        <PersonAvatar
-          className="min-w-[64px] min-h-[64px] mr-3"
-          avatarSrc={avatar}
-          userName={`${name} ${surname}`}
-        />
-      </Skeleton>
+      <PersonAvatar
+        className="mr-3"
+        size="lg"
+        isLoading={isLoading}
+        avatarSrc={avatar}
+        userName={`${name} ${surname}`}
+      />
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <BadgesList
