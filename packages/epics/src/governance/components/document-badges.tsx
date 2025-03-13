@@ -14,7 +14,7 @@ export const DocumentBadges = ({ badges, isLoading }: DocumentBadgesProps) => {
     <div className="flex flex-wrap gap-2">
       {badges.map((badge, index) => (
         <Badge
-          key={index}
+          key={`${badge.value} ${index}`}
           className={badge.className}
           isLoading={isLoading}
           variant={badge.variant}
