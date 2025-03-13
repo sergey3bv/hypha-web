@@ -6,11 +6,9 @@ import {
   CardContent,
 } from '@hypha-platform/ui';
 import { Image } from '@hypha-platform/ui';
-import { DocumentInteractions } from './document-interactions';
 import { PersonLabel } from '../../people/components/person-label';
 import { type Creator } from '../../people/components/person-label';
 import { DocumentBadges, type BadgeItem } from './document-badges';
-import { type DocumentInteractionsProps } from './document-interactions';
 
 interface Document {
   id: number;
@@ -18,7 +16,6 @@ interface Document {
   title: string;
   description?: string;
   slug: string;
-  state: 'agreement' | 'discussion' | 'proposal';
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,20 +25,17 @@ interface DocumentCardProps {
   leadImage?: string;
   creator: Creator;
   badges?: BadgeItem[];
+  interactions: React.ReactNode;
 }
 
-export const DocumentCard: React.FC<
-  DocumentCardProps & Document & DocumentInteractionsProps
-> = ({
+export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
   isLoading,
   title,
   description,
-  state,
   leadImage,
   creator,
   badges,
-  comments,
-  views,
+  interactions,
 }) => {
   return (
     <Card className="h-full w-full">
@@ -88,12 +82,7 @@ export const DocumentCard: React.FC<
             <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
-        <DocumentInteractions
-          isLoading={isLoading}
-          state={state}
-          comments={comments}
-          views={views}
-        />
+        {interactions}
       </CardContent>
     </Card>
   );

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { DocumentCard } from './document-card';
+import { DocumentStats } from './document-stats';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
@@ -24,7 +25,6 @@ export const Default: Story = {
     leadImage: 'https://github.com/shadcn.png',
     title: 'Title',
     description: 'Description',
-    state: 'agreement',
     badges: [
       {
         value: 'agreement',
@@ -38,8 +38,7 @@ export const Default: Story = {
         colorVariant: 'accent',
       },
     ],
-    comments: 100,
-    views: 50,
+    interactions: <DocumentStats isLoading={false} views={50} comments={50} />,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

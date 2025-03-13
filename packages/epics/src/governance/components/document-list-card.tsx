@@ -1,8 +1,4 @@
 import { Skeleton, Card } from '@hypha-platform/ui';
-import {
-  DocumentInteractions,
-  type DocumentInteractionsProps,
-} from './document-interactions';
 import { type Creator } from '../../people/components/person-label';
 import { DocumentBadges, type BadgeItem } from './document-badges';
 import { PersonAvatar } from '../../people/components/person-avatar';
@@ -12,6 +8,7 @@ interface DocumentListCardProps {
   isLoading?: boolean;
   creator: Creator;
   badges?: BadgeItem[];
+  interactions?: React.ReactNode;
 }
 
 interface Document {
@@ -25,9 +22,14 @@ interface Document {
   updatedAt: Date;
 }
 
-export const DocumentListCard: React.FC<
-  DocumentListCardProps & Document & DocumentInteractionsProps
-> = ({ isLoading, title, state, creator, badges, comments, views }) => {
+export const DocumentListCard: React.FC<DocumentListCardProps & Document> = ({
+  isLoading,
+  title,
+  state,
+  creator,
+  badges,
+  interactions,
+}) => {
   return (
     <Card className="w-full h-full p-5 flex items-center">
       <PersonAvatar
@@ -57,14 +59,7 @@ export const DocumentListCard: React.FC<
             </Text>
           </Skeleton>
         </div>
-        <div className="lex justify-end">
-          <DocumentInteractions
-            isLoading={isLoading}
-            state={state}
-            comments={comments}
-            views={views}
-          />
-        </div>
+        <div className="lex justify-end">{interactions}</div>
       </div>
     </Card>
   );
