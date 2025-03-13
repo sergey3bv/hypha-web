@@ -16,7 +16,7 @@ type Story = StoryObj<typeof DocumentVoteButton>;
 export const Default: Story = {
   args: {
     isLoading: false,
-    voted: false,
+    isVoted: false,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
