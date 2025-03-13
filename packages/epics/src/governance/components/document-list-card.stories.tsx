@@ -26,13 +26,13 @@ export const Default: Story = {
     state: 'agreement',
     badges: [
       {
-        value: 'agreement',
+        label: 'agreement',
         className: 'capitalize',
         variant: 'solid',
         colorVariant: 'accent',
       },
       {
-        value: '50%',
+        label: '50%',
         variant: 'outline',
         colorVariant: 'accent',
       },

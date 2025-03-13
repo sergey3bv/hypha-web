@@ -1,6 +1,6 @@
 import { Skeleton, Card } from '@hypha-platform/ui';
 import { type Creator } from '../../people/components/person-label';
-import { DocumentBadges, type BadgeItem } from './document-badges';
+import { type BadgeItem, BadgesList } from '@hypha-platform/ui';
 import { PersonAvatar } from '../../people/components/person-avatar';
 import { Text } from '@radix-ui/themes';
 
@@ -41,7 +41,7 @@ export const DocumentListCard: React.FC<DocumentListCardProps & Document> = ({
       />
       <div className="flex justify-between items-center w-full">
         <div className="grid">
-          <DocumentBadges isLoading={isLoading} badges={badges ?? []} />
+          <BadgesList isLoading={isLoading} badges={badges ?? []} />
           <Skeleton
             height="26px"
             width="160px"
