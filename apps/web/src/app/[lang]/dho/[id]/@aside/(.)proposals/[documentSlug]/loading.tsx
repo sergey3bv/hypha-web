@@ -6,7 +6,7 @@ export default function Loading() {
     <SidePanel>
       <DiscussionDetail
         isLoading
-        creator={{}}
+        creator={{ avatarUrl: '', name: '', surname: '' }}
         title={''}
         content={''}
         image={''}
