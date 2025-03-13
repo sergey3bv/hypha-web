@@ -25,14 +25,14 @@ export const RequestCard: React.FC<RequestCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-5 mb-2 flex">
+    <Card className="w-full h-full p-5 mb-2 flex space-x-3">
       <PersonAvatar
         size="lg"
         isLoading={isLoading}
         avatarSrc={avatar}
         userName={`${name} ${surname}`}
       />
-      <div className="flex justify-between items-center w-full ml-3">
+      <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
             <Badge

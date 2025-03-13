@@ -22,14 +22,14 @@ export const AgreementHead = ({
   isLoading,
 }: AgreementHeadProps) => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center space-x-3">
       <PersonAvatar
         size="lg"
         isLoading={isLoading}
         avatarSrc={creator?.avatarUrl}
         userName={`${creator?.name} ${creator?.surname}`}
       />
-      <div className="flex justify-between items-center w-full ml-3">
+      <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
