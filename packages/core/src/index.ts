@@ -8,5 +8,4 @@ initializeContainer();
 // Export components
 export * from './components';
 export * from './container';
-export * from './context/types';
 export * from './shared';
