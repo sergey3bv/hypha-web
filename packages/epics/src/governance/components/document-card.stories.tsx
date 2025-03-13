@@ -25,6 +25,21 @@ export const Default: Story = {
     title: 'Title',
     description: 'Description',
     state: 'agreement',
+    badges: [
+      {
+        value: 'agreement',
+        className: 'capitalize',
+        variant: 'solid',
+        colorVariant: 'accent',
+      },
+      {
+        value: '50%',
+        variant: 'outline',
+        colorVariant: 'accent',
+      },
+    ],
+    comments: 100,
+    views: 50,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

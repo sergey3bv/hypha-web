@@ -1,7 +1,7 @@
 import { DocumentStats } from './document-stats';
 import { DocumentVoteButton } from './document-vote-button';
 
-interface DocumentInteractionsProps {
+export interface DocumentInteractionsProps {
   state?: 'agreement' | 'discussion' | 'proposal';
   isLoading?: boolean;
   comments?: number;

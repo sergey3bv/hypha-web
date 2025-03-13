@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { DocumentInteractions } from './document-interactions';
 import { CreatorInfo } from '../../people/components/creator-info';
 import { type Creator } from '../../people/components/creator-info';
+import { DocumentBadges, type BadgeItem } from './document-badges';
+import { type DocumentInteractionsProps } from './document-interactions';
 
 interface Document {
   id: number;
@@ -26,15 +28,21 @@ interface DocumentCardProps {
   isLoading: boolean;
   leadImage?: string;
   creator: Creator;
+  badges?: BadgeItem[];
 }
 
-export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
+export const DocumentCard: React.FC<
+  DocumentCardProps & Document & DocumentInteractionsProps
+> = ({
   isLoading,
   title,
   description,
   state,
   leadImage,
   creator,
+  badges,
+  comments,
+  views,
 }) => {
   return (
     <Card className="h-full w-full">
@@ -56,14 +64,11 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
       </CardHeader>
       <CardContent className="pt-5 relative">
         <div className="flex flex-col items-start mb-5">
-          <Badge
-            className="mb-2 capitalize"
+          <DocumentBadges
+            className="mb-2"
             isLoading={isLoading}
-            variant="solid"
-            colorVariant="accent"
-          >
-            {state}
-          </Badge>
+            badges={badges ?? []}
+          />
           <Skeleton
             className="min-w-full"
             width="120px"
@@ -84,7 +89,12 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
             <div className="line-clamp-3">{description}</div>
           </Skeleton>
         </div>
-        <DocumentInteractions isLoading={isLoading} state={state} />
+        <DocumentInteractions
+          isLoading={isLoading}
+          state={state}
+          comments={comments}
+          views={views}
+        />
       </CardContent>
     </Card>
   );
