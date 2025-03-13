@@ -26,14 +26,12 @@ export const ProposalHead = ({
   return (
     <div className="flex items-center">
       <PersonAvatar
-        className="mr-3"
         size="lg"
         isLoading={isLoading}
         avatarSrc={creator?.avatar}
         userName={`${creator?.name} ${creator?.surname}`}
       />
-
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full ml-3">
         <div className="grid">
           <div className="flex gap-x-1">
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>

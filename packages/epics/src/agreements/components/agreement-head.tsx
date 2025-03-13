@@ -1,15 +1,13 @@
 import { Text } from '@radix-ui/themes';
 import { Badge, StatusBadge, Skeleton } from '@hypha-platform/ui';
 import { PersonAvatar } from '../../people/components/person-avatar';
-
-type CreatorType = {
-  avatar?: string;
-  name?: string;
-  surname?: string;
-};
+import {
+  type Creator,
+  PersonLabel,
+} from '../../people/components/person-label';
 
 export type AgreementHeadProps = {
-  creator?: CreatorType;
+  creator?: Creator;
   title?: string;
   commitment?: number;
   status?: string;
@@ -26,14 +24,12 @@ export const AgreementHead = ({
   return (
     <div className="flex items-center">
       <PersonAvatar
-        className="mr-3"
         size="lg"
         isLoading={isLoading}
-        avatarSrc={creator?.avatar}
+        avatarSrc={creator?.avatarUrl}
         userName={`${creator?.name} ${creator?.surname}`}
       />
-
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full ml-3">
         <div className="flex flex-col">
           <div className="flex gap-x-1">
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
@@ -56,12 +52,11 @@ export const AgreementHead = ({
           >
             <Text className="text-3">{title}</Text>
           </Skeleton>
-
-          <Skeleton height="16px" width="80px" loading={isLoading}>
-            <Text className="text-xs text-gray-500">
-              {creator?.name} {creator?.surname}
-            </Text>
-          </Skeleton>
+          <PersonLabel
+            isLoading={isLoading ?? false}
+            creator={creator}
+            hasAvatar={false}
+          />
         </div>
       </div>
     </div>

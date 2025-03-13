@@ -39,11 +39,10 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
       <PersonAvatar
         isLoading={isLoading}
         size="lg"
-        className="mr-3"
         avatarSrc={creator?.avatar}
         userName={`${creator?.name} ${creator?.surname}`}
       />
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full ml-3">
         <div className="grid">
           <div className="flex gap-x-1">
             <Badge
