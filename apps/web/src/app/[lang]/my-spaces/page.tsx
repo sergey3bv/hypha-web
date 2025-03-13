@@ -13,7 +13,7 @@ import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
-import { createSpaceService } from '@hypha-platform/core';
+import { createSpaceService } from '@hypha-platform/core/server';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;

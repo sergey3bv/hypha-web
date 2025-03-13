@@ -2,7 +2,7 @@ import {
   Document,
   FilterParams,
   PaginationMetadata,
-} from '@hypha-platform/core';
+} from '@hypha-platform/core/client';
 
 export type UseDocumentsReturn = {
   documents: Document[];

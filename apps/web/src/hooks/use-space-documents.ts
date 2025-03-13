@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { FilterParams } from '@hypha-platform/graphql/rsc';
 
 import { useSpaceSlug } from './use-space-slug';
-import { Document } from '@hypha-platform/core';
+import { Document } from '@hypha-platform/core/client';
 import { UseDocuments, UseDocumentsReturn } from '@hypha-platform/epics';
 
 export const useSpaceDocuments: UseDocuments = ({

@@ -1,6 +1,6 @@
 'use client';
 
-import { Document } from '@hypha-platform/core';
+import { Document } from '@hypha-platform/core/client';
 import React from 'react';
 import useSWR from 'swr';
 

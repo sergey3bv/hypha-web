@@ -2,7 +2,7 @@
 
 import React from 'react';
 import useSWR from 'swr';
-import { Person } from '@hypha-platform/core';
+import { Person } from '@hypha-platform/core/client';
 import { useJwt } from './use-jwt';
 
 export const useMe = (): {

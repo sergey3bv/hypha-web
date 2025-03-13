@@ -1,4 +1,4 @@
-import { createPeopleService } from '@hypha-platform/core';
+import { createPeopleService } from '@hypha-platform/core/server';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(

@@ -1,5 +1,8 @@
-import { Person } from '@hypha-platform/core';
-import { FilterParams, PaginationMetadata } from '@hypha-platform/core';
+import {
+  Person,
+  FilterParams,
+  PaginationMetadata,
+} from '@hypha-platform/core/client';
 
 interface UseMeProps {
   newUserRedirectPath?: string;
