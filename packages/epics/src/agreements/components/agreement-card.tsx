@@ -35,20 +35,13 @@ export const AgreementCard: React.FC<AgreementCardProps> = ({
   isLoading,
 }) => {
   return (
-    <Card className="w-full h-full p-5 mb-2 flex items-center">
-      <Skeleton
-        width="64px"
-        height="64px"
-        loading={isLoading}
-        className="rounded-lg mr-3"
-      >
-        <PersonAvatar
-          className="min-w-[64px] min-h-[64px] mr-3"
-          avatarSrc={creator?.avatar}
-          userName={`${creator?.name} ${creator?.surname}`}
-        />
-      </Skeleton>
-
+    <Card className="w-full h-full p-5 mb-2 flex items-center space-x-3">
+      <PersonAvatar
+        isLoading={isLoading}
+        size="lg"
+        avatarSrc={creator?.avatar}
+        userName={`${creator?.name} ${creator?.surname}`}
+      />
       <div className="flex justify-between items-center w-full">
         <div className="grid">
           <div className="flex gap-x-1">

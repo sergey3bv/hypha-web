@@ -1,20 +1,27 @@
-import { Badge, BadgeProps } from '../badge';
+import { Badge, type BadgeProps } from '@hypha-platform/ui';
+import { cn } from '@hypha-platform/lib/utils';
 
-type BadgeConfig = BadgeProps & {
-  label: string;
-};
+export interface BadgeItem extends BadgeProps {
+  label: string | number;
+}
 
-type BadgesListProps = {
-  badges: BadgeConfig[];
+interface BadgesListProps {
+  badges: BadgeItem[];
   isLoading?: boolean;
-};
+  className?: string;
+}
 
-export const BadgesList = ({ badges, isLoading = false }: BadgesListProps) => {
+export const BadgesList = ({
+  badges,
+  isLoading,
+  className,
+}: BadgesListProps) => {
   return (
-    <div className="flex gap-x-1">
+    <div className={cn('flex flex-wrap gap-2', className)}>
       {badges.map((badge, index) => (
         <Badge
-          key={`${badge.label}-${index}`}
+          key={`${badge.label} ${index}`}
+          className={badge.className}
           isLoading={isLoading}
           variant={badge.variant}
           colorVariant={badge.colorVariant}
