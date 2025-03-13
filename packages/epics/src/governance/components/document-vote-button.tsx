@@ -1,8 +1,8 @@
 import { Skeleton, Button } from '@hypha-platform/ui';
 
 interface DocumentVoteButtonProps {
-  voted: boolean;
-  isLoading: boolean;
+  voted?: boolean;
+  isLoading?: boolean;
 }
 
 export const DocumentVoteButton = ({
@@ -10,18 +10,18 @@ export const DocumentVoteButton = ({
   isLoading,
 }: DocumentVoteButtonProps) => {
   return (
-    <div>
+    <div className="w-full">
       <Skeleton
         height="32px"
         width="86px"
         loading={isLoading}
-        className="rounded-lg"
+        className="rounded-lg w-full"
       >
         <div>
           {voted ? (
             <Button
               colorVariant="accent"
-              className="rounded-lg w-fit"
+              className="rounded-lg w-full"
               variant="outline"
             >
               You voted
@@ -29,7 +29,7 @@ export const DocumentVoteButton = ({
           ) : (
             <Button
               colorVariant="accent"
-              className="rounded-lg w-fit"
+              className="rounded-lg w-full"
               variant="outline"
             >
               Vote now
