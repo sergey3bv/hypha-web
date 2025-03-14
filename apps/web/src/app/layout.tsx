@@ -13,6 +13,7 @@ import {
 import { AuthProvider } from '@hypha-platform/authentication';
 import { useAuthentication } from '@hypha-platform/authentication';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
+import { EvmProvider } from '@hypha-platform/evm';
 import { useMe } from '@web/hooks/use-me';
 
 const lato = Lato({
@@ -56,33 +57,35 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <MenuTop
-            withLogo={true}
-            navItems={[
-              {
-                label: 'Network',
-                href: `/network`,
-              },
-              {
-                label: 'My Spaces',
-                href: `/my-spaces`,
-              },
-              {
-                label: 'Wallet',
-                href: `/wallet`,
-              },
-            ]}
-          >
-            <MenuTop.RightSlot>
-              <ConnectedButtonProfile
-                useAuthentication={useAuthentication}
-                useMe={useMe}
-                newUserRedirectPath="/profile/signup"
-              />
-            </MenuTop.RightSlot>
-          </MenuTop>
-          {children}
-          <Footer />
+          <EvmProvider>
+            <MenuTop
+              withLogo={true}
+              navItems={[
+                {
+                  label: 'Network',
+                  href: `/network`,
+                },
+                {
+                  label: 'My Spaces',
+                  href: `/my-spaces`,
+                },
+                {
+                  label: 'Wallet',
+                  href: `/wallet`,
+                },
+              ]}
+            >
+              <MenuTop.RightSlot>
+                <ConnectedButtonProfile
+                  useAuthentication={useAuthentication}
+                  useMe={useMe}
+                  newUserRedirectPath="/profile/signup"
+                />
+              </MenuTop.RightSlot>
+            </MenuTop>
+            {children}
+            <Footer />
+          </EvmProvider>
         </ThemeProvider>
       </AuthProvider>
       {shouldInjectToolbar && <VercelToolbar />}
