@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { FilterParams, Person } from '@hypha-platform/core';
+// TODO: #594 declare UI interface separately
+import { FilterParams, Person } from '@hypha-platform/core/client';
 import { type UseMembers } from './types';
 
 type UseSubspaceDetailsProps = {

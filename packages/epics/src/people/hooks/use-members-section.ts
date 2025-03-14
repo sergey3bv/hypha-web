@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FILTER_OPTIONS_MEMBERS, SORT_OPTIONS } from '../../common/constants';
-import { FilterParams, Person } from '@hypha-platform/core';
+import { FilterParams, Person } from '@hypha-platform/core/client';
 import { type UseMembers } from './types';
 
 const sortOptions = SORT_OPTIONS;

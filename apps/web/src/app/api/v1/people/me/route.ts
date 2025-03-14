@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { createPeopleService } from '@hypha-platform/core';
+import { createPeopleService } from '@hypha-platform/core/server';
 
 export async function GET() {
   const headersList = await headers();

@@ -3,7 +3,8 @@
 import React from 'react';
 import useSWR from 'swr';
 import { useJwt } from './use-jwt';
-import { Space } from '@hypha-platform/core';
+// TODO: #594 declare UI interface separately
+import { Space } from '@hypha-platform/core/client';
 
 type UseSpacesByMemberSlugReturn = {
   spaces: Space[];

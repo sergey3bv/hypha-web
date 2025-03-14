@@ -21,7 +21,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
 import { getDhoPathAgreements } from './agreements/constants';
-import { createSpaceService } from '@hypha-platform/core';
+import { createSpaceService } from '@hypha-platform/core/server';
 
 const customLogoStyles: React.CSSProperties = {
   width: '128px',

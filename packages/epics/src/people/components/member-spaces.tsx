@@ -1,5 +1,5 @@
 import { Skeleton, Image } from '@hypha-platform/ui';
-import { Space } from '@hypha-platform/core';
+import { Space } from '@hypha-platform/core/client';
 
 export type MemberSpacesProps = {
   spaces?: Space[];

@@ -1,4 +1,9 @@
-import { FilterParams, PaginationMetadata, Person } from '@hypha-platform/core';
+import {
+  FilterParams,
+  PaginationMetadata,
+  // TODO: define UI interface separately
+  Person,
+} from '@hypha-platform/core/client';
 
 export type UseMembersReturn = {
   members: Person[];

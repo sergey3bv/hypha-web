@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { createDocumentService } from '@hypha-platform/core';
+import { createDocumentService } from '@hypha-platform/core/server';
 
 export async function GET(
   request: NextRequest,
