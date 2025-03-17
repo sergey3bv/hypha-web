@@ -3,6 +3,7 @@ import { type Creator } from '../../people/components/person-label';
 import { type BadgeItem, BadgesList } from '@hypha-platform/ui';
 import { PersonAvatar } from '../../people/components/person-avatar';
 import { Text } from '@radix-ui/themes';
+import { PersonLabel } from '../../people/components/person-label';
 
 interface DocumentDetailsHeadProps {
   isLoading?: boolean;
@@ -41,12 +42,11 @@ export const DocumentDetailsHead: React.FC<
               {title}
             </Text>
           </Skeleton>
-
-          <Skeleton height="16px" width="80px" loading={isLoading}>
-            <Text className="text-1 text-neutral-11">
-              {creator?.name} {creator?.surname}
-            </Text>
-          </Skeleton>
+          <PersonLabel
+            isLoading={isLoading ?? false}
+            creator={creator}
+            hasAvatar={false}
+          />
         </div>
       </div>
     </div>
