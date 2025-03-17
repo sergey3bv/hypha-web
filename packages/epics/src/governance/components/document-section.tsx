@@ -37,7 +37,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
   } = useDocumentsSection({ useDocuments, filterOptionsType: state });
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center space-y-2">
       <SectionFilter
         value={activeFilter}
         onChange={setActiveFilter}
