@@ -65,7 +65,9 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           >
             <CardTitle>{title}</CardTitle>
           </Skeleton>
-          <PersonLabel isLoading={isLoading} creator={creator} />
+          <div className="mt-2">
+            <PersonLabel isLoading={isLoading} creator={creator} />
+          </div>
         </div>
         <div className="flex flex-grow text-1 text-neutral-11 mb-4">
           <Skeleton

@@ -20,9 +20,10 @@ export const PersonLabel = ({
   hasAvatar = true,
 }: PersonLabelProps) => {
   return (
-    <div className="mt-2 flex items-center">
+    <div className="flex items-center">
       {hasAvatar ? (
         <PersonAvatar
+          className="mr-2"
           isLoading={isLoading}
           size="sm"
           avatarSrc={creator?.avatarUrl}
@@ -30,8 +31,8 @@ export const PersonLabel = ({
         />
       ) : null}
 
-      <Skeleton width="50px" height="16px" className="ml-2" loading={isLoading}>
-        <Text className="ml-2 text-1 text-neutral-11">
+      <Skeleton width="50px" height="16px" loading={isLoading}>
+        <Text className="text-1 text-neutral-11">
           {creator?.name} {creator?.surname}
         </Text>
       </Skeleton>
