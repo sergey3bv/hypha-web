@@ -33,7 +33,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
   interactions,
 }) => {
   return (
-    <Card className="h-full w-full">
+    <Card className="h-full w-full space-y-5">
       <CardHeader className="p-0 rounded-tl-md rounded-tr-md overflow-hidden h-[150px]">
         <Skeleton
           loading={isLoading}
@@ -50,13 +50,9 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           />
         </Skeleton>
       </CardHeader>
-      <CardContent className="pt-5 relative">
-        <div className="flex flex-col items-start mb-5">
-          <BadgesList
-            className="mb-2"
-            isLoading={isLoading}
-            badges={badges ?? []}
-          />
+      <CardContent className="relative space-y-4">
+        <div className="flex flex-col items-start space-y-2">
+          <BadgesList isLoading={isLoading} badges={badges ?? []} />
           <Skeleton
             className="min-w-full"
             width="120px"
@@ -65,11 +61,9 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           >
             <CardTitle>{title}</CardTitle>
           </Skeleton>
-          <div className="space-y-2">
-            <PersonLabel isLoading={isLoading} creator={creator} />
-          </div>
+          <PersonLabel isLoading={isLoading} creator={creator} />
         </div>
-        <div className="flex flex-grow text-1 text-neutral-11 mb-4">
+        <div className="flex flex-grow text-1 text-neutral-11">
           <Skeleton
             className="min-w-full"
             width="200px"

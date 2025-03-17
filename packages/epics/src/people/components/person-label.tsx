@@ -20,10 +20,9 @@ export const PersonLabel = ({
   hasAvatar = true,
 }: PersonLabelProps) => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center space-x-2">
       {hasAvatar ? (
         <PersonAvatar
-          className="space-x-2"
           isLoading={isLoading}
           size="sm"
           avatarSrc={creator?.avatarUrl}
