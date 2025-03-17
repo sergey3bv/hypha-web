@@ -10,7 +10,7 @@ export interface Creator {
 
 interface PersonLabelProps {
   creator?: Creator;
-  isLoading: boolean;
+  isLoading?: boolean;
   hasAvatar?: boolean;
 }
 
@@ -23,7 +23,7 @@ export const PersonLabel = ({
     <div className="flex items-center">
       {hasAvatar ? (
         <PersonAvatar
-          className="mr-2"
+          className="space-x-2"
           isLoading={isLoading}
           size="sm"
           avatarSrc={creator?.avatarUrl}

@@ -43,7 +43,7 @@ export const DocumentDetailsHead: React.FC<
             </Text>
           </Skeleton>
           <PersonLabel
-            isLoading={isLoading ?? false}
+            isLoading={isLoading}
             creator={creator}
             hasAvatar={false}
           />

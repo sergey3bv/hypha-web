@@ -65,7 +65,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           >
             <CardTitle>{title}</CardTitle>
           </Skeleton>
-          <div className="mt-2">
+          <div className="space-y-2">
             <PersonLabel isLoading={isLoading} creator={creator} />
           </div>
         </div>
