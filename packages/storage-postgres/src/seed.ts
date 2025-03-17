@@ -7,13 +7,13 @@ import { documents, memberships, people, schema, spaces } from './schema';
 
 const AVATAR_URLS = Array.from({ length: 10 }, () => faker.image.avatar());
 const SPACE_LOGO_URLS = Array.from({ length: 10 }, () =>
-  faker.image.url({
+  faker.image.urlPicsumPhotos({
     width: 120,
     height: 120,
   }),
 );
 const SPACE_LEAD_IMAGE_URLS = Array.from({ length: 10 }, () =>
-  faker.image.url({
+  faker.image.urlPicsumPhotos({
     width: 762,
     height: 150,
   }),

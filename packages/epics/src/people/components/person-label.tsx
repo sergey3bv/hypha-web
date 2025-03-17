@@ -10,7 +10,7 @@ export interface Creator {
 
 interface PersonLabelProps {
   creator?: Creator;
-  isLoading: boolean;
+  isLoading?: boolean;
   hasAvatar?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const PersonLabel = ({
   hasAvatar = true,
 }: PersonLabelProps) => {
   return (
-    <div className="mt-2 flex items-center">
+    <div className="flex items-center space-x-2">
       {hasAvatar ? (
         <PersonAvatar
           isLoading={isLoading}
@@ -30,8 +30,8 @@ export const PersonLabel = ({
         />
       ) : null}
 
-      <Skeleton width="50px" height="16px" className="ml-2" loading={isLoading}>
-        <Text className="ml-2 text-1 text-neutral-11">
+      <Skeleton width="50px" height="16px" loading={isLoading}>
+        <Text className="text-1 text-neutral-11">
           {creator?.name} {creator?.surname}
         </Text>
       </Skeleton>

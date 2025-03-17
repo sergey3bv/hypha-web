@@ -11,16 +11,16 @@ import { type Creator } from '../../people/components/person-label';
 import { type BadgeItem, BadgesList } from '@hypha-platform/ui';
 
 interface Document {
-  title: string;
+  title?: string;
   description?: string;
 }
 
 interface DocumentCardProps {
   isLoading: boolean;
   leadImage?: string;
-  creator: Creator;
+  creator?: Creator;
   badges?: BadgeItem[];
-  interactions: React.ReactNode;
+  interactions?: React.ReactNode;
 }
 
 export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
@@ -33,7 +33,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
   interactions,
 }) => {
   return (
-    <Card className="h-full w-full">
+    <Card className="h-full w-full space-y-5">
       <CardHeader className="p-0 rounded-tl-md rounded-tr-md overflow-hidden h-[150px]">
         <Skeleton
           loading={isLoading}
@@ -44,19 +44,15 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           <Image
             className="rounded-tl-xl rounded-tr-xl object-cover w-full h-full"
             src={leadImage || '/placeholder/document-lead-image.png'}
-            alt={title}
+            alt={title || ''}
             width={250}
             height={150}
           />
         </Skeleton>
       </CardHeader>
-      <CardContent className="pt-5 relative">
-        <div className="flex flex-col items-start mb-5">
-          <BadgesList
-            className="mb-2"
-            isLoading={isLoading}
-            badges={badges ?? []}
-          />
+      <CardContent className="relative space-y-4">
+        <div className="flex flex-col items-start space-y-2">
+          <BadgesList isLoading={isLoading} badges={badges ?? []} />
           <Skeleton
             className="min-w-full"
             width="120px"
@@ -67,7 +63,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
           </Skeleton>
           <PersonLabel isLoading={isLoading} creator={creator} />
         </div>
-        <div className="flex flex-grow text-1 text-neutral-11 mb-4">
+        <div className="flex flex-grow text-1 text-neutral-11">
           <Skeleton
             className="min-w-full"
             width="200px"
