@@ -4,6 +4,7 @@ import {
   FILTER_OPTIONS_AGREEMENTS,
   FILTER_OPTIONS_PROPOSALS,
   SORT_OPTIONS,
+  DOCUMENT_TYPES,
 } from '../../common/constants';
 import { UseDocuments } from '../../governance';
 
@@ -19,23 +20,30 @@ export const useDocumentsSection = ({
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
 
-  const filterState = {
-    discussions: 'discussion',
-    agreements: 'agreement',
-    proposals: 'proposal',
-  }[filterOptionsType];
+  type FilterOptionsType = keyof typeof filterStateMapping;
+
+  const filterStateMapping = {
+    discussions: DOCUMENT_TYPES['DISCUSSIONS'],
+    agreements: DOCUMENT_TYPES['AGREEMENTS'],
+    proposals: DOCUMENT_TYPES['PROPOSALS'],
+  };
+
+  const filterOptionsMapping = {
+    discussions: FILTER_OPTIONS_DISCUSSIONS,
+    agreements: FILTER_OPTIONS_AGREEMENTS,
+    proposals: FILTER_OPTIONS_PROPOSALS,
+  };
+
+  const filterState =
+    filterStateMapping[filterOptionsType as FilterOptionsType];
+  const filterOptions =
+    filterOptionsMapping[filterOptionsType as FilterOptionsType];
 
   const { isLoading, pagination } = useDocuments({
     page: pages,
     pageSize: 3,
     filter: { state: filterState },
   });
-
-  const filterOptions = {
-    discussions: FILTER_OPTIONS_DISCUSSIONS,
-    agreements: FILTER_OPTIONS_AGREEMENTS,
-    proposals: FILTER_OPTIONS_PROPOSALS,
-  }[filterOptionsType];
 
   React.useEffect(() => {
     setPages(1);

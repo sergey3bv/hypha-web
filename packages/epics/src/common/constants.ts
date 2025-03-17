@@ -45,3 +45,9 @@ export const SORT_OPTIONS = [
   { label: 'All', value: 'all' },
   { label: 'Most recent', value: 'most-recent' },
 ];
+
+export const DOCUMENT_TYPES = {
+  DISCUSSIONS: 'discussion',
+  AGREEMENTS: 'agreement',
+  PROPOSALS: 'proposal',
+};
