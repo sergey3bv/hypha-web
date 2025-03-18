@@ -1,9 +1,9 @@
+import { SYMBOLS } from '../../_container';
+import { PaginatedResponse } from '../../common';
+import { Person } from '../types';
 import { PeopleFindAllConfig, PeopleFindBySpaceConfig } from './repository';
 import type { PeopleRepository } from './repository';
 import { injectable, inject } from 'inversify';
-import { Person } from '../types';
-import { PaginatedResponse } from '../../common';
-import { SYMBOLS } from '../../_container';
 
 @injectable()
 export class PeopleService {
