@@ -12,7 +12,7 @@ type DocumentDetailsProps = Document &
   DocumentDetailsHeadProps & {
     leadImage: string;
     closeUrl: string;
-    interactions: React.ReactNode;
+    interactions?: React.ReactNode;
   };
 
 export const DocumentDetails = ({
