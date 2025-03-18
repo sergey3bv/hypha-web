@@ -1,6 +1,7 @@
+
 import { VercelToolbar } from '@vercel/toolbar/next';
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { extractRouterConfig } from "uploadthing/server";
+import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
+import { extractRouterConfig } from 'uploadthing/server';
 import { ourFileRouter } from '@web/app/api/uploadthing/core';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
