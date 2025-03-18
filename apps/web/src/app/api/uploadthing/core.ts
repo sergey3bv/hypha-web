@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { UploadThingError } from 'uploadthing/server';
 import { NextRequest } from 'next/server';
-import { createPeopleService } from '@hypha-platform/core';
+import { createPeopleService } from '@hypha-platform/core/server';
 
 const f = createUploadthing();
 

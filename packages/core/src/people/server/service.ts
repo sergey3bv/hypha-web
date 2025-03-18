@@ -1,9 +1,9 @@
-import { SYMBOLS } from '../../_container';
-import { PaginatedResponse } from '../../common';
-import { Person } from '../types';
 import { PeopleFindAllConfig, PeopleFindBySpaceConfig } from './repository';
 import type { PeopleRepository } from './repository';
+import { PaginatedResponse } from '../../shared';
 import { injectable, inject } from 'inversify';
+import { SYMBOLS } from '../../container/types';
+import { Person } from '../types';
 
 @injectable()
 export class PeopleService {
@@ -11,6 +11,10 @@ export class PeopleService {
     @inject(SYMBOLS.Repositories.PeopleRepository)
     private repository: PeopleRepository,
   ) {}
+
+  async verifyAuth() {
+    return this.repository.verifyAuth();
+  }
 
   async findBySpaceId(
     { spaceId }: { spaceId: number },

@@ -9,20 +9,20 @@ import {
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { injectable, inject, optional } from 'inversify';
-import { SYMBOLS } from '../../_container/types';
+import { SYMBOLS } from '../../container/types';
 import { Database } from '@hypha-platform/storage-postgres';
-import { Person } from '../types';
-import { PaginatedResponse } from '../../common';
+import { PaginatedResponse } from '../../shared';
 import {
   DatabaseProvider,
   DatabaseInstance,
-} from '../../_container/database-provider';
+} from '../../container/database-provider';
 
 import {
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
   PeopleRepository,
 } from './repository';
+import { Person } from '../types';
 
 // Helper function to convert null to undefined
 const nullToUndefined = <T>(value: T | null): T | undefined =>
@@ -269,6 +269,17 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
     } catch (error) {
       console.error('Error finding authenticated user:', error);
       return null;
+    }
+  }
+
+  async verifyAuth(): Promise<boolean> {
+    try {
+      const {
+        rows: [{ user_id }],
+      } = await this.db.execute(sql`SELECT user_id from auth.user_id()`);
+      return !!user_id;
+    } catch {
+      return false;
     }
   }
 }
