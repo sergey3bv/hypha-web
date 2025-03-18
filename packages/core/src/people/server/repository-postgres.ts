@@ -9,16 +9,20 @@ import {
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { injectable, inject, optional } from 'inversify';
+import { SYMBOLS } from '../../_container/types';
 import { Database } from '@hypha-platform/storage-postgres';
+import { Person } from '../types';
+import { PaginatedResponse } from '../../common';
+import {
+  DatabaseProvider,
+  DatabaseInstance,
+} from '../../_container/database-provider';
 
 import {
   PeopleFindAllConfig,
   PeopleFindBySpaceConfig,
   PeopleRepository,
 } from './repository';
-import { Person } from '../types';
-import { DatabaseInstance, DatabaseProvider, SYMBOLS } from '../../_container';
-import { PaginatedResponse } from '../../common';
 
 // Helper function to convert null to undefined
 const nullToUndefined = <T>(value: T | null): T | undefined =>
