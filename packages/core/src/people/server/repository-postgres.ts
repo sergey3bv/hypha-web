@@ -9,13 +9,8 @@ import {
 import invariant from 'tiny-invariant';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { injectable, inject, optional } from 'inversify';
-import { SYMBOLS } from '../../container/types';
 import { Database } from '@hypha-platform/storage-postgres';
 import { PaginatedResponse } from '../../shared';
-import {
-  DatabaseProvider,
-  DatabaseInstance,
-} from '../../container/database-provider';
 
 import {
   PeopleFindAllConfig,
@@ -23,6 +18,7 @@ import {
   PeopleRepository,
 } from './repository';
 import { Person } from '../types';
+import { DatabaseInstance, DatabaseProvider, SYMBOLS } from '../../_container';
 
 // Helper function to convert null to undefined
 const nullToUndefined = <T>(value: T | null): T | undefined =>
