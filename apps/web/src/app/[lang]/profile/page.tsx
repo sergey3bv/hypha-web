@@ -4,9 +4,9 @@ import {
   PersonHead,
   AgreementsSection,
   ProposalsSection,
-  DiscussionsSection,
   MemberSpaces,
   SpaceGroupSlider,
+  DocumentSection,
 } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { ChevronLeftIcon } from '@radix-ui/react-icons';
@@ -81,7 +81,12 @@ export default function Profile() {
           <ProposalsSection basePath="" useDocuments={useSpaceDocuments} />
         </TabsContent>
         <TabsContent value="discussions">
-          <DiscussionsSection basePath="" useDocuments={useSpaceDocuments} />
+          {/* TODO: #608 Define document base route to handle transition from profile */}
+          <DocumentSection
+            basePath=""
+            useDocuments={useSpaceDocuments}
+            documentState="discussion"
+          />
         </TabsContent>
       </Tabs>
       <SpaceGroupSlider spaces={[]} type="Hypha" getHref={getHref} />

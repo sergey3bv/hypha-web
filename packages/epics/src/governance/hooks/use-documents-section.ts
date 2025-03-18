@@ -1,24 +1,23 @@
 import React from 'react';
-import {
-  FILTER_OPTIONS_DISCUSSIONS,
-  SORT_OPTIONS,
-} from '../../common/constants';
-import { UseDocuments } from '../../governance';
+import { SORT_OPTIONS } from '../../common/constants';
+import { DocumentState, UseDocuments } from '../../governance';
 
 const sortOptions = SORT_OPTIONS;
 
-const filterOptions = FILTER_OPTIONS_DISCUSSIONS;
-
-export const useDiscussionsSection = ({
+export const useDocumentsSection = ({
   useDocuments,
+  documentState,
 }: {
   useDocuments: UseDocuments;
+  documentState: DocumentState;
 }) => {
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, pagination } = useDocuments({
-    filter: { state: 'discussion' },
+    page: pages,
+    pageSize: 3,
+    filter: { state: documentState },
   });
 
   React.useEffect(() => {
@@ -39,6 +38,5 @@ export const useDiscussionsSection = ({
     activeFilter,
     setActiveFilter,
     sortOptions,
-    filterOptions,
   };
 };

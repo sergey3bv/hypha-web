@@ -1,8 +1,7 @@
 'use client';
 import { FC } from 'react';
-import { DiscussionsList } from './discussion-list';
 import { Text } from '@radix-ui/themes';
-import { useDiscussionsSection } from '../hooks/use-discussions-section';
+import { useDocumentsSection } from '../hooks/use-documents-section';
 import {
   SectionFilter,
   SectionLoadMore,
@@ -11,17 +10,22 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { UseDocuments } from '../../governance';
+import { DocumentState, UseDocuments } from '..';
+import { DocumentGridContainer } from './document-grid.container';
+import { useDocumentsFilter } from '../hooks/use-documents-filter';
 
-type DiscussionSectionProps = {
+type DocumentSectionProps = {
   basePath: string;
   useDocuments: UseDocuments;
+  documentState: DocumentState;
 };
 
-export const DiscussionsSection: FC<DiscussionSectionProps> = ({
+export const DocumentSection: FC<DocumentSectionProps> = ({
   basePath,
   useDocuments,
+  documentState,
 }) => {
+  const { filter } = useDocumentsFilter({ documentState: documentState });
   const {
     pages,
     activeFilter,
@@ -30,16 +34,15 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = ({
     loadMore,
     pagination,
     sortOptions,
-    filterOptions,
-  } = useDiscussionsSection({ useDocuments });
+  } = useDocumentsSection({ useDocuments, documentState: documentState });
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center space-y-2">
       <SectionFilter
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
-        label="Discussions"
+        label={`${documentState}s`}
         sortOptions={sortOptions}
       >
         <Link href={`${basePath}/create`} scroll={false}>
@@ -53,17 +56,21 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = ({
         <SectionTabs
           activeTab={activeFilter}
           setActiveTab={setActiveFilter}
-          tabs={filterOptions}
+          tabs={filter || []}
         />
       )}
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (
         Array.from({ length: pages }).map((_, index) => (
-          <DiscussionsList
-            page={index + 1}
-            key={index}
+          <DocumentGridContainer
+            key={`key ${index}`}
             basePath={basePath}
+            pagination={{
+              page: index + 1,
+              pageSize: 3,
+              filter: { state: documentState },
+            }}
             useDocuments={useDocuments}
           />
         ))
@@ -75,9 +82,7 @@ export const DiscussionsSection: FC<DiscussionSectionProps> = ({
           isLoading={isLoading}
         >
           <Text>
-            {pagination?.totalPages === pages
-              ? 'No more discussions'
-              : 'Load more discussions'}
+            {pagination?.totalPages === pages ? 'No more' : 'Load more'}
           </Text>
         </SectionLoadMore>
       )}
