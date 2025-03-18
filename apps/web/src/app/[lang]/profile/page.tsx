@@ -81,6 +81,7 @@ export default function Profile() {
           <ProposalsSection basePath="" useDocuments={useSpaceDocuments} />
         </TabsContent>
         <TabsContent value="discussions">
+          {/* TODO: #608 Define document base route to handle transition from profile */}
           <DocumentSection
             basePath=""
             useDocuments={useSpaceDocuments}
