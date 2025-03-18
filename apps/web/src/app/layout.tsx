@@ -1,4 +1,3 @@
-
 import { VercelToolbar } from '@vercel/toolbar/next';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
@@ -87,7 +86,7 @@ export default async function RootLayout({
                 />
               </MenuTop.RightSlot>
             </MenuTop>
-            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)}/>
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             {children}
             <Footer />
           </EvmProvider>
