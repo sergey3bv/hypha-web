@@ -1,17 +1,28 @@
-import { DiscussionDetail } from '@hypha-platform/epics';
-import { SidePanel } from '../../_components/side-panel';
+'use client';
 
-export default function Loading() {
+import { SidePanel } from '../../_components/side-panel';
+import { DocumentDetails, Chat } from '@hypha-platform/epics';
+
+type PageProps = {
+  params: Promise<{ slug: string; id: string; lang: string }>;
+};
+
+export default function Agreements(props: PageProps) {
   return (
     <SidePanel>
-      <DiscussionDetail
-        isLoading
-        creator={{ avatarUrl: '', name: '', surname: '' }}
+      <DocumentDetails
+        creator={{
+          avatarUrl: '',
+          name: '',
+          surname: '',
+        }}
         title={''}
-        content={''}
-        image={''}
-        messages={[]}
+        isLoading={true}
+        description={''}
+        leadImage={''}
         closeUrl={''}
+        badges={[]}
+        interactions={<Chat messages={[]} />}
       />
     </SidePanel>
   );
