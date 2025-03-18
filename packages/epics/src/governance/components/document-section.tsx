@@ -10,20 +10,22 @@ import {
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { UseDocuments } from '..';
+import { DocumentState, UseDocuments } from '..';
 import { DocumentGridContainer } from './document-grid.container';
+import { useDocumentsFilter } from '../hooks/use-documents-filter';
 
 type DocumentSectionProps = {
   basePath: string;
   useDocuments: UseDocuments;
-  state: 'agreements' | 'proposals' | 'discussions';
+  documentState: DocumentState;
 };
 
 export const DocumentSection: FC<DocumentSectionProps> = ({
   basePath,
   useDocuments,
-  state,
+  documentState,
 }) => {
+  const { filter } = useDocumentsFilter({ documentState: documentState });
   const {
     pages,
     activeFilter,
@@ -32,9 +34,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
     loadMore,
     pagination,
     sortOptions,
-    filterOptions,
-    filterState,
-  } = useDocumentsSection({ useDocuments, filterOptionsType: state });
+  } = useDocumentsSection({ useDocuments, documentState: documentState });
 
   return (
     <div className="flex flex-col justify-center items-center space-y-2">
@@ -42,7 +42,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         value={activeFilter}
         onChange={setActiveFilter}
         count={pagination?.total || 0}
-        label={state}
+        label={`${documentState}s`}
         sortOptions={sortOptions}
       >
         <Link href={`${basePath}/create`} scroll={false}>
@@ -56,7 +56,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         <SectionTabs
           activeTab={activeFilter}
           setActiveTab={setActiveFilter}
-          tabs={filterOptions || []}
+          tabs={filter || []}
         />
       )}
       {pagination?.totalPages === 0 ? (
@@ -69,7 +69,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
             pagination={{
               page: index + 1,
               pageSize: 3,
-              filter: { state: filterState },
+              filter: { state: documentState },
             }}
             useDocuments={useDocuments}
           />

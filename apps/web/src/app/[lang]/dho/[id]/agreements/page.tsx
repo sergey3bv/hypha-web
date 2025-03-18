@@ -24,7 +24,7 @@ export default async function AgreementsPage(props: PageProps) {
       <DocumentSection
         basePath={`${basePath}/discussions`}
         useDocuments={useSpaceDocuments}
-        state="discussions"
+        documentState="discussion"
       />
       <ProposalsSection
         basePath={`${basePath}/proposals`}
