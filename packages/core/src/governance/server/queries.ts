@@ -80,6 +80,19 @@ export const findAllDocumentsBySpaceSlug = async (
 
   const offset = (page - 1) * pageSize;
 
+  // Create conditions array with mandatory space slug condition
+  const conditions = [eq(spaces.slug, spaceSlug)];
+
+  // Only add state filter if it exists
+  if (filter.state) {
+    conditions.push(
+      eq(
+        documents.state,
+        filter.state as 'discussion' | 'proposal' | 'agreement',
+      ),
+    );
+  }
+
   const results = await db
     .select({
       document: documents,
@@ -87,15 +100,7 @@ export const findAllDocumentsBySpaceSlug = async (
     })
     .from(documents)
     .innerJoin(spaces, eq(documents.spaceId, spaces.id))
-    .where(
-      and(
-        eq(spaces.slug, spaceSlug),
-        eq(
-          documents.state,
-          filter.state as 'discussion' | 'proposal' | 'agreement',
-        ),
-      ),
-    )
+    .where(and(...conditions))
     .limit(pageSize)
     .offset(offset);
 
