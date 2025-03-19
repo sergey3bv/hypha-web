@@ -24,60 +24,61 @@ interface DAOSpaceFactoryInterface {
     tokenFactoryAddress: string,
     joinMethodDirectoryAddress: string,
     exitMethodDirectoryAddress: string,
-    proposalManagerAddress: string
+    proposalManagerAddress: string,
   ) => Promise<ContractTransactionWithWait>;
 }
 
 const daoSpaceFactoryAbi = [
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "address",
-        "name": "_tokenFactoryAddress",
-        "type": "address"
+        internalType: 'address',
+        name: '_tokenFactoryAddress',
+        type: 'address',
       },
       {
-        "internalType": "address",
-        "name": "_joinMethodDirectoryAddress",
-        "type": "address"
+        internalType: 'address',
+        name: '_joinMethodDirectoryAddress',
+        type: 'address',
       },
       {
-        "internalType": "address",
-        "name": "_exitMethodDirectoryAddress",
-        "type": "address"
+        internalType: 'address',
+        name: '_exitMethodDirectoryAddress',
+        type: 'address',
       },
       {
-        "internalType": "address",
-        "name": "_proposalManagerAddress",
-        "type": "address"
-      }
+        internalType: 'address',
+        name: '_proposalManagerAddress',
+        type: 'address',
+      },
     ],
-    "name": "setContracts",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
+    name: 'setContracts',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
 ];
 
 async function main(): Promise<void> {
   // Connect to the network
   const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-  
+
   // Create a wallet instance
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY || '', provider);
-  
+
   // Get the DAO Space Factory contract instance
   const daoSpaceFactory = new ethers.Contract(
     process.env.DAO_SPACE_FACTORY_ADDRESS || '',
     daoSpaceFactoryAbi,
-    wallet
+    wallet,
   ) as ethers.Contract & DAOSpaceFactoryInterface;
 
   // Use dummy addresses for other contracts
-  const dummyAddress = "0x1111111111111111111111111111111111111111";
-  
+  const dummyAddress = '0x1111111111111111111111111111111111111111';
+
   // Get the real join method directory address from .env
-  const joinMethodDirectoryAddress = process.env.JOIN_METHOD_DIRECTORY_ADDRESS || '';
+  const joinMethodDirectoryAddress =
+    process.env.JOIN_METHOD_DIRECTORY_ADDRESS || '';
 
   console.log('Setting contracts with the following addresses:');
   console.log('Token Factory:', dummyAddress);
@@ -90,7 +91,7 @@ async function main(): Promise<void> {
       dummyAddress, // token factory
       joinMethodDirectoryAddress,
       dummyAddress, // exit method directory
-      dummyAddress  // proposal manager
+      dummyAddress, // proposal manager
     );
 
     console.log('Transaction sent, waiting for confirmation...');
@@ -107,4 +108,4 @@ main()
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  }); 
+  });

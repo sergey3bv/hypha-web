@@ -28,7 +28,9 @@ interface ContractTransactionWithWait extends ethers.ContractTransaction {
 }
 
 interface DAOSpaceFactoryInterface {
-  createSpace: (params: SpaceCreationParams) => Promise<ContractTransactionWithWait>;
+  createSpace: (
+    params: SpaceCreationParams,
+  ) => Promise<ContractTransactionWithWait>;
   getSpaceMembers: (spaceId: number) => Promise<string[]>;
   getSpaceExecutor: (spaceId: number) => Promise<string>;
 }
@@ -40,89 +42,90 @@ interface AccountData {
 
 const daoSpaceFactoryAbi = [
   {
-    "inputs": [
+    inputs: [
       {
-        "components": [
+        components: [
           {
-            "internalType": "uint256",
-            "name": "unity",
-            "type": "uint256"
+            internalType: 'uint256',
+            name: 'unity',
+            type: 'uint256',
           },
           {
-            "internalType": "uint256",
-            "name": "quorum",
-            "type": "uint256"
+            internalType: 'uint256',
+            name: 'quorum',
+            type: 'uint256',
           },
           {
-            "internalType": "uint256",
-            "name": "votingPowerSource",
-            "type": "uint256"
+            internalType: 'uint256',
+            name: 'votingPowerSource',
+            type: 'uint256',
           },
           {
-            "internalType": "uint256",
-            "name": "exitMethod",
-            "type": "uint256"
+            internalType: 'uint256',
+            name: 'exitMethod',
+            type: 'uint256',
           },
           {
-            "internalType": "uint256",
-            "name": "joinMethod",
-            "type": "uint256"
-          }
+            internalType: 'uint256',
+            name: 'joinMethod',
+            type: 'uint256',
+          },
         ],
-        "internalType": "struct DAOSpaceFactoryImplementation.SpaceCreationParams",
-        "name": "params",
-        "type": "tuple"
-      }
+        internalType:
+          'struct DAOSpaceFactoryImplementation.SpaceCreationParams',
+        name: 'params',
+        type: 'tuple',
+      },
     ],
-    "name": "createSpace",
-    "outputs": [
+    name: 'createSpace',
+    outputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
     ],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "_spaceId",
-        "type": "uint256"
-      }
+        internalType: 'uint256',
+        name: '_spaceId',
+        type: 'uint256',
+      },
     ],
-    "name": "getSpaceMembers",
-    "outputs": [
+    name: 'getSpaceMembers',
+    outputs: [
       {
-        "internalType": "address[]",
-        "name": "",
-        "type": "address[]"
-      }
+        internalType: 'address[]',
+        name: '',
+        type: 'address[]',
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function',
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "_spaceId",
-        "type": "uint256"
-      }
+        internalType: 'uint256',
+        name: '_spaceId',
+        type: 'uint256',
+      },
     ],
-    "name": "getSpaceExecutor",
-    "outputs": [
+    name: 'getSpaceExecutor',
+    outputs: [
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
-  }
+    stateMutability: 'view',
+    type: 'function',
+  },
 ];
 
 async function testCreateSpace(): Promise<void> {
@@ -130,11 +133,11 @@ async function testCreateSpace(): Promise<void> {
   const daoSpaceFactory = new ethers.Contract(
     process.env.DAO_SPACE_FACTORY_ADDRESS || '',
     daoSpaceFactoryAbi,
-    provider
+    provider,
   ) as ethers.Contract & DAOSpaceFactoryInterface;
 
   let accountData: AccountData[] = [];
-  
+
   try {
     // Try to read accounts from file
     const data = fs.readFileSync('accounts.json', 'utf8');
@@ -146,15 +149,19 @@ async function testCreateSpace(): Promise<void> {
     // Use the account from .env
     if (process.env.PRIVATE_KEY) {
       const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
-      accountData = [{
-        privateKey: process.env.PRIVATE_KEY,
-        address: wallet.address
-      }];
+      accountData = [
+        {
+          privateKey: process.env.PRIVATE_KEY,
+          address: wallet.address,
+        },
+      ];
     }
   }
 
   if (accountData.length === 0) {
-    console.error('No accounts found. Please create an accounts.json file or provide a PRIVATE_KEY in .env');
+    console.error(
+      'No accounts found. Please create an accounts.json file or provide a PRIVATE_KEY in .env',
+    );
     return;
   }
 
@@ -162,7 +169,9 @@ async function testCreateSpace(): Promise<void> {
 
   for (let i = 0; i < accountData.length; i++) {
     const wallet = new ethers.Wallet(accountData[i].privateKey, provider);
-    const connectedFactory = daoSpaceFactory.connect(wallet) as ethers.Contract & DAOSpaceFactoryInterface;
+    const connectedFactory = daoSpaceFactory.connect(
+      wallet,
+    ) as ethers.Contract & DAOSpaceFactoryInterface;
 
     // Test data for space creation matching SpaceCreationParams
     const spaceParams: SpaceCreationParams = {
@@ -175,16 +184,20 @@ async function testCreateSpace(): Promise<void> {
 
     try {
       // Create space with the simplified parameters
-      console.log(`Creating space with unity: ${spaceParams.unity}, quorum: ${spaceParams.quorum}`);
+      console.log(
+        `Creating space with unity: ${spaceParams.unity}, quorum: ${spaceParams.quorum}`,
+      );
       const tx = await connectedFactory.createSpace(spaceParams);
 
       const receipt = await tx.wait();
-      
+
       // Find the SpaceCreated event in the receipt
       const event = receipt?.logs.find(
-        log => log.topics[0] === ethers.id(
-          "SpaceCreated(uint256,uint256,uint256,uint256,uint256,uint256,address,address)"
-        )
+        (log) =>
+          log.topics[0] ===
+          ethers.id(
+            'SpaceCreated(uint256,uint256,uint256,uint256,uint256,uint256,address,address)',
+          ),
       );
 
       if (event) {
@@ -195,7 +208,7 @@ async function testCreateSpace(): Promise<void> {
         const members = await daoSpaceFactory.getSpaceMembers(spaceId);
         console.log(`Initial members: ${members}`);
         console.log(`Creator address: ${wallet.address}`);
-        
+
         // Verify executor
         const executor = await daoSpaceFactory.getSpaceExecutor(spaceId);
         console.log(`Space executor address: ${executor}`);
@@ -207,9 +220,11 @@ async function testCreateSpace(): Promise<void> {
           console.error('Verification failed: Creator is not the first member');
         }
       }
-
     } catch (error) {
-      console.error(`Error creating space for account ${wallet.address}:`, error);
+      console.error(
+        `Error creating space for account ${wallet.address}:`,
+        error,
+      );
     }
   }
 
@@ -217,4 +232,4 @@ async function testCreateSpace(): Promise<void> {
 }
 
 // Usage
-testCreateSpace().catch(console.error); 
+testCreateSpace().catch(console.error);

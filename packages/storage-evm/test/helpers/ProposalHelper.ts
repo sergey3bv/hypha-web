@@ -1,5 +1,5 @@
-import { ethers } from "hardhat";
-import type { DAOProposalsImplementation } from "../../typechain-types";
+import { ethers } from 'hardhat';
+import type { DAOProposalsImplementation } from '../../typechain-types';
 
 export interface ProposalParams {
   spaceId: number;
@@ -19,9 +19,9 @@ export class ProposalHelper {
       spaceId: 1,
       duration: 86400,
       targetContract: ethers.Wallet.createRandom().address,
-      executionData: "0x1234",
+      executionData: '0x1234',
       value: 0,
-      ...overrides
+      ...overrides,
     };
 
     return this.contract.createProposal(defaultParams);
@@ -38,4 +38,4 @@ export class ProposalHelper {
   async hasVoted(proposalId: number, voter: string) {
     return this.contract.hasVoted(proposalId, voter);
   }
-} 
+}

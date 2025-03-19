@@ -26,51 +26,51 @@ interface DAOSpaceFactoryInterface {
 
 const daoSpaceFactoryAbi = [
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "_spaceId",
-        "type": "uint256"
-      }
+        internalType: 'uint256',
+        name: '_spaceId',
+        type: 'uint256',
+      },
     ],
-    "name": "joinSpace",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    name: 'joinSpace',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "_spaceId",
-        "type": "uint256"
-      }
+        internalType: 'uint256',
+        name: '_spaceId',
+        type: 'uint256',
+      },
     ],
-    "name": "getSpaceMembers",
-    "outputs": [
+    name: 'getSpaceMembers',
+    outputs: [
       {
-        "internalType": "address[]",
-        "name": "",
-        "type": "address[]"
-      }
+        internalType: 'address[]',
+        name: '',
+        type: 'address[]',
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
-  }
+    stateMutability: 'view',
+    type: 'function',
+  },
 ];
 
 async function main(): Promise<void> {
   // Connect to the network
   const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-  
+
   // Create a wallet instance
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY || '', provider);
-  
+
   // Get the contract instance
   const daoSpaceFactory = new ethers.Contract(
     process.env.DAO_SPACE_FACTORY_ADDRESS || '',
     daoSpaceFactoryAbi,
-    wallet
+    wallet,
   ) as ethers.Contract & DAOSpaceFactoryInterface;
 
   // Get the space ID from .env
@@ -85,7 +85,7 @@ async function main(): Promise<void> {
     // Join the space
     console.log(`Joining space ${spaceId}...`);
     const tx = await daoSpaceFactory.joinSpace(spaceId);
-    
+
     console.log('Transaction sent, waiting for confirmation...');
     await tx.wait();
     console.log('Successfully joined the space!');
@@ -94,7 +94,6 @@ async function main(): Promise<void> {
     console.log('Getting updated members list...');
     const membersAfter = await daoSpaceFactory.getSpaceMembers(spaceId);
     console.log('Updated members:', membersAfter);
-
   } catch (error: any) {
     console.error('Error joining space:', error.message);
     throw error;
@@ -106,4 +105,4 @@ main()
   .catch((error) => {
     console.error(error);
     process.exit(1);
-  }); 
+  });
