@@ -22,6 +22,7 @@ import {
   findPersonBySlug,
   findPersonBySpaceId,
   findSelf,
+  verifyAuth,
 } from './queries';
 import { createPerson, deletePerson, updatePerson } from './mutations';
 
@@ -99,13 +100,6 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
   }
 
   async verifyAuth(): Promise<boolean> {
-    try {
-      const {
-        rows: [{ user_id }],
-      } = await this.db.execute(sql`SELECT user_id from auth.user_id()`);
-      return !!user_id;
-    } catch {
-      return false;
-    }
+    return verifyAuth({ db: this.db });
   }
 }

@@ -222,3 +222,14 @@ export const findSelf = async ({ db }: DbConfig) => {
     return null;
   }
 };
+
+export const verifyAuth = async ({ db }: DbConfig) => {
+  try {
+    const {
+      rows: [{ user_id }],
+    } = await db.execute(sql`SELECT user_id from auth.user_id()`);
+    return !!user_id;
+  } catch {
+    return false;
+  }
+};
