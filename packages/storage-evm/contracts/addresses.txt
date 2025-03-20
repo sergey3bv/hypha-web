@@ -1,0 +1,12 @@
+BASE MAINNET
+
+Deploying with admin address: 0x2687fe290b54d824c136Ceff2d5bD362Bc62019a
+Deploying DAOSpaceFactory...
+DAOSpaceFactory deployed to: 0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9
+
+Deploying with admin address: 0x2687fe290b54d824c136Ceff2d5bD362Bc62019a
+Deploying JoinMethodDirectory...
+JoinMethodDirectory deployed to: 0xaa86924F59852f48dD5185469D146BdcF8448D56
+
+Deploying OpenJoin...
+OpenJoin deployed to: 0x957e7671Db34773d7d28FedA03Ca762BA3611dc0
