@@ -173,7 +173,9 @@ describe('DAOProposalsImplementation', function () {
       // Vote on proposal
       await proposalHelper.vote(1, voter1, true);
 
-      expect(await proposalHelper.hasVoted(1, await voter1.getAddress())).to.equal(true);
+      expect(
+        await proposalHelper.hasVoted(1, await voter1.getAddress()),
+      ).to.equal(true);
     });
   });
 
