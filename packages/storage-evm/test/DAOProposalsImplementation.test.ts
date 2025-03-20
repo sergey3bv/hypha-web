@@ -1,8 +1,6 @@
 import { ethers, upgrades } from 'hardhat';
 import { expect } from 'chai';
 import { loadFixture } from '@nomicfoundation/hardhat-toolbox/network-helpers';
-import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
-import { time } from '@nomicfoundation/hardhat-network-helpers';
 import { ProposalHelper } from './helpers/ProposalHelper';
 import { SpaceHelper } from './helpers/SpaceHelper';
 
@@ -175,8 +173,7 @@ describe('DAOProposalsImplementation', function () {
       // Vote on proposal
       await proposalHelper.vote(1, voter1, true);
 
-      expect(await proposalHelper.hasVoted(1, await voter1.getAddress())).to.be
-        .true;
+      expect(await proposalHelper.hasVoted(1, await voter1.getAddress())).to.equal(true);
     });
   });
 
