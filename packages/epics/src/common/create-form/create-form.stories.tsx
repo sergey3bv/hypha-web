@@ -9,7 +9,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof CreateForm>;
 
 export const Default: Story = {
   args: {
