@@ -77,7 +77,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'utfs.io',
+        hostname: 'utfs.io'
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.githubassets.com'
       }
     ],
   },
