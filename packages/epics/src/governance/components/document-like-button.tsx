@@ -2,10 +2,10 @@ import { Button, Skeleton } from '@hypha-platform/ui';
 import { HeartIcon, HeartFilledIcon } from '@radix-ui/react-icons';
 
 type DocumentLikeButtonProps = {
-  isLiked: boolean;
-  isLoading: boolean;
-  onLike: () => void;
-  onUnlike: () => void;
+  isLiked?: boolean;
+  isLoading?: boolean;
+  onLike?: () => void;
+  onUnlike?: () => void;
 };
 
 export const DocumentLikeButton = ({

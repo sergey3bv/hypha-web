@@ -6,7 +6,7 @@ import { expect } from '@storybook/jest';
 
 const meta = {
   component: DocumentLikeButton,
-  title: "Epics/Governance/DocumentLikeButton",
+  title: 'Epics/Governance/DocumentLikeButton',
 } satisfies Meta<typeof DocumentLikeButton>;
 
 export default meta;
