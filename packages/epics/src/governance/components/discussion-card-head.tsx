@@ -3,17 +3,17 @@ import { DotsHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 
 import { timePassedSince } from '../../utils/timePassedSince';
 
-interface Space {
+export interface Space {
   title?: string;
   logoUrl?: string;
 }
 
-interface Creator {
+export interface Creator {
   name?: string;
   surname?: string;
 }
 
-interface DiscussionCardHeadProps {
+export interface DiscussionCardHeadProps {
   space?: Space;
   creator?: Creator;
   publicationDate?: Date;
