@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { subHours } from 'date-fns';
 
 import { DiscussionDetails } from './discussion-details';
 
@@ -22,7 +23,7 @@ export const Default: Story = {
       title: 'Hypha Space',
       logoUrl: '',
     },
-    publicationDate: new Date('2025-03-24T10:00:00.000'),
+    publicationDate: subHours(new Date(''), 1),
     closeUrl: '/',
     leadImageUrl: '',
     description:
