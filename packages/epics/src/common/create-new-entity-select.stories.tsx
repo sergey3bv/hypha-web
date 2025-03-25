@@ -6,7 +6,7 @@ import { CreateNewEntitySelect } from './create-new-entity-select';
 
 const meta = {
   component: CreateNewEntitySelect,
-  title: 'Epics/Governance/CreateNewEntitySelect',
+  title: 'Epics/Common/CreateNewEntitySelect',
 } satisfies Meta<typeof CreateNewEntitySelect>;
 
 export default meta;
