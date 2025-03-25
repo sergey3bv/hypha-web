@@ -43,7 +43,7 @@ export const DiscussionCardHead = ({
               alt={`${space?.title || 'Space'} Logo`}
             />
           </Skeleton>
-          <div className="flex gap-1 flex-col ml-3">
+          <div className="flex gap-1 flex-col">
             <Skeleton
               className="rounded-lg"
               width={80}
