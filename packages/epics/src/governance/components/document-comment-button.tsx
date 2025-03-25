@@ -20,7 +20,7 @@ export const DocumentCommentButton = ({
     >
       <Button colorVariant="neutral" variant="ghost" onClick={onClick}>
         <ChatBubbleIcon width={16} height={16} />
-        <span className="text-1 text-neutral-11 ml-2">Comment</span>
+        <span className="text-1 text-neutral-11">Comment</span>
       </Button>
     </Skeleton>
   );
