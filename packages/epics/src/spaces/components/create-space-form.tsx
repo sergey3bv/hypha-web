@@ -16,9 +16,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  AvatarUpload,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
-import { LuImagePlus } from 'react-icons/lu';
 import { useState } from 'react';
 import { Text } from '@radix-ui/themes';
 import { cn } from '@hypha-platform/lib/utils';
@@ -77,10 +77,7 @@ export const CreateSpaceForm = ({
       >
         <div className="flex gap-5 justify-between">
           <div className="flex items-center">
-            <div className="mr-3 min-w-[64px] h-[64px] rounded-xl bg-accent-5 justify-center items-center flex">
-              <LuImagePlus className="h-5 w-5" />
-            </div>
-
+            <AvatarUpload />
             <div className="flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <FormField
