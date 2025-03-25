@@ -18,6 +18,8 @@ export interface DiscussionCardHeadProps {
   publicationDate?: Date;
   isLoading?: boolean;
   showTopButtons?: boolean;
+  onOpenMenu?: () => void;
+  onClose?: () => void;
 }
 
 export const DiscussionCardHead = ({
@@ -26,6 +28,8 @@ export const DiscussionCardHead = ({
   publicationDate,
   isLoading,
   showTopButtons = true,
+  onOpenMenu,
+  onClose,
 }: DiscussionCardHeadProps) => {
   return (
     <div className="w-full flex justify-between">
@@ -76,7 +80,7 @@ export const DiscussionCardHead = ({
             height={16}
             loading={isLoading}
           >
-            <Button variant="ghost" colorVariant="neutral">
+            <Button variant="ghost" colorVariant="neutral" onClick={onOpenMenu}>
               <DotsHorizontalIcon className="text-secondary-foreground" />
             </Button>
           </Skeleton>
@@ -86,7 +90,7 @@ export const DiscussionCardHead = ({
             height={16}
             loading={isLoading}
           >
-            <Button variant="ghost" colorVariant="neutral">
+            <Button variant="ghost" colorVariant="neutral" onClick={onClose}>
               <Cross2Icon className="text-secondary-foreground" />
             </Button>
           </Skeleton>
