@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-import { DocumentCreateFormWelcome } from './document-create-form-welcome';
+import { CreateNewEntitySelect } from './document-create-form-welcome';
 
 const meta = {
-  component: DocumentCreateFormWelcome,
-  title: 'Epics/Governance/DocumentCreateFormWelcome',
-} satisfies Meta<typeof DocumentCreateFormWelcome>;
+  component: CreateNewEntitySelect,
+  title: 'Epics/Governance/CreateNewEntitySelect',
+} satisfies Meta<typeof CreateNewEntitySelect>;
 
 export default meta;
 
-type Story = StoryObj<typeof DocumentCreateFormWelcome>;
+type Story = StoryObj<typeof CreateNewEntitySelect>;
 
 export const Default: Story = {
   args: {

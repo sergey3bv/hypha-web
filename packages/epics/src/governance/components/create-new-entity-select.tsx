@@ -7,7 +7,7 @@ import {
 import Link from 'next/link';
 import { RxCross1 } from 'react-icons/rx';
 
-type DocumentCreateFormWelcomeProps = {
+type CreateNewEntitySelectProps = {
   isLoading?: boolean;
   closeUrl?: string;
   content?: string;
@@ -16,14 +16,14 @@ type DocumentCreateFormWelcomeProps = {
   createSubspaceHandler?: () => void;
 };
 
-export const DocumentCreateFormWelcome = ({
+export const CreateNewEntitySelect = ({
   isLoading,
   closeUrl,
   content,
   createDiscussionHandler,
   createAgreementHandler,
   createSubspaceHandler,
-}: DocumentCreateFormWelcomeProps) => {
+}: CreateNewEntitySelectProps) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
