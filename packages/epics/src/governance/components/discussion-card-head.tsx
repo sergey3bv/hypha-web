@@ -40,7 +40,7 @@ export const DiscussionCardHead = ({
               src={space?.logoUrl || '/placeholder/space-avatar-image.png'}
               width={40}
               height={40}
-              alt={`${space?.title} Logo`}
+              alt={`${space?.title || 'Space'} Logo`}
             />
           </Skeleton>
           <div className="flex gap-1 flex-col ml-3">
