@@ -1,7 +1,6 @@
 import { Image, Button, Skeleton } from '@hypha-platform/ui';
 import { DotsHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-
-import { timePassedSince } from '../../utils/timePassedSince';
+import { timePassedSince } from '@hypha-platform/ui-utils';
 
 export interface Space {
   title?: string;
