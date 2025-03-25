@@ -11,18 +11,18 @@ type CreateNewEntitySelectProps = {
   isLoading?: boolean;
   closeUrl?: string;
   content?: string;
-  createDiscussionHandler?: () => void;
-  createAgreementHandler?: () => void;
-  createSubspaceHandler?: () => void;
+  onCreateDiscussionHandler?: () => void;
+  onCreateAgreementHandler?: () => void;
+  onCreateSubspaceHandler?: () => void;
 };
 
 export const CreateNewEntitySelect = ({
   isLoading,
   closeUrl,
   content,
-  createDiscussionHandler,
-  createAgreementHandler,
-  createSubspaceHandler,
+  onCreateDiscussionHandler,
+  onCreateAgreementHandler,
+  onCreateSubspaceHandler,
 }: CreateNewEntitySelectProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -55,7 +55,7 @@ export const CreateNewEntitySelect = ({
       <div className="flex flex-col gap-2">
         <Skeleton width="100%" height="100px" loading={isLoading}>
           <Card
-            onClick={createDiscussionHandler}
+            onClick={onCreateDiscussionHandler}
             className="flex p-6 cursor-pointer space-x-4 items-center"
           >
             <div>
@@ -72,7 +72,7 @@ export const CreateNewEntitySelect = ({
         </Skeleton>
         <Skeleton width="100%" height="100px" loading={isLoading}>
           <Card
-            onClick={createAgreementHandler}
+            onClick={onCreateAgreementHandler}
             className="flex p-6 cursor-pointer space-x-4 items-center"
           >
             <div>
@@ -89,7 +89,7 @@ export const CreateNewEntitySelect = ({
         </Skeleton>
         <Skeleton width="100%" height="100px" loading={isLoading}>
           <Card
-            onClick={createSubspaceHandler}
+            onClick={onCreateSubspaceHandler}
             className="flex p-6 cursor-pointer space-x-4 items-center"
           >
             <div>
