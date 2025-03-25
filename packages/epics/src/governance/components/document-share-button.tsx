@@ -19,7 +19,7 @@ export const DocumentShareButton = ({
     >
       <Button colorVariant="neutral" variant="ghost" onClick={onClick}>
         <Share2Icon width={16} height={16} />
-        <span className="text-1 text-neutral-11 ml-2">Share</span>
+        <span className="text-1 text-neutral-11">Share</span>
       </Button>
     </Skeleton>
   );
