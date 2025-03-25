@@ -76,8 +76,10 @@ export const CreateSpaceForm = ({
         className={clsx('flex flex-col gap-5', isLoading && 'opacity-50')}
       >
         <div className="flex gap-5 justify-between">
-          <div className="flex items-center">
-            <AvatarUpload />
+          <div className="flex items-center gap-3">
+            <AvatarUpload
+              onChange={(file) => console.debug('onChange', { file })}
+            />
             <div className="flex justify-between items-center w-full">
               <div className="flex flex-col">
                 <FormField
