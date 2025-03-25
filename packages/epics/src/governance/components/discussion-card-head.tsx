@@ -28,7 +28,7 @@ export const DiscussionCardHead = ({
   return (
     <div className="w-full flex justify-between">
       <div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <Skeleton
             className="rounded-full"
             width={40}
