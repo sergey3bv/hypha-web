@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
+import { LuImagePlus } from 'react-icons/lu';
 import { useState } from 'react';
 import { Text } from '@radix-ui/themes';
 import { cn } from '@hypha-platform/lib/utils';
@@ -26,7 +27,6 @@ import Link from 'next/link';
 import React from 'react';
 
 import { z } from 'zod';
-import { Pencil1Icon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { schemaCreateSpace } from '@hypha-platform/core/client';
 
@@ -77,8 +77,8 @@ export const CreateSpaceForm = ({
       >
         <div className="flex gap-5 justify-between">
           <div className="flex items-center">
-            <div className="mr-3 min-w-[64px] h-[64px] rounded-xl bg-accent-9 justify-center items-center flex">
-              <Pencil1Icon className="h-5 w-5" />
+            <div className="mr-3 min-w-[64px] h-[64px] rounded-xl bg-accent-5 justify-center items-center flex">
+              <LuImagePlus className="h-5 w-5" />
             </div>
 
             <div className="flex justify-between items-center w-full">
