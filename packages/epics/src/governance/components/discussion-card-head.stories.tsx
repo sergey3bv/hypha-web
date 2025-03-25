@@ -26,6 +26,7 @@ export const Default: Story = {
     },
     publicationDate: subHours(new Date(), 3),
     isLoading: false,
+    showTopButtons: true,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -17,6 +17,9 @@ export interface DiscussionCardHeadProps {
   creator?: Creator;
   publicationDate?: Date;
   isLoading?: boolean;
+  showTopButtons?: boolean;
+  onOpenMenu?: () => void;
+  onClose?: () => void;
 }
 
 export const DiscussionCardHead = ({
@@ -24,6 +27,9 @@ export const DiscussionCardHead = ({
   creator,
   publicationDate,
   isLoading,
+  showTopButtons = true,
+  onOpenMenu,
+  onClose,
 }: DiscussionCardHeadProps) => {
   return (
     <div className="w-full flex justify-between">
@@ -66,28 +72,30 @@ export const DiscussionCardHead = ({
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        <Skeleton
-          className="rounded-lg"
-          width={16}
-          height={16}
-          loading={isLoading}
-        >
-          <Button variant="ghost" colorVariant="neutral">
-            <DotsHorizontalIcon className="text-secondary-foreground" />
-          </Button>
-        </Skeleton>
-        <Skeleton
-          className="rounded-lg"
-          width={16}
-          height={16}
-          loading={isLoading}
-        >
-          <Button variant="ghost" colorVariant="neutral">
-            <Cross2Icon className="text-secondary-foreground" />
-          </Button>
-        </Skeleton>
-      </div>
+      {showTopButtons && (
+        <div className="flex items-center gap-2">
+          <Skeleton
+            className="rounded-lg"
+            width={16}
+            height={16}
+            loading={isLoading}
+          >
+            <Button variant="ghost" colorVariant="neutral" onClick={onOpenMenu}>
+              <DotsHorizontalIcon className="text-secondary-foreground" />
+            </Button>
+          </Skeleton>
+          <Skeleton
+            className="rounded-lg"
+            width={16}
+            height={16}
+            loading={isLoading}
+          >
+            <Button variant="ghost" colorVariant="neutral" onClick={onClose}>
+              <Cross2Icon className="text-secondary-foreground" />
+            </Button>
+          </Skeleton>
+        </div>
+      )}
     </div>
   );
 };
