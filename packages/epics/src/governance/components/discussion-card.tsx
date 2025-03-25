@@ -10,7 +10,7 @@ type DiscussionCardProps = {
   space: Space;
   creator: Creator;
   publicationDate: Date;
-  isLoading: boolean;
+  isLoading?: boolean;
   replies: number;
   likes: number;
 };
