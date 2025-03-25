@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-import { CreateNewEntitySelect } from './document-create-form-welcome';
+import { CreateNewEntitySelect } from './create-new-entity-select';
 
 const meta = {
   component: CreateNewEntitySelect,
