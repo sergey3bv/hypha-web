@@ -17,19 +17,23 @@ export const UploadAvatar = ({
 }: UploadAvatarProps) => {
   const [preview, setPreview] = React.useState<string | null>('');
 
-  const onDrop = React.useCallback((acceptedFiles: File[]) => {
-    const reader = new FileReader();
-    try {
-      reader.onload = () => {
-        setPreview(reader.result as string);
-        onChange(acceptedFiles[0]);
-      };
-      reader.readAsDataURL(acceptedFiles[0]);
-    } catch (error) {
-      setPreview(null);
-      onChange(null);
-    }
-  }, []);
+  const onDrop = React.useCallback(
+    (acceptedFiles: File[]) => {
+      const reader = new FileReader();
+      try {
+        reader.onload = () => {
+          setPreview(reader.result as string);
+          onChange(acceptedFiles[0]);
+        };
+        reader.readAsDataURL(acceptedFiles[0]);
+      } catch (error) {
+        console.error('Error reading file:', error);
+        setPreview(null);
+        onChange(null);
+      }
+    },
+    [onChange],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
