@@ -3,6 +3,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { PreviewOverlay } from './preview-overlay';
 import { PreviewImg } from './preview-img';
+import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 
 export type UploadLeadImageProps = {
   onChange: (acceptedFile: File | null) => void;
@@ -36,12 +37,13 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
   });
 
   return (
-    <div
+    <AspectRatio
+      ratio={762 / 270}
       {...getRootProps()}
       className={clsx(
         'group cursor-pointer relative',
         'flex justify-center items-center overflow-hidden',
-        'w-full h-[150px] rounded-xl bg-accent-2',
+        'rounded-xl bg-accent-2',
         !preview && 'border border-neutral-11 border-dashed',
       )}
     >
@@ -56,6 +58,6 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
           </span>
         )}
       </PreviewOverlay>
-    </div>
+    </AspectRatio>
   );
 };
