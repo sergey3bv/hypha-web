@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { CreateSpaceFormHeadProps } from './create-space-form-head';
 import {
   Button,
-  FileUploader,
   Textarea,
   Input,
   Switch,
