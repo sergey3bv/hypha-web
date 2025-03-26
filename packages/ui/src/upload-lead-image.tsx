@@ -1,5 +1,6 @@
 import { useDropzone } from 'react-dropzone';
 import React from 'react';
+import clsx from 'clsx';
 
 export type UploadLeadImageProps = {
   onChange: (acceptedFile: File | null) => void;
@@ -31,7 +32,11 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
   return (
     <div
       {...getRootProps()}
-      className="border border-neutral-11 border-dashed rounded-lg w-full h-[150px] flex justify-center items-center"
+      className={clsx(
+        'cursor-pointer',
+        'rounded-lg w-full h-[150px] flex justify-center items-center overflow-hidden',
+        !preview && 'border border-neutral-11 border-dashed',
+      )}
     >
       <input {...getInputProps()} />
       {preview && (
