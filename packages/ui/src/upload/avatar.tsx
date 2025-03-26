@@ -19,6 +19,11 @@ export const UploadAvatar = ({
 
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
+      if (!acceptedFiles.length) {
+        setPreview(null);
+        onChange(null);
+        return;
+      }
       const reader = new FileReader();
       try {
         reader.onload = () => {
