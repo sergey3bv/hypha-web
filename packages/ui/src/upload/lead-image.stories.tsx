@@ -4,6 +4,7 @@ import { UploadLeadImage } from './lead-image';
 
 const meta = {
   component: UploadLeadImage,
+  title: 'UI/Uploads/LeadImage',
 } satisfies Meta<typeof UploadLeadImage>;
 
 export default meta;
