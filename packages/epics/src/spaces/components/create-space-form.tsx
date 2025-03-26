@@ -31,10 +31,15 @@ import { z } from 'zod';
 import clsx from 'clsx';
 import { schemaCreateSpace } from '@hypha-platform/core/client';
 
+const schemaCreateSpaceFE = schemaCreateSpace.extend({
+  avatar: z.instanceof(File).optional().nullable(),
+  leadImage: z.instanceof(File).optional().nullable(),
+});
+
 export type CreateSpaceFormProps = CreateSpaceFormHeadProps & {
   isLoading?: boolean;
   closeUrl: string;
-  onCreate: (values: z.infer<typeof schemaCreateSpace>) => void;
+  onCreate: (values: z.infer<typeof schemaCreateSpaceFE>) => void;
 };
 
 export const CreateSpaceForm = ({
@@ -43,8 +48,8 @@ export const CreateSpaceForm = ({
   closeUrl,
   onCreate,
 }: CreateSpaceFormProps) => {
-  const form = useForm<z.infer<typeof schemaCreateSpace>>({
-    resolver: zodResolver(schemaCreateSpace),
+  const form = useForm<z.infer<typeof schemaCreateSpaceFE>>({
+    resolver: zodResolver(schemaCreateSpaceFE),
     defaultValues: {
       title: '',
       description: '',
@@ -53,6 +58,8 @@ export const CreateSpaceForm = ({
       votingPowerSource: 0,
       joinMethod: 0,
       exitMethod: 0,
+      avatar: null,
+      leadImage: null,
     },
   });
 
@@ -77,10 +84,17 @@ export const CreateSpaceForm = ({
       >
         <div className="flex gap-5 justify-between">
           <div className="flex items-center gap-3">
-            <UploadAvatar
-              onChange={(file) =>
-                console.debug('UploadAvatar.onChange', { file })
-              }
+            <FormField
+              control={form.control}
+              name="avatar"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <UploadAvatar onChange={field.onChange} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <div className="flex justify-between items-center w-full">
               <div className="flex flex-col">
@@ -123,10 +137,17 @@ export const CreateSpaceForm = ({
             </Button>
           </Link>
         </div>
-        <UploadLeadImage
-          onChange={(file) =>
-            console.debug('UploadLeadImage.onChange', { file })
-          }
+        <FormField
+          control={form.control}
+          name="leadImage"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <UploadLeadImage onChange={field.onChange} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
         <FormField
           control={form.control}
