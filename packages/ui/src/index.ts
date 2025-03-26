@@ -23,10 +23,10 @@ export * from './slider';
 export * from './status-badge';
 export * from './switch';
 export * from './textarea';
-export * from './upload-avatar';
-export * from './upload-file';
-export * from './upload-lead-image';
-export * from './uploader-image';
+export * from './upload/avatar';
+export * from './upload/file';
+export * from './upload/lead-image';
+export * from './upload/image';
 
 export * from './organisms/editor';
 export * from './molecules/badges-list';

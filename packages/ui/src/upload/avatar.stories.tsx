@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { UploadAvatar } from './upload-avatar';
+import { UploadAvatar } from './avatar';
 import { LuImagePlus } from 'react-icons/lu';
 
 const meta = {

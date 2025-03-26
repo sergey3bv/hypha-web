@@ -55,7 +55,6 @@ export const CreateSpaceForm = ({
       exitMethod: 0,
     },
   });
-  const [files, setFiles] = React.useState<File[]>([]);
 
   const [activeLinks, setActiveLinks] = useState({
     website: false,
