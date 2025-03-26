@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { LuImagePlus, LuImageUp } from 'react-icons/lu';
 import clsx from 'clsx';
 import { PreviewOverlay } from './preview-overlay';
+import { PreviewImg } from './preview-img';
 
 export type UploadAvatarProps = {
   EditIcon?: React.ElementType;
@@ -56,7 +57,7 @@ export const UploadAvatar = ({
       )}
     >
       <input {...getInputProps()} />
-      {preview && <img src={preview} alt="Preview" />}
+      {preview && <PreviewImg src={preview} />}
       <PreviewOverlay isVisible={!preview}>
         {isDragActive ? (
           <DropIcon className="h-5 w-5" />

@@ -2,6 +2,7 @@ import { useDropzone } from 'react-dropzone';
 import React from 'react';
 import clsx from 'clsx';
 import { PreviewOverlay } from './preview-overlay';
+import { PreviewImg } from './preview-img';
 
 export type UploadLeadImageProps = {
   onChange: (acceptedFile: File | null) => void;
@@ -45,7 +46,7 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
       )}
     >
       <input {...getInputProps()} />
-      {preview && <img src={preview} alt="Preview" />}
+      {preview && <PreviewImg src={preview} />}
       <PreviewOverlay isVisible={!preview || isDragActive}>
         {isDragActive ? (
           <span>Drop the image here</span>
