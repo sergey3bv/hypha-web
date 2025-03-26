@@ -33,19 +33,14 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
     <div
       {...getRootProps()}
       className={clsx(
-        'cursor-pointer',
-        'rounded-lg w-full h-[150px] flex justify-center items-center overflow-hidden',
+        'group cursor-pointer relative',
+        'flex justify-center items-center overflow-hidden',
+        'w-full h-[150px] rounded-xl bg-accent-2',
         !preview && 'border border-neutral-11 border-dashed',
       )}
     >
       <input {...getInputProps()} />
-      {preview && (
-        <img
-          className="w-full h-full object-cover"
-          src={preview}
-          alt="Preview"
-        />
-      )}
+      {preview && <img src={preview} alt="Preview" />}
       {isDragActive ? (
         <span className={`${preview ? 'hidden' : ''}`}>Drop the file here</span>
       ) : (
