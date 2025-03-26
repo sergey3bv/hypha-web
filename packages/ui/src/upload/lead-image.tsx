@@ -7,13 +7,24 @@ import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 
 export type UploadLeadImageProps = {
   onChange: (acceptedFile: File | null) => void;
+  defaultImage?: string;
 };
 
-export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
-  const [preview, setPreview] = React.useState<string | null>('');
+export const UploadLeadImage = ({
+  onChange,
+  defaultImage,
+}: UploadLeadImageProps) => {
+  const [preview, setPreview] = React.useState<string | null>(
+    defaultImage || null,
+  );
 
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
+      if (!acceptedFiles.length) {
+        setPreview(defaultImage || null);
+        onChange(null);
+        return;
+      }
       const reader = new FileReader();
       try {
         reader.onload = () => {
@@ -23,11 +34,11 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
         reader.readAsDataURL(acceptedFiles[0]);
       } catch (error) {
         console.error('Error reading file:', error);
-        setPreview(null);
+        setPreview(defaultImage || null);
         onChange(null);
       }
     },
-    [onChange],
+    [onChange, defaultImage],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

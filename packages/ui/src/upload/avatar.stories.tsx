@@ -15,5 +15,6 @@ type Story = StoryObj<typeof UploadAvatar>;
 export const Default: Story = {
   args: {
     EditIcon: LuImagePlus,
+    defaultImage: 'https://github.com/shadcn.png',
   },
 };

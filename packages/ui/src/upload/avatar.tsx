@@ -9,19 +9,23 @@ export type UploadAvatarProps = {
   EditIcon?: React.ElementType;
   DropIcon?: React.ElementType;
   onChange: (acceptedFile: File | null) => void;
+  defaultImage?: string;
 };
 
 export const UploadAvatar = ({
   EditIcon = LuImagePlus,
   DropIcon = LuImageUp,
   onChange,
+  defaultImage,
 }: UploadAvatarProps) => {
-  const [preview, setPreview] = React.useState<string | null>('');
+  const [preview, setPreview] = React.useState<string | null>(
+    defaultImage || null,
+  );
 
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
       if (!acceptedFiles.length) {
-        setPreview(null);
+        setPreview(defaultImage || null);
         onChange(null);
         return;
       }
@@ -34,11 +38,11 @@ export const UploadAvatar = ({
         reader.readAsDataURL(acceptedFiles[0]);
       } catch (error) {
         console.error('Error reading file:', error);
-        setPreview(null);
+        setPreview(defaultImage || null);
         onChange(null);
       }
     },
-    [onChange],
+    [onChange, defaultImage],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -58,7 +62,7 @@ export const UploadAvatar = ({
     >
       <input {...getInputProps()} />
       {preview && <PreviewImg aspectRatio={1} src={preview} />}
-      <PreviewOverlay isVisible={!preview}>
+      <PreviewOverlay isVisible={!preview || isDragActive}>
         {isDragActive ? (
           <DropIcon className="h-5 w-5" />
         ) : (

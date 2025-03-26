@@ -11,4 +11,8 @@ export default meta;
 
 type Story = StoryObj<typeof UploadLeadImage>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    defaultImage: 'https://github.com/shadcn.png',
+  },
+};
