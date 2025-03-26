@@ -46,7 +46,7 @@ export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
       )}
     >
       <input {...getInputProps()} />
-      {preview && <PreviewImg src={preview} />}
+      {preview && <PreviewImg src={preview} aspectRatio={16 / 9} />}
       <PreviewOverlay isVisible={!preview || isDragActive}>
         {isDragActive ? (
           <span>Drop the image here</span>

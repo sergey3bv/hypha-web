@@ -57,7 +57,7 @@ export const UploadAvatar = ({
       )}
     >
       <input {...getInputProps()} />
-      {preview && <PreviewImg src={preview} />}
+      {preview && <PreviewImg aspectRatio={1} src={preview} />}
       <PreviewOverlay isVisible={!preview}>
         {isDragActive ? (
           <DropIcon className="h-5 w-5" />
