@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LeadImageUpload } from './lead-image-upload';
+import { UploadLeadImage } from './upload-lead-image';
 
 const meta = {
-  component: LeadImageUpload,
-} satisfies Meta<typeof LeadImageUpload>;
+  component: UploadLeadImage,
+} satisfies Meta<typeof UploadLeadImage>;
 
 export default meta;
 

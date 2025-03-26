@@ -17,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
   UploadAvatar,
+  UploadLeadImage,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { useState } from 'react';
@@ -78,7 +79,9 @@ export const CreateSpaceForm = ({
         <div className="flex gap-5 justify-between">
           <div className="flex items-center gap-3">
             <UploadAvatar
-              onChange={(file) => console.debug('onChange', { file })}
+              onChange={(file) =>
+                console.debug('UploadAvatar.onChange', { file })
+              }
             />
             <div className="flex justify-between items-center w-full">
               <div className="flex flex-col">
@@ -121,10 +124,10 @@ export const CreateSpaceForm = ({
             </Button>
           </Link>
         </div>
-        <FileUploader
-          value={files}
-          onValueChange={setFiles}
-          onUpload={() => Promise.resolve()}
+        <UploadLeadImage
+          onChange={(file) =>
+            console.debug('UploadLeadImage.onChange', { file })
+          }
         />
         <FormField
           control={form.control}

@@ -6,7 +6,7 @@ import clsx from 'clsx';
 export type UploadAvatarProps = {
   EditIcon?: React.ElementType;
   DropIcon?: React.ElementType;
-  onChange: (acceptedFile: File) => void;
+  onChange: (acceptedFile: File | null) => void;
 };
 
 export const UploadAvatar = ({
@@ -26,6 +26,7 @@ export const UploadAvatar = ({
       reader.readAsDataURL(acceptedFiles[0]);
     } catch (error) {
       setPreview(null);
+      onChange(null);
     }
   }, []);
 

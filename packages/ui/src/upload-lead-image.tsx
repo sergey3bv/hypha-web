@@ -1,10 +1,11 @@
 import { useDropzone } from 'react-dropzone';
 import React from 'react';
-export const LeadImageUpload = ({
-  onChange,
-}: {
-  onChange: (acceptedFile: File) => void;
-}) => {
+
+export type UploadLeadImageProps = {
+  onChange: (acceptedFile: File | null) => void;
+};
+
+export const UploadLeadImage = ({ onChange }: UploadLeadImageProps) => {
   const [preview, setPreview] = React.useState<string | null>('');
 
   const onDrop = React.useCallback((acceptedFiles: File[]) => {
@@ -17,6 +18,7 @@ export const LeadImageUpload = ({
       reader.readAsDataURL(acceptedFiles[0]);
     } catch (error) {
       setPreview(null);
+      onChange(null);
     }
   }, []);
 
