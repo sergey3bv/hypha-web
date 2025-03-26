@@ -3,17 +3,17 @@ import { useDropzone } from 'react-dropzone';
 import { LuImagePlus, LuImageUp } from 'react-icons/lu';
 import clsx from 'clsx';
 
-export type AvatarUploadProps = {
+export type UploadAvatarProps = {
   EditIcon?: React.ElementType;
   DropIcon?: React.ElementType;
   onChange: (acceptedFile: File) => void;
 };
 
-export const AvatarUpload = ({
+export const UploadAvatar = ({
   EditIcon = LuImagePlus,
   DropIcon = LuImageUp,
   onChange,
-}: AvatarUploadProps) => {
+}: UploadAvatarProps) => {
   const [preview, setPreview] = React.useState<string | null>('');
 
   const onDrop = React.useCallback((acceptedFiles: File[]) => {

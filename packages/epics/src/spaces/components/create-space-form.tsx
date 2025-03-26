@@ -16,7 +16,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  AvatarUpload,
+  UploadAvatar,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { useState } from 'react';
@@ -77,7 +77,7 @@ export const CreateSpaceForm = ({
       >
         <div className="flex gap-5 justify-between">
           <div className="flex items-center gap-3">
-            <AvatarUpload
+            <UploadAvatar
               onChange={(file) => console.debug('onChange', { file })}
             />
             <div className="flex justify-between items-center w-full">

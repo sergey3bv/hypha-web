@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AvatarUpload } from './avatar-upload';
+import { UploadAvatar } from './upload-avatar';
 import { LuImagePlus } from 'react-icons/lu';
 
 const meta = {
-  component: AvatarUpload,
+  component: UploadAvatar,
   title: 'UI/Uploads/AvatarUpload',
-} satisfies Meta<typeof AvatarUpload>;
+} satisfies Meta<typeof UploadAvatar>;
 
 export default meta;
 
-type Story = StoryObj<typeof AvatarUpload>;
+type Story = StoryObj<typeof UploadAvatar>;
 
 export const Default: Story = {
   args: {
