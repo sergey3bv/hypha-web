@@ -2,6 +2,7 @@ import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { LuImagePlus, LuImageUp } from 'react-icons/lu';
 import clsx from 'clsx';
+import { PreviewOverlay } from './preview-overlay';
 
 export type UploadAvatarProps = {
   EditIcon?: React.ElementType;
@@ -54,28 +55,6 @@ export const UploadAvatar = ({
           <EditIcon className="h-5 w-5" />
         )}
       </PreviewOverlay>
-    </div>
-  );
-};
-
-const PreviewOverlay = ({
-  children,
-  isVisible,
-}: {
-  isVisible: boolean;
-  children: React.ReactElement;
-}) => {
-  return (
-    <div
-      className={clsx(
-        'absolute flex items-center justify-center',
-        'p-2 rounded transition-all duration-200',
-        'group-hover:bg-background/80',
-        'group-hover:opacity-100',
-        isVisible ? 'opacity-70 bg-background/20' : 'opacity-0',
-      )}
-    >
-      {children}
     </div>
   );
 };
