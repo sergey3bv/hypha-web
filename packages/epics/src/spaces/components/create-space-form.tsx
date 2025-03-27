@@ -1,7 +1,6 @@
 'use client';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { CreateSpaceFormHeadProps } from './create-space-form-head';
 import {
   Button,
@@ -17,6 +16,7 @@ import {
   FormMessage,
   UploadAvatar,
   UploadLeadImage,
+  Slider,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { useState } from 'react';
@@ -61,6 +61,12 @@ export const CreateSpaceForm = ({
       leadImage: null,
     },
   });
+
+  const quorum = useWatch({ control: form.control, name: 'quorum' });
+  const unity = useWatch({ control: form.control, name: 'quorum' });
+  console.debug('CreateSpaceForm', { quorum, unity });
+
+  const [files, setFiles] = React.useState<File[]>([]);
 
   const [activeLinks, setActiveLinks] = useState({
     website: false,
