@@ -67,6 +67,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'utfs.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'bovzk9ehhu.ufs.sh',
+      },
     ],
   },
   webpack: (config) => {

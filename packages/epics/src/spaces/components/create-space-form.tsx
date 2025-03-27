@@ -17,7 +17,6 @@ import {
   FormMessage,
   UploadAvatar,
   UploadLeadImage,
-  Slider,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { useState } from 'react';
@@ -29,17 +28,18 @@ import React from 'react';
 
 import { z } from 'zod';
 import clsx from 'clsx';
-import { schemaCreateSpace } from '@hypha-platform/core/client';
+import {
+  ALLOWED_IMAGE_FILE_SIZE,
+  createSpaceFiles,
+  schemaCreateSpace,
+} from '@hypha-platform/core/client';
 
-const schemaCreateSpaceFE = schemaCreateSpace.extend({
-  avatar: z.instanceof(File).optional().nullable(),
-  leadImage: z.instanceof(File).optional().nullable(),
-});
+const schemaCreateSpaceForm = schemaCreateSpace.extend(createSpaceFiles);
 
 export type CreateSpaceFormProps = CreateSpaceFormHeadProps & {
   isLoading?: boolean;
   closeUrl: string;
-  onCreate: (values: z.infer<typeof schemaCreateSpaceFE>) => void;
+  onCreate: (values: z.infer<typeof schemaCreateSpaceForm>) => void;
 };
 
 export const CreateSpaceForm = ({
@@ -48,8 +48,8 @@ export const CreateSpaceForm = ({
   closeUrl,
   onCreate,
 }: CreateSpaceFormProps) => {
-  const form = useForm<z.infer<typeof schemaCreateSpaceFE>>({
-    resolver: zodResolver(schemaCreateSpaceFE),
+  const form = useForm<z.infer<typeof schemaCreateSpaceForm>>({
+    resolver: zodResolver(schemaCreateSpaceForm),
     defaultValues: {
       title: '',
       description: '',
@@ -58,16 +58,10 @@ export const CreateSpaceForm = ({
       votingPowerSource: 0,
       joinMethod: 0,
       exitMethod: 0,
-      avatar: null,
-      leadImage: null,
+      logoUrl: undefined,
+      leadImage: undefined,
     },
   });
-
-  const quorum = useWatch({ control: form.control, name: 'quorum' });
-  const unity = useWatch({ control: form.control, name: 'quorum' });
-  console.debug('CreateSpaceForm', { quorum, unity });
-
-  const [files, setFiles] = React.useState<File[]>([]);
 
   const [activeLinks, setActiveLinks] = useState({
     website: false,
@@ -92,11 +86,14 @@ export const CreateSpaceForm = ({
           <div className="flex items-center gap-3">
             <FormField
               control={form.control}
-              name="avatar"
+              name="logoUrl"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <UploadAvatar onChange={field.onChange} />
+                    <UploadAvatar
+                      onChange={field.onChange}
+                      maxFileSize={ALLOWED_IMAGE_FILE_SIZE}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -149,7 +146,10 @@ export const CreateSpaceForm = ({
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <UploadLeadImage onChange={field.onChange} />
+                <UploadLeadImage
+                  onChange={field.onChange}
+                  maxFileSize={ALLOWED_IMAGE_FILE_SIZE}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

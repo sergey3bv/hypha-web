@@ -1,3 +1,4 @@
+import useSWR from 'swr';
 import { Config } from '@wagmi/core';
 import { z } from 'zod';
 import { produce } from 'immer';
@@ -8,10 +9,11 @@ import { useSpaceMutationsWeb3Rpc } from './useSpaceMutations.web3.rpc';
 import useSWRMutation from 'swr/mutation';
 import {
   schemaCreateSpace,
+  schemaCreateSpaceFiles,
   schemaCreateSpaceWeb2,
   schemaCreateSpaceWeb3,
 } from '../../validation';
-import useSWR from 'swr';
+import { useSpaceFileUploads } from './useSpaceFileUploads';
 
 type UseCreateSpaceOrchestratorInput = {
   authToken?: string | null;
@@ -21,6 +23,7 @@ type UseCreateSpaceOrchestratorInput = {
 export type TaskName =
   | 'CREATE_WEB2_SPACE'
   | 'CREATE_WEB3_SPACE'
+  | 'UPLOAD_FILES'
   | 'GET_WEB3_SPACE_CREATED_EVENT'
   | 'LINK_WEB2_AND_WEB3_SPACE';
 
@@ -40,6 +43,7 @@ export enum TaskStatus {
 const taskActionDescriptions: Record<TaskName, string> = {
   CREATE_WEB2_SPACE: 'Creating Web2 space...',
   CREATE_WEB3_SPACE: 'Creating Web3 space...',
+  UPLOAD_FILES: 'Uploading Space Images...',
   GET_WEB3_SPACE_CREATED_EVENT: 'Retrieving Web3 space creation event...',
   LINK_WEB2_AND_WEB3_SPACE: 'Linking Web2 and Web3 spaces...',
 };
@@ -57,6 +61,9 @@ const initialTaskState: TaskState = {
     status: TaskStatus.IDLE,
   },
   CREATE_WEB3_SPACE: {
+    status: TaskStatus.IDLE,
+  },
+  UPLOAD_FILES: {
     status: TaskStatus.IDLE,
   },
   GET_WEB3_SPACE_CREATED_EVENT: {
@@ -131,6 +138,7 @@ export const useCreateSpaceOrchestrator = ({
   authToken,
   config,
 }: UseCreateSpaceOrchestratorInput) => {
+  const spaceFiles = useSpaceFileUploads(authToken);
   const web2 = useSpaceMutationsWeb2Rsc(authToken);
   const web3 = useSpaceMutationsWeb3Rpc(config);
 
@@ -139,6 +147,8 @@ export const useCreateSpaceOrchestrator = ({
     progressStateReducer,
     initialTaskState,
   );
+
+  const progress = computeProgress(taskState);
 
   const [currentAction, setCurrentAction] = React.useState<string>();
 
@@ -189,36 +199,33 @@ export const useCreateSpaceOrchestrator = ({
   const { trigger: createSpace } = useSWRMutation(
     'createSpaceOrchestration',
     async (_, { arg }: { arg: z.infer<typeof schemaCreateSpace> }) => {
-      // Start web2 and web3 space creation tasks
       startTask('CREATE_WEB2_SPACE');
-      startTask('CREATE_WEB3_SPACE');
-
       const inputCreateSpaceWeb2 = schemaCreateSpaceWeb2.parse(arg);
+      await web2.createSpace(inputCreateSpaceWeb2);
+      completeTask('CREATE_WEB2_SPACE');
+
+      startTask('CREATE_WEB3_SPACE');
       const inputCreateSpaceWeb3 = schemaCreateSpaceWeb3.parse(arg);
+      await web3.createSpace(inputCreateSpaceWeb3);
+      completeTask('CREATE_WEB3_SPACE');
 
-      const web2Result = await web2
-        .createSpace(inputCreateSpaceWeb2)
-        .then(() => completeTask('CREATE_WEB2_SPACE'))
-        .catch((e) => errorTask('CREATE_WEB2_SPACE', e.message));
-
-      const transactionHash = await web3
-        .createSpace(inputCreateSpaceWeb3)
-        .then(() => completeTask('CREATE_WEB3_SPACE'))
-        .catch((e) => errorTask('CREATE_WEB3_SPACE', e.message));
-
-      return { web2Result, transactionHash };
+      startTask('UPLOAD_FILES');
+      const inputCreateSpaceFiles = schemaCreateSpaceFiles.parse(arg);
+      await spaceFiles.upload(inputCreateSpaceFiles);
+      completeTask('UPLOAD_FILES');
     },
   );
 
   const { data: updatedWeb2Space } = useSWR(
-    web2.createdSpace?.slug && web3.createdSpace?.spaceId
+    web2.createdSpace?.slug && web3.createdSpace?.spaceId && spaceFiles.files
       ? [
           web2.createdSpace.slug,
           web3.createdSpace.spaceId,
+          spaceFiles.files,
           'linkingWeb2AndWeb3Space',
         ]
       : null,
-    async ([slug, web3SpaceId]) => {
+    async ([slug, web3SpaceId, uploadedFiles]) => {
       try {
         // Start linking web2 and web3 spaces
         startTask('LINK_WEB2_AND_WEB3_SPACE');
@@ -226,6 +233,7 @@ export const useCreateSpaceOrchestrator = ({
         const result = await web2.updateSpaceBySlug({
           slug,
           web3SpaceId: Number(web3SpaceId),
+          ...uploadedFiles,
         });
 
         // Complete linking task
@@ -242,7 +250,6 @@ export const useCreateSpaceOrchestrator = ({
     },
   );
 
-  const progress = computeProgress(taskState);
   const errors = React.useMemo(() => {
     return [
       web2.errorCreateSpaceMutation,

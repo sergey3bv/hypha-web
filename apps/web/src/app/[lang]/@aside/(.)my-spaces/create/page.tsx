@@ -11,6 +11,7 @@ import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
 import { useJwt } from '@web/hooks/use-jwt';
 import { Button } from '@hypha-platform/ui';
+import { useUploadThingFileUploader } from '@web/hooks/use-uploadthing-file-uploader';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();
@@ -18,15 +19,16 @@ export default function AsideCreateSpacePage() {
   const config = useConfig();
   const { jwt, isLoadingJwt } = useJwt();
   const {
+    reset,
     createSpace,
     currentAction,
-    progress,
-    isPending,
-    isError,
     errors,
+    isError,
+    isPending,
+    progress,
     space: { slug: spaceSlug },
-    reset,
   } = useCreateSpaceOrchestrator({ authToken: jwt, config });
+
   console.debug('AsideCreateSpacePage', {
     isPending,
     isLoadingJwt,
