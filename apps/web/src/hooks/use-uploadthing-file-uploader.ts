@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { generateReactHelpers } from '@uploadthing/react';
-import type { OurFileRouter } from '@web/app/api/uploadthing/core';
 import { useJwt } from '@web/hooks/use-jwt';
+import { CoreFileRouter } from '@hypha-platform/core/server';
 
 interface UseUploadThingFileUploaderProps {
   onUploadComplete?: (url: string) => void;
@@ -13,7 +13,7 @@ export const useUploadThingFileUploader = ({
   onUploadComplete,
 }: UseUploadThingFileUploaderProps) => {
   const { jwt } = useJwt();
-  const { useUploadThing } = generateReactHelpers<OurFileRouter>();
+  const { useUploadThing } = generateReactHelpers<CoreFileRouter>();
   const { startUpload } = useUploadThing('imageUploader', {
     headers: {
       Authorization: `Bearer ${jwt}`,
