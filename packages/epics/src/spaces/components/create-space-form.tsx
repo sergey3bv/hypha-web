@@ -1,6 +1,7 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { CreateSpaceFormHeadProps } from './create-space-form-head';
 import {
   Button,
