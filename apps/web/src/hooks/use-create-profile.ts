@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthHeader } from './use-auth-header';
 
 export const useCreateProfile = (
-  endpoint: string = '/api/v1/people/create-profile',
+  endpoint = '/api/v1/people/create-profile',
 ) => {
   const { headers } = useAuthHeader();
   const router = useRouter();
