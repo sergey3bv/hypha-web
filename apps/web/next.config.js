@@ -1,6 +1,6 @@
 //@ts-check
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ 
 const { composePlugins, withNx } = require('@nx/next');
 const { withVercelToolbar } = require('@vercel/toolbar/plugins/next');
 
@@ -66,6 +66,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'utfs.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bovzk9ehhu.ufs.sh',
       },
     ],
   },

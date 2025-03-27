@@ -27,8 +27,7 @@
     "../../dist/apps/web/.next/types/**/*.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "src/app/.well-known/**/*.ts",
-    "../../packages/core/src/assets/server/core.ts"
+    "src/app/.well-known/**/*.ts"
   ],
   "exclude": ["node_modules", "jest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
 }

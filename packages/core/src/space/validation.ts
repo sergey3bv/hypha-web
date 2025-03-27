@@ -1,4 +1,7 @@
+import { DEFAULT_IMAGE_ACCEPT } from '@core/assets';
 import { z } from 'zod';
+
+export const ALLOWED_IMAGE_FILE_SIZE = 5 * 1024 * 1024;
 
 const createSpaceWeb2Props = {
   title: z.string().min(1).max(50),
@@ -12,13 +15,18 @@ const createSpaceWeb2Props = {
       'Slug must contain only lowercase letters, numbers, and hyphens',
     )
     .optional(),
-  logoUrl: z.string().url('Logo URL must be a valid URL').optional(),
-  leadImage: z.string().url('Lead image must be a valid URL').optional(),
   web3SpaceId: z.number().optional(),
   parentId: z.number().optional(),
 };
 
 export const schemaCreateSpaceWeb2 = z.object(createSpaceWeb2Props);
+
+export const createSpaceWeb2FileUrls = {
+  logoUrl: z.string().url('Logo URL must be a valid URL').optional(),
+  leadImage: z.string().url('Lead Image URL must be a valid URL').optional(),
+};
+
+export const schemaCreateSpaceWeb2FileUrls = z.object(createSpaceWeb2FileUrls);
 
 const createSpaceWeb3Props = {
   quorum: z.number().min(1).max(100),
@@ -29,8 +37,35 @@ const createSpaceWeb3Props = {
 };
 export const schemaCreateSpaceWeb3 = z.object(createSpaceWeb3Props);
 
+export const createSpaceFiles = {
+  logoUrl: z
+    .instanceof(File)
+    .refine(
+      (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
+      'File size must be less than 5MB',
+    )
+    .refine(
+      (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+      'File must be an image (JPEG, PNG, GIF, WEBP)',
+    )
+    .optional(),
+  leadImage: z
+    .instanceof(File)
+    .refine(
+      (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
+      'File size must be less than 5MB',
+    )
+    .refine(
+      (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+      'File must be an image (JPEG, PNG, GIF, WEBP)',
+    )
+    .optional(),
+};
+
+export const schemaCreateSpaceFiles = z.object(createSpaceFiles);
 export const updateSpaceProps = {
   ...createSpaceWeb2Props,
+  ...createSpaceWeb2FileUrls,
   title: createSpaceWeb2Props.title.optional(),
   description: createSpaceWeb2Props.description.optional(),
 };
