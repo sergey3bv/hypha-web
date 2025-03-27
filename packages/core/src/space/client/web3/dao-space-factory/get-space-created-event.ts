@@ -32,16 +32,3 @@ export const getSpaceFromLogs = (logs: any[]) => {
   }
   return undefined;
 };
-
-/**
- * Get the spaceId from transaction logs
- * @param logs - The transaction logs to parse
- * @returns The spaceId as a number if found, undefined otherwise
- */
-export const getSpaceIdFromLogs = (logs: any[]) => {
-  const event = getSpaceCreatedEvent(logs);
-  if (event) {
-    return Number(event.args.spaceId);
-  }
-  return undefined;
-};

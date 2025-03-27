@@ -10,9 +10,7 @@ const Slider = React.forwardRef<
     displayValue?: boolean;
   }
 >(({ className, displayValue = false, disabled, ...props }, ref) => {
-  const [value, setValue] = React.useState(
-    (props.defaultValue && props.defaultValue[0]) || 0,
-  );
+  const [value, setValue] = React.useState(props.defaultValue?.[0] || 0);
 
   const handleSliderChange = (newValue: number[]) => {
     setValue(newValue[0]);

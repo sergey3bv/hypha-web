@@ -1,6 +1,5 @@
 import { cn } from '@hypha-platform/lib/utils';
 import { Progress } from '../progress';
-import clsx from 'clsx';
 
 type LoadingBackdrop = {
   children: React.ReactElement;

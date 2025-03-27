@@ -1,3 +1,4 @@
+import { DEFAULT_IMAGE_ACCEPT } from '@core/assets';
 import { z } from 'zod';
 
 export const ALLOWED_IMAGE_FILE_SIZE = 5 * 1024 * 1024;
@@ -43,6 +44,10 @@ export const createSpaceFiles = {
       (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
       'File size must be less than 5MB',
     )
+    .refine(
+      (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+      'File must be an image (JPEG, PNG, GIF, WEBP)',
+    )
     .optional(),
   leadImage: z
     .instanceof(File)
@@ -50,11 +55,14 @@ export const createSpaceFiles = {
       (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
       'File size must be less than 5MB',
     )
+    .refine(
+      (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+      'File must be an image (JPEG, PNG, GIF, WEBP)',
+    )
     .optional(),
 };
 
 export const schemaCreateSpaceFiles = z.object(createSpaceFiles);
-
 export const updateSpaceProps = {
   ...createSpaceWeb2Props,
   ...createSpaceWeb2FileUrls,

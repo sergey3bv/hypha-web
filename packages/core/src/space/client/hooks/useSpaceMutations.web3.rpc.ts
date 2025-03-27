@@ -2,14 +2,13 @@ import useSWRMutation from 'swr/mutation';
 import { Config, writeContract } from '@wagmi/core';
 import {
   createSpaceWeb3,
-  CreateSpaceWeb3Input,
   getSpaceFromLogs,
   mapToCreateSpaceWeb3Input,
 } from '../web3';
 import { schemaCreateSpaceWeb3 } from '@core/space/validation';
 import useSWR from 'swr';
-import { waitForSpaceTransactionReceipt } from '../web3/dao-space-factory/wait-for-space-transactionReceipt';
 import { z } from 'zod';
+import { publicClient } from '@core/common/web3/public-client';
 
 export const useSpaceMutationsWeb3Rpc = (config: Config) => {
   const {
@@ -37,7 +36,9 @@ export const useSpaceMutationsWeb3Rpc = (config: Config) => {
   } = useSWR(
     createSpaceHash ? [createSpaceHash, 'waitFor'] : null,
     async ([hash]) => {
-      const { logs } = await waitForSpaceTransactionReceipt({ hash });
+      const { logs } = await publicClient.waitForTransactionReceipt({
+        hash,
+      });
       return getSpaceFromLogs(logs);
     },
   );

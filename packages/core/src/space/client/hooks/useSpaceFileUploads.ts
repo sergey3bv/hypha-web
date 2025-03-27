@@ -12,10 +12,12 @@ export type UseSpaceFileUploadsReturn = {
         [K in keyof Files]: string;
       }
     | null;
-  handleUpload: (fileInput: Files) => Promise<void>;
+  upload: (fileInput: Files) => Promise<void>;
 };
 
-export const useSpaceFileUploads = (authToken?: string | null) => {
+export const useSpaceFileUploads = (
+  authToken?: string | null,
+): UseSpaceFileUploadsReturn => {
   const [files, setFiles] = React.useState<{ [K in keyof Files]: string }>(
     {} as { [K in keyof Files]: string },
   );

@@ -18,29 +18,14 @@ export default function AsideCreateSpacePage() {
   const config = useConfig();
   const { jwt, isLoadingJwt } = useJwt();
   const {
-    reset,
     createSpace,
+    reset,
     currentAction,
-    errors,
     isError,
     isPending,
     progress,
-    taskState,
     space: { slug: spaceSlug },
   } = useCreateSpaceOrchestrator({ authToken: jwt, config });
-
-  console.debug('AsideCreateSpacePage', {
-    isPending,
-    isLoadingJwt,
-    isError,
-    progress,
-    errors,
-    taskState,
-  });
-
-  const isDone = React.useMemo(() => {
-    if (progress === 100) return true;
-  }, [progress]);
 
   React.useEffect(() => {
     if (progress === 100 && spaceSlug) {
@@ -48,7 +33,7 @@ export default function AsideCreateSpacePage() {
     }
   }, [progress, spaceSlug]);
 
-  return isDone ? null : (
+  return progress !== 100 ? (
     <SidePanel>
       <LoadingBackdrop
         progress={progress}
@@ -77,5 +62,5 @@ export default function AsideCreateSpacePage() {
         />
       </LoadingBackdrop>
     </SidePanel>
-  );
+  ) : null;
 }
