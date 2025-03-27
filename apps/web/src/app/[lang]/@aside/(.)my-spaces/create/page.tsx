@@ -11,7 +11,6 @@ import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
 import { useJwt } from '@web/hooks/use-jwt';
 import { Button } from '@hypha-platform/ui';
-import { useUploadThingFileUploader } from '@web/hooks/use-uploadthing-file-uploader';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();
@@ -26,6 +25,7 @@ export default function AsideCreateSpacePage() {
     isError,
     isPending,
     progress,
+    taskState,
     space: { slug: spaceSlug },
   } = useCreateSpaceOrchestrator({ authToken: jwt, config });
 
@@ -35,26 +35,18 @@ export default function AsideCreateSpacePage() {
     isError,
     progress,
     errors,
+    taskState,
   });
 
-  const newSpacePath = React.useMemo(
-    () => (spaceSlug ? getDhoPathAgreements(lang as Locale, spaceSlug) : null),
-    [spaceSlug],
-  );
-
   const isDone = React.useMemo(() => {
-    if (!isLoadingJwt && !!newSpacePath) return true;
-  }, [isLoadingJwt, newSpacePath]);
+    if (progress === 100) return true;
+  }, [progress]);
 
   React.useEffect(() => {
-    newSpacePath ? router.prefetch(newSpacePath) : null;
-  }, [newSpacePath]);
-
-  React.useEffect(() => {
-    if (!isLoadingJwt && newSpacePath) {
-      router.push(newSpacePath);
+    if (progress === 100 && spaceSlug) {
+      router.push(getDhoPathAgreements(lang as Locale, spaceSlug));
     }
-  }, [newSpacePath, isLoadingJwt]);
+  }, [progress, spaceSlug]);
 
   return isDone ? null : (
     <SidePanel>

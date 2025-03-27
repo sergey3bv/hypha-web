@@ -24,7 +24,6 @@ export type TaskName =
   | 'CREATE_WEB2_SPACE'
   | 'CREATE_WEB3_SPACE'
   | 'UPLOAD_FILES'
-  | 'GET_WEB3_SPACE_CREATED_EVENT'
   | 'LINK_WEB2_AND_WEB3_SPACE';
 
 export type TaskState = {
@@ -44,7 +43,6 @@ const taskActionDescriptions: Record<TaskName, string> = {
   CREATE_WEB2_SPACE: 'Creating Web2 space...',
   CREATE_WEB3_SPACE: 'Creating Web3 space...',
   UPLOAD_FILES: 'Uploading Space Images...',
-  GET_WEB3_SPACE_CREATED_EVENT: 'Retrieving Web3 space creation event...',
   LINK_WEB2_AND_WEB3_SPACE: 'Linking Web2 and Web3 spaces...',
 };
 
@@ -64,9 +62,6 @@ const initialTaskState: TaskState = {
     status: TaskStatus.IDLE,
   },
   UPLOAD_FILES: {
-    status: TaskStatus.IDLE,
-  },
-  GET_WEB3_SPACE_CREATED_EVENT: {
     status: TaskStatus.IDLE,
   },
   LINK_WEB2_AND_WEB3_SPACE: {
