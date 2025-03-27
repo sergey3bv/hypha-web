@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { UploadThingError } from 'uploadthing/server';
 import { NextRequest } from 'next/server';
-import { createPeopleService } from '@hypha-platform/core/server';
+import { createPeopleService } from '@core/people/server';
 
 const f = createUploadthing();
 
@@ -12,7 +12,7 @@ const getAuthenticatedUser = async (req: NextRequest) => {
   return isValidAuthToken;
 };
 
-export const ourFileRouter = {
+export const fileRouter: FileRouter = {
   imageUploader: f({
     image: {
       maxFileSize: '4MB',
@@ -34,4 +34,4 @@ export const ourFileRouter = {
     }),
 } satisfies FileRouter;
 
-export type OurFileRouter = typeof ourFileRouter;
+export type CoreFileRouter = typeof fileRouter;

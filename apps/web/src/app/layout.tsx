@@ -1,7 +1,6 @@
 import { VercelToolbar } from '@vercel/toolbar/next';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
-import { ourFileRouter } from '@web/app/api/uploadthing/core';
 
 import { Lato, Source_Sans_3 } from 'next/font/google';
 import clsx from 'clsx';
@@ -18,6 +17,7 @@ import { useAuthentication } from '@hypha-platform/authentication';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { EvmProvider } from '@hypha-platform/evm';
 import { useMe } from '@web/hooks/use-me';
+import { fileRouter } from '@hypha-platform/core/server';
 
 const lato = Lato({
   subsets: ['latin'],
@@ -86,7 +86,7 @@ export default async function RootLayout({
                 />
               </MenuTop.RightSlot>
             </MenuTop>
-            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
             {children}
             <Footer />
           </EvmProvider>

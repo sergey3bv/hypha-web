@@ -6,6 +6,7 @@ import { initializeContainer } from './_container/bootstrap';
 initializeContainer();
 
 // Export components
+export * from './assets/server';
 export * from './space/server';
 export * from './space/types';
 export * from './space/validation';
