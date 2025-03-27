@@ -10,6 +10,7 @@ export type UploadAvatarProps = {
   DropIcon?: React.ElementType;
   onChange: (acceptedFile: File | null) => void;
   defaultImage?: string;
+  maxFileSize?: number;
 };
 
 export const UploadAvatar = ({
@@ -17,6 +18,7 @@ export const UploadAvatar = ({
   DropIcon = LuImageUp,
   onChange,
   defaultImage,
+  maxFileSize,
 }: UploadAvatarProps) => {
   const [preview, setPreview] = React.useState<string | null>(
     defaultImage || null,
@@ -48,7 +50,13 @@ export const UploadAvatar = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     maxFiles: 1,
-    accept: { 'image/png': [], 'image/jpg': [], 'image/jpeg': [] },
+    maxSize: maxFileSize,
+    accept: {
+      'image/png': [],
+      'image/jpg': [],
+      'image/jpeg': [],
+      'image/webp': [],
+    },
   });
 
   return (
@@ -61,7 +69,7 @@ export const UploadAvatar = ({
       )}
     >
       <input {...getInputProps()} />
-      {preview && <PreviewImg aspectRatio={1} src={preview} />}
+      {preview && <PreviewImg src={preview} />}
       <PreviewOverlay isVisible={!preview || isDragActive}>
         {isDragActive ? (
           <DropIcon className="h-5 w-5" />

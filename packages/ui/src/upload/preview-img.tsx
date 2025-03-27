@@ -1,7 +1,10 @@
 export type PreviewImgProps = {
   src: string;
-  aspectRatio?: number;
+  alt?: string;
 };
-export const PreviewImg = ({ src, aspectRatio }: PreviewImgProps) => {
-  return <img src={src} alt="Preview" className="w-full h-full object-cover" />;
+export const PreviewImg = ({
+  src,
+  alt = 'Upload Preview Image',
+}: PreviewImgProps) => {
+  return <img src={src} alt={alt} className="w-full h-full object-cover" />;
 };

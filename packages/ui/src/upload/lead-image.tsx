@@ -8,11 +8,13 @@ import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 export type UploadLeadImageProps = {
   onChange: (acceptedFile: File | null) => void;
   defaultImage?: string;
+  maxFileSize?: number;
 };
 
 export const UploadLeadImage = ({
   onChange,
   defaultImage,
+  maxFileSize,
 }: UploadLeadImageProps) => {
   const [preview, setPreview] = React.useState<string | null>(
     defaultImage || null,
@@ -44,7 +46,13 @@ export const UploadLeadImage = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     maxFiles: 1,
-    accept: { 'image/png': [], 'image/jpg': [], 'image/jpeg': [] },
+    maxSize: maxFileSize,
+    accept: {
+      'image/png': [],
+      'image/jpg': [],
+      'image/jpeg': [],
+      'image/webp': [],
+    },
   });
 
   return (
@@ -59,7 +67,7 @@ export const UploadLeadImage = ({
       )}
     >
       <input {...getInputProps()} />
-      {preview && <PreviewImg src={preview} aspectRatio={16 / 9} />}
+      {preview && <PreviewImg src={preview} />}
       <PreviewOverlay isVisible={!preview || isDragActive}>
         {isDragActive ? (
           <span>Drop the image here</span>
