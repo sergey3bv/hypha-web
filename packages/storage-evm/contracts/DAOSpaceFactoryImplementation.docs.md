@@ -15,7 +15,7 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 - `removeMember(uint256 _spaceId, address _memberToRemove)`
 - `addTokenToSpace(uint256 _spaceId, address _tokenAddress)`
 
-### View Functions (7)
+### View Functions (8)
 
 - `getSpaceMembers(uint256 _spaceId)`
 - `hasToken(uint256 _spaceId, address _tokenAddress)`
@@ -24,6 +24,7 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 - `isSpaceCreator(uint256 _spaceId, address _userAddress)`
 - `getSpaceDetails(uint256 _spaceId)`
 - `getSpaceMemberAddresses(uint256 _spaceId)`
+- `getMemberSpaces(address _memberAddress)`
 
 ## Key Features
 
@@ -32,6 +33,7 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 - Handle token associations
 - Configure governance parameters
 - Support multiple exit and join methods
+- Track which spaces a member is part of
 
 ## Contract Addresses
 
@@ -185,6 +187,22 @@ Returns:
 
 - `address`: Executor contract address
 
+### getMemberSpaces
+
+Returns all space IDs that a member is part of.
+
+```solidity
+function getMemberSpaces(address _memberAddress) external view returns (uint256[] memory)
+```
+
+Parameters:
+
+- `_memberAddress` (address): Address of the member to query
+
+Returns:
+
+- `uint256[]`: Array of space IDs that the member is part of
+
 ## Events
 
 ### SpaceCreated
@@ -237,6 +255,9 @@ await factory.methods.createSpace(params).send({ from: userAddress });
 
 // Join space
 await factory.methods.joinSpace(spaceId).send({ from: userAddress });
+
+// Get spaces a member is part of
+const memberSpaces = await factory.methods.getMemberSpaces(userAddress).call();
 ```
 
 ### Ethers.js Example
@@ -253,4 +274,7 @@ const tx = await factory.createSpace({
   joinMethod: 1,
 });
 await tx.wait();
+
+// Get spaces a member is part of
+const memberSpaces = await factory.getMemberSpaces(userAddress);
 ```

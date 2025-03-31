@@ -72,6 +72,10 @@ interface IDAOSpaceFactory {
     uint256 _spaceId
   ) external view returns (address[] memory);
 
+  function getMemberSpaces(
+    address _memberAddress
+  ) external view returns (uint256[] memory);
+
   event SpaceCreated(
     uint256 indexed spaceId,
     uint256 unity,
