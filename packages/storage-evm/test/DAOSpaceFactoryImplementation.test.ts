@@ -276,7 +276,9 @@ describe('DAOSpaceFactoryImplementation', function () {
       await spaceHelper.joinSpace(3, other);
 
       // Check spaces the member has joined
-      const memberSpaces = await spaceHelper.contract.getMemberSpaces(await other.getAddress());
+      const memberSpaces = await spaceHelper.contract.getMemberSpaces(
+        await other.getAddress(),
+      );
       expect(memberSpaces.length).to.equal(2);
       expect(memberSpaces).to.deep.equal([1n, 3n]);
     });
