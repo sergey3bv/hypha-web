@@ -39,4 +39,7 @@ contract DAOSpaceFactoryStorage is Initializable {
   }
   mapping(uint256 => SpaceMembers) internal spaceMembers;
   mapping(address => uint256) public executorToSpaceId;
+
+  // New mapping to track which spaces a member is part of
+  mapping(address => uint256[]) internal memberSpaces;
 }

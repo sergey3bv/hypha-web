@@ -74,7 +74,7 @@ contract DAOSpaceFactoryImplementation is
       'Unity value must be between 1 and 100'
     );
     //require(proposalManagerAddress != address(0), 'ProposalManager not set');
-/*
+    /*
     if (params.createToken) {
       require(tokenFactoryAddress != address(0), 'TokenFactory not set');
       require(bytes(params.tokenName).length > 0, 'Token name cannot be empty');
@@ -85,7 +85,7 @@ contract DAOSpaceFactoryImplementation is
     }
 */
     spaceCounter++;
-/*
+    /*
     Executor executor = new Executor(proposalManagerAddress);
     executorToSpaceId[address(executor)] = spaceCounter;
 */
@@ -106,7 +106,7 @@ contract DAOSpaceFactoryImplementation is
     address[] memory initialMembers = new address[](1);
     initialMembers[0] = msg.sender;
     newSpace.members = initialMembers;
-/*
+    /*
     if (params.createToken) {
       address tokenAddress = ITokenFactory(tokenFactoryAddress).deployToken(
         spaceCounter,
@@ -153,6 +153,9 @@ contract DAOSpaceFactoryImplementation is
     );
 
     space.members.push(msg.sender);
+
+    // Add this space to the member's list of spaces
+    memberSpaces[msg.sender].push(_spaceId);
 
     // Check if the joining member is a space executor and add to space members if it is
     for (uint256 i = 1; i <= spaceCounter; i++) {
@@ -213,6 +216,16 @@ contract DAOSpaceFactoryImplementation is
     // Remove from regular members
     space.members[memberIndex] = space.members[space.members.length - 1];
     space.members.pop();
+
+    // Remove this space from the member's list of spaces
+    uint256[] storage memberSpacesList = memberSpaces[_memberToRemove];
+    for (uint256 i = 0; i < memberSpacesList.length; i++) {
+      if (memberSpacesList[i] == _spaceId) {
+        memberSpacesList[i] = memberSpacesList[memberSpacesList.length - 1];
+        memberSpacesList.pop();
+        break;
+      }
+    }
 
     // If member is a space member, remove from space members too
     if (members.isSpaceMember[_memberToRemove]) {
@@ -347,5 +360,12 @@ contract DAOSpaceFactoryImplementation is
     uint256 spaceId = executorToSpaceId[_spaceAddress];
     require(spaceId != 0, 'Not a space address');
     return spaceId;
+  }
+
+  // New function to get all spaces a member is part of
+  function getMemberSpaces(
+    address _memberAddress
+  ) external view returns (uint256[] memory) {
+    return memberSpaces[_memberAddress];
   }
 }
