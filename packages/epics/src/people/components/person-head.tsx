@@ -5,7 +5,6 @@ import {
   Card,
   Avatar,
   AvatarImage,
-  Container,
   Button,
   Skeleton,
 } from '@hypha-platform/ui';
@@ -26,14 +25,14 @@ export interface Socials {
 }
 
 interface PersonHeadProps {
-  isLoading: boolean;
+  isLoading?: boolean;
   about: string;
   background: string;
   socials: Socials;
 }
 
 export const PersonHead = ({
-  isLoading,
+  isLoading = false,
   avatar = '/placeholder/space-avatar-image.png',
   name,
   surname,
