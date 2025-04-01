@@ -23,27 +23,15 @@ import { useMe } from '@web/hooks/use-me';
 import { useParams } from 'next/navigation';
 import { Locale } from '@hypha-platform/i18n';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
+import { useAuthentication } from '@hypha-platform/authentication';
 
 export default function Profile() {
+  const { exportWallet, isEmbeddedWallet } = useAuthentication();
   const { lang } = useParams();
   const { person, isLoading } = useMe();
 
   const getHref = (id: string) => {
     return getDhoPathAgreements(lang as Locale, id);
-  };
-
-  const personHeadProps = {
-    avatar: person?.avatarUrl ?? '',
-    name: person?.name ?? '',
-    surname: person?.surname ?? '',
-    background: person?.leadImageUrl ?? '',
-    socials: {
-      LinkedIn: person?.nickname ?? '',
-      X: person?.nickname ?? '',
-      Website: person?.nickname ?? '',
-    },
-    isLoading: isLoading,
-    about: person?.description ?? '',
   };
 
   return (
@@ -58,7 +46,20 @@ export default function Profile() {
         </Link>
         <Text className="text-sm text-neutral-11 ml-1">/ Profile Page</Text>
       </div>
-      <PersonHead {...personHeadProps} isLoading={isLoading} />
+      <PersonHead
+        isLoading={isLoading}
+        avatar={person?.avatarUrl ?? ''}
+        name={person?.name ?? ''}
+        surname={person?.surname ?? ''}
+        background={person?.leadImageUrl ?? ''}
+        socials={{
+          LinkedIn: person?.nickname ?? '',
+          X: person?.nickname ?? '',
+          Website: person?.nickname ?? '',
+        }}
+        about={person?.description ?? ''}
+        onExportEmbeededWallet={isEmbeddedWallet ? exportWallet : undefined}
+      />
       <div className="mt-6">
         <MemberSpaces spaces={[]} profileView />
       </div>
