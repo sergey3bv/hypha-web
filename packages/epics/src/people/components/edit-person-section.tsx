@@ -2,7 +2,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { schemaEditPersonWeb2 } from '@hypha-platform/core/client';
+import {
+  schemaEditPersonWeb2,
+  editPersonFiles,
+} from '@hypha-platform/core/client';
 import {
   Button,
   Textarea,
@@ -24,23 +27,25 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 interface Person {
-  avatarUrl?: File | string;
+  avatarUrl?: string;
   name?: string;
   surname?: string;
   id?: number;
   nickname?: string;
   description?: string;
-  leadImageUrl?: File | string;
+  leadImageUrl?: string;
 }
+
+const schemaEditPersonForm = schemaEditPersonWeb2.extend(editPersonFiles);
 
 export type EditPersonSectionProps = {
   person?: Person;
   closeUrl: string;
   isLoading?: boolean;
-  onEdit: (values: z.infer<typeof schemaEditPersonWeb2>) => Promise<void>;
+  onEdit: (values: z.infer<typeof schemaEditPersonForm>) => Promise<void>;
 };
 
-type FormData = z.infer<typeof schemaEditPersonWeb2>;
+type FormData = z.infer<typeof schemaEditPersonForm>;
 
 export const EditPersonSection = ({
   isLoading,
@@ -49,7 +54,7 @@ export const EditPersonSection = ({
   onEdit,
 }: EditPersonSectionProps & Person) => {
   const form = useForm<FormData>({
-    resolver: zodResolver(schemaEditPersonWeb2),
+    resolver: zodResolver(schemaEditPersonForm),
     defaultValues: {
       avatarUrl: person?.avatarUrl || '',
       name: person?.name || '',

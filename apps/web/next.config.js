@@ -72,7 +72,7 @@ const nextConfig = {
         hostname: 'static.licdn.com',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'bovzk9ehhu.ufs.sh',
       },
       {

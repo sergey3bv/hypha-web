@@ -1,63 +1,54 @@
 'use client';
 
 import { EditPersonSection } from '@hypha-platform/epics';
-import { useParams, useRouter } from 'next/navigation';
 import { useMe } from '@web/hooks/use-me';
-import { useEditProfile } from '@web/hooks/use-edit-profile';
-import { useUploadThingFileUploader } from '@web/hooks/use-uploadthing-file-uploader';
-import { z } from 'zod';
-import { schemaEditPersonWeb2 } from '@hypha-platform/core/client';
+import { useJwt } from '@web/hooks/use-jwt';
+import { useEditPersonOrchestrator } from '@core/people/client/hooks';
 import { SidePanel } from '../../_components/side-panel';
+import { LoadingBackdrop } from '@hypha-platform/ui/server';
+import { Button } from '@hypha-platform/ui';
+import React from 'react';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function EditProfilePage() {
-  const router = useRouter();
   const { lang } = useParams();
   const { person, isLoading } = useMe();
-  const { editProfile } = useEditProfile();
-  const { handleDrop } = useUploadThingFileUploader({
-    onUploadComplete: () => {
-      console.log('upload complete');
-    },
-  });
+  const { jwt } = useJwt();
+  const router = useRouter();
 
-  const handleEdit = async (values: z.infer<typeof schemaEditPersonWeb2>) => {
-    if (!person?.id) return;
-    try {
-      const updatedValues = { ...values };
+  const { editPerson, reset, currentAction, isError, isPending, progress } =
+    useEditPersonOrchestrator({ authToken: jwt });
 
-      if (updatedValues.avatarUrl instanceof File) {
-        const uploadedUrl = await handleDrop([updatedValues.avatarUrl]);
-        if (uploadedUrl) {
-          updatedValues.avatarUrl = uploadedUrl;
-        }
-      }
-
-      if (updatedValues.leadImageUrl instanceof File) {
-        const uploadedUrl = await handleDrop([updatedValues.leadImageUrl]);
-        if (uploadedUrl) {
-          updatedValues.leadImageUrl = uploadedUrl;
-        }
-      }
-
-      await editProfile({
-        ...updatedValues,
-        avatarUrl: String(updatedValues.avatarUrl || ''),
-        leadImageUrl: String(updatedValues.leadImageUrl || ''),
-      });
-      router.push(`/${lang}/profile/`);
-    } catch (error) {
-      console.error(error);
+  React.useEffect(() => {
+    if (progress === 100) {
+      router.push(`/${lang}/person/`);
     }
-  };
+  }, [progress]);
 
   return (
     <SidePanel>
-      <EditPersonSection
-        person={person}
-        closeUrl={`/${lang}/profile/`}
-        isLoading={isLoading}
-        onEdit={handleEdit}
-      />
+      <LoadingBackdrop
+        progress={progress}
+        isLoading={isPending}
+        message={
+          isError ? (
+            <div className="flex flex-col">
+              <div>Ouh Snap. There was an error</div>
+              <Button onClick={reset}>Reset</Button>
+            </div>
+          ) : (
+            <div>{currentAction}</div>
+          )
+        }
+        className="-m-9"
+      >
+        <EditPersonSection
+          person={person}
+          closeUrl={`/${lang}/profile/`}
+          isLoading={isLoading}
+          onEdit={editPerson}
+        />
+      </LoadingBackdrop>
     </SidePanel>
   );
 }
