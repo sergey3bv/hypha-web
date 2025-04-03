@@ -85,12 +85,12 @@ export const PersonHead = ({
           </Button>
         </Skeleton>
         <Skeleton loading={isLoading} width={120} height={35}>
-          <Button colorVariant="accent">
-            <Link href={`/profile/edit`} scroll={false}>
+          <Link href={`/profile/edit`} scroll={false}>
+            <Button colorVariant="accent">
               <RxPencil2 />
               Edit profile
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Skeleton>
       </div>
       <div className="mt-4">
