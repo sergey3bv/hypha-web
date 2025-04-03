@@ -1,7 +1,7 @@
 import { DEFAULT_IMAGE_ACCEPT } from '@core/assets';
 import { z } from 'zod';
 
-export const ALLOWED_IMAGE_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_IMAGE_FILE_SIZE = 5 * 1024 * 1024;
 
 const editPersonWeb2Props = {
   id: z.number(),
