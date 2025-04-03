@@ -43,12 +43,6 @@ export type EditProfileData = {
   id: number | null;
 };
 
-export type UseEditProfileReturn = {
-  editProfile: (data: EditProfileData) => Promise<Person>;
-};
-
-export type UseEditProfile = () => UseEditProfileReturn;
-
 export interface UseUploadThingFileUploaderProps {
   onUploadComplete?: (url: string) => void;
 }
