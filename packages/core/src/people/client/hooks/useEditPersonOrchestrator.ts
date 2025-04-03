@@ -163,7 +163,7 @@ export const useEditPersonOrchestrator = ({
         message: error,
       });
     },
-    [dispatch],
+    [dispatch, currentAction, setCurrentAction],
   );
 
   const resetTasks = useCallback(() => {
@@ -212,7 +212,7 @@ export const useEditPersonOrchestrator = ({
   const reset = React.useCallback(() => {
     resetTasks();
     web2.resetEditPersonMutation();
-  }, []);
+  }, [resetTasks, web2.resetEditPersonMutation]);
 
   return {
     reset,
