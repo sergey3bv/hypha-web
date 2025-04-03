@@ -22,7 +22,7 @@ const meta = {
   title: 'Epics/People/EditPersonSection',
   args: {
     person: {
-      avatarUrl: '',
+      avatarUrl: 'https://github.com/shadcn.png',
       name: 'John',
       surname: 'Doe',
       id: 1,
