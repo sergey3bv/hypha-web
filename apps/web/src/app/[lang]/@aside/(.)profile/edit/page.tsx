@@ -21,7 +21,7 @@ export default function EditProfilePage() {
 
   React.useEffect(() => {
     if (progress === 100) {
-      router.push(`/${lang}/person/`);
+      router.push(`/${lang}/profile/`);
     }
   }, [progress]);
 
