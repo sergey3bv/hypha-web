@@ -10,11 +10,7 @@ import {
   Button,
   Skeleton,
 } from '@hypha-platform/ui';
-import {
-  CopyIcon,
-  LinkedInLogoIcon,
-  Link2Icon,
-} from '@radix-ui/react-icons';
+import { CopyIcon, LinkedInLogoIcon, Link2Icon } from '@radix-ui/react-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { RxDownload, RxPencil2 } from 'react-icons/rx';
