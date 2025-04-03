@@ -32,7 +32,7 @@ export const usePersonFileUploads = (
           if (!file) return;
 
           try {
-            const result = await upload([file]);
+            const result = await upload([file as File]);
             if (result?.[0]?.ufsUrl) {
               setFiles((prev) => ({
                 ...prev,
