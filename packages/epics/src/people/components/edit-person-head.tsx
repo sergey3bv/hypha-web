@@ -2,14 +2,6 @@ import { Skeleton } from '@hypha-platform/ui';
 import { MemberType } from '@hypha-platform/graphql/rsc';
 import { Image } from '@hypha-platform/ui';
 import { Input } from '@hypha-platform/ui';
-interface Person {
-  name?: string;
-  surname?: string;
-  nickname?: string;
-  id?: number;
-  description?: string;
-  leadImageUrl?: string | undefined;
-}
 
 export type EditPersonHeadProps = {
   isLoading?: boolean;
@@ -20,7 +12,7 @@ export const EditPersonHead = ({
   name,
   surname,
   nickname,
-  avatar,
+  avatar = '/placeholder/space-avatar-image.png',
   isLoading,
 }: EditPersonHeadProps & MemberType) => {
   return (
@@ -33,7 +25,7 @@ export const EditPersonHead = ({
       >
         <Image
           className="rounded-lg mr-3"
-          src={avatar || '/placeholder/space-avatar-image.png'}
+          src={avatar}
           height={64}
           width={64}
           alt={name && surname ? `${name} ${surname}` : 'Person Avatar'}
