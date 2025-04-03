@@ -11,15 +11,12 @@ import {
   Skeleton,
 } from '@hypha-platform/ui';
 import {
-  Share2Icon,
   CopyIcon,
-  Pencil1Icon,
   LinkedInLogoIcon,
   Link2Icon,
 } from '@radix-ui/react-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FaWallet } from 'react-icons/fa';
 import { RxDownload, RxPencil2 } from 'react-icons/rx';
 import Link from 'next/link';
 
@@ -92,12 +89,12 @@ export const PersonHead = ({
           </Button>
         </Skeleton>
         <Skeleton loading={isLoading} width={120} height={35}>
-          <Link href={`/profile/edit`} scroll={false}>
-            <Button colorVariant="accent">
+          <Button colorVariant="accent">
+            <Link href={`/profile/edit`} scroll={false}>
               <RxPencil2 />
               Edit profile
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </Skeleton>
       </div>
       <div className="mt-4">
