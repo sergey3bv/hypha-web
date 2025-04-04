@@ -10,17 +10,11 @@ import {
   Button,
   Skeleton,
 } from '@hypha-platform/ui';
-import {
-  Share2Icon,
-  CopyIcon,
-  Pencil1Icon,
-  LinkedInLogoIcon,
-  Link2Icon,
-} from '@radix-ui/react-icons';
+import { CopyIcon, LinkedInLogoIcon, Link2Icon } from '@radix-ui/react-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FaWallet } from 'react-icons/fa';
 import { RxDownload, RxPencil2 } from 'react-icons/rx';
+import Link from 'next/link';
 
 export interface Socials {
   LinkedIn: string;
@@ -42,7 +36,7 @@ export const PersonHead = ({
   name,
   surname,
   about,
-  background = '/placeholder/space-lead-image.png',
+  background,
   socials,
   onExportEmbeededWallet,
 }: PersonHeadProps & MemberType) => {
@@ -61,15 +55,15 @@ export const PersonHead = ({
           <Image
             width={768}
             height={270}
-            className="rounded-xl max-h-[270px] w-full object-cover"
-            src={background}
+            className="rounded-xl max-h-[270px] min-h-[270px] w-full object-cover"
+            src={background || '/placeholder/space-lead-image.png'}
             alt={`Profile Lead Image: ${name} ${surname}`}
           />
         </Skeleton>
         <Avatar style={customLogoStyles}>
           <Skeleton loading={isLoading} width={128} height={128}>
             <AvatarImage
-              src={avatar}
+              src={avatar || '/placeholder/space-avatar-image.png'}
               alt={`Profile Avatar Image: ${name} ${surname}`}
             />
           </Skeleton>
@@ -91,9 +85,11 @@ export const PersonHead = ({
           </Button>
         </Skeleton>
         <Skeleton loading={isLoading} width={120} height={35}>
-          <Button colorVariant="accent">
-            <RxPencil2 />
-            Edit profile
+          <Button asChild colorVariant="accent">
+            <Link href={`/profile/edit`} scroll={false}>
+              <RxPencil2 />
+              Edit profile
+            </Link>
           </Button>
         </Skeleton>
       </div>
