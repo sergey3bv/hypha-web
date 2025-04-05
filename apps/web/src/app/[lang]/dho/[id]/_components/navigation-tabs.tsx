@@ -16,7 +16,7 @@ export function NavigationTabs({
 }) {
   return (
     <Tabs value={activeTab} className="w-full mt-16">
-      <TabsList className="w-full mb-7">
+      <TabsList className="w-full mb-4">
         <TabsTrigger
           asChild
           value="agreements"

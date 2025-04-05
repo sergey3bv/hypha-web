@@ -22,7 +22,7 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
   } = useSpacesSection();
 
   return (
-    <div className="flex flex-col w-full justify-center items-center">
+    <div className="flex flex-col w-full justify-center items-center gap-4">
       <SectionFilter
         value={activeSort}
         onChange={setSort}

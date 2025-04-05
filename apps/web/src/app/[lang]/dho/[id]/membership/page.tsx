@@ -22,7 +22,7 @@ export default async function MembershipPage(props: PageProps) {
   const basePath = getDhoPathMembership(lang as Locale, id as string);
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 py-4">
       <NavigationTabs lang={lang} id={id} activeTab="membership" />
       <OuterSpacesSection />
       <InnerSpacesSection basePath={`${basePath}/space`} />
