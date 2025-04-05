@@ -19,7 +19,7 @@ export default async function TreasuryPage(props: PageProps) {
   const basePath = getDhoPathTreasury(lang as Locale, id as string);
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 py-4">
       <NavigationTabs lang={lang} id={id} activeTab="treasury" />
       <AssetsSection basePath={`${basePath}/token`} />
       <RequestsSection />
