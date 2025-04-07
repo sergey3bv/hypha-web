@@ -78,10 +78,11 @@ export default async function RootLayout({
                   label: 'My Spaces',
                   href: `/${lang}/my-spaces`,
                 },
-                {
-                  label: 'Wallet',
-                  href: `/${lang}/wallet`,
-                },
+                // #688 hide wallet button
+                // {
+                //   label: 'Wallet',
+                //   href: `/${lang}/wallet`,
+                // },
               ]}
             >
               <MenuTop.RightSlot>
