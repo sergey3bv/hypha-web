@@ -27,11 +27,6 @@ export default async function DhoLayout(props: {
             label: 'My Spaces',
             href: `/${lang}/my-spaces`,
           },
-          // #688 hide wallet button
-          // {
-          //   label: 'Wallet',
-          //   href: `/${lang}/wallet`,
-          // },
         ]}
       >
         <MenuTop.RightSlot>
