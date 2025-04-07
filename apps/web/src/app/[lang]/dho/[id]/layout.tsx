@@ -13,6 +13,7 @@ import {
   Share2Icon,
   ChevronLeftIcon,
   PlusIcon,
+  Pencil2Icon,
 } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -82,6 +83,12 @@ export default async function DhoLayout({
           {typeof spaceFromDb.web3SpaceId === 'number' && (
             <JoinSpace spaceId={spaceFromDb.web3SpaceId} />
           )}
+          <Button asChild colorVariant="accent" variant={'outline'}>
+            <Link href={`/${lang}/dho/${daoSlug}/select-settings-action`}>
+              <Pencil2Icon />
+              Space Settings
+            </Link>
+          </Button>
           <Button asChild colorVariant="accent">
             <Link href={`/${lang}/dho/${daoSlug}/select-create-action`}>
               <PlusIcon />
