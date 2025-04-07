@@ -23,14 +23,6 @@ import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
 import { getDhoPathAgreements } from './agreements/constants';
 import { createSpaceService } from '@hypha-platform/core/server';
 
-const customLogoStyles: React.CSSProperties = {
-  width: '128px',
-  height: '128px',
-  position: 'absolute',
-  bottom: '-35px',
-  left: '15px',
-};
-
 export default async function DhoLayout({
   children,
   aside,
@@ -71,7 +63,7 @@ export default async function DhoLayout({
             src={spaceFromDb.leadImage || '/placeholder/space-lead-image.png'}
             alt={spaceFromDb.title}
           ></Image>
-          <Avatar style={customLogoStyles} className="border-4">
+          <Avatar className="border-4 w-[128px] h-[128px] absolute bottom-[-35px] left-[15px]">
             <AvatarImage
               src={spaceFromDb.logoUrl || '/placeholder/space-avatar-image.png'}
               alt="logo"
@@ -146,7 +138,7 @@ export default async function DhoLayout({
           </div>
           <div className="flex ml-3">
             <div className="font-bold text-1">58</div>
-            <div className="text-gray-500 ml-1 text-1">Completed projects</div>
+            <div className="text-gray-500 ml-1 text-1">Agreements</div>
           </div>
         </div>
         {children}
