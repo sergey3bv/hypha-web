@@ -23,10 +23,6 @@ export default async function DhoLayout(props: {
             label: 'My Projects',
             href: `/${lang}/my-projects`,
           },
-          {
-            label: 'Wallet',
-            href: `/${lang}/wallet`,
-          },
         ]}
       />
       <div className="fixed bottom-0 right-0 flex-grow p-10 overflow-y-auto top-9 left-20 bg-background/5">
