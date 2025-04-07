@@ -30,6 +30,6 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Create a Discussion/gi)).toBeTruthy();
+    expect(canvas.getByText(/Select an action to contribute/gi)).toBeTruthy();
   },
 };
