@@ -12,6 +12,7 @@ import {
   LinkedInLogoIcon,
   Share2Icon,
   ChevronLeftIcon,
+  PlusIcon,
 } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -77,7 +78,7 @@ export default async function DhoLayout({
             />
           </Avatar>
         </Card>
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-end mt-2 gap-2">
           <Button
             asChild
             variant="ghost"
@@ -89,6 +90,12 @@ export default async function DhoLayout({
           {typeof spaceFromDb.web3SpaceId === 'number' && (
             <JoinSpace spaceId={spaceFromDb.web3SpaceId} />
           )}
+          <Button asChild colorVariant="accent">
+            <Link href={`/${lang}/dho/${daoSlug}/select-create-action`}>
+              <PlusIcon />
+              Create
+            </Link>
+          </Button>
         </div>
         <div className="mt-4">
           <Text className="text-7">{spaceFromDb.title}</Text>
