@@ -17,7 +17,6 @@ type Story = StoryObj<typeof SelectAction>;
 export const Default: Story = {
   args: {
     isLoading: false,
-    closeUrl: '/',
     content:
       'Select an action to contribute, collaborate, make decisions or manage resources within your space.',
     actions: [
