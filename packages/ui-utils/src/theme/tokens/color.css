@@ -1,4 +1,5 @@
 :root {
+  --page-background: var(--white-to-dark);
   --white-contrast: var(--white);
   --black-contrast: var(--black);
   --accent-contrast: var(--white-contrast);
