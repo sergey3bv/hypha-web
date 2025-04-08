@@ -4,8 +4,6 @@ import { RequestsList } from './requests-list';
 import { Text } from '@radix-ui/themes';
 import { useRequestsSection } from '../../hooks/use-requests-section';
 import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
-import { Button } from '@hypha-platform/ui';
-import { PlusIcon } from '@radix-ui/react-icons';
 
 type RequestsSectionProps = Record<string, never>;
 
@@ -29,12 +27,7 @@ export const RequestsSection: FC<RequestsSectionProps> = () => {
         count={totalRequestsValue}
         label="Requests"
         sortOptions={sortOptions}
-      >
-        <Button className="ml-2">
-          <PlusIcon className="mr-2" />
-          Payout Request
-        </Button>
-      </SectionFilter>
+      />
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (
