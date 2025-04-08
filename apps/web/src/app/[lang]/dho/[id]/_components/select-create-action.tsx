@@ -26,7 +26,7 @@ export const CREATE_ACTIONS = [
     title: 'Make an Agreement',
     description:
       'Define and formalize a mutual understanding, policy, or decision among members of the space.',
-    href: '#',
+    href: 'agreements/create',
     icon: <CheckCircledIcon />,
   },
   {
