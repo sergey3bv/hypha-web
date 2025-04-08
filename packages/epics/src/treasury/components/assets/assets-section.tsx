@@ -9,7 +9,7 @@ import {
   SectionTabs,
 } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
-import { PlusIcon } from '@radix-ui/react-icons';
+import { CopyIcon } from '@radix-ui/react-icons';
 
 type AssetSectionProps = {
   basePath: string;
@@ -38,8 +38,8 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
         sortOptions={sortOptions}
       >
         <Button className="ml-2">
-          <PlusIcon className="mr-2" />
-          Add Wallet
+          <CopyIcon />
+          Deposit funds
         </Button>
       </SectionFilter>
       {pagination?.totalPages === 0 ? null : (
