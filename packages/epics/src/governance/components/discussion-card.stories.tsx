@@ -4,20 +4,6 @@ import { expect } from '@storybook/jest';
 
 import { DiscussionCard } from './discussion-card';
 
-const DESCRIPTION = `
-# Headline 1
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-
-## Headline 2
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-
-### Headline 3
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-`;
-
 const meta = {
   component: DiscussionCard,
   title: 'Epics/Governance/DiscussionCard',
@@ -39,7 +25,8 @@ export const Default: Story = {
       surname: 'Doe',
     },
     publicationDate: new Date('2025-01-01:12:00:00'),
-    description: DESCRIPTION,
+    description:
+      'Lorem ipsum nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris',
     isLoading: false,
     replies: 10,
     likes: 20,
