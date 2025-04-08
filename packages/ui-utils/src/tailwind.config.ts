@@ -161,6 +161,7 @@ export function buildConfig(appDir: string): Config {
             12: 'hsl(var(--warning-12))',
           },
           foreground: 'hsl(var(--foreground))',
+          'page-background': 'hsl(var(--page-background))',
           primary: {
             DEFAULT: 'hsl(var(--primary))',
             foreground: 'hsl(var(--primary-foreground))',
