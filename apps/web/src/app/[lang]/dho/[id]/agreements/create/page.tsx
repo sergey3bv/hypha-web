@@ -2,16 +2,17 @@
 
 import { CreateAgreementForm } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
+import { useMe } from '@web/hooks/use-me';
 
 export default function CreateAgreement() {
   const { lang, id } = useParams();
-
+  const { person } = useMe();
   return (
     <CreateAgreementForm
       creator={{
-        avatar: 'https://github.com/shadcn.png',
-        name: 'Name',
-        surname: 'Surname',
+        avatar: person?.avatarUrl || '',
+        name: person?.name || '',
+        surname: person?.surname || '',
       }}
       closeUrl={`/${lang}/dho/${id}/agreements`}
       onCreate={() => {

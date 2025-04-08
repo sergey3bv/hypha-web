@@ -1,19 +1,18 @@
 'use client';
 
 import { CreateAgreementForm } from '@hypha-platform/epics';
-import { useParams } from 'next/navigation';
 import { SidePanel } from '../../_components/side-panel';
+import { useMe } from '@web/hooks/use-me';
 
 export default function Loading() {
-  const { lang, id } = useParams();
-
+  const { person } = useMe();
   return (
     <SidePanel>
       <CreateAgreementForm
         creator={{
-          avatar: '',
-          name: '',
-          surname: '',
+          avatar: person?.avatarUrl || '',
+          name: person?.name || '',
+          surname: person?.surname || '',
         }}
         closeUrl={``}
         onCreate={() => {
