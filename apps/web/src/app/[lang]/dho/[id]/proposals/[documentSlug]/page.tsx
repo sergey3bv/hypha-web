@@ -23,12 +23,10 @@ export default function Proposal(props: PageProps) {
       onReject={() => console.log('reject')}
       onSetActiveFilter={() => console.log('set active filter')}
       content={document?.description}
-      // TODO: connect to api
       creator={{
-        avatar:
-          'https://images.unsplash.com/photo-1544005313-94ddf0286df2?&w=64&h=64&dpr=2&q=70&crop=faces&fit=crop',
-        name: 'Jane',
-        surname: 'Doe',
+        avatar: document?.creator?.avatarUrl || '',
+        name: document?.creator?.name || '',
+        surname: document?.creator?.surname || '',
       }}
       title={document?.title}
       commitment={50}
