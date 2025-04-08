@@ -11,12 +11,12 @@ import {
 
 import { DocumentState } from '../types';
 import { FilterParams, PaginationParams } from '@core/common';
-import { Document } from '../types';
+import { Document, Creator } from '../types';
 
 export const mapToDocument = (
   dbDocument: DbDocument,
-  creator?: DbPerson
-): Document & { creator?: DbPerson } => {
+  creator?: DbPerson,
+): Document & { creator?: Creator } => {
   return {
     id: dbDocument.id,
     creatorId: dbDocument.creatorId,
@@ -26,7 +26,11 @@ export const mapToDocument = (
     state: dbDocument.state as DocumentState,
     createdAt: dbDocument.createdAt,
     updatedAt: dbDocument.updatedAt,
-    ...(creator ? { creator } : {}),
+    creator: {
+      avatarUrl: creator?.avatarUrl || '',
+      name: creator?.name || '',
+      surname: creator?.surname || '',
+    },
   };
 };
 
@@ -39,12 +43,18 @@ export const findDocumentById = async (
   { db }: DbConfig,
 ) => {
   const result = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(eq(documents.id, id))
     .limit(1);
 
-  return result[0] ? mapToDocument(result[0]) : null;
+  return result[0]
+    ? mapToDocument(result[0].document, result[0].creator)
+    : null;
 };
 
 export type FindDocumentBySlugInput = {
@@ -56,17 +66,30 @@ export const findDocumentBySlug = async (
   { db }: DbConfig,
 ) => {
   const result = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(eq(documents.slug, slug))
     .limit(1);
 
-  return result[0] ? mapToDocument(result[0]) : null;
+  return result[0]
+    ? mapToDocument(result[0].document, result[0].creator)
+    : null;
 };
 
 export const findAllDocuments = async ({ db }: DbConfig) => {
-  const results = await db.select().from(documents);
-  return results.map((doc) => mapToDocument(doc));
+  const results = await db
+    .select({
+      document: documents,
+      creator: people,
+    })
+    .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id));
+
+  return results.map((row) => mapToDocument(row.document, row.creator));
 };
 
 export type FindAllDocumentsBySpaceSlugConfig = {
@@ -117,7 +140,9 @@ export const findAllDocumentsBySpaceSlug = async (
   const totalPages = Math.ceil(total / pageSize);
 
   return {
-    data: results.map((result) => mapToDocument(result.document, result.creator)),
+    data: results.map((result) =>
+      mapToDocument(result.document, result.creator),
+    ),
     pagination: {
       total,
       page,
@@ -131,10 +156,16 @@ export const findAllDocumentsBySpaceSlug = async (
 
 export const findMostRecentDocuments = async ({ db }: DbConfig) => {
   const results = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .orderBy(documents.createdAt)
     .limit(1);
 
-  return results.length > 0 ? mapToDocument(results[0]) : null;
+  return results.length > 0
+    ? mapToDocument(results[0].document, results[0].creator)
+    : null;
 };

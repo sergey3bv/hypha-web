@@ -1,3 +1,9 @@
+export type Creator = {
+  avatarUrl?: string;
+  name?: string;
+  surname?: string;
+};
+
 export enum DocumentState {
   DISCUSSION = 'discussion',
   PROPOSAL = 'proposal',
@@ -13,4 +19,5 @@ export type Document = {
   state: DocumentState;
   createdAt: Date;
   updatedAt: Date;
+  creator?: Creator;
 };
