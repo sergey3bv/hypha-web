@@ -10,20 +10,6 @@ const meta = {
   title: 'Epics/Governance/DocumentCard',
 } satisfies Meta<typeof DocumentCard>;
 
-const DESCRIPTION = `
-# Headline 1
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-
-## Headline 2
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-
-### Headline 3
-
-nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris
-`;
-
 export default meta;
 
 type Story = StoryObj<typeof DocumentCard>;
@@ -38,7 +24,8 @@ export const Default: Story = {
     isLoading: false,
     leadImage: 'https://github.com/shadcn.png',
     title: 'Title',
-    description: DESCRIPTION,
+    description:
+      'Lorem ipsum nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris',
     badges: [
       {
         label: 'agreement',
