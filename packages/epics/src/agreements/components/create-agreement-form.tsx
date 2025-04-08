@@ -20,16 +20,22 @@ import { Text } from '@radix-ui/themes';
 import { Creator } from '@hypha-platform/graphql/rsc';
 import { PersonAvatar } from '../../people/components/person-avatar';
 import { ALLOWED_IMAGE_FILE_SIZE } from '@core/space';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { createAgreementFiles, schemaCreateAgreement } from '@core/governance';
 
 import Link from 'next/link';
 
 import clsx from 'clsx';
 
+const schemaCreateAgreementForm =
+  schemaCreateAgreement.extend(createAgreementFiles);
+
 export type CreateAgreementFormProps = {
   creator?: Creator;
   isLoading?: boolean;
   closeUrl: string;
-  onCreate: () => void;
+  onCreate: (values: z.infer<typeof schemaCreateAgreementForm>) => void;
 };
 
 export const CreateAgreementForm = ({
@@ -38,7 +44,8 @@ export const CreateAgreementForm = ({
   closeUrl,
   onCreate,
 }: CreateAgreementFormProps) => {
-  const form = useForm({
+  const form = useForm<z.infer<typeof schemaCreateAgreementForm>>({
+    resolver: zodResolver(schemaCreateAgreementForm),
     defaultValues: {
       title: '',
       description: '',
