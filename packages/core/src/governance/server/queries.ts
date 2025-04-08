@@ -5,12 +5,18 @@ import {
   documents,
   Document as DbDocument,
   spaces,
+  people,
+  Person as DbPerson,
 } from '@hypha-platform/storage-postgres';
+
 import { DocumentState } from '../types';
 import { FilterParams, PaginationParams } from '@core/common';
 import { Document } from '../types';
 
-export const mapToDocument = (dbDocument: DbDocument) => {
+export const mapToDocument = (
+  dbDocument: DbDocument,
+  creator?: DbPerson
+): Document & { creator?: DbPerson } => {
   return {
     id: dbDocument.id,
     creatorId: dbDocument.creatorId,
@@ -20,12 +26,14 @@ export const mapToDocument = (dbDocument: DbDocument) => {
     state: dbDocument.state as DocumentState,
     createdAt: dbDocument.createdAt,
     updatedAt: dbDocument.updatedAt,
+    ...(creator ? { creator } : {}),
   };
 };
 
 export type FindDocumentByIdInput = {
   id: number;
 };
+
 export const findDocumentById = async (
   { id }: FindDocumentByIdInput,
   { db }: DbConfig,
@@ -42,6 +50,7 @@ export const findDocumentById = async (
 export type FindDocumentBySlugInput = {
   slug: string;
 };
+
 export const findDocumentBySlug = async (
   { slug }: FindDocumentBySlugInput,
   { db }: DbConfig,
@@ -57,7 +66,7 @@ export const findDocumentBySlug = async (
 
 export const findAllDocuments = async ({ db }: DbConfig) => {
   const results = await db.select().from(documents);
-  return results.map(mapToDocument);
+  return results.map((doc) => mapToDocument(doc));
 };
 
 export type FindAllDocumentsBySpaceSlugConfig = {
@@ -80,10 +89,8 @@ export const findAllDocumentsBySpaceSlug = async (
 
   const offset = (page - 1) * pageSize;
 
-  // Create conditions array with mandatory space slug condition
   const conditions = [eq(spaces.slug, spaceSlug)];
 
-  // Only add state filter if it exists
   if (filter.state) {
     conditions.push(
       eq(
@@ -96,10 +103,12 @@ export const findAllDocumentsBySpaceSlug = async (
   const results = await db
     .select({
       document: documents,
+      creator: people,
       total: sql<number>`cast(count(*) over() as integer)`,
     })
     .from(documents)
     .innerJoin(spaces, eq(documents.spaceId, spaces.id))
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(and(...conditions))
     .limit(pageSize)
     .offset(offset);
@@ -108,7 +117,7 @@ export const findAllDocumentsBySpaceSlug = async (
   const totalPages = Math.ceil(total / pageSize);
 
   return {
-    data: results.map((result) => mapToDocument(result.document)),
+    data: results.map((result) => mapToDocument(result.document, result.creator)),
     pagination: {
       total,
       page,
