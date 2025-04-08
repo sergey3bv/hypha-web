@@ -1,9 +1,5 @@
 import { Locale } from '@hypha-platform/i18n';
-import {
-  AgreementsSection,
-  ProposalsSection,
-  DocumentSection,
-} from '@hypha-platform/epics';
+import { DocumentSection } from '@hypha-platform/epics';
 import { NavigationTabs } from '../_components/navigation-tabs';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
 
@@ -24,29 +20,21 @@ export default async function AgreementsPage(props: PageProps) {
       <DocumentSection
         basePath={`${basePath}/proposals`}
         useDocuments={useSpaceDocuments}
-        documentState="onVoting"
-        label="On Voting"
+        documentState="proposal"
+        label="Proposals"
       />
       <DocumentSection
         basePath={`${basePath}/agreements`}
         useDocuments={useSpaceDocuments}
-        documentState="active"
-        label="Active"
+        documentState="agreement"
+        label="Agreements"
       />
       <DocumentSection
         basePath={`${basePath}/agreements`}
         useDocuments={useSpaceDocuments}
-        documentState="completed"
-        label="Completed"
+        documentState="agreement"
+        label="History"
       />
-      {/* <ProposalsSection
-        basePath={`${basePath}/proposals`}
-        useDocuments={useSpaceDocuments}
-      />
-      <AgreementsSection
-        basePath={`${basePath}/agreements`}
-        useDocuments={useSpaceDocuments}
-      /> */}
     </div>
   );
 }

@@ -1,1 +1,1 @@
-export type DocumentState = 'onVoting' | 'active' | 'completed';
+export type DocumentState = 'proposal' | 'agreement' | 'discussion';

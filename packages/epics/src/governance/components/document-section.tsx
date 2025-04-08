@@ -12,7 +12,6 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { DocumentState, UseDocuments } from '..';
 import { DocumentGridContainer } from './document-grid.container';
-import { FILTER_BY_STATE } from '../constants';
 
 type DocumentSectionProps = {
   basePath: string;
@@ -40,7 +39,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
     setActiveTab,
   } = useDocumentsSection({
     useDocuments,
-    documentState: FILTER_BY_STATE[documentState] as DocumentState,
+    documentState: documentState,
   });
 
   return (
@@ -78,7 +77,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
                 page: index + 1,
                 pageSize: 3,
                 filter: {
-                  state: FILTER_BY_STATE[documentState] as DocumentState,
+                  state: documentState,
                 },
               }}
               useDocuments={useDocuments}
