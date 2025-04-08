@@ -12,6 +12,7 @@ type ActionProps = {
 
 type SelectActionProps = {
   isLoading?: boolean;
+  title: string;
   content: string;
   actions: ActionProps[];
 };
@@ -22,6 +23,7 @@ type GroupedActions = {
 
 export const SelectAction = ({
   isLoading,
+  title,
   content,
   actions,
 }: SelectActionProps) => {
@@ -42,7 +44,7 @@ export const SelectAction = ({
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
         <Skeleton width="100px" height="24px" loading={isLoading}>
-          <span className="text-4 text-secondary-foreground">Create</span>
+          <span className="text-4 text-secondary-foreground">{title}</span>
         </Skeleton>
       </div>
       <Skeleton

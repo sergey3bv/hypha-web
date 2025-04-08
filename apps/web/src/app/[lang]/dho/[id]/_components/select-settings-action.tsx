@@ -79,7 +79,8 @@ export const SETTINGS_ACTIONS = [
 export const SelectSettingsAction = () => {
   return (
     <SelectAction
-      content="Select an action to contribute, collaborate, make decisions or manage resources within your space."
+      title="Space Settings"
+      content="Access and manage the settings for your space, including its appearance, structure, methods, membership, and treasury."
       actions={SETTINGS_ACTIONS}
     />
   );
