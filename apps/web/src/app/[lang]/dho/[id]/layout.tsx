@@ -100,15 +100,18 @@ export default async function DhoLayout({
         <div className="mt-4">
           <Text className="text-7">{spaceFromDb.title}</Text>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-3">
           {spaceFromDb.links && spaceFromDb.links.length > 0
             ? spaceFromDb.links.map((link) => (
-                <Button asChild variant="ghost" key={link}>
-                  <a href={link} target="_blank" className="text-neutral-11">
-                    <LinkIcon url={link} />
-                    <LinkLabel url={link} className="ml-1 text-1" />
-                  </a>
-                </Button>
+                <a
+                  key={link}
+                  href={link}
+                  target="_blank"
+                  className="flex gap-1 text-neutral-11 items-center hover:text-neutral-12"
+                >
+                  <LinkIcon url={link} />
+                  <LinkLabel url={link} className="ml-1 text-1" />
+                </a>
               ))
             : null}
         </div>
