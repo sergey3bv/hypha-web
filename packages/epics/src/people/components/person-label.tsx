@@ -3,9 +3,9 @@ import { Text } from '@radix-ui/themes';
 import { PersonAvatar } from './person-avatar';
 
 export interface Creator {
-  name: string;
-  surname: string;
-  avatarUrl: string;
+  name?: string;
+  surname?: string;
+  avatarUrl?: string;
 }
 
 interface PersonLabelProps {

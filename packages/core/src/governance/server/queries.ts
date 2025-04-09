@@ -5,12 +5,18 @@ import {
   documents,
   Document as DbDocument,
   spaces,
+  people,
+  Person as DbPerson,
 } from '@hypha-platform/storage-postgres';
+
 import { DocumentState } from '../types';
 import { FilterParams, PaginationParams } from '@core/common';
-import { Document } from '../types';
+import { Document, Creator } from '../types';
 
-export const mapToDocument = (dbDocument: DbDocument) => {
+export const mapToDocument = (
+  dbDocument: DbDocument,
+  creator?: DbPerson,
+): Document & { creator?: Creator } => {
   return {
     id: dbDocument.id,
     creatorId: dbDocument.creatorId,
@@ -20,44 +26,70 @@ export const mapToDocument = (dbDocument: DbDocument) => {
     state: dbDocument.state as DocumentState,
     createdAt: dbDocument.createdAt,
     updatedAt: dbDocument.updatedAt,
+    creator: {
+      avatarUrl: creator?.avatarUrl || '',
+      name: creator?.name || '',
+      surname: creator?.surname || '',
+    },
   };
 };
 
 export type FindDocumentByIdInput = {
   id: number;
 };
+
 export const findDocumentById = async (
   { id }: FindDocumentByIdInput,
   { db }: DbConfig,
 ) => {
   const result = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(eq(documents.id, id))
     .limit(1);
 
-  return result[0] ? mapToDocument(result[0]) : null;
+  return result[0]
+    ? mapToDocument(result[0].document, result[0].creator)
+    : null;
 };
 
 export type FindDocumentBySlugInput = {
   slug: string;
 };
+
 export const findDocumentBySlug = async (
   { slug }: FindDocumentBySlugInput,
   { db }: DbConfig,
 ) => {
   const result = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(eq(documents.slug, slug))
     .limit(1);
 
-  return result[0] ? mapToDocument(result[0]) : null;
+  return result[0]
+    ? mapToDocument(result[0].document, result[0].creator)
+    : null;
 };
 
 export const findAllDocuments = async ({ db }: DbConfig) => {
-  const results = await db.select().from(documents);
-  return results.map(mapToDocument);
+  const results = await db
+    .select({
+      document: documents,
+      creator: people,
+    })
+    .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id));
+
+  return results.map((row) => mapToDocument(row.document, row.creator));
 };
 
 export type FindAllDocumentsBySpaceSlugConfig = {
@@ -80,10 +112,8 @@ export const findAllDocumentsBySpaceSlug = async (
 
   const offset = (page - 1) * pageSize;
 
-  // Create conditions array with mandatory space slug condition
   const conditions = [eq(spaces.slug, spaceSlug)];
 
-  // Only add state filter if it exists
   if (filter.state) {
     conditions.push(
       eq(
@@ -96,10 +126,12 @@ export const findAllDocumentsBySpaceSlug = async (
   const results = await db
     .select({
       document: documents,
+      creator: people,
       total: sql<number>`cast(count(*) over() as integer)`,
     })
     .from(documents)
     .innerJoin(spaces, eq(documents.spaceId, spaces.id))
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .where(and(...conditions))
     .limit(pageSize)
     .offset(offset);
@@ -108,7 +140,9 @@ export const findAllDocumentsBySpaceSlug = async (
   const totalPages = Math.ceil(total / pageSize);
 
   return {
-    data: results.map((result) => mapToDocument(result.document)),
+    data: results.map((result) =>
+      mapToDocument(result.document, result.creator),
+    ),
     pagination: {
       total,
       page,
@@ -122,10 +156,16 @@ export const findAllDocumentsBySpaceSlug = async (
 
 export const findMostRecentDocuments = async ({ db }: DbConfig) => {
   const results = await db
-    .select()
+    .select({
+      document: documents,
+      creator: people,
+    })
     .from(documents)
+    .innerJoin(people, eq(documents.creatorId, people.id))
     .orderBy(documents.createdAt)
     .limit(1);
 
-  return results.length > 0 ? mapToDocument(results[0]) : null;
+  return results.length > 0
+    ? mapToDocument(results[0].document, results[0].creator)
+    : null;
 };

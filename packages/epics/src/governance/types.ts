@@ -1,1 +1,1 @@
-export type DocumentState = 'discussion' | 'proposal' | 'agreement';
+export type DocumentState = 'proposal' | 'agreement' | 'discussion';
