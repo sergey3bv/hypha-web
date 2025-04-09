@@ -38,14 +38,8 @@ export const LinkIcon: React.FC<LinkIconProps> = ({ url }) => {
   const icon = getIconForUrl(url);
 
   if (icon) {
-    return (
-      <FontAwesomeIcon
-        className="w-4"
-        color="bg-primary-foreground"
-        icon={icon}
-      />
-    );
+    return <FontAwesomeIcon className="w-4" icon={icon} />;
   }
 
-  return <Link2Icon className="w-4 h-4 text-2" />;
+  return <Link2Icon className="w-4 h-4" />;
 };
