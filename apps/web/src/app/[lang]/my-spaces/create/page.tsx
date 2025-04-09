@@ -10,11 +10,13 @@ import { getDhoPathAgreements } from '../../dho/[id]/agreements/constants';
 import { Locale } from '@hypha-platform/i18n';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
+import { useMe } from '@web/hooks/use-me';
 
 export default function CreateSpacePage() {
   const { lang } = useParams();
   const router = useRouter();
   const config = useConfig();
+  const { person } = useMe();
   const { jwt } = useJwt();
   const {
     createSpace,
@@ -50,11 +52,7 @@ export default function CreateSpacePage() {
     >
       <CreateSpaceForm
         isLoading={false}
-        creator={{
-          avatar: 'https://github.com/shadcn.png',
-          name: 'Name',
-          surname: 'Surname',
-        }}
+        creator={{ name: person?.name, surname: person?.surname }}
         closeUrl={`/${lang}/my-spaces`}
         onCreate={createSpace}
       />

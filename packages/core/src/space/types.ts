@@ -7,7 +7,7 @@ export interface Space {
   slug: string;
   parentId?: number | null;
   web3SpaceId?: number | null;
-  links?: string[];
+  links?: string[] | null;
 }
 
 export interface CreateSpaceInput {

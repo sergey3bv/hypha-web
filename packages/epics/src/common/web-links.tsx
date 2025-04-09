@@ -1,8 +1,7 @@
-import { Button } from '@hypha-platform/ui';
 import { LinkIcon, LinkLabel } from '@hypha-platform/epics';
 
 interface WebLinksProps {
-  links?: string[];
+  links?: string[] | null;
 }
 
 export const WebLinks = ({ links }: WebLinksProps) => {
