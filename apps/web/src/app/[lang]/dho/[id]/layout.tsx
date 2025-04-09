@@ -1,4 +1,9 @@
-import { JoinSpace, SpaceCard } from '@hypha-platform/epics';
+import {
+  JoinSpace,
+  LinkIcon,
+  SpaceCard,
+  LinkLabel,
+} from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import {
   Container,
@@ -8,16 +13,12 @@ import {
   Button,
 } from '@hypha-platform/ui';
 import {
-  Link2Icon,
-  LinkedInLogoIcon,
   Share2Icon,
   ChevronLeftIcon,
   PlusIcon,
   Pencil2Icon,
 } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
@@ -99,41 +100,17 @@ export default async function DhoLayout({
         <div className="mt-4">
           <Text className="text-7">{spaceFromDb.title}</Text>
         </div>
-        <div className="flex gap-6">
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <LinkedInLogoIcon width={16} height={16} />
-              <Text className="ml-1 text-1">HyphaDAO</Text>
-            </div>
-          </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <FontAwesomeIcon
-                className="w-4"
-                color="bg-primary-foreground"
-                icon={faXTwitter}
-              />
-              <Text className="ml-1 text-1">@HyphaDAO</Text>
-            </div>
-          </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <Link2Icon width={16} height={16} />
-              <Text className="ml-1 text-1">hypha.earth</Text>
-            </div>
-          </Button>
+        <div className="flex gap-2">
+          {spaceFromDb.links && spaceFromDb.links.length > 0
+            ? spaceFromDb.links.map((link) => (
+                <Button asChild variant="ghost" key={link}>
+                  <a href={link} target="_blank" className="text-neutral-11">
+                    <LinkIcon url={link} />
+                    <LinkLabel url={link} className="ml-1 text-1" />
+                  </a>
+                </Button>
+              ))
+            : null}
         </div>
         <div className="mt-6">
           <Text className="text-2">{spaceFromDb.description}</Text>

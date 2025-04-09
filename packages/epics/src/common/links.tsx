@@ -1,44 +1,41 @@
-import { cn } from '@hypha-platform/lib/utils';
-import { Input } from '@hypha-platform/ui';
 import React from 'react';
-import { LinkIcon } from './link-icon';
+import { LinkItem } from './link-item';
+import { FieldError } from 'react-hook-form';
 
 type LinksProps = {
   links: string[];
+  errors?: Partial<{ [key: number]: FieldError }> | FieldError;
   onChange: (value: string[]) => void;
 };
 
-export const Links = ({ links, onChange }: LinksProps) => {
+export const Links = ({ links, errors, onChange }: LinksProps) => {
   const handleChange = React.useCallback(
-    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    (index: number) => (value: string) => {
       const newLinks = [...links];
-      newLinks[index] = event.target.value;
-      onChange(newLinks);
+      newLinks[index] = value;
+      onChange(newLinks.filter(Boolean));
     },
     [links, onChange],
   );
 
+  const getError = (index: number) => {
+    if (!errors) return undefined;
+    if ('message' in errors) return errors.message;
+    return (errors as Partial<{ [key: number]: FieldError }>)[index]?.message;
+  };
+
   return (
     <div className="flex gap-2 flex-col">
-      {links.map((link, index) => (
-        <div
-          key={index}
-          className={cn(
-            'flex justify-between items-center',
-            !link && 'opacity-50',
-          )}
-        >
-          <LinkIcon url={link} />
-          <span className="flex items-center flex-1 ml-4">
-            <Input
-              placeholder="Add your URL"
-              className={cn('text-2')}
-              value={link}
-              onChange={handleChange(index)}
-            />
-          </span>
-        </div>
-      ))}
+      {Array(3)
+        .fill(null)
+        .map((_, index) => (
+          <LinkItem
+            key={index}
+            link={links[index]}
+            error={getError(index)}
+            onChange={handleChange(index)}
+          />
+        ))}
     </div>
   );
 };

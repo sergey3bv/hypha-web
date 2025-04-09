@@ -5,7 +5,7 @@ import { DatabaseInstance } from '@core/_container';
 import { spaces } from '@hypha-platform/storage-postgres';
 
 export const createSpace = async (
-  { title, slug: maybeSlug, description, ...rest }: CreateSpaceInput,
+  { title, slug: maybeSlug, ...rest }: CreateSpaceInput,
   { db }: { db: DatabaseInstance },
 ) => {
   const slug = maybeSlug || slugify(title, { lower: true });
@@ -15,7 +15,6 @@ export const createSpace = async (
     .values({
       title,
       slug,
-      description,
       ...rest,
     })
     .returning();
