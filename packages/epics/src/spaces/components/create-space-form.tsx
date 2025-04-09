@@ -65,11 +65,6 @@ export const CreateSpaceForm = ({
     },
   });
 
-  console.debug('form', {
-    error: form.formState.errors,
-    values: form.formState,
-  });
-
   return (
     <Form {...form}>
       <form
