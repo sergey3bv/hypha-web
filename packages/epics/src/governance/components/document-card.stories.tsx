@@ -24,7 +24,8 @@ export const Default: Story = {
     isLoading: false,
     leadImage: 'https://github.com/shadcn.png',
     title: 'Title',
-    description: 'Description',
+    description:
+      'Lorem ipsum nostrud cillum voluptate est incididunt pariatur deserunt amet aute aliqua pariatur exercitation excepteur sit excepteur esse commodo excepteur irure nostrud esse officia esse ad velit cupidatat voluptate esse ullamco laboris',
     badges: [
       {
         label: 'agreement',

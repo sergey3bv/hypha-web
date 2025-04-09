@@ -70,7 +70,7 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
             height="48px"
             loading={isLoading}
           >
-            <div className="line-clamp-3">{description}</div>
+            <div className="line-clamp-3 w-full">{description}</div>
           </Skeleton>
         </div>
         {interactions}
