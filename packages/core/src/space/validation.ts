@@ -17,6 +17,10 @@ const createSpaceWeb2Props = {
     .optional(),
   web3SpaceId: z.number().optional(),
   parentId: z.number().optional(),
+  links: z
+    .array(z.string().url('Links must be a valid URL'))
+    .max(3)
+    .default([]),
 };
 
 export const schemaCreateSpaceWeb2 = z.object(createSpaceWeb2Props);

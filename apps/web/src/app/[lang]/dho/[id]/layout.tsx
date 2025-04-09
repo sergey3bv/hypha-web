@@ -1,4 +1,10 @@
-import { JoinSpace, SpaceCard } from '@hypha-platform/epics';
+import {
+  JoinSpace,
+  LinkIcon,
+  SpaceCard,
+  LinkLabel,
+  WebLinks,
+} from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import {
   Container,
@@ -8,16 +14,12 @@ import {
   Button,
 } from '@hypha-platform/ui';
 import {
-  Link2Icon,
-  LinkedInLogoIcon,
   Share2Icon,
   ChevronLeftIcon,
   PlusIcon,
   Pencil2Icon,
 } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
@@ -96,44 +98,9 @@ export default async function DhoLayout({
             </Link>
           </Button>
         </div>
-        <div className="mt-4">
+        <div className="flex flex-col mt-4 gap-2">
           <Text className="text-7">{spaceFromDb.title}</Text>
-        </div>
-        <div className="flex gap-6">
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <LinkedInLogoIcon width={16} height={16} />
-              <Text className="ml-1 text-1">HyphaDAO</Text>
-            </div>
-          </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <FontAwesomeIcon
-                className="w-4"
-                color="bg-primary-foreground"
-                icon={faXTwitter}
-              />
-              <Text className="ml-1 text-1">@HyphaDAO</Text>
-            </div>
-          </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-lg justify-start text-gray-400 px-0 cursor-pointer"
-          >
-            <div>
-              <Link2Icon width={16} height={16} />
-              <Text className="ml-1 text-1">hypha.earth</Text>
-            </div>
-          </Button>
+          <WebLinks links={spaceFromDb.links} />
         </div>
         <div className="mt-6">
           <Text className="text-2">{spaceFromDb.description}</Text>
