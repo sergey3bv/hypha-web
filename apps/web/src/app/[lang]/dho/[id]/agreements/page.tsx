@@ -24,18 +24,21 @@ export default async function AgreementsPage(props: PageProps) {
         useDocuments={useSpaceDocuments}
         documentState="proposal"
         label="Proposals"
+        hasSearch={true}
       />
       <DocumentSection
         basePath={`${basePath}/agreements`}
         useDocuments={useSpaceDocuments}
         documentState="agreement"
         label="Agreements"
+        hasSearch={true}
       />
       <DocumentSection
         basePath={`${basePath}/agreements`}
         useDocuments={useSpaceDocuments}
         documentState="agreement"
         label="History"
+        hasSearch={true}
         headSectionButton={
           <Link href={`${basePath}/agreements/history`} scroll={false}>
             <Button className="ml-2">See all</Button>
