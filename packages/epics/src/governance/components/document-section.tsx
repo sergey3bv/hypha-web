@@ -16,6 +16,7 @@ type DocumentSectionProps = {
   documentState: DocumentState;
   label?: string;
   headSectionButton?: React.ReactNode;
+  hasSearch?: boolean;
 };
 
 export const DocumentSection: FC<DocumentSectionProps> = ({
@@ -24,6 +25,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
   documentState,
   label,
   headSectionButton,
+  hasSearch = false,
 }) => {
   const {
     pages,
@@ -49,7 +51,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         count={pagination?.total || 0}
         label={label || ''}
         sortOptions={sortOptions}
-        hasSearch={true}
+        hasSearch={hasSearch}
       >
         {headSectionButton}
       </SectionFilter>
