@@ -38,9 +38,7 @@ export default async function AgreementsPage(props: PageProps) {
         label="History"
         headSectionButton={
           <Link href={`${basePath}/agreements/history`} scroll={false}>
-            <Button className="ml-2">
-              See all
-            </Button>
+            <Button className="ml-2">See all</Button>
           </Link>
         }
       />

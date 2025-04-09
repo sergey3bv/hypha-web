@@ -23,7 +23,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
   useDocuments,
   documentState,
   label,
-  headSectionButton
+  headSectionButton,
 }) => {
   const {
     pages,
@@ -49,6 +49,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         count={pagination?.total || 0}
         label={label || ''}
         sortOptions={sortOptions}
+        hasSearch={true}
       >
         {headSectionButton}
       </SectionFilter>
