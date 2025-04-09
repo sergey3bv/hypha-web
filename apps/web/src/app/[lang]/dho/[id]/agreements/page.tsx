@@ -2,6 +2,8 @@ import { Locale } from '@hypha-platform/i18n';
 import { DocumentSection } from '@hypha-platform/epics';
 import { NavigationTabs } from '../_components/navigation-tabs';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
+import { Button } from '@hypha-platform/ui';
+import Link from 'next/link';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -34,6 +36,13 @@ export default async function AgreementsPage(props: PageProps) {
         useDocuments={useSpaceDocuments}
         documentState="agreement"
         label="History"
+        headSectionButton={
+          <Link href={`${basePath}/agreements/history`} scroll={false}>
+            <Button className="ml-2">
+              See all
+            </Button>
+          </Link>
+        }
       />
     </div>
   );

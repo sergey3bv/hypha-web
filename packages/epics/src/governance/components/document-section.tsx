@@ -7,9 +7,6 @@ import {
   SectionLoadMore,
   SectionTabs,
 } from '@hypha-platform/ui/server';
-import { Button } from '@hypha-platform/ui';
-import { PlusIcon } from '@radix-ui/react-icons';
-import Link from 'next/link';
 import { DocumentState, UseDocuments } from '..';
 import { DocumentGridContainer } from './document-grid.container';
 
@@ -18,6 +15,7 @@ type DocumentSectionProps = {
   useDocuments: UseDocuments;
   documentState: DocumentState;
   label?: string;
+  headSectionButton?: React.ReactNode;
 };
 
 export const DocumentSection: FC<DocumentSectionProps> = ({
@@ -25,6 +23,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
   useDocuments,
   documentState,
   label,
+  headSectionButton
 }) => {
   const {
     pages,
@@ -51,12 +50,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         label={label || ''}
         sortOptions={sortOptions}
       >
-        <Link href={`${basePath}/create`} scroll={false}>
-          <Button className="ml-2">
-            <PlusIcon className="mr-2" />
-            Create
-          </Button>
-        </Link>
+        {headSectionButton}
       </SectionFilter>
       {pagination?.totalPages === 0 ? null : (
         <SectionTabs
