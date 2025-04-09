@@ -32,7 +32,7 @@ export const MembersSection: FC<MemberSectionProps> = ({
           console.debug('members-section onChange', { value })
         }
         count={pagination?.total || 0}
-        label="Members"
+        label="Individuals"
         sortOptions={sortOptions}
       />
       {pagination?.total === 0 ? null : (
