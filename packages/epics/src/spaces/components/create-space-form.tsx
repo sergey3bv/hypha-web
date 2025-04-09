@@ -36,9 +36,13 @@ import {
 
 const schemaCreateSpaceForm = schemaCreateSpace.extend(createSpaceFiles);
 
-export type CreateSpaceFormProps = CreateSpaceFormHeadProps & {
+export type CreateSpaceFormProps = {
   isLoading?: boolean;
   closeUrl: string;
+  creator: {
+    name?: string;
+    surname?: string;
+  };
   onCreate: (values: z.infer<typeof schemaCreateSpaceForm>) => void;
 };
 

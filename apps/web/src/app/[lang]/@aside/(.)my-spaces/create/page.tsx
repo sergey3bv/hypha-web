@@ -11,11 +11,13 @@ import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
 import { useJwt } from '@web/hooks/use-jwt';
 import { Button } from '@hypha-platform/ui';
+import { useMe } from '@web/hooks/use-me';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();
   const router = useRouter();
   const config = useConfig();
+  const { person } = useMe();
   const { jwt, isLoadingJwt } = useJwt();
   const {
     createSpace,
@@ -52,9 +54,8 @@ export default function AsideCreateSpacePage() {
       >
         <CreateSpaceForm
           creator={{
-            avatar: 'https://github.com/shadcn.png',
-            name: 'Name',
-            surname: 'Surname',
+            name: person?.name,
+            surname: person?.surname,
           }}
           closeUrl={`/${lang}/my-spaces`}
           onCreate={createSpace}
