@@ -30,7 +30,7 @@ export const useDocumentsSection = ({
   useDocuments: UseDocuments;
   documentState: DocumentState;
 }) => {
-  const [activeFilter, setActiveFilter] = React.useState('all');
+  const [activeFilter, setActiveFilter] = React.useState('most-recent');
   const [pages, setPages] = React.useState(1);
   const [activeTab, setActiveTab] = React.useState('all');
 
