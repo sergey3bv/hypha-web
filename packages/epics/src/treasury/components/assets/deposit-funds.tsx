@@ -32,7 +32,7 @@ export const DepositFunds = ({
       <Separator />
       <div className="flex items-center justify-center w-full h-[300px]">
         <QRCode
-          className="w-[200px] h-[200px] w-[200px] h-[200px] bg-secondary-foreground p-2 rounded-xl"
+          className="w-[200px] h-[200px] bg-secondary-foreground p-2 rounded-xl"
           value={address || ''}
         />
       </div>
