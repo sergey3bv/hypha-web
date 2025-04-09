@@ -3,6 +3,7 @@ import {
   LinkIcon,
   SpaceCard,
   LinkLabel,
+  WebLinks,
 } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -97,23 +98,9 @@ export default async function DhoLayout({
             </Link>
           </Button>
         </div>
-        <div className="mt-4">
+        <div className="flex flex-col mt-4 gap-2">
           <Text className="text-7">{spaceFromDb.title}</Text>
-        </div>
-        <div className="flex gap-5 mt-3">
-          {spaceFromDb.links && spaceFromDb.links.length > 0
-            ? spaceFromDb.links.map((link) => (
-                <a
-                  key={link}
-                  href={link}
-                  target="_blank"
-                  className="flex gap-1 text-neutral-11 items-center hover:text-neutral-12"
-                >
-                  <LinkIcon url={link} />
-                  <LinkLabel url={link} className="text-1" />
-                </a>
-              ))
-            : null}
+          <WebLinks links={spaceFromDb.links} />
         </div>
         <div className="mt-6">
           <Text className="text-2">{spaceFromDb.description}</Text>
