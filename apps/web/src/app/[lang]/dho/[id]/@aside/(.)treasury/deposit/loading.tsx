@@ -5,7 +5,7 @@ import { SidePanel } from '../../_components/side-panel';
 export default function Treasury() {
   return (
     <SidePanel>
-      <DepositFunds closeUrl={''} description="" address={''} />
+      <DepositFunds closeUrl={''} address={''} />
     </SidePanel>
   );
 }
