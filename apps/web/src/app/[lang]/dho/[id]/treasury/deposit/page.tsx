@@ -4,11 +4,11 @@ import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@hypha-platform/core/server';
 
 type PageProps = {
-  params: { lang: Locale; id: string };
+  params: Promise<{ lang: Locale; id: string }>;
 };
 
 export default async function Treasury({ params }: PageProps) {
-  const { lang, id } = params;
+  const { lang, id } = await params;
 
   const spaceService = createSpaceService();
 
