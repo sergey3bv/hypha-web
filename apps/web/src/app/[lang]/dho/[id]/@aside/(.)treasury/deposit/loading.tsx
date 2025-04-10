@@ -1,7 +1,6 @@
 import { DepositFunds } from '@hypha-platform/epics';
 import { getDhoPathTreasury } from '../../../treasury/constants';
 import { Locale } from '@hypha-platform/i18n';
-import { useSpaceDetailsWeb3Rpc } from '@core/space';
 import { createSpaceService } from '@hypha-platform/core/server';
 import { SidePanel } from '../../_components/side-panel';
 
@@ -21,9 +20,8 @@ export default async function Treasury(props: PageProps) {
   return (
     <SidePanel>
       <DepositFunds
-        closeUrl={getDhoPathTreasury(lang as Locale, id as string)}
+        closeUrl={getDhoPathTreasury(lang, id)}
         spaceId={spaceId as number}
-        useSpaceAddress={useSpaceDetailsWeb3Rpc}
       />
     </SidePanel>
   );

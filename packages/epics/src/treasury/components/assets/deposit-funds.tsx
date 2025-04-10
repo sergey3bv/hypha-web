@@ -7,28 +7,11 @@ import QRCode from 'react-qr-code';
 import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
 import { copyToClipboard } from '@hypha-platform/ui-utils';
 import { MarkdownSuspense } from '@hypha-platform/ui/server';
+import { useSpaceDetailsWeb3Rpc } from '@core/space';
 
 interface DepositFundsProps {
   closeUrl: string;
   spaceId: number;
-  useSpaceAddress: ({ spaceId }: { spaceId: number }) => {
-    spaceDetails:
-      | {
-          unity: bigint;
-          quorum: bigint;
-          votingPowerSource: bigint;
-          tokenAdresses: readonly `0x${string}`[];
-          members: readonly `0x${string}`[];
-          exitMethod: bigint;
-          joinMethod: bigint;
-          createdAt: bigint;
-          creator: `0x${string}`;
-          executor: `0x${string}`;
-        }
-      | undefined;
-    isLoading: boolean;
-    error: any;
-  };
 }
 
 const description = `
@@ -36,12 +19,10 @@ Only Base mainnet tokens can be deposited to this address. If you send funds fro
 
 All deposited tokens are held in the Space's treasury. Any future withdrawals must be approved by passing a proposal in your Space. This ensures transparency and collective decision-making over treasury funds.`;
 
-export const DepositFunds = ({
-  closeUrl,
-  spaceId,
-  useSpaceAddress,
-}: DepositFundsProps) => {
-  const { spaceDetails } = useSpaceAddress({ spaceId: spaceId as number });
+export const DepositFunds = ({ closeUrl, spaceId }: DepositFundsProps) => {
+  const { spaceDetails } = useSpaceDetailsWeb3Rpc({
+    spaceId: spaceId as number,
+  });
 
   const spaceAddress = spaceDetails?.executor;
 
