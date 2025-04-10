@@ -16,7 +16,7 @@ type Story = StoryObj<typeof DepositFunds>;
 export const Default: Story = {
   args: {
     closeUrl: '/',
-    address: 'opndsox0c8vbi91H092u7nz0A02so',
+    spaceId: 0,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
