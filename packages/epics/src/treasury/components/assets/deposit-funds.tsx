@@ -49,7 +49,7 @@ export const DepositFunds = ({ closeUrl, address }: DepositFundsProps) => {
         />
       </span>
       <Separator />
-      <Text className="text-4 capitalize text-nowrap">Deposit Funds</Text>
+      <Text className="text-4 capitalize text-nowrap">Please double-check the following:</Text>
       <span className="flex items-center text-neutral-11 text-1 gap-3">
         <CheckIcon />
         You are depositing Base mainnet tokens, not from any other network.
