@@ -4,11 +4,11 @@ import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@hypha-platform/core/server';
 
 type PageProps = {
-  params: Promise<{ lang: Locale; id: string }>;
+  params: { lang: Locale; id: string };
 };
 
-export default async function Treasury(props: PageProps) {
-  const { lang, id } = await props.params;
+export default async function Treasury({ params }: PageProps) {
+  const { lang, id } = params;
 
   const spaceService = createSpaceService();
 
@@ -17,9 +17,6 @@ export default async function Treasury(props: PageProps) {
   const spaceId = spaceFromDb.web3SpaceId;
 
   return (
-    <DepositFunds
-      closeUrl={getDhoPathTreasury(lang, id)}
-      spaceId={spaceId as number}
-    />
+    <DepositFunds closeUrl={getDhoPathTreasury(lang, id)} spaceId={spaceId} />
   );
 }

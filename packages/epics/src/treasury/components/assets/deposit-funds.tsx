@@ -6,12 +6,11 @@ import { Text } from '@radix-ui/themes';
 import QRCode from 'react-qr-code';
 import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
 import { copyToClipboard } from '@hypha-platform/ui-utils';
-import { MarkdownSuspense } from '@hypha-platform/ui/server';
 import { useSpaceDetailsWeb3Rpc } from '@core/space';
 
 interface DepositFundsProps {
   closeUrl: string;
-  spaceId: number;
+  spaceId: number | undefined | null;
 }
 
 const description = `
@@ -37,9 +36,7 @@ export const DepositFunds = ({ closeUrl, spaceId }: DepositFundsProps) => {
           </Button>
         </Link>
       </div>
-      <span className="text-2 text-neutral-11">
-        <MarkdownSuspense content={description} />
-      </span>
+      <span className="text-2 text-neutral-11">{description}</span>
       <Separator />
       <div className="flex items-center justify-center w-full h-[300px]">
         <QRCode

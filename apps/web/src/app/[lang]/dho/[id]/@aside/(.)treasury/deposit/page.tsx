@@ -5,11 +5,11 @@ import { createSpaceService } from '@hypha-platform/core/server';
 import { SidePanel } from '../../_components/side-panel';
 
 type PageProps = {
-  params: Promise<{ lang: Locale; id: string }>;
+  params: { lang: Locale; id: string };
 };
 
-export default async function Treasury(props: PageProps) {
-  const { lang, id } = await props.params;
+export default async function Treasury({ params }: PageProps) {
+  const { lang, id } = params;
 
   const spaceService = createSpaceService();
 
@@ -19,10 +19,7 @@ export default async function Treasury(props: PageProps) {
 
   return (
     <SidePanel>
-      <DepositFunds
-        closeUrl={getDhoPathTreasury(lang, id)}
-        spaceId={spaceId as number}
-      />
+      <DepositFunds closeUrl={getDhoPathTreasury(lang, id)} spaceId={spaceId} />
     </SidePanel>
   );
 }
