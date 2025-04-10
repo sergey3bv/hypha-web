@@ -1,22 +1,31 @@
 import Link from 'next/link';
-import { Button, Separator, Input } from '@hypha-platform/ui';
+import { Button, Separator } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
 import QRCode from 'react-qr-code';
 import { CopyIcon, CheckIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { copyToClipboard } from '@hypha-platform/ui-utils';
+import { MarkdownSuspense } from '@hypha-platform/ui/server';
 
 interface DepositFundsProps {
   closeUrl: string;
-  description?: string;
   address: string;
 }
 
-export const DepositFunds = ({
-  closeUrl,
-  description,
-  address,
-}: DepositFundsProps) => {
+const description = `
+Only Base mainnet tokens can be deposited to this address. If you send funds from another network, your tokens may be permanently lost and cannot be recovered.
+
+All deposited tokens are held in the Space's treasury. Any future withdrawals must be approved by passing a proposal in your Space. This ensures transparency and collective decision-making over treasury funds.
+
+Please double-check the following:
+
+- You are depositing Base mainnet tokens, not from any other network.
+
+- You understand that tokens can only be withdrawn after a successful proposal.
+
+- By proceeding, you acknowledge these conditions and confirm your deposit transaction.`;
+
+export const DepositFunds = ({ closeUrl, address }: DepositFundsProps) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
@@ -28,7 +37,9 @@ export const DepositFunds = ({
           </Button>
         </Link>
       </div>
-      <span className="text-2 text-neutral-11">{description}</span>
+      <span className="text-2 text-neutral-11">
+        <MarkdownSuspense content={description} />
+      </span>
       <Separator />
       <div className="flex items-center justify-center w-full h-[300px]">
         <QRCode
