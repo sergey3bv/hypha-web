@@ -20,6 +20,6 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Deposit Funds/gi)).toBeTruthy();
+    expect(canvas.getAllByText(/Deposit Funds/gi)).toBeTruthy();
   },
 };
