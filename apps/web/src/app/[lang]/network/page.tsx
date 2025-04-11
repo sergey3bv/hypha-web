@@ -9,6 +9,17 @@ type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
 };
 
+function extractUniqueCategories(spaces: any[]): string[] {
+  const categories = spaces.reduce((acc, space) => {
+    if (space.categories) {
+      acc.push(...space.categories);
+    }
+    return acc;
+  }, [] as string[]);
+
+  return Array.from(new Set(categories));
+}
+
 export default async function Index(props: PageProps) {
   const params = await props.params;
 
@@ -19,6 +30,7 @@ export default async function Index(props: PageProps) {
   };
 
   const spaces = await createSpaceService().getAll();
+  const uniqueCategories = extractUniqueCategories(spaces);
 
   return (
     <Container>
@@ -26,7 +38,23 @@ export default async function Index(props: PageProps) {
         Explore hundreds of Spaces in the Hypha Network
       </Text>
       <SpaceSearch />
-      <SpaceGroupSlider spaces={spaces} type="Hypha" getHref={getHref} />
+      {uniqueCategories.map((category) => (
+        <SpaceGroupSlider
+          key={category}
+          spaces={spaces.filter(
+            (space) => space.categories && space.categories.includes(category),
+          )}
+          type={category}
+          getHref={getHref}
+        />
+      ))}
+      <SpaceGroupSlider
+        spaces={spaces.filter(
+          (space) => space.categories && space.categories.length === 0,
+        )}
+        type={'No Category'}
+        getHref={getHref}
+      />
     </Container>
   );
 }

@@ -26,7 +26,7 @@ export const SpaceGroupSlider = ({
   return (
     <div className="border-b-2 border-primary-foreground pt-6">
       <div className="flex justify-between items-center">
-        <Text className="text-4 font-medium">
+        <Text className="text-4 font-medium capitalize">
           {type} | {spaces?.length}
         </Text>
         <Button variant="ghost" className="text-accent-11">
