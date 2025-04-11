@@ -17,6 +17,7 @@ const createSpaceWeb2Props = {
     .optional(),
   web3SpaceId: z.number().optional(),
   parentId: z.number().optional(),
+  categories: z.array(z.string()).default([]),
   links: z
     .array(z.string().url('Links must be a valid URL'))
     .max(3)

@@ -14,6 +14,7 @@ import {
   FormMessage,
   UploadAvatar,
   UploadLeadImage,
+  MultiSelect,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
@@ -60,6 +61,7 @@ export const CreateSpaceForm = ({
       exitMethod: 0,
       logoUrl: undefined,
       leadImage: undefined,
+      categories: [],
       links: [],
     },
   });
@@ -154,6 +156,38 @@ export const CreateSpaceForm = ({
                   disabled={isLoading}
                   placeholder="Type a brief description here..."
                   {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="categories"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <MultiSelect
+                  placeholder={'Select Categories'}
+                  options={[
+                    { value: 'housing', label: 'Housing' },
+                    { value: 'energy', label: 'Energy' },
+                    { value: 'mobility', label: 'Mobility' },
+                    { value: 'water', label: 'Water' },
+                    { value: 'air', label: 'Air' },
+                    { value: 'soil', label: 'Soil' },
+                    { value: 'flora', label: 'Flora' },
+                    { value: 'fauna', label: 'Fauna' },
+                    { value: 'fungi', label: 'Fungi' },
+                    { value: 'food', label: 'Food' },
+                    { value: 'education', label: 'Education' },
+                    { value: 'art', label: 'Art' },
+                    { value: 'health', label: 'Health' },
+                    { value: 'tech', label: 'Tech' },
+                  ]}
+                  defaultValue={field.value}
+                  onValueChange={field.onChange}
                 />
               </FormControl>
               <FormMessage />

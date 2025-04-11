@@ -7,6 +7,7 @@ export * from './button';
 export * from './card';
 export * from './carousel';
 export * from './chart';
+export * from './chips';
 export * from './container';
 export * from './dropdown-menu';
 export * from './filter-menu';
