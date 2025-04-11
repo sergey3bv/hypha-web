@@ -41,6 +41,10 @@ contract DAOSpaceFactoryImplementation is
     _;
   }
 
+  // Keep this variable for storage layout compatibility with previous versions
+  // @deprecated - Use proposalManagerAddress instead
+  IDAOProposals public proposalsContract;
+
   function setContracts(
     address _tokenFactoryAddress,
     address _joinMethodDirectoryAddress,
@@ -66,15 +70,6 @@ contract DAOSpaceFactoryImplementation is
   function createSpace(
     SpaceCreationParams memory params
   ) external returns (uint256) {
-    require(
-      params.quorum > 0 && params.quorum <= 100,
-      'Quorum must be between 1 and 100'
-    );
-    require(
-      params.unity > 0 && params.unity <= 100,
-      'Unity value must be between 1 and 100'
-    );
-
     return _createSpaceInternal(params, 0);
   }
 
@@ -94,6 +89,15 @@ contract DAOSpaceFactoryImplementation is
       'Only parent space creator can create subspaces'
     );
 
+    return _createSpaceInternal(params, parentSpaceId);
+  }
+
+  // Internal function to handle common space creation logic
+  function _createSpaceInternal(
+    SpaceCreationParams memory params,
+    uint256 parentSpaceId
+  ) internal returns (uint256) {
+    // Common parameter validation
     require(
       params.quorum > 0 && params.quorum <= 100,
       'Quorum must be between 1 and 100'
@@ -103,14 +107,6 @@ contract DAOSpaceFactoryImplementation is
       'Unity value must be between 1 and 100'
     );
 
-    return _createSpaceInternal(params, parentSpaceId);
-  }
-
-  // Internal function to handle common space creation logic
-  function _createSpaceInternal(
-    SpaceCreationParams memory params,
-    uint256 parentSpaceId
-  ) internal returns (uint256) {
     spaceCounter++;
 
     Executor executor = new Executor(proposalManagerAddress);
