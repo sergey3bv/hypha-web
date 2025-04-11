@@ -1,3 +1,5 @@
+'use client';
+
 import { AgreementDetail } from '@hypha-platform/epics';
 import { SidePanel } from '../../_components/side-panel';
 
