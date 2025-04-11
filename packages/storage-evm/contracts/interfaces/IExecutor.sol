@@ -7,13 +7,6 @@ interface IExecutor {
     uint256 value;
     bytes data;
   }
-
-  function executeTransaction(
-    address target,
-    uint256 value,
-    bytes memory data
-  ) external returns (bool);
-
   function executeTransactions(
     Transaction[] calldata transactions
   ) external returns (bool);
