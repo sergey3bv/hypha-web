@@ -6,12 +6,11 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 
 ## Function Summary
 
-### Write Functions (6)
+### Write Functions (5)
 
 - `initialize(address initialOwner)`
 - `setContracts(address _tokenFactoryAddress, address _joinMethodDirectoryAddress, address _exitMethodDirectoryAddress, address _proposalManagerAddress)`
 - `createSpace(SpaceCreationParams memory params)`
-- `createSubSpace(SpaceCreationParams memory params, uint256 parentSpaceId)`
 - `joinSpace(uint256 _spaceId)`
 - `removeMember(uint256 _spaceId, address _memberToRemove)`
 - `addTokenToSpace(uint256 _spaceId, address _tokenAddress)`
@@ -30,7 +29,6 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 ## Key Features
 
 - Create new DAO spaces
-- Create sub-spaces within existing spaces
 - Manage space membership
 - Handle token associations
 - Configure governance parameters
@@ -62,23 +60,6 @@ Parameters (SpaceCreationParams struct):
 Returns:
 
 - `uint256`: ID of the created space
-
-### createSubSpace
-
-Creates a new sub-space within an existing space. Only the creator of the parent space can call this function. The sub-space executor is automatically added as a member to the parent space.
-
-```solidity
-function createSubSpace(SpaceCreationParams memory params, uint256 parentSpaceId) external returns (uint256)
-```
-
-Parameters:
-
-- `params` (SpaceCreationParams struct): Same parameters as createSpace
-- `parentSpaceId` (uint256): ID of the parent space
-
-Returns:
-
-- `uint256`: ID of the created sub-space
 
 ### setContracts
 
@@ -193,39 +174,6 @@ Returns:
 
 - `bool`: True if address is a member
 
-### hasToken
-
-Checks if a token is associated with a space.
-
-```solidity
-function hasToken(uint256 _spaceId, address _tokenAddress) external view returns (bool)
-```
-
-Parameters:
-
-- `_spaceId` (uint256): ID of the space
-- `_tokenAddress` (address): Token address to check
-
-Returns:
-
-- `bool`: True if token is associated
-
-### getSpaceExecutor
-
-Returns the executor contract address for a space.
-
-```solidity
-function getSpaceExecutor(uint256 _spaceId) external view returns (address)
-```
-
-Parameters:
-
-- `_spaceId` (uint256): ID of the space
-
-Returns:
-
-- `address`: Executor contract address
-
 ### getMemberSpaces
 
 Returns all space IDs that a member is part of.
@@ -255,16 +203,6 @@ event SpaceCreated(
     uint256 exitMethod,
     uint256 joinMethod,
     address indexed creator,
-    address indexed executor
-)
-```
-
-### SubSpaceCreated
-
-```solidity
-event SubSpaceCreated(
-    uint256 indexed spaceId,
-    uint256 indexed parentSpaceId,
     address indexed executor
 )
 ```
@@ -299,17 +237,6 @@ const params = {
 
 const spaceId = await factory.methods.createSpace(params).send({ from: userAddress });
 
-// Create a sub-space
-const subParams = {
-  unity: 60,
-  quorum: 70,
-  votingPowerSource: 1,
-  exitMethod: 1,
-  joinMethod: 1,
-};
-
-await factory.methods.createSubSpace(subParams, spaceId).send({ from: userAddress });
-
 // Join space
 await factory.methods.joinSpace(spaceId).send({ from: userAddress });
 
@@ -332,16 +259,6 @@ const tx = await factory.createSpace({
 });
 const receipt = await tx.wait();
 const spaceId = /* extract from event logs */;
-
-// Create a sub-space
-const subTx = await factory.createSubSpace({
-  unity: 60,
-  quorum: 70,
-  votingPowerSource: 1,
-  exitMethod: 1,
-  joinMethod: 1,
-}, spaceId);
-await subTx.wait();
 
 // Get spaces a member is part of
 const memberSpaces = await factory.getMemberSpaces(userAddress);

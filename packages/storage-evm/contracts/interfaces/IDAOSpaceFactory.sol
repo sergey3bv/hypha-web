@@ -20,8 +20,7 @@ interface IDAOSpaceFactory {
   ) external;
 
   function createSpace(
-    SpaceCreationParams calldata params,
-    uint256 parentSpaceId
+    SpaceCreationParams calldata params
   ) external returns (uint256);
 
   function joinSpace(uint256 _spaceId) external;
@@ -100,9 +99,4 @@ interface IDAOSpaceFactory {
   //event JoinMethodDirectoryContractUpdated(address indexed newAddress);
   //event ProposalManagerUpdated(address indexed newAddress);
   //event ExitMethodDirectoryContractUpdated(address indexed newAddress);
-  event SubSpaceCreated(
-    uint256 indexed spaceId,
-    uint256 indexed parentSpaceId,
-    address indexed executor
-  );
 }

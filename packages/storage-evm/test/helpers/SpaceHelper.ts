@@ -18,7 +18,7 @@ export interface SpaceParams {
 export class SpaceHelper {
   constructor(public contract: DAOSpaceFactoryImplementation) {}
 
-  async createDefaultSpace(parentSpaceId = 0) {
+  async createDefaultSpace() {
     const spaceParams = {
       name: 'Test Space',
       description: 'Test Description',
@@ -33,7 +33,7 @@ export class SpaceHelper {
       tokenSymbol: '',
     };
 
-    return this.contract.createSpace(spaceParams, parentSpaceId);
+    return this.contract.createSpace(spaceParams);
   }
 
   async getSpaceDetails(spaceId: number) {
@@ -48,7 +48,7 @@ export class SpaceHelper {
     member: ethers.Signer,
     overrides: Partial<SpaceParams> = {},
   ) {
-    await this.createDefaultSpace(overrides);
+    await this.createDefaultSpace();
     return this.contract.connect(member).joinSpace(1);
   }
 

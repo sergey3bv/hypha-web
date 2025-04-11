@@ -50,7 +50,6 @@ const daoSpaceFactoryAbi = [
         name: 'params',
         type: 'tuple',
       },
-      { internalType: 'uint256', name: 'parentSpaceId', type: 'uint256' },
     ],
     name: 'createSpace',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -255,7 +254,7 @@ async function testMultiTransactionProposal(): Promise<void> {
     console.log(
       `Creating space with unity: ${spaceParams.unity}, quorum: ${spaceParams.quorum}`,
     );
-    const tx = await daoSpaceFactory.createSpace(spaceParams, 0);
+    const tx = await daoSpaceFactory.createSpace(spaceParams);
     console.log(`Space creation transaction submitted: ${tx.hash}`);
 
     const receipt = await tx.wait();

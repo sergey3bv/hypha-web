@@ -55,26 +55,8 @@ contract DAOSpaceFactoryImplementation is
   }
 
   function createSpace(
-    SpaceCreationParams memory params,
-    uint256 parentSpaceId
+    SpaceCreationParams memory params
   ) external returns (uint256) {
-    // If parentSpaceId is not 0, validate parent space
-    if (parentSpaceId > 0) {
-      // Validate parent space exists
-      require(parentSpaceId > 0 && parentSpaceId <= spaceCounter, 'ipsd');
-
-      // Validate caller is the creator of the parent space
-      require(msg.sender == spaces[parentSpaceId].creator, 'parent');
-    }
-
-    return _createSpaceInternal(params, parentSpaceId);
-  }
-
-  // Internal function to handle common space creation logic
-  function _createSpaceInternal(
-    SpaceCreationParams memory params,
-    uint256 parentSpaceId
-  ) internal returns (uint256) {
     // Common parameter validation
     require(params.quorum > 0 && params.quorum <= 100, 'quorum');
     require(params.unity > 0 && params.unity <= 100, 'unity');
@@ -99,24 +81,6 @@ contract DAOSpaceFactoryImplementation is
     address[] memory initialMembers = new address[](1);
     initialMembers[0] = msg.sender;
     newSpace.members = initialMembers;
-
-    // If this is a subspace, add it to the parent space
-    if (parentSpaceId > 0) {
-      // Add the new space's executor to the parent space members
-      Space storage parentSpace = spaces[parentSpaceId];
-      parentSpace.members.push(address(executor));
-
-      // Also add the executor to the parent space's spaceMemberAddresses
-      SpaceMembers storage parentSpaceMembers = spaceMembers[parentSpaceId];
-      parentSpaceMembers.spaceMemberAddresses.push(address(executor));
-      parentSpaceMembers.isSpaceMember[address(executor)] = true;
-
-      // Update memberSpaces mapping for the executor
-      memberSpaces[address(executor)].push(parentSpaceId);
-
-      // Emit subspace created event
-      emit SubSpaceCreated(spaceCounter, parentSpaceId, address(executor));
-    }
 
     emit SpaceCreated(
       spaceCounter,
