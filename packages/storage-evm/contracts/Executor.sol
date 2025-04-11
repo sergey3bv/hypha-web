@@ -30,6 +30,7 @@ contract Executor is IExecutor {
     _;
   }
 
+/*
   function executeTransaction(
     address target,
     uint256 value,
@@ -41,6 +42,7 @@ contract Executor is IExecutor {
     //emit TransactionExecuted(target, value, data);
     return success;
   }
+*/
 
   function executeTransactions(
     Transaction[] calldata transactions
