@@ -1,6 +1,6 @@
 import { pgEnum } from 'drizzle-orm/pg-core';
 
-export const categories = pgEnum('categories', [
+export const CATEGORIES = [
   'housing',
   'energy',
   'mobility',
@@ -15,4 +15,6 @@ export const categories = pgEnum('categories', [
   'art',
   'health',
   'tech',
-]);
+] as const;
+
+export const categories = pgEnum('categories', CATEGORIES);
