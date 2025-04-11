@@ -6,7 +6,7 @@ The DAO Space Factory is a smart contract that enables the creation and manageme
 
 ## Function Summary
 
-### Write Functions (6)
+### Write Functions (5)
 
 - `initialize(address initialOwner)`
 - `setContracts(address _tokenFactoryAddress, address _joinMethodDirectoryAddress, address _exitMethodDirectoryAddress, address _proposalManagerAddress)`
@@ -60,6 +60,26 @@ Parameters (SpaceCreationParams struct):
 Returns:
 
 - `uint256`: ID of the created space
+
+### setContracts
+
+Sets the addresses of various contracts that the factory interacts with.
+
+```solidity
+function setContracts(
+  address _tokenFactoryAddress,
+  address _joinMethodDirectoryAddress,
+  address _exitMethodDirectoryAddress,
+  address _proposalManagerAddress
+) external
+```
+
+Parameters:
+
+- `_tokenFactoryAddress` (address): Address of the token factory contract
+- `_joinMethodDirectoryAddress` (address): Address of the join method directory
+- `_exitMethodDirectoryAddress` (address): Address of the exit method directory
+- `_proposalManagerAddress` (address): Address of the proposal manager contract
 
 ### joinSpace
 
@@ -154,39 +174,6 @@ Returns:
 
 - `bool`: True if address is a member
 
-### hasToken
-
-Checks if a token is associated with a space.
-
-```solidity
-function hasToken(uint256 _spaceId, address _tokenAddress) external view returns (bool)
-```
-
-Parameters:
-
-- `_spaceId` (uint256): ID of the space
-- `_tokenAddress` (address): Token address to check
-
-Returns:
-
-- `bool`: True if token is associated
-
-### getSpaceExecutor
-
-Returns the executor contract address for a space.
-
-```solidity
-function getSpaceExecutor(uint256 _spaceId) external view returns (address)
-```
-
-Parameters:
-
-- `_spaceId` (uint256): ID of the space
-
-Returns:
-
-- `address`: Executor contract address
-
 ### getMemberSpaces
 
 Returns all space IDs that a member is part of.
@@ -246,12 +233,9 @@ const params = {
   votingPowerSource: 1,
   exitMethod: 1,
   joinMethod: 1,
-  createToken: true,
-  tokenName: 'MyToken',
-  tokenSymbol: 'MTK',
 };
 
-await factory.methods.createSpace(params).send({ from: userAddress });
+const spaceId = await factory.methods.createSpace(params).send({ from: userAddress });
 
 // Join space
 await factory.methods.joinSpace(spaceId).send({ from: userAddress });
@@ -273,7 +257,8 @@ const tx = await factory.createSpace({
   exitMethod: 1,
   joinMethod: 1,
 });
-await tx.wait();
+const receipt = await tx.wait();
+const spaceId = /* extract from event logs */;
 
 // Get spaces a member is part of
 const memberSpaces = await factory.getMemberSpaces(userAddress);

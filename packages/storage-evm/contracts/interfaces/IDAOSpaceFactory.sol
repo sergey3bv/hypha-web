@@ -68,9 +68,14 @@ interface IDAOSpaceFactory {
       address executor
     );
 
+  /*
   function getSpaceMemberAddresses(
     uint256 _spaceId
   ) external view returns (address[] memory);
+*/
+  function getSpaceMemberIds(
+    uint256 _spaceId
+  ) external view returns (uint256[] memory);
 
   function getMemberSpaces(
     address _memberAddress
@@ -88,10 +93,10 @@ interface IDAOSpaceFactory {
   );
 
   event MemberJoined(uint256 indexed spaceId, address indexed member);
-  event DirectoryContractUpdated(address indexed newAddress);
+  //event DirectoryContractUpdated(address indexed newAddress);
   event MemberRemoved(uint256 indexed spaceId, address indexed member);
-  event TokenFactoryContractUpdated(address indexed newAddress);
-  event JoinMethodDirectoryContractUpdated(address indexed newAddress);
-  event ProposalManagerUpdated(address indexed newAddress);
-  event ExitMethodDirectoryContractUpdated(address indexed newAddress);
+  //event TokenFactoryContractUpdated(address indexed newAddress);
+  //event JoinMethodDirectoryContractUpdated(address indexed newAddress);
+  //event ProposalManagerUpdated(address indexed newAddress);
+  //event ExitMethodDirectoryContractUpdated(address indexed newAddress);
 }

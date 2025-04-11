@@ -2,12 +2,16 @@
 pragma solidity ^0.8.0;
 
 interface IDAOProposals {
+  struct Transaction {
+    address target; // Target contract address
+    uint256 value; // ETH value to send
+    bytes data; // Call data
+  }
+
   struct ProposalParams {
     uint256 spaceId;
     uint256 duration;
-    address targetContract;
-    bytes executionData;
-    uint256 value;
+    Transaction[] transactions; // Multiple transactions
   }
 
   function initialize(address initialOwner) external;
