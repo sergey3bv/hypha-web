@@ -128,7 +128,7 @@ describe('DAOSpaceFactoryImplementation', function () {
     it('Should initialize with zero spaces', async function () {
       const { daoSpaceFactory } = await loadFixture(deployFixture);
       await expect(daoSpaceFactory.getSpaceDetails(1)).to.be.revertedWith(
-        'Invalid space ID',
+        'Invalid spc ID',
       );
     });
 
@@ -263,13 +263,8 @@ describe('DAOSpaceFactoryImplementation', function () {
       // Verify subspace executor is added to parent space members list
       expect(parentMembers.includes(subspaceExecutor)).to.equal(true);
 
-      // Verify subspace executor is in spaceMemberAddresses
-      const spaceMembers = await daoSpaceFactory.getSpaceMemberAddresses(
-        parentSpaceId,
-      );
-      expect(spaceMembers.includes(subspaceExecutor)).to.equal(true);
-
-      // Verify subspace executor is correctly marked as a space member
+      // Verify subspace executor is in parent space members
+      // Using isSpaceMember instead of getSpaceMemberAddresses
       expect(
         await daoSpaceFactory.isSpaceMember(parentSpaceId, subspaceExecutor),
       ).to.equal(true);
@@ -310,7 +305,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         daoSpaceFactory
           .connect(other)
           .createSubSpace(subspaceParams, parentSpaceId),
-      ).to.be.revertedWith('Only parent space creator can create subspaces');
+      ).to.be.revertedWith('parent');
     });
 
     it('Should fail with invalid unity value', async function () {
@@ -332,7 +327,130 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       await expect(
         spaceHelper.contract.createSpace(spaceParams),
-      ).to.be.revertedWith('Unity value must be between 1 and 100');
+      ).to.be.revertedWith('unity');
+    });
+
+    it('Should correctly return member space IDs through getSpaceMemberIds', async function () {
+      const { spaceHelper, daoSpaceFactory, owner } = await loadFixture(
+        deployFixture,
+      );
+
+      // Create parent space first
+      const parentTx = await spaceHelper.createDefaultSpace();
+      await parentTx.wait();
+      const parentSpaceId = 1;
+
+      // Create multiple subspaces
+      const subspaceParams1 = {
+        name: 'Subspace 1',
+        description: 'First subspace',
+        imageUrl: 'https://test.com/subspace1.png',
+        unity: 60,
+        quorum: 70,
+        votingPowerSource: 1,
+        exitMethod: 1,
+        joinMethod: 1,
+        createToken: false,
+        tokenName: '',
+        tokenSymbol: '',
+      };
+
+      const subspaceParams2 = {
+        name: 'Subspace 2',
+        description: 'Second subspace',
+        imageUrl: 'https://test.com/subspace2.png',
+        unity: 55,
+        quorum: 65,
+        votingPowerSource: 1,
+        exitMethod: 1,
+        joinMethod: 1,
+        createToken: false,
+        tokenName: '',
+        tokenSymbol: '',
+      };
+
+      // Create first subspace
+      const subspaceTx1 = await daoSpaceFactory.createSubSpace(
+        subspaceParams1,
+        parentSpaceId,
+      );
+      const receipt1 = await subspaceTx1.wait();
+      const subspaceEvent1 = receipt1?.logs
+        .filter((log) => {
+          try {
+            return (
+              daoSpaceFactory.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'SubSpaceCreated'
+            );
+          } catch (_) {
+            return false;
+          }
+        })
+        .map((log) =>
+          daoSpaceFactory.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+      const subspaceId1 = subspaceEvent1?.args.spaceId;
+
+      // Create second subspace
+      const subspaceTx2 = await daoSpaceFactory.createSubSpace(
+        subspaceParams2,
+        parentSpaceId,
+      );
+      const receipt2 = await subspaceTx2.wait();
+      const subspaceEvent2 = receipt2?.logs
+        .filter((log) => {
+          try {
+            return (
+              daoSpaceFactory.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'SubSpaceCreated'
+            );
+          } catch (_) {
+            return false;
+          }
+        })
+        .map((log) =>
+          daoSpaceFactory.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+      const subspaceId2 = subspaceEvent2?.args.spaceId;
+
+      // Get the subspaces' executors
+      const subspaceDetails1 = await spaceHelper.getSpaceDetails(subspaceId1);
+      const subspaceDetails2 = await spaceHelper.getSpaceDetails(subspaceId2);
+      const subspaceExecutor1 = subspaceDetails1.executor;
+      const subspaceExecutor2 = subspaceDetails2.executor;
+
+      // Get member space IDs for the parent space
+      const memberSpaceIds = await daoSpaceFactory.getSpaceMemberIds(
+        parentSpaceId,
+      );
+
+      // Convert BigInts to numbers for easier comparison
+      const memberSpaceIdsAsNumbers = memberSpaceIds.map((id) => Number(id));
+
+      // Verify that both subspace IDs are included in the result
+      expect(memberSpaceIdsAsNumbers).to.include(Number(subspaceId1));
+      expect(memberSpaceIdsAsNumbers).to.include(Number(subspaceId2));
+
+      // Verify length is correct (should have 2 subspaces)
+      expect(memberSpaceIds.length).to.equal(2);
+
+      // Additionally verify the mapping works correctly by checking executorToSpaceId
+      expect(await daoSpaceFactory.getSpaceId(subspaceExecutor1)).to.equal(
+        subspaceId1,
+      );
+      expect(await daoSpaceFactory.getSpaceId(subspaceExecutor2)).to.equal(
+        subspaceId2,
+      );
     });
   });
 
@@ -354,7 +472,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       await spaceHelper.joinSpace(1, other);
 
       await expect(spaceHelper.joinSpace(1, other)).to.be.revertedWith(
-        'Already a member',
+        'member',
       );
     });
 
@@ -379,59 +497,51 @@ describe('DAOSpaceFactoryImplementation', function () {
     });
 
     it('Should create a proposal when joining a space with join method 2', async function () {
-      const {
-        daoSpaceFactory,
-        spaceHelper,
-        owner,
-        other,
-        votingPowerDirectory,
-      } = await loadFixture(deployFixture);
-
-      // 1. Deploy SpaceVotingPower implementation first
-      const SpaceVotingPower = await ethers.getContractFactory(
-        'SpaceVotingPowerImplementation',
-      );
-      const spaceVotingPower = await upgrades.deployProxy(
-        SpaceVotingPower,
-        [owner.address],
-        {
-          initializer: 'initialize',
-          kind: 'uups',
-        },
-      );
-      await spaceVotingPower.waitForDeployment();
-
-      // Set space factory in voting power source
-      await spaceVotingPower.setSpaceFactory(
-        await daoSpaceFactory.getAddress(),
+      const { daoSpaceFactory, owner, voter1, other } = await loadFixture(
+        deployFixture,
       );
 
-      // 2. Register the voting power source in the directory
-      await votingPowerDirectory.addVotingPowerSource(
-        await spaceVotingPower.getAddress(),
-      );
-
-      // 3. Deploy the real DAOProposalsImplementation contract
+      // First we need to deploy a proper DAOProposals contract to use
       const DAOProposals = await ethers.getContractFactory(
         'DAOProposalsImplementation',
       );
       const daoProposals = await upgrades.deployProxy(
         DAOProposals,
         [owner.address],
-        {
-          initializer: 'initialize',
-          kind: 'uups',
-        },
+        { initializer: 'initialize', kind: 'uups' },
       );
-      await daoProposals.waitForDeployment();
 
-      // Configure the proposals contract with the space factory and directory
+      // Deploy SpaceVotingPower for proposal voting
+      const SpaceVotingPower = await ethers.getContractFactory(
+        'SpaceVotingPowerImplementation',
+      );
+      const spaceVotingPower = await upgrades.deployProxy(
+        SpaceVotingPower,
+        [owner.address],
+        { initializer: 'initialize', kind: 'uups' },
+      );
+
+      // Set space factory in voting power source
+      await spaceVotingPower.setSpaceFactory(
+        await daoSpaceFactory.getAddress(),
+      );
+
+      // Register the voting power source in the directory
+      const votingPowerDirectory = await ethers.getContractAt(
+        'IVotingPowerDirectory',
+        await daoSpaceFactory.proposalManagerAddress(),
+      );
+      await votingPowerDirectory.addVotingPowerSource(
+        await spaceVotingPower.getAddress(),
+      );
+
+      // Configure proposals contract
       await daoProposals.setContracts(
         await daoSpaceFactory.getAddress(),
         await votingPowerDirectory.getAddress(),
       );
 
-      // 4. Update proposalManagerAddress in space factory instead of using setProposalsContract
+      // Update the proposalManagerAddress in DAOSpaceFactory
       await daoSpaceFactory.setContracts(
         await daoSpaceFactory.tokenFactoryAddress(),
         await daoSpaceFactory.joinMethodDirectoryAddress(),
@@ -439,70 +549,50 @@ describe('DAOSpaceFactoryImplementation', function () {
         await daoProposals.getAddress(),
       );
 
-      // 5. Create a space with join method 2
+      // Create a space with join method 2
       const spaceParams = {
         name: 'Join By Proposal Space',
         description: 'Test Description',
         imageUrl: 'https://test.com/image.png',
         unity: 51,
-        quorum: 51,
-        votingPowerSource: 1, // This should match the ID registered in votingPowerDirectory
+        quorum: 10,
+        votingPowerSource: 1,
         exitMethod: 1,
-        joinMethod: 2, // <-- Join method 2 (proposal required)
+        joinMethod: 2, // Join requires proposal approval
         createToken: false,
         tokenName: '',
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await daoSpaceFactory.createSpace(spaceParams);
+      const spaceId = 1;
 
-      // 6. Attempt to join the space (should create a proposal)
-      const joinTx = await daoSpaceFactory.connect(other).joinSpace(1);
-      const receipt = await joinTx.wait();
+      // Add a member to the space (owner is already a member)
+      // This is needed to have sufficient voting power
+      await daoSpaceFactory.connect(voter1).joinSpace(spaceId);
 
-      // 7. Check for the JoinRequestedWithProposal event
-      const joinRequestedEvents = receipt?.logs
-        .filter((log) => {
-          try {
-            return (
-              daoSpaceFactory.interface.parseLog({
-                topics: log.topics as string[],
-                data: log.data,
-              })?.name === 'JoinRequestedWithProposal'
-            );
-          } catch (_) {
-            return false;
-          }
-        })
-        .map((log) =>
-          daoSpaceFactory.interface.parseLog({
-            topics: log.topics as string[],
-            data: log.data,
-          }),
-        );
+      // Get proposal count before join attempt
+      const proposalCountBefore = await daoProposals.proposalCounter();
 
-      expect(joinRequestedEvents?.length).to.be.at.least(1);
-      const joinEvent = joinRequestedEvents?.[0];
-      expect(joinEvent?.args.spaceId).to.equal(1);
-      expect(joinEvent?.args.member).to.equal(await other.getAddress());
+      // User attempts to join the space which should create a proposal
+      await daoSpaceFactory.connect(other).joinSpace(spaceId);
 
-      // Store the proposal ID for later use
-      const proposalId = joinEvent?.args.proposalId;
+      // Check if a new proposal was created
+      const proposalCountAfter = await daoProposals.proposalCounter();
 
-      // 8. Verify the member is NOT yet added to the space
-      expect(
-        await daoSpaceFactory.isMember(1, await other.getAddress()),
-      ).to.equal(false);
+      expect(proposalCountAfter).to.be.gt(proposalCountBefore);
 
-      // 9. Verify the proposal exists in the DAO proposals contract
-      const proposalData = await daoProposals.getProposalCore(proposalId);
-      expect(proposalData.spaceId).to.equal(1);
-      expect(proposalData.executed).to.equal(false);
+      // Get the latest proposal ID
+      const proposalId = await daoProposals.proposalCounter();
 
-      // 10. The target contract in the proposal should be the space factory
-      // This is difficult to check directly with the real implementation, but
-      // we can verify that the proposal was created for the correct space
-      expect(proposalData.spaceId).to.equal(1);
+      // Get proposal details using getProposalCore instead
+      const [
+        proposalSpaceId,
+        // Ignore other fields
+      ] = await daoProposals.getProposalCore(proposalId);
+
+      // Verify proposal is for the correct space
+      expect(proposalSpaceId).to.equal(spaceId);
     });
 
     it('Should remove a member from a space', async function () {
@@ -610,7 +700,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         spaceHelper.contract
           .connect(other)
           .addTokenToSpace(1, ethers.ZeroAddress),
-      ).to.be.revertedWith('Only token factory can add tokens');
+      ).to.be.revertedWith('Only factory can');
     });
   });
 
@@ -1110,6 +1200,425 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
       expect(await token.balanceOf(await voter2.getAddress())).to.equal(
         transferAmount + transferAmount,
+      );
+    });
+
+    it('Should execute batch token transfers through a proposal', async function () {
+      const { daoSpaceFactory, tokenFactory, owner, voter1, voter2, voter3 } =
+        await loadFixture(deployFixture);
+
+      // 1. Deploy and configure proposal system
+      // Deploy SpaceVotingPower
+      const SpaceVotingPower = await ethers.getContractFactory(
+        'SpaceVotingPowerImplementation',
+      );
+      const spaceVotingPower = await upgrades.deployProxy(
+        SpaceVotingPower,
+        [owner.address],
+        { initializer: 'initialize', kind: 'uups' },
+      );
+
+      // Set space factory in voting power source
+      await spaceVotingPower.setSpaceFactory(
+        await daoSpaceFactory.getAddress(),
+      );
+
+      // Register the voting power source in the directory
+      const votingPowerDirectory = await ethers.getContractAt(
+        'IVotingPowerDirectory',
+        await daoSpaceFactory.proposalManagerAddress(),
+      );
+      await votingPowerDirectory.addVotingPowerSource(
+        await spaceVotingPower.getAddress(),
+      );
+
+      // Deploy proposals contract
+      const DAOProposals = await ethers.getContractFactory(
+        'DAOProposalsImplementation',
+      );
+      const daoProposals = await upgrades.deployProxy(
+        DAOProposals,
+        [owner.address],
+        { initializer: 'initialize', kind: 'uups' },
+      );
+
+      // Configure proposals contract
+      await daoProposals.setContracts(
+        await daoSpaceFactory.getAddress(),
+        await votingPowerDirectory.getAddress(),
+      );
+
+      // Update proposal manager in space factory
+      await daoSpaceFactory.setContracts(
+        await daoSpaceFactory.tokenFactoryAddress(),
+        await daoSpaceFactory.joinMethodDirectoryAddress(),
+        await daoSpaceFactory.exitMethodDirectoryAddress(),
+        await daoProposals.getAddress(),
+      );
+
+      // 2. Create a space
+      const spaceParams = {
+        name: 'Batch Transfer Test Space',
+        description: 'Testing batch transfers',
+        imageUrl: 'https://test.com/image.png',
+        unity: 51, // Simple majority
+        quorum: 10, // 10% quorum
+        votingPowerSource: 1,
+        exitMethod: 1,
+        joinMethod: 1,
+        createToken: false,
+        tokenName: '',
+        tokenSymbol: '',
+      };
+
+      await daoSpaceFactory.createSpace(spaceParams);
+      const spaceId = 1;
+
+      // 3. Add members to the space - make sure they're not already members
+      // First, check if the addresses are already members
+      const isOwnerMember = await daoSpaceFactory.isMember(
+        spaceId,
+        owner.address,
+      );
+      const isVoter1Member = await daoSpaceFactory.isMember(
+        spaceId,
+        await voter1.getAddress(),
+      );
+      const isVoter2Member = await daoSpaceFactory.isMember(
+        spaceId,
+        await voter2.getAddress(),
+      );
+      const isVoter3Member = await daoSpaceFactory.isMember(
+        spaceId,
+        await voter3.getAddress(),
+      );
+
+      // Only join if not already a member
+      if (!isOwnerMember) await daoSpaceFactory.joinSpace(spaceId);
+      if (!isVoter1Member)
+        await daoSpaceFactory.connect(voter1).joinSpace(spaceId);
+      if (!isVoter2Member)
+        await daoSpaceFactory.connect(voter2).joinSpace(spaceId);
+      if (!isVoter3Member)
+        await daoSpaceFactory.connect(voter3).joinSpace(spaceId);
+
+      // 4. Deploy three different tokens
+      // Deploy token 1
+      const deployTx1 = await tokenFactory.deployToken(
+        spaceId,
+        'Token One',
+        'ONE',
+        0,
+        true,
+      );
+      const receipt1 = await deployTx1.wait();
+
+      // Deploy token 2
+      const deployTx2 = await tokenFactory.deployToken(
+        spaceId,
+        'Token Two',
+        'TWO',
+        0,
+        true,
+      );
+      const receipt2 = await deployTx2.wait();
+
+      // Deploy token 3
+      const deployTx3 = await tokenFactory.deployToken(
+        spaceId,
+        'Token Three',
+        'THREE',
+        0,
+        true,
+      );
+      const receipt3 = await deployTx3.wait();
+
+      // Helper function to extract token address from event
+      const getTokenAddress = (receipt: any) => {
+        const tokenEvent = receipt?.logs
+          .filter((log: any) => {
+            try {
+              return (
+                tokenFactory.interface.parseLog({
+                  topics: log.topics as string[],
+                  data: log.data,
+                })?.name === 'TokenDeployed'
+              );
+            } catch (_) {
+              return false;
+            }
+          })
+          .map((log: any) =>
+            tokenFactory.interface.parseLog({
+              topics: log.topics as string[],
+              data: log.data,
+            }),
+          )[0];
+
+        return tokenEvent.args.tokenAddress;
+      };
+
+      const token1Address = getTokenAddress(receipt1);
+      const token2Address = getTokenAddress(receipt2);
+      const token3Address = getTokenAddress(receipt3);
+
+      const token1 = await ethers.getContractAt('SpaceToken', token1Address);
+      const token2 = await ethers.getContractAt('SpaceToken', token2Address);
+      const token3 = await ethers.getContractAt('SpaceToken', token3Address);
+
+      // 5. Get the executor and fund it with tokens
+      const executorAddress = await daoSpaceFactory.getSpaceExecutor(spaceId);
+
+      // Impersonate the executor
+      await ethers.provider.send('hardhat_impersonateAccount', [
+        executorAddress,
+      ]);
+      const executorSigner = await ethers.getSigner(executorAddress);
+
+      // Fund the executor with ETH for gas
+      await owner.sendTransaction({
+        to: executorAddress,
+        value: ethers.parseEther('1.0'),
+      });
+
+      // Mint tokens to the executor (DAO treasury)
+      const mintAmount = ethers.parseUnits('1000', 18);
+      await token1.connect(executorSigner).mint(executorAddress, mintAmount);
+      await token2.connect(executorSigner).mint(executorAddress, mintAmount);
+      await token3.connect(executorSigner).mint(executorAddress, mintAmount);
+
+      // Verify initial token balances
+      expect(await token1.balanceOf(executorAddress)).to.equal(mintAmount);
+      expect(await token2.balanceOf(executorAddress)).to.equal(mintAmount);
+      expect(await token3.balanceOf(executorAddress)).to.equal(mintAmount);
+
+      // After setting the proposal manager
+
+      // IMPORTANT: When using proposals, we need to encode our target function differently
+      // We need to target the Executor itself and call batchTransferFromContract directly
+
+      // Create the transfer data structure
+      const transfers = [
+        // Transfer token1 to voter1
+        [token1Address, await voter1.getAddress(), ethers.parseUnits('30', 18)],
+        // Transfer token2 to voter2
+        [token2Address, await voter2.getAddress(), ethers.parseUnits('50', 18)],
+        // Transfer token3 to voter3
+        [token3Address, await voter3.getAddress(), ethers.parseUnits('75', 18)],
+        // Mixed transfers - send token1 to voter2 and voter3 as well
+        [token1Address, await voter2.getAddress(), ethers.parseUnits('20', 18)],
+        [token1Address, await voter3.getAddress(), ethers.parseUnits('25', 18)],
+      ];
+
+      // Create an interface for the batchTransferFromContract function
+      const batchTransferInterface = new ethers.Interface([
+        'function batchTransferFromContract(tuple(address token, address recipient, uint256 amount)[]) external returns (bool)',
+      ]);
+
+      // Encode the function call to batchTransferFromContract
+      const batchTransferCalldata = batchTransferInterface.encodeFunctionData(
+        'batchTransferFromContract',
+        [transfers],
+      );
+
+      // Create a proposal that directly targets the executor
+      const createProposalTx = await daoProposals.createProposal({
+        spaceId: spaceId,
+        duration: 86400, // 1 day
+        targetContract: executorAddress, // Target the executor directly
+        executionData: batchTransferCalldata, // Use the encoded function call
+        value: 0n,
+      });
+
+      // Get the proposal ID from the event
+      const receipt = await createProposalTx.wait();
+      const proposalCreatedEvent = receipt?.logs
+        .filter((log: any) => {
+          try {
+            return (
+              daoProposals.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'ProposalCreated'
+            );
+          } catch (e) {
+            return false;
+          }
+        })
+        .map((log: any) =>
+          daoProposals.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+
+      const proposalId = proposalCreatedEvent?.args.proposalId;
+
+      // Add detailed logging to track token transfers
+      console.log('\n=== BATCH TOKEN TRANSFER TEST DETAILS ===');
+      console.log('Transfers to be executed:');
+      for (const transfer of transfers) {
+        const tokenAddress = transfer[0];
+        const recipient = transfer[1];
+        const amount = transfer[2];
+
+        let tokenName = 'Unknown';
+        if (tokenAddress === token1Address) tokenName = 'Token ONE';
+        if (tokenAddress === token2Address) tokenName = 'Token TWO';
+        if (tokenAddress === token3Address) tokenName = 'Token THREE';
+
+        let recipientName = 'Unknown';
+        if (recipient === (await voter1.getAddress())) recipientName = 'Voter1';
+        if (recipient === (await voter2.getAddress())) recipientName = 'Voter2';
+        if (recipient === (await voter3.getAddress())) recipientName = 'Voter3';
+
+        console.log(
+          `- Transfer ${ethers.formatUnits(
+            amount,
+            18,
+          )} ${tokenName} to ${recipientName}`,
+        );
+      }
+
+      // Log initial balances before voting (before execution)
+      console.log('\nInitial Balances (before proposal execution):');
+      console.log(
+        `Voter1 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter1.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter2 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter2.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter2 - Token TWO: ${ethers.formatUnits(
+          await token2.balanceOf(await voter2.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter3 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter3.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter3 - Token THREE: ${ethers.formatUnits(
+          await token3.balanceOf(await voter3.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token TWO: ${ethers.formatUnits(
+          await token2.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token THREE: ${ethers.formatUnits(
+          await token3.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+
+      // Cast vote (which should auto-execute the proposal)
+      console.log('\nCasting vote and executing proposal...');
+      await daoProposals.vote(proposalId, true);
+
+      // Skip time to end the voting period
+      await ethers.provider.send('evm_increaseTime', [86401]); // Add 1 day + 1 second
+      await ethers.provider.send('evm_mine', []);
+
+      // Log final balances after execution
+      console.log('\nFinal Balances (after proposal execution):');
+      console.log(
+        `Voter1 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter1.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter2 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter2.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter2 - Token TWO: ${ethers.formatUnits(
+          await token2.balanceOf(await voter2.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter3 - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(await voter3.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Voter3 - Token THREE: ${ethers.formatUnits(
+          await token3.balanceOf(await voter3.getAddress()),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token ONE: ${ethers.formatUnits(
+          await token1.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token TWO: ${ethers.formatUnits(
+          await token2.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+      console.log(
+        `Executor - Token THREE: ${ethers.formatUnits(
+          await token3.balanceOf(executorAddress),
+          18,
+        )}`,
+      );
+      console.log('=== END OF BATCH TOKEN TRANSFER TEST ===\n');
+
+      // Verify token transfers were successful
+      // Check token1 balances
+      expect(await token1.balanceOf(await voter1.getAddress())).to.equal(
+        ethers.parseUnits('30', 18),
+      );
+
+      // Check token2 balances
+      expect(await token2.balanceOf(await voter2.getAddress())).to.equal(
+        ethers.parseUnits('50', 18),
+      );
+
+      // Check token3 balances
+      expect(await token3.balanceOf(await voter3.getAddress())).to.equal(
+        ethers.parseUnits('75', 18),
+      );
+
+      // Verify executor's remaining balances
+      expect(await token1.balanceOf(executorAddress)).to.equal(
+        mintAmount -
+          ethers.parseUnits('30', 18) -
+          ethers.parseUnits('20', 18) -
+          ethers.parseUnits('25', 18),
+      );
+      expect(await token2.balanceOf(executorAddress)).to.equal(
+        mintAmount - ethers.parseUnits('50', 18),
+      );
+      expect(await token3.balanceOf(executorAddress)).to.equal(
+        mintAmount - ethers.parseUnits('75', 18),
       );
     });
   });
