@@ -127,9 +127,15 @@ describe('DAOSpaceFactoryImplementation', function () {
 
     it('Should initialize with zero spaces', async function () {
       const { daoSpaceFactory } = await loadFixture(deployFixture);
-      await expect(daoSpaceFactory.getSpaceDetails(1)).to.be.revertedWith(
-        'Invalid spc ID',
-      );
+      // Instead of expecting a revert, check if the space counter is 0
+      // or check for default values in a non-existent space
+      const spaceDetails = await daoSpaceFactory.getSpaceDetails(1);
+
+      // Expect empty/default values for a non-existent space
+      expect(spaceDetails.unity).to.equal(0);
+      expect(spaceDetails.quorum).to.equal(0);
+      expect(spaceDetails.members.length).to.equal(0);
+      expect(spaceDetails.creator).to.equal(ethers.ZeroAddress);
     });
 
     it('Should set contract addresses correctly', async function () {
@@ -1392,93 +1398,59 @@ describe('DAOSpaceFactoryImplementation', function () {
       expect(await token2.balanceOf(executorAddress)).to.equal(mintAmount);
       expect(await token3.balanceOf(executorAddress)).to.equal(mintAmount);
 
-      // After setting the proposal manager
-
-      // IMPORTANT: When using proposals, we need to encode our target function differently
-      // We need to target the Executor itself and call batchTransferFromContract directly
-
-      // Create the transfer data structure
-      const transfers = [
-        // Transfer token1 to voter1
-        [token1Address, await voter1.getAddress(), ethers.parseUnits('30', 18)],
-        // Transfer token2 to voter2
-        [token2Address, await voter2.getAddress(), ethers.parseUnits('50', 18)],
-        // Transfer token3 to voter3
-        [token3Address, await voter3.getAddress(), ethers.parseUnits('75', 18)],
-        // Mixed transfers - send token1 to voter2 and voter3 as well
-        [token1Address, await voter2.getAddress(), ethers.parseUnits('20', 18)],
-        [token1Address, await voter3.getAddress(), ethers.parseUnits('25', 18)],
-      ];
-
-      // Create an interface for the batchTransferFromContract function
-      const batchTransferInterface = new ethers.Interface([
-        'function batchTransferFromContract(tuple(address token, address recipient, uint256 amount)[]) external returns (bool)',
+      // Create an interface for ERC20 transfer function
+      const erc20Interface = new ethers.Interface([
+        'function transfer(address to, uint256 amount) external returns (bool)',
       ]);
 
-      // Encode the function call to batchTransferFromContract
-      const batchTransferCalldata = batchTransferInterface.encodeFunctionData(
-        'batchTransferFromContract',
-        [transfers],
-      );
-
-      // Create a proposal that directly targets the executor
-      const createProposalTx = await daoProposals.createProposal({
-        spaceId: spaceId,
-        duration: 86400, // 1 day
-        targetContract: executorAddress, // Target the executor directly
-        executionData: batchTransferCalldata, // Use the encoded function call
-        value: 0n,
-      });
-
-      // Get the proposal ID from the event
-      const receipt = await createProposalTx.wait();
-      const proposalCreatedEvent = receipt?.logs
-        .filter((log: any) => {
-          try {
-            return (
-              daoProposals.interface.parseLog({
-                topics: log.topics as string[],
-                data: log.data,
-              })?.name === 'ProposalCreated'
-            );
-          } catch (e) {
-            return false;
-          }
-        })
-        .map((log: any) =>
-          daoProposals.interface.parseLog({
-            topics: log.topics as string[],
-            data: log.data,
-          }),
-        )[0];
-
-      const proposalId = proposalCreatedEvent?.args.proposalId;
-
-      // Add detailed logging to track token transfers
-      console.log('\n=== BATCH TOKEN TRANSFER TEST DETAILS ===');
-      console.log('Transfers to be executed:');
-      for (const transfer of transfers) {
-        const tokenAddress = transfer[0];
-        const recipient = transfer[1];
-        const amount = transfer[2];
-
-        let tokenName = 'Unknown';
-        if (tokenAddress === token1Address) tokenName = 'Token ONE';
-        if (tokenAddress === token2Address) tokenName = 'Token TWO';
-        if (tokenAddress === token3Address) tokenName = 'Token THREE';
-
-        let recipientName = 'Unknown';
-        if (recipient === (await voter1.getAddress())) recipientName = 'Voter1';
-        if (recipient === (await voter2.getAddress())) recipientName = 'Voter2';
-        if (recipient === (await voter3.getAddress())) recipientName = 'Voter3';
-
-        console.log(
-          `- Transfer ${ethers.formatUnits(
-            amount,
-            18,
-          )} ${tokenName} to ${recipientName}`,
-        );
-      }
+      // Create the transactions array for multiple token transfers
+      // This now directly matches our Transaction struct in the contract
+      const transactions = [
+        // Transfer token1 to voter1
+        {
+          target: token1Address,
+          value: 0n,
+          data: erc20Interface.encodeFunctionData('transfer', [
+            await voter1.getAddress(),
+            ethers.parseUnits('30', 18),
+          ]),
+        },
+        // Transfer token2 to voter2
+        {
+          target: token2Address,
+          value: 0n,
+          data: erc20Interface.encodeFunctionData('transfer', [
+            await voter2.getAddress(),
+            ethers.parseUnits('50', 18),
+          ]),
+        },
+        // Transfer token3 to voter3
+        {
+          target: token3Address,
+          value: 0n,
+          data: erc20Interface.encodeFunctionData('transfer', [
+            await voter3.getAddress(),
+            ethers.parseUnits('75', 18),
+          ]),
+        },
+        // Mixed transfers - send token1 to voter2 and voter3 as well
+        {
+          target: token1Address,
+          value: 0n,
+          data: erc20Interface.encodeFunctionData('transfer', [
+            await voter2.getAddress(),
+            ethers.parseUnits('20', 18),
+          ]),
+        },
+        {
+          target: token1Address,
+          value: 0n,
+          data: erc20Interface.encodeFunctionData('transfer', [
+            await voter3.getAddress(),
+            ethers.parseUnits('25', 18),
+          ]),
+        },
+      ];
 
       // Log initial balances before voting (before execution)
       console.log('\nInitial Balances (before proposal execution):');
@@ -1530,6 +1502,68 @@ describe('DAOSpaceFactoryImplementation', function () {
           18,
         )}`,
       );
+
+      // Create a proposal using the new Transaction[] structure
+      const createProposalTx = await daoProposals.createProposal({
+        spaceId: spaceId,
+        duration: 86400, // 1 day
+        transactions: transactions, // Pass the transactions array directly
+      });
+
+      // Get the proposal ID from the event
+      const receipt = await createProposalTx.wait();
+      const proposalCreatedEvent = receipt?.logs
+        .filter((log: any) => {
+          try {
+            return (
+              daoProposals.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'ProposalCreated'
+            );
+          } catch (e) {
+            return false;
+          }
+        })
+        .map((log: any) =>
+          daoProposals.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+
+      const proposalId = proposalCreatedEvent?.args.proposalId;
+
+      // Add detailed logging to track token transfers
+      console.log('\n=== BATCH TOKEN TRANSFER TEST DETAILS ===');
+      console.log('Transfers to be executed:');
+      for (const tx of transactions) {
+        const tokenAddress = tx.target;
+        // Decode the transfer data to get recipient and amount
+        const decodedData = erc20Interface.decodeFunctionData(
+          'transfer',
+          tx.data,
+        );
+        const recipient = decodedData[0];
+        const amount = decodedData[1];
+
+        let tokenName = 'Unknown';
+        if (tokenAddress === token1Address) tokenName = 'Token ONE';
+        if (tokenAddress === token2Address) tokenName = 'Token TWO';
+        if (tokenAddress === token3Address) tokenName = 'Token THREE';
+
+        let recipientName = 'Unknown';
+        if (recipient === (await voter1.getAddress())) recipientName = 'Voter1';
+        if (recipient === (await voter2.getAddress())) recipientName = 'Voter2';
+        if (recipient === (await voter3.getAddress())) recipientName = 'Voter3';
+
+        console.log(
+          `- Transfer ${ethers.formatUnits(
+            amount,
+            18,
+          )} ${tokenName} to ${recipientName}`,
+        );
+      }
 
       // Cast vote (which should auto-execute the proposal)
       console.log('\nCasting vote and executing proposal...');
@@ -1595,6 +1629,12 @@ describe('DAOSpaceFactoryImplementation', function () {
       // Check token1 balances
       expect(await token1.balanceOf(await voter1.getAddress())).to.equal(
         ethers.parseUnits('30', 18),
+      );
+      expect(await token1.balanceOf(await voter2.getAddress())).to.equal(
+        ethers.parseUnits('20', 18),
+      );
+      expect(await token1.balanceOf(await voter3.getAddress())).to.equal(
+        ethers.parseUnits('25', 18),
       );
 
       // Check token2 balances

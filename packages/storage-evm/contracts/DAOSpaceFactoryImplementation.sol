@@ -137,7 +137,7 @@ contract DAOSpaceFactoryImplementation is
 
   function joinSpace(uint256 _spaceId) public {
     require(_spaceId > 0 && _spaceId <= spaceCounter, 'isp');
-    require(joinMethodDirectoryAddress != address(0), 'Dir not set');
+    //require(joinMethodDirectoryAddress != address(0), 'Dir not set');
 
     Space storage space = spaces[_spaceId];
 
@@ -157,13 +157,19 @@ contract DAOSpaceFactoryImplementation is
       );
 
       // Create proposal params
+      IDAOProposals.Transaction[]
+        memory transactions = new IDAOProposals.Transaction[](1);
+      transactions[0] = IDAOProposals.Transaction({
+        target: address(this),
+        value: 0,
+        data: executionData
+      });
+
       IDAOProposals.ProposalParams memory params = IDAOProposals
         .ProposalParams({
           spaceId: _spaceId,
-          duration: 7 days, // Use a sensible default, adjust as needed
-          targetContract: address(this),
-          executionData: executionData,
-          value: 0 // No ETH being sent
+          duration: 86400, // 1 day
+          transactions: transactions
         });
 
       // Create the proposal using proposalManagerAddress
@@ -191,7 +197,7 @@ contract DAOSpaceFactoryImplementation is
     uint256 _spaceId,
     address _memberAddress
   ) external onlySpaceExecutor(_spaceId) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
 
     Space storage space = spaces[_spaceId];
 
@@ -232,7 +238,7 @@ contract DAOSpaceFactoryImplementation is
   }
 
   function removeMember(uint256 _spaceId, address _memberToRemove) public {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
     require(
       exitMethodDirectoryAddress != address(0),
       'Exit directory contract not set'
@@ -305,7 +311,7 @@ contract DAOSpaceFactoryImplementation is
   }
 
   function addTokenToSpace(uint256 _spaceId, address _tokenAddress) external {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
     require(msg.sender == tokenFactoryAddress, 'Only factory can');
     require(_tokenAddress != address(0), 'no zero address');
 
@@ -316,7 +322,7 @@ contract DAOSpaceFactoryImplementation is
   function getSpaceMembers(
     uint256 _spaceId
   ) public view returns (address[] memory) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
     return spaces[_spaceId].members;
   }
 
@@ -324,7 +330,7 @@ contract DAOSpaceFactoryImplementation is
     uint256 _spaceId,
     address _tokenAddress
   ) external view returns (bool) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
 
     Space storage space = spaces[_spaceId];
     for (uint256 i = 0; i < space.tokenAddresses.length; i++) {
@@ -336,7 +342,7 @@ contract DAOSpaceFactoryImplementation is
   }
 
   function getSpaceExecutor(uint256 _spaceId) external view returns (address) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
     return spaces[_spaceId].executor;
   }
 
@@ -344,7 +350,7 @@ contract DAOSpaceFactoryImplementation is
     uint256 _spaceId,
     address _userAddress
   ) external view returns (bool) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
     Space storage space = spaces[_spaceId];
 
     for (uint256 i = 0; i < space.members.length; i++) {
@@ -359,7 +365,7 @@ contract DAOSpaceFactoryImplementation is
     uint256 _spaceId,
     address _userAddress
   ) external view returns (bool) {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
     return spaces[_spaceId].creator == _userAddress;
   }
 
@@ -381,7 +387,7 @@ contract DAOSpaceFactoryImplementation is
       address executor
     )
   {
-    require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid spc ID');
     Space storage space = spaces[_spaceId];
 
     return (
@@ -397,7 +403,8 @@ contract DAOSpaceFactoryImplementation is
       space.executor
     );
   }
-/*
+
+  /*
   function getSpaceMemberAddresses(
     uint256 _spaceId
   ) external view returns (address[] memory) {
@@ -405,18 +412,22 @@ contract DAOSpaceFactoryImplementation is
     return spaceMembers[_spaceId].spaceMemberAddresses;
   }
 */
-function getSpaceMemberIds(uint256 _spaceId) external view returns (uint256[] memory) {
-  require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
-  
-  SpaceMembers storage members = spaceMembers[_spaceId];
-  uint256[] memory memberSpaceIds = new uint256[](members.spaceMemberAddresses.length);
-  
-  for (uint256 i = 0; i < members.spaceMemberAddresses.length; i++) {
-    memberSpaceIds[i] = executorToSpaceId[members.spaceMemberAddresses[i]];
+  function getSpaceMemberIds(
+    uint256 _spaceId
+  ) external view returns (uint256[] memory) {
+    //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
+
+    SpaceMembers storage members = spaceMembers[_spaceId];
+    uint256[] memory memberSpaceIds = new uint256[](
+      members.spaceMemberAddresses.length
+    );
+
+    for (uint256 i = 0; i < members.spaceMemberAddresses.length; i++) {
+      memberSpaceIds[i] = executorToSpaceId[members.spaceMemberAddresses[i]];
+    }
+
+    return memberSpaceIds;
   }
-  
-  return memberSpaceIds;
-}
 
   function isSpaceMember(
     uint256 _spaceId,

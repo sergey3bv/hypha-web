@@ -2,6 +2,8 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import '../interfaces/IDAOProposals.sol';
+import '../interfaces/IExecutor.sol';
 
 interface IDAOSpaceFactory {
   function isMember(
@@ -53,40 +55,34 @@ interface IVotingPowerSource {
   ) external view returns (uint256);
 }
 
-interface IExecutor {
-  function executeTransaction(
-    address target,
-    uint256 value,
-    bytes memory data
-  ) external returns (bool);
-}
-
 contract DAOProposalsStorage is Initializable {
+  uint256 internal constant MAX_VOTING_DURATION = 30 days;
+
+  IDAOSpaceFactory internal spaceFactory;
+  IDirectory internal directoryContract;
+
+  uint256 public proposalCounter;
+
+  // Update ProposalCore to store multiple transactions
   struct ProposalCore {
     uint256 spaceId;
     uint256 startTime;
     uint256 duration;
+    bool executed;
+    bool expired;
     uint256 yesVotes;
     uint256 noVotes;
     uint256 totalVotingPowerAtSnapshot;
     address creator;
-    address targetContract;
-    bytes executionData;
-    bool executed;
-    bool expired;
     mapping(address => bool) hasVoted;
     mapping(address => uint256) votingPowerAtSnapshot;
+    // New field to store multiple transactions
+    IDAOProposals.Transaction[] transactions;
   }
 
-  // Original storage variables - DO NOT MODIFY ORDER
-  IDAOSpaceFactory public spaceFactory;
-  IDirectory public directoryContract;
-  mapping(uint256 => address) public spaceExecutors;
-  mapping(uint256 => ProposalCore) public proposalsCoreData;
-  uint256 public proposalCounter;
-  uint256 public constant MIN_VOTING_DURATION = 1 hours;
-  uint256 public constant MAX_VOTING_DURATION = 30 days;
-  mapping(uint256 => uint256) public proposalValues; // proposalId => ETH value
+  mapping(uint256 => ProposalCore) internal proposalsCoreData;
+  // This can be removed if all values are stored in the transactions
+  mapping(uint256 => uint256) internal proposalValues;
 
   /**
    * @dev This empty reserved space is put in place to allow future versions to add new

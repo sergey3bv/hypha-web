@@ -6,6 +6,7 @@ import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
 import './storage/DAOProposalsStorage.sol';
 import './interfaces/IDAOProposals.sol';
+import './interfaces/IExecutor.sol';
 
 contract DAOProposalsImplementation is
   Initializable,
@@ -43,8 +44,7 @@ contract DAOProposalsImplementation is
   function _initializeProposal(
     uint256 _spaceId,
     uint256 _duration,
-    address _targetContract,
-    bytes memory _executionData
+    Transaction[] calldata _transactions
   ) internal returns (uint256) {
     proposalCounter++;
     uint256 newProposalId = proposalCounter;
@@ -54,8 +54,11 @@ contract DAOProposalsImplementation is
     newProposal.startTime = block.timestamp;
     newProposal.duration = _duration;
     newProposal.creator = msg.sender;
-    newProposal.targetContract = _targetContract;
-    newProposal.executionData = _executionData;
+
+    // Store the transactions in the proposal
+    for (uint i = 0; i < _transactions.length; i++) {
+      newProposal.transactions.push(_transactions[i]);
+    }
 
     (
       ,
@@ -87,8 +90,7 @@ contract DAOProposalsImplementation is
   function _validateProposalParams(
     uint256 _spaceId,
     uint256 _duration,
-    address _targetContract,
-    bytes calldata _executionData
+    Transaction[] calldata _transactions
   ) internal view {
     require(address(spaceFactory) != address(0), 'Contracts not initialized');
 
@@ -103,8 +105,17 @@ contract DAOProposalsImplementation is
 
     //require(_duration >= MIN_VOTING_DURATION, 'Duration too short');
     require(_duration <= MAX_VOTING_DURATION, 'Duration too long');
-    require(_targetContract != address(0), 'Invalid target contract');
-    require(_executionData.length > 0, 'Execution data cannot be empty');
+    require(_transactions.length > 0, 'No transactions provided');
+
+    // Validate each transaction
+    for (uint i = 0; i < _transactions.length; i++) {
+      require(_transactions[i].target != address(0), 'Invalid target contract');
+      require(
+        _transactions[i].data.length > 0,
+        'Execution data cannot be empty'
+      );
+    }
+
     require(
       spaceFactory.getSpaceExecutor(_spaceId) != address(0),
       'Executor not set for space'
@@ -117,26 +128,24 @@ contract DAOProposalsImplementation is
     _validateProposalParams(
       params.spaceId,
       params.duration,
-      params.targetContract,
-      params.executionData
+      params.transactions
     );
 
     uint256 proposalId = _initializeProposal(
       params.spaceId,
       params.duration,
-      params.targetContract,
-      params.executionData
+      params.transactions
     );
 
-    proposalValues[proposalId] = params.value;
-
+    // We can adapt the event to store relevant information about transactions
+    // For backward compatibility, we can use the first transaction's data in the event
     emit ProposalCreated(
       proposalId,
       params.spaceId,
       block.timestamp,
       params.duration,
       msg.sender,
-      params.executionData
+      params.transactions.length > 0 ? params.transactions[0].data : bytes('')
     );
 
     return proposalId;
@@ -233,10 +242,23 @@ contract DAOProposalsImplementation is
         proposal.executed = true;
 
         address executor = spaceFactory.getSpaceExecutor(proposal.spaceId);
-        bool success = IExecutor(executor).executeTransaction(
-          proposal.targetContract,
-          proposalValues[_proposalId],
-          proposal.executionData
+
+        // Convert proposal transactions to Executor.Transaction format
+        IExecutor.Transaction[]
+          memory execTransactions = new IExecutor.Transaction[](
+            proposal.transactions.length
+          );
+        for (uint i = 0; i < proposal.transactions.length; i++) {
+          execTransactions[i] = IExecutor.Transaction({
+            target: proposal.transactions[i].target,
+            value: proposal.transactions[i].value,
+            data: proposal.transactions[i].data
+          });
+        }
+
+        // Execute all transactions
+        bool success = IExecutor(executor).executeTransactions(
+          execTransactions
         );
         require(success, 'Proposal execution failed');
 

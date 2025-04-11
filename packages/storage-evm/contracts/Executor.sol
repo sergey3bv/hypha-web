@@ -1,20 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import './interfaces/IExecutor.sol';
 
-contract Executor {
+contract Executor is IExecutor {
   address public owner;
   address public proposalManager;
 
   //event TransactionExecuted(address target, uint value, bytes data);
-  //event BatchTransferExecuted(TokenTransfer[] transfers);
-
-  struct TokenTransfer {
-    address token; // Token contract address
-    address recipient; // Recipient of the transfer
-    uint256 amount; // Amount to transfer
-  }
+  //event BatchTransactionsExecuted(Transaction[] transactions);
 
   constructor(address _proposalManager) {
     owner = msg.sender;
@@ -32,7 +26,7 @@ contract Executor {
   }
 
   modifier onlyProposalManagerOrSelf() {
-
+    require(msg.sender == proposalManager || msg.sender == address(this), 'Na');
     _;
   }
 
@@ -40,7 +34,7 @@ contract Executor {
     address target,
     uint256 value,
     bytes memory data
-  ) external onlyProposalManagerOrSelf returns (bool success) {
+  ) external override onlyProposalManagerOrSelf returns (bool success) {
     require(address(this).balance >= value, 'ins bal');
     (success, ) = target.call{value: value}(data);
     require(success, 'f');
@@ -48,19 +42,17 @@ contract Executor {
     return success;
   }
 
-  function batchTransferFromContract(
-    TokenTransfer[] calldata transfers
-  ) external onlyProposalManagerOrSelf returns (bool) {
-    for (uint i = 0; i < transfers.length; i++) {
-      TokenTransfer memory transfer = transfers[i];
-      bool success = IERC20(transfer.token).transfer(
-        transfer.recipient,
-        transfer.amount
-      );
-      require(success, 'fa');
+  function executeTransactions(
+    Transaction[] calldata transactions
+  ) external override onlyProposalManagerOrSelf returns (bool) {
+    for (uint i = 0; i < transactions.length; i++) {
+      Transaction memory txn = transactions[i];
+      require(address(this).balance >= txn.value, 'ins bal');
+      (bool success, ) = txn.target.call{value: txn.value}(txn.data);
+      require(success, 'f');
     }
 
-    //emit BatchTransferExecuted(transfers);
+    //emit BatchTransactionsExecuted(transactions);
     return true;
   }
 
