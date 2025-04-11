@@ -41,8 +41,6 @@ contract DAOSpaceFactoryImplementation is
     _;
   }
 
-  IDAOProposals public proposalsContract;
-
   function setContracts(
     address _tokenFactoryAddress,
     address _joinMethodDirectoryAddress,
@@ -65,15 +63,6 @@ contract DAOSpaceFactoryImplementation is
     emit ProposalManagerUpdated(_proposalManagerAddress);
   }
 
-  function setProposalsContract(address _proposalsContract) external onlyOwner {
-    require(
-      _proposalsContract != address(0),
-      'Invalid proposals contract address'
-    );
-    proposalsContract = IDAOProposals(_proposalsContract);
-    emit ProposalsContractUpdated(_proposalsContract);
-  }
-
   function createSpace(
     SpaceCreationParams memory params
   ) external returns (uint256) {
@@ -85,23 +74,47 @@ contract DAOSpaceFactoryImplementation is
       params.unity > 0 && params.unity <= 100,
       'Unity value must be between 1 and 100'
     );
-    //require(proposalManagerAddress != address(0), 'ProposalManager not set');
-    /*
-    if (params.createToken) {
-      require(tokenFactoryAddress != address(0), 'TokenFactory not set');
-      require(bytes(params.tokenName).length > 0, 'Token name cannot be empty');
-      require(
-        bytes(params.tokenSymbol).length > 0,
-        'Token symbol cannot be empty'
-      );
-    }
-*/
+
+    return _createSpaceInternal(params, 0);
+  }
+
+  function createSubSpace(
+    SpaceCreationParams memory params,
+    uint256 parentSpaceId
+  ) external returns (uint256) {
+    // Validate parent space exists
+    require(
+      parentSpaceId > 0 && parentSpaceId <= spaceCounter,
+      'Invalid parent space ID'
+    );
+
+    // Validate caller is the creator of the parent space
+    require(
+      msg.sender == spaces[parentSpaceId].creator,
+      'Only parent space creator can create subspaces'
+    );
+
+    require(
+      params.quorum > 0 && params.quorum <= 100,
+      'Quorum must be between 1 and 100'
+    );
+    require(
+      params.unity > 0 && params.unity <= 100,
+      'Unity value must be between 1 and 100'
+    );
+
+    return _createSpaceInternal(params, parentSpaceId);
+  }
+
+  // Internal function to handle common space creation logic
+  function _createSpaceInternal(
+    SpaceCreationParams memory params,
+    uint256 parentSpaceId
+  ) internal returns (uint256) {
     spaceCounter++;
-    
+
     Executor executor = new Executor(proposalManagerAddress);
     executorToSpaceId[address(executor)] = spaceCounter;
-
-    //Executor executor = new Executor(msg.sender);
 
     Space storage newSpace = spaces[spaceCounter];
     newSpace.unity = params.unity;
@@ -118,16 +131,25 @@ contract DAOSpaceFactoryImplementation is
     address[] memory initialMembers = new address[](1);
     initialMembers[0] = msg.sender;
     newSpace.members = initialMembers;
-    /*
-    if (params.createToken) {
-      address tokenAddress = ITokenFactory(tokenFactoryAddress).deployToken(
-        spaceCounter,
-        params.tokenName,
-        params.tokenSymbol
-      );
-      newSpace.tokenAddresses.push(tokenAddress);
+
+    // If this is a subspace, add it to the parent space
+    if (parentSpaceId > 0) {
+      // Add the new space's executor to the parent space members
+      Space storage parentSpace = spaces[parentSpaceId];
+      parentSpace.members.push(address(executor));
+
+      // Also add the executor to the parent space's spaceMemberAddresses
+      SpaceMembers storage parentSpaceMembers = spaceMembers[parentSpaceId];
+      parentSpaceMembers.spaceMemberAddresses.push(address(executor));
+      parentSpaceMembers.isSpaceMember[address(executor)] = true;
+
+      // Update memberSpaces mapping for the executor
+      memberSpaces[address(executor)].push(parentSpaceId);
+
+      // Emit subspace created event
+      emit SubSpaceCreated(spaceCounter, parentSpaceId, address(executor));
     }
-*/
+
     emit SpaceCreated(
       spaceCounter,
       params.unity,
@@ -157,10 +179,7 @@ contract DAOSpaceFactoryImplementation is
 
     if (space.joinMethod == 2) {
       // If join method is 2, create a proposal to add the member
-      require(
-        address(proposalsContract) != address(0),
-        'Proposals contract not set'
-      );
+      require(proposalManagerAddress != address(0), 'Proposal manager not set');
 
       // Encode the function call data for addMember
       bytes memory executionData = abi.encodeWithSelector(
@@ -179,8 +198,10 @@ contract DAOSpaceFactoryImplementation is
           value: 0 // No ETH being sent
         });
 
-      // Create the proposal
-      uint256 proposalId = proposalsContract.createProposal(params);
+      // Create the proposal using proposalManagerAddress instead of proposalsContract
+      uint256 proposalId = IDAOProposals(proposalManagerAddress).createProposal(
+        params
+      );
 
       emit JoinRequestedWithProposal(_spaceId, msg.sender, proposalId);
       return;
@@ -442,7 +463,6 @@ contract DAOSpaceFactoryImplementation is
 
   // Add this to your events at the top of the contract or near other events
   event JoinRequested(uint256 indexed spaceId, address indexed member);
-  event ProposalsContractUpdated(address indexed proposalsContract);
   event JoinRequestedWithProposal(
     uint256 indexed spaceId,
     address indexed member,

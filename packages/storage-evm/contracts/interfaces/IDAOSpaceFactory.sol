@@ -23,6 +23,11 @@ interface IDAOSpaceFactory {
     SpaceCreationParams calldata params
   ) external returns (uint256);
 
+  function createSubSpace(
+    SpaceCreationParams calldata params,
+    uint256 parentSpaceId
+  ) external returns (uint256);
+
   function joinSpace(uint256 _spaceId) external;
 
   function removeMember(uint256 _spaceId, address _memberToRemove) external;
@@ -94,4 +99,9 @@ interface IDAOSpaceFactory {
   event JoinMethodDirectoryContractUpdated(address indexed newAddress);
   event ProposalManagerUpdated(address indexed newAddress);
   event ExitMethodDirectoryContractUpdated(address indexed newAddress);
+  event SubSpaceCreated(
+    uint256 indexed spaceId,
+    uint256 indexed parentSpaceId,
+    address indexed executor
+  );
 }
