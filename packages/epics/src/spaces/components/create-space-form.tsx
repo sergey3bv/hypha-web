@@ -25,6 +25,7 @@ import { z } from 'zod';
 import clsx from 'clsx';
 import {
   ALLOWED_IMAGE_FILE_SIZE,
+  categories,
   createSpaceFiles,
   schemaCreateSpace,
 } from '@hypha-platform/core/client';
@@ -171,22 +172,7 @@ export const CreateSpaceForm = ({
               <FormControl>
                 <MultiSelect
                   placeholder={'Select one or more'}
-                  options={[
-                    { value: 'housing', label: 'Housing' },
-                    { value: 'energy', label: 'Energy' },
-                    { value: 'mobility', label: 'Mobility' },
-                    { value: 'water', label: 'Water' },
-                    { value: 'air', label: 'Air' },
-                    { value: 'soil', label: 'Soil' },
-                    { value: 'flora', label: 'Flora' },
-                    { value: 'fauna', label: 'Fauna' },
-                    { value: 'fungi', label: 'Fungi' },
-                    { value: 'food', label: 'Food' },
-                    { value: 'education', label: 'Education' },
-                    { value: 'art', label: 'Art' },
-                    { value: 'health', label: 'Health' },
-                    { value: 'tech', label: 'Tech' },
-                  ]}
+                  options={categories}
                   defaultValue={field.value}
                   onValueChange={field.onChange}
                 />

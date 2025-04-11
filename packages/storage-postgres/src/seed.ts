@@ -4,7 +4,7 @@ import { seed, reset } from 'drizzle-seed';
 
 import { resetIndexes } from './utils/reset-index';
 import { documents, memberships, people, schema, spaces } from './schema';
-import { CATEGORIES, categories } from './schema/categories';
+import { CATEGORIES } from './schema/categories';
 
 const AVATAR_URLS = Array.from({ length: 10 }, () => faker.image.avatar());
 const SPACE_LOGO_URLS = Array.from({ length: 10 }, () =>

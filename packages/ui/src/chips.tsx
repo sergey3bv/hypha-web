@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { CheckIcon, XCircle, ChevronDown, XIcon } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { Button } from './button';
-import { cn } from '@hypha-platform/lib/utils';
+import { cn } from '@hypha-platform/ui-utils';
 import { Badge } from './badge';
 import { Separator } from './separator';
 import {
