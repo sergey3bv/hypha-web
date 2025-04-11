@@ -18,8 +18,8 @@ export interface SpaceParams {
 export class SpaceHelper {
   constructor(public contract: DAOSpaceFactoryImplementation) {}
 
-  async createDefaultSpace(overrides: Partial<SpaceParams> = {}) {
-    const defaultParams: SpaceParams = {
+  async createDefaultSpace(parentSpaceId = 0) {
+    const spaceParams = {
       name: 'Test Space',
       description: 'Test Description',
       imageUrl: 'https://test.com/image.png',
@@ -31,10 +31,9 @@ export class SpaceHelper {
       createToken: false,
       tokenName: '',
       tokenSymbol: '',
-      ...overrides,
     };
 
-    return this.contract.createSpace(defaultParams);
+    return this.contract.createSpace(spaceParams, parentSpaceId);
   }
 
   async getSpaceDetails(spaceId: number) {

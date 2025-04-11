@@ -20,10 +20,6 @@ interface IDAOSpaceFactory {
   ) external;
 
   function createSpace(
-    SpaceCreationParams calldata params
-  ) external returns (uint256);
-
-  function createSubSpace(
     SpaceCreationParams calldata params,
     uint256 parentSpaceId
   ) external returns (uint256);
@@ -72,12 +68,15 @@ interface IDAOSpaceFactory {
       address creator,
       address executor
     );
-/*
+
+  /*
   function getSpaceMemberAddresses(
     uint256 _spaceId
   ) external view returns (address[] memory);
 */
-  function getSpaceMemberIds(uint256 _spaceId) external view returns (uint256[] memory);
+  function getSpaceMemberIds(
+    uint256 _spaceId
+  ) external view returns (uint256[] memory);
 
   function getMemberSpaces(
     address _memberAddress

@@ -55,20 +55,17 @@ contract DAOSpaceFactoryImplementation is
   }
 
   function createSpace(
-    SpaceCreationParams memory params
-  ) external returns (uint256) {
-    return _createSpaceInternal(params, 0);
-  }
-
-  function createSubSpace(
     SpaceCreationParams memory params,
     uint256 parentSpaceId
   ) external returns (uint256) {
-    // Validate parent space exists
-    require(parentSpaceId > 0 && parentSpaceId <= spaceCounter, 'ipsd');
+    // If parentSpaceId is not 0, validate parent space
+    if (parentSpaceId > 0) {
+      // Validate parent space exists
+      require(parentSpaceId > 0 && parentSpaceId <= spaceCounter, 'ipsd');
 
-    // Validate caller is the creator of the parent space
-    require(msg.sender == spaces[parentSpaceId].creator, 'parent');
+      // Validate caller is the creator of the parent space
+      require(msg.sender == spaces[parentSpaceId].creator, 'parent');
+    }
 
     return _createSpaceInternal(params, parentSpaceId);
   }

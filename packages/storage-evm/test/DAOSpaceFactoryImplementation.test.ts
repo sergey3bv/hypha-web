@@ -166,7 +166,7 @@ describe('DAOSpaceFactoryImplementation', function () {
     it('Should create a space with correct parameters', async function () {
       const { spaceHelper, owner } = await loadFixture(deployFixture);
 
-      const tx = await spaceHelper.createDefaultSpace();
+      const tx = await spaceHelper.createDefaultSpace(0);
       await tx.wait();
 
       const spaceDetails = await spaceHelper.getSpaceDetails(1);
@@ -198,7 +198,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Create parent space first
-      const parentTx = await spaceHelper.createDefaultSpace();
+      const parentTx = await spaceHelper.createDefaultSpace(0);
       await parentTx.wait();
       const parentSpaceId = 1;
 
@@ -218,7 +218,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       };
 
       // Create subspace as parent space creator
-      const subspaceTx = await daoSpaceFactory.createSubSpace(
+      const subspaceTx = await daoSpaceFactory.createSpace(
         subspaceParams,
         parentSpaceId,
       );
@@ -288,7 +288,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Create parent space
-      await spaceHelper.createDefaultSpace();
+      await spaceHelper.createDefaultSpace(0);
       const parentSpaceId = 1;
 
       // Create subspace parameters
@@ -310,7 +310,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       await expect(
         daoSpaceFactory
           .connect(other)
-          .createSubSpace(subspaceParams, parentSpaceId),
+          .createSpace(subspaceParams, parentSpaceId),
       ).to.be.revertedWith('parent');
     });
 
@@ -332,7 +332,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       };
 
       await expect(
-        spaceHelper.contract.createSpace(spaceParams),
+        spaceHelper.contract.createSpace(spaceParams, 0),
       ).to.be.revertedWith('unity');
     });
 
@@ -342,7 +342,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Create parent space first
-      const parentTx = await spaceHelper.createDefaultSpace();
+      const parentTx = await spaceHelper.createDefaultSpace(0);
       await parentTx.wait();
       const parentSpaceId = 1;
 
@@ -376,7 +376,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       };
 
       // Create first subspace
-      const subspaceTx1 = await daoSpaceFactory.createSubSpace(
+      const subspaceTx1 = await daoSpaceFactory.createSpace(
         subspaceParams1,
         parentSpaceId,
       );
@@ -403,7 +403,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       const subspaceId1 = subspaceEvent1?.args.spaceId;
 
       // Create second subspace
-      const subspaceTx2 = await daoSpaceFactory.createSubSpace(
+      const subspaceTx2 = await daoSpaceFactory.createSpace(
         subspaceParams2,
         parentSpaceId,
       );
@@ -464,7 +464,7 @@ describe('DAOSpaceFactoryImplementation', function () {
     it('Should allow joining a space', async function () {
       const { spaceHelper, other } = await loadFixture(deployFixture);
 
-      await spaceHelper.createDefaultSpace();
+      await spaceHelper.createDefaultSpace(0);
 
       await expect(spaceHelper.joinSpace(1, other))
         .to.emit(spaceHelper.contract, 'MemberJoined')
@@ -474,7 +474,7 @@ describe('DAOSpaceFactoryImplementation', function () {
     it('Should prevent joining twice', async function () {
       const { spaceHelper, other } = await loadFixture(deployFixture);
 
-      await spaceHelper.createDefaultSpace();
+      await spaceHelper.createDefaultSpace(0);
       await spaceHelper.joinSpace(1, other);
 
       await expect(spaceHelper.joinSpace(1, other)).to.be.revertedWith(
@@ -486,9 +486,9 @@ describe('DAOSpaceFactoryImplementation', function () {
       const { spaceHelper, other } = await loadFixture(deployFixture);
 
       // Create three spaces
-      await spaceHelper.createDefaultSpace();
-      await spaceHelper.createDefaultSpace();
-      await spaceHelper.createDefaultSpace();
+      await spaceHelper.createDefaultSpace(0);
+      await spaceHelper.createDefaultSpace(0);
+      await spaceHelper.createDefaultSpace(0);
 
       // Join spaces 1 and 3
       await spaceHelper.joinSpace(1, other);
@@ -570,7 +570,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await daoSpaceFactory.createSpace(spaceParams);
+      await daoSpaceFactory.createSpace(spaceParams, 0);
       const spaceId = 1;
 
       // Add a member to the space (owner is already a member)
@@ -621,7 +621,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       // Join the space
       await spaceHelper.joinSpace(1, other);
@@ -700,7 +700,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       await expect(
         spaceHelper.contract
@@ -730,7 +730,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       // Deploy token separately
       const deployTx = await tokenFactory.deployToken(
@@ -825,7 +825,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await daoSpaceFactory.createSpace(spaceParams);
+      await daoSpaceFactory.createSpace(spaceParams, 0);
 
       // Deploy token with max supply
       const tx = await tokenFactory.deployToken(
@@ -917,7 +917,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       // Deploy token separately
       const deployTx = await tokenFactory.deployToken(
@@ -989,7 +989,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       // Deploy non-transferable token
       const deployTx = await tokenFactory.deployToken(
@@ -1105,7 +1105,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await spaceHelper.contract.createSpace(spaceParams);
+      await spaceHelper.contract.createSpace(spaceParams, 0);
 
       // Deploy transferable token
       const deployTx = await tokenFactory.deployToken(
@@ -1277,7 +1277,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         tokenSymbol: '',
       };
 
-      await daoSpaceFactory.createSpace(spaceParams);
+      await daoSpaceFactory.createSpace(spaceParams, 0);
       const spaceId = 1;
 
       // 3. Add members to the space - make sure they're not already members
