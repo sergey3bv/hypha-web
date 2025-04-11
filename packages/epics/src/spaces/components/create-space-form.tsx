@@ -28,7 +28,6 @@ import {
   schemaCreateSpace,
 } from '@hypha-platform/core/client';
 import { Links } from '../../common/links';
-import React from 'react';
 
 const schemaCreateSpaceForm = schemaCreateSpace.extend(createSpaceFiles);
 
