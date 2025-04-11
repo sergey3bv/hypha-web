@@ -1,0 +1,67 @@
+'use client';
+
+import { CreateSpaceForm } from '@hypha-platform/epics';
+import { SidePanel } from '../../../_components/side-panel';
+import { useParams, useRouter } from 'next/navigation';
+import React from 'react';
+import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/agreements/constants';
+import { Locale } from '@hypha-platform/i18n';
+import { LoadingBackdrop } from '@hypha-platform/ui/server';
+import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
+import { useConfig } from 'wagmi';
+import { useJwt } from '@web/hooks/use-jwt';
+import { Button } from '@hypha-platform/ui';
+import { useMe } from '@web/hooks/use-me';
+
+export default function AsideCreateSubspacePage() {
+  const { lang, id } = useParams();
+  const router = useRouter();
+  const config = useConfig();
+  const { person } = useMe();
+  const { jwt, isLoadingJwt } = useJwt();
+  const {
+    createSpace,
+    reset,
+    currentAction,
+    isError,
+    isPending,
+    progress,
+    space: { slug: spaceSlug },
+  } = useCreateSpaceOrchestrator({ authToken: jwt, config });
+
+  React.useEffect(() => {
+    if (progress === 100 && spaceSlug) {
+      router.push(getDhoPathAgreements(lang as Locale, spaceSlug));
+    }
+  }, [progress, spaceSlug]);
+
+  return progress !== 100 ? (
+    <SidePanel>
+      <LoadingBackdrop
+        progress={progress}
+        isLoading={isPending}
+        message={
+          isError ? (
+            <div className="flex flex-col">
+              <div>Ouh Snap. There was an error</div>
+              <Button onClick={reset}>Reset</Button>
+            </div>
+          ) : (
+            <div>{currentAction}</div>
+          )
+        }
+        className="-m-9"
+      >
+        <CreateSpaceForm
+          creator={{
+            name: person?.name,
+            surname: person?.surname,
+          }}
+          closeUrl={`/${lang}/dho/${id}/membership`}
+          onCreate={createSpace}
+          isLoading={isLoadingJwt}
+        />
+      </LoadingBackdrop>
+    </SidePanel>
+  ) : null;
+}
