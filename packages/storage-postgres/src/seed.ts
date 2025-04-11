@@ -20,6 +20,9 @@ const SPACE_LEAD_IMAGE_URLS = Array.from({ length: 10 }, () =>
   }),
 );
 
+const SAMPLE_LINKS = Array.from({ length: 10 }, () => faker.internet.url());
+const SAMPLE_CATEGORIES = [...CATEGORIES];
+
 async function main() {
   const db = drizzle(process.env.BRANCH_DB_URL! || process.env.DEFAULT_DB_URL!);
   await reset(db, { people, memberships, spaces, documents });
@@ -66,9 +69,13 @@ async function main() {
             values: SPACE_LEAD_IMAGE_URLS,
           }),
           links: f.valuesFromArray({
-            values: ['https://hypha.earth', 'https://x.com/HyphaDAO'],
+            values: SAMPLE_LINKS,
+            arraySize: 2,
           }),
-          categories: f.valuesFromArray({ values: [...CATEGORIES] }),
+          categories: f.valuesFromArray({
+            values: SAMPLE_CATEGORIES,
+            arraySize: 2,
+          }),
         },
       },
     };
