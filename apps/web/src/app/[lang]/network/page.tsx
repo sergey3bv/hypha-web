@@ -3,11 +3,24 @@ import { Container } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
 import { SpaceGroupSlider, SpaceSearch } from '@hypha-platform/epics';
 import { getDhoPathAgreements } from '../dho/[id]/agreements/constants';
-import { createSpaceService } from '@hypha-platform/core/server';
+import { createSpaceService, Space } from '@hypha-platform/core/server';
+import { Category } from '@hypha-platform/core/client';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
 };
+
+function extractUniqueCategories(spaces: Space[]): Category[] {
+  const categoriesSet = new Set<Category>();
+
+  spaces.forEach((space) => {
+    if (space.categories) {
+      space.categories.forEach((category) => categoriesSet.add(category));
+    }
+  });
+
+  return Array.from(categoriesSet);
+}
 
 export default async function Index(props: PageProps) {
   const params = await props.params;
@@ -19,6 +32,7 @@ export default async function Index(props: PageProps) {
   };
 
   const spaces = await createSpaceService().getAll();
+  const uniqueCategories = extractUniqueCategories(spaces);
 
   return (
     <Container>
@@ -26,7 +40,21 @@ export default async function Index(props: PageProps) {
         Explore hundreds of Spaces in the Hypha Network
       </Text>
       <SpaceSearch />
-      <SpaceGroupSlider spaces={spaces} type="Hypha" getHref={getHref} />
+      {uniqueCategories.map((category) => (
+        <SpaceGroupSlider
+          key={category}
+          spaces={spaces.filter((space) =>
+            space.categories?.includes(category),
+          )}
+          type={category}
+          getHref={getHref}
+        />
+      ))}
+      <SpaceGroupSlider
+        spaces={spaces.filter((space) => space.categories?.length === 0)}
+        type={'No Category'}
+        getHref={getHref}
+      />
     </Container>
   );
 }

@@ -14,6 +14,7 @@ import {
   FormMessage,
   UploadAvatar,
   UploadLeadImage,
+  MultiSelect,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
@@ -24,11 +25,11 @@ import { z } from 'zod';
 import clsx from 'clsx';
 import {
   ALLOWED_IMAGE_FILE_SIZE,
+  categories,
   createSpaceFiles,
   schemaCreateSpace,
 } from '@hypha-platform/core/client';
 import { Links } from '../../common/links';
-import React from 'react';
 
 const schemaCreateSpaceForm = schemaCreateSpace.extend(createSpaceFiles);
 
@@ -61,6 +62,7 @@ export const CreateSpaceForm = ({
       exitMethod: 0,
       logoUrl: undefined,
       leadImage: undefined,
+      categories: [],
       links: [],
     },
   });
@@ -155,6 +157,24 @@ export const CreateSpaceForm = ({
                   disabled={isLoading}
                   placeholder="Type a brief description here..."
                   {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="categories"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tags</FormLabel>
+              <FormControl>
+                <MultiSelect
+                  placeholder={'Select one or more'}
+                  options={categories}
+                  defaultValue={field.value}
+                  onValueChange={field.onChange}
                 />
               </FormControl>
               <FormMessage />

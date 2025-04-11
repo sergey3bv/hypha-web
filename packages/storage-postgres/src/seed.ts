@@ -4,6 +4,7 @@ import { seed, reset } from 'drizzle-seed';
 
 import { resetIndexes } from './utils/reset-index';
 import { documents, memberships, people, schema, spaces } from './schema';
+import { CATEGORIES } from './schema/categories';
 
 const AVATAR_URLS = Array.from({ length: 10 }, () => faker.image.avatar());
 const SPACE_LOGO_URLS = Array.from({ length: 10 }, () =>
@@ -18,6 +19,9 @@ const SPACE_LEAD_IMAGE_URLS = Array.from({ length: 10 }, () =>
     height: 150,
   }),
 );
+
+const SAMPLE_LINKS = Array.from({ length: 10 }, () => faker.internet.url());
+const SAMPLE_CATEGORIES = [...CATEGORIES];
 
 async function main() {
   const db = drizzle(process.env.BRANCH_DB_URL! || process.env.DEFAULT_DB_URL!);
@@ -63,6 +67,14 @@ async function main() {
           }),
           leadImage: f.valuesFromArray({
             values: SPACE_LEAD_IMAGE_URLS,
+          }),
+          links: f.valuesFromArray({
+            values: SAMPLE_LINKS,
+            arraySize: 2,
+          }),
+          categories: f.valuesFromArray({
+            values: SAMPLE_CATEGORIES,
+            arraySize: 2,
           }),
         },
       },

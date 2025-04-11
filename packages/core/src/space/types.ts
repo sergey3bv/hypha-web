@@ -1,3 +1,5 @@
+import { Category } from '@core/categories/types';
+
 export interface Space {
   id: number;
   logoUrl?: string | null;
@@ -8,6 +10,7 @@ export interface Space {
   parentId?: number | null;
   web3SpaceId?: number | null;
   links?: string[] | null;
+  categories?: Category[] | null;
 }
 
 export interface CreateSpaceInput {
@@ -18,6 +21,7 @@ export interface CreateSpaceInput {
   slug?: string;
   parentId?: number;
   links?: string[];
+  categories?: Category[];
 }
 
 export interface UpdateSpaceInput {
