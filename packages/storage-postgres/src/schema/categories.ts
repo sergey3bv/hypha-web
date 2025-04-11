@@ -1,6 +1,6 @@
 import { pgEnum } from 'drizzle-orm/pg-core';
 
-export const categories = pgEnum('document_state', [
+export const categories = pgEnum('categories', [
   'housing',
   'energy',
   'mobility',

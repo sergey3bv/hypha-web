@@ -8,6 +8,7 @@ export interface Space {
   parentId?: number | null;
   web3SpaceId?: number | null;
   links?: string[] | null;
+  categories?: string[] | null;
 }
 
 export interface CreateSpaceInput {
@@ -18,6 +19,22 @@ export interface CreateSpaceInput {
   slug?: string;
   parentId?: number;
   links?: string[];
+  categories?: (
+    | 'housing'
+    | 'energy'
+    | 'mobility'
+    | 'water'
+    | 'air'
+    | 'soil'
+    | 'flora'
+    | 'fauna'
+    | 'fungi'
+    | 'food'
+    | 'education'
+    | 'art'
+    | 'health'
+    | 'tech'
+  )[];
 }
 
 export interface UpdateSpaceInput {
