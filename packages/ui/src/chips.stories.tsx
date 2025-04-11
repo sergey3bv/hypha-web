@@ -38,12 +38,8 @@ export const Primary: Story = {
     animation: 2,
     maxCount: 3,
   },
-};
-
-export const Heading: Story = {
-  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to MultiSelect!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Select Categories/gi)).toBeTruthy();
   },
 };
