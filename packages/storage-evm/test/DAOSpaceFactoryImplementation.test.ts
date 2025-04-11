@@ -228,7 +228,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'SubSpaceCreated'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -261,22 +261,18 @@ describe('DAOSpaceFactoryImplementation', function () {
       const subspaceExecutor = subspaceDetails.executor;
 
       // Verify subspace executor is added to parent space members list
-      const executorInMembers = parentMembers.includes(subspaceExecutor);
-      expect(executorInMembers).to.be.true;
+      expect(parentMembers.includes(subspaceExecutor)).to.equal(true);
 
       // Verify subspace executor is in spaceMemberAddresses
       const spaceMembers = await daoSpaceFactory.getSpaceMemberAddresses(
         parentSpaceId,
       );
-      const executorInSpaceMembers = spaceMembers.includes(subspaceExecutor);
-      expect(executorInSpaceMembers).to.be.true;
+      expect(spaceMembers.includes(subspaceExecutor)).to.equal(true);
 
       // Verify subspace executor is correctly marked as a space member
-      const isSpaceMember = await daoSpaceFactory.isSpaceMember(
-        parentSpaceId,
-        subspaceExecutor,
-      );
-      expect(isSpaceMember).to.be.true;
+      expect(
+        await daoSpaceFactory.isSpaceMember(parentSpaceId, subspaceExecutor),
+      ).to.equal(true);
 
       // Verify memberSpaces mapping is updated for executor
       const executorSpaces = await daoSpaceFactory.getMemberSpaces(
@@ -474,7 +470,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'JoinRequestedWithProposal'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -660,7 +656,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -755,7 +751,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -806,7 +802,7 @@ describe('DAOSpaceFactoryImplementation', function () {
     });
 
     it('Should not allow non-executor to mint tokens', async function () {
-      const { spaceHelper, tokenFactory, owner, voter1 } = await loadFixture(
+      const { spaceHelper, tokenFactory, voter1 } = await loadFixture(
         deployFixture,
       );
 
@@ -847,7 +843,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -919,7 +915,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
@@ -1035,7 +1031,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (e) {
+          } catch (_) {
             return false;
           }
         })
