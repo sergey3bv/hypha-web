@@ -167,9 +167,10 @@ export const CreateSpaceForm = ({
           name="categories"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>Tags</FormLabel>
               <FormControl>
                 <MultiSelect
-                  placeholder={'Select Categories'}
+                  placeholder={'Select one or more'}
                   options={[
                     { value: 'housing', label: 'Housing' },
                     { value: 'energy', label: 'Energy' },
