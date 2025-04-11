@@ -65,7 +65,9 @@ async function main() {
           leadImage: f.valuesFromArray({
             values: SPACE_LEAD_IMAGE_URLS,
           }),
-          links: f.valuesFromArray({ values: [] }),
+          links: f.valuesFromArray({
+            values: ['https://hypha.earth', 'https://x.com/HyphaDAO'],
+          }),
           categories: f.valuesFromArray({ values: [...CATEGORIES] }),
         },
       },
