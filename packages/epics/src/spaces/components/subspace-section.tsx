@@ -52,37 +52,44 @@ export const SubspaceSection = ({
           </Link>
         </div>
       </div>
-      <div
-        data-testid="sub-spaces-container"
-        className="grid grid-cols-1 sm:grid-cols-3 gap-3"
-      >
-        {spaces.map((space) => (
-          <div key={space.id} className="mb-1">
-            <Link href={getDhoPathAgreements(lang, space.slug as string)}>
-              <InnerSpaceCard
-                description={space.description as string}
-                leadImageUrl={
-                  space.leadImage || '/placeholder/space-lead-image.png'
-                }
-                title={space.title}
-                members={[
-                  {
-                    avatar: 'https://github.com/shadcn.png',
-                    name: 'Jane',
-                    surname: 'Doe',
-                  },
-                  {
-                    avatar: 'https://github.com/shadcn.png',
-                    name: 'Jane',
-                    surname: 'Doe',
-                  },
-                ]}
-                spaceId={space.web3SpaceId}
-              />
-            </Link>
-          </div>
-        ))}
-      </div>
+      {!spaces.length ? (
+        <span className="text-2 text-center text-neutral-11">
+          {' '}
+          No sub-spaces
+        </span>
+      ) : (
+        <div
+          data-testid="sub-spaces-container"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-3"
+        >
+          {spaces.map((space) => (
+            <div key={space.id} className="mb-1">
+              <Link href={getDhoPathAgreements(lang, space.slug as string)}>
+                <InnerSpaceCard
+                  description={space.description as string}
+                  leadImageUrl={
+                    space.leadImage || '/placeholder/space-lead-image.png'
+                  }
+                  title={space.title}
+                  members={[
+                    {
+                      avatar: 'https://github.com/shadcn.png',
+                      name: 'Jane',
+                      surname: 'Doe',
+                    },
+                    {
+                      avatar: 'https://github.com/shadcn.png',
+                      name: 'Jane',
+                      surname: 'Doe',
+                    },
+                  ]}
+                  spaceId={space.web3SpaceId}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
