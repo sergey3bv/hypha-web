@@ -15,7 +15,7 @@ export const SETTINGS_ACTIONS = [
     title: 'New Sub-Space',
     description:
       'Create and configure a new sub-space within your main space for specific activities or teams.',
-    href: '#',
+    href: 'membership/space/create',
     icon: <Pencil2Icon />,
   },
   {
