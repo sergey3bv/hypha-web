@@ -1,3 +1,5 @@
+'use client';
+
 import useSWR from 'swr';
 import { Config } from '@wagmi/core';
 import { z } from 'zod';

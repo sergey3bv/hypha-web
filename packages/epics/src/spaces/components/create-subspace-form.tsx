@@ -1,19 +1,25 @@
 'use client';
 
 import { useConfig } from 'wagmi';
-import { CreateSpaceForm } from '@hypha-platform/epics';
+import { CreateSpaceForm } from './create-space-form';
 import { useParams, useRouter } from 'next/navigation';
 import { useJwt } from '@hypha-platform/core/client';
 import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import React from 'react';
-import { getDhoPathAgreements } from '../../dho/[id]/agreements/constants';
-import { Locale } from '@hypha-platform/i18n';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { useMe } from '@hypha-platform/core/client';
 
-export default function CreateSpacePage() {
-  const { lang } = useParams();
+interface CreateSpaceFormProps {
+  parentSpaceId: number | null | undefined;
+  successfulUrl: string;
+}
+
+export const CreateSubspaceForm = ({
+  successfulUrl,
+  parentSpaceId,
+}: CreateSpaceFormProps) => {
+  const { lang, id } = useParams();
   const router = useRouter();
   const config = useConfig();
   const { person } = useMe();
@@ -30,7 +36,7 @@ export default function CreateSpacePage() {
 
   React.useEffect(() => {
     if (progress === 100 && spaceSlug) {
-      router.push(getDhoPathAgreements(lang as Locale, spaceSlug));
+      router.push(successfulUrl);
     }
   }, [progress, spaceSlug]);
 
@@ -53,9 +59,10 @@ export default function CreateSpacePage() {
       <CreateSpaceForm
         isLoading={false}
         creator={{ name: person?.name, surname: person?.surname }}
-        closeUrl={`/${lang}/my-spaces`}
+        closeUrl={`/${lang}/dho/${id}/membership`}
         onCreate={createSpace}
+        parentSpaceId={parentSpaceId as number}
       />
     </LoadingBackdrop>
   );
-}
+};

@@ -3,7 +3,7 @@
 import React from 'react';
 import useSWR from 'swr';
 import { usePersonSlug } from './use-person-slug';
-import { useJwt } from './use-jwt';
+import { useJwt } from '@hypha-platform/core/client';
 
 export const useMemberBySlug = (slug: string) => {
   const { jwt } = useJwt();

@@ -16,7 +16,7 @@ import { AuthProvider } from '@hypha-platform/authentication';
 import { useAuthentication } from '@hypha-platform/authentication';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { EvmProvider } from '@hypha-platform/evm';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 import { fileRouter } from '@hypha-platform/core/server';
 import { HYPHA_LOCALE } from '@hypha-platform/cookie';
 import { i18nConfig } from '@hypha-platform/i18n';

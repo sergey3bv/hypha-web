@@ -9,9 +9,9 @@ import { Locale } from '@hypha-platform/i18n';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
-import { useJwt } from '@web/hooks/use-jwt';
+import { useJwt } from '@hypha-platform/core/client';
 import { Button } from '@hypha-platform/ui';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();

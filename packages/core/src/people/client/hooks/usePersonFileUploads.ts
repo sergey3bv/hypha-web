@@ -1,3 +1,5 @@
+'use client';
+
 import { useFileUpload } from '@core/assets';
 import { schemaEditPersonFiles } from '@core/people/validation';
 import React from 'react';

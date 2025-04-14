@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuthentication } from '@hypha-platform/authentication';
 import useSWR from 'swr';
 

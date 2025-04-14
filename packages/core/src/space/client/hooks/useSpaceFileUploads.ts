@@ -1,3 +1,5 @@
+'use client';
+
 import { useFileUpload } from '@core/assets';
 import { schemaCreateSpaceFiles } from '@core/space/validation';
 import React from 'react';

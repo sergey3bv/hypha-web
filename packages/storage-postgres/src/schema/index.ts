@@ -1,6 +1,6 @@
 import { memberships } from './membership';
 import { people } from './people';
-import { spaces } from './space';
+import { spaces, spacesRelations } from './space';
 import { documents } from './document';
 
 export * from './document';
@@ -13,4 +13,5 @@ export const schema = {
   memberships,
   people,
   spaces,
+  spacesRelations,
 };

@@ -2,7 +2,7 @@
 
 import { CreateAgreementForm } from '@hypha-platform/epics';
 import { SidePanel } from '../../_components/side-panel';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default function Loading() {
   const { person } = useMe();

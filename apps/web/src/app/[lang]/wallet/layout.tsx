@@ -2,7 +2,7 @@ import { useAuthentication } from '@hypha-platform/authentication';
 import { ConnectedButtonProfile } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { MenuTop } from '@hypha-platform/ui/server';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default async function DhoLayout(props: {
   children: React.ReactNode;

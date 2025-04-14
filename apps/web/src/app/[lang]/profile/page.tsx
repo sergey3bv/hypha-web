@@ -19,7 +19,7 @@ import {
   TabsList,
   TabsContent,
 } from '@hypha-platform/ui/server';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 import { useParams } from 'next/navigation';
 import { Locale } from '@hypha-platform/i18n';
 import { useSpaceDocuments } from '@web/hooks/use-space-documents';
