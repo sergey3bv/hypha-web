@@ -16,7 +16,7 @@ export const spaces = pgTable('spaces', {
     .$type<Array<(typeof categories.enumValues)[number]>>()
     .default([]),
   parentId: integer('parent_id'),
-  ...commonDateFields,
+  parentId: integer('parent_id').references((): AnyPgColumn => spaces.id),
 });
 
 export const spacesRelations = relations(spaces, ({ one, many }) => ({
