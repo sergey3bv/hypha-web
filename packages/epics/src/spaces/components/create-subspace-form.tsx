@@ -3,7 +3,7 @@
 import { useConfig } from 'wagmi';
 import { CreateSpaceForm } from './create-space-form';
 import { useParams, useRouter } from 'next/navigation';
-import { useJwt } from '@web/hooks/use-jwt';
+import { useJwt } from '@hypha-platform/core/client';
 import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import React from 'react';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';

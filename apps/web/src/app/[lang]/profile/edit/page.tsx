@@ -2,7 +2,7 @@
 
 import { EditPersonSection } from '@hypha-platform/epics';
 import { useMe } from '@web/hooks/use-me';
-import { useJwt } from '@web/hooks/use-jwt';
+import { useJwt } from '@hypha-platform/core/client';
 import { useEditPersonOrchestrator } from '@core/people/client/hooks';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';

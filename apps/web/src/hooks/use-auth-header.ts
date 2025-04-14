@@ -1,4 +1,4 @@
-import { useJwt } from './use-jwt';
+import { useJwt } from '@hypha-platform/core/client';
 
 export const useAuthHeader = () => {
   const { jwt, isLoadingJwt } = useJwt();
