@@ -1,3 +1,5 @@
+'use client';
+
 import { joinSpace } from '../web3/dao-space-factory/join-space';
 import { writeContract } from '@wagmi/core';
 import useSWRMutation from 'swr/mutation';

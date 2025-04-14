@@ -1,3 +1,5 @@
+'use client';
+
 import useSWRMutation from 'swr/mutation';
 import { Config, writeContract } from '@wagmi/core';
 import {
