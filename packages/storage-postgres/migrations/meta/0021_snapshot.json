@@ -1,6 +1,6 @@
 {
-  "id": "72430f9d-d802-44a7-b412-c3e587a5ef42",
-  "prevId": "acf1ea6a-a2ab-40c1-b3b8-4b3e68e22532",
+  "id": "95ca071d-189d-485f-9577-90aee53c0751",
+  "prevId": "a5b1a07c-e166-4bdc-8551-91d077a8c3c4",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -412,9 +412,9 @@
         },
         "parent_id": {
           "name": "parent_id",
-          "type": "serial",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
@@ -432,7 +432,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "spaces_parent_id_spaces_id_fk": {
+          "name": "spaces_parent_id_spaces_id_fk",
+          "tableFrom": "spaces",
+          "tableTo": "spaces",
+          "columnsFrom": [
+            "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "spaces_slug_unique": {

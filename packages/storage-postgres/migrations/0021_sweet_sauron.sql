@@ -1,1 +1,0 @@
-ALTER TABLE "spaces" ADD COLUMN "parent_id" serial NOT NULL;
