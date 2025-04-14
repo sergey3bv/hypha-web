@@ -18,7 +18,7 @@ export default async function CreateSubspacePage({ params }: PageProps) {
     notFound()
   }
  
-  const spaceId = spaceFromDb.web3SpaceId;
+  const spaceId = spaceFromDb.id;
 
   return (
     <CreateSubspaceForm

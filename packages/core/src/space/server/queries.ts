@@ -20,21 +20,16 @@ export const findSpaceBySlug = async (
   { slug }: FindSpaceBySlugInput,
   { db }: DbConfig,
 ): Promise<(Space & { subspaces: Space[] }) | null> => {
-  const results = await db.select().from(spaces).where(eq(spaces.slug, slug));
-  const space = results[0];
+  const space = await db.query.spaces.findFirst({
+    where: (spaces, { eq }) => eq(spaces.slug, slug),
+    with: {
+      subspaces: true,
+    },
+  });
 
-  if (!space) return null;
-
-  const subspaces = await db
-    .select()
-    .from(spaces)
-    .where(eq(spaces.parentId, space.web3SpaceId!));
-
-  return {
-    ...space,
-    subspaces,
-  };
+  return space ?? null;
 };
+
 
 type FindAllSpacesByMemberIdInput = {
   memberId: number;

@@ -1,4 +1,4 @@
-import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
+import { InferInsertModel, InferSelectModel, relations } from 'drizzle-orm';
 import { integer, jsonb, pgTable, serial, text } from 'drizzle-orm/pg-core';
 import { commonDateFields } from './shared';
 import { categories } from './categories';
@@ -15,9 +15,20 @@ export const spaces = pgTable('spaces', {
   categories: jsonb('categories')
     .$type<Array<(typeof categories.enumValues)[number]>>()
     .default([]),
-  parentId: serial('parent_id'),
+  parentId: integer('parent_id'),
   ...commonDateFields,
 });
+
+export const spacesRelations = relations(spaces, ({ one, many }) => ({
+  parent: one(spaces, {
+    fields: [spaces.parentId],
+    references: [spaces.id],
+    relationName: 'subspaces',
+  }),
+  subspaces: many(spaces, {
+    relationName: 'subspaces',
+  }),
+}));
 
 export type Space = InferSelectModel<typeof spaces>;
 export type NewSpace = InferInsertModel<typeof spaces>;

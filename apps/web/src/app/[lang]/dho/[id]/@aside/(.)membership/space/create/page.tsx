@@ -15,7 +15,7 @@ export default async function CreateSubspacePage({ params }: PageProps) {
 
   const spaceFromDb = await spaceService.getBySlug({ slug: id });
 
-  const spaceId = spaceFromDb.web3SpaceId;
+  const spaceId = spaceFromDb.id;
 
   return (
     <SidePanel>
