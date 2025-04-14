@@ -6,7 +6,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { useJwt } from '@web/hooks/use-jwt';
 import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import React from 'react';
-import { Locale } from '@hypha-platform/i18n';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { useMe } from '@web/hooks/use-me';
