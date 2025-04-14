@@ -15,9 +15,9 @@ export default async function CreateSubspacePage({ params }: PageProps) {
 
   const spaceFromDb = await spaceService.getBySlug({ slug: id });
   if (!spaceFromDb) {
-    notFound()
+    notFound();
   }
- 
+
   const spaceId = spaceFromDb.id;
 
   return (

@@ -13,5 +13,5 @@ export const schema = {
   memberships,
   people,
   spaces,
-  spacesRelations
+  spacesRelations,
 };

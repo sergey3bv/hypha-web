@@ -30,7 +30,6 @@ export const findSpaceBySlug = async (
   return space ?? null;
 };
 
-
 type FindAllSpacesByMemberIdInput = {
   memberId: number;
 };
