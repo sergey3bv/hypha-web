@@ -11,7 +11,7 @@ import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
 import { useJwt } from '@hypha-platform/core/client';
 import { Button } from '@hypha-platform/ui';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();

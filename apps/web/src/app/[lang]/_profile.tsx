@@ -1,6 +1,6 @@
 'use client';
 
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export const Profile = () => {
   const { person } = useMe();

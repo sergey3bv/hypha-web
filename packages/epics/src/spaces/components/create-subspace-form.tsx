@@ -8,7 +8,7 @@ import { useCreateSpaceOrchestrator } from '@hypha-platform/core/client';
 import React from 'react';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 interface CreateSpaceFormProps {
   parentSpaceId: number | null | undefined;

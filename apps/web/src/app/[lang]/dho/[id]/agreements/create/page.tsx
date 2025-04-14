@@ -2,7 +2,7 @@
 
 import { CreateAgreementForm } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default function CreateAgreement() {
   const { lang, id } = useParams();

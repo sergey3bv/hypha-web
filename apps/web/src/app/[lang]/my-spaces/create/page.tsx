@@ -10,7 +10,7 @@ import { getDhoPathAgreements } from '../../dho/[id]/agreements/constants';
 import { Locale } from '@hypha-platform/i18n';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
-import { useMe } from '@web/hooks/use-me';
+import { useMe } from '@hypha-platform/core/client';
 
 export default function CreateSpacePage() {
   const { lang } = useParams();
