@@ -9,13 +9,6 @@ import {
 
 export const CREATE_ACTIONS = [
   {
-    title: 'Start a Discussion',
-    description:
-      'Initiate a conversation to share ideas, ask questions, or discuss topics with members of the space.',
-    href: '#',
-    icon: <ChatBubbleIcon />,
-  },
-  {
     title: 'Propose a Contribution',
     description:
       'Propose a new contribution, such as work, knowledge, capital, or resources, for the space to consider.',
