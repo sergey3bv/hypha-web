@@ -40,7 +40,7 @@ export const CREATE_ACTIONS = [
     title: 'Deposit Funds',
     description:
       'Deposit funds into your treasury by copying the treasury address or scanning the QR code.',
-    href: '#',
+    href: 'treasury/deposit',
     icon: <PlusCircledIcon />,
   },
 ];
