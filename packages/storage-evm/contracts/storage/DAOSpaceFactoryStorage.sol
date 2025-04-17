@@ -11,12 +11,17 @@ interface IDirectory {
   ) external view returns (bool);
 }
 
+// Add this for the hasToken function
+interface SpaceToken {
+  function spaceId() external view returns (uint256);
+}
+
 contract DAOSpaceFactoryStorage is Initializable {
   struct Space {
     uint256 unity;
     uint256 quorum;
     uint256 votingPowerSource;
-    address[] tokenAddresses;
+    address[] tokenAddresses; // Keep for backward compatibility
     address[] members;
     uint256 exitMethod;
     uint256 joinMethod;
@@ -28,10 +33,14 @@ contract DAOSpaceFactoryStorage is Initializable {
   mapping(uint256 => Space) public spaces;
   uint256 public spaceCounter;
   IDirectory public directoryContract;
-  address public tokenFactoryAddress;
   address public joinMethodDirectoryAddress;
   address public proposalManagerAddress;
   address public exitMethodDirectoryAddress;
+
+  // Remove these token factory references
+  // address public tokenFactoryAddress;
+  // address public regularTokenFactoryAddress;
+  // address public decayingTokenFactoryAddress;
 
   struct SpaceMembers {
     address[] spaceMemberAddresses;
