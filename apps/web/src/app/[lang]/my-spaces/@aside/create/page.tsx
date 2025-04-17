@@ -1,7 +1,6 @@
 'use client';
 
-import { CreateSpaceForm } from '@hypha-platform/epics';
-import { SidePanel } from '../../_components/side-panel';
+import { CreateSpaceForm, SidePanel } from '@hypha-platform/epics';
 import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/agreements/constants';
