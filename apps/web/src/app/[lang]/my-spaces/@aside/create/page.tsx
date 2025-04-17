@@ -1,6 +1,6 @@
 'use client';
 
-import { CreateSpaceForm } from '@hypha-platform/epics';
+import { CreateSpaceForm, SidePanel } from '@hypha-platform/epics';
 import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/agreements/constants';
@@ -11,7 +11,6 @@ import { useConfig } from 'wagmi';
 import { useJwt } from '@hypha-platform/core/client';
 import { Button } from '@hypha-platform/ui';
 import { useMe } from '@hypha-platform/core/client';
-import { SidePanel } from '@web/app/[lang]/@aside/_components/side-panel';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();
