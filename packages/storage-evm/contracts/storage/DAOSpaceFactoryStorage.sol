@@ -33,12 +33,12 @@ contract DAOSpaceFactoryStorage is Initializable {
   mapping(uint256 => Space) public spaces;
   uint256 public spaceCounter;
   IDirectory public directoryContract;
+  address public tokenFactoryAddress;
   address public joinMethodDirectoryAddress;
   address public proposalManagerAddress;
   address public exitMethodDirectoryAddress;
 
-  // --- Restore factory addresses to their original position ---
-  address public tokenFactoryAddress;
+  // --- Restore factory addresses to their original position --
 
   struct SpaceMembers {
     address[] spaceMemberAddresses;
@@ -49,6 +49,6 @@ contract DAOSpaceFactoryStorage is Initializable {
 
   // New mapping to track which spaces a member is part of
   mapping(address => uint256[]) internal memberSpaces;
-  address public regularTokenFactoryAddress;
-  address public decayingTokenFactoryAddress;
+
 }
+
