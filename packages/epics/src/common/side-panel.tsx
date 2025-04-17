@@ -1,5 +1,7 @@
+import type { ReactNode } from 'react';
+
 type SidePanelProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const SidePanel = ({ children }: SidePanelProps) => {
