@@ -37,10 +37,8 @@ contract DAOSpaceFactoryStorage is Initializable {
   address public proposalManagerAddress;
   address public exitMethodDirectoryAddress;
 
-  // Remove these token factory references
-  // address public tokenFactoryAddress;
-  // address public regularTokenFactoryAddress;
-  // address public decayingTokenFactoryAddress;
+  // --- Restore factory addresses to their original position ---
+  address public tokenFactoryAddress;
 
   struct SpaceMembers {
     address[] spaceMemberAddresses;
@@ -51,4 +49,6 @@ contract DAOSpaceFactoryStorage is Initializable {
 
   // New mapping to track which spaces a member is part of
   mapping(address => uint256[]) internal memberSpaces;
+  address public regularTokenFactoryAddress;
+  address public decayingTokenFactoryAddress;
 }
