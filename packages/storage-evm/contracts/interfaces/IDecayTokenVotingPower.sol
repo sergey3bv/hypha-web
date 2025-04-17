@@ -17,6 +17,17 @@ interface IDecayTokenVotingPower {
     uint256 _sourceSpaceId
   ) external view returns (uint256);
 
+  /**
+   * @dev Apply decay to a user's balance and return the updated voting power
+   * @param _user The address to apply decay and check voting power for
+   * @param _sourceSpaceId The space ID from which to derive voting power
+   * @return The updated voting power after applying decay
+   */
+  function applyDecayAndGetVotingPower(
+    address _user,
+    uint256 _sourceSpaceId
+  ) external returns (uint256);
+
   // Events
   event SpaceTokenSet(uint256 indexed spaceId, address indexed tokenAddress);
   event DecayTokenFactorySet(address indexed decayTokenFactory);

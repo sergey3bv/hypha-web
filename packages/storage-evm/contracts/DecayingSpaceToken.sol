@@ -15,10 +15,18 @@ contract DecayingSpaceToken is SpaceToken {
   // Last time decay was applied for each user
   mapping(address => uint256) public lastDecayTimestamp;
 
+  // Track token holders for decayed total supply calculation
+  address[] private _tokenHolders;
+  mapping(address => bool) private _isTokenHolder;
+
+  // Track total burned tokens from decay (keep this for informational purposes)
+  uint256 public totalBurnedFromDecay;
+
   event DecayApplied(
     address indexed user,
     uint256 oldBalance,
-    uint256 newBalance
+    uint256 newBalance,
+    uint256 decayAmount
   );
 
   constructor(
@@ -42,6 +50,27 @@ contract DecayingSpaceToken is SpaceToken {
 
     decayPercentage = _decayPercentage;
     decayInterval = _decayInterval;
+  }
+
+  /**
+   * @dev Add address to token holders if not already tracked
+   */
+  function _addTokenHolder(address account) internal {
+    if (!_isTokenHolder[account] && account != address(0)) {
+      _isTokenHolder[account] = true;
+      _tokenHolders.push(account);
+    }
+  }
+
+  /**
+   * @dev Remove address from token holders if balance becomes zero
+   */
+  function _updateTokenHolderStatus(address account) internal {
+    if (super.balanceOf(account) == 0 && _isTokenHolder[account]) {
+      _isTokenHolder[account] = false;
+      // Note: We don't remove from the array to avoid gas costs
+      // The getDecayedTotalSupply function will check balances
+    }
   }
 
   /**
@@ -84,15 +113,22 @@ contract DecayingSpaceToken is SpaceToken {
 
     if (newBalance < oldBalance) {
       uint256 decayAmount = oldBalance - newBalance;
+
+      // Burn the tokens, which automatically updates total supply
       _burn(account, decayAmount);
-      emit DecayApplied(account, oldBalance, newBalance);
+
+      // Update total burned from decay counter
+      totalBurnedFromDecay += decayAmount;
+
+      emit DecayApplied(account, oldBalance, newBalance, decayAmount);
     }
 
     lastDecayTimestamp[account] = block.timestamp;
+    _updateTokenHolderStatus(account);
   }
 
   /**
-   * @dev Override mint to track lastDecayTimestamp
+   * @dev Override mint to track lastDecayTimestamp and token holders
    */
   function mint(address to, uint256 amount) public override onlyExecutor {
     if (lastDecayTimestamp[to] == 0) {
@@ -100,6 +136,7 @@ contract DecayingSpaceToken is SpaceToken {
     } else {
       applyDecay(to); // Apply any pending decay first
     }
+    _addTokenHolder(to);
     super.mint(to, amount);
   }
 
@@ -113,6 +150,7 @@ contract DecayingSpaceToken is SpaceToken {
     } else {
       applyDecay(to);
     }
+    _addTokenHolder(to);
     return super.transfer(to, amount);
   }
 
@@ -130,6 +168,24 @@ contract DecayingSpaceToken is SpaceToken {
     } else {
       applyDecay(to);
     }
+    _addTokenHolder(to);
     return super.transferFrom(from, to, amount);
+  }
+
+  /**
+   * @dev Returns the total supply with decay applied to all balances
+   * @return The current total supply after decay calculations
+   */
+  function getDecayedTotalSupply() public view returns (uint256) {
+    uint256 totalDecayedSupply = 0;
+
+    for (uint256 i = 0; i < _tokenHolders.length; i++) {
+      address holder = _tokenHolders[i];
+      if (_isTokenHolder[holder]) {
+        totalDecayedSupply += balanceOf(holder);
+      }
+    }
+
+    return totalDecayedSupply;
   }
 }

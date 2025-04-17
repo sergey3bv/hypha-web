@@ -545,7 +545,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       const receipt = await tx.wait();
 
-      // Find token deployment event
+      // Fix for 'tokenDeployedEvent' is possibly 'null' or 'undefined' errors
       const tokenDeployedEvent = receipt?.logs
         .filter((log) => {
           try {
@@ -571,17 +571,18 @@ describe('DAOSpaceFactoryImplementation', function () {
       }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
+      // Fix for property access errors - update type casting for token
       const token = await ethers.getContractAt(
         'contracts/RegularSpaceToken.sol:SpaceToken',
         tokenAddress,
       );
 
       // Join the space
-      await spaceHelper.joinSpace(spaceId, voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
 
       // Mint tokens to voter1
       const mintAmount = ethers.parseUnits('100', 18);
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await voter1.getAddress(), mintAmount);
 
@@ -656,7 +657,9 @@ describe('DAOSpaceFactoryImplementation', function () {
       // Try to mint as non-executor (should fail)
       const mintAmount = ethers.parseUnits('100', 18);
       await expect(
-        token.connect(other).mint(await voter1.getAddress(), mintAmount),
+        (token as any)
+          .connect(other)
+          .mint(await voter1.getAddress(), mintAmount),
       ).to.be.revertedWith('Only executor can call this function');
     });
   });
@@ -837,7 +840,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Join the space
-      await spaceHelper.joinSpace(spaceId, voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
 
       // Mint tokens to voter1
       const mintAmount = ethers.parseUnits('100', 18);
@@ -963,8 +966,8 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Join the space
-      await spaceHelper.joinSpace(spaceId, voter1);
-      await spaceHelper.joinSpace(spaceId, voter2);
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter2);
 
       // Mint tokens to voter1
       const mintAmount = ethers.parseUnits('100', 18);
@@ -1043,6 +1046,725 @@ describe('DAOSpaceFactoryImplementation', function () {
     });
   });
 
+  describe('Enhanced Decay Token Tests', function () {
+    it('Should demonstrate detailed vote decay with precise measurements', async function () {
+      const { decayingTokenFactory, spaceHelper, owner, voter1 } =
+        await loadFixture(deployFixture);
+
+      console.log('\n=== STARTING DETAILED VOTE DECAY TEST ===');
+
+      // Create space
+      const spaceParams = {
+        name: 'Detailed Decay Test Space',
+        description: 'Demonstrating precise token decay',
+        imageUrl: 'https://test.com/image.png',
+        unity: 51,
+        quorum: 51,
+        votingPowerSource: 1,
+        exitMethod: 1,
+        joinMethod: 1,
+        createToken: false,
+        tokenName: '',
+        tokenSymbol: '',
+      };
+
+      await spaceHelper.contract.createSpace(spaceParams);
+      const spaceId = (await spaceHelper.contract.spaceCounter()).toString();
+      console.log(`Space created with ID: ${spaceId}`);
+
+      // Get the executor
+      const executorAddress = await spaceHelper.contract.getSpaceExecutor(
+        spaceId,
+      );
+      await ethers.provider.send('hardhat_impersonateAccount', [
+        executorAddress,
+      ]);
+      const executorSigner = await ethers.getSigner(executorAddress);
+
+      // Fund the executor
+      await owner.sendTransaction({
+        to: executorAddress,
+        value: ethers.parseEther('1.0'),
+      });
+
+      // Define decay parameters for easier tracking
+      const decayPercentage = 1000; // 10% decay per interval (in basis points)
+      const decayInterval = 3600; // 1 hour in seconds
+      console.log(
+        `Decay parameters: ${decayPercentage / 100}% every ${
+          decayInterval / 3600
+        } hour(s)`,
+      );
+
+      // Deploy decaying token through the executor
+      const tx = await decayingTokenFactory
+        .connect(executorSigner)
+        .deployDecayingToken(
+          spaceId,
+          'Precise Decay Token',
+          'PDECAY',
+          0, // maxSupply
+          true, // transferable
+          true, // isVotingToken
+          decayPercentage,
+          decayInterval,
+        );
+
+      const receipt = await tx.wait();
+      const tokenDeployedEvent = receipt?.logs
+        .filter((log) => {
+          try {
+            return (
+              decayingTokenFactory.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'TokenDeployed'
+            );
+          } catch (_) {
+            return false;
+          }
+        })
+        .map((log) =>
+          decayingTokenFactory.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
+
+      const tokenAddress = tokenDeployedEvent.args.tokenAddress;
+      console.log(`Decay token deployed at: ${tokenAddress}`);
+      const decayToken = await ethers.getContractAt(
+        'DecayingSpaceToken',
+        tokenAddress,
+      );
+
+      // Join the space
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
+      console.log(`Voter1 (${await voter1.getAddress()}) joined the space`);
+
+      // Mint a clean amount for easy calculation
+      const mintAmount = ethers.parseUnits('1000', 18);
+      await decayToken
+        .connect(executorSigner)
+        .mint(await voter1.getAddress(), mintAmount);
+      console.log(
+        `\nMinted ${ethers.formatUnits(mintAmount, 18)} tokens to Voter1`,
+      );
+
+      // Check initial balance
+      const initialBalance = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Initial balance: ${ethers.formatUnits(initialBalance, 18)} tokens`,
+      );
+      expect(initialBalance).to.equal(mintAmount);
+
+      // Get current blockchain timestamp
+      const blockBefore = await ethers.provider.getBlock('latest');
+      const initialTimestamp = blockBefore?.timestamp || 0;
+      console.log(
+        `Initial timestamp: ${initialTimestamp} (${new Date(
+          initialTimestamp * 1000,
+        ).toISOString()})`,
+      );
+
+      // Advance time by exactly 1 decay interval
+      await ethers.provider.send('evm_increaseTime', [decayInterval]);
+      await ethers.provider.send('evm_mine', []);
+
+      // Get new timestamp
+      const blockAfter1 = await ethers.provider.getBlock('latest');
+      const timestampAfter1 = blockAfter1?.timestamp || 0;
+      console.log(
+        `\nTimestamp after 1 interval: ${timestampAfter1} (${new Date(
+          timestampAfter1 * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Time elapsed: ${timestampAfter1 - initialTimestamp} seconds (${
+          (timestampAfter1 - initialTimestamp) / decayInterval
+        } intervals)`,
+      );
+
+      // Check view balance (should reflect decay without storage update)
+      const balanceAfter1Interval = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      const expectedBalance1 = (mintAmount * BigInt(9000)) / BigInt(10000); // 90% of original after 10% decay
+      console.log(
+        `\nBalance after 1 interval (view function): ${ethers.formatUnits(
+          balanceAfter1Interval,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Expected balance (90% of ${ethers.formatUnits(
+          mintAmount,
+          18,
+        )}): ${ethers.formatUnits(expectedBalance1, 18)} tokens`,
+      );
+      console.log(
+        `Decay amount: ${ethers.formatUnits(
+          mintAmount - balanceAfter1Interval,
+          18,
+        )} tokens (should be ~10%)`,
+      );
+
+      const decayPercent1 =
+        Number(
+          ((mintAmount - balanceAfter1Interval) * BigInt(10000)) / mintAmount,
+        ) / 100;
+      console.log(`Actual decay percentage: ${decayPercent1}%`);
+
+      expect(balanceAfter1Interval).to.be.closeTo(
+        expectedBalance1,
+        ethers.parseUnits('0.01', 18),
+      );
+
+      // Check storage state (should not be updated yet)
+      const lastUpdated1 = await decayToken.lastDecayTimestamp(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `\nLast updated timestamp: ${lastUpdated1} (${new Date(
+          Number(lastUpdated1) * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Last updated matches mint time: ${
+          lastUpdated1 <= BigInt(initialTimestamp + 5) &&
+          lastUpdated1 >= BigInt(initialTimestamp - 5)
+        }`,
+      );
+
+      // Apply decay to update storage
+      console.log('\n=== EXPLICITLY APPLYING DECAY TO UPDATE STORAGE ===');
+      const applyTx = await decayToken.applyDecay(await voter1.getAddress());
+      await applyTx.wait();
+
+      // Check storage state (should be updated now)
+      const balanceAfterApply1 = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Balance after applying decay: ${ethers.formatUnits(
+          balanceAfterApply1,
+          18,
+        )} tokens`,
+      );
+      expect(balanceAfterApply1).to.equal(balanceAfter1Interval);
+
+      const lastUpdatedAfterApply = await decayToken.lastDecayTimestamp(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Last updated timestamp: ${lastUpdatedAfterApply} (${new Date(
+          Number(lastUpdatedAfterApply) * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Last updated is current: ${
+          lastUpdatedAfterApply <= BigInt(timestampAfter1 + 5) &&
+          lastUpdatedAfterApply >= BigInt(timestampAfter1 - 5)
+        }`,
+      );
+
+      // Advance time by another 2 decay intervals for compounding decay
+      console.log('\n=== ADVANCING TIME BY 2 MORE INTERVALS ===');
+      await ethers.provider.send('evm_increaseTime', [decayInterval * 2]);
+      await ethers.provider.send('evm_mine', []);
+
+      // Get new timestamp
+      const blockAfter3 = await ethers.provider.getBlock('latest');
+      const timestampAfter3 = blockAfter3?.timestamp || 0;
+      console.log(
+        `Timestamp after 3 intervals total: ${timestampAfter3} (${new Date(
+          timestampAfter3 * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Time since last update: ${
+          timestampAfter3 - Number(lastUpdatedAfterApply)
+        } seconds (${
+          (timestampAfter3 - Number(lastUpdatedAfterApply)) / decayInterval
+        } intervals)`,
+      );
+
+      // Check compounded decay after 2 more intervals
+      const balanceAfter3Intervals = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+
+      // Starting from balanceAfterApply1, we apply 10% decay twice: balanceAfterApply1 * 0.9 * 0.9
+      const expectedBalance3 =
+        (balanceAfterApply1 * BigInt(9000) * BigInt(9000)) /
+        (BigInt(10000) * BigInt(10000));
+      console.log(
+        `\nBalance after 3 intervals (view function): ${ethers.formatUnits(
+          balanceAfter3Intervals,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Expected balance (90% of 90% of ${ethers.formatUnits(
+          balanceAfterApply1,
+          18,
+        )}): ${ethers.formatUnits(expectedBalance3, 18)} tokens`,
+      );
+
+      const totalDecayPercent =
+        Number(
+          ((mintAmount - balanceAfter3Intervals) * BigInt(10000)) / mintAmount,
+        ) / 100;
+      console.log(
+        `Total decay from original: ${ethers.formatUnits(
+          mintAmount - balanceAfter3Intervals,
+          18,
+        )} tokens (${totalDecayPercent}%)`,
+      );
+      console.log(
+        `Expected total decay percentage after 3 intervals: ${
+          100 - 0.9 * 0.9 * 0.9 * 100
+        }%`,
+      );
+
+      expect(balanceAfter3Intervals).to.be.closeTo(
+        expectedBalance3,
+        ethers.parseUnits('0.01', 18),
+      );
+
+      // Test partial interval decay
+      console.log('\n=== TESTING PARTIAL INTERVAL DECAY ===');
+      // Advance time by half an interval
+      await ethers.provider.send('evm_increaseTime', [decayInterval / 2]);
+      await ethers.provider.send('evm_mine', []);
+
+      const blockPartial = await ethers.provider.getBlock('latest');
+      const timestampPartial = blockPartial?.timestamp || 0;
+      console.log(`Timestamp after 3.5 intervals: ${timestampPartial}`);
+      console.log(
+        `Time since last update: ${
+          timestampPartial - Number(lastUpdatedAfterApply)
+        } seconds (${
+          (timestampPartial - Number(lastUpdatedAfterApply)) / decayInterval
+        } intervals)`,
+      );
+
+      // Check partial decay
+      const balanceAfterPartial = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Balance after 3.5 intervals: ${ethers.formatUnits(
+          balanceAfterPartial,
+          18,
+        )} tokens`,
+      );
+
+      // This should be between the 3-interval decay and 4-interval decay values
+      expect(balanceAfterPartial).to.equal(balanceAfter3Intervals);
+      expect(balanceAfterPartial).to.be.gt(
+        (balanceAfter3Intervals * BigInt(9000)) / BigInt(10000),
+      );
+
+      console.log('\n=== DETAILED VOTE DECAY TEST COMPLETED ===');
+    });
+
+    it('Should demonstrate decay with multiple users and transfers', async function () {
+      const { decayingTokenFactory, spaceHelper, owner, voter1, voter2 } =
+        await loadFixture(deployFixture);
+
+      console.log('\n=== STARTING MULTI-USER DECAY TEST WITH TRANSFERS ===');
+
+      // Create space
+      await spaceHelper.createDefaultSpace();
+      const spaceId = (await spaceHelper.contract.spaceCounter()).toString();
+      console.log(`Space created with ID: ${spaceId}`);
+
+      // Get the executor
+      const executorAddress = await spaceHelper.contract.getSpaceExecutor(
+        spaceId,
+      );
+      await ethers.provider.send('hardhat_impersonateAccount', [
+        executorAddress,
+      ]);
+      const executorSigner = await ethers.getSigner(executorAddress);
+
+      // Fund the executor
+      await owner.sendTransaction({
+        to: executorAddress,
+        value: ethers.parseEther('1.0'),
+      });
+
+      // Define decay parameters
+      const decayPercentage = 2000; // 20% decay per interval (for more visible impact)
+      const decayInterval = 3600; // 1 hour in seconds
+      console.log(
+        `Decay parameters: ${decayPercentage / 100}% every ${
+          decayInterval / 3600
+        } hour(s)`,
+      );
+
+      // Deploy decaying token
+      const tx = await decayingTokenFactory
+        .connect(executorSigner)
+        .deployDecayingToken(
+          spaceId,
+          'Multi-User Decay Token',
+          'MUDECAY',
+          0, // maxSupply
+          true, // transferable
+          true, // isVotingToken
+          decayPercentage,
+          decayInterval,
+        );
+
+      const receipt = await tx.wait();
+      const tokenDeployedEvent = receipt?.logs
+        .filter((log) => {
+          try {
+            return (
+              decayingTokenFactory.interface.parseLog({
+                topics: log.topics as string[],
+                data: log.data,
+              })?.name === 'TokenDeployed'
+            );
+          } catch (_) {
+            return false;
+          }
+        })
+        .map((log) =>
+          decayingTokenFactory.interface.parseLog({
+            topics: log.topics as string[],
+            data: log.data,
+          }),
+        )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
+
+      const tokenAddress = tokenDeployedEvent.args.tokenAddress;
+      console.log(`Decay token deployed at: ${tokenAddress}`);
+      const decayToken = await ethers.getContractAt(
+        'DecayingSpaceToken',
+        tokenAddress,
+      );
+
+      // Join the space
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter2);
+      console.log(
+        `Voter1 (${await voter1.getAddress()}) and Voter2 (${await voter2.getAddress()}) joined the space`,
+      );
+
+      // Mint tokens to voter1
+      const mintAmount = ethers.parseUnits('1000', 18);
+      await decayToken
+        .connect(executorSigner)
+        .mint(await voter1.getAddress(), mintAmount);
+      console.log(
+        `\nMinted ${ethers.formatUnits(mintAmount, 18)} tokens to Voter1`,
+      );
+
+      // Store mint timestamp for calculations
+      const initialBlock = await ethers.provider.getBlock('latest');
+      const initialTimestamp = initialBlock?.timestamp || 0;
+      console.log(
+        `Initial timestamp: ${initialTimestamp} (${new Date(
+          initialTimestamp * 1000,
+        ).toISOString()})`,
+      );
+
+      // Advance time by 1 decay interval
+      await ethers.provider.send('evm_increaseTime', [decayInterval]);
+      await ethers.provider.send('evm_mine', []);
+
+      const blockAfter1 = await ethers.provider.getBlock('latest');
+      const timestampAfter1 = blockAfter1?.timestamp || 0;
+      console.log(
+        `\nTimestamp after 1 interval: ${timestampAfter1} (${new Date(
+          timestampAfter1 * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Time elapsed: ${timestampAfter1 - initialTimestamp} seconds (${
+          (timestampAfter1 - initialTimestamp) / decayInterval
+        } intervals)`,
+      );
+
+      // Check voter1's balance (should show decay)
+      const balanceAfter1Interval = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      const expectedBalance1 = (mintAmount * BigInt(8000)) / BigInt(10000); // 80% after 20% decay
+      console.log(
+        `\nVoter1 balance after 1 interval: ${ethers.formatUnits(
+          balanceAfter1Interval,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Expected Voter1 balance: ${ethers.formatUnits(
+          expectedBalance1,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Decay amount: ${ethers.formatUnits(
+          mintAmount - balanceAfter1Interval,
+          18,
+        )} tokens (~20%)`,
+      );
+
+      expect(balanceAfter1Interval).to.be.closeTo(
+        expectedBalance1,
+        ethers.parseUnits('0.01', 18),
+      );
+
+      // Transfer half of the tokens to voter2
+      // This should automatically apply decay to voter1's balance first
+      console.log(`\n=== TRANSFERRING TOKENS FROM VOTER1 TO VOTER2 ===`);
+      const transferAmount = balanceAfter1Interval / 2n;
+      console.log(
+        `Transferring ${ethers.formatUnits(
+          transferAmount,
+          18,
+        )} tokens (half of current balance)`,
+      );
+
+      const transferTx = await decayToken
+        .connect(voter1)
+        .transfer(await voter2.getAddress(), transferAmount);
+      await transferTx.wait();
+
+      // Check both balances after transfer
+      const voter1BalanceAfterTransfer = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      const voter2BalanceAfterTransfer = await decayToken.balanceOf(
+        await voter2.getAddress(),
+      );
+
+      console.log(
+        `\nVoter1 balance after transfer: ${ethers.formatUnits(
+          voter1BalanceAfterTransfer,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Voter2 balance after transfer: ${ethers.formatUnits(
+          voter2BalanceAfterTransfer,
+          18,
+        )} tokens`,
+      );
+
+      // Voter1 should have decayed balance minus transfer
+      expect(voter1BalanceAfterTransfer).to.equal(
+        balanceAfter1Interval - transferAmount,
+      );
+
+      // Voter2 should have exactly the transferred amount
+      expect(voter2BalanceAfterTransfer).to.equal(transferAmount);
+
+      // Check lastUpdated timestamps for both accounts
+      const voter1LastUpdated = await decayToken.lastDecayTimestamp(
+        await voter1.getAddress(),
+      );
+      const voter2LastUpdated = await decayToken.lastDecayTimestamp(
+        await voter2.getAddress(),
+      );
+
+      console.log(
+        `\nVoter1 last updated: ${voter1LastUpdated} (${new Date(
+          Number(voter1LastUpdated) * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Voter2 last updated: ${voter2LastUpdated} (${new Date(
+          Number(voter2LastUpdated) * 1000,
+        ).toISOString()})`,
+      );
+
+      // Both should have recent timestamps from the transfer
+      const transferBlock = await ethers.provider.getBlock('latest');
+      const transferTimestamp = transferBlock?.timestamp || 0;
+
+      expect(voter1LastUpdated).to.be.closeTo(BigInt(transferTimestamp), 5n);
+      expect(voter2LastUpdated).to.be.closeTo(BigInt(transferTimestamp), 5n);
+
+      // Advance time by 2 more decay intervals
+      console.log(`\n=== ADVANCING TIME BY 2 MORE INTERVALS ===`);
+      await ethers.provider.send('evm_increaseTime', [decayInterval * 2]);
+      await ethers.provider.send('evm_mine', []);
+
+      const blockAfter3 = await ethers.provider.getBlock('latest');
+      const timestampAfter3 = blockAfter3?.timestamp || 0;
+      console.log(
+        `Timestamp after 3 intervals total: ${timestampAfter3} (${new Date(
+          timestampAfter3 * 1000,
+        ).toISOString()})`,
+      );
+      console.log(
+        `Time since transfer: ${timestampAfter3 - transferTimestamp} seconds (${
+          (timestampAfter3 - transferTimestamp) / decayInterval
+        } intervals)`,
+      );
+
+      // Both accounts should show decay from their last update (the transfer time)
+      const voter1BalanceAfter3 = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      const voter2BalanceAfter3 = await decayToken.balanceOf(
+        await voter2.getAddress(),
+      );
+
+      // Expected decay: 2 intervals of 20% decay
+      const expectedVoter1Balance =
+        (voter1BalanceAfterTransfer * BigInt(8000) * BigInt(8000)) /
+        (BigInt(10000) * BigInt(10000));
+      const expectedVoter2Balance =
+        (voter2BalanceAfterTransfer * BigInt(8000) * BigInt(8000)) /
+        (BigInt(10000) * BigInt(10000));
+
+      console.log(
+        `\nVoter1 balance after 3 intervals total: ${ethers.formatUnits(
+          voter1BalanceAfter3,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Expected Voter1 balance: ${ethers.formatUnits(
+          expectedVoter1Balance,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Voter1 decay since transfer: ${ethers.formatUnits(
+          voter1BalanceAfterTransfer - voter1BalanceAfter3,
+          18,
+        )} tokens`,
+      );
+
+      console.log(
+        `\nVoter2 balance after 3 intervals total: ${ethers.formatUnits(
+          voter2BalanceAfter3,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Expected Voter2 balance: ${ethers.formatUnits(
+          expectedVoter2Balance,
+          18,
+        )} tokens`,
+      );
+      console.log(
+        `Voter2 decay since transfer: ${ethers.formatUnits(
+          voter2BalanceAfterTransfer - voter2BalanceAfter3,
+          18,
+        )} tokens`,
+      );
+
+      expect(voter1BalanceAfter3).to.be.closeTo(
+        expectedVoter1Balance,
+        ethers.parseUnits('0.01', 18),
+      );
+
+      // Demonstrate how applyDecay updates storage
+      console.log(`\n=== APPLYING DECAY TO VOTER1 EXPLICITLY ===`);
+      await decayToken.applyDecay(await voter1.getAddress());
+
+      const voter1BalanceAfterApply = await decayToken.balanceOf(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Voter1 balance after applying decay: ${ethers.formatUnits(
+          voter1BalanceAfterApply,
+          18,
+        )} tokens`,
+      );
+      expect(voter1BalanceAfterApply).to.equal(voter1BalanceAfter3);
+
+      const voter1LastUpdatedAfterApply = await decayToken.lastDecayTimestamp(
+        await voter1.getAddress(),
+      );
+      console.log(
+        `Voter1 last updated after applying decay: ${voter1LastUpdatedAfterApply} (${new Date(
+          Number(voter1LastUpdatedAfterApply) * 1000,
+        ).toISOString()})`,
+      );
+
+      // Advance time by half an interval and mint to voter2 to demonstrate how minting affects decay
+      console.log(`\n=== TESTING MINTING WITH ONGOING DECAY FOR VOTER2 ===`);
+      await ethers.provider.send('evm_increaseTime', [decayInterval / 2]);
+      await ethers.provider.send('evm_mine', []);
+
+      // Check voter2's decayed balance before minting
+      const voter2BalanceBeforeMint = await decayToken.balanceOf(
+        await voter2.getAddress(),
+      );
+      console.log(
+        `Voter2 balance before minting (after 3.5 intervals): ${ethers.formatUnits(
+          voter2BalanceBeforeMint,
+          18,
+        )} tokens`,
+      );
+
+      // Mint more tokens to voter2
+      const additionalMint = ethers.parseUnits('500', 18);
+      await decayToken
+        .connect(executorSigner)
+        .mint(await voter2.getAddress(), additionalMint);
+      console.log(
+        `Minted additional ${ethers.formatUnits(
+          additionalMint,
+          18,
+        )} tokens to Voter2`,
+      );
+
+      // Check voter2's balance after minting
+      const voter2BalanceAfterMint = await decayToken.balanceOf(
+        await voter2.getAddress(),
+      );
+      console.log(
+        `Voter2 balance after minting: ${ethers.formatUnits(
+          voter2BalanceAfterMint,
+          18,
+        )} tokens`,
+      );
+
+      // Should apply decay before adding new tokens
+      expect(voter2BalanceAfterMint).to.be.closeTo(
+        voter2BalanceBeforeMint + additionalMint,
+        ethers.parseUnits('0.01', 18),
+      );
+
+      // Check lastUpdated timestamp (should be current)
+      const voter2LastUpdatedAfterMint = await decayToken.lastDecayTimestamp(
+        await voter2.getAddress(),
+      );
+      const mintBlock = await ethers.provider.getBlock('latest');
+      const mintTimestamp = mintBlock?.timestamp || 0;
+
+      console.log(
+        `Voter2 last updated after minting: ${voter2LastUpdatedAfterMint} (${new Date(
+          Number(voter2LastUpdatedAfterMint) * 1000,
+        ).toISOString()})`,
+      );
+      expect(voter2LastUpdatedAfterMint).to.be.closeTo(
+        BigInt(mintTimestamp),
+        5n,
+      );
+
+      console.log('\n=== MULTI-USER DECAY TEST WITH TRANSFERS COMPLETED ===');
+    });
+  });
+
   describe('Token Deployment via Proposals', function () {
     it('Should deploy both regular and decaying tokens via proposals', async function () {
       // Get our test fixtures
@@ -1118,7 +1840,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         imageUrl: 'https://test.com/image.png',
         unity: 51,
         quorum: 10,
-        votingPowerSource: 0, // Use 0 instead of 1 to properly set up voting power
+        votingPowerSource: 1,
         exitMethod: 1,
         joinMethod: 1,
         createToken: false,
@@ -1275,6 +1997,10 @@ describe('DAOSpaceFactoryImplementation', function () {
           }),
         )[0];
 
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
+
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const token = await ethers.getContractAt(
         'contracts/RegularSpaceToken.sol:SpaceToken',
@@ -1282,14 +2008,14 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Join the space
-      await spaceHelper.joinSpace(spaceId, voter1);
-      await spaceHelper.joinSpace(spaceId, voter2);
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter2);
 
       // Mint different amounts to different users
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await voter1.getAddress(), ethers.parseUnits('100', 18));
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await voter2.getAddress(), ethers.parseUnits('50', 18));
 
@@ -1382,7 +2108,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Join the space
-      await spaceHelper.joinSpace(spaceId, voter1);
+      await spaceHelper.joinSpace(Number(spaceId), voter1);
 
       // Mint tokens
       await decayToken
@@ -1521,7 +2247,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       expect(await token.maxSupply()).to.equal(maxSupply);
 
       // Mint exactly max supply
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await owner.getAddress(), maxSupply);
 
@@ -1532,7 +2258,9 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Try to mint more (should fail)
       await expect(
-        token.connect(executorSigner).mint(await voter1.getAddress(), 1),
+        (token as any)
+          .connect(executorSigner)
+          .mint(await voter1.getAddress(), 1),
       ).to.be.revertedWith('Mint would exceed maximum supply');
     });
 
@@ -1627,7 +2355,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Mint tokens to voter1
       const mintAmount = ethers.parseUnits('100', 18);
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await voter1.getAddress(), mintAmount);
 
@@ -1638,17 +2366,17 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Try to transfer tokens (should fail)
       await expect(
-        token
+        (token as any)
           .connect(voter1)
           .transfer(await voter2.getAddress(), ethers.parseUnits('10', 18)),
       ).to.be.revertedWith('Token transfers are disabled');
 
       // Try to use transferFrom (should also fail)
-      await token
+      await (token as any)
         .connect(voter1)
         .approve(await voter2.getAddress(), ethers.parseUnits('10', 18));
       await expect(
-        token
+        (token as any)
           .connect(voter2)
           .transferFrom(
             await voter1.getAddress(),
@@ -1749,7 +2477,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Mint tokens to voter1
       const mintAmount = ethers.parseUnits('100', 18);
-      await token
+      await (token as any)
         .connect(executorSigner)
         .mint(await voter1.getAddress(), mintAmount);
 
@@ -1760,7 +2488,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Transfer tokens (should succeed)
       const transferAmount = ethers.parseUnits('10', 18);
-      await token
+      await (token as any)
         .connect(voter1)
         .transfer(await voter2.getAddress(), transferAmount);
 
@@ -1773,10 +2501,10 @@ describe('DAOSpaceFactoryImplementation', function () {
       );
 
       // Test transferFrom functionality
-      await token
+      await (token as any)
         .connect(voter1)
         .approve(await owner.getAddress(), transferAmount);
-      await token
+      await (token as any)
         .connect(owner)
         .transferFrom(
           await voter1.getAddress(),

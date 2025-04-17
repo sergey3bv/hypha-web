@@ -7,4 +7,10 @@ interface IDecayingSpaceToken {
   function decayPercentage() external view returns (uint256);
 
   function applyDecay(address user) external;
+
+  /**
+   * @dev Returns the total supply with decay applied to all balances
+   * @return The current total supply after decay calculations
+   */
+  function getDecayedTotalSupply() external view returns (uint256);
 }

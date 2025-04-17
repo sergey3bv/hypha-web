@@ -94,8 +94,7 @@ contract VoteDecayTokenVotingPowerImplementation is
   /**
    * @dev Get total voting power from a specific space
    * @param _sourceSpaceId The space ID from which to derive total voting power
-   * @return The total voting power (total supply of the token)
-   * @notice This returns the raw total supply without decay applied
+   * @return The total voting power (total decayed supply of the token)
    */
   function getTotalVotingPower(
     uint256 _sourceSpaceId
@@ -104,9 +103,8 @@ contract VoteDecayTokenVotingPowerImplementation is
     address tokenAddress = spaceTokens[_sourceSpaceId];
     require(tokenAddress != address(0), 'Token not set for space');
 
-    // Note: This returns the total supply without decay applied
-    // For precise percentage calculations, client code should sum all decayed balances
-    return IERC20(tokenAddress).totalSupply();
+    // Return the decayed total supply instead of the raw total
+    return IDecayingSpaceToken(tokenAddress).getDecayedTotalSupply();
   }
 
   /**
