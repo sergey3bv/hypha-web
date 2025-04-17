@@ -1,10 +1,9 @@
 'use client';
 
-import { EditPersonSection } from '@hypha-platform/epics';
+import { EditPersonSection, SidePanel } from '@hypha-platform/epics';
 import { useMe } from '@hypha-platform/core/client';
 import { useJwt } from '@hypha-platform/core/client';
 import { useEditPersonOrchestrator } from '@core/people/client/hooks';
-import { SidePanel } from '../../../@aside/_components/side-panel';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import React from 'react';
