@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { DollarSignIcon } from 'lucide-react';
 import { ChevronDownIcon } from '@radix-ui/themes';
 import {
@@ -11,18 +10,35 @@ import {
   Image,
 } from '@hypha-platform/ui';
 
-interface Token {
+export interface Token {
   icon: string;
   symbol: string;
   name: string;
 }
 
-interface TokenPayoutFieldProps {
+export interface TokenPayout {
+  amount: string;
+  token: Token | null;
+}
+
+export interface TokenPayoutFieldProps {
+  value: TokenPayout;
+  onChange: (value: TokenPayout) => void;
   tokens: Token[];
 }
 
-export const TokenPayoutField = ({ tokens }: TokenPayoutFieldProps) => {
-  const [selectedToken, setSelectedToken] = useState<Token | null>(null);
+export const TokenPayoutField = ({
+  value,
+  onChange,
+  tokens,
+}: TokenPayoutFieldProps) => {
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange({ ...value, amount: e.target.value });
+  };
+
+  const handleTokenChange = (token: Token) => {
+    onChange({ ...value, token });
+  };
 
   return (
     <div className="flex justify-between w-full">
@@ -30,7 +46,9 @@ export const TokenPayoutField = ({ tokens }: TokenPayoutFieldProps) => {
       <div className="flex gap-2 items-center">
         <Input
           type="number"
-          leftIcon={<DollarSignIcon size={'16px'} />}
+          value={value.amount}
+          onChange={handleAmountChange}
+          leftIcon={<DollarSignIcon size="16px" />}
           placeholder="Type an amount"
         />
         <DropdownMenu>
@@ -41,16 +59,16 @@ export const TokenPayoutField = ({ tokens }: TokenPayoutFieldProps) => {
               className="flex justify-between items-center gap-2 min-w-[140px]"
             >
               <div className="flex items-center gap-2">
-                {selectedToken ? (
+                {value.token ? (
                   <>
                     <Image
-                      src={selectedToken.icon}
+                      src={value.token.icon}
                       width={20}
                       height={20}
-                      alt={`${selectedToken.name} icon`}
+                      alt={`${value.token.name} icon`}
                     />
                     <span className="text-2 text-neutral-11">
-                      {selectedToken.symbol}
+                      {value.token.symbol}
                     </span>
                   </>
                 ) : (
@@ -61,10 +79,10 @@ export const TokenPayoutField = ({ tokens }: TokenPayoutFieldProps) => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            {tokens?.map((token) => (
+            {tokens.map((token) => (
               <DropdownMenuItem
                 key={token.symbol}
-                onSelect={() => setSelectedToken(token)}
+                onSelect={() => handleTokenChange(token)}
               >
                 <Image
                   src={token.icon}
