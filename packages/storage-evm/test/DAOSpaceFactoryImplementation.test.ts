@@ -555,7 +555,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -637,7 +637,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -647,6 +647,10 @@ describe('DAOSpaceFactoryImplementation', function () {
             data: log.data,
           }),
         )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const token = await ethers.getContractAt(
@@ -733,7 +737,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -743,6 +747,10 @@ describe('DAOSpaceFactoryImplementation', function () {
             data: log.data,
           }),
         )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const decayToken = await ethers.getContractAt(
@@ -822,7 +830,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -832,6 +840,10 @@ describe('DAOSpaceFactoryImplementation', function () {
             data: log.data,
           }),
         )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const decayToken = await ethers.getContractAt(
@@ -948,7 +960,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -958,6 +970,10 @@ describe('DAOSpaceFactoryImplementation', function () {
             data: log.data,
           }),
         )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const decayToken = await ethers.getContractAt(
@@ -1120,7 +1136,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -1230,16 +1246,20 @@ describe('DAOSpaceFactoryImplementation', function () {
       const lastUpdated1 = await decayToken.lastDecayTimestamp(
         await voter1.getAddress(),
       );
+
       console.log(
         `\nLast updated timestamp: ${lastUpdated1} (${new Date(
           Number(lastUpdated1) * 1000,
         ).toISOString()})`,
       );
+
+      // For the first error around line 1925
+      // Convert the expression into a variable first
+      const matchesMintTime =
+        Number(lastUpdated1) <= initialTimestamp + 5 &&
+        Number(lastUpdated1) >= initialTimestamp - 5;
       console.log(
-        `Last updated matches mint time: ${
-          lastUpdated1 <= BigInt(initialTimestamp + 5) &&
-          lastUpdated1 >= BigInt(initialTimestamp - 5)
-        }`,
+        `Last updated matches mint time: ${matchesMintTime ? 'Yes' : 'No'}`,
       );
 
       // Apply decay to update storage
@@ -1262,17 +1282,19 @@ describe('DAOSpaceFactoryImplementation', function () {
       const lastUpdatedAfterApply = await decayToken.lastDecayTimestamp(
         await voter1.getAddress(),
       );
+
       console.log(
         `Last updated timestamp: ${lastUpdatedAfterApply} (${new Date(
           Number(lastUpdatedAfterApply) * 1000,
         ).toISOString()})`,
       );
-      console.log(
-        `Last updated is current: ${
-          lastUpdatedAfterApply <= BigInt(timestampAfter1 + 5) &&
-          lastUpdatedAfterApply >= BigInt(timestampAfter1 - 5)
-        }`,
-      );
+
+      // For the second error around line 1947
+      // Convert the expression into a variable first
+      const isCurrentTime =
+        lastUpdatedAfterApply <= BigInt(timestampAfter1 + 5) &&
+        lastUpdatedAfterApply >= BigInt(timestampAfter1 - 5);
+      console.log(`Last updated is current: ${isCurrentTime ? 'Yes' : 'No'}`);
 
       // Advance time by another 2 decay intervals for compounding decay
       console.log('\n=== ADVANCING TIME BY 2 MORE INTERVALS ===');
@@ -1434,7 +1456,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -1894,7 +1916,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       const proposalBeforeVoting = await daoProposals.getProposalCore(
         proposalId,
       );
-      expect(proposalBeforeVoting[3]).to.be.false; // Check that executed is false
+      expect(proposalBeforeVoting[3]).to.equal(false); // Check that executed is false
 
       // 5. Vote on the proposal with enough votes to pass
       // Vote with voter1 first
@@ -1916,7 +1938,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Verify the proposal was executed
       const finalProposal = await daoProposals.getProposalCore(proposalId);
-      expect(finalProposal[3]).to.be.true; // executed should be true
+      expect(finalProposal[3]).to.equal(true); // executed should be true
 
       // 6. Find the deployed token address by checking the TokenDeployed event
       const deployedEvents = await regularTokenFactory.queryFilter(
@@ -1986,7 +2008,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -2090,7 +2112,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -2100,6 +2122,10 @@ describe('DAOSpaceFactoryImplementation', function () {
             data: log.data,
           }),
         )[0];
+
+      if (!tokenDeployedEvent) {
+        throw new Error('Token deployment event not found');
+      }
 
       const tokenAddress = tokenDeployedEvent.args.tokenAddress;
       const decayToken = await ethers.getContractAt(
@@ -2222,7 +2248,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -2247,7 +2273,16 @@ describe('DAOSpaceFactoryImplementation', function () {
       expect(await token.maxSupply()).to.equal(maxSupply);
 
       // Mint exactly max supply
-      await (token as any)
+      interface MintableToken {
+        connect(signer: any): {
+          mint(to: string, amount: bigint): Promise<any>;
+          transfer(to: string, amount: bigint): Promise<any>;
+          approve(spender: string, amount: bigint): Promise<any>;
+          transferFrom(from: string, to: string, amount: bigint): Promise<any>;
+        };
+      }
+
+      await (token as unknown as MintableToken)
         .connect(executorSigner)
         .mint(await owner.getAddress(), maxSupply);
 
@@ -2329,7 +2364,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
@@ -2451,7 +2486,7 @@ describe('DAOSpaceFactoryImplementation', function () {
                 data: log.data,
               })?.name === 'TokenDeployed'
             );
-          } catch (_) {
+          } catch (_unused) {
             return false;
           }
         })
