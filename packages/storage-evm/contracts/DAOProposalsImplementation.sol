@@ -194,7 +194,7 @@ contract DAOProposalsImplementation is
     uint256 votingPower;
 
     // Check if this is a decaying token voting power source (ID 2)
-    if (votingPowerSourceId == 2) {
+    if (votingPowerSourceId == 3) {
       // For decaying tokens, apply decay before calculating voting power
       IDecayTokenVotingPower decayVotingPowerSource = IDecayTokenVotingPower(
         votingPowerSourceAddr
