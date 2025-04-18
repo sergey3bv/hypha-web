@@ -9,6 +9,7 @@ import {
   Input,
   Image,
 } from '@hypha-platform/ui';
+import { useFormContext } from 'react-hook-form';
 
 export interface Token {
   icon: string;
@@ -22,22 +23,31 @@ export interface TokenPayout {
 }
 
 export interface TokenPayoutFieldProps {
-  value: TokenPayout;
-  onChange: (value: TokenPayout) => void;
+  arrayFieldName: string;
+  arrayFieldIndex: number;
   tokens: Token[];
 }
 
 export const TokenPayoutField = ({
-  value,
-  onChange,
+  arrayFieldName,
+  arrayFieldIndex,
   tokens,
 }: TokenPayoutFieldProps) => {
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({ ...value, amount: e.target.value });
-  };
+  const { register, watch, setValue } = useFormContext();
+  console.debug('TokenPayoutField', {
+    [arrayFieldName]: watch(arrayFieldName),
+  });
 
+  // Define field names
+  const amountFieldName = `${arrayFieldName}.${arrayFieldIndex}.amount`;
+  const tokenFieldName = `${arrayFieldName}.${arrayFieldIndex}.token`;
+
+  // Watch the token field value
+  const selectedToken = watch(tokenFieldName);
+
+  // Handle token selection
   const handleTokenChange = (token: Token) => {
-    onChange({ ...value, token });
+    setValue(tokenFieldName, token, { shouldValidate: true });
   };
 
   return (
@@ -45,9 +55,8 @@ export const TokenPayoutField = ({
       <label className="text-2 text-neutral-11">Payment Request</label>
       <div className="flex gap-2 items-center">
         <Input
+          {...register(amountFieldName)}
           type="number"
-          value={value.amount}
-          onChange={handleAmountChange}
           leftIcon={<DollarSignIcon size="16px" />}
           placeholder="Type an amount"
         />
@@ -59,16 +68,16 @@ export const TokenPayoutField = ({
               className="flex justify-between items-center gap-2 min-w-[140px]"
             >
               <div className="flex items-center gap-2">
-                {value.token ? (
+                {selectedToken ? (
                   <>
                     <Image
-                      src={value.token.icon}
+                      src={selectedToken.icon}
                       width={20}
                       height={20}
-                      alt={`${value.token.name} icon`}
+                      alt={`${selectedToken.name} icon`}
                     />
                     <span className="text-2 text-neutral-11">
-                      {value.token.symbol}
+                      {selectedToken.symbol}
                     </span>
                   </>
                 ) : (

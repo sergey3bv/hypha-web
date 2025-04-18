@@ -3,10 +3,25 @@ import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { TokenPayoutFieldArray } from './token-payout-field-array';
+import { Form } from '@hypha-platform/ui';
+import { useForm } from 'react-hook-form';
+import { ReactNode } from 'react';
+
+const FormDecorator = ({ children }: { children: ReactNode }) => {
+  const methods = useForm();
+  return <Form {...methods}>{children}</Form>;
+};
 
 const meta = {
   component: TokenPayoutFieldArray,
   title: 'Epics/Agreements/TokenPayoutFieldArray',
+  decorators: [
+    (Story) => (
+      <FormDecorator>
+        <Story />
+      </FormDecorator>
+    ),
+  ],
 } satisfies Meta<typeof TokenPayoutFieldArray>;
 
 export default meta;

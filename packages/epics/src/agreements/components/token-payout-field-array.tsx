@@ -1,47 +1,55 @@
-import { useState } from 'react';
 import { Button } from '@hypha-platform/ui';
-import { TokenPayoutField, Token, TokenPayout } from './token-payout-field';
+import { TokenPayoutField, Token } from './token-payout-field';
 import { PlusIcon } from '@radix-ui/react-icons';
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import React from 'react';
 
 interface TokenPayoutFieldArrayProps {
   tokens: Token[];
-  onChange: (value: TokenPayout[]) => void;
+  name?: string;
 }
 
 export const TokenPayoutFieldArray = ({
   tokens,
-  onChange,
+  name = 'payouts',
 }: TokenPayoutFieldArrayProps) => {
-  const [fields, setFields] = useState<TokenPayout[]>([
-    { amount: '', token: null },
-  ]);
+  const { control, watch } = useFormContext();
 
-  const updateField = (index: number, newValue: TokenPayout) => {
-    const newFields = [...fields];
-    newFields[index] = newValue;
-    setFields(newFields);
-    onChange(newFields);
-  };
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name,
+  });
 
-  const addField = () => {
-    const newFields = [...fields, { amount: '', token: null }];
-    setFields(newFields);
-    onChange(newFields);
-  };
+  // Watch the entire field array for changes
+  const payouts = watch(name);
+  console.debug('TokenPayoutFieldArray', { payouts });
+
+  const handleAddField = React.useCallback(() => {
+    append({ amount: '', token: null });
+  }, []);
 
   return (
     <div className="flex flex-col gap-2 w-full">
       {fields.map((field, index) => (
-        <div key={index} className="flex items-end gap-2">
-          <TokenPayoutField
-            value={field}
-            onChange={(newValue) => updateField(index, newValue)}
-            tokens={tokens}
-          />
+        <div key={field.id} className="flex items-end gap-2">
+          <div className="flex-1">
+            <TokenPayoutField
+              arrayFieldName={name}
+              arrayFieldIndex={index}
+              tokens={tokens}
+            />
+          </div>
+          <Button
+            variant="ghost"
+            colorVariant="error"
+            onClick={() => remove(index)}
+          >
+            Remove
+          </Button>
         </div>
       ))}
       <div className="flex justify-end w-full">
-        <Button className="w-fit" onClick={addField} variant="ghost">
+        <Button className="w-fit" onClick={handleAddField} variant="ghost">
           <PlusIcon />
           Add
         </Button>
