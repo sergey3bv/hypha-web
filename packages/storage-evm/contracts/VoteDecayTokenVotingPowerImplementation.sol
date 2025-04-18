@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol';
 import './storage/TokenVotingPowerStorage.sol';
 import './interfaces/IDecayTokenVotingPower.sol';
 import './interfaces/IDecayingSpaceToken.sol';
@@ -16,6 +17,7 @@ contract VoteDecayTokenVotingPowerImplementation is
   Initializable,
   OwnableUpgradeable,
   UUPSUpgradeable,
+  ReentrancyGuardUpgradeable,
   TokenVotingPowerStorage,
   IDecayTokenVotingPower
 {
@@ -30,6 +32,7 @@ contract VoteDecayTokenVotingPowerImplementation is
   function initialize(address initialOwner) public initializer {
     __Ownable_init(initialOwner);
     __UUPSUpgradeable_init();
+    __ReentrancyGuard_init();
   }
 
   function _authorizeUpgrade(
@@ -109,6 +112,7 @@ contract VoteDecayTokenVotingPowerImplementation is
 
   /**
    * @dev Apply decay to a user's balance and return the updated voting power
+   *      Protected against re-entrancy.
    * @param _user The address to apply decay and check voting power for
    * @param _sourceSpaceId The space ID from which to derive voting power
    * @return The updated voting power after applying decay
@@ -116,13 +120,15 @@ contract VoteDecayTokenVotingPowerImplementation is
   function applyDecayAndGetVotingPower(
     address _user,
     uint256 _sourceSpaceId
-  ) external returns (uint256) {
+  ) external nonReentrant returns (uint256) {
     require(_sourceSpaceId > 0, 'Invalid space ID');
     address tokenAddress = spaceTokens[_sourceSpaceId];
     require(tokenAddress != address(0), 'Token not set for space');
 
     // Apply decay and get updated balance
+    // This external call could potentially lead to re-entrancy if the token is malicious
     IDecayingSpaceToken(tokenAddress).applyDecay(_user);
+    // State read after external call
     return IDecayingSpaceToken(tokenAddress).balanceOf(_user);
   }
 }
