@@ -418,7 +418,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       const spaceParams = {
         name: 'Space for Member Removal',
         description: 'Test Description',
-        imageUrl: 'https://test.com/image.png',
+        imageUrl: 'https://test.com/test.png',
         unity: 51,
         quorum: 51,
         votingPowerSource: 1,
