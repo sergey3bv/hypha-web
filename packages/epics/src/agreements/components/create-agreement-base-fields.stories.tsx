@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { CreateAgreementBaseFields } from './create-agreement-base-fields';
