@@ -95,7 +95,7 @@ export function PaymentSchedule({
 
       {selectedOption === 'Milestones' && (
         <div className="flex flex-col gap-2 items-end">
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className="flex items-center gap-2 w-full">
               <div className="flex-1">
                 <MilestoneField
