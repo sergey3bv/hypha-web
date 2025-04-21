@@ -93,14 +93,18 @@ contract DecayingSpaceToken is SpaceToken {
     }
 
     // Apply decay formula: balance * (1 - decayPercentage/10000)^periodsPassed
-    uint256 remainingPercentage = 10000;
-    for (uint256 i = 0; i < periodsPassed; i++) {
-      remainingPercentage =
-        (remainingPercentage * (10000 - decayPercentage)) /
-        10000;
+    uint256 factor = 10000 - decayPercentage; // e.g. 9900
+    uint256 acc = 10000; // 100%
+    uint256 n = periodsPassed;
+    while (n > 0) {
+      if ((n & 1) == 1) {
+        acc = (acc * factor) / 10000;
+      }
+      factor = (factor * factor) / 10000;
+      n >>= 1;
     }
 
-    return (currentBalance * remainingPercentage) / 10000;
+    return (currentBalance * acc) / 10000;
   }
 
   /**
