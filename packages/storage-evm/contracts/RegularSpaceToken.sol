@@ -18,7 +18,7 @@ contract SpaceToken is ERC20, ERC20Burnable, Ownable {
     uint256 _spaceId,
     uint256 _maxSupply,
     bool _transferable
-  ) ERC20(name, symbol) Ownable(msg.sender) {
+  ) ERC20(name, symbol) Ownable(_executor) {
     require(_executor != address(0), 'Executor cannot be zero address');
 
     executor = _executor;

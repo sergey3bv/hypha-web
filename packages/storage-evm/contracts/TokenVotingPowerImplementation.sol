@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import './storage/TokenVotingPowerStorage.sol';
+import './storage/RegularTokenVotingPowerStorage.sol';
 import './interfaces/IRegularTokenVotingPower.sol';
 
 /**
@@ -15,12 +15,9 @@ contract TokenVotingPowerImplementation is
   Initializable,
   OwnableUpgradeable,
   UUPSUpgradeable,
-  TokenVotingPowerStorage,
+  RegularTokenVotingPowerStorage,
   IRegularTokenVotingPower
 {
-  // Add storage for the authorized token factory
-  address public tokenFactory;
-
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
     _disableInitializers();

@@ -5,7 +5,7 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol';
-import './storage/TokenVotingPowerStorage.sol';
+import './storage/DecayTokenVotingPowerStorage.sol';
 import './interfaces/IDecayTokenVotingPower.sol';
 import './interfaces/IDecayingSpaceToken.sol';
 
@@ -18,12 +18,9 @@ contract VoteDecayTokenVotingPowerImplementation is
   OwnableUpgradeable,
   UUPSUpgradeable,
   ReentrancyGuardUpgradeable,
-  TokenVotingPowerStorage,
+  DecayTokenVotingPowerStorage,
   IDecayTokenVotingPower
 {
-  // Add storage for the authorized token factory
-  address public decayTokenFactory;
-
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
     _disableInitializers();

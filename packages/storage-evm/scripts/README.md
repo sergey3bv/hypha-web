@@ -132,3 +132,15 @@ npx nx run storage-evm:script ./scripts/dao-proposals.upgrade.ts --network base-
 ```bash
 npx nx run storage-evm:script ./scripts/token-factory.upgrade.ts --network base-mainnet
 ```
+
+### Upgrade Token Voting Power
+
+```bash
+npx nx run storage-evm:script ./scripts/token-voting-power.upgrade.ts --network base-mainnet
+```
+
+### Upgrade VoteDecay Voting Power
+
+```bash
+npx nx run storage-evm:script ./scripts/votedecay-voting-power.upgrade.ts --network base-mainnet
+```
