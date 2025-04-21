@@ -50,7 +50,7 @@ Once the voting period has commenced and the proposal has not been executed it c
 
 ## Contract Addresses
 
-- Mainnet: `0x...` (TBD)
+- Mainnet: `0x001bA7a00a259Fb12d7936455e292a60FC2bef14`
 
 ## Main Functions
 
