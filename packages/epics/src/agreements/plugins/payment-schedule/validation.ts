@@ -11,12 +11,12 @@ export type Milestone = {
 };
 
 export const validateMilestones = (milestones: Milestone[]): true | string => {
-  const total = milestones.reduce((sum, m) => sum + m.percentage, 0);
+  const total = milestones?.reduce((sum, m) => sum + m.percentage, 0);
 
   const now = new Date();
 
-  for (let i = 0; i < milestones.length; i++) {
-    const { dateRange } = milestones[i];
+  for (let i = 0; i < milestones?.length; i++) {
+    const { dateRange } = milestones?.[i];
 
     if (!dateRange?.from) return 'Each milestone must have a start date';
 
@@ -24,7 +24,7 @@ export const validateMilestones = (milestones: Milestone[]): true | string => {
       return 'First milestone must be in the future';
     }
 
-    const previousFrom = milestones[i - 1]?.dateRange?.from;
+    const previousFrom = milestones?.[i - 1]?.dateRange?.from;
     if (i > 0 && previousFrom && isBefore(dateRange.from, previousFrom)) {
       return `Milestone ${i + 1} must be after milestone ${i}`;
     }
