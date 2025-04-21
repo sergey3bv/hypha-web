@@ -1,12 +1,12 @@
 import { useFormContext } from 'react-hook-form';
-import { Recipient } from '../fields/recipient';
-import { PaymentFormValues } from '../../schemas/payment-form-plugin-schema';
+import { Recipient } from './recipient';
+import { RecipientFormValues } from '../../schemas/recipient-form-schema';
 
-export const PaymentFormPlugin = () => {
+export const RecipientField = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<PaymentFormValues>();
+  } = useFormContext<RecipientFormValues>();
 
   const recipientRegister = register('recipient');
 
