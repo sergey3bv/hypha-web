@@ -11,6 +11,7 @@ export const ButtonClose = ({ dropSegment }: { dropSegment: string }) => {
 
   return (
     <Button
+      asChild
       variant="ghost"
       colorVariant="neutral"
       className="absolute top-8 right-9"
