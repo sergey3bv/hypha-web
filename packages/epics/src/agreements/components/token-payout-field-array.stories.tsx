@@ -46,6 +46,6 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Payment Request/i)).toBeTruthy();
-    expect(canvas.getByText(/\Add/i)).toBeTruthy();
+    expect(canvas.getByText(/Add/i)).toBeTruthy();
   },
 };
