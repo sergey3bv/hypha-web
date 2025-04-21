@@ -11,6 +11,10 @@ export type Milestone = {
 };
 
 export const validateMilestones = (milestones: Milestone[]): true | string => {
+  if (!milestones || milestones.length === 0) {
+    return 'Milestones cannot be empty';
+  }
+
   const total = milestones.reduce((sum, m) => sum + m.percentage, 0);
   const now = new Date();
 

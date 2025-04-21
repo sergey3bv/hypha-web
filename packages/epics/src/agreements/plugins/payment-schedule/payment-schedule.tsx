@@ -1,6 +1,5 @@
-'use client';
-
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import { useEffect } from 'react';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -33,10 +32,16 @@ export function PaymentSchedule({
   });
 
   const selectedOption = watch(`${name}.option`);
-  const milestones = watch(`${name}.milestones`);
+  const milestones = watch(`${name}.milestones`) || [];
   const futureDate = watch(`${name}.futureDate`);
   const milestoneValidationResult = validateMilestones(milestones);
   const futureDateValidationResult = validateFutureDate(futureDate);
+
+  useEffect(() => {
+    if (!selectedOption) {
+      setValue(`${name}.option`, options[0]);
+    }
+  }, [selectedOption, setValue, name]);
 
   const handleOptionChange = (option: Option) => {
     setValue(`${name}.option`, option);
