@@ -44,6 +44,10 @@ export function CreateAgreementBaseFields({
 }: CreateAgreementFormProps) {
   const form = useFormContext<CreateAgreementFormData>();
 
+  if (!form) {
+    return <div>Form context is missing!</div>;
+  }
+
   return (
     <>
       <div className="flex gap-5 justify-between">

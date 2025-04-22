@@ -1,6 +1,6 @@
 import { Button } from '@hypha-platform/ui';
 import { TokenPayoutField, Token } from './token-payout-field';
-import { PlusIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import React from 'react';
 
@@ -38,12 +38,8 @@ export const TokenPayoutFieldArray = ({
               tokens={tokens}
             />
           </div>
-          <Button
-            variant="ghost"
-            colorVariant="error"
-            onClick={() => remove(index)}
-          >
-            Remove
+          <Button variant="ghost" onClick={() => remove(index)}>
+            <Cross2Icon />
           </Button>
         </div>
       ))}

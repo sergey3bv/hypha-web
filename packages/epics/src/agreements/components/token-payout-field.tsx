@@ -1,3 +1,5 @@
+'use client';
+
 import { DollarSignIcon } from 'lucide-react';
 import { ChevronDownIcon } from '@radix-ui/themes';
 import {
@@ -49,7 +51,9 @@ export const TokenPayoutField = ({
 
   return (
     <div className="flex justify-between w-full">
-      <label className="text-2 text-neutral-11">Payment Request</label>
+      <label className="text-2 text-neutral-11 flex items-center">
+        Payment Request
+      </label>
       <div className="flex gap-2 items-center">
         <Input
           {...register(amountFieldName)}
@@ -58,12 +62,8 @@ export const TokenPayoutField = ({
           placeholder="Type an amount"
         />
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button
-              variant="outline"
-              colorVariant="neutral"
-              className="flex justify-between items-center gap-2 min-w-[140px]"
-            >
+          <DropdownMenuTrigger asChild>
+            <div className="flex justify-between items-center gap-2 min-w-[140px] px-4 py-2 border border-neutral-7 rounded-md hover:bg-neutral-3 cursor-pointer">
               <div className="flex items-center gap-2">
                 {selectedToken ? (
                   <>
@@ -78,11 +78,13 @@ export const TokenPayoutField = ({
                     </span>
                   </>
                 ) : (
-                  <span className="text-2 text-neutral-11">Select a token</span>
+                  <span className="text-2 text-neutral-11 text-nowrap">
+                    Select a token
+                  </span>
                 )}
               </div>
               <ChevronDownIcon />
-            </Button>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {tokens.map((token) => (

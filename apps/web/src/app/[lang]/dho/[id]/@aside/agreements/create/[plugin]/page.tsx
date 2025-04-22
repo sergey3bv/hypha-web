@@ -1,8 +1,8 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { useMe } from '@hypha-platform/core/client';
-import { Plugin } from '../plugins';
+import { isPluginName, PLUGINS } from './plugins';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -11,15 +11,22 @@ import {
 } from '@hypha-platform/core/client';
 import { z } from 'zod';
 import React from 'react';
-import { Button, Form, Separator } from '@hypha-platform/ui';
-import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
+import dynamic from 'next/dynamic';
+
+const CreateAgreementBaseFields = dynamic(() =>
+  import('@hypha-platform/epics').then((mod) => mod.CreateAgreementBaseFields),
+);
+const SidePanel = dynamic(() =>
+  import('@hypha-platform/epics').then((mod) => mod.SidePanel),
+);
 
 const schemaCreateAgreementForm =
   schemaCreateAgreement.extend(createAgreementFiles);
 
 export default function CreateAgreement() {
-  const { lang, id } = useParams();
+  const { lang, id, plugin } = useParams();
   const { person } = useMe();
+  const isPlugin = isPluginName(plugin);
 
   const form = useForm<z.infer<typeof schemaCreateAgreementForm>>({
     resolver: zodResolver(schemaCreateAgreementForm),
@@ -38,6 +45,12 @@ export default function CreateAgreement() {
     [],
   );
 
+  if (!isPlugin) {
+    return notFound();
+  }
+
+  const Plugin = PLUGINS[plugin];
+
   return (
     <SidePanel>
       <FormProvider {...form}>
@@ -53,13 +66,9 @@ export default function CreateAgreement() {
             }}
             closeUrl={`/${lang}/dho/${id}/agreements`}
             isLoading={false}
-          />
-          <Separator />
-          <Plugin name="propose-contribution" />
-          <Separator />
-          <div className="flex justify-end w-full">
-            <Button type="submit">Publish</Button>
-          </div>
+          >
+            <Plugin />
+          </CreateAgreementBaseFields>
         </form>
       </FormProvider>
     </SidePanel>
