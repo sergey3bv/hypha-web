@@ -4,23 +4,21 @@ pragma solidity ^0.8.0;
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import './storage/RegularTokenVotingPowerStorage.sol';
-import './interfaces/IRegularTokenVotingPower.sol';
+import './storage/OwnershipTokenVotingPowerStorage.sol';
+import './interfaces/IOwnershipTokenVotingPower.sol';
+import './interfaces/IOwnershipSpaceToken.sol';
 
 /**
- * @title TokenVotingPower
- * @dev Manages voting power calculations based on ERC20 token holdings
+ * @title OwnershipTokenVotingPowerImplementation
+ * @dev Manages voting power calculations based on ownership token holdings
  */
-contract TokenVotingPowerImplementation is
+contract OwnershipTokenVotingPowerImplementation is
   Initializable,
   OwnableUpgradeable,
   UUPSUpgradeable,
-  RegularTokenVotingPowerStorage,
-  IRegularTokenVotingPower
+  OwnershipTokenVotingPowerStorage,
+  IOwnershipTokenVotingPower
 {
-  // Add mapping for multiple authorized token factories
-  mapping(address => bool) public authorizedTokenFactories;
-
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
     _disableInitializers();
@@ -39,41 +37,42 @@ contract TokenVotingPowerImplementation is
    * @dev Set the address of the token factory that can call setSpaceToken
    * @param _tokenFactory Address of the authorized token factory
    */
-  function setTokenFactory(address _tokenFactory) external onlyOwner {
+  function setOwnershipTokenFactory(address _tokenFactory) external onlyOwner {
     require(
       _tokenFactory != address(0),
       'Token factory cannot be zero address'
     );
-    tokenFactory = _tokenFactory;
-    authorizedTokenFactories[_tokenFactory] = true;
-    emit TokenFactorySet(_tokenFactory);
+    ownershipTokenFactory = _tokenFactory;
+    authorizedOwnershipTokenFactories[_tokenFactory] = true;
+    emit OwnershipTokenFactorySet(_tokenFactory);
   }
 
   /**
    * @dev Add another authorized token factory
    * @param _tokenFactory Address of the additional authorized token factory
    */
-  function addTokenFactory(address _tokenFactory) external onlyOwner {
+  function addOwnershipTokenFactory(address _tokenFactory) external onlyOwner {
     require(
       _tokenFactory != address(0),
       'Token factory cannot be zero address'
     );
-    authorizedTokenFactories[_tokenFactory] = true;
-    emit TokenFactorySet(_tokenFactory);
+    authorizedOwnershipTokenFactories[_tokenFactory] = true;
+    emit OwnershipTokenFactorySet(_tokenFactory);
   }
 
   /**
    * @dev Link a space with its voting token - can only be set by an authorized token factory
    * @param _spaceId The space ID to link
-   * @param _tokenAddress The ERC20 token address to use for voting power
+   * @param _tokenAddress The ownership token address to use for voting power
    */
   function setSpaceToken(
     uint256 _spaceId,
     address _tokenAddress
   ) external override {
     require(
-      msg.sender == tokenFactory || authorizedTokenFactories[msg.sender],
-      'Only token factory can set space token'
+      msg.sender == ownershipTokenFactory ||
+        authorizedOwnershipTokenFactories[msg.sender],
+      'Only ownership token factory can set space token'
     );
     require(_spaceId > 0, 'Invalid space ID');
     require(_tokenAddress != address(0), 'Invalid token address');
@@ -84,7 +83,7 @@ contract TokenVotingPowerImplementation is
   }
 
   /**
-   * @dev Get voting power for a user from a specific space based on token holdings
+   * @dev Get voting power for a user from a specific space based on ownership token holdings
    * @param _user The address to check voting power for
    * @param _sourceSpaceId The space ID from which to derive voting power
    * @return The voting power (token balance of the user)
@@ -97,7 +96,7 @@ contract TokenVotingPowerImplementation is
     address tokenAddress = spaceTokens[_sourceSpaceId];
     require(tokenAddress != address(0), 'Token not set for space');
 
-    return IERC20(tokenAddress).balanceOf(_user);
+    return IOwnershipSpaceToken(tokenAddress).balanceOf(_user);
   }
 
   /**
@@ -112,6 +111,13 @@ contract TokenVotingPowerImplementation is
     address tokenAddress = spaceTokens[_sourceSpaceId];
     require(tokenAddress != address(0), 'Token not set for space');
 
+    // Use IERC20 interface for total supply since it's a common method across token types
     return IERC20(tokenAddress).totalSupply();
   }
+}
+
+interface IERC20 {
+  function totalSupply() external view returns (uint256);
+
+  function balanceOf(address account) external view returns (uint256);
 }
