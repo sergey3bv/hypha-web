@@ -1,4 +1,4 @@
-import { EthAddress } from '../../../people/components/eth-address';
+import { EthAddress } from '../../people/components/eth-address';
 
 interface WalletAddressProps {
   address: string;

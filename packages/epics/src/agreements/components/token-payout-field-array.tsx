@@ -20,7 +20,6 @@ export const TokenPayoutFieldArray = ({
     name,
   });
 
-  // Watch the entire field array for changes
   const payouts = watch(name);
   console.debug('TokenPayoutFieldArray', { payouts });
 

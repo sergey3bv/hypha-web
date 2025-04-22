@@ -3,8 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TokenPayoutField } from './token-payout-field';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-import { ReactNode, useState } from 'react';
-import type { Token } from './token-payout-field';
+import { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form } from '@hypha-platform/ui';
 

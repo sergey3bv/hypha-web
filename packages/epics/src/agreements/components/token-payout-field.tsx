@@ -38,14 +38,11 @@ export const TokenPayoutField = ({
     [arrayFieldName]: watch(arrayFieldName),
   });
 
-  // Define field names
   const amountFieldName = `${arrayFieldName}.${arrayFieldIndex}.amount`;
   const tokenFieldName = `${arrayFieldName}.${arrayFieldIndex}.token`;
 
-  // Watch the token field value
   const selectedToken = watch(tokenFieldName);
 
-  // Handle token selection
   const handleTokenChange = (token: Token) => {
     setValue(tokenFieldName, token, { shouldValidate: true });
   };
