@@ -57,7 +57,7 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
       ) : (
         Array.from({ length: pages }).map((_, index) => (
           <AssetsList
-            basePath={basePath}
+            basePath={`${basePath}/token`}
             page={index + 1}
             key={`${basePath}-${index + 1}`}
             activeFilter={activeFilter}
