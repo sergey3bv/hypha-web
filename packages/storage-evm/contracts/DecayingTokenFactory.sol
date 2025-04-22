@@ -75,7 +75,10 @@ contract DecayingTokenFactory is
     uint256 decayInterval
   ) public override returns (address) {
     require(spacesContract != address(0), 'Spaces contract not set');
-    require(decayPercentage > 0, 'Decay percentage must be greater than 0');
+    require(
+      decayPercentage > 0 && decayPercentage <= 10_000,
+      'Decay percentage must be between 1 and 10000 bp'
+    );
     require(decayInterval > 0, 'Decay interval must be greater than 0');
 
     // If isVotingToken is true, ensure a decay voting power contract is set
