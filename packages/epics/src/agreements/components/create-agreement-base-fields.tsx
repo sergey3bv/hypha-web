@@ -13,6 +13,7 @@ import {
   UploadLeadImage,
   Separator,
   Badge,
+  AddAttachment,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
@@ -23,8 +24,6 @@ import { z } from 'zod';
 import { createAgreementFiles, schemaCreateAgreement } from '@core/governance';
 
 import Link from 'next/link';
-
-import { ReactNode } from 'react';
 
 const schemaCreateAgreementForm =
   schemaCreateAgreement.extend(createAgreementFiles);
@@ -125,6 +124,19 @@ export function CreateAgreementBaseFields({
                 placeholder="Type a brief description here..."
                 {...field}
               />
+            </FormControl>
+            <FormDescription />
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="attachments"
+        render={() => (
+          <FormItem>
+            <FormControl>
+              <AddAttachment />
             </FormControl>
             <FormDescription />
             <FormMessage />
