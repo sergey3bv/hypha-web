@@ -27,6 +27,7 @@ import { createAgreementFiles, schemaCreateAgreement } from '@core/governance';
 import Link from 'next/link';
 
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 const schemaCreateAgreementForm =
   schemaCreateAgreement.extend(createAgreementFiles);
@@ -35,6 +36,7 @@ export type CreateAgreementFormProps = {
   creator?: Creator;
   isLoading?: boolean;
   closeUrl: string;
+  children?: ReactNode;
   onCreate: (values: z.infer<typeof schemaCreateAgreementForm>) => void;
 };
 
@@ -42,6 +44,7 @@ export const CreateAgreementForm = ({
   creator,
   isLoading,
   closeUrl,
+  children,
   onCreate,
 }: CreateAgreementFormProps) => {
   const form = useForm<z.infer<typeof schemaCreateAgreementForm>>({
@@ -140,6 +143,8 @@ export const CreateAgreementForm = ({
             </FormItem>
           )}
         />
+        <Separator />
+        {children}
         <div className="flex justify-end w-full">
           <Button
             type="submit"
