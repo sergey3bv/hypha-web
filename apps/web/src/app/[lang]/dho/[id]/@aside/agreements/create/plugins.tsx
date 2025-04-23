@@ -1,4 +1,3 @@
-import { ParamValue } from 'next/dist/server/request/params';
 import dynamic from 'next/dynamic';
 
 const LoadingPlugin = ({ plugin }: { plugin: string }) => {
@@ -15,8 +14,7 @@ export const PLUGINS = {
   ),
 };
 
-export const isPluginName = (
-  mayBePluginName: ParamValue,
-): mayBePluginName is keyof typeof PLUGINS => {
-  return typeof mayBePluginName === 'string' && mayBePluginName in PLUGINS;
+export const Plugin = ({ name }: { name: keyof typeof PLUGINS }) => {
+  const PluginCmp = PLUGINS[name];
+  return <PluginCmp />;
 };

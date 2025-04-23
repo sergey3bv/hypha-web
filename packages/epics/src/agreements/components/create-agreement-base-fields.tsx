@@ -35,14 +35,12 @@ export type CreateAgreementFormProps = {
   creator?: Creator;
   isLoading?: boolean;
   closeUrl: string;
-  children?: ReactNode;
 };
 
 export function CreateAgreementBaseFields({
   creator,
   isLoading = false,
   closeUrl,
-  children,
 }: CreateAgreementFormProps) {
   const form = useFormContext<CreateAgreementFormData>();
 
@@ -129,17 +127,6 @@ export function CreateAgreementBaseFields({
           </FormItem>
         )}
       />
-      <Separator />
-      {children}
-      <div className="flex justify-end w-full">
-        <Button
-          type="submit"
-          variant={isLoading ? 'outline' : 'default'}
-          disabled={isLoading}
-        >
-          Publish
-        </Button>
-      </div>
     </>
   );
 }

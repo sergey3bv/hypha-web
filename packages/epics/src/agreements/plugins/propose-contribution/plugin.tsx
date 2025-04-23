@@ -9,13 +9,10 @@ import {
 } from '@hypha-platform/ui';
 import { useFormContext } from 'react-hook-form';
 import { schemaProposeContribution } from './validation';
+import { z } from 'zod';
 
 export const ProposeContributionPlugin = () => {
-  const methods = useFormContext();
-
-  console.debug('ProposeContributionPlugin', {
-    ProposeContributionPlugin: methods.watch('ProposeContributionPlugin'),
-  });
+  const methods = useFormContext<z.infer<typeof schemaProposeContribution>>();
 
   return (
     <div>
