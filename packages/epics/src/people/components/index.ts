@@ -8,3 +8,4 @@ export * from './members-list';
 export * from './members-section';
 export * from './person-head';
 export * from './edit-person-section';
+export * from './eth-address';

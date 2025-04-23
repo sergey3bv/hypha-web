@@ -1,12 +1,13 @@
+import { z } from 'zod';
 import { useFormContext } from 'react-hook-form';
 import { Recipient } from './recipient';
-import { RecipientFormValues } from '../../../schemas/recipient-form-schema';
+import { schemaProposeContribution } from '../validation';
 
 export const RecipientField = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<RecipientFormValues>();
+  } = useFormContext<z.infer<typeof schemaProposeContribution>>();
 
   const recipientRegister = register('recipient');
 

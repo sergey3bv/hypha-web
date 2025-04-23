@@ -3,7 +3,6 @@
 import { DollarSignIcon } from 'lucide-react';
 import { ChevronDownIcon } from '@radix-ui/themes';
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
