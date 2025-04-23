@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CreateAgreementForm } from './create-agreement-form';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { CreateAgreementBaseFields } from './create-agreement-base-fields';
 
 const meta = {
-  component: CreateAgreementForm,
+  component: CreateAgreementBaseFields,
   title: 'Epics/Agreements/CreateAgreementForm',
-} satisfies Meta<typeof CreateAgreementForm>;
+} satisfies Meta<typeof CreateAgreementBaseFields>;
 
 export default meta;
 
-type Story = StoryObj<typeof CreateAgreementForm>;
+type Story = StoryObj<typeof CreateAgreementBaseFields>;
 
 export const Default: Story = {
   args: {
@@ -21,9 +21,6 @@ export const Default: Story = {
       surname: 'Surname',
     },
     isLoading: false,
-    onCreate: () => {
-      console.log('Publish proposal');
-    },
     closeUrl: '/',
   },
   play: async ({ canvasElement }) => {

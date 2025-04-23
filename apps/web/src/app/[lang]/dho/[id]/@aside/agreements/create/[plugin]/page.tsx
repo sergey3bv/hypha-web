@@ -1,6 +1,6 @@
 'use client';
 
-import { CreateAgreementForm, SidePanel } from '@hypha-platform/epics';
+import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
 import { notFound, useParams } from 'next/navigation';
 import { useMe } from '@hypha-platform/core/client';
 import { isPluginName, PLUGINS } from './plugins';
@@ -18,7 +18,7 @@ export default function CreateAgreement() {
 
   return (
     <SidePanel>
-      <CreateAgreementForm
+      <CreateAgreementBaseFields
         creator={{
           avatar: person?.avatarUrl || '',
           name: person?.name || '',
@@ -31,7 +31,7 @@ export default function CreateAgreement() {
         isLoading={false}
       >
         <Plugin />
-      </CreateAgreementForm>
+      </CreateAgreementBaseFields>
     </SidePanel>
   );
 }
