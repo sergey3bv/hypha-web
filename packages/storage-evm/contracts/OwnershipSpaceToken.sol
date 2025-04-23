@@ -40,7 +40,7 @@ contract OwnershipSpaceToken is SpaceToken {
     require(msg.sender == executor, 'Only executor can transfer tokens');
 
     // Check that recipient is a member of the space
-    require(_isSpaceMember(to), 'Recipient must be a space member');
+    require(_isSpaceMember(to), 'Can only transfer to space members');
 
     // Execute the transfer using the parent implementation
     return super.transfer(to, amount);
@@ -59,7 +59,7 @@ contract OwnershipSpaceToken is SpaceToken {
     require(msg.sender == executor, 'Only executor can transfer tokens');
 
     // Check that recipient is a member of the space
-    require(_isSpaceMember(to), 'Recipient must be a space member');
+    require(_isSpaceMember(to), 'Can only transfer to space members');
 
     // Bypass allowance check when executor is transferring
     _transfer(from, to, amount);

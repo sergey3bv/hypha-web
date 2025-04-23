@@ -43,20 +43,6 @@ contract OwnershipTokenVotingPowerImplementation is
       'Token factory cannot be zero address'
     );
     ownershipTokenFactory = _tokenFactory;
-    authorizedOwnershipTokenFactories[_tokenFactory] = true;
-    emit OwnershipTokenFactorySet(_tokenFactory);
-  }
-
-  /**
-   * @dev Add another authorized token factory
-   * @param _tokenFactory Address of the additional authorized token factory
-   */
-  function addOwnershipTokenFactory(address _tokenFactory) external onlyOwner {
-    require(
-      _tokenFactory != address(0),
-      'Token factory cannot be zero address'
-    );
-    authorizedOwnershipTokenFactories[_tokenFactory] = true;
     emit OwnershipTokenFactorySet(_tokenFactory);
   }
 
@@ -70,8 +56,7 @@ contract OwnershipTokenVotingPowerImplementation is
     address _tokenAddress
   ) external override {
     require(
-      msg.sender == ownershipTokenFactory ||
-        authorizedOwnershipTokenFactories[msg.sender],
+      msg.sender == ownershipTokenFactory,
       'Only ownership token factory can set space token'
     );
     require(_spaceId > 0, 'Invalid space ID');
@@ -114,10 +99,4 @@ contract OwnershipTokenVotingPowerImplementation is
     // Use IERC20 interface for total supply since it's a common method across token types
     return IERC20(tokenAddress).totalSupply();
   }
-}
-
-interface IERC20 {
-  function totalSupply() external view returns (uint256);
-
-  function balanceOf(address account) external view returns (uint256);
 }
