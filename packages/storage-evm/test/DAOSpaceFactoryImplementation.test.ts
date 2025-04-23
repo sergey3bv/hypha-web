@@ -135,11 +135,6 @@ describe('DAOSpaceFactoryImplementation', function () {
       await regularTokenFactory.getAddress(),
     );
 
-    // Optionally add the ownershipTokenFactory as an additional authorized factory
-    await tokenVotingPower.addTokenFactory(
-      await ownershipTokenFactory.getAddress(),
-    );
-
     // Set DAOSpaceFactory in DecayTokenVotingPower
     await decayTokenVotingPower.setDecayTokenFactory(
       await decayingTokenFactory.getAddress(),
@@ -2608,14 +2603,16 @@ describe('DAOSpaceFactoryImplementation', function () {
     let testTokenFactory;
 
     before(async function () {
-      const { owner, daoSpaceFactory } = await loadFixture(deployFixture);
-
-      // Deploy a dedicated OwnershipTokenVotingPower implementation
-      const OwnershipTokenVotingPower = await ethers.getContractFactory(
-        'OwnershipTokenVotingPowerImplementation',
+      const { owner, daoSpaceFactory, tokenVotingPower } = await loadFixture(
+        deployFixture,
       );
-      ownershipTokenVotingPower = await upgrades.deployProxy(
-        OwnershipTokenVotingPower,
+
+      // Deploy a dedicated OwnershipTokenFactory for tests FIRST
+      const OwnershipTokenFactory = await ethers.getContractFactory(
+        'OwnershipTokenFactory',
+      );
+      testTokenFactory = await upgrades.deployProxy(
+        OwnershipTokenFactory,
         [owner.address],
         {
           initializer: 'initialize',
@@ -2623,12 +2620,17 @@ describe('DAOSpaceFactoryImplementation', function () {
         },
       );
 
-      // Deploy a dedicated OwnershipTokenFactory for tests
-      const OwnershipTokenFactory = await ethers.getContractFactory(
-        'OwnershipTokenFactory',
+      // Now we can set it in TokenVotingPower since testTokenFactory is defined
+      await tokenVotingPower.setTokenFactory(
+        await testTokenFactory.getAddress(),
       );
-      testTokenFactory = await upgrades.deployProxy(
-        OwnershipTokenFactory,
+
+      // Deploy a dedicated OwnershipTokenVotingPower implementation
+      const OwnershipTokenVotingPower = await ethers.getContractFactory(
+        'OwnershipTokenVotingPowerImplementation',
+      );
+      ownershipTokenVotingPower = await upgrades.deployProxy(
+        OwnershipTokenVotingPower,
         [owner.address],
         {
           initializer: 'initialize',
@@ -2647,23 +2649,7 @@ describe('DAOSpaceFactoryImplementation', function () {
         await testTokenFactory.getAddress(),
       );
 
-      // Verify the setup
-      console.log(
-        'Test setup - Ownership Token Factory address:',
-        await testTokenFactory.getAddress(),
-      );
-      console.log(
-        'Test setup - Ownership Token Factory spacesContract:',
-        await testTokenFactory.spacesContract(),
-      );
-      console.log(
-        'Test setup - Ownership Token Factory votingPowerContract:',
-        await testTokenFactory.votingPowerContract(),
-      );
-      console.log(
-        'Test setup - Ownership Token Voting Power factory:',
-        await ownershipTokenVotingPower.ownershipTokenFactory(),
-      );
+      // Rest of the existing code...
     });
 
     it('Should deploy an ownership token with correct properties', async function () {

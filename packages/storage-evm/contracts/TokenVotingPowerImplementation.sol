@@ -18,9 +18,6 @@ contract TokenVotingPowerImplementation is
   RegularTokenVotingPowerStorage,
   IRegularTokenVotingPower
 {
-  // Add mapping for multiple authorized token factories
-  mapping(address => bool) public authorizedTokenFactories;
-
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
     _disableInitializers();
@@ -45,20 +42,6 @@ contract TokenVotingPowerImplementation is
       'Token factory cannot be zero address'
     );
     tokenFactory = _tokenFactory;
-    authorizedTokenFactories[_tokenFactory] = true;
-    emit TokenFactorySet(_tokenFactory);
-  }
-
-  /**
-   * @dev Add another authorized token factory
-   * @param _tokenFactory Address of the additional authorized token factory
-   */
-  function addTokenFactory(address _tokenFactory) external onlyOwner {
-    require(
-      _tokenFactory != address(0),
-      'Token factory cannot be zero address'
-    );
-    authorizedTokenFactories[_tokenFactory] = true;
     emit TokenFactorySet(_tokenFactory);
   }
 
@@ -72,7 +55,7 @@ contract TokenVotingPowerImplementation is
     address _tokenAddress
   ) external override {
     require(
-      msg.sender == tokenFactory || authorizedTokenFactories[msg.sender],
+      msg.sender == tokenFactory,
       'Only token factory can set space token'
     );
     require(_spaceId > 0, 'Invalid space ID');
