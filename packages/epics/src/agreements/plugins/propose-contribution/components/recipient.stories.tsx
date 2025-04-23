@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Recipient } from './recipient';
+import { Recipient } from '../../../components/recipient';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 

@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { Recipient } from './recipient';
-import { RecipientFormValues } from '../schemas/recipient-form-schema';
+import { RecipientFormValues } from '../../../schemas/recipient-form-schema';
 
 export const RecipientField = () => {
   const {

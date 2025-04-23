@@ -10,8 +10,8 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { schemaProposeContribution } from './validation';
 import { z } from 'zod';
-import { RecipientField } from '../../components/recipient-field';
-import { TokenPayoutFieldArray } from '../../components/token-payout-field-array';
+import { RecipientField } from './components/recipient-field';
+import { TokenPayoutFieldArray } from './components/token-payout-field-array';
 
 export const ProposeContributionPlugin = () => {
   const methods = useFormContext<z.infer<typeof schemaProposeContribution>>();

@@ -2,7 +2,7 @@
 
 import { notFound, useParams } from 'next/navigation';
 import { useMe } from '@hypha-platform/core/client';
-import { isPluginName, PLUGINS } from './plugins';
+import { isPluginName, PLUGINS } from '../plugins';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
