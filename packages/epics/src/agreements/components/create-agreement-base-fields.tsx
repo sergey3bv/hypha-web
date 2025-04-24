@@ -133,10 +133,10 @@ export function CreateAgreementBaseFields({
       <FormField
         control={form.control}
         name="attachments"
-        render={() => (
+        render={({ field }) => (
           <FormItem>
             <FormControl>
-              <AddAttachment />
+              <AddAttachment onChange={field.onChange} />
             </FormControl>
             <FormDescription />
             <FormMessage />

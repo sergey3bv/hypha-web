@@ -9,7 +9,16 @@ export const ProposeContributionPlugin = () => {
     <div className="flex flex-col gap-4">
       <RecipientField />
       <Separator />
-      <TokenPayoutFieldArray tokens={[]} name="payouts" />
+      <TokenPayoutFieldArray
+        tokens={[
+          {
+            icon: 'https://github.com/shadcn.png',
+            symbol: 'BTC',
+            name: 'Bitcoin',
+          },
+        ]}
+        name="payouts"
+      />
     </div>
   );
 };

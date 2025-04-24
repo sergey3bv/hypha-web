@@ -1,8 +1,21 @@
-import { Button } from '@hypha-platform/ui';
-import { TokenPayoutField, Token } from './token-payout-field';
+'use client';
+
+import { useFormContext, useFieldArray } from 'react-hook-form';
+import { TokenPayoutField } from './token-payout-field';
+import {
+  Button,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from '@hypha-platform/ui';
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
-import { useFieldArray, useFormContext, Controller } from 'react-hook-form';
-import React from 'react';
+
+interface Token {
+  icon: string;
+  symbol: string;
+  name: string;
+}
 
 interface TokenPayoutFieldArrayProps {
   tokens: Token[];
@@ -13,41 +26,35 @@ export const TokenPayoutFieldArray = ({
   tokens,
   name = 'payouts',
 }: TokenPayoutFieldArrayProps) => {
-  const { control, watch } = useFormContext();
-
+  const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name,
   });
 
-  const payouts = watch(name);
-  console.debug('TokenPayoutFieldArray', { payouts });
-
-  const handleAddField = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      append({ amount: '', token: null });
-    },
-    [append],
-  );
+  const handleAddField = () => {
+    append({ amount: '', token: '' });
+  };
 
   return (
     <div className="flex flex-col gap-2 w-full">
       {fields.map((field, index) => (
         <div key={field.id} className="flex items-end gap-2">
           <div className="flex-1">
-            <Controller
+            <FormField
               control={control}
-              name={`${name}[${index}]`}
-              render={({ field: payoutField }) => (
-                <TokenPayoutField
-                  arrayFieldName={name}
-                  arrayFieldIndex={index}
-                  tokens={tokens}
-                  onChange={(value) => {
-                    payoutField.onChange(value);
-                  }}
-                />
+              name={`${name}.${index}`}
+              render={({ field: { value, onChange } }) => (
+                <FormItem>
+                  <FormControl>
+                    <TokenPayoutField
+                      value={value}
+                      onChange={onChange}
+                      tokens={tokens}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
             />
           </div>

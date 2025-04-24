@@ -5,28 +5,27 @@ import { useMe } from '@hypha-platform/core/client';
 import { Plugin } from '../plugins';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  createAgreementFiles,
-  schemaCreateAgreement,
-} from '@hypha-platform/core/client';
+import { schemaCreateAgreementForm } from '@hypha-platform/core/client';
 import { z } from 'zod';
 import React from 'react';
 import { Button, Separator } from '@hypha-platform/ui';
 import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
 
-const schemaCreateAgreementForm =
-  schemaCreateAgreement.extend(createAgreementFiles);
+type FormValues = z.infer<typeof schemaCreateAgreementForm>;
 
 export default function CreateAgreement() {
   const { lang, id } = useParams();
   const { person } = useMe();
 
-  const form = useForm<z.infer<typeof schemaCreateAgreementForm>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(schemaCreateAgreementForm),
     defaultValues: {
       title: '',
       description: '',
       leadImage: undefined,
+      attachments: undefined,
+      recipient: '',
+      payouts: [],
     },
   });
 
@@ -54,7 +53,6 @@ export default function CreateAgreement() {
             closeUrl={`/${lang}/dho/${id}/agreements`}
             isLoading={false}
           />
-          <Separator />
           <Plugin name="propose-contribution" />
           <Separator />
           <div className="flex justify-end w-full">

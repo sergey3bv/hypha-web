@@ -10,54 +10,35 @@ import {
   Input,
   Image,
 } from '@hypha-platform/ui';
-import { useFormContext } from 'react-hook-form';
 
-export interface Token {
+interface Token {
   icon: string;
   symbol: string;
   name: string;
 }
 
-export interface TokenPayout {
-  amount: string;
-  token: Token | null;
-}
-
-export interface TokenPayoutFieldProps {
-  arrayFieldName: string;
-  arrayFieldIndex: number;
+interface TokenPayoutFieldProps {
+  value: {
+    amount: string;
+    token: string;
+  };
+  onChange: (val: { amount: string; token: string }) => void;
   tokens: Token[];
-  onChange: (value: TokenPayout) => void;
 }
 
 export const TokenPayoutField = ({
-  arrayFieldName,
-  arrayFieldIndex,
-  tokens,
+  value,
   onChange,
+  tokens,
 }: TokenPayoutFieldProps) => {
-  const { register, watch, setValue } = useFormContext();
-  console.debug('TokenPayoutField', {
-    [arrayFieldName]: watch(arrayFieldName),
-  });
-
-  const amountFieldName = `${arrayFieldName}.${arrayFieldIndex}.amount`;
-  const tokenFieldName = `${arrayFieldName}.${arrayFieldIndex}.token`;
-
-  const selectedToken = watch(tokenFieldName);
+  const selectedToken = tokens.find((t) => t.symbol === value.token);
 
   const handleTokenChange = (token: Token) => {
-    onChange({
-      amount: watch(amountFieldName),
-      token,
-    });
+    onChange({ amount: value.amount, token: token.symbol });
   };
 
-  const handleAmountChange = (value: string) => {
-    onChange({
-      amount: value,
-      token: selectedToken,
-    });
+  const handleAmountChange = (amount: string) => {
+    onChange({ amount, token: value.token });
   };
 
   return (
@@ -68,7 +49,7 @@ export const TokenPayoutField = ({
       <div className="flex gap-2 items-center">
         {selectedToken && (
           <Input
-            {...register(amountFieldName)}
+            value={value.amount}
             type="number"
             leftIcon={<DollarSignIcon size="16px" />}
             placeholder="Type an amount"
@@ -85,7 +66,7 @@ export const TokenPayoutField = ({
                       src={selectedToken.icon}
                       width={20}
                       height={20}
-                      alt={`${selectedToken.name} icon`}
+                      alt={selectedToken.name}
                     />
                     <span className="text-2 text-neutral-11">
                       {selectedToken.symbol}
@@ -110,7 +91,7 @@ export const TokenPayoutField = ({
                   src={token.icon}
                   width={24}
                   height={24}
-                  alt={`${token.name} icon`}
+                  alt={token.name}
                   className="mr-2"
                 />
                 <span className="text-2 text-neutral-11">{token.symbol}</span>
