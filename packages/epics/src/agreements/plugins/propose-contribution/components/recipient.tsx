@@ -43,6 +43,7 @@ export const Recipient = ({
       })),
     [recipients],
   );
+
   const handleChange = useCallback(
     (value: string) => {
       const lowerValue = value.toLowerCase();
@@ -103,7 +104,7 @@ export const Recipient = ({
           />
         </div>
       </div>
-      <WalletAddress address={selected?.address || ''} />
+      {selected && <WalletAddress address={selected.address} />}
     </div>
   );
 };
