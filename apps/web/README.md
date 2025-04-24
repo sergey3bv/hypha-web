@@ -17,7 +17,7 @@
       captcha
       scan-code
 
-    agreements/
+    governance/
       history/
       create/
         contribution/
@@ -25,16 +25,16 @@
         badge/
         assignment/
 
-    
+
     election/
 
-    people/ 
+    people/
 
     treasury/
       payout-requests/
       history/
 
-    configuration/ 
+    configuration/
       general/
       structure/
         roles/

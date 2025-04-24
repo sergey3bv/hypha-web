@@ -3,7 +3,7 @@
  * 1. Truncating the path after number of segments
  *
  * @example
- * cleanPath('/de/dho/my-dho/agreements/something/else') => '/de/dho/my-dho/agreements'
+ * cleanPath('/de/dho/my-dho/governance/something/else') => '/de/dho/my-dho/governance'
  */
 export const cleanPath = (pathname: string, keepSegments = 4): string => {
   return pathname

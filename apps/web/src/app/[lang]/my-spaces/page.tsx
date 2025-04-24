@@ -13,7 +13,7 @@ import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { createSpaceService } from '@hypha-platform/core/server';
-import { getDhoPathAgreements } from '../dho/[id]/@tab/agreements/constants';
+import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -79,7 +79,7 @@ export default async function Index(props: PageProps) {
         >
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
-              <Link href={getDhoPathAgreements(lang, space.slug as string)}>
+              <Link href={getDhoPathGovernance(lang, space.slug as string)}>
                 <SpaceCard
                   description={space.description as string}
                   icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
@@ -107,7 +107,7 @@ export default async function Index(props: PageProps) {
                 >
                   <Link
                     className="w-96"
-                    href={getDhoPathAgreements(lang, space.slug as string)}
+                    href={getDhoPathGovernance(lang, space.slug as string)}
                   >
                     <SpaceCard
                       description={space.description as string}

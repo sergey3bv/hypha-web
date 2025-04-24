@@ -11,7 +11,7 @@ export default async function AgreementsPage(props: PageProps) {
 
   const { lang, id } = params;
 
-  const basePath = `/${lang}/dho/${id}/agreements`;
+  const basePath = `/${lang}/dho/${id}/governance`;
 
   return (
     <div className="flex flex-col gap-6 py-4">

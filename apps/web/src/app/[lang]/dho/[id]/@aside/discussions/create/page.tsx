@@ -3,7 +3,7 @@
 import { CreateForm, SidePanel } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 import { Locale } from '@hypha-platform/i18n';
-import { getDhoPathAgreements } from '../../../@tab/agreements/constants';
+import { getDhoPathGovernance } from '../../../@tab/governance/constants';
 export default function Loading() {
   const { id, lang } = useParams();
 
@@ -16,7 +16,7 @@ export default function Loading() {
           name: 'Name',
           surname: 'Surname',
         }}
-        closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
+        closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
         type="Discussion"
       />
     </SidePanel>

@@ -15,7 +15,7 @@ export default function CreateAgreement() {
           name: person?.name || '',
           surname: person?.surname || '',
         }}
-        closeUrl={`/${lang}/dho/${id}/agreements`}
+        closeUrl={`/${lang}/dho/${id}/governance`}
         onCreate={() => {
           console.log('Publish proposal');
         }}
