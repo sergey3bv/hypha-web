@@ -23,9 +23,13 @@ export const TokenPayoutFieldArray = ({
   const payouts = watch(name);
   console.debug('TokenPayoutFieldArray', { payouts });
 
-  const handleAddField = React.useCallback(() => {
-    append({ amount: '', token: null });
-  }, []);
+  const handleAddField = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      append({ amount: '', token: null });
+    },
+    [],
+  );
 
   return (
     <div className="flex flex-col gap-2 w-full">
