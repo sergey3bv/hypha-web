@@ -1,7 +1,7 @@
 import { Button } from '@hypha-platform/ui';
 import { TokenPayoutField, Token } from './token-payout-field';
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
-import { useFieldArray, useFormContext } from 'react-hook-form';
+import { useFieldArray, useFormContext, Controller } from 'react-hook-form';
 import React from 'react';
 
 interface TokenPayoutFieldArrayProps {
@@ -28,7 +28,7 @@ export const TokenPayoutFieldArray = ({
       e.preventDefault();
       append({ amount: '', token: null });
     },
-    [],
+    [append],
   );
 
   return (
@@ -36,10 +36,19 @@ export const TokenPayoutFieldArray = ({
       {fields.map((field, index) => (
         <div key={field.id} className="flex items-end gap-2">
           <div className="flex-1">
-            <TokenPayoutField
-              arrayFieldName={name}
-              arrayFieldIndex={index}
-              tokens={tokens}
+            <Controller
+              control={control}
+              name={`${name}[${index}]`}
+              render={({ field: payoutField }) => (
+                <TokenPayoutField
+                  arrayFieldName={name}
+                  arrayFieldIndex={index}
+                  tokens={tokens}
+                  onChange={(value) => {
+                    payoutField.onChange(value);
+                  }}
+                />
+              )}
             />
           </div>
           <Button variant="ghost" onClick={() => remove(index)}>

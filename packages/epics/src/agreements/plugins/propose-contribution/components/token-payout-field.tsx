@@ -27,12 +27,14 @@ export interface TokenPayoutFieldProps {
   arrayFieldName: string;
   arrayFieldIndex: number;
   tokens: Token[];
+  onChange: (value: TokenPayout) => void;
 }
 
 export const TokenPayoutField = ({
   arrayFieldName,
   arrayFieldIndex,
   tokens,
+  onChange,
 }: TokenPayoutFieldProps) => {
   const { register, watch, setValue } = useFormContext();
   console.debug('TokenPayoutField', {
@@ -45,7 +47,17 @@ export const TokenPayoutField = ({
   const selectedToken = watch(tokenFieldName);
 
   const handleTokenChange = (token: Token) => {
-    setValue(tokenFieldName, token, { shouldValidate: true });
+    onChange({
+      amount: watch(amountFieldName),
+      token,
+    });
+  };
+
+  const handleAmountChange = (value: string) => {
+    onChange({
+      amount: value,
+      token: selectedToken,
+    });
   };
 
   return (
@@ -59,6 +71,7 @@ export const TokenPayoutField = ({
           type="number"
           leftIcon={<DollarSignIcon size="16px" />}
           placeholder="Type an amount"
+          onChange={(e) => handleAmountChange(e.target.value)}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
