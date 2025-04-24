@@ -7,7 +7,7 @@ import { Space } from '@core/space';
 import { Locale } from '@hypha-platform/i18n';
 
 interface SubspaceSectionProps {
-  getDhoPathAgreements: (lang: Locale, id: string) => string;
+  getSpaceDetailLink: (lang: Locale, id: string) => string;
   spaces: Space[];
   lang: Locale;
 }
@@ -33,7 +33,7 @@ const filterSettings: SpacesFilterType = {
 export const SubspaceSection = ({
   spaces,
   lang,
-  getDhoPathAgreements,
+  getSpaceDetailLink,
 }: SubspaceSectionProps) => {
   return (
     <div className="flex flex-col gap-4">
@@ -64,7 +64,7 @@ export const SubspaceSection = ({
         >
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
-              <Link href={getDhoPathAgreements(lang, space.slug as string)}>
+              <Link href={getSpaceDetailLink(lang, space.slug as string)}>
                 <InnerSpaceCard
                   description={space.description as string}
                   leadImageUrl={

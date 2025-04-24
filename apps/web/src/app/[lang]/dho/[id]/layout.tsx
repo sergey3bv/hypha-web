@@ -13,7 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
 import { createSpaceService } from '@hypha-platform/core/server';
-import { getDhoPathAgreements } from './@tab/agreements/constants';
+import { getDhoPathGovernance } from './@tab/governance/constants';
 import { ActionButtons } from './_components/action-buttons';
 
 export default async function DhoLayout({
@@ -102,7 +102,7 @@ export default async function DhoLayout({
                 >
                   <Link
                     className="w-96"
-                    href={getDhoPathAgreements(lang, space.slug as string)}
+                    href={getDhoPathGovernance(lang, space.slug as string)}
                   >
                     <SpaceCard
                       description={space.description as string}

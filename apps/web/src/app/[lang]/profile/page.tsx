@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { ChevronLeftIcon } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
 import { Container } from '@hypha-platform/ui';
-import { getDhoPathAgreements } from '../dho/[id]/@tab/agreements/constants';
+import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
 import {
   Tabs,
   TabsTrigger,
@@ -31,7 +31,7 @@ export default function Profile() {
   const { person, isLoading } = useMe();
 
   const getHref = (id: string) => {
-    return getDhoPathAgreements(lang as Locale, id);
+    return getDhoPathGovernance(lang as Locale, id);
   };
 
   return (
@@ -63,10 +63,10 @@ export default function Profile() {
       <div className="mt-6">
         <MemberSpaces spaces={[]} profileView />
       </div>
-      <Tabs defaultValue="agreements" className="w-full mt-16">
+      <Tabs defaultValue="governance" className="w-full mt-16">
         <TabsList className="w-full mb-7">
-          <TabsTrigger value="agreements" className="w-full" variant="ghost">
-            Agreements
+          <TabsTrigger value="governance" className="w-full" variant="ghost">
+            Governance
           </TabsTrigger>
           <TabsTrigger value="proposals" className="w-full" variant="ghost">
             Proposals
@@ -75,7 +75,7 @@ export default function Profile() {
             Discussions
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="agreements">
+        <TabsContent value="governance">
           <AgreementsSection basePath="" useDocuments={useSpaceDocuments} />
         </TabsContent>
         <TabsContent value="proposals">

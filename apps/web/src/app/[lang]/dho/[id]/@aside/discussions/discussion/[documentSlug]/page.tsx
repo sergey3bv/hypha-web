@@ -7,7 +7,7 @@ import { useDocumentBySlug } from '@web/hooks/use-document-by-slug';
 import { useDiscussionByDocumentSlug } from '@web/hooks/use-discussion-by-document-slug';
 
 import { DocumentDetails, Chat, SidePanel } from '@hypha-platform/epics';
-import { getDhoPathAgreements } from '../../../../@tab/agreements/constants';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 
 type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
@@ -32,7 +32,7 @@ export default function Agreements(props: PageProps) {
         isLoading={isLoading}
         description={document?.description ?? ''}
         leadImage={'/placeholder/space-lead-image.png'}
-        closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
+        closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
         interactions={<Chat messages={discussion || []} />}
         badges={[
           {

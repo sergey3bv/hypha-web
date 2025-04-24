@@ -1,7 +1,7 @@
 import { CreateSubspaceForm, SidePanel } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@core/space/server';
-import { getDhoPathAgreements } from '../../../../@tab/agreements/constants';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -19,7 +19,7 @@ export default async function CreateSubspacePage({ params }: PageProps) {
   return (
     <SidePanel>
       <CreateSubspaceForm
-        successfulUrl={getDhoPathAgreements(lang as Locale, id)}
+        successfulUrl={getDhoPathGovernance(lang as Locale, id)}
         parentSpaceId={spaceId}
       />
     </SidePanel>

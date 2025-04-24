@@ -5,7 +5,7 @@ import { useMembers } from '@web/hooks/use-members';
 
 import { getDhoPathMembership } from './constants';
 import { createSpaceService } from '@core/space/server';
-import { getDhoPathAgreements } from '../agreements/constants';
+import { getDhoPathGovernance } from '../governance/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -29,7 +29,7 @@ export default async function MembershipPage(props: PageProps) {
       <SubspaceSection
         spaces={subspaces || []}
         lang={lang}
-        getDhoPathAgreements={getDhoPathAgreements}
+        getSpaceDetailLink={getDhoPathGovernance}
       />
       <MembersSection basePath={`${basePath}/person`} useMembers={useMembers} />
     </div>
