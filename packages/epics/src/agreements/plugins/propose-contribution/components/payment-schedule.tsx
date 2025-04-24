@@ -11,7 +11,7 @@ import {
 } from '@hypha-platform/ui';
 import { cn } from '@hypha-platform/lib/utils';
 import { ChevronDownIcon, PlusIcon } from '@radix-ui/react-icons';
-import { validateMilestones, validateFutureDate } from './validation';
+import { validateMilestones, validateFutureDate } from '../validation';
 import { MilestoneField } from './milestone-field';
 import { Cross2Icon } from '@radix-ui/react-icons';
 

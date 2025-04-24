@@ -3,7 +3,7 @@
 import { useFormContext } from 'react-hook-form';
 import { Label, Input, DatePicker } from '@hypha-platform/ui';
 import { PercentIcon } from 'lucide-react';
-import { DateRange } from './validation';
+import { DateRange } from '../validation';
 
 export interface MilestoneFieldProps {
   arrayFieldName: string;

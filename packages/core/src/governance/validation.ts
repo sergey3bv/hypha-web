@@ -1,7 +1,105 @@
 import { z } from 'zod';
 import { DEFAULT_IMAGE_ACCEPT } from '@core/assets';
+import { isBefore } from 'date-fns';
 
 const ALLOWED_IMAGE_FILE_SIZE = 5 * 1024 * 1024;
+const ETH_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/;
+
+export const paymentScheduleOptions = [
+  'Immediately',
+  'Future Payment',
+  'Milestones',
+] as const;
+export type PaymentScheduleOption = (typeof paymentScheduleOptions)[number];
+
+export const dateRangeSchema = z
+  .object({
+    from: z.date().optional(),
+    to: z.date().optional(),
+  })
+  .optional();
+
+export const milestoneSchema = z.object({
+  percentage: z.number().min(0).max(100),
+  dateRange: dateRangeSchema,
+});
+
+export const paymentScheduleSchema = z
+  .object({
+    option: z.enum(paymentScheduleOptions),
+    futureDate: z.date().optional(),
+    milestones: z.array(milestoneSchema).optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.option === 'Future Payment' && data.futureDate) {
+      if (isBefore(data.futureDate, new Date())) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            'The future payment date must be later than the current date',
+          path: ['futureDate'],
+        });
+      }
+    }
+
+    if (data.option === 'Milestones' && data.milestones) {
+      if (!data.milestones || data.milestones.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Milestones cannot be empty',
+          path: ['milestones'],
+        });
+        return;
+      }
+
+      const total = data.milestones.reduce((sum, m) => sum + m.percentage, 0);
+      const now = new Date();
+
+      for (let i = 0; i < data.milestones.length; i++) {
+        const milestone = data.milestones[i];
+        const { dateRange } = milestone;
+
+        if (!dateRange?.from) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Each milestone must have a start date',
+            path: ['milestones', i, 'dateRange', 'from'],
+          });
+        }
+
+        if (i === 0 && dateRange?.from && isBefore(dateRange.from, now)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'First milestone must be in the future',
+            path: ['milestones', i, 'dateRange', 'from'],
+          });
+        }
+
+        const previous = data.milestones[i - 1];
+        const previousFrom = previous?.dateRange?.from;
+        if (
+          i > 0 &&
+          previousFrom &&
+          dateRange?.from &&
+          isBefore(dateRange.from, previousFrom)
+        ) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: `Milestone ${i + 1} must be after milestone ${i}`,
+            path: ['milestones', i, 'dateRange', 'from'],
+          });
+        }
+      }
+
+      if (total > 100) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Total percentage cannot exceed 100%',
+          path: ['milestones'],
+        });
+      }
+    }
+  });
 
 const createAgreementWeb2Props = {
   title: z.string().min(1).max(50),
@@ -39,7 +137,7 @@ export const schemaProposeContribution = z.object({
   recipient: z
     .string()
     .min(1, { message: 'Recipient is required' })
-    .regex(/^0x[a-fA-F0-9]{40}$/, { message: 'Invalid Ethereum address' })
+    .regex(ETH_ADDRESS_REGEX, { message: 'Invalid Ethereum address' })
     .optional(),
 
   payouts: z
@@ -54,6 +152,8 @@ export const schemaProposeContribution = z.object({
     )
     .min(1, { message: 'At least one payout is required' })
     .optional(),
+
+  paymentSchedule: paymentScheduleSchema.optional(),
 });
 
 export const schemaCreateAgreementForm = z.object({
@@ -61,4 +161,5 @@ export const schemaCreateAgreementForm = z.object({
   ...createAgreementFiles,
   recipient: schemaProposeContribution.shape.recipient,
   payouts: schemaProposeContribution.shape.payouts,
+  paymentSchedule: paymentScheduleSchema.optional(),
 });
