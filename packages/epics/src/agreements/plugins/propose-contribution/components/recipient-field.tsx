@@ -12,13 +12,11 @@ export const RecipientField = () => {
   const recipientRegister = register('recipient');
 
   return (
-    <div>
-      <Recipient
-        {...recipientRegister}
-        error={errors.recipient?.message}
-        onChange={(value) => recipientRegister.onChange({ target: { value } })}
-        recipients={[]}
-      />
-    </div>
+    <Recipient
+      {...recipientRegister}
+      error={errors.recipient?.message}
+      onChange={(value) => recipientRegister.onChange({ target: { value } })}
+      recipients={[]}
+    />
   );
 };
