@@ -15,14 +15,12 @@ type RecipientProps = {
   recipients?: Recipient[];
   value?: string;
   onChange?: (selected: Recipient) => void;
-  error?: string;
 };
 
 export const Recipient = ({
   recipients = [],
   onChange,
   value,
-  error,
 }: RecipientProps) => {
   useEffect(() => {
     if (value) {
@@ -105,7 +103,6 @@ export const Recipient = ({
           />
         </div>
       </div>
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       <WalletAddress address={selected?.address || ''} />
     </div>
   );
