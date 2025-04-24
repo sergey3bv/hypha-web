@@ -81,7 +81,7 @@ export const AddAttachment: React.FC<AddAttachmentProps> = ({ onChange }) => {
       <div className="mt-4 space-y-2 w-full">
         {attachments.map((file, idx) => (
           <div
-            key={idx}
+            key={`${file.name}-${file.size}-${idx}`}
             className="flex items-center justify-between text-sm p-2 rounded"
           >
             <div className="flex items-center gap-2 overflow-hidden">
