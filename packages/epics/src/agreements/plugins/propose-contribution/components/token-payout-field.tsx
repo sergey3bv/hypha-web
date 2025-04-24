@@ -1,7 +1,8 @@
+'use client';
+
 import { DollarSignIcon } from 'lucide-react';
 import { ChevronDownIcon } from '@radix-ui/themes';
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -9,64 +10,55 @@ import {
   Input,
   Image,
 } from '@hypha-platform/ui';
-import { useFormContext } from 'react-hook-form';
 
-export interface Token {
+interface Token {
   icon: string;
   symbol: string;
   name: string;
 }
 
-export interface TokenPayout {
-  amount: string;
-  token: Token | null;
-}
-
-export interface TokenPayoutFieldProps {
-  arrayFieldName: string;
-  arrayFieldIndex: number;
+interface TokenPayoutFieldProps {
+  value: {
+    amount: string;
+    token: string;
+  };
+  onChange: (val: { amount: string; token: string }) => void;
   tokens: Token[];
 }
 
 export const TokenPayoutField = ({
-  arrayFieldName,
-  arrayFieldIndex,
+  value,
+  onChange,
   tokens,
 }: TokenPayoutFieldProps) => {
-  const { register, watch, setValue } = useFormContext();
-  console.debug('TokenPayoutField', {
-    [arrayFieldName]: watch(arrayFieldName),
-  });
+  const selectedToken = tokens.find((t) => t.symbol === value.token);
 
-  // Define field names
-  const amountFieldName = `${arrayFieldName}.${arrayFieldIndex}.amount`;
-  const tokenFieldName = `${arrayFieldName}.${arrayFieldIndex}.token`;
-
-  // Watch the token field value
-  const selectedToken = watch(tokenFieldName);
-
-  // Handle token selection
   const handleTokenChange = (token: Token) => {
-    setValue(tokenFieldName, token, { shouldValidate: true });
+    onChange({ amount: value.amount, token: token.symbol });
+  };
+
+  const handleAmountChange = (amount: string) => {
+    onChange({ amount, token: value.token });
   };
 
   return (
     <div className="flex justify-between w-full">
-      <label className="text-2 text-neutral-11">Payment Request</label>
+      <label className="text-2 text-neutral-11 flex items-center">
+        Payment Request
+      </label>
       <div className="flex gap-2 items-center">
-        <Input
-          {...register(amountFieldName)}
-          type="number"
-          leftIcon={<DollarSignIcon size="16px" />}
-          placeholder="Type an amount"
-        />
+        {selectedToken && (
+          <Input
+            value={value.amount}
+            type="number"
+            leftIcon={<DollarSignIcon size="16px" />}
+            placeholder="Type an amount"
+            onChange={(e) => handleAmountChange(e.target.value)}
+          />
+        )}
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button
-              variant="outline"
-              colorVariant="neutral"
-              className="flex justify-between items-center gap-2 min-w-[140px]"
-            >
+          <DropdownMenuTrigger asChild>
+            <div className="flex justify-between items-center gap-2 min-w-[140px] px-4 py-2 border border-neutral-7 rounded-md hover:bg-neutral-3 cursor-pointer">
               <div className="flex items-center gap-2">
                 {selectedToken ? (
                   <>
@@ -74,18 +66,20 @@ export const TokenPayoutField = ({
                       src={selectedToken.icon}
                       width={20}
                       height={20}
-                      alt={`${selectedToken.name} icon`}
+                      alt={selectedToken.name}
                     />
                     <span className="text-2 text-neutral-11">
                       {selectedToken.symbol}
                     </span>
                   </>
                 ) : (
-                  <span className="text-2 text-neutral-11">Select a token</span>
+                  <span className="text-2 text-neutral-11 text-nowrap">
+                    Select a token
+                  </span>
                 )}
               </div>
               <ChevronDownIcon />
-            </Button>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {tokens.map((token) => (
@@ -97,7 +91,7 @@ export const TokenPayoutField = ({
                   src={token.icon}
                   width={24}
                   height={24}
-                  alt={`${token.name} icon`}
+                  alt={token.name}
                   className="mr-2"
                 />
                 <span className="text-2 text-neutral-11">{token.symbol}</span>

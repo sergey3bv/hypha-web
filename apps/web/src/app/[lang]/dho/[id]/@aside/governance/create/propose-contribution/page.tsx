@@ -1,16 +1,17 @@
 'use client';
 
-import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
 import { useParams } from 'next/navigation';
 import { useMe } from '@hypha-platform/core/client';
-import { getDhoPathGovernance } from '../../../@tab/governance/constants';
-import { Locale } from '@hypha-platform/i18n';
+import { Plugin } from '../plugins';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { schemaCreateAgreementForm } from '@hypha-platform/core/client';
 import { z } from 'zod';
-import { Button } from '@hypha-platform/ui';
 import React from 'react';
+import { Button, Separator } from '@hypha-platform/ui';
+import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
+import { Locale } from '@hypha-platform/i18n';
 
 type FormValues = z.infer<typeof schemaCreateAgreementForm>;
 
@@ -25,6 +26,8 @@ export default function CreateAgreement() {
       description: '',
       leadImage: undefined,
       attachments: undefined,
+      recipient: '',
+      payouts: [],
     },
   });
 
@@ -52,6 +55,8 @@ export default function CreateAgreement() {
             closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
           />
+          <Plugin name="propose-contribution" />
+          <Separator />
           <div className="flex justify-end w-full">
             <Button type="submit">Publish</Button>
           </div>
