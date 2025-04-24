@@ -66,13 +66,15 @@ export const TokenPayoutField = ({
         Payment Request
       </label>
       <div className="flex gap-2 items-center">
-        <Input
-          {...register(amountFieldName)}
-          type="number"
-          leftIcon={<DollarSignIcon size="16px" />}
-          placeholder="Type an amount"
-          onChange={(e) => handleAmountChange(e.target.value)}
-        />
+        {selectedToken && (
+          <Input
+            {...register(amountFieldName)}
+            type="number"
+            leftIcon={<DollarSignIcon size="16px" />}
+            placeholder="Type an amount"
+            onChange={(e) => handleAmountChange(e.target.value)}
+          />
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div className="flex justify-between items-center gap-2 min-w-[140px] px-4 py-2 border border-neutral-7 rounded-md hover:bg-neutral-3 cursor-pointer">
