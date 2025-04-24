@@ -29,7 +29,7 @@ export default async function MembershipPage(props: PageProps) {
       <SubspaceSection
         spaces={subspaces || []}
         lang={lang}
-        getDhoPathAgreements={getDhoPathGovernance}
+        getSpaceDetailLink={getDhoPathGovernance}
       />
       <MembersSection basePath={`${basePath}/person`} useMembers={useMembers} />
     </div>
