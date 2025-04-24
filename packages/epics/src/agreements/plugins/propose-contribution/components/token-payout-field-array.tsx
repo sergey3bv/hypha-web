@@ -32,7 +32,8 @@ export const TokenPayoutFieldArray = ({
     name,
   });
 
-  const handleAddField = () => {
+  const handleAddField = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     append({ amount: '', token: '' });
   };
 
