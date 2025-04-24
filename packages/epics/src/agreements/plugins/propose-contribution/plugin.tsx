@@ -10,13 +10,7 @@ export const ProposeContributionPlugin = () => {
       <RecipientField />
       <Separator />
       <TokenPayoutFieldArray
-        tokens={[
-          {
-            icon: 'https://github.com/shadcn.png',
-            symbol: 'BTC',
-            name: 'Bitcoin',
-          },
-        ]}
+        tokens={[]}
         name="payouts"
       />
     </div>
