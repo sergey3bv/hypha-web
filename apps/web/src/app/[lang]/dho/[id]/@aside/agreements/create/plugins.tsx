@@ -1,17 +1,7 @@
-import dynamic from 'next/dynamic';
-
-const LoadingPlugin = ({ plugin }: { plugin: string }) => {
-  return <div>Loading {plugin} ...</div>;
-};
+import { ProposeContributionPlugin } from '@hypha-platform/epics';
 
 export const PLUGINS = {
-  'propose-contribution': dynamic(
-    () =>
-      import('@hypha-platform/epics').then(
-        (mod) => mod.ProposeContributionPlugin,
-      ),
-    { loading: () => <LoadingPlugin plugin={'Propose Contribution'} /> },
-  ),
+  'propose-contribution': ProposeContributionPlugin,
 };
 
 export const Plugin = ({ name }: { name: keyof typeof PLUGINS }) => {
