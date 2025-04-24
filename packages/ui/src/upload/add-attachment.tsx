@@ -38,6 +38,10 @@ export const AddAttachment: React.FC<AddAttachmentProps> = ({ onChange }) => {
   const renderFileIcon = (file: File) => {
     if (file.type.startsWith('image/')) {
       const objectURL = URL.createObjectURL(file);
+      if (!file.type.startsWith('image/')) {
+        console.error('Invalid file type for image preview:', file.type);
+        return <FileIcon className="w-5 h-5 text-neutral-11" />;
+      }
       return (
         <img
           src={objectURL}
