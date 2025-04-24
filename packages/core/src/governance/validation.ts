@@ -39,7 +39,7 @@ export const schemaProposeContribution = z.object({
   recipient: z
     .string()
     .min(1, { message: 'Recipient is required' })
-    .regex(/^0x[a-fA-F0-9]{40}$/, { message: 'Invalid Ethereum address' }),
+    .regex(/^0x[a-fA-F0-9]{40}$/, { message: 'Invalid Ethereum address' }).optional(),
 
   payouts: z
     .array(
@@ -51,7 +51,7 @@ export const schemaProposeContribution = z.object({
         token: z.string().min(1, { message: 'Token is required' }),
       }),
     )
-    .min(1, { message: 'At least one payout is required' }),
+    .min(1, { message: 'At least one payout is required' }).optional(),
 });
 
 export const schemaCreateAgreementForm = z.object({
