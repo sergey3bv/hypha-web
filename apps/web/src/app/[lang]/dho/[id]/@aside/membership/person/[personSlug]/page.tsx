@@ -10,7 +10,7 @@ import { useSpaceDocuments } from '@web/hooks/use-space-documents';
 import { usePersonSlug } from '@web/hooks/use-person-slug';
 import { useSpacesByMemberSlug } from '@web/hooks/use-spaces-by-member-slug';
 import { getDhoPathMembership } from '../../../../@tab/membership/constants';
-import { getDhoPathAgreements } from '../../../../@tab/agreements/constants';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 
 export default function Member() {
   const { id, lang } = useParams();
@@ -32,7 +32,7 @@ export default function Member() {
           about: person?.description,
         }}
         isLoading={isLoading}
-        basePath={`${getDhoPathAgreements(
+        basePath={`${getDhoPathGovernance(
           lang as Locale,
           id as string,
         )}/agreement`}

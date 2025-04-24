@@ -4,7 +4,7 @@ import { Text } from '@radix-ui/themes';
 import { SpaceGroupSlider, SpaceSearch } from '@hypha-platform/epics';
 import { createSpaceService, Space } from '@hypha-platform/core/server';
 import { Category } from '@hypha-platform/core/client';
-import { getDhoPathAgreements } from '../dho/[id]/@tab/agreements/constants';
+import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -28,7 +28,7 @@ export default async function Index(props: PageProps) {
   const { lang } = params;
 
   const getHref = (id: string) => {
-    return getDhoPathAgreements(lang, id);
+    return getDhoPathGovernance(lang, id);
   };
 
   const spaces = await createSpaceService().getAll();

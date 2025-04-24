@@ -10,7 +10,7 @@ import { useConfig } from 'wagmi';
 import { useJwt } from '@hypha-platform/core/client';
 import { Button } from '@hypha-platform/ui';
 import { useMe } from '@hypha-platform/core/client';
-import { getDhoPathAgreements } from '@web/app/[lang]/dho/[id]/@tab/agreements/constants';
+import { getDhoPathGovernance } from '@web/app/[lang]/dho/[id]/@tab/governance/constants';
 
 export default function AsideCreateSpacePage() {
   const { lang } = useParams();
@@ -30,7 +30,7 @@ export default function AsideCreateSpacePage() {
 
   React.useEffect(() => {
     if (progress === 100 && spaceSlug) {
-      router.push(getDhoPathAgreements(lang as Locale, spaceSlug));
+      router.push(getDhoPathGovernance(lang as Locale, spaceSlug));
     }
   }, [progress, spaceSlug]);
 

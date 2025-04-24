@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Locale } from '@hypha-platform/i18n';
 import { useDocumentSlug } from '@web/hooks/use-document-slug';
 import { useDocumentBySlug } from '@web/hooks/use-document-by-slug';
-import { getDhoPathAgreements } from '../../../../@tab/agreements/constants';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 
 export default function Agreements() {
   const { id, lang } = useParams();
@@ -15,7 +15,7 @@ export default function Agreements() {
   return (
     <SidePanel>
       <ProposalDetail
-        closeUrl={getDhoPathAgreements(lang as Locale, id as string)}
+        closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
         onAccept={() => console.log('accept')}
         onReject={() => console.log('reject')}
         onSetActiveFilter={() => console.log('set active filter')}

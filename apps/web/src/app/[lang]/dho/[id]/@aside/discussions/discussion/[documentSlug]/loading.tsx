@@ -6,7 +6,7 @@ type PageProps = {
   params: Promise<{ slug: string; id: string; lang: string }>;
 };
 
-export default function Agreements(props: PageProps) {
+export default function Governance(props: PageProps) {
   return (
     <SidePanel>
       <DocumentDetails
