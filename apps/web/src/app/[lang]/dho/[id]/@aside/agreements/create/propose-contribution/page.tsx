@@ -11,7 +11,7 @@ import {
 } from '@hypha-platform/core/client';
 import { z } from 'zod';
 import React from 'react';
-import { Button, Form, Separator } from '@hypha-platform/ui';
+import { Button, Separator } from '@hypha-platform/ui';
 import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
 
 const schemaCreateAgreementForm =
