@@ -10,11 +10,13 @@ import { z } from 'zod';
 import React from 'react';
 import { Button, Separator } from '@hypha-platform/ui';
 import { CreateAgreementBaseFields, SidePanel } from '@hypha-platform/epics';
+import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
+import { Locale } from '@hypha-platform/i18n';
 
 type FormValues = z.infer<typeof schemaCreateAgreementForm>;
 
 export default function CreateAgreement() {
-  const { lang, id } = useParams();
+  const { lang, id } = useParams<{ lang: Locale; id: string }>();
   const { person } = useMe();
 
   const form = useForm<FormValues>({
@@ -50,7 +52,7 @@ export default function CreateAgreement() {
               name: person?.name || '',
               surname: person?.surname || '',
             }}
-            closeUrl={`/${lang}/dho/${id}/agreements`}
+            closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
           />
           <Plugin name="propose-contribution" />
