@@ -49,7 +49,7 @@ export default async function Index(props: PageProps) {
 
   return (
     <div className="w-full overflow-auto">
-      <Container className="space-y-9 pt-9">
+      <Container className="space-y-9 py-9">
         <Heading size="9" color="secondary" weight="medium" align="center">
           All your spaces, in one place
         </Heading>
