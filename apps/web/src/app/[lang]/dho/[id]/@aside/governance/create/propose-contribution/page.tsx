@@ -28,6 +28,7 @@ export default function CreateAgreement() {
       attachments: undefined,
       recipient: '',
       payouts: [],
+      paymentSchedule: undefined,
     },
   });
 
