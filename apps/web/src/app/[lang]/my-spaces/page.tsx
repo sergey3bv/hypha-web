@@ -8,6 +8,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselContent,
+  Separator,
 } from '@hypha-platform/ui';
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
@@ -75,7 +76,7 @@ export default async function Index(props: PageProps) {
         </div>
         <div
           data-testid="member-spaces-container"
-          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6"
         >
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
@@ -96,7 +97,8 @@ export default async function Index(props: PageProps) {
             </div>
           ))}
         </div>
-        <div data-testid="recommended-spaces-container" className="w-full">
+        <Separator />
+        <div data-testid="recommended-spaces-container" className="w-full pt-6">
           <Text className="text-4 font-medium">Spaces you might like</Text>
           <Carousel className="my-6">
             <CarouselContent>

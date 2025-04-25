@@ -5,9 +5,9 @@ import {
   Card,
   Avatar,
   AvatarImage,
-  Button,
+  Separator,
 } from '@hypha-platform/ui';
-import { Share2Icon, ChevronLeftIcon } from '@radix-ui/react-icons';
+import { ChevronLeftIcon } from '@radix-ui/react-icons';
 import { Text } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -91,6 +91,7 @@ export default async function DhoLayout({
         </div>
         {tab}
         {children}
+        <Separator />
         <div className="border-t-2 border-primary-foreground pt-6">
           <Text className="text-4 font-medium">Spaces you might like</Text>
           <Carousel className="my-6">
