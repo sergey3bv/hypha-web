@@ -91,37 +91,39 @@ export default async function DhoLayout({
         </div>
         {tab}
         {children}
-        <Separator />
-        <div className="border-t-2 border-primary-foreground pt-6">
-          <Text className="text-4 font-medium">Spaces you might like</Text>
-          <Carousel className="my-6">
-            <CarouselContent>
-              {spaces.map((space) => (
-                <CarouselItem
-                  key={space.id}
-                  className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
-                >
-                  <Link
-                    className="w-96"
-                    href={getDhoPathGovernance(lang, space.slug as string)}
+        <div className="space-y-5">
+          <Separator />
+          <div className="border-primary-foreground">
+            <Text className="text-4 font-medium">Spaces you might like</Text>
+            <Carousel className="my-6">
+              <CarouselContent>
+                {spaces.map((space) => (
+                  <CarouselItem
+                    key={space.id}
+                    className="mb-5 w-full sm:w-[454px] max-w-[454px] flex-shrink-0"
                   >
-                    <SpaceCard
-                      description={space.description as string}
-                      icon={
-                        space.logoUrl || '/placeholder/space-avatar-image.png'
-                      }
-                      leadImage={
-                        space.leadImage || '/placeholder/space-lead-image.png'
-                      }
-                      members={0}
-                      agreements={0}
-                      title={space.title as string}
-                    />
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                    <Link
+                      className="w-96"
+                      href={getDhoPathGovernance(lang, space.slug as string)}
+                    >
+                      <SpaceCard
+                        description={space.description as string}
+                        icon={
+                          space.logoUrl || '/placeholder/space-avatar-image.png'
+                        }
+                        leadImage={
+                          space.leadImage || '/placeholder/space-lead-image.png'
+                        }
+                        members={0}
+                        agreements={0}
+                        title={space.title as string}
+                      />
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
         </div>
       </Container>
       {aside}

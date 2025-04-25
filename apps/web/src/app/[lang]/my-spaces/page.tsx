@@ -49,9 +49,9 @@ export default async function Index(props: PageProps) {
 
   return (
     <div className="w-full overflow-auto">
-      <Container>
+      <Container className="space-y-3">
         <Heading
-          className="mb-9 mt-3"
+          className="mt-3"
           size="9"
           color="secondary"
           weight="medium"
@@ -59,7 +59,7 @@ export default async function Index(props: PageProps) {
         >
           All your spaces, in one place
         </Heading>
-        <div className="mb-6 justify-between items-center flex">
+        <div className="justify-between items-center flex space-y-3">
           <Text className="text-3">My spaces | {mySpacesCount}</Text>
           <div className="flex items-center">
             <FilterMenu
@@ -76,7 +76,7 @@ export default async function Index(props: PageProps) {
         </div>
         <div
           data-testid="member-spaces-container"
-          className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
         >
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
@@ -98,9 +98,9 @@ export default async function Index(props: PageProps) {
           ))}
         </div>
         <Separator />
-        <div data-testid="recommended-spaces-container" className="w-full pt-6">
+        <div data-testid="recommended-spaces-container" className="w-full">
           <Text className="text-4 font-medium">Spaces you might like</Text>
-          <Carousel className="my-6">
+          <Carousel className="">
             <CarouselContent>
               {spaces.map((space) => (
                 <CarouselItem
