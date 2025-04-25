@@ -71,10 +71,10 @@ export default async function Index(props: PageProps) {
           </div>
           <div
             data-testid="member-spaces-container"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-2"
           >
             {spaces.map((space) => (
-              <div key={space.id} className="mb-1">
+              <div key={space.id}>
                 <Link href={getDhoPathGovernance(lang, space.slug as string)}>
                   <SpaceCard
                     description={space.description as string}
