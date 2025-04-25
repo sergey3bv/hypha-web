@@ -91,7 +91,7 @@ export default async function DhoLayout({
         </div>
         {tab}
         {children}
-        <div className="space-y-5">
+        <div className="space-y-9">
           <Separator />
           <div className="border-primary-foreground">
             <Text className="text-4 font-medium">Spaces you might like</Text>

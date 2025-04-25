@@ -49,56 +49,56 @@ export default async function Index(props: PageProps) {
 
   return (
     <div className="w-full overflow-auto">
-      <Container className="space-y-3">
-        <Heading
-          className="mt-3"
-          size="9"
-          color="secondary"
-          weight="medium"
-          align="center"
-        >
+      <Container className="space-y-9 pt-9">
+        <Heading size="9" color="secondary" weight="medium" align="center">
           All your spaces, in one place
         </Heading>
-        <div className="justify-between items-center flex space-y-3">
-          <Text className="text-3">My spaces | {mySpacesCount}</Text>
-          <div className="flex items-center">
-            <FilterMenu
-              value={filterSettings.value}
-              options={filterSettings.options}
-            />
-            <Link href={`/${lang}/my-spaces/create`} scroll={false}>
-              <Button className="ml-2">
-                <PlusIcon className="mr-2" />
-                Create Space
-              </Button>
-            </Link>
+        <div className="space-y-6">
+          <div className="justify-between items-center flex">
+            <Text className="text-4">My spaces | {mySpacesCount}</Text>
+            <div className="flex items-center">
+              <FilterMenu
+                value={filterSettings.value}
+                options={filterSettings.options}
+              />
+              <Link href={`/${lang}/my-spaces/create`} scroll={false}>
+                <Button className="ml-2">
+                  <PlusIcon className="mr-2" />
+                  Create Space
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div
+            data-testid="member-spaces-container"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+          >
+            {spaces.map((space) => (
+              <div key={space.id} className="mb-1">
+                <Link href={getDhoPathGovernance(lang, space.slug as string)}>
+                  <SpaceCard
+                    description={space.description as string}
+                    icon={
+                      space.logoUrl || '/placeholder/space-avatar-image.png'
+                    }
+                    leadImage={
+                      space.leadImage || '/placeholder/space-lead-image.png'
+                    }
+                    members={0}
+                    agreements={0}
+                    activeAgreements={1}
+                    openDiscussions={1}
+                    title={space.title as string}
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
         <div
-          data-testid="member-spaces-container"
-          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+          data-testid="recommended-spaces-container"
+          className="w-full space-y-6"
         >
-          {spaces.map((space) => (
-            <div key={space.id} className="mb-1">
-              <Link href={getDhoPathGovernance(lang, space.slug as string)}>
-                <SpaceCard
-                  description={space.description as string}
-                  icon={space.logoUrl || '/placeholder/space-avatar-image.png'}
-                  leadImage={
-                    space.leadImage || '/placeholder/space-lead-image.png'
-                  }
-                  members={0}
-                  agreements={0}
-                  activeAgreements={1}
-                  openDiscussions={1}
-                  title={space.title as string}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
-        <Separator />
-        <div data-testid="recommended-spaces-container" className="w-full">
           <Text className="text-4 font-medium">Spaces you might like</Text>
           <Carousel className="">
             <CarouselContent>
