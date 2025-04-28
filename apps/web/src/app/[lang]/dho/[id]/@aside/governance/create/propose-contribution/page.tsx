@@ -27,7 +27,12 @@ export default function CreateAgreement() {
       leadImage: undefined,
       attachments: undefined,
       recipient: '',
-      payouts: [],
+      payouts: [
+        {
+          amount: undefined,
+          token: undefined,
+        },
+      ],
       paymentSchedule: undefined,
     },
   });
