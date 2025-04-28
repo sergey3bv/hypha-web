@@ -66,7 +66,7 @@ export const AddAttachment: React.FC<AddAttachmentProps> = ({ onChange }) => {
 
   return (
     <div className="flex flex-col items-end w-full">
-      <Button variant="ghost" onClick={handleClick}>
+      <Button variant="ghost" onClick={handleClick} type="button">
         <Link2Icon />
         Add Attachment
         <input
