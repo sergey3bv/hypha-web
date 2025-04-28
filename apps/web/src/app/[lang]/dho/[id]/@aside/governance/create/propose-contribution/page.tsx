@@ -33,7 +33,22 @@ export default function CreateAgreement() {
           token: undefined,
         },
       ],
-      paymentSchedule: undefined,
+      paymentSchedule: {
+        milestones: [
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+        ],
+      },
     },
   });
 
