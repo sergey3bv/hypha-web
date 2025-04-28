@@ -128,7 +128,7 @@ export function PaymentSchedule({
             colorVariant="accent"
             onClick={() =>
               append({
-                percentage: 0,
+                percentage: undefined,
                 dateRange: { from: undefined, to: undefined },
               })
             }
