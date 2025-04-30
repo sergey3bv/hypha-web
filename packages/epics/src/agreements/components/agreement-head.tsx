@@ -35,13 +35,6 @@ export const AgreementHead = ({
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
               Agreement
             </Badge>
-            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
-              Recurring
-            </Badge>
-            <Badge variant="soft" colorVariant="accent" isLoading={isLoading}>
-              {commitment}%
-            </Badge>
-            <StatusBadge isLoading={isLoading} status={status} />
           </div>
 
           <Skeleton
