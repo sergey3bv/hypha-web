@@ -26,6 +26,8 @@ export default function Agreements() {
         commitment={50}
         status={document?.state}
         isLoading={isLoading}
+        leadImage={document?.leadImage}
+        attachments={document?.attachments}
         comments={[
           {
             id: '1',
