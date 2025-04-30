@@ -15,10 +15,18 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const today = new Date();
+  const isPastDay = (day: Date) => {
+    const dayDate = new Date(day.setHours(0, 0, 0, 0));
+    const todayDate = new Date(today.setHours(0, 0, 0, 0));
+    return dayDate < todayDate;
+  };
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn('p-3', className)}
+      disabled={isPastDay}
       classNames={{
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: 'space-y-4',
@@ -53,7 +61,7 @@ function Calendar({
         day_today: 'bg-accent text-accent-foreground',
         day_outside:
           'text-neutral-11 opacity-50 day-outside last:[&:has([aria-selected])]:bg-accent-9 aria-selected:text-secondary-foreground',
-        day_disabled: 'text-muted-foreground opacity-50',
+        day_disabled: 'text-neutral-11 opacity-50 cursor-not-allowed',
         day_range_middle:
           'aria-selected:bg-accent aria-selected:text-accent-foreground',
         day_hidden: 'invisible',

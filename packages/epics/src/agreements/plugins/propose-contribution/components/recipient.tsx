@@ -104,7 +104,7 @@ export const Recipient = ({
           />
         </div>
       </div>
-      {selected && <WalletAddress address={selected.address} />}
+      <WalletAddress address={selected?.address || ''} />
     </div>
   );
 };

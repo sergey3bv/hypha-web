@@ -47,6 +47,14 @@ export function PaymentSchedule({
     setValue(`${name}.option`, option);
   };
 
+  const handleAddField = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    append({
+      percentage: undefined,
+      dateRange: { from: undefined, to: undefined },
+    });
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex w-full justify-between items-center gap-2">
@@ -126,12 +134,7 @@ export function PaymentSchedule({
           <Button
             variant="ghost"
             colorVariant="accent"
-            onClick={() =>
-              append({
-                percentage: 0,
-                dateRange: { from: undefined, to: undefined },
-              })
-            }
+            onClick={handleAddField}
             className="w-fit mt-2"
           >
             <PlusIcon className="w-4 h-4 mr-1" />

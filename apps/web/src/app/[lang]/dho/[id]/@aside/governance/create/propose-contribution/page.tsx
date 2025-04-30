@@ -27,8 +27,28 @@ export default function CreateAgreement() {
       leadImage: undefined,
       attachments: undefined,
       recipient: '',
-      payouts: [],
-      paymentSchedule: undefined,
+      payouts: [
+        {
+          amount: undefined,
+          token: undefined,
+        },
+      ],
+      paymentSchedule: {
+        milestones: [
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+          {
+            percentage: undefined,
+            dateRange: undefined,
+          },
+        ],
+      },
     },
   });
 
