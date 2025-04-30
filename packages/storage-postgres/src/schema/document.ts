@@ -6,6 +6,7 @@ import {
   serial,
   text,
   varchar,
+  jsonb,
 } from 'drizzle-orm/pg-core';
 import { commonDateFields } from './shared';
 import { people } from './people';
@@ -24,8 +25,10 @@ export const documents = pgTable('documents', {
   spaceId: integer('space_id').references(() => spaces.id),
   title: text('title'),
   description: text('description'),
-  state: documentStateEnum('state').default('discussion'),
+  state: documentStateEnum('state').default('agreement'),
   slug: varchar('slug', { length: 255 }),
+  leadImage: text('lead_image'),
+  attachments: jsonb('attachments').$type<string[]>().default([]),
   ...commonDateFields,
 });
 
