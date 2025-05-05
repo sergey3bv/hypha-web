@@ -24,6 +24,8 @@ export const mapToDocument = (
     description: dbDocument.description ?? undefined,
     slug: dbDocument.slug ?? '',
     state: dbDocument.state as DocumentState,
+    leadImage: dbDocument.leadImage || '',
+    attachments: dbDocument.attachments || [],
     createdAt: dbDocument.createdAt,
     updatedAt: dbDocument.updatedAt,
     creator: {

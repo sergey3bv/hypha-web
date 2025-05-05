@@ -29,6 +29,7 @@ export * from './upload/file';
 export * from './upload/lead-image';
 export * from './upload/image';
 export * from './upload/add-attachment';
+export * from './upload/attachments-list';
 export * from './combobox';
 export * from './date-picker';
 

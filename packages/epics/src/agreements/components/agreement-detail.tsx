@@ -1,15 +1,23 @@
 import { AgreementHead, AgreementHeadProps } from './agreement-head';
-import { Button, Separator } from '@hypha-platform/ui';
+import {
+  Button,
+  Separator,
+  Skeleton,
+  AttachmentList,
+} from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import { CardCommentProps } from '../../interactions/components/card-comment';
+import Image from 'next/image';
 
 type AgreementDetailProps = AgreementHeadProps & {
   onSetActiveFilter: (value: string) => void;
   content: string;
   closeUrl: string;
   comments?: CardCommentProps[];
+  leadImage?: string;
+  attachments?: string[];
 };
 
 export const AgreementDetail = ({
@@ -22,6 +30,8 @@ export const AgreementDetail = ({
   onSetActiveFilter,
   closeUrl,
   comments,
+  leadImage,
+  attachments,
 }: AgreementDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -41,9 +51,22 @@ export const AgreementDetail = ({
         </Link>
       </div>
       <Separator />
+      <Skeleton
+        width="100%"
+        height="150px"
+        loading={isLoading}
+        className="rounded-lg"
+      >
+        <Image
+          height={150}
+          width={554}
+          className="w-full object-cover rounded-lg max-h-[150px]"
+          src={leadImage ?? ''}
+          alt={title ?? ''}
+        />
+      </Skeleton>
       <div>{content}</div>
-
-      <Separator />
+      <AttachmentList attachments={attachments || []} />
       <CommentsList
         activeFilter="most-recent"
         setActiveFilter={onSetActiveFilter}

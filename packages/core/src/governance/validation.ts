@@ -104,7 +104,20 @@ export const paymentScheduleSchema = z
 const createAgreementWeb2Props = {
   title: z.string().min(1).max(50),
   description: z.string().min(1).max(300),
+  slug: z
+    .string()
+    .min(1)
+    .max(50)
+    .regex(
+      /^[a-z0-9-]+$/,
+      'Slug must contain only lowercase letters, numbers, and hyphens',
+    )
+    .optional(),
+  creatorId: z.number().min(1),
+  spaceId: z.number().min(1),
 };
+
+export const schemaCreateAgreementWeb2 = z.object(createAgreementWeb2Props);
 
 export const createAgreementWeb2FileUrls = {
   leadImage: z.string().url('Lead Image URL must be a valid URL').optional(),
@@ -128,6 +141,8 @@ export const createAgreementFiles = {
     .optional(),
   attachments: z.array(z.instanceof(File)).optional(),
 };
+
+export const schemaCreateAgreementFiles = z.object(createAgreementFiles);
 
 export const schemaCreateAgreement = z.object({
   ...createAgreementWeb2Props,
