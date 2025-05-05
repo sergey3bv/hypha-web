@@ -10,11 +10,14 @@ export default defineConfig({
   plugins: [
     hardhat({
       project: '../storage-evm/',
-      include: ['DAOSpaceFactoryImplementation.sol/**'],
+      include: ['DAOSpaceFactoryImplementation.sol/**', 'AgreementsImplementation.sol/**'],
       deployments: {
         DAOSpaceFactoryImplementation: {
           [base.id]: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9',
         },
+        AgreementsImplementation: {
+          [base.id]: '0x83B5d4F555A68126bB302685e67767Bb7a2985F0'
+        }
       },
     }),
   ],
