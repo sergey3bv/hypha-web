@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// AgreementsImplementation
+// DAOProposalsImplementation
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x83B5d4F555A68126bB302685e67767Bb7a2985F0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x001bA7a00a259Fb12d7936455e292a60FC2bef14)
  */
-export const agreementsImplementationAbi = [
+export const daoProposalsImplementationAbi = [
   { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
   {
     type: 'error',
@@ -50,19 +50,13 @@ export const agreementsImplementationAbi = [
         indexed: true,
       },
       {
-        name: 'proposalId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: true,
-      },
-      {
         name: 'executor',
         internalType: 'address',
         type: 'address',
         indexed: false,
       },
     ],
-    name: 'AgreementAccepted',
+    name: 'ExecutorSet',
   },
   {
     type: 'event',
@@ -101,6 +95,156 @@ export const agreementsImplementationAbi = [
     anonymous: false,
     inputs: [
       {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'spaceId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'startTime',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'duration',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'creator',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'executionData',
+        internalType: 'bytes',
+        type: 'bytes',
+        indexed: false,
+      },
+    ],
+    name: 'ProposalCreated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'spaceId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'newDuration',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'targetContract',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'executionData',
+        internalType: 'bytes',
+        type: 'bytes',
+        indexed: false,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'editor',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'ProposalEdited',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      { name: 'passed', internalType: 'bool', type: 'bool', indexed: false },
+      {
+        name: 'yesVotes',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'noVotes',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'ProposalExecuted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+    ],
+    name: 'ProposalExpired',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'ProposalValueSet',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
         name: 'implementation',
         internalType: 'address',
         type: 'address',
@@ -108,6 +252,32 @@ export const agreementsImplementationAbi = [
       },
     ],
     name: 'Upgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'proposalId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'voter',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      { name: 'support', internalType: 'bool', type: 'bool', indexed: false },
+      {
+        name: 'votingPower',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'VoteCast',
   },
   {
     type: 'function',
@@ -118,28 +288,73 @@ export const agreementsImplementationAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: '_spaceId', internalType: 'uint256', type: 'uint256' },
-      { name: '_proposalId', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'acceptAgreement',
-    outputs: [],
+    inputs: [{ name: '_proposalId', internalType: 'uint256', type: 'uint256' }],
+    name: 'checkProposalExpiration',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [{ name: '_spaceId', internalType: 'uint256', type: 'uint256' }],
-    name: 'getSpaceProposals',
-    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    inputs: [
+      {
+        name: 'params',
+        internalType: 'struct IDAOProposals.ProposalParams',
+        type: 'tuple',
+        components: [
+          { name: 'spaceId', internalType: 'uint256', type: 'uint256' },
+          { name: 'duration', internalType: 'uint256', type: 'uint256' },
+          {
+            name: 'transactions',
+            internalType: 'struct IDAOProposals.Transaction[]',
+            type: 'tuple[]',
+            components: [
+              { name: 'target', internalType: 'address', type: 'address' },
+              { name: 'value', internalType: 'uint256', type: 'uint256' },
+              { name: 'data', internalType: 'bytes', type: 'bytes' },
+            ],
+          },
+        ],
+      },
+    ],
+    name: 'createProposal',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_proposalId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getProposalCore',
+    outputs: [
+      { name: 'spaceId', internalType: 'uint256', type: 'uint256' },
+      { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'executed', internalType: 'bool', type: 'bool' },
+      { name: 'expired', internalType: 'bool', type: 'bool' },
+      { name: 'yesVotes', internalType: 'uint256', type: 'uint256' },
+      { name: 'noVotes', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'totalVotingPowerAtSnapshot',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'creator', internalType: 'address', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_proposalId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getProposalEndTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: '_spaceId', internalType: 'uint256', type: 'uint256' },
       { name: '_proposalId', internalType: 'uint256', type: 'uint256' },
+      { name: '_voter', internalType: 'address', type: 'address' },
     ],
-    name: 'hasProposal',
+    name: 'hasVoted',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'view',
   },
@@ -162,6 +377,13 @@ export const agreementsImplementationAbi = [
   {
     type: 'function',
     inputs: [],
+    name: 'proposalCounter',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
     name: 'proxiableUUID',
     outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
     stateMutability: 'view',
@@ -177,6 +399,7 @@ export const agreementsImplementationAbi = [
     type: 'function',
     inputs: [
       { name: '_spaceFactory', internalType: 'address', type: 'address' },
+      { name: '_directory', internalType: 'address', type: 'address' },
     ],
     name: 'setContracts',
     outputs: [],
@@ -184,11 +407,9 @@ export const agreementsImplementationAbi = [
   },
   {
     type: 'function',
-    inputs: [],
-    name: 'spaceFactory',
-    outputs: [
-      { name: '', internalType: 'contract IDAOSpaceFactory', type: 'address' },
-    ],
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'spaceAddresses',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -208,21 +429,31 @@ export const agreementsImplementationAbi = [
     outputs: [],
     stateMutability: 'payable',
   },
+  {
+    type: 'function',
+    inputs: [
+      { name: '_proposalId', internalType: 'uint256', type: 'uint256' },
+      { name: '_support', internalType: 'bool', type: 'bool' },
+    ],
+    name: 'vote',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x83B5d4F555A68126bB302685e67767Bb7a2985F0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x001bA7a00a259Fb12d7936455e292a60FC2bef14)
  */
-export const agreementsImplementationAddress = {
-  8453: '0x83B5d4F555A68126bB302685e67767Bb7a2985F0',
+export const daoProposalsImplementationAddress = {
+  8453: '0x001bA7a00a259Fb12d7936455e292a60FC2bef14',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x83B5d4F555A68126bB302685e67767Bb7a2985F0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x001bA7a00a259Fb12d7936455e292a60FC2bef14)
  */
-export const agreementsImplementationConfig = {
-  address: agreementsImplementationAddress,
-  abi: agreementsImplementationAbi,
+export const daoProposalsImplementationConfig = {
+  address: daoProposalsImplementationAddress,
+  abi: daoProposalsImplementationAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
