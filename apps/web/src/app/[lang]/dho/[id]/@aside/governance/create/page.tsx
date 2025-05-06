@@ -15,12 +15,14 @@ export default async function CreateAgreementPage({ params }: PageProps) {
   const spaceFromDb = await spaceService.getBySlug({ slug: id });
 
   const spaceId = spaceFromDb.id;
+  const web3SpaceId = spaceFromDb.web3SpaceId;
 
   return (
     <SidePanel>
       <CreateAgreementForm
         successfulUrl={getDhoPathGovernance(lang as Locale, id)}
         spaceId={spaceId}
+        web3SpaceId={web3SpaceId}
       />
     </SidePanel>
   );

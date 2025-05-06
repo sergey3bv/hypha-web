@@ -25,10 +25,11 @@ export const documents = pgTable('documents', {
   spaceId: integer('space_id').references(() => spaces.id),
   title: text('title'),
   description: text('description'),
-  state: documentStateEnum('state').default('agreement'),
+  state: documentStateEnum('state').default('proposal'),
   slug: varchar('slug', { length: 255 }),
   leadImage: text('lead_image'),
   attachments: jsonb('attachments').$type<string[]>().default([]),
+  web3ProposalId: integer('web3_proposal_id'),
   ...commonDateFields,
 });
 

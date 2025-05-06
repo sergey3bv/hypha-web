@@ -16,6 +16,7 @@ import { useJwt } from '@hypha-platform/core/client';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { Form } from '@hypha-platform/ui';
 import { useMe } from '@hypha-platform/core/client';
+import { useConfig } from 'wagmi';
 
 type FormValues = z.infer<typeof schemaCreateAgreementForm>;
 
@@ -23,17 +24,20 @@ const fullSchemaCreateSpaceForm =
   schemaCreateAgreementForm.extend(createAgreementFiles);
 
 interface CreateAgreementFormProps {
-  spaceId?: number;
+  spaceId: number | undefined | null;
+  web3SpaceId: number | undefined | null;
   successfulUrl: string;
 }
 
 export const CreateAgreementForm = ({
   successfulUrl,
   spaceId,
+  web3SpaceId,
 }: CreateAgreementFormProps) => {
   const router = useRouter();
   const { person } = useMe();
   const { jwt } = useJwt();
+  const config = useConfig();
   const {
     createAgreement,
     reset,
@@ -42,7 +46,7 @@ export const CreateAgreementForm = ({
     isPending,
     progress,
     agreement: { slug: agreementSlug },
-  } = useCreateAgreementOrchestrator({ authToken: jwt });
+  } = useCreateAgreementOrchestrator({ authToken: jwt, config });
 
   const form = useForm<FormValues>({
     resolver: zodResolver(fullSchemaCreateSpaceForm),
@@ -51,7 +55,7 @@ export const CreateAgreementForm = ({
       description: '',
       leadImage: undefined,
       attachments: undefined,
-      spaceId: spaceId,
+      spaceId: spaceId ?? undefined,
       creatorId: person?.id,
     },
   });
@@ -64,9 +68,12 @@ export const CreateAgreementForm = ({
     }
   }, [progress, agreementSlug]);
 
-  const handleCreate = (data: z.infer<typeof fullSchemaCreateSpaceForm>) => {
-    console.log(data);
-    createAgreement(data);
+  const handleCreate = async (data: FormValues) => {
+    await createAgreement({
+      ...data,
+      spaceId: spaceId as number,
+      ...(typeof web3SpaceId === 'number' ? { web3SpaceId } : {}),
+    });
   };
 
   console.log('form errors:', form.formState.errors);

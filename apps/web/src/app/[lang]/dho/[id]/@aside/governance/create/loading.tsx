@@ -13,7 +13,11 @@ export default function AsideCreateAgreementPage() {
         message={<></>}
         className="-m-9"
       >
-        <CreateAgreementForm spaceId={undefined} successfulUrl="" />
+        <CreateAgreementForm
+          spaceId={undefined}
+          successfulUrl=""
+          web3SpaceId={undefined}
+        />
       </LoadingBackdrop>
     </SidePanel>
   );

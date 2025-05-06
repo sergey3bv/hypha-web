@@ -28,6 +28,8 @@ export default function Agreements() {
         title={document?.title}
         status={document?.state}
         isLoading={isLoading}
+        leadImage={document?.leadImage}
+        attachments={document?.attachments}
       />
     </SidePanel>
   );

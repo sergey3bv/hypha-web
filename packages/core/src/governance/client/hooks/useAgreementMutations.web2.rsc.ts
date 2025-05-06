@@ -6,6 +6,7 @@ import { CreateAgreementInput, UpdateAgreementBySlugInput } from '../../types';
 import {
   createAgreementAction,
   updateAgreementBySlugAction,
+  deleteAgreementBySlugAction,
 } from '@core/governance/server/actions';
 
 export const useAgreementMutationsWeb2Rsc = (authToken?: string | null) => {
@@ -33,6 +34,18 @@ export const useAgreementMutationsWeb2Rsc = (authToken?: string | null) => {
       updateAgreementBySlugAction(arg, { authToken }),
   );
 
+  const {
+    trigger: deleteAgreementBySlugMutation,
+    reset: resetDeleteAgreementBySlugMutation,
+    isMutating: isDeletingAgreement,
+    error: errorDeleteAgreementBySlugMutation,
+    data: deletedAgreement,
+  } = useSWRMutation(
+    authToken ? [authToken, 'deleteAgreement'] : null,
+    async ([authToken], { arg }: { arg: { slug: string } }) =>
+      deleteAgreementBySlugAction(arg, { authToken }),
+  );
+
   return {
     createAgreement: createAgreementMutation,
     resetCreateAgreementMutation,
@@ -45,5 +58,11 @@ export const useAgreementMutationsWeb2Rsc = (authToken?: string | null) => {
     isUpdatingAgreement,
     errorUpdateAgreementBySlugMutation,
     updatedAgreement,
+
+    deleteAgreementBySlug: deleteAgreementBySlugMutation,
+    resetDeleteAgreementBySlugMutation,
+    isDeletingAgreement,
+    errorDeleteAgreementBySlugMutation,
+    deletedAgreement,
   };
 };
