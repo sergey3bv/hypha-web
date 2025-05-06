@@ -2,10 +2,16 @@ import { addDays } from 'date-fns';
 import { formatISO } from 'date-fns';
 import { FormVoting } from './form-voting';
 import { ProposalHead, ProposalHeadProps } from './proposal-head';
-import { Button, Separator } from '@hypha-platform/ui';
+import {
+  Button,
+  Separator,
+  AttachmentList,
+  Skeleton,
+} from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -13,6 +19,8 @@ type ProposalDetailProps = ProposalHeadProps & {
   onSetActiveFilter: (value: string) => void;
   content?: string;
   closeUrl: string;
+  leadImage?: string;
+  attachments?: string[];
 };
 
 export const ProposalDetail = ({
@@ -26,6 +34,8 @@ export const ProposalDetail = ({
   content,
   onSetActiveFilter,
   closeUrl,
+  leadImage,
+  attachments,
 }: ProposalDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -45,8 +55,22 @@ export const ProposalDetail = ({
         </Link>
       </div>
       <Separator />
+      <Skeleton
+        width="100%"
+        height="150px"
+        loading={isLoading}
+        className="rounded-lg"
+      >
+        <Image
+          height={150}
+          width={554}
+          className="w-full object-cover rounded-lg max-h-[150px]"
+          src={leadImage ?? ''}
+          alt={title ?? ''}
+        />
+      </Skeleton>
       <div>{content}</div>
-      <Separator />
+      <AttachmentList attachments={attachments || []} />
       <FormVoting
         unity={50}
         quorum={25}
