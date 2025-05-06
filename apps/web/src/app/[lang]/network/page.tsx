@@ -1,9 +1,11 @@
+import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
-import { Container } from '@hypha-platform/ui';
+import { Button, Container } from '@hypha-platform/ui';
 import { Text } from '@radix-ui/themes';
 import { SpaceGroupSlider, SpaceSearch } from '@hypha-platform/epics';
 import { createSpaceService, Space } from '@hypha-platform/core/server';
 import { Category } from '@hypha-platform/core/client';
+import { PlusIcon } from '@radix-ui/react-icons';
 import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
 
 type PageProps = {
@@ -39,7 +41,15 @@ export default async function Index(props: PageProps) {
       <Text className="text-9 text-center flex mb-8">
         Explore hundreds of Spaces in the Hypha Network
       </Text>
-      <SpaceSearch />
+      <div className="flex justify-center">
+        <SpaceSearch />
+        <Link href={`/${lang}/network/create`} scroll={false}>
+          <Button className="ml-2">
+            <PlusIcon className="mr-2" />
+            Create Space
+          </Button>
+        </Link>
+      </div>
       {uniqueCategories.map((category) => (
         <SpaceGroupSlider
           key={category}

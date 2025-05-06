@@ -8,7 +8,6 @@ import {
   Carousel,
   CarouselItem,
   CarouselContent,
-  Separator,
 } from '@hypha-platform/ui';
 import { Heading } from 'packages/ui/src/atoms/heading';
 import { Text } from '@radix-ui/themes';
