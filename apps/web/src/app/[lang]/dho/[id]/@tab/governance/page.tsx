@@ -19,21 +19,21 @@ export default async function AgreementsPage(props: PageProps) {
         basePath={`${basePath}/proposal`}
         useDocuments={useSpaceDocuments}
         documentState="proposal"
-        label="Proposals"
+        label="On Voting"
         hasSearch={true}
       />
       <DocumentSection
         basePath={`${basePath}/agreement`}
         useDocuments={useSpaceDocuments}
         documentState="agreement"
-        label="Agreements"
+        label="Accepted"
         hasSearch={true}
       />
       <DocumentSection
         basePath={`${basePath}/agreement`}
         useDocuments={useSpaceDocuments}
         documentState="agreement"
-        label="History"
+        label="Rejected"
         hasSearch={true}
       />
     </div>
