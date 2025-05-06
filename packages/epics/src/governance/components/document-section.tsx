@@ -2,11 +2,7 @@
 import { FC } from 'react';
 import { Text } from '@radix-ui/themes';
 import { useDocumentsSection } from '../hooks/use-documents-section';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { DocumentState, UseDocuments } from '..';
 import { DocumentGridContainer } from './document-grid.container';
 
@@ -49,13 +45,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
       >
         {headSectionButton}
       </SectionFilter>
-      {pagination?.totalPages === 0 ? null : (
-        <SectionTabs
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          tabs={tabs || []}
-        />
-      )}
+
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (

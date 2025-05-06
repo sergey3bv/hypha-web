@@ -3,36 +3,17 @@ import { FC } from 'react';
 import { PayoutsList } from './payouts-list';
 import { Text } from '@radix-ui/themes';
 import { usePayoutsSection } from '../../hooks/use-payouts-section';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 
 type PayoutSectionProps = Record<string, never>;
 
 export const PayoutsSection: FC<PayoutSectionProps> = () => {
-  const {
-    pages,
-    activeFilter,
-    setActiveFilter,
-    isLoading,
-    loadMore,
-    pagination,
-    filterOptions,
-    totalValue,
-  } = usePayoutsSection();
+  const { pages, activeFilter, isLoading, loadMore, pagination, totalValue } =
+    usePayoutsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
       <SectionFilter count={totalValue || 0} label="Payouts" />
-      {pagination?.totalPages === 0 ? null : (
-        <SectionTabs
-          activeTab={activeFilter}
-          setActiveTab={setActiveFilter}
-          tabs={filterOptions}
-        />
-      )}
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (

@@ -3,11 +3,7 @@ import { FC } from 'react';
 import { ProposalList } from './proposal-list';
 import { Text } from '@radix-ui/themes';
 import { useProposalsSection } from '../hooks';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { UseDocuments } from '../../governance';
@@ -39,13 +35,7 @@ export const ProposalsSection: FC<ProposalSectionProps> = ({
           Create
         </Button>
       </SectionFilter>
-      {pagination?.totalPages === 0 ? null : (
-        <SectionTabs
-          activeTab={activeFilter}
-          setActiveTab={setActiveFilter}
-          tabs={filterOptions}
-        />
-      )}
+
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (

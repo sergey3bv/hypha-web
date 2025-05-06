@@ -2,11 +2,7 @@
 
 import { FC } from 'react';
 import { Text } from '@radix-ui/themes';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 
 import { MembersList } from './members-list';
 import { useMembersSection } from '../hooks/use-members-section';
@@ -28,23 +24,7 @@ export const MembersSection: FC<MemberSectionProps> = ({
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
       <SectionFilter count={pagination?.total || 0} label="Members" />
-      {pagination?.total === 0 ? null : (
-        <SectionTabs
-          activeTab="all"
-          tabs={[
-            { label: 'All', value: 'all' },
-            { label: 'Active', value: 'active' },
-            { label: 'Inactive', value: 'inactive' },
-            { label: 'Applicant', value: 'applicant' },
-            { label: 'Rejected', value: 'rejected' },
-          ]}
-          setActiveTab={function (tab: string): void {
-            console.error('members-section setActiveTab not implemented', {
-              tab,
-            });
-          }}
-        />
-      )}
+
       {pagination?.total === 0 ? (
         <Text className="text-neutra-11 mt-2 mb-6">List is empty</Text>
       ) : (
