@@ -1,9 +1,7 @@
 import React from 'react';
 import { usePayouts } from './use-payouts';
-import { FILTER_OPTIONS_PAYOUTS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_PAYOUTS } from '../../common/constants';
 import { formatCurrencyValue } from '@hypha-platform/ui-utils';
-
-const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_PAYOUTS;
 
@@ -34,7 +32,6 @@ export const usePayoutsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     filterOptions,
     totalValue,
   };

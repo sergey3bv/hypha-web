@@ -16,7 +16,6 @@ import Image from 'next/image';
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
   onReject: () => void;
-  onSetActiveFilter: (value: string) => void;
   content?: string;
   closeUrl: string;
   leadImage?: string;
@@ -32,7 +31,6 @@ export const ProposalDetail = ({
   onAccept,
   onReject,
   content,
-  onSetActiveFilter,
   closeUrl,
   leadImage,
   attachments,
@@ -80,21 +78,9 @@ export const ProposalDetail = ({
       />
       <Separator />
       <CommentsList
-        activeFilter="most-recent"
-        setActiveFilter={onSetActiveFilter}
         pagination={{
           total: 1,
         }}
-        sortOptions={[
-          {
-            label: 'Most Recent',
-            value: 'most-recent',
-          },
-          {
-            label: 'Oldest',
-            value: 'oldest',
-          },
-        ]}
         comments={[
           {
             id: '1',

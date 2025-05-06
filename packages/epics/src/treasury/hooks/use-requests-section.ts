@@ -1,9 +1,6 @@
 import React from 'react';
 import { useRequests } from './use-requests';
-import { SORT_OPTIONS } from '../../common/constants';
 import { formatCurrencyValue } from '@hypha-platform/ui-utils';
-
-const sortOptions = SORT_OPTIONS;
 
 export const useRequestsSection = () => {
   const [activeSort, setSort] = React.useState('all');
@@ -41,7 +38,6 @@ export const useRequestsSection = () => {
     activeSort,
     setSort,
     totalCount,
-    sortOptions,
     totalRequestsValue,
   };
 };

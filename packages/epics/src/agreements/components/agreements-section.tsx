@@ -28,19 +28,12 @@ export const AgreementsSection: FC<AgreementsSectionProps> = ({
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     filterOptions,
   } = useAgreementsSection({ useDocuments });
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={pagination?.total || 0}
-        label="Agreements"
-        sortOptions={sortOptions}
-      />
+      <SectionFilter count={pagination?.total || 0} label="Agreements" />
       {pagination?.totalPages === 0 ? null : (
         <SectionTabs
           activeTab={activeFilter}

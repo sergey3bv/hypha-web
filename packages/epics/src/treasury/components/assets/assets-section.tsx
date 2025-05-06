@@ -24,20 +24,13 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     filterOptions,
     totalBalance,
   } = useAssetsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={totalBalance || 0}
-        label="Balance"
-        sortOptions={sortOptions}
-      >
+      <SectionFilter count={totalBalance || 0} label="Balance">
         <Button asChild className="ml-2">
           <Link href={`${basePath}/deposit`} scroll={false}>
             <CopyIcon />

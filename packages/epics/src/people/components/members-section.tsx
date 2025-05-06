@@ -21,20 +21,13 @@ export const MembersSection: FC<MemberSectionProps> = ({
   basePath,
   useMembers,
 }) => {
-  const { pages, isLoading, loadMore, pagination, sortOptions } =
-    useMembersSection({ useMembers });
+  const { pages, isLoading, loadMore, pagination } = useMembersSection({
+    useMembers,
+  });
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={'all'}
-        onChange={(value) =>
-          console.debug('members-section onChange', { value })
-        }
-        count={pagination?.total || 0}
-        label="Members"
-        sortOptions={sortOptions}
-      />
+      <SectionFilter count={pagination?.total || 0} label="Members" />
       {pagination?.total === 0 ? null : (
         <SectionTabs
           activeTab="all"

@@ -28,19 +28,12 @@ export const ProposalsSection: FC<ProposalSectionProps> = ({
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     filterOptions,
   } = useProposalsSection({ useDocuments });
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={pagination?.total || 0}
-        label="Proposals"
-        sortOptions={sortOptions}
-      >
+      <SectionFilter count={pagination?.total || 0} label="Proposals">
         <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Create

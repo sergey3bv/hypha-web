@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { FILTER_OPTIONS_MEMBERS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_MEMBERS } from '../../common/constants';
 import { FilterParams, Person } from '@hypha-platform/core/client';
 import { type UseMembers } from './types';
-
-const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_MEMBERS;
 
@@ -36,7 +34,6 @@ export const useMembersSection = ({ useMembers }: UseMembersSectionProps) => {
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     filterOptions,
   };
 };

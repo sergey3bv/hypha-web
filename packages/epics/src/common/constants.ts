@@ -40,8 +40,3 @@ export const FILTER_OPTIONS_PAYOUTS = [
   { label: 'Completed', value: 'completed' },
   { label: 'Rejected', value: 'rejected' },
 ];
-
-export const SORT_OPTIONS = [
-  { label: 'All', value: 'all' },
-  { label: 'Most recent', value: 'most-recent' },
-];

@@ -19,20 +19,13 @@ export const PayoutsSection: FC<PayoutSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     filterOptions,
     totalValue,
   } = usePayoutsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={totalValue || 0}
-        label="Payouts"
-        sortOptions={sortOptions}
-      />
+      <SectionFilter count={totalValue || 0} label="Payouts" />
       {pagination?.totalPages === 0 ? null : (
         <SectionTabs
           activeTab={activeFilter}

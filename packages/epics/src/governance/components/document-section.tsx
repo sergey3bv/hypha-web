@@ -29,12 +29,9 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
 }) => {
   const {
     pages,
-    activeFilter,
-    setActiveFilter,
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     tabs,
     activeTab,
     setActiveTab,
@@ -46,11 +43,8 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
   return (
     <div className="flex flex-col justify-around items-center gap-4">
       <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
         count={pagination?.total || 0}
         label={label || ''}
-        sortOptions={sortOptions}
         hasSearch={hasSearch}
       >
         {headSectionButton}
