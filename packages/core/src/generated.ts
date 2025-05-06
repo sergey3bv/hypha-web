@@ -208,14 +208,14 @@ export const agreementsImplementationAbi = [
     outputs: [],
     stateMutability: 'payable',
   },
-] as const
+] as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0x83B5d4F555A68126bB302685e67767Bb7a2985F0)
  */
 export const agreementsImplementationAddress = {
   8453: '0x83B5d4F555A68126bB302685e67767Bb7a2985F0',
-} as const
+} as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0x83B5d4F555A68126bB302685e67767Bb7a2985F0)
@@ -223,7 +223,7 @@ export const agreementsImplementationAddress = {
 export const agreementsImplementationConfig = {
   address: agreementsImplementationAddress,
   abi: agreementsImplementationAbi,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DAOProposalsImplementation
@@ -702,14 +702,14 @@ export const daoProposalsImplementationAbi = [
     outputs: [],
     stateMutability: 'nonpayable',
   },
-] as const
+] as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0x001bA7a00a259Fb12d7936455e292a60FC2bef14)
  */
 export const daoProposalsImplementationAddress = {
   8453: '0x001bA7a00a259Fb12d7936455e292a60FC2bef14',
-} as const
+} as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0x001bA7a00a259Fb12d7936455e292a60FC2bef14)
@@ -717,7 +717,7 @@ export const daoProposalsImplementationAddress = {
 export const daoProposalsImplementationConfig = {
   address: daoProposalsImplementationAddress,
   abi: daoProposalsImplementationAbi,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DAOSpaceFactoryImplementation
@@ -1189,14 +1189,14 @@ export const daoSpaceFactoryImplementationAbi = [
     outputs: [],
     stateMutability: 'payable',
   },
-] as const
+] as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9)
  */
 export const daoSpaceFactoryImplementationAddress = {
   8453: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9',
-} as const
+} as const;
 
 /**
  * [__View Contract on Base Basescan__](https://basescan.org/address/0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9)
@@ -1204,4 +1204,4 @@ export const daoSpaceFactoryImplementationAddress = {
 export const daoSpaceFactoryImplementationConfig = {
   address: daoSpaceFactoryImplementationAddress,
   abi: daoSpaceFactoryImplementationAbi,
-} as const
+} as const;
