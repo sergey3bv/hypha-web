@@ -46,3 +46,19 @@ export const updateAgreementBySlug = async (
 
   return updatedAgreement;
 };
+
+export const deleteAgreementBySlug = async (
+  { slug }: { slug: string },
+  { db }: { db: DatabaseInstance },
+) => {
+  const deleted = await db
+    .delete(documents)
+    .where(eq(documents.slug, slug))
+    .returning();
+
+  if (!deleted || deleted.length === 0) {
+    throw new Error('Failed to delete agreement');
+  }
+
+  return deleted[0];
+};
