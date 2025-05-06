@@ -67,7 +67,7 @@ export const SelectCreateAction = ({
 }) => {
   return (
     <SelectAction
-      title="Create"
+      title="Create a Proposal"
       content="Select an action to contribute, collaborate, make decisions or manage resources within your space."
       actions={CREATE_ACTIONS.map((action) => ({
         ...action,
