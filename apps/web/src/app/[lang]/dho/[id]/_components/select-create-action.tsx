@@ -36,7 +36,7 @@ export const CREATE_ACTIONS = [
     icon: <PlusCircledIcon />,
   },
   {
-    title: 'Transfer Ownership',
+    title: 'Exchange Ownership',
     description:
       'Swap ownership between members or spaces, whether selling a stake or exchanging assets.',
     href: '#',
