@@ -1,11 +1,13 @@
 'use client';
 
 import useSWR from 'swr';
+import { Config } from '@wagmi/core';
 import { z } from 'zod';
 import { produce } from 'immer';
 import React, { useCallback } from 'react';
 
 import { useAgreementMutationsWeb2Rsc } from './useAgreementMutations.web2.rsc';
+import { useAgreementMutationsWeb3Rpc } from './useAgreementMutations.web3.rsc';
 import useSWRMutation from 'swr/mutation';
 import {
   schemaCreateAgreement,
@@ -16,12 +18,14 @@ import { useAgreementFileUploads } from './useAgreementFileUploads';
 
 type UseCreateAgreementOrchestratorInput = {
   authToken?: string | null;
+  config?: Config;
 };
 
 export type TaskName =
   | 'CREATE_WEB2_AGREEMENT'
+  | 'CREATE_WEB3_AGREEMENT'
   | 'UPLOAD_FILES'
-  | 'UPDATING_CREATED_AGREEMENT';
+  | 'LINK_WEB2_AND_WEB3_AGREEMENT';
 
 export type TaskState = {
   [K in TaskName]: {
@@ -39,8 +43,9 @@ export enum TaskStatus {
 
 const taskActionDescriptions: Record<TaskName, string> = {
   CREATE_WEB2_AGREEMENT: 'Creating Web2 agreement...',
+  CREATE_WEB3_AGREEMENT: 'Creating Web3 agreement...',
   UPLOAD_FILES: 'Uploading Agreement Files...',
-  UPDATING_CREATED_AGREEMENT: 'Updating created agreement',
+  LINK_WEB2_AND_WEB3_AGREEMENT: 'Linking Web2 and Web3 agreements',
 };
 
 export type ProgressAction =
@@ -51,8 +56,9 @@ export type ProgressAction =
 
 const initialTaskState: TaskState = {
   CREATE_WEB2_AGREEMENT: { status: TaskStatus.IDLE },
+  CREATE_WEB3_AGREEMENT: { status: TaskStatus.IDLE },
   UPLOAD_FILES: { status: TaskStatus.IDLE },
-  UPDATING_CREATED_AGREEMENT: { status: TaskStatus.IDLE },
+  LINK_WEB2_AND_WEB3_AGREEMENT: { status: TaskStatus.IDLE },
 };
 
 export const progressStateReducer = (
@@ -98,9 +104,11 @@ const computeProgress = (tasks: TaskState): number => {
 
 export const useCreateAgreementOrchestrator = ({
   authToken,
+  config,
 }: UseCreateAgreementOrchestratorInput) => {
   const agreementFiles = useAgreementFileUploads(authToken);
   const web2 = useAgreementMutationsWeb2Rsc(authToken);
+  const web3 = useAgreementMutationsWeb3Rpc(config);
 
   const [taskState, dispatch] = React.useReducer(
     progressStateReducer,
@@ -142,8 +150,33 @@ export const useCreateAgreementOrchestrator = ({
     async (_, { arg }: { arg: z.infer<typeof schemaCreateAgreement> }) => {
       startTask('CREATE_WEB2_AGREEMENT');
       const inputCreateAgreementWeb2 = schemaCreateAgreementWeb2.parse(arg);
-      await web2.createAgreement(inputCreateAgreementWeb2);
+      const createdAgreement = await web2.createAgreement(
+        inputCreateAgreementWeb2,
+      );
       completeTask('CREATE_WEB2_AGREEMENT');
+
+      let web3ProposalResult = undefined;
+      const web2Slug = createdAgreement?.slug ?? web2.createdAgreement?.slug;
+      const web3SpaceId = (arg as any).web3SpaceId;
+      try {
+        if (config) {
+          if (typeof web3SpaceId !== 'number') {
+            throw new Error(
+              'web3SpaceId is required for web3 proposal creation',
+            );
+          }
+          startTask('CREATE_WEB3_AGREEMENT');
+          web3ProposalResult = await web3.createAgreement({
+            spaceId: web3SpaceId,
+          });
+          completeTask('CREATE_WEB3_AGREEMENT');
+        }
+      } catch (err) {
+        if (web2Slug) {
+          await web2.deleteAgreementBySlug({ slug: web2Slug });
+        }
+        throw err;
+      }
 
       startTask('UPLOAD_FILES');
       const inputFiles = schemaCreateAgreementFiles.parse(arg);
@@ -157,14 +190,16 @@ export const useCreateAgreementOrchestrator = ({
       ? [
           web2.createdAgreement.slug,
           agreementFiles.files,
+          web3.createdAgreement?.proposalId,
           'updatingCreatedAgreement',
         ]
       : null,
-    async ([slug, uploadedFiles]) => {
+    async ([slug, uploadedFiles, web3ProposalId]) => {
       try {
-        startTask('UPDATING_CREATED_AGREEMENT');
+        startTask('LINK_WEB2_AND_WEB3_AGREEMENT');
         const result = await web2.updateAgreementBySlug({
           slug,
+          web3ProposalId: web3ProposalId ? Number(web3ProposalId) : undefined,
           attachments: uploadedFiles.attachments
             ? Array.isArray(uploadedFiles.attachments)
               ? uploadedFiles.attachments
@@ -172,11 +207,11 @@ export const useCreateAgreementOrchestrator = ({
             : [],
           leadImage: uploadedFiles.leadImage,
         });
-        completeTask('UPDATING_CREATED_AGREEMENT');
+        completeTask('LINK_WEB2_AND_WEB3_AGREEMENT');
         return result;
       } catch (error) {
         if (error instanceof Error) {
-          errorTask('UPDATING_CREATED_AGREEMENT', error.message);
+          errorTask('LINK_WEB2_AND_WEB3_AGREEMENT', error.message);
         }
         throw error;
       }
@@ -184,19 +219,29 @@ export const useCreateAgreementOrchestrator = ({
   );
 
   const errors = React.useMemo(() => {
-    return [web2.errorCreateAgreementMutation].filter(Boolean);
-  }, [web2.errorCreateAgreementMutation]);
+    return [
+      web2.errorCreateAgreementMutation,
+      web3.errorCreateAgreement,
+      web3.errorWaitAgreementFromTransaction,
+    ].filter(Boolean);
+  }, [
+    web2.errorCreateAgreementMutation,
+    web3.errorCreateAgreement,
+    web3.errorWaitAgreementFromTransaction,
+  ]);
 
   const reset = useCallback(() => {
     resetTasks();
     web2.resetCreateAgreementMutation();
-  }, []);
+    web3.resetCreateAgreementMutation();
+  }, [resetTasks, web2, web3]);
 
   return {
     reset,
     createAgreement,
     agreement: {
-      ...web2.createdAgreement,
+      ...updatedWeb2Agreement,
+      ...web3.createdAgreement,
     },
     taskState,
     currentAction,
