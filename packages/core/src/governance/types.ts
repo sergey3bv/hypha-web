@@ -10,6 +10,12 @@ export enum DocumentState {
   AGREEMENT = 'agreement',
 }
 
+interface Transaction {
+  target: string;
+  value: number;
+  data: string | Uint8Array;
+}
+
 export type Document = {
   id: number;
   creatorId: number;
@@ -22,6 +28,7 @@ export type Document = {
   creator?: Creator;
   leadImage?: string;
   attachments?: string[];
+  web3ProposalId?: number | null;
 };
 
 export interface CreateAgreementInput {
@@ -38,6 +45,7 @@ export interface UpdateAgreementInput {
   leadImage?: string;
   slug?: string;
   attachments?: string[];
+  web3ProposalId?: number | null;
 }
 
 export type UpdateAgreementBySlugInput = {

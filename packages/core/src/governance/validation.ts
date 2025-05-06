@@ -115,6 +115,7 @@ const createAgreementWeb2Props = {
     .optional(),
   creatorId: z.number().min(1),
   spaceId: z.number().min(1),
+  web3ProposalId: z.number().optional(),
 };
 
 export const schemaCreateAgreementWeb2 = z.object(createAgreementWeb2Props);
@@ -171,10 +172,43 @@ export const schemaProposeContribution = z.object({
   paymentSchedule: paymentScheduleSchema.optional(),
 });
 
+export const transactionSchema = z.object({
+  target: z
+    .string()
+    .regex(ETH_ADDRESS_REGEX, { message: 'Invalid Ethereum address' })
+    .min(1, { message: 'Target address is required' }),
+  value: z.preprocess(
+    (val) => Number(val),
+    z.number().min(0, { message: 'Value must be greater than or equal to 0' }),
+  ),
+  data: z.string().optional(),
+});
+
 export const schemaCreateAgreementForm = z.object({
   ...createAgreementWeb2Props,
   ...createAgreementFiles,
   recipient: schemaProposeContribution.shape.recipient,
   payouts: schemaProposeContribution.shape.payouts,
   paymentSchedule: paymentScheduleSchema.optional(),
+});
+
+export const schemaCreateProposalWeb3 = z.object({
+  spaceId: z.number().min(1, { message: 'Space ID must be a positive number' }),
+  duration: z.number().min(1, { message: 'Duration must be greater than 0' }),
+  transactions: z
+    .array(transactionSchema)
+    .min(1, { message: 'At least one transaction is required' })
+    .max(10, { message: 'A proposal cannot have more than 10 transactions' }),
+});
+
+export const mapToCreateProposalWeb3Input = (
+  d: z.infer<typeof schemaCreateProposalWeb3>,
+) => ({
+  spaceId: d.spaceId,
+  duration: d.duration,
+  transactions: d.transactions.map((tx) => ({
+    target: tx.target,
+    value: tx.value,
+    data: tx.data || '0x',
+  })),
 });
