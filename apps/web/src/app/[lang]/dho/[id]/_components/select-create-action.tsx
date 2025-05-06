@@ -15,7 +15,7 @@ export const CREATE_ACTIONS = [
     icon: <RocketIcon />,
   },
   {
-    title: 'Make an Agreement',
+    title: 'Make a Collective Agreement',
     description:
       'Define and formalize a mutual understanding, policy, or decision among members of the space.',
     href: 'governance/create',
