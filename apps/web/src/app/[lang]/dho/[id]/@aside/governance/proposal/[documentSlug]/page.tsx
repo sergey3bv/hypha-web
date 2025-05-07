@@ -12,7 +12,6 @@ export default function Agreements() {
   const { id, lang } = useParams();
   const documentSlug = useDocumentSlug();
   const { document, isLoading } = useDocumentBySlug(documentSlug);
-  console.log(document);
   const { handleAccept, handleReject } = useVote({
     proposalId: document?.web3ProposalId,
   });
