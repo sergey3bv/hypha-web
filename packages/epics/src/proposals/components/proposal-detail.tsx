@@ -14,6 +14,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 type ProposalDetailProps = ProposalHeadProps & {
+  onSetActiveFilter: (value: string) => void;
   onAccept: () => void;
   onReject: () => void;
   content?: string;
@@ -34,6 +35,7 @@ export const ProposalDetail = ({
   closeUrl,
   leadImage,
   attachments,
+  onSetActiveFilter,
 }: ProposalDetailProps) => {
   return (
     <div className="flex flex-col gap-5">
