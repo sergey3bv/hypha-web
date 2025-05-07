@@ -10,21 +10,15 @@ export type FilterOption = {
 };
 
 type SectionFilterProps = {
-  value: string;
-  onChange: (value: string) => void;
   count: number | string;
   label: string;
-  sortOptions: FilterOption[];
   children?: React.ReactNode;
   hasSearch?: boolean;
 };
 
 export const SectionFilter: FC<SectionFilterProps> = ({
-  value,
-  onChange,
   count,
   label,
-  sortOptions,
   children,
   hasSearch,
 }) => {
@@ -39,13 +33,8 @@ export const SectionFilter: FC<SectionFilterProps> = ({
           placeholder="Search documents"
           leftIcon={<SearchIcon size="16px" />}
         />
-      ) : (
-        <></>
-      )}
-      <div className="flex items-center text-nowrap">
-        <FilterMenu value={value} onChange={onChange} options={sortOptions} />
-        {children}
-      </div>
+      ) : null}
+      <div className="flex items-center text-nowrap">{children}</div>
     </div>
   );
 };

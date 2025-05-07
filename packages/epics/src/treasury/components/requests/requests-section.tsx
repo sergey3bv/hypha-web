@@ -15,19 +15,12 @@ export const RequestsSection: FC<RequestsSectionProps> = () => {
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     totalRequestsValue,
   } = useRequestsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeSort}
-        onChange={setSort}
-        count={totalRequestsValue}
-        label="Requests"
-        sortOptions={sortOptions}
-      />
+      <SectionFilter count={totalRequestsValue} label="Requests" />
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (

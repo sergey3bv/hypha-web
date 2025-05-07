@@ -18,18 +18,11 @@ export const OuterSpacesSection: FC<OuterSpacesSectionProps> = () => {
     loadMore,
     pagination,
     totalCount,
-    sortOptions,
   } = useSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeSort}
-        onChange={setSort}
-        count={totalCount}
-        label="Outer Spaces"
-        sortOptions={sortOptions}
-      >
+      <SectionFilter count={totalCount} label="Outer Spaces">
         <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Invite space

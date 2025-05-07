@@ -3,11 +3,7 @@ import { FC } from 'react';
 import { AssetsList } from './assets-list';
 import { Text } from '@radix-ui/themes';
 import { useAssetsSection } from '../../hooks/use-assets-section';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { Button } from '@hypha-platform/ui';
 import { CopyIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
@@ -24,20 +20,13 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
     isLoading,
     loadMore,
     pagination,
-    sortOptions,
     filterOptions,
     totalBalance,
   } = useAssetsSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={totalBalance || 0}
-        label="Balance"
-        sortOptions={sortOptions}
-      >
+      <SectionFilter count={totalBalance || 0} label="Balance">
         <Button asChild className="ml-2">
           <Link href={`${basePath}/deposit`} scroll={false}>
             <CopyIcon />
@@ -45,13 +34,6 @@ export const AssetsSection: FC<AssetSectionProps> = ({ basePath }) => {
           </Link>
         </Button>
       </SectionFilter>
-      {pagination?.totalPages === 0 ? null : (
-        <SectionTabs
-          activeTab={activeFilter}
-          setActiveTab={setActiveFilter}
-          tabs={filterOptions}
-        />
-      )}
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutra-11 mt-2 mb-6">List is empty</Text>
       ) : (

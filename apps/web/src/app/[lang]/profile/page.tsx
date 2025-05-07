@@ -60,37 +60,6 @@ export default function Profile() {
         about={person?.description ?? ''}
         onExportEmbeededWallet={isEmbeddedWallet ? exportWallet : undefined}
       />
-      <div className="mt-6">
-        <MemberSpaces spaces={[]} profileView />
-      </div>
-      <Tabs defaultValue="governance" className="w-full mt-16">
-        <TabsList className="w-full mb-7">
-          <TabsTrigger value="governance" className="w-full" variant="ghost">
-            Governance
-          </TabsTrigger>
-          <TabsTrigger value="proposals" className="w-full" variant="ghost">
-            Proposals
-          </TabsTrigger>
-          <TabsTrigger value="discussions" className="w-full" variant="ghost">
-            Discussions
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="governance">
-          <AgreementsSection basePath="" useDocuments={useSpaceDocuments} />
-        </TabsContent>
-        <TabsContent value="proposals">
-          <ProposalsSection basePath="" useDocuments={useSpaceDocuments} />
-        </TabsContent>
-        <TabsContent value="discussions">
-          {/* TODO: #608 Define document base route to handle transition from profile */}
-          <DocumentSection
-            basePath=""
-            useDocuments={useSpaceDocuments}
-            documentState="proposal"
-          />
-        </TabsContent>
-      </Tabs>
-      <SpaceGroupSlider spaces={[]} type="Hypha" getHref={getHref} />
     </Container>
   );
 }

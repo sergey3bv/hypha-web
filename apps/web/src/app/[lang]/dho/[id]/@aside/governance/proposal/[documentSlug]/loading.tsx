@@ -9,7 +9,6 @@ export default function Loading() {
         closeUrl={''}
         onAccept={() => console.log('accept')}
         onReject={() => console.log('reject')}
-        onSetActiveFilter={() => console.log('set active filter')}
         content={''}
         creator={{
           avatar: '',

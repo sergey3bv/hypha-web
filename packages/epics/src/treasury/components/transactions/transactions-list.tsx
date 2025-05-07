@@ -14,29 +14,19 @@ export type TransactionsListProps = {
     totalPages: number;
     hasNextPage: boolean;
   };
-  sortOptions: FilterOption[];
   isLoading?: boolean;
   loadMore: () => void;
 };
 
 export const TransactionsList = ({
-  activeFilter,
-  setActiveFilter,
   pagination,
-  sortOptions,
   transactions,
   isLoading,
   loadMore,
 }: TransactionsListProps) => {
   return (
     <div className="flex flex-col gap-5">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={pagination?.total || 0}
-        label="Transactions"
-        sortOptions={sortOptions}
-      />
+      <SectionFilter count={pagination?.total || 0} label="Transactions" />
       <div className="flex flex-col gap-2">
         {transactions?.map((transaction) => (
           <TransactionCard

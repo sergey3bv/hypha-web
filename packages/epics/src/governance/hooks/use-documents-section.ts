@@ -1,8 +1,5 @@
 import React from 'react';
-import { SORT_OPTIONS } from '../../common/constants';
 import { DocumentState, UseDocuments } from '../../governance';
-
-const sortOptions = SORT_OPTIONS;
 
 export const tabs = [
   {
@@ -57,7 +54,6 @@ export const useDocumentsSection = ({
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     tabs,
     activeTab,
     setActiveTab,

@@ -1,9 +1,7 @@
 import React from 'react';
 import { useAssets } from './use-assets';
-import { FILTER_OPTIONS_ASSETS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_ASSETS } from '../../common/constants';
 import { formatCurrencyValue } from '@hypha-platform/ui-utils';
-
-const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_ASSETS;
 
@@ -34,7 +32,6 @@ export const useAssetsSection = () => {
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     filterOptions,
     totalBalance,
   };

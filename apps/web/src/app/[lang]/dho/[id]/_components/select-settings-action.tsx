@@ -54,7 +54,7 @@ export const SETTINGS_ACTIONS = [
     group: 'Tokens',
     title: 'Issue New Token',
     description:
-      'Create a new token for utility, payouts, or ownership within your space.',
+      'Create a new token for utility, cash credit, or ownership within your space.',
     href: '#',
     icon: <Pencil2Icon />,
   },

@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  FILTER_OPTIONS_AGREEMENTS,
-  SORT_OPTIONS,
-} from '../../common/constants';
+import { FILTER_OPTIONS_AGREEMENTS } from '../../common/constants';
 import { UseDocuments } from '../../governance';
-
-const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_AGREEMENTS;
 
@@ -38,7 +33,6 @@ export const useAgreementsSection = ({
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     filterOptions,
   };
 };

@@ -1,8 +1,5 @@
 import React from 'react';
 import { useSpaces } from './use-spaces';
-import { SORT_OPTIONS } from '../../common/constants';
-
-const sortOptions = SORT_OPTIONS;
 
 export const useSpacesSection = () => {
   const [activeSort, setSort] = React.useState('all');
@@ -39,6 +36,5 @@ export const useSpacesSection = () => {
     activeSort,
     setSort,
     totalCount,
-    sortOptions,
   };
 };

@@ -1,8 +1,6 @@
 import React from 'react';
-import { FILTER_OPTIONS_PROPOSALS, SORT_OPTIONS } from '../../common/constants';
+import { FILTER_OPTIONS_PROPOSALS } from '../../common/constants';
 import { UseDocuments } from '../../governance';
-
-const sortOptions = SORT_OPTIONS;
 
 const filterOptions = FILTER_OPTIONS_PROPOSALS;
 
@@ -35,7 +33,6 @@ export const useProposalsSection = ({
     setPages,
     activeFilter,
     setActiveFilter,
-    sortOptions,
     filterOptions,
   };
 };

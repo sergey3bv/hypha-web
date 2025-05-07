@@ -1,5 +1,5 @@
 import { Text } from '@radix-ui/themes';
-import { FilterMenu, Button } from '@hypha-platform/ui';
+import { Button } from '@hypha-platform/ui';
 import Link from 'next/link';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { InnerSpaceCard } from '@hypha-platform/epics';
@@ -12,24 +12,6 @@ interface SubspaceSectionProps {
   lang: Locale;
 }
 
-type OptionType = {
-  label: string;
-  value: string;
-};
-
-type SpacesFilterType = {
-  value: string;
-  options: OptionType[];
-};
-
-const filterSettings: SpacesFilterType = {
-  value: 'most-recent',
-  options: [
-    { label: 'All', value: 'all' },
-    { label: 'Most recent', value: 'most-recent' },
-  ],
-};
-
 export const SubspaceSection = ({
   spaces,
   lang,
@@ -38,12 +20,8 @@ export const SubspaceSection = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="justify-between items-center flex">
-        <Text className="text-4">Sub-spaces | {spaces.length}</Text>
+        <Text className="text-4">Sub-Spaces | {spaces.length}</Text>
         <div className="flex items-center">
-          <FilterMenu
-            value={filterSettings.value}
-            options={filterSettings.options}
-          />
           <Link href={`membership/space/create`} scroll={false}>
             <Button className="ml-2">
               <PlusIcon className="mr-2" />

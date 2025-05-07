@@ -6,29 +6,15 @@ import { expect } from '@storybook/jest';
 const meta: Meta<typeof CommentsList> = {
   component: CommentsList,
   title: 'Epics/Interactions/CommentsList',
-  argTypes: {
-    setActiveFilter: { action: 'setActiveFilter executed!' },
-  },
 };
 export default meta;
 type Story = StoryObj<typeof CommentsList>;
 
 export const Primary: Story = {
   args: {
-    activeFilter: 'most-recent',
     pagination: {
       total: 1,
     },
-    sortOptions: [
-      {
-        label: 'Most Recent',
-        value: 'most-recent',
-      },
-      {
-        label: 'Oldest',
-        value: 'oldest',
-      },
-    ],
     comments: [
       {
         id: '1',

@@ -25,7 +25,6 @@ export default function Loading() {
             totalPages: 0,
             hasNextPage: true,
           },
-          sortOptions: [],
           transactions: [],
           loadMore: () => {
             console.log('loaded more');

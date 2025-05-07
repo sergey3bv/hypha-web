@@ -68,18 +68,9 @@ export const AgreementDetail = ({
       <div>{content}</div>
       <AttachmentList attachments={attachments || []} />
       <CommentsList
-        activeFilter="most-recent"
-        setActiveFilter={onSetActiveFilter}
         pagination={{
           total: comments?.length ?? 0,
         }}
-        sortOptions={[
-          { label: 'All', value: 'all' },
-          {
-            label: 'Most recent',
-            value: 'most-recent',
-          },
-        ]}
         comments={comments}
       />
     </div>

@@ -3,11 +3,7 @@ import { FC } from 'react';
 import { AgreementsList } from './agreements-list';
 import { Text } from '@radix-ui/themes';
 import { useAgreementsSection } from '../hooks/use-agreements-section';
-import {
-  SectionFilter,
-  SectionLoadMore,
-  SectionTabs,
-} from '@hypha-platform/ui/server';
+import { SectionFilter, SectionLoadMore } from '@hypha-platform/ui/server';
 import { UseDocuments } from '../../governance';
 
 type AgreementsSectionProps = {
@@ -21,33 +17,13 @@ export const AgreementsSection: FC<AgreementsSectionProps> = ({
   useDocuments,
   hasAvatar = true,
 }) => {
-  const {
-    pages,
-    activeFilter,
-    setActiveFilter,
-    isLoading,
-    loadMore,
-    pagination,
-    sortOptions,
-    filterOptions,
-  } = useAgreementsSection({ useDocuments });
+  const { pages, activeFilter, isLoading, loadMore, pagination } =
+    useAgreementsSection({ useDocuments });
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeFilter}
-        onChange={setActiveFilter}
-        count={pagination?.total || 0}
-        label="Agreements"
-        sortOptions={sortOptions}
-      />
-      {pagination?.totalPages === 0 ? null : (
-        <SectionTabs
-          activeTab={activeFilter}
-          setActiveTab={setActiveFilter}
-          tabs={filterOptions}
-        />
-      )}
+      <SectionFilter count={pagination?.total || 0} label="Agreements" />
+
       {pagination?.totalPages === 0 ? (
         <Text className="text-neutral-11 mt-2 mb-6">List is empty</Text>
       ) : (

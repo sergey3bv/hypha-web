@@ -18,7 +18,6 @@ export default function Agreements() {
         closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
         onAccept={() => console.log('accept')}
         onReject={() => console.log('reject')}
-        onSetActiveFilter={() => console.log('set active filter')}
         content={document?.description}
         creator={{
           avatar: document?.creator?.avatarUrl || '',

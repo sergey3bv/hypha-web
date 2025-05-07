@@ -32,10 +32,6 @@ export default function Treasury() {
             totalPages: 10,
             hasNextPage: true,
           },
-          sortOptions: [
-            { label: 'All', value: 'all' },
-            { label: 'Most recent', value: 'most-recent' },
-          ],
           transactions: data?.transactions,
           loadMore: () => {
             console.log('loaded more');

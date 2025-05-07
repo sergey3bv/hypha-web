@@ -22,18 +22,11 @@ export const InnerSpacesSection: FC<InnerSpacesSectionProps> = ({
     loadMore,
     pagination,
     totalCount,
-    sortOptions,
   } = useSpacesSection();
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter
-        value={activeSort}
-        onChange={setSort}
-        count={totalCount}
-        label="Inner Spaces"
-        sortOptions={sortOptions}
-      >
+      <SectionFilter count={totalCount} label="Inner Spaces">
         <Button className="ml-2">
           <PlusIcon className="mr-2" />
           Create
