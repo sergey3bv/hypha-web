@@ -28,6 +28,7 @@ export const mapToDocument = (
     attachments: dbDocument.attachments || [],
     createdAt: dbDocument.createdAt,
     updatedAt: dbDocument.updatedAt,
+    web3ProposalId: dbDocument.web3ProposalId,
     creator: {
       avatarUrl: creator?.avatarUrl || '',
       name: creator?.name || '',

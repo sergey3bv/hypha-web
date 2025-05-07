@@ -6,18 +6,22 @@ import { Locale } from '@hypha-platform/i18n';
 import { useDocumentSlug } from '@web/hooks/use-document-slug';
 import { useDocumentBySlug } from '@web/hooks/use-document-by-slug';
 import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
+import { useVote } from '@core/governance';
 
 export default function Agreements() {
   const { id, lang } = useParams();
   const documentSlug = useDocumentSlug();
   const { document, isLoading } = useDocumentBySlug(documentSlug);
+  const { handleAccept, handleReject } = useVote({
+    proposalId: document?.web3ProposalId,
+  });
 
   return (
     <SidePanel>
       <ProposalDetail
         closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
-        onAccept={() => console.log('accept')}
-        onReject={() => console.log('reject')}
+        onAccept={handleAccept}
+        onReject={handleReject}
         content={document?.description}
         creator={{
           avatar: document?.creator?.avatarUrl || '',
