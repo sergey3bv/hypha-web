@@ -2,7 +2,7 @@ import { Locale } from '@hypha-platform/i18n';
 import {
   AssetsSection,
   PayoutsSection,
-  RequestsSection,
+  TransactionsSection,
 } from '@hypha-platform/epics';
 import { getDhoPathTreasury } from './constants';
 
@@ -20,8 +20,7 @@ export default async function TreasuryPage(props: PageProps) {
   return (
     <div className="flex flex-col gap-6 py-4">
       <AssetsSection basePath={`${basePath}`} />
-      <RequestsSection />
-      <PayoutsSection />
+      <TransactionsSection />
     </div>
   );
 }

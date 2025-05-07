@@ -1,4 +1,5 @@
 import { SelectAction } from '@hypha-platform/epics';
+import { Locale } from '@hypha-platform/i18n';
 import { Pencil2Icon } from '@radix-ui/react-icons';
 
 export const SETTINGS_ACTIONS = [
@@ -76,12 +77,21 @@ export const SETTINGS_ACTIONS = [
   },
 ];
 
-export const SelectSettingsAction = () => {
+export const SelectSettingsAction = ({
+  daoSlug,
+  lang,
+}: {
+  daoSlug: string;
+  lang: Locale;
+}) => {
   return (
     <SelectAction
       title="Space Settings"
       content="Access and manage the settings for your space, including its appearance, structure, methods, membership, and treasury."
-      actions={SETTINGS_ACTIONS}
+      actions={SETTINGS_ACTIONS.map((action) => ({
+        ...action,
+        href: `/${lang}/dho/${daoSlug}/${action.href}`,
+      }))}
     />
   );
 };
