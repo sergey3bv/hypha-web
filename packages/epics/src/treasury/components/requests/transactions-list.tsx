@@ -3,12 +3,15 @@ import { RequestCard } from './request-card';
 import { useRequests } from '../../hooks/use-requests';
 import { SortParams } from '@hypha-platform/graphql/rsc';
 
-type RequestsListProps = {
+type TransactionsListProps = {
   page: number;
   activeSort: SortParams['sort'];
 };
 
-export const RequestsList: FC<RequestsListProps> = ({ page, activeSort }) => {
+export const TransactionsList: FC<TransactionsListProps> = ({
+  page,
+  activeSort,
+}) => {
   const { requests, isLoading } = useRequests({
     page,
     sort: { sort: activeSort },
