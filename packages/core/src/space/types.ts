@@ -1,4 +1,6 @@
 import { Category } from '@core/categories/types';
+import { Document } from '@core/governance';
+import { Person } from '@core/people';
 
 export interface Space {
   id: number;
@@ -12,6 +14,8 @@ export interface Space {
   links?: string[] | null;
   categories?: Category[] | null;
   subspaces?: Space[];
+  members: Person[];
+  documents: Document[];
 }
 
 export interface CreateSpaceInput {
