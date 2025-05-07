@@ -21,14 +21,8 @@ export const AssetDetail = ({
   isLoading,
   closeUrl,
 }: AssetDetailProps) => {
-  const {
-    activeFilter,
-    setActiveFilter,
-    pagination,
-    sortOptions,
-    transactions,
-    loadMore,
-  } = transactionsListProps;
+  const { activeFilter, setActiveFilter, pagination, transactions, loadMore } =
+    transactionsListProps;
 
   return (
     <div className="flex flex-col gap-5">
@@ -51,7 +45,6 @@ export const AssetDetail = ({
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
         pagination={pagination}
-        sortOptions={sortOptions}
         transactions={transactions}
         isLoading={isLoading}
         loadMore={loadMore}
