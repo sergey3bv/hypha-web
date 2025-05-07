@@ -103,7 +103,7 @@ export const paymentScheduleSchema = z
 
 const createAgreementWeb2Props = {
   title: z.string().min(1).max(50),
-  description: z.string().min(1).max(300),
+  description: z.string().min(1).max(4000),
   slug: z
     .string()
     .min(1)
