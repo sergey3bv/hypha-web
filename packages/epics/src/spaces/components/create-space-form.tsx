@@ -59,7 +59,7 @@ export const CreateSpaceForm = ({
       description: '',
       quorum: 80,
       unity: 20,
-      votingPowerSource: 0,
+      votingPowerSource: 2,
       joinMethod: 0,
       exitMethod: 0,
       logoUrl: undefined,
