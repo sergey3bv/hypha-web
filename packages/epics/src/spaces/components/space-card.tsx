@@ -70,19 +70,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
               {title}
             </CardTitle>
           </Skeleton>
-          <div className="flex">
-            <div>
-              {activeAgreements ? (
-                <Badge
-                  isLoading={isLoading}
-                  variant="surface"
-                  colorVariant="success"
-                >
-                  {activeAgreements} Active Agreements
-                </Badge>
-              ) : null}
-            </div>
-          </div>
         </div>
         <Skeleton
           loading={isLoading}
