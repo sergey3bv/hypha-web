@@ -50,7 +50,7 @@ export const SpaceGroupSlider = ({
                   title={space.title as string}
                   isLoading={isLoading}
                   members={space.memberCount}
-                  agreements={0}
+                  agreements={space.documentCount}
                 />
               </Link>
             </CarouselItem>

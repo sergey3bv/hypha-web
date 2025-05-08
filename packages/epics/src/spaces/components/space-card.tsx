@@ -17,7 +17,6 @@ type SpaceCardProps = {
   agreements?: number;
   title: string;
   activeAgreements?: number;
-  openDiscussions?: number;
   isLoading?: boolean;
   leadImage?: string;
 };
@@ -39,7 +38,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
   members,
   agreements,
   activeAgreements,
-  openDiscussions,
   isLoading = false,
   title,
   leadImage,
@@ -81,17 +79,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
                   colorVariant="success"
                 >
                   {activeAgreements} Active Agreements
-                </Badge>
-              ) : null}
-            </div>
-            <div className="ml-2">
-              {openDiscussions ? (
-                <Badge
-                  isLoading={isLoading}
-                  variant="surface"
-                  colorVariant="warn"
-                >
-                  {openDiscussions} Open Discussions
                 </Badge>
               ) : null}
             </div>

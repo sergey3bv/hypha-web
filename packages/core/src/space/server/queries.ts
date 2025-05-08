@@ -1,5 +1,10 @@
 import { asc, eq, sql } from 'drizzle-orm';
-import { memberships, Space, spaces } from '@hypha-platform/storage-postgres';
+import {
+  memberships,
+  Space,
+  spaces,
+  documents,
+} from '@hypha-platform/storage-postgres';
 import { DbConfig } from '@core/common/server';
 
 export const findAllSpaces = async ({ db }: DbConfig) => {
@@ -17,10 +22,16 @@ export const findAllSpaces = async ({ db }: DbConfig) => {
       parentId: spaces.parentId,
       createdAt: spaces.createdAt,
       updatedAt: spaces.updatedAt,
-      memberCount: sql<number>`count(${memberships.personId})`.mapWith(Number),
+      memberCount: sql<number>`count(distinct ${memberships.personId})`.mapWith(
+        Number,
+      ),
+      documentCount: sql<number>`count(distinct ${documents.id})`.mapWith(
+        Number,
+      ),
     })
     .from(spaces)
     .leftJoin(memberships, eq(memberships.spaceId, spaces.id))
+    .leftJoin(documents, eq(documents.spaceId, spaces.id))
     .groupBy(
       spaces.id,
       spaces.logoUrl,
