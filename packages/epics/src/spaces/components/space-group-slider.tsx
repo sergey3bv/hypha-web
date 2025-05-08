@@ -49,7 +49,7 @@ export const SpaceGroupSlider = ({
                   }
                   title={space.title as string}
                   isLoading={isLoading}
-                  members={0}
+                  members={space.memberCount}
                   agreements={0}
                 />
               </Link>
