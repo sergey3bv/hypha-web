@@ -14,8 +14,8 @@ export interface Space {
   links?: string[] | null;
   categories?: Category[] | null;
   subspaces?: Space[];
-  members: Person[];
-  documents: Document[];
+  members?: Person[];
+  documents?: Document[];
 }
 
 export interface CreateSpaceInput {
