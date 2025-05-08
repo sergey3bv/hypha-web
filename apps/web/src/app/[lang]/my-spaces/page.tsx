@@ -4,7 +4,6 @@ import { Locale } from '@hypha-platform/i18n';
 import {
   Button,
   Container,
-  FilterMenu,
   Carousel,
   CarouselItem,
   CarouselContent,
@@ -19,16 +18,6 @@ type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
 };
 
-type OptionType = {
-  label: string;
-  value: string;
-};
-
-type SpacesFilterType = {
-  value: string;
-  options: OptionType[];
-};
-
 export default async function Index(props: PageProps) {
   const params = await props.params;
 
@@ -37,14 +26,6 @@ export default async function Index(props: PageProps) {
   const spaces = await createSpaceService().getAll();
 
   const mySpacesCount = 2;
-
-  const filterSettings: SpacesFilterType = {
-    value: 'my-spaces',
-    options: [
-      { label: 'All', value: 'all' },
-      { label: 'My Spaces', value: 'my-spaces' },
-    ],
-  };
 
   return (
     <div className="w-full overflow-auto">
@@ -56,10 +37,6 @@ export default async function Index(props: PageProps) {
           <div className="justify-between items-center flex">
             <Text className="text-4">My spaces | {mySpacesCount}</Text>
             <div className="flex items-center">
-              <FilterMenu
-                value={filterSettings.value}
-                options={filterSettings.options}
-              />
               <Link href={`/${lang}/my-spaces/create`} scroll={false}>
                 <Button className="ml-2">
                   <PlusIcon className="mr-2" />
