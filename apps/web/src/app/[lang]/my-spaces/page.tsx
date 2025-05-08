@@ -83,10 +83,9 @@ export default async function Index(props: PageProps) {
                     leadImage={
                       space.leadImage || '/placeholder/space-lead-image.png'
                     }
-                    members={0}
-                    agreements={0}
+                    members={space.memberCount}
+                    agreements={space.documentCount}
                     activeAgreements={1}
-                    openDiscussions={1}
                     title={space.title as string}
                   />
                 </Link>

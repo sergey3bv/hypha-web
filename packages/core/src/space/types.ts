@@ -15,6 +15,8 @@ export interface Space {
   categories?: Category[] | null;
   subspaces?: Space[];
   members?: Person[];
+  memberCount?: number;
+  documentCount?: number;
   documents?: Document[];
 }
 

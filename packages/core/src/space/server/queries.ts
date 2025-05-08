@@ -1,9 +1,52 @@
-import { asc, eq } from 'drizzle-orm';
-import { memberships, Space, spaces } from '@hypha-platform/storage-postgres';
+import { asc, eq, sql } from 'drizzle-orm';
+import {
+  memberships,
+  Space,
+  spaces,
+  documents,
+} from '@hypha-platform/storage-postgres';
 import { DbConfig } from '@core/common/server';
 
 export const findAllSpaces = async ({ db }: DbConfig) => {
-  const results = await db.select().from(spaces).orderBy(asc(spaces.title));
+  const results = await db
+    .select({
+      id: spaces.id,
+      logoUrl: spaces.logoUrl,
+      leadImage: spaces.leadImage,
+      title: spaces.title,
+      description: spaces.description,
+      slug: spaces.slug,
+      web3SpaceId: spaces.web3SpaceId,
+      links: spaces.links,
+      categories: spaces.categories,
+      parentId: spaces.parentId,
+      createdAt: spaces.createdAt,
+      updatedAt: spaces.updatedAt,
+      memberCount: sql<number>`count(distinct ${memberships.personId})`.mapWith(
+        Number,
+      ),
+      documentCount: sql<number>`count(distinct ${documents.id})`.mapWith(
+        Number,
+      ),
+    })
+    .from(spaces)
+    .leftJoin(memberships, eq(memberships.spaceId, spaces.id))
+    .leftJoin(documents, eq(documents.spaceId, spaces.id))
+    .groupBy(
+      spaces.id,
+      spaces.logoUrl,
+      spaces.leadImage,
+      spaces.title,
+      spaces.description,
+      spaces.slug,
+      spaces.web3SpaceId,
+      spaces.links,
+      spaces.categories,
+      spaces.parentId,
+      spaces.createdAt,
+      spaces.updatedAt,
+    )
+    .orderBy(asc(spaces.title));
   return results;
 };
 export const findSpaceById = async (
