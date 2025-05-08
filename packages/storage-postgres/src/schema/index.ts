@@ -1,7 +1,11 @@
 import { memberships } from './membership';
 import { people } from './people';
-import { spaces, spacesRelations } from './space';
+import { spaces } from './space';
 import { documents } from './document';
+import { spacesRelations } from './space.relations';
+import { membershipRelation } from './membership.relations';
+import { peopleRelations } from './people.relations';
+import { documentRelation } from './document.relations';
 
 export * from './document';
 export * from './membership';
@@ -14,4 +18,7 @@ export const schema = {
   people,
   spaces,
   spacesRelations,
+  membershipRelation,
+  peopleRelations,
+  documentRelation,
 };

@@ -24,6 +24,8 @@ export const findSpaceBySlug = async (
     where: (spaces, { eq }) => eq(spaces.slug, slug),
     with: {
       subspaces: true,
+      members: true,
+      documents: true,
     },
   });
 

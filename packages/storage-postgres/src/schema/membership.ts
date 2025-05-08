@@ -1,4 +1,4 @@
-import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
+import { InferInsertModel, InferSelectModel, relations } from 'drizzle-orm';
 import { pgTable, serial, integer, uniqueIndex } from 'drizzle-orm/pg-core';
 import { commonDateFields } from './shared';
 import { people } from './people';

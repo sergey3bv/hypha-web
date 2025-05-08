@@ -20,16 +20,5 @@ export const spaces = pgTable('spaces', {
   ...commonDateFields,
 });
 
-export const spacesRelations = relations(spaces, ({ one, many }) => ({
-  parent: one(spaces, {
-    fields: [spaces.parentId],
-    references: [spaces.id],
-    relationName: 'subspaces',
-  }),
-  subspaces: many(spaces, {
-    relationName: 'subspaces',
-  }),
-}));
-
 export type Space = InferSelectModel<typeof spaces>;
 export type NewSpace = InferInsertModel<typeof spaces>;
