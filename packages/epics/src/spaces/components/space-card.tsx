@@ -16,7 +16,6 @@ type SpaceCardProps = {
   members?: number;
   agreements?: number;
   title: string;
-  activeAgreements?: number;
   isLoading?: boolean;
   leadImage?: string;
 };
@@ -37,7 +36,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
   icon,
   members,
   agreements,
-  activeAgreements,
   isLoading = false,
   title,
   leadImage,
