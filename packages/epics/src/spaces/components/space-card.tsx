@@ -16,7 +16,6 @@ type SpaceCardProps = {
   members?: number;
   agreements?: number;
   title: string;
-  activeAgreements?: number;
   isLoading?: boolean;
   leadImage?: string;
 };
@@ -37,7 +36,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
   icon,
   members,
   agreements,
-  activeAgreements,
   isLoading = false,
   title,
   leadImage,
@@ -70,19 +68,6 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
               {title}
             </CardTitle>
           </Skeleton>
-          <div className="flex">
-            <div>
-              {activeAgreements ? (
-                <Badge
-                  isLoading={isLoading}
-                  variant="surface"
-                  colorVariant="success"
-                >
-                  {activeAgreements} Active Agreements
-                </Badge>
-              ) : null}
-            </div>
-          </div>
         </div>
         <Skeleton
           loading={isLoading}
