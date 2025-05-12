@@ -12,7 +12,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useProposalDetailsWeb3Rpc, useParsedProposal } from '@core/governance';
+import { useProposalDetailsWeb3Rpc } from '@core/governance';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -41,7 +41,6 @@ export const ProposalDetail = ({
   const { proposalDetails } = useProposalDetailsWeb3Rpc({
     proposalId: proposalId as number,
   });
-  const parsedProposalData = useParsedProposal(proposalDetails);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
@@ -77,10 +76,10 @@ export const ProposalDetail = ({
       <div>{content}</div>
       <AttachmentList attachments={attachments || []} />
       <FormVoting
-        unity={parsedProposalData?.yesVotePercentage || 0}
-        quorum={parsedProposalData?.quorumPercentage || 0}
+        unity={proposalDetails?.yesVotePercentage || 0}
+        quorum={proposalDetails?.quorumPercentage || 0}
         endTime={formatISO(
-          addDays(new Date(parsedProposalData?.endTime || new Date()), 2),
+          addDays(new Date(proposalDetails?.endTime || new Date()), 2),
         )}
         onAccept={onAccept}
         onReject={onReject}

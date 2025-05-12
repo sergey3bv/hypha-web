@@ -7,8 +7,10 @@ import React from 'react';
 
 export const useProposalDetailsWeb3Rpc = ({
   proposalId,
+  quorumTotal = 100,
 }: {
   proposalId: number;
+  quorumTotal?: number;
 }) => {
   const { data, isLoading, error } = useSWR(
     [proposalId, 'proposalDetails'],
@@ -22,35 +24,51 @@ export const useProposalDetailsWeb3Rpc = ({
     },
   );
 
-  const proposalDetails = React.useMemo(() => {
-    if (data) {
-      const [
-        spaceId,
-        startTime,
-        endTime,
-        executed,
-        expired,
-        yesVotes,
-        noVotes,
-        totalVotingPowerAtSnapshot,
-        creator,
-      ] = data;
-      return {
-        spaceId,
-        startTime,
-        endTime,
-        executed,
-        expired,
-        yesVotes,
-        noVotes,
-        totalVotingPowerAtSnapshot,
-        creator,
-      };
-    }
-  }, [data]);
+  const parsedProposal = React.useMemo(() => {
+    if (!data) return null;
+
+    const [
+      spaceId,
+      startTime,
+      endTime,
+      executed,
+      expired,
+      yesVotes,
+      noVotes,
+      totalVotingPowerAtSnapshot,
+      creator,
+    ] = data;
+
+    const totalVotingPowerNumber = Number(totalVotingPowerAtSnapshot);
+    const quorumPercentage =
+      quorumTotal > 0
+        ? Math.min(100, (totalVotingPowerNumber / quorumTotal) * 100)
+        : 0;
+
+    return {
+      creator,
+      spaceId: Number(spaceId),
+      executed,
+      expired,
+      startTime: new Date(Number(startTime) * 1000),
+      endTime: new Date(Number(endTime) * 1000),
+      yesVotes: Number(yesVotes),
+      noVotes: Number(noVotes),
+      totalVotingPowerAtSnapshot: totalVotingPowerNumber,
+      yesVotePercentage:
+        totalVotingPowerNumber > 0
+          ? (Number(yesVotes) / totalVotingPowerNumber) * 100
+          : 0,
+      noVotePercentage:
+        totalVotingPowerNumber > 0
+          ? (Number(noVotes) / totalVotingPowerNumber) * 100
+          : 0,
+      quorumPercentage,
+    };
+  }, [data, quorumTotal]);
 
   return {
-    proposalDetails,
+    proposalDetails: parsedProposal,
     isLoading,
     error,
   };
