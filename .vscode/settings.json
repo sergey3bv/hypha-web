@@ -2,6 +2,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.ts, ${capture}.*.ts",
-    "*.tsx": "${capture}.tsx, ${capture}.*.tsx"
+    "*.tsx": "${capture}.tsx, ${capture}.*.tsx, ${capture}.*.ts"
   }
 }

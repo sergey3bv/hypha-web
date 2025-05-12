@@ -1,17 +1,16 @@
 import { z } from 'zod';
 import { useFormContext } from 'react-hook-form';
 import { Recipient } from './recipient';
-import { schemaProposeContribution } from '../../propose-contribution/validation';
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from '@hypha-platform/ui';
+import { recipientFieldSchema } from './recipient-field.validation';
 
 export const RecipientField = () => {
-  const { control } =
-    useFormContext<z.infer<typeof schemaProposeContribution>>();
+  const { control } = useFormContext<z.infer<typeof recipientFieldSchema>>();
   return (
     <FormField
       control={control}
