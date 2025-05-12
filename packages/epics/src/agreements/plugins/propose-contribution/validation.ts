@@ -1,13 +1,9 @@
 import { z } from 'zod';
 import { isBefore } from 'date-fns';
-
-const ETH_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/;
+import { recipientField } from '../components/common/recipient-field.validation';
 
 export const schemaProposeContribution = z.object({
-  recipient: z
-    .string()
-    .min(1, { message: 'Recipient is required' })
-    .regex(ETH_ADDRESS_REGEX, { message: 'Invalid Ethereum address' }),
+  recipient: recipientField,
 });
 
 export type DateRange = {

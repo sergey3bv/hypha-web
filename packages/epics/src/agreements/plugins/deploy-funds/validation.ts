@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { recipientField } from '../components/common/recipient-field.validation';
 
-export const schemaPayForExpenses = z.object({
+export const schemaDeployFunds = z.object({
   recipient: recipientField,
   payouts: z
     .array(
