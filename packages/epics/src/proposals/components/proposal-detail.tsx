@@ -12,7 +12,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useProposalDetailsWeb3Rpc } from '@core/governance';
+import { useProposalDetailsWeb3Rpc, useParsedProposal } from '@core/governance';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -41,7 +41,7 @@ export const ProposalDetail = ({
   const { proposalDetails } = useProposalDetailsWeb3Rpc({
     proposalId: proposalId as number,
   });
-  console.log('proposalDetails', proposalDetails)
+  const parsedProposalData = useParsedProposal(proposalDetails);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
@@ -77,30 +77,18 @@ export const ProposalDetail = ({
       <div>{content}</div>
       <AttachmentList attachments={attachments || []} />
       <FormVoting
-        unity={50}
-        quorum={25}
-        date={formatISO(addDays(new Date(), 2))}
+        unity={parsedProposalData?.yesVotePercentage || 0}
+        quorum={parsedProposalData?.quorumPercentage || 0}
+        endTime={formatISO(addDays(new Date(parsedProposalData?.endTime || ''), 2))}
         onAccept={onAccept}
         onReject={onReject}
       />
       <Separator />
       <CommentsList
         pagination={{
-          total: 1,
+          total: 0,
         }}
-        comments={[
-          {
-            id: '1',
-            comment:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-            author: {
-              avatar: 'https://github.com/shadcn.png',
-              name: 'John',
-              surname: 'Doe',
-            },
-            likes: 10,
-          },
-        ]}
+        comments={[]}
       />
     </div>
   );
