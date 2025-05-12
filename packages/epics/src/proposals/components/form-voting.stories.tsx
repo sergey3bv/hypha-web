@@ -15,7 +15,7 @@ export const Primary: Story = {
   args: {
     unity: 50,
     quorum: 75,
-    date: formatISO(addDays(new Date(), 2)),
+    endTime: formatISO(addDays(new Date(), 2)),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
