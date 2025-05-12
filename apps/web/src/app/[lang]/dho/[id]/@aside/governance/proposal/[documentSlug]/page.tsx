@@ -33,6 +33,7 @@ export default function Agreements() {
         isLoading={isLoading}
         leadImage={document?.leadImage}
         attachments={document?.attachments}
+        proposalId={document?.web3ProposalId}
       />
     </SidePanel>
   );

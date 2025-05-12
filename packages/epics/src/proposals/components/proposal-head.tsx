@@ -37,20 +37,6 @@ export const ProposalHead = ({
             <Badge variant="solid" colorVariant="accent" isLoading={isLoading}>
               Proposal
             </Badge>
-            <Badge
-              variant="surface"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
-              Recurring
-            </Badge>
-            <Badge
-              variant="surface"
-              colorVariant="accent"
-              isLoading={isLoading}
-            >
-              {commitment}%
-            </Badge>
             <StatusBadge isLoading={isLoading} status={status} />
           </div>
 
