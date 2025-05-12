@@ -54,8 +54,8 @@ export default function CreateAgreement() {
 
   const handleCreate = React.useCallback(
     async (data: z.infer<typeof schemaCreateAgreementForm>) => {
-      // TODO: Implement agreement creation logic
-      console.log('Creating agreement with data:', data);
+      // TODO: Implement propose contribution creation logic
+      console.log('Creating propose contribution with data:', data);
     },
     [],
   );

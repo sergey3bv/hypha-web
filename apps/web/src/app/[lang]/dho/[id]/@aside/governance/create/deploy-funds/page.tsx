@@ -27,14 +27,19 @@ export default function CreateAgreement() {
       leadImage: undefined,
       attachments: undefined,
       recipient: '',
-      payouts: [],
+      payouts: [
+        {
+          amount: undefined,
+          token: undefined,
+        },
+      ],
     },
   });
 
   const handleCreate = React.useCallback(
     async (data: z.infer<typeof schemaCreateAgreementForm>) => {
-      // TODO: Implement deploy funds logic
-      console.log('Deploy funds with data:', data);
+      // TODO: Implement deploy funds creation logic
+      console.log('Creating deploy funds with data:', data);
     },
     [],
   );
