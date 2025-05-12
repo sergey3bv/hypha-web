@@ -34,12 +34,14 @@ export type CreateAgreementFormProps = {
   creator?: Creator;
   isLoading?: boolean;
   closeUrl: string;
+  label?: string;
 };
 
 export function CreateAgreementBaseFields({
   creator,
   isLoading = false,
   closeUrl,
+  label = 'Agreement',
 }: CreateAgreementFormProps) {
   const form = useFormContext<CreateAgreementFormData>();
 
@@ -60,7 +62,7 @@ export function CreateAgreementBaseFields({
           <div className="flex justify-between items-center w-full">
             <div className="flex flex-col">
               <Badge className="w-fit" colorVariant="accent">
-                Agreement
+                {label}
               </Badge>
               <FormField
                 control={form.control}
