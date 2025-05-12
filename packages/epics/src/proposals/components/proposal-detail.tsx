@@ -80,7 +80,7 @@ export const ProposalDetail = ({
         unity={parsedProposalData?.yesVotePercentage || 0}
         quorum={parsedProposalData?.quorumPercentage || 0}
         endTime={formatISO(
-          addDays(new Date(parsedProposalData?.endTime || ''), 2),
+          addDays(new Date(parsedProposalData?.endTime || new Date()), 2),
         )}
         onAccept={onAccept}
         onReject={onReject}

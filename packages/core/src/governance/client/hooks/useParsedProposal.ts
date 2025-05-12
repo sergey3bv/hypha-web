@@ -14,7 +14,7 @@ export interface RawProposalProps {
 
 export function useParsedProposal(
   rawProposal: RawProposalProps | undefined,
-  quorumTotal: number = 100,
+  quorumTotal = 100,
 ) {
   return useMemo(() => {
     if (!rawProposal) return null;
