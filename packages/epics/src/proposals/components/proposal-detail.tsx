@@ -12,6 +12,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useProposalDetailsWeb3Rpc } from '@core/governance';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -20,6 +21,7 @@ type ProposalDetailProps = ProposalHeadProps & {
   closeUrl: string;
   leadImage?: string;
   attachments?: string[];
+  proposalId?: number | null | undefined;
 };
 
 export const ProposalDetail = ({
@@ -34,7 +36,12 @@ export const ProposalDetail = ({
   closeUrl,
   leadImage,
   attachments,
+  proposalId
 }: ProposalDetailProps) => {
+  const { proposalDetails } = useProposalDetailsWeb3Rpc({
+    proposalId: proposalId as number,
+  });
+  console.log('proposalDetails', proposalDetails)
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
