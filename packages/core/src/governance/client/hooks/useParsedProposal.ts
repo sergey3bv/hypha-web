@@ -14,7 +14,7 @@ export interface RawProposalProps {
 
 export function useParsedProposal(
   rawProposal: RawProposalProps | undefined,
-  quorumTotal: number = 100
+  quorumTotal: number = 100,
 ) {
   return useMemo(() => {
     if (!rawProposal) return null;
@@ -32,8 +32,8 @@ export function useParsedProposal(
     } = rawProposal;
 
     const totalVotingPowerNumber = Number(totalVotingPowerAtSnapshot);
-    const quorumPercentage = 
-      quorumTotal > 0 
+    const quorumPercentage =
+      quorumTotal > 0
         ? Math.min(100, (totalVotingPowerNumber / quorumTotal) * 100)
         : 0;
 

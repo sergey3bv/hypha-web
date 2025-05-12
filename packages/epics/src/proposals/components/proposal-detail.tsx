@@ -36,7 +36,7 @@ export const ProposalDetail = ({
   closeUrl,
   leadImage,
   attachments,
-  proposalId
+  proposalId,
 }: ProposalDetailProps) => {
   const { proposalDetails } = useProposalDetailsWeb3Rpc({
     proposalId: proposalId as number,
@@ -79,7 +79,9 @@ export const ProposalDetail = ({
       <FormVoting
         unity={parsedProposalData?.yesVotePercentage || 0}
         quorum={parsedProposalData?.quorumPercentage || 0}
-        endTime={formatISO(addDays(new Date(parsedProposalData?.endTime || ''), 2))}
+        endTime={formatISO(
+          addDays(new Date(parsedProposalData?.endTime || ''), 2),
+        )}
         onAccept={onAccept}
         onReject={onReject}
       />

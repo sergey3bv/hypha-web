@@ -53,15 +53,14 @@ export const FormVoting = ({
       </div>
       <div className="flex items-center justify-between">
         <div className="text-1">{formatTimeRemaining(endTime)}</div>
-        {
-          isPast(new Date(endTime)) ? null : 
+        {isPast(new Date(endTime)) ? null : (
           <div className="flex gap-2">
             <Button variant="outline" onClick={onReject}>
               Vote no
             </Button>
             <Button onClick={onAccept}>Vote yes</Button>
           </div>
-        }
+        )}
       </div>
     </div>
   );

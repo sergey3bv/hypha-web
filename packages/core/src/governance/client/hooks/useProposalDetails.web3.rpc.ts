@@ -5,14 +5,20 @@ import useSWR from 'swr';
 import { getProposalDetails } from '../web3';
 import React from 'react';
 
-export const useProposalDetailsWeb3Rpc = ({ proposalId }: { proposalId: number }) => {
+export const useProposalDetailsWeb3Rpc = ({
+  proposalId,
+}: {
+  proposalId: number;
+}) => {
   const { data, isLoading, error } = useSWR(
     [proposalId, 'proposalDetails'],
     async ([proposalId]) =>
-      publicClient.readContract(getProposalDetails({ proposalId: BigInt(proposalId) })),
-    { 
+      publicClient.readContract(
+        getProposalDetails({ proposalId: BigInt(proposalId) }),
+      ),
+    {
       revalidateOnFocus: true,
-      refreshInterval: 10000
+      refreshInterval: 10000,
     },
   );
 
