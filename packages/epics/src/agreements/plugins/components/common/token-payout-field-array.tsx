@@ -11,10 +11,10 @@ import {
 } from '@hypha-platform/ui';
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
 
-interface Token {
+export interface Token {
   icon: string;
   symbol: string;
-  name: string;
+  address: `0x${string}`;
 }
 
 interface TokenPayoutFieldArrayProps {
@@ -34,7 +34,7 @@ export const TokenPayoutFieldArray = ({
 
   const handleAddField = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    append({ amount: '', token: '' });
+    append({ amount: '', token: '' as `0x${string}` });
   };
 
   return (

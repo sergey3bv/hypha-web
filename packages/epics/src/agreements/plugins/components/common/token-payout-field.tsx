@@ -13,7 +13,7 @@ import {
 interface Token {
   icon: string;
   symbol: string;
-  name: string;
+  address: `0x${string}`;
 }
 
 interface TokenPayoutFieldProps {
@@ -30,10 +30,10 @@ export const TokenPayoutField = ({
   onChange,
   tokens,
 }: TokenPayoutFieldProps) => {
-  const selectedToken = tokens.find((t) => t.symbol === value.token);
+  const selectedToken = tokens.find((t) => t.address === value.token);
 
   const handleTokenChange = (token: Token) => {
-    onChange({ amount: value.amount, token: token.symbol });
+    onChange({ amount: value.amount, token: token.address });
   };
 
   const handleAmountChange = (amount: string) => {
@@ -62,7 +62,7 @@ export const TokenPayoutField = ({
                       src={selectedToken.icon}
                       width={20}
                       height={20}
-                      alt={selectedToken.name}
+                      alt={selectedToken.symbol}
                     />
                     <span className="text-2 text-neutral-11">
                       {selectedToken.symbol}
@@ -80,14 +80,14 @@ export const TokenPayoutField = ({
           <DropdownMenuContent>
             {tokens.map((token) => (
               <DropdownMenuItem
-                key={token.symbol}
+                key={token.address}
                 onSelect={() => handleTokenChange(token)}
               >
                 <Image
                   src={token.icon}
                   width={24}
                   height={24}
-                  alt={token.name}
+                  alt={token.symbol}
                   className="mr-2"
                 />
                 <span className="text-2 text-neutral-11">{token.symbol}</span>

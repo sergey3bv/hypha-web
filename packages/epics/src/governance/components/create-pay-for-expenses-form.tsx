@@ -82,6 +82,17 @@ export const CreatePayForExpensesForm = ({
       return;
     }
 
+    console.log('pay-for-expenses data', {
+      ...data,
+      spaceId: spaceId as number,
+      web3SpaceId: typeof web3SpaceId === 'number' ? web3SpaceId : undefined,
+      recipient: data.recipient,
+      payouts: data.payouts.map(({ amount, token }) => ({
+        amount: String(amount ?? '0'),
+        token: token ?? '',
+      })),
+    });
+
     await createPayForExpenses({
       ...data,
       spaceId: spaceId as number,
