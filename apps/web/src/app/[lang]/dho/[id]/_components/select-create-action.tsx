@@ -25,7 +25,7 @@ export const CREATE_ACTIONS = [
     title: 'Pay for Expenses',
     description:
       'Cover expenses by sending funds from the treasury to another space, entity, or wallet.',
-    href: '#',
+    href: 'governance/create/pay-for-expenses',
     icon: <PlusCircledIcon />,
   },
   {
@@ -46,7 +46,7 @@ export const CREATE_ACTIONS = [
     title: 'Deploy Funds',
     description:
       'Allocate treasury funds for investments or distributing resources among sub-spaces.',
-    href: '#',
+    href: 'governance/create/deploy-funds',
     icon: <PlusCircledIcon />,
   },
   {

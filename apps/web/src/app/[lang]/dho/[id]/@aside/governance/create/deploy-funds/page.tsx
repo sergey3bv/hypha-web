@@ -33,29 +33,13 @@ export default function CreateAgreement() {
           token: undefined,
         },
       ],
-      paymentSchedule: {
-        milestones: [
-          {
-            percentage: undefined,
-            dateRange: undefined,
-          },
-          {
-            percentage: undefined,
-            dateRange: undefined,
-          },
-          {
-            percentage: undefined,
-            dateRange: undefined,
-          },
-        ],
-      },
     },
   });
 
   const handleCreate = React.useCallback(
     async (data: z.infer<typeof schemaCreateAgreementForm>) => {
-      // TODO: Implement propose contribution creation logic
-      console.log('Creating propose contribution with data:', data);
+      // TODO: Implement deploy funds creation logic
+      console.log('Creating deploy funds with data:', data);
     },
     [],
   );
@@ -76,7 +60,7 @@ export default function CreateAgreement() {
             closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
           />
-          <Plugin name="propose-contribution" />
+          <Plugin name="deploy-funds" />
           <Separator />
           <div className="flex justify-end w-full">
             <Button type="submit">Publish</Button>

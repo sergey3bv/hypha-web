@@ -1,7 +1,5 @@
-import { z } from 'zod';
 import { useFormContext } from 'react-hook-form';
 import { Recipient } from './recipient';
-import { schemaProposeContribution } from '../validation';
 import {
   FormControl,
   FormField,
@@ -9,9 +7,8 @@ import {
   FormMessage,
 } from '@hypha-platform/ui';
 
-export const RecipientField = () => {
-  const { control } =
-    useFormContext<z.infer<typeof schemaProposeContribution>>();
+export function RecipientField() {
+  const { control } = useFormContext();
   return (
     <FormField
       control={control}
@@ -31,4 +28,4 @@ export const RecipientField = () => {
       )}
     />
   );
-};
+}
