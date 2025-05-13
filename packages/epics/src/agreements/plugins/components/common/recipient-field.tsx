@@ -1,4 +1,3 @@
-import { z } from 'zod';
 import { useFormContext } from 'react-hook-form';
 import { Recipient } from './recipient';
 import {
@@ -7,10 +6,9 @@ import {
   FormItem,
   FormMessage,
 } from '@hypha-platform/ui';
-import { recipientFieldSchema } from './recipient-field.validation';
 
-export const RecipientField = () => {
-  const { control } = useFormContext<z.infer<typeof recipientFieldSchema>>();
+export function RecipientField() {
+  const { control } = useFormContext();
   return (
     <FormField
       control={control}
