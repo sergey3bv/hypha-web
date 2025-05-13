@@ -59,6 +59,7 @@ export default function CreateAgreement() {
             }}
             closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
+            label="Funding"
           />
           <Plugin name="deploy-funds" />
           <Separator />
