@@ -17,6 +17,7 @@ import { useProposalDetailsWeb3Rpc } from '@core/governance';
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
   onReject: () => void;
+  updateProposalData: () => void;
   content?: string;
   closeUrl: string;
   leadImage?: string;
@@ -37,10 +38,27 @@ export const ProposalDetail = ({
   leadImage,
   attachments,
   proposalId,
+  updateProposalData,
 }: ProposalDetailProps) => {
   const { proposalDetails } = useProposalDetailsWeb3Rpc({
     proposalId: proposalId as number,
   });
+  const handleOnAccept = () => {
+    try {
+      onAccept();
+      updateProposalData();
+    } catch (err) {
+      console.debug(err);
+    }
+  };
+  const handleOnReject = () => {
+    try {
+      onReject();
+      updateProposalData();
+    } catch (err) {
+      console.debug(err);
+    }
+  };
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-5 justify-between">
@@ -81,8 +99,8 @@ export const ProposalDetail = ({
         endTime={formatISO(
           addDays(new Date(proposalDetails?.endTime || new Date()), 2),
         )}
-        onAccept={onAccept}
-        onReject={onReject}
+        onAccept={handleOnAccept}
+        onReject={handleOnReject}
       />
       <Separator />
       <CommentsList
