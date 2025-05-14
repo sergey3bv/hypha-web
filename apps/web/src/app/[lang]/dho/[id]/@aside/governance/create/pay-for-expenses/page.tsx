@@ -3,6 +3,7 @@ import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@core/space/server';
 import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 import { Plugin } from '../plugins';
+import { notFound } from 'next/navigation';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -15,8 +16,8 @@ export default async function CreatePayForExpensesPage({ params }: PageProps) {
 
   const spaceFromDb = await spaceService.getBySlug({ slug: id });
 
-  const spaceId = spaceFromDb.id;
-  const web3SpaceId = spaceFromDb.web3SpaceId;
+  if (!spaceFromDb) notFound();
+  const { id: spaceId, web3SpaceId } = spaceFromDb;
 
   return (
     <SidePanel>
