@@ -5,7 +5,7 @@ import { Config, writeContract } from '@wagmi/core';
 import { getProposalFromLogs } from '../web3';
 import useSWR from 'swr';
 import { publicClient } from '@core/common/web3/public-client';
-import { encodeFunctionData, erc20Abi, getContract } from 'viem';
+import { encodeFunctionData, erc20Abi, getContract, parseUnits } from 'viem';
 import {
   daoProposalsImplementationAbi,
   daoProposalsImplementationAddress,
@@ -43,9 +43,7 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
       const transactions = await Promise.all(
         arg.payouts.map(async (payout) => {
           const decimals = await getTokenDecimals(payout.token);
-          const amount = BigInt(
-            Math.round(parseFloat(payout.amount) * 10 ** decimals),
-          );
+          const amount = parseUnits(payout.amount, decimals);
 
           return {
             target: payout.token as `0x${string}`,
