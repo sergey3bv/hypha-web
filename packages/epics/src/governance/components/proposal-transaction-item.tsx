@@ -21,20 +21,16 @@ export const ProposalTransactionItem = ({
     (t) => t.address.toLowerCase() === tokenAddress?.toLowerCase(),
   );
 
-  const readDecimalsResult = tokenAddress
-    ? useReadContract({
-        address: tokenAddress as `0x${string}`,
-        abi: erc20Abi,
-        functionName: 'decimals',
-      })
-    : null;
+  const { data: decimalsData, isError } = useReadContract({
+    address: tokenAddress as `0x${string}`,
+    abi: erc20Abi,
+    functionName: 'decimals',
+  });
 
   const decimals =
-    readDecimalsResult?.data && typeof readDecimalsResult.data === 'number'
-      ? readDecimalsResult.data
-      : 18;
+    decimalsData && typeof decimalsData === 'number' ? decimalsData : 18;
 
-  if (!token || !amount || !readDecimalsResult?.data) return null;
+  if (!token || !amount || isError || !decimalsData) return null;
 
   const parsedAmount = Number(amount) / 10 ** decimals;
   const formattedAmount = parsedAmount.toFixed(decimals);
