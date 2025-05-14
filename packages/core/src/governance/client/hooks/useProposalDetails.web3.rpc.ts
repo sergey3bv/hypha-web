@@ -4,6 +4,7 @@ import { publicClient } from '@core/common';
 import useSWR from 'swr';
 import { getProposalDetails } from '../web3';
 import React from 'react';
+import { erc20Abi, decodeFunctionData } from 'viem';
 
 export const useProposalDetailsWeb3Rpc = ({
   proposalId,
@@ -26,7 +27,6 @@ export const useProposalDetailsWeb3Rpc = ({
 
   const parsedProposal = React.useMemo(() => {
     if (!data) return null;
-
     const [
       spaceId,
       startTime,
@@ -37,6 +37,7 @@ export const useProposalDetailsWeb3Rpc = ({
       noVotes,
       totalVotingPowerAtSnapshot,
       creator,
+      transactions,
     ] = data;
 
     const totalVotingPowerNumber = Number(totalVotingPowerAtSnapshot);
@@ -44,6 +45,31 @@ export const useProposalDetailsWeb3Rpc = ({
       quorumTotal > 0
         ? Math.min(100, (totalVotingPowerNumber / quorumTotal) * 100)
         : 0;
+
+    const parsedTransferTransactions = (transactions as any[])
+      .map((tx) => {
+        try {
+          const decoded = decodeFunctionData({
+            abi: erc20Abi,
+            data: tx.data,
+          });
+
+          if (decoded.functionName !== 'transfer') return null;
+
+          const recipient = decoded.args?.[0] as string;
+          const rawAmount = decoded.args?.[1] as bigint;
+
+          return {
+            recipient,
+            rawAmount,
+            token: tx.target,
+            value: tx.value,
+          };
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
 
     return {
       creator,
@@ -64,6 +90,7 @@ export const useProposalDetailsWeb3Rpc = ({
           ? (Number(noVotes) / totalVotingPowerNumber) * 100
           : 0,
       quorumPercentage,
+      transfers: parsedTransferTransactions,
     };
   }, [data, quorumTotal]);
 

@@ -159,11 +159,10 @@ export const schemaProposeContribution = z.object({
   payouts: z
     .array(
       z.object({
-        amount: z.preprocess(
-          (val) => Number(val),
-          z.number().min(1, { message: 'Amount must be greater than 0' }),
-        ),
-        token: z.string().min(1, { message: 'Token is required' }),
+        amount: z.string().refine((value) => parseFloat(value) > 0, {
+          message: 'Amount must be greater than 0',
+        }),
+        token: z.string(),
       }),
     )
     .min(1, { message: 'At least one payout is required' })

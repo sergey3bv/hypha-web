@@ -550,6 +550,20 @@ export const daoProposalsImplementationAbi = [
   {
     type: 'function',
     inputs: [],
+    name: 'getAllExecutedProposals',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_spaceId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getExecutedProposalsBySpace',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
     name: 'getLatestProposalId',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
@@ -572,6 +586,16 @@ export const daoProposalsImplementationAbi = [
         type: 'uint256',
       },
       { name: 'creator', internalType: 'address', type: 'address' },
+      {
+        name: 'transactions',
+        internalType: 'struct IDAOProposals.Transaction[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'target', internalType: 'address', type: 'address' },
+          { name: 'value', internalType: 'uint256', type: 'uint256' },
+          { name: 'data', internalType: 'bytes', type: 'bytes' },
+        ],
+      },
     ],
     stateMutability: 'view',
   },
