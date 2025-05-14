@@ -13,6 +13,7 @@ import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useProposalDetailsWeb3Rpc } from '@core/governance';
+import { ProposalTransactionItem } from '../../governance';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -93,6 +94,14 @@ export const ProposalDetail = ({
       </Skeleton>
       <div>{content}</div>
       <AttachmentList attachments={attachments || []} />
+      {proposalDetails?.transfers.map((tx, idx) => (
+        <ProposalTransactionItem
+          key={idx}
+          recipient={tx?.recipient}
+          amount={tx?.rawAmount}
+          tokenAddress={tx?.token}
+        />
+      ))}
       <FormVoting
         unity={proposalDetails?.yesVotePercentage || 0}
         quorum={proposalDetails?.quorumPercentage || 0}
