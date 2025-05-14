@@ -43,7 +43,12 @@ export const useSpaceDocuments: UseDocuments = ({
   const { data: response, isLoading } = useSWR(
     [endpoint],
     ([endpoint]) => fetch(endpoint).then((res) => res.json()),
-    { revalidateOnFocus: true },
+    {
+      revalidateOnFocus: true,
+      refreshInterval: 10000,
+      refreshWhenHidden: false,
+      refreshWhenOffline: false,
+    },
   );
 
   const getDocumentBadges = (document: Document) => {

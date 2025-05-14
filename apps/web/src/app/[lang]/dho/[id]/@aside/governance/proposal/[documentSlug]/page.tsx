@@ -11,7 +11,7 @@ import { useVote } from '@core/governance';
 export default function Agreements() {
   const { id, lang } = useParams();
   const documentSlug = useDocumentSlug();
-  const { document, isLoading } = useDocumentBySlug(documentSlug);
+  const { document, isLoading, mutate } = useDocumentBySlug(documentSlug);
   const { handleAccept, handleReject } = useVote({
     proposalId: document?.web3ProposalId,
   });
@@ -22,6 +22,7 @@ export default function Agreements() {
         closeUrl={getDhoPathGovernance(lang as Locale, id as string)}
         onAccept={handleAccept}
         onReject={handleReject}
+        updateProposalData={mutate}
         content={document?.description}
         creator={{
           avatar: document?.creator?.avatarUrl || '',

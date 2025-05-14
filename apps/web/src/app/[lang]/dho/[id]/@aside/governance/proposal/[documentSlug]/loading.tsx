@@ -7,6 +7,7 @@ export default function Loading() {
     <SidePanel>
       <ProposalDetail
         closeUrl={''}
+        updateProposalData={() => console.log('update proposal data')}
         onAccept={() => console.log('accept')}
         onReject={() => console.log('reject')}
         content={''}

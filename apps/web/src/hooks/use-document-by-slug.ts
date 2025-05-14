@@ -2,11 +2,12 @@
 
 import { Document } from '@hypha-platform/core/client';
 import React from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 
 type UseDocumentBySlugReturn = {
   document?: Document;
   isLoading: boolean;
+  mutate: () => void;
 };
 
 export const useDocumentBySlug = (
@@ -16,9 +17,18 @@ export const useDocumentBySlug = (
     () => `/api/v1/documents/${documentSlug}/`,
     [documentSlug],
   );
-  const { data: document, isLoading } = useSWR([endpoint], ([endpoint]) =>
-    fetch(endpoint).then((res) => res.json()),
+  const { data: document, isLoading } = useSWR(
+    [endpoint],
+    ([endpoint]) => fetch(endpoint).then((res) => res.json()),
+    {
+      revalidateOnFocus: true,
+      refreshInterval: 10000,
+      refreshWhenHidden: false,
+    },
   );
+  const manualMutate = React.useCallback(() => {
+    mutate([endpoint]);
+  }, [endpoint]);
 
-  return { document, isLoading };
+  return { document, isLoading, mutate: manualMutate };
 };
