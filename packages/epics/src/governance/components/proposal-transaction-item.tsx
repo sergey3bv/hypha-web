@@ -2,7 +2,7 @@
 
 import { useReadContract } from 'wagmi';
 import { erc20Abi } from 'viem';
-import Image from 'next/image';
+import { Image } from '@hypha-platform/ui';
 import { EthAddress } from '../../people';
 import { tokens } from '../../agreements/plugins/pay-for-expenses/tokens';
 
