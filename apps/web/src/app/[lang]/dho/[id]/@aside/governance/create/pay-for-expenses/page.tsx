@@ -59,6 +59,7 @@ export default function CreateAgreement() {
             }}
             closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
+            label="Expenses"
           />
           <Plugin name="pay-for-expenses" />
           <Separator />

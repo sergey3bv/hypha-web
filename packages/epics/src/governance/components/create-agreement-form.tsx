@@ -27,12 +27,14 @@ interface CreateAgreementFormProps {
   spaceId: number | undefined | null;
   web3SpaceId: number | undefined | null;
   successfulUrl: string;
+  label?: string;
 }
 
 export const CreateAgreementForm = ({
   successfulUrl,
   spaceId,
   web3SpaceId,
+  label = 'Agreement',
 }: CreateAgreementFormProps) => {
   const router = useRouter();
   const { person } = useMe();
@@ -107,6 +109,7 @@ export const CreateAgreementForm = ({
             }}
             closeUrl={successfulUrl}
             isLoading={false}
+            label={label}
           />
           <div className="flex justify-end w-full">
             <Button type="submit">Publish</Button>

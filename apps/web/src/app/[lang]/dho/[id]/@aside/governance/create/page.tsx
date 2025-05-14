@@ -23,6 +23,7 @@ export default async function CreateAgreementPage({ params }: PageProps) {
         successfulUrl={getDhoPathGovernance(lang as Locale, id)}
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
+        label="Collective Agreement"
       />
     </SidePanel>
   );

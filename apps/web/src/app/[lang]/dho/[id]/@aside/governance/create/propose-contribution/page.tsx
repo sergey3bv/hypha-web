@@ -75,6 +75,7 @@ export default function CreateAgreement() {
             }}
             closeUrl={getDhoPathGovernance(lang, id)}
             isLoading={false}
+            label="Contribution"
           />
           <Plugin name="propose-contribution" />
           <Separator />
