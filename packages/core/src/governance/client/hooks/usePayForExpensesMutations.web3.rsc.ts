@@ -5,7 +5,7 @@ import { Config, writeContract } from '@wagmi/core';
 import { getProposalFromLogs } from '../web3';
 import useSWR from 'swr';
 import { publicClient } from '@core/common/web3/public-client';
-import { encodeFunctionData, erc20Abi } from 'viem';
+import { encodeFunctionData, erc20Abi, getContract } from 'viem';
 import {
   daoProposalsImplementationAbi,
   daoProposalsImplementationAddress,
@@ -20,6 +20,16 @@ interface CreatePayForExpensesInput {
   recipient: string;
 }
 
+async function getTokenDecimals(tokenAddress: string): Promise<number> {
+  const contract = getContract({
+    address: tokenAddress as `0x${string}`,
+    abi: erc20Abi,
+    client: publicClient,
+  });
+
+  return await contract.read.decimals();
+}
+
 export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
   const {
     trigger: createPayForExpensesMutation,
@@ -30,18 +40,24 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
   } = useSWRMutation(
     config ? [config, 'createPayForExpenses'] : null,
     async ([config], { arg }: { arg: CreatePayForExpensesInput }) => {
-      const transactions = arg.payouts.map((payout) => {
-        const amount = BigInt(Math.round(parseFloat(payout.amount) * 1e18));
-        return {
-          target: payout.token as `0x${string}`,
-          value: BigInt(0),
-          data: encodeFunctionData({
-            abi: erc20Abi,
-            functionName: 'transfer',
-            args: [arg.recipient as `0x${string}`, amount],
-          }),
-        } as const;
-      });
+      const transactions = await Promise.all(
+        arg.payouts.map(async (payout) => {
+          const decimals = await getTokenDecimals(payout.token);
+          const amount = BigInt(
+            Math.round(parseFloat(payout.amount) * 10 ** decimals),
+          );
+
+          return {
+            target: payout.token as `0x${string}`,
+            value: BigInt(0),
+            data: encodeFunctionData({
+              abi: erc20Abi,
+              functionName: 'transfer',
+              args: [arg.recipient as `0x${string}`, amount],
+            }),
+          } as const;
+        }),
+      );
 
       const proposalParams = {
         spaceId: BigInt(arg.spaceId),
@@ -71,9 +87,7 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
       ? [createPayForExpensesHash, 'waitForPayForExpenses']
       : null,
     async ([hash]) => {
-      const { logs } = await publicClient.waitForTransactionReceipt({
-        hash,
-      });
+      const { logs } = await publicClient.waitForTransactionReceipt({ hash });
       return getProposalFromLogs(logs);
     },
   );
@@ -81,7 +95,7 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
   return {
     createPayForExpenses: createPayForExpensesMutation,
     resetCreatePayForExpensesMutation,
-    isCreatingPayForExpenses: isCreatingPayForExpenses,
+    isCreatingPayForExpenses,
     isLoadingPayForExpensesFromTransaction,
     errorCreatePayForExpenses,
     errorWaitPayForExpensesFromTransaction,
