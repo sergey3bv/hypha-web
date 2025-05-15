@@ -8,7 +8,7 @@ export * from './outer-space-card';
 export * from './outer-spaces-list';
 export * from './outer-spaces-section';
 export * from './space-card';
-export * from './space-card.wrapper.tsx';
+export * from './space-card.wrapper';
 export * from './space-group-slider';
 export * from './space-search';
 export * from './subspace-detail';

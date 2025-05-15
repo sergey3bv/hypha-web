@@ -11,7 +11,7 @@ type SpaceCardWrapperProps = {
   icon?: string;
   leadImage?: string;
   agreements?: number;
-  useMembers?: UseMembers;
+  useMembers: UseMembers;
 };
 
 export const SpaceCardWrapper = ({

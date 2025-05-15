@@ -11,7 +11,7 @@ type InnerSpaceCardWrapperProps = {
   title?: string;
   description?: string;
   leadImageUrl?: string;
-  useMembers?: UseMembers;
+  useMembers: UseMembers;
 };
 
 export const InnerSpaceCardWrapper = ({

@@ -14,7 +14,7 @@ interface SubspaceSectionProps {
   getSpaceDetailLink: (lang: Locale, id: string) => string;
   spaces: Space[];
   lang: Locale;
-  useMembers?: UseMembers;
+  useMembers: UseMembers;
 }
 
 export const SubspaceSection = ({
