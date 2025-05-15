@@ -40,7 +40,6 @@ export default async function Index(props: PageProps) {
 
   const spaces = await createSpaceService().getAll({ search: query });
   const uniqueCategories = extractUniqueCategories(spaces);
-  console.debug('spaces', JSON.stringify(spaces, null, 2));
 
   return (
     <Container>
