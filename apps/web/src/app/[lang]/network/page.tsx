@@ -10,6 +10,9 @@ import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
+  searchParams?: Promise<{
+    query?: string;
+  }>;
 };
 
 function extractUniqueCategories(spaces: Space[]): Category[] {
@@ -26,6 +29,8 @@ function extractUniqueCategories(spaces: Space[]): Category[] {
 
 export default async function Index(props: PageProps) {
   const params = await props.params;
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query;
 
   const { lang } = params;
 
@@ -33,7 +38,7 @@ export default async function Index(props: PageProps) {
     return getDhoPathGovernance(lang, id);
   };
 
-  const spaces = await createSpaceService().getAll();
+  const spaces = await createSpaceService().getAll({ search: query });
   const uniqueCategories = extractUniqueCategories(spaces);
   console.debug('spaces', JSON.stringify(spaces, null, 2));
 
