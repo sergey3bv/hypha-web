@@ -1,4 +1,4 @@
-import { PaginationParams } from '@core/common';
+import { PaginationParams, PaginatedResponse } from '@core/common';
 import { Person } from '../types';
 import { DatabaseInstance } from '@core/_container';
 import {
@@ -7,7 +7,7 @@ import {
   memberships,
   spaces,
 } from '@hypha-platform/storage-postgres';
-import { sql, eq } from 'drizzle-orm';
+import { sql, eq, inArray } from 'drizzle-orm';
 import invariant from 'tiny-invariant';
 import { DbConfig } from '@core/common/server';
 
@@ -28,6 +28,8 @@ export const getDefaultFields = () => {
     createdAt: people.createdAt,
     updatedAt: people.updatedAt,
     address: people.address,
+    sub: people.sub,
+    leadImageUrl: people.leadImageUrl,
     total: sql<number>`cast(count(*) over() as integer)`,
   };
 };
@@ -234,4 +236,49 @@ export const verifyAuth = async ({ db }: DbConfig) => {
   } catch {
     return false;
   }
+};
+
+export const findPersonByAddresses = async (
+  addresses: string[],
+  { pagination }: { pagination?: PaginationParams<Person> },
+  { db }: DbConfig,
+): Promise<PaginatedResponse<Person>> => {
+  const uniqueAddresses = Array.from(new Set(addresses));
+
+  const hasPagination =
+    pagination?.page != null && pagination?.pageSize != null;
+  const page = pagination?.page ?? 1;
+  const pageSize = pagination?.pageSize ?? uniqueAddresses.length;
+  const offset = hasPagination ? (page - 1) * pageSize : 0;
+
+  const [totalResult] = await db
+    .select({ count: sql<number>`count(*)` })
+    .from(people)
+    .where(inArray(people.address, uniqueAddresses));
+
+  const total = Number(totalResult.count);
+  const totalPages = hasPagination ? Math.ceil(total / pageSize) : 1;
+  const hasNextPage = hasPagination ? page < totalPages : false;
+  const hasPreviousPage = hasPagination ? page > 1 : false;
+
+  const resultQuery = db
+    .select(getDefaultFields())
+    .from(people)
+    .where(inArray(people.address, uniqueAddresses));
+
+  const result = hasPagination
+    ? await resultQuery.offset(offset).limit(pageSize)
+    : await resultQuery;
+
+  return {
+    data: result.map(mapToDomainPerson),
+    pagination: {
+      total,
+      page,
+      pageSize: hasPagination ? pageSize : total,
+      totalPages,
+      hasNextPage,
+      hasPreviousPage,
+    },
+  };
 };

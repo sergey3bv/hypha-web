@@ -26,4 +26,8 @@ export interface PeopleRepository {
   delete(id: number): Promise<void>;
   verifyAuth(): Promise<boolean>;
   findMe(): Promise<Person | null>;
+  findByAddresses(
+    addresses: string[],
+    config: { pagination: PaginationParams<Person> },
+  ): Promise<PaginatedResponse<Person>>;
 }
