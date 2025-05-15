@@ -21,9 +21,7 @@ export const InnerSpaceCardWrapper = ({
   leadImageUrl,
   useMembers,
 }: InnerSpaceCardWrapperProps) => {
-  const { members = [], isLoading } = useMembers
-    ? useMembers({ spaceSlug })
-    : { members: [], isLoading: false };
+  const { members = [], isLoading } = useMembers({ spaceSlug });
 
   const mappedMembers = useMemo(
     () =>

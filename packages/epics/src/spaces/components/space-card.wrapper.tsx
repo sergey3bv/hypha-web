@@ -23,9 +23,7 @@ export const SpaceCardWrapper = ({
   agreements,
   useMembers,
 }: SpaceCardWrapperProps) => {
-  const { members = [], isLoading } = useMembers
-    ? useMembers({ spaceSlug })
-    : { members: [], isLoading: false };
+  const { members = [], isLoading } = useMembers({ spaceSlug });
 
   const memberCount = useMemo(() => members.length, [members]);
 
