@@ -23,6 +23,7 @@ export type UseMembersReturn = {
 export type UseMembersProps = {
   page?: number;
   filter?: FilterParams<Person>;
+  spaceSlug?: string;
 };
 
 export type UseMembers = (props: UseMembersProps) => UseMembersReturn;

@@ -2,7 +2,11 @@ import { Text } from '@radix-ui/themes';
 import { Button } from '@hypha-platform/ui';
 import Link from 'next/link';
 import { PlusIcon } from '@radix-ui/react-icons';
-import { InnerSpaceCard } from '@hypha-platform/epics';
+import {
+  InnerSpaceCard,
+  UseMembers,
+  InnerSpaceCardWrapper,
+} from '@hypha-platform/epics';
 import { Space } from '@core/space';
 import { Locale } from '@hypha-platform/i18n';
 
@@ -10,12 +14,14 @@ interface SubspaceSectionProps {
   getSpaceDetailLink: (lang: Locale, id: string) => string;
   spaces: Space[];
   lang: Locale;
+  useMembers?: UseMembers;
 }
 
 export const SubspaceSection = ({
   spaces,
   lang,
   getSpaceDetailLink,
+  useMembers,
 }: SubspaceSectionProps) => {
   return (
     <div className="flex flex-col gap-4">
@@ -43,25 +49,14 @@ export const SubspaceSection = ({
           {spaces.map((space) => (
             <div key={space.id} className="mb-1">
               <Link href={getSpaceDetailLink(lang, space.slug as string)}>
-                <InnerSpaceCard
+                <InnerSpaceCardWrapper
+                  spaceSlug={space.slug}
+                  title={space.title}
                   description={space.description as string}
                   leadImageUrl={
                     space.leadImage || '/placeholder/space-lead-image.png'
                   }
-                  title={space.title}
-                  members={[
-                    {
-                      avatar: 'https://github.com/shadcn.png',
-                      name: 'Jane',
-                      surname: 'Doe',
-                    },
-                    {
-                      avatar: 'https://github.com/shadcn.png',
-                      name: 'Jane',
-                      surname: 'Doe',
-                    },
-                  ]}
-                  spaceId={space.web3SpaceId}
+                  useMembers={useMembers}
                 />
               </Link>
             </div>

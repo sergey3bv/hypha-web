@@ -15,6 +15,8 @@ import { Carousel, CarouselContent, CarouselItem } from '@hypha-platform/ui';
 import { createSpaceService } from '@hypha-platform/core/server';
 import { getDhoPathGovernance } from './@tab/governance/constants';
 import { ActionButtons } from './_components/action-buttons';
+import { publicClient } from '@core/common';
+import { getSpaceDetails } from '@core/space';
 
 export default async function DhoLayout({
   aside,
@@ -33,7 +35,9 @@ export default async function DhoLayout({
 
   const spaceFromDb = await spaceService.getBySlug({ slug: daoSlug });
   const spaces = await spaceService.getAll();
-
+  const spaceDetails = await publicClient.readContract(
+    getSpaceDetails({ spaceId: BigInt(spaceFromDb.web3SpaceId as number) }),
+  );
   return (
     <div className="flex">
       <Container>
@@ -82,7 +86,7 @@ export default async function DhoLayout({
         <div className="flex gap-2 items-center mt-6">
           <div className="flex">
             <div className="font-bold text-1">
-              {spaceFromDb.members?.length || 0}
+              {spaceDetails[4].length || 0}
             </div>
             <div className="text-gray-500 ml-1 text-1">Members</div>
           </div>

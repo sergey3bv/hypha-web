@@ -1,5 +1,3 @@
-'use client';
-
 import { publicClient } from '@core/common';
 import useSWR from 'swr';
 import { getSpaceDetails } from '../web3';
@@ -41,7 +39,6 @@ export const useSpaceDetailsWeb3Rpc = ({ spaceId }: { spaceId: number }) => {
       };
     }
   }, [data]);
-
   return {
     spaceDetails,
     isLoading,

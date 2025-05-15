@@ -30,8 +30,13 @@ export default async function MembershipPage(props: PageProps) {
         spaces={subspaces || []}
         lang={lang}
         getSpaceDetailLink={getDhoPathGovernance}
+        useMembers={useMembers}
       />
-      <MembersSection basePath={`${basePath}/person`} useMembers={useMembers} />
+      <MembersSection
+        basePath={`${basePath}/person`}
+        useMembers={useMembers}
+        spaceSlug={spaceFromDb.slug}
+      />
     </div>
   );
 }
