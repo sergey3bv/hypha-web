@@ -7,7 +7,14 @@ import {
 } from '@hypha-platform/storage-postgres';
 import { DbConfig } from '@core/common/server';
 
-export const findAllSpaces = async ({ db }: DbConfig) => {
+type FindAllSpacesProps = {
+  search?: string;
+};
+
+export const findAllSpaces = async (
+  { db }: DbConfig,
+  props: FindAllSpacesProps = {},
+) => {
   const results = await db
     .select({
       id: spaces.id,
@@ -32,6 +39,14 @@ export const findAllSpaces = async ({ db }: DbConfig) => {
     .from(spaces)
     .leftJoin(memberships, eq(memberships.spaceId, spaces.id))
     .leftJoin(documents, eq(documents.spaceId, spaces.id))
+    .where(
+      props.search
+        ? sql`(
+            setweight(to_tsvector('english', ${spaces.title}), 'A') ||
+            setweight(to_tsvector('english', ${spaces.description}), 'B')
+          ) @@ plainto_tsquery('english', ${props.search})`
+        : undefined,
+    )
     .groupBy(
       spaces.id,
       spaces.logoUrl,

@@ -13,6 +13,10 @@ import {
   findSpaceBySlug,
 } from './queries';
 
+type FindAllProps = {
+  search?: string;
+};
+
 @injectable()
 export class SpacePostgresRepository implements SpaceRepository {
   constructor(
@@ -47,8 +51,8 @@ export class SpacePostgresRepository implements SpaceRepository {
     return updateSpaceBySlug(data, { db: this.db });
   }
 
-  async findAll(): Promise<Space[]> {
-    return findAllSpaces({ db: this.db });
+  async findAll(props?: FindAllProps): Promise<Space[]> {
+    return findAllSpaces({ db: this.db }, props);
   }
 
   async findById(id: number): Promise<Space | null> {

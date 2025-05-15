@@ -4,6 +4,10 @@ import { CreateSpaceInput, Space, UpdateSpaceInput } from '../types';
 import { SpaceNotFoundError } from '../errors';
 import { SYMBOLS } from '../../_container/types';
 
+type GetAllProps = {
+  search?: string;
+};
+
 @injectable()
 export class SpaceService {
   constructor(
@@ -21,8 +25,8 @@ export class SpaceService {
     return this.repository.updateBySlug(data);
   }
 
-  async getAll(): Promise<Space[]> {
-    return this.repository.findAll();
+  async getAll(props?: GetAllProps): Promise<Space[]> {
+    return this.repository.findAll(props);
   }
 
   async getById(id: number): Promise<Space> {
