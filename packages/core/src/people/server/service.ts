@@ -34,7 +34,7 @@ export class PeopleService {
     return this.repository.findBySpaceSlug({ spaceSlug }, config);
   }
 
-  async findBySlug({ slug }: { slug: string }): Promise<Person> {
+  async findBySlug({ slug }: { slug: string }): Promise<Person | null> {
     return this.repository.findBySlug({ slug });
   }
 
