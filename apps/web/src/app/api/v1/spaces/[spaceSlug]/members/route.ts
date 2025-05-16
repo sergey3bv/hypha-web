@@ -28,8 +28,8 @@ export async function GET(
     console.log('spaceDetailsFromRoute', spaceDetails);
 
     const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get('page') || '1', 4);
-    const pageSize = parseInt(url.searchParams.get('pageSize') || '4', 4);
+    const page = parseInt(url.searchParams.get('page') || '1', 10);
+    const pageSize = parseInt(url.searchParams.get('pageSize') || '4', 10);
 
     const result = await findPersonByAddresses(
       members as `0x${string}`[],
