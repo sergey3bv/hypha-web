@@ -30,6 +30,12 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!user?.wallet?.address) {
+      console.error('Wallet address is missing');
+      alert('Wallet address is required. Please connect your wallet first.');
+      return;
+    }
+
     try {
       const newProfile = await createProfile({
         name,
@@ -40,7 +46,7 @@ export default function SignupPage() {
         description,
         location,
         nickname,
-        address: user?.wallet?.address || '',
+        address: user?.wallet?.address,
       });
 
       console.log('Profile created:', newProfile);
