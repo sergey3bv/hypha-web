@@ -28,9 +28,9 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
     isLoading,
     loadMore,
     pagination,
-    tabs,
     activeTab,
-    setActiveTab,
+    onUpdateSearch,
+    searchTerm,
   } = useDocumentsSection({
     useDocuments,
     documentState: documentState,
@@ -42,6 +42,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
         count={pagination?.total || 0}
         label={label || ''}
         hasSearch={hasSearch}
+        onChangeSearch={onUpdateSearch}
       >
         {headSectionButton}
       </SectionFilter>
@@ -60,6 +61,7 @@ export const DocumentSection: FC<DocumentSectionProps> = ({
                 filter: {
                   state: documentState,
                 },
+                searchTerm,
               }}
               useDocuments={useDocuments}
               activeTab={activeTab}

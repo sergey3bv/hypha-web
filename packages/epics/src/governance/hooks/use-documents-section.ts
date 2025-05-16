@@ -1,5 +1,6 @@
 import React from 'react';
 import { DocumentState, UseDocuments } from '../../governance';
+import { useDebouncedCallback } from 'use-debounce';
 
 export const tabs = [
   {
@@ -30,11 +31,19 @@ export const useDocumentsSection = ({
   const [activeFilter, setActiveFilter] = React.useState('most-recent');
   const [pages, setPages] = React.useState(1);
   const [activeTab, setActiveTab] = React.useState('all');
+  const [searchTerm, setSearchTerm] = React.useState<string | undefined>(
+    undefined,
+  );
+
+  const onUpdateSearch = useDebouncedCallback((term: string) => {
+    setSearchTerm(term);
+  }, 300);
 
   const { isLoading, pagination } = useDocuments({
     page: pages,
     pageSize: 3,
     filter: { state: documentState },
+    searchTerm,
   });
 
   React.useEffect(() => {
@@ -57,5 +66,7 @@ export const useDocumentsSection = ({
     tabs,
     activeTab,
     setActiveTab,
+    onUpdateSearch,
+    searchTerm,
   };
 };

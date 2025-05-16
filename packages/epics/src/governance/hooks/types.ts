@@ -13,6 +13,7 @@ export type UseDocumentsReturn = {
 export type UseDocumentsProps = {
   page?: number;
   filter?: FilterParams<Pick<Document, 'state'>>;
+  searchTerm?: string;
   pageSize?: number;
   activeTab?: string;
 };
