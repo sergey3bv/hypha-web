@@ -10,7 +10,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   aside: React.ReactNode;
 }) {
-  console.debug('MySpace/layout');
   return (
     <div className="w-full h-full flex">
       {children}
