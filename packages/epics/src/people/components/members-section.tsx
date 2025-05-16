@@ -45,12 +45,17 @@ export const MembersSection: FC<MemberSectionProps> = ({
         <SectionLoadMore
           onClick={loadMore}
           disabled={
-            pagination?.totalPages === pages || !pagination?.hasNextPage
+            isLoading ||
+            (pagination &&
+              (pagination.totalPages === pages || !pagination.hasNextPage))
           }
           isLoading={isLoading}
         >
           <Text>
-            {pagination?.totalPages === pages || !pagination?.hasNextPage
+            {isLoading
+              ? 'Loading…'
+              : pagination &&
+                (pagination.totalPages === pages || !pagination.hasNextPage)
               ? 'No more members'
               : 'Load more members'}
           </Text>
