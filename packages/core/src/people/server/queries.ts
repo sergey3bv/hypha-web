@@ -28,28 +28,27 @@ export const getDefaultFields = () => {
     createdAt: people.createdAt,
     updatedAt: people.updatedAt,
     address: people.address,
-    sub: people.sub,
     leadImageUrl: people.leadImageUrl,
     total: sql<number>`cast(count(*) over() as integer)`,
   };
 };
 
-export const mapToDomainPerson = (dbPerson: DbPerson): Person => {
+export const mapToDomainPerson = (dbPerson: Partial<DbPerson>): Person => {
   invariant(dbPerson.slug, 'Person must have a slug');
 
   return {
-    id: dbPerson.id,
-    name: nullToUndefined(dbPerson.name),
-    surname: nullToUndefined(dbPerson.surname),
-    email: nullToUndefined(dbPerson.email),
+    id: dbPerson.id!,
+    name: nullToUndefined(dbPerson.name ?? null),
+    surname: nullToUndefined(dbPerson.surname ?? null),
+    email: nullToUndefined(dbPerson.email ?? null),
     slug: dbPerson.slug,
-    sub: nullToUndefined(dbPerson.sub),
-    avatarUrl: nullToUndefined(dbPerson.avatarUrl),
-    leadImageUrl: nullToUndefined(dbPerson.leadImageUrl),
-    description: nullToUndefined(dbPerson.description),
-    location: nullToUndefined(dbPerson.location),
-    nickname: nullToUndefined(dbPerson.nickname),
-    address: nullToUndefined(dbPerson.address),
+    sub: undefined,
+    avatarUrl: nullToUndefined(dbPerson.avatarUrl ?? null),
+    leadImageUrl: nullToUndefined(dbPerson.leadImageUrl ?? null),
+    description: nullToUndefined(dbPerson.description ?? null),
+    location: nullToUndefined(dbPerson.location ?? null),
+    nickname: nullToUndefined(dbPerson.nickname ?? null),
+    address: nullToUndefined(dbPerson.address ?? null),
   };
 };
 
@@ -66,7 +65,7 @@ export const findAllPeople = async (config: FindAllPeopleConfig) => {
 
   const offset = (page - 1) * pageSize;
 
-  type ResultRow = DbPerson & { total: number };
+  type ResultRow = Partial<DbPerson> & { total: number };
   const dbPeople = (await db
     .select(getDefaultFields())
     .from(people)
@@ -103,7 +102,9 @@ export const findPersonById = async (
     .where(eq(people.id, id))
     .limit(1);
 
-  return dbPerson ? mapToDomainPerson(dbPerson) : null;
+  if (!dbPerson) return null;
+
+  return mapToDomainPerson(dbPerson);
 };
 
 export type FindPersonBySpaceIdInput = { spaceId: number };
@@ -121,7 +122,7 @@ export const findPersonBySpaceId = async (
 
   const offset = (page - 1) * pageSize;
 
-  type ResultRow = DbPerson & { total: number };
+  type ResultRow = Partial<DbPerson> & { total: number };
   const result = (await db
     .select(getDefaultFields())
     .from(people)
@@ -164,7 +165,7 @@ export const findPeopleBySpaceSlug = async (
 
   const offset = (page - 1) * pageSize;
 
-  type ResultRow = DbPerson & { total: number };
+  type ResultRow = Partial<DbPerson> & { total: number };
   const result = (await db
     .select(getDefaultFields())
     .from(people)
@@ -203,13 +204,13 @@ export const findPersonBySlug = async (
     .where(eq(people.slug, slug))
     .limit(1);
 
+  if (!dbPerson) return null;
+
   return mapToDomainPerson(dbPerson);
 };
 
 export const findSelf = async ({ db }: DbConfig) => {
   try {
-    // Use Neon's auth.user_id() to get the JWT subject ID
-    // and match it against the sub column in the people table
     const [dbPerson] = await db
       .select()
       .from(people)
@@ -261,14 +262,15 @@ export const findPersonByAddresses = async (
   const hasNextPage = hasPagination ? page < totalPages : false;
   const hasPreviousPage = hasPagination ? page > 1 : false;
 
+  type ResultRow = Partial<DbPerson> & { total: number };
   const resultQuery = db
     .select(getDefaultFields())
     .from(people)
     .where(inArray(people.address, uniqueAddresses));
 
   const result = hasPagination
-    ? await resultQuery.offset(offset).limit(pageSize)
-    : await resultQuery;
+    ? ((await resultQuery.offset(offset).limit(pageSize)) as ResultRow[])
+    : ((await resultQuery) as ResultRow[]);
 
   return {
     data: result.map(mapToDomainPerson),

@@ -20,7 +20,7 @@ export interface PeopleRepository {
     { spaceSlug }: { spaceSlug: string },
     config: PeopleFindBySpaceConfig,
   ): Promise<PaginatedResponse<Person>>;
-  findBySlug({ slug }: { slug: string }): Promise<Person>;
+  findBySlug(input: { slug: string }): Promise<Person | null>;
   create(person: Person): Promise<Person>;
   update(person: Person): Promise<Person>;
   delete(id: number): Promise<void>;

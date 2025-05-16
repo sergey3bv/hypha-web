@@ -75,7 +75,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
     return findPeopleBySpaceSlug(data, { ...config, db: this.db });
   }
 
-  async findBySlug({ slug }: { slug: string }): Promise<Person> {
+  async findBySlug({ slug }: { slug: string }): Promise<Person | null> {
     return findPersonBySlug({ slug }, { db: this.db });
   }
 
