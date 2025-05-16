@@ -4,7 +4,7 @@ import { injectable, inject, optional } from 'inversify';
 import { SYMBOLS } from '../../_container/types';
 import { Database } from '@hypha-platform/storage-postgres';
 import { Person } from '../types';
-import { PaginatedResponse } from '../../common';
+import { PaginatedResponse, PaginationParams } from '../../common';
 import {
   DatabaseProvider,
   DatabaseInstance,
@@ -23,6 +23,7 @@ import {
   findPersonBySpaceId,
   findSelf,
   verifyAuth,
+  findPersonByAddresses,
 } from './queries';
 import { createPerson, deletePerson, updatePerson } from './mutations';
 
@@ -74,7 +75,7 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
     return findPeopleBySpaceSlug(data, { ...config, db: this.db });
   }
 
-  async findBySlug({ slug }: { slug: string }): Promise<Person> {
+  async findBySlug({ slug }: { slug: string }): Promise<Person | null> {
     return findPersonBySlug({ slug }, { db: this.db });
   }
 
@@ -101,5 +102,12 @@ export class PeopleRepositoryPostgres implements PeopleRepository {
 
   async verifyAuth(): Promise<boolean> {
     return verifyAuth({ db: this.db });
+  }
+
+  async findByAddresses(
+    addresses: string[],
+    config: { pagination: PaginationParams<Person> },
+  ): Promise<PaginatedResponse<Person>> {
+    return findPersonByAddresses(addresses, config, { db: this.db });
   }
 }

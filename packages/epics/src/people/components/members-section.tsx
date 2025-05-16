@@ -11,14 +11,17 @@ import { UseMembers } from '../hooks/types';
 type MemberSectionProps = {
   basePath: string;
   useMembers: UseMembers;
+  spaceSlug?: string;
 };
 
 export const MembersSection: FC<MemberSectionProps> = ({
   basePath,
   useMembers,
+  spaceSlug,
 }) => {
   const { pages, isLoading, loadMore, pagination } = useMembersSection({
     useMembers,
+    spaceSlug,
   });
 
   return (
@@ -34,17 +37,25 @@ export const MembersSection: FC<MemberSectionProps> = ({
             page={index + 1}
             key={index}
             useMembers={useMembers}
+            spaceSlug={spaceSlug}
           />
         ))
       )}
       {pagination?.total === 0 ? null : (
         <SectionLoadMore
           onClick={loadMore}
-          disabled={pagination?.totalPages === pages}
+          disabled={
+            isLoading ||
+            (pagination &&
+              (pagination.totalPages === pages || !pagination.hasNextPage))
+          }
           isLoading={isLoading}
         >
           <Text>
-            {pagination?.totalPages === pages
+            {isLoading
+              ? 'Loading…'
+              : pagination &&
+                (pagination.totalPages === pages || !pagination.hasNextPage)
               ? 'No more members'
               : 'Load more members'}
           </Text>

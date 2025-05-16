@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createPeopleService } from '@hypha-platform/core/server';
+import { createSpaceService } from '@hypha-platform/core/server';
+import { getSpaceDetails } from '@core/space';
+import { publicClient } from '@core/common';
+import { findPersonByAddresses } from '@core/people/server/queries';
+import { db } from '@hypha-platform/storage-postgres';
 
 export async function GET(
   request: NextRequest,
@@ -7,25 +11,33 @@ export async function GET(
 ) {
   const { spaceSlug } = await params;
 
-  // Get token from Authorization header
-  const authToken = request.headers.get('Authorization')?.split(' ')[1] || '';
-
   try {
-    // Create the people service with the auth token to get members for this space
-    const peopleService = createPeopleService({ authToken });
+    const spaceService = createSpaceService();
 
-    // Get URL parameters for pagination
-    const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get('page') || '1', 10);
-    const pageSize = parseInt(url.searchParams.get('pageSize') || '10', 10);
+    const space = await spaceService.getBySlug({ slug: spaceSlug });
+    if (!space) {
+      return NextResponse.json({ error: 'Space not found' }, { status: 404 });
+    }
 
-    // Get members by space slug with pagination
-    const members = await peopleService.findBySpaceSlug(
-      { spaceSlug },
-      { pagination: { page, pageSize } },
+    const spaceDetails = await publicClient.readContract(
+      getSpaceDetails({ spaceId: BigInt(space.web3SpaceId as number) }),
     );
 
-    return NextResponse.json(members);
+    const [, , , , members] = spaceDetails;
+
+    console.log('spaceDetailsFromRoute', spaceDetails);
+
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get('page') || '1', 10);
+    const pageSize = parseInt(url.searchParams.get('pageSize') || '4', 10);
+
+    const result = await findPersonByAddresses(
+      members as `0x${string}`[],
+      { pagination: { page, pageSize } },
+      { db },
+    );
+
+    return NextResponse.json(result);
   } catch (error) {
     console.error('Failed to fetch members:', error);
     return NextResponse.json(

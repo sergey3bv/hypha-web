@@ -1,4 +1,4 @@
-import { SpaceCard } from '@hypha-platform/epics';
+import { SpaceCardWrapper } from '@hypha-platform/epics';
 import Link from 'next/link';
 import { Locale } from '@hypha-platform/i18n';
 import {
@@ -13,6 +13,7 @@ import { Text } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { createSpaceService } from '@hypha-platform/core/server';
 import { getDhoPathGovernance } from '../dho/[id]/@tab/governance/constants';
+import { useMembers } from '@web/hooks/use-members';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -52,17 +53,14 @@ export default async function Index(props: PageProps) {
             {spaces.map((space) => (
               <div key={space.id}>
                 <Link href={getDhoPathGovernance(lang, space.slug as string)}>
-                  <SpaceCard
+                  <SpaceCardWrapper
                     description={space.description as string}
-                    icon={
-                      space.logoUrl || '/placeholder/space-avatar-image.png'
-                    }
-                    leadImage={
-                      space.leadImage || '/placeholder/space-lead-image.png'
-                    }
-                    members={space.memberCount}
+                    icon={space.logoUrl || ''}
+                    leadImage={space.leadImage || ''}
                     agreements={space.documentCount}
                     title={space.title as string}
+                    spaceSlug={space.slug as string}
+                    useMembers={useMembers}
                   />
                 </Link>
               </div>
@@ -85,17 +83,14 @@ export default async function Index(props: PageProps) {
                     className="w-96"
                     href={getDhoPathGovernance(lang, space.slug as string)}
                   >
-                    <SpaceCard
+                    <SpaceCardWrapper
                       description={space.description as string}
-                      icon={
-                        space.logoUrl || '/placeholder/space-avatar-image.png'
-                      }
-                      leadImage={
-                        space.leadImage || '/placeholder/space-lead-image.png'
-                      }
-                      members={space.memberCount}
+                      icon={space.logoUrl || ''}
+                      leadImage={space.leadImage || ''}
                       agreements={space.documentCount}
                       title={space.title as string}
+                      spaceSlug={space.slug as string}
+                      useMembers={useMembers}
                     />
                   </Link>
                 </CarouselItem>

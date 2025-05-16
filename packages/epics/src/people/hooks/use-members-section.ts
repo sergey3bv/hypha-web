@@ -7,14 +7,19 @@ const filterOptions = FILTER_OPTIONS_MEMBERS;
 
 type UseMembersSectionProps = {
   useMembers: UseMembers;
+  spaceSlug?: string;
 };
 
-export const useMembersSection = ({ useMembers }: UseMembersSectionProps) => {
+export const useMembersSection = ({
+  useMembers,
+  spaceSlug,
+}: UseMembersSectionProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterParams<Person>>();
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, pagination } = useMembers({
     ...(activeFilter !== undefined && { filter: activeFilter }),
+    spaceSlug: spaceSlug,
   });
 
   React.useEffect(() => {

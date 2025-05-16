@@ -6,6 +6,7 @@ import { Button, Input } from '@hypha-platform/ui';
 
 import { ImageUploader } from '@hypha-platform/ui';
 import { useUploadThingFileUploader } from '@web/hooks/use-uploadthing-file-uploader';
+import { useAuthentication } from '@hypha-platform/authentication';
 
 export default function SignupPage() {
   const { createProfile } = useCreateProfile();
@@ -17,6 +18,7 @@ export default function SignupPage() {
   const [description, setDescription] = React.useState('');
   const [location, setLocation] = React.useState('');
   const [nickname, setNickname] = React.useState('');
+  const { user } = useAuthentication();
 
   const { isUploading, uploadedFile, setUploadedFile, handleDrop } =
     useUploadThingFileUploader({
@@ -28,6 +30,12 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!user?.wallet?.address) {
+      console.error('Wallet address is missing');
+      alert('Wallet address is required. Please connect your wallet first.');
+      return;
+    }
+
     try {
       const newProfile = await createProfile({
         name,
@@ -38,6 +46,7 @@ export default function SignupPage() {
         description,
         location,
         nickname,
+        address: user?.wallet?.address,
       });
 
       console.log('Profile created:', newProfile);

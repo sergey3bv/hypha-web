@@ -1,5 +1,5 @@
 import { SYMBOLS } from '../../_container';
-import { PaginatedResponse } from '../../common';
+import { PaginatedResponse, PaginationParams } from '../../common';
 import { Person } from '../types';
 import { PeopleFindAllConfig, PeopleFindBySpaceConfig } from './repository';
 import type { PeopleRepository } from './repository';
@@ -34,7 +34,7 @@ export class PeopleService {
     return this.repository.findBySpaceSlug({ spaceSlug }, config);
   }
 
-  async findBySlug({ slug }: { slug: string }): Promise<Person> {
+  async findBySlug({ slug }: { slug: string }): Promise<Person | null> {
     return this.repository.findBySlug({ slug });
   }
 
@@ -59,5 +59,14 @@ export class PeopleService {
   async findMe(): Promise<Person | null> {
     // Use the repository's findMe method which queries based on auth.user_id()
     return this.repository.findMe();
+  }
+
+  async findByAddresses(
+    addresses: string[],
+    config: { pagination: PaginationParams<Person> } = {
+      pagination: { page: 1, pageSize: 10 },
+    },
+  ): Promise<PaginatedResponse<Person>> {
+    return this.repository.findByAddresses(addresses, config);
   }
 }

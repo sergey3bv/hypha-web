@@ -8,6 +8,7 @@ type MembersListProps = {
   minimize?: boolean;
   basePath: string;
   useMembers: UseMembers;
+  spaceSlug?: string;
 };
 
 export const MembersList: FC<MembersListProps> = ({
@@ -15,8 +16,9 @@ export const MembersList: FC<MembersListProps> = ({
   minimize,
   basePath,
   useMembers,
+  spaceSlug,
 }) => {
-  const { members, isLoading } = useMembers({ page });
+  const { members, isLoading } = useMembers({ page, spaceSlug });
   return (
     <div className="member-list w-full">
       {members.map((member) => (
