@@ -98,6 +98,7 @@ export const findAllDocuments = async ({ db }: DbConfig) => {
 export type FindAllDocumentsBySpaceSlugConfig = {
   pagination: PaginationParams<Document>;
   filter: FilterParams<Document>;
+  searchTerm?: string;
 } & DbConfig;
 
 export type FindAllDocumentsBySpaceSlugInput = {
@@ -106,7 +107,7 @@ export type FindAllDocumentsBySpaceSlugInput = {
 
 export const findAllDocumentsBySpaceSlug = async (
   { spaceSlug }: FindAllDocumentsBySpaceSlugInput,
-  { db, ...config }: FindAllDocumentsBySpaceSlugConfig,
+  { db, searchTerm, ...config }: FindAllDocumentsBySpaceSlugConfig,
 ) => {
   const {
     pagination: { page = 1, pageSize = 10 },
@@ -123,6 +124,14 @@ export const findAllDocumentsBySpaceSlug = async (
         documents.state,
         filter.state as 'discussion' | 'proposal' | 'agreement',
       ),
+    );
+  }
+  if (searchTerm) {
+    conditions.push(
+      sql`(
+            setweight(to_tsvector('english', ${documents.title}), 'A') ||
+            setweight(to_tsvector('english', ${documents.description}), 'B')
+          ) @@ plainto_tsquery('english', ${searchTerm})`,
     );
   }
 

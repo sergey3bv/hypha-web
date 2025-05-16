@@ -14,6 +14,7 @@ type SectionFilterProps = {
   label: string;
   children?: React.ReactNode;
   hasSearch?: boolean;
+  onChangeSearch?: (term: string) => void;
 };
 
 export const SectionFilter: FC<SectionFilterProps> = ({
@@ -21,6 +22,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
   label,
   children,
   hasSearch,
+  onChangeSearch,
 }) => {
   return (
     <div className="flex justify-between items-center w-full gap-4">
@@ -32,6 +34,7 @@ export const SectionFilter: FC<SectionFilterProps> = ({
           className="w-full"
           placeholder="Search documents"
           leftIcon={<SearchIcon size="16px" />}
+          onChange={(e) => onChangeSearch?.(e.target.value)}
         />
       ) : null}
       <div className="flex items-center text-nowrap">{children}</div>

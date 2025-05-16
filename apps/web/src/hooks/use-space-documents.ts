@@ -15,12 +15,12 @@ export const useSpaceDocuments: UseDocuments = ({
   page = 1,
   pageSize = 4,
   filter,
-  activeTab,
+  searchTerm,
 }: {
   page?: number;
   pageSize?: number;
   filter?: FilterParams<Pick<Document, 'state'>>;
-  activeTab?: string;
+  searchTerm?: string;
 }): UseDocumentsReturn => {
   const spaceSlug = useSpaceSlug();
 
@@ -29,9 +29,8 @@ export const useSpaceDocuments: UseDocuments = ({
       page,
       pageSize,
       ...(filter ? { ...filter } : {}),
+      ...(searchTerm ? { searchTerm } : {}),
     };
-    if (!effectiveFilter || Object.keys(effectiveFilter).length === 0)
-      return '';
     return `?${queryString.stringify(effectiveFilter)}`;
   }, [page, filter]);
 

@@ -19,6 +19,7 @@ export async function GET(
     const page = parseInt(url.searchParams.get('page') || '1', 10);
     const pageSize = parseInt(url.searchParams.get('pageSize') || '10', 10);
     const state = url.searchParams.get('state');
+    const searchTerm = url.searchParams.get('searchTerm') || undefined;
 
     const filter = {
       ...(state ? { state } : {}),
@@ -26,7 +27,7 @@ export async function GET(
 
     const paginatedDocuments = await documentsService.getAllBySpaceSlug(
       { spaceSlug },
-      { pagination: { page, pageSize }, filter },
+      { pagination: { page, pageSize }, filter, searchTerm },
     );
 
     return NextResponse.json(paginatedDocuments);

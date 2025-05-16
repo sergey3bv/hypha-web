@@ -8,6 +8,7 @@ import { Document } from '../types';
 export type FindAllBySpaceSlugConfig = {
   pagination: PaginationParams<Document>;
   filter: FilterParams<Document>;
+  searchTerm?: string;
 };
 
 export interface DocumentRepository {
