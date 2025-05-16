@@ -22,6 +22,10 @@ export async function GET(
     const peopleService = createPeopleService({ authToken });
     const person = await peopleService.findBySlug({ slug: personSlug });
 
+    if (!person) {
+      return NextResponse.json({ error: 'Person not found' }, { status: 404 });
+    }
+
     // Then, get all spaces for this person using their ID
     const spaceService = createSpaceService();
     const spaces = await spaceService.getAllByMemberId(person.id);
