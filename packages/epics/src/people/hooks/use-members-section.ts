@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FILTER_OPTIONS_MEMBERS } from '../../common/constants';
 import { FilterParams, Person } from '@hypha-platform/core/client';
 import { type UseMembers } from './types';
+import { useDebouncedCallback } from 'use-debounce';
 
 const filterOptions = FILTER_OPTIONS_MEMBERS;
 
@@ -16,10 +17,18 @@ export const useMembersSection = ({
 }: UseMembersSectionProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterParams<Person>>();
   const [pages, setPages] = React.useState(1);
+  const [searchTerm, setSearchTerm] = React.useState<string | undefined>(
+    undefined,
+  );
+
+  const onUpdateSearch = useDebouncedCallback((term: string) => {
+    setSearchTerm(term);
+  }, 300);
 
   const { isLoading, pagination } = useMembers({
     ...(activeFilter !== undefined && { filter: activeFilter }),
     spaceSlug: spaceSlug,
+    searchTerm,
   });
 
   React.useEffect(() => {
@@ -40,5 +49,7 @@ export const useMembersSection = ({
     activeFilter,
     setActiveFilter,
     filterOptions,
+    onUpdateSearch,
+    searchTerm,
   };
 };

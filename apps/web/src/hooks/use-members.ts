@@ -2,6 +2,7 @@
 
 import React from 'react';
 import useSWR from 'swr';
+import queryString from 'query-string';
 
 import { MemberItem, FilterParams } from '@hypha-platform/graphql/rsc';
 import { type UseMembers, type UseMembersReturn } from '@hypha-platform/epics';
@@ -9,34 +10,34 @@ import { type UseMembers, type UseMembersReturn } from '@hypha-platform/epics';
 import { useJwt } from '@hypha-platform/core/client';
 
 export const useMembers: UseMembers = ({
-  page,
-  pageSize,
-  filter,
+  page = 1,
+  pageSize = 4,
   spaceSlug,
+  searchTerm,
 }: {
   page?: number;
   pageSize?: number;
   filter?: FilterParams<MemberItem>;
   spaceSlug?: string;
+  searchTerm?: string;
 }): UseMembersReturn => {
   const { jwt } = useJwt();
 
-  const endpoint = React.useMemo(() => {
-    let url = `/api/v1/spaces/${spaceSlug}/members`;
-    const params = new URLSearchParams();
+  const queryParams = React.useMemo(() => {
+    const effectiveFilter = {
+      page,
+      pageSize,
+      ...(searchTerm ? { searchTerm } : {}),
+    };
+    return `?${queryString.stringify(effectiveFilter)}`;
+  }, [page, searchTerm]);
 
-    if (page != null) {
-      params.append('page', String(page));
-    }
-    if (pageSize != null) {
-      params.append('pageSize', String(pageSize));
-    }
+  console.debug('useMembers', { queryParams });
 
-    if ([...params].length > 0) {
-      url += `?${params.toString()}`;
-    }
-    return url;
-  }, [spaceSlug, page, pageSize]);
+  const endpoint = React.useMemo(
+    () => `/api/v1/spaces/${spaceSlug}/members${queryParams}`,
+    [spaceSlug, page, pageSize, queryParams],
+  );
 
   const { data: response, isLoading } = useSWR(
     jwt ? [endpoint] : null,

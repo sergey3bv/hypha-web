@@ -7,7 +7,7 @@ import {
   memberships,
   spaces,
 } from '@hypha-platform/storage-postgres';
-import { sql, eq, inArray } from 'drizzle-orm';
+import { sql, eq, inArray, and } from 'drizzle-orm';
 import invariant from 'tiny-invariant';
 import { DbConfig } from '@core/common/server';
 
@@ -111,10 +111,11 @@ export type FindPersonBySpaceIdInput = { spaceId: number };
 export type FindPersonBySpaceIdConfig = {
   db: DatabaseInstance;
   pagination: PaginationParams<Person>;
+  searchTerm?: string;
 };
 export const findPersonBySpaceId = async (
   { spaceId }: FindPersonBySpaceIdInput,
-  { db, ...config }: FindPersonBySpaceIdConfig,
+  { db, searchTerm, ...config }: FindPersonBySpaceIdConfig,
 ) => {
   const {
     pagination: { page = 1, pageSize = 10 },
@@ -123,11 +124,21 @@ export const findPersonBySpaceId = async (
   const offset = (page - 1) * pageSize;
 
   type ResultRow = Partial<DbPerson> & { total: number };
+
+  const whereConditions = [eq(memberships.spaceId, spaceId)];
+
+  if (searchTerm) {
+    const term = `%${searchTerm}%`;
+    whereConditions.push(
+      sql`(${people.name} ILIKE ${term} OR ${people.surname} ILIKE ${term} OR ${people.nickname} ILIKE ${term} OR ${people.email} ILIKE ${term})`,
+    );
+  }
+
   const result = (await db
     .select(getDefaultFields())
     .from(people)
     .innerJoin(memberships, eq(memberships.personId, people.id))
-    .where(eq(memberships.spaceId, spaceId))
+    .where(and(...whereConditions))
     .limit(pageSize)
     .offset(offset)) as ResultRow[];
 
@@ -241,9 +252,13 @@ export const verifyAuth = async ({ db }: DbConfig) => {
 
 export const findPersonByAddresses = async (
   addresses: string[],
-  { pagination }: { pagination?: PaginationParams<Person> },
+  {
+    pagination,
+    searchTerm,
+  }: { pagination?: PaginationParams<Person>; searchTerm?: string },
   { db }: DbConfig,
 ): Promise<PaginatedResponse<Person>> => {
+  console.debug('findPersonByAddresses', { searchTerm });
   const uniqueAddresses = Array.from(new Set(addresses));
 
   const hasPagination =
@@ -252,10 +267,19 @@ export const findPersonByAddresses = async (
   const pageSize = pagination?.pageSize ?? uniqueAddresses.length;
   const offset = hasPagination ? (page - 1) * pageSize : 0;
 
+  const whereConditions = [inArray(people.address, uniqueAddresses)];
+
+  if (searchTerm) {
+    const term = `%${searchTerm}%`;
+    whereConditions.push(
+      sql`(${people.name} ILIKE ${term} OR ${people.surname} ILIKE ${term} OR ${people.nickname} ILIKE ${term} OR ${people.email} ILIKE ${term})`,
+    );
+  }
+
   const [totalResult] = await db
     .select({ count: sql<number>`count(*)` })
     .from(people)
-    .where(inArray(people.address, uniqueAddresses));
+    .where(and(...whereConditions));
 
   const total = Number(totalResult.count);
   const totalPages = hasPagination ? Math.ceil(total / pageSize) : 1;
@@ -266,7 +290,7 @@ export const findPersonByAddresses = async (
   const resultQuery = db
     .select(getDefaultFields())
     .from(people)
-    .where(inArray(people.address, uniqueAddresses));
+    .where(and(...whereConditions));
 
   const result = hasPagination
     ? ((await resultQuery.offset(offset).limit(pageSize)) as ResultRow[])

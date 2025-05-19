@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { FilterMenu } from '../filter-menu';
 import { Text } from '@radix-ui/themes';
 import { Input } from '@hypha-platform/ui';
 import { SearchIcon } from 'lucide-react';
