@@ -1,7 +1,7 @@
 'use client';
 
 import { publicClient } from '@core/common/web3/public-client';
-import { encodeFunctionData, erc20Abi, getContract, parseUnits } from 'viem';
+import { erc20Abi, getContract } from 'viem';
 
 export async function getTokenDecimals(tokenAddress: string): Promise<number> {
   const contract = getContract({
@@ -10,5 +10,10 @@ export async function getTokenDecimals(tokenAddress: string): Promise<number> {
     client: publicClient,
   });
 
-  return await contract.read.decimals();
+  try {
+    return await contract.read.decimals();
+  } catch (error: any) {
+    console.error(`Failed to fetch decimals for token ${tokenAddress}:`, error);
+    throw new Error(`Could not retrieve token decimals: ${error.message}`);
+  }
 }
