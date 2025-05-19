@@ -3,13 +3,21 @@
 import { RecipientField } from '../components/common/recipient-field';
 import { TokenPayoutFieldArray } from '../components/common/token-payout-field-array';
 import { Separator } from '@hypha-platform/ui';
+import { tokens } from '../pay-for-expenses/tokens';
+import { Person } from '@core/people';
 
-export const DeployFundsPlugin = () => {
+export const DeployFundsPlugin = ({
+  spaceSlug,
+  members,
+}: {
+  spaceSlug: string;
+  members: Person[];
+}) => {
   return (
     <div className="flex flex-col gap-4">
-      <RecipientField />
+      <RecipientField recipients={members} />
       <Separator />
-      <TokenPayoutFieldArray tokens={[]} name="payouts" />
+      <TokenPayoutFieldArray tokens={tokens} name="payouts" />
     </div>
   );
 };
