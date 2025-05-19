@@ -6,11 +6,11 @@ import { Plugin } from '../plugins';
 import { notFound } from 'next/navigation';
 
 type PageProps = {
-  params: { lang: Locale; id: string };
+  params: Promise<{ lang: Locale; id: string }>;
 };
 
 export default async function CreateDeployFundsPage({ params }: PageProps) {
-  const { lang, id } = params;
+  const { lang, id } = await params;
 
   const spaceService = createSpaceService();
 

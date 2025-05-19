@@ -3,8 +3,7 @@
 import { RecipientField } from '../components/common/recipient-field';
 import { TokenPayoutFieldArray } from '../components/common/token-payout-field-array';
 import { Separator } from '@hypha-platform/ui';
-<<<<<<< main
-import { tokens } from './tokens';
+import { useTokens } from '../hooks';
 import { Person } from '@core/people';
 
 export const PayForExpensesPlugin = ({
@@ -14,12 +13,7 @@ export const PayForExpensesPlugin = ({
   spaceSlug: string;
   members: Person[];
 }) => {
-=======
-import { useTokens } from '../hooks';
-
-export const PayForExpensesPlugin = () => {
   const { tokens } = useTokens();
->>>>>>> feat(#682): improved reusage of token list
   return (
     <div className="flex flex-col gap-4">
       <RecipientField recipients={members} />
