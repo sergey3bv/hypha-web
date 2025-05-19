@@ -10,7 +10,7 @@ import {
   daoProposalsImplementationAbi,
   daoProposalsImplementationAddress,
 } from '@core/generated';
-import { getTokenDecimals } from '@hypha-platform/epics';
+import { getTokenDecimals } from '@core/common/web3/get-token-decimals';
 
 interface CreateDeployFundsInput {
   spaceId: number;
