@@ -10,7 +10,7 @@ import {
   daoProposalsImplementationAbi,
   daoProposalsImplementationAddress,
 } from '@core/generated';
-import { getTokenDecimals } from './get-token-decimals';
+import { getTokenDecimals } from '@hypha-platform/epics';
 
 interface CreatePayForExpensesInput {
   spaceId: number;
