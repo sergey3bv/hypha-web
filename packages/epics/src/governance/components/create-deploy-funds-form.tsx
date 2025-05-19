@@ -17,10 +17,10 @@ import { useRouter } from 'next/navigation';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { useConfig } from 'wagmi';
 
-type FormValues = z.infer<typeof schemaCreateAgreementForm>;
-
 const fullSchemaCreateDeployFundsForm =
   schemaCreateAgreementForm.extend(createAgreementFiles);
+
+type FormValues = z.infer<typeof fullSchemaCreateDeployFundsForm>;
 
 interface CreateDeployFundsFormProps {
   spaceId: number | undefined | null;
@@ -88,7 +88,7 @@ export const CreateDeployFundsForm = ({
       web3SpaceId: typeof web3SpaceId === 'number' ? web3SpaceId : undefined,
       recipient: data.recipient,
       payouts: data.payouts.map(({ amount, token }) => ({
-        amount: String(amount ?? '0'),
+        amount: amount ?? '0',
         token: token ?? '',
       })),
     });
@@ -99,7 +99,7 @@ export const CreateDeployFundsForm = ({
       web3SpaceId: typeof web3SpaceId === 'number' ? web3SpaceId : undefined,
       recipient: data.recipient,
       payouts: data.payouts.map(({ amount, token }) => ({
-        amount: String(amount ?? '0'),
+        amount: amount ?? '0',
         token: token ?? '',
       })),
     });
