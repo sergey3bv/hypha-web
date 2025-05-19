@@ -32,7 +32,7 @@ export const useSpaceDocuments: UseDocuments = ({
       ...(searchTerm ? { searchTerm } : {}),
     };
     return `?${queryString.stringify(effectiveFilter)}`;
-  }, [page, filter]);
+  }, [page, pageSize, filter, searchTerm]);
 
   const endpoint = React.useMemo(
     () => `/api/v1/spaces/${spaceSlug}/documents${queryParams}`,

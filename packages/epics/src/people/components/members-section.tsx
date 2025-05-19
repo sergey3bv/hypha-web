@@ -19,14 +19,21 @@ export const MembersSection: FC<MemberSectionProps> = ({
   useMembers,
   spaceSlug,
 }) => {
-  const { pages, isLoading, loadMore, pagination } = useMembersSection({
-    useMembers,
-    spaceSlug,
-  });
+  const { pages, isLoading, loadMore, pagination, onUpdateSearch, searchTerm } =
+    useMembersSection({
+      useMembers,
+      spaceSlug,
+    });
+  console.debug('MembersSection', { searchTerm });
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-4">
-      <SectionFilter count={pagination?.total || 0} label="Members" />
+      <SectionFilter
+        count={pagination?.total || 0}
+        label="Members"
+        hasSearch
+        onChangeSearch={onUpdateSearch}
+      />
 
       {pagination?.total === 0 ? (
         <Text className="text-neutra-11 mt-2 mb-6">List is empty</Text>
@@ -38,6 +45,7 @@ export const MembersSection: FC<MemberSectionProps> = ({
             key={index}
             useMembers={useMembers}
             spaceSlug={spaceSlug}
+            searchTerm={searchTerm}
           />
         ))
       )}

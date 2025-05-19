@@ -7,6 +7,7 @@ export type PeopleFindAllConfig = {
 
 export type PeopleFindBySpaceConfig = {
   pagination: PaginationParams<Person>;
+  searchTerm?: string;
 };
 
 export interface PeopleRepository {

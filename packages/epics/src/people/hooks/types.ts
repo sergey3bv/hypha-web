@@ -24,6 +24,7 @@ export type UseMembersProps = {
   page?: number;
   filter?: FilterParams<Person>;
   spaceSlug?: string;
+  searchTerm?: string;
 };
 
 export type UseMembers = (props: UseMembersProps) => UseMembersReturn;
