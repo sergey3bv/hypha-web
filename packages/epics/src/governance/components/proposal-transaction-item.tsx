@@ -4,7 +4,7 @@ import { useReadContract } from 'wagmi';
 import { erc20Abi } from 'viem';
 import { Image } from '@hypha-platform/ui';
 import { EthAddress } from '../../people';
-import { useTokens } from '../../agreements/plugins/hooks';
+import { useTokens } from '@hypha-platform/epics';
 
 interface ProposalTransactionItemProps {
   recipient?: string;

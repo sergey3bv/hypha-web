@@ -1,4 +1,4 @@
-import { type Token } from '../components/common/token-payout-field-array';
+import { type Token } from '../../agreements/plugins/components/common/token-payout-field-array';
 
 const tokens: Token[] = [
   {

@@ -3,7 +3,7 @@
 import { RecipientField } from '../components/common/recipient-field';
 import { TokenPayoutFieldArray } from '../components/common/token-payout-field-array';
 import { Separator } from '@hypha-platform/ui';
-import { useTokens } from '../hooks';
+import { useTokens } from '@hypha-platform/epics';
 import { Person } from '@core/people';
 
 export const DeployFundsPlugin = ({
