@@ -74,7 +74,7 @@ export const CreateDeployFundsForm = ({
     if (progress === 100 && agreementSlug) {
       router.push(successfulUrl);
     }
-  }, [progress, agreementSlug]);
+  }, [progress, agreementSlug, router, successfulUrl]);
 
   const handleCreate = async (data: FormValues) => {
     if (!data.recipient || !data.payouts || data.payouts.length === 0) {
