@@ -1,14 +1,18 @@
 'use client';
 
-import { useMembers } from '@web/hooks/use-members';
 import { RecipientField } from '../components/common/recipient-field';
 import { TokenPayoutFieldArray } from '../components/common/token-payout-field-array';
 import { Separator } from '@hypha-platform/ui';
 import { tokens } from '../pay-for-expenses/tokens';
+import { Person } from '@core/people';
 
-export const DeployFundsPlugin = ({ spaceSlug }: { spaceSlug: string }) => {
-  const { members } = useMembers({ spaceSlug });
-
+export const DeployFundsPlugin = ({
+  spaceSlug,
+  members,
+}: {
+  spaceSlug: string;
+  members: Person[];
+}) => {
   return (
     <div className="flex flex-col gap-4">
       <RecipientField recipients={members} />
