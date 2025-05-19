@@ -5,13 +5,14 @@ import { Config, writeContract } from '@wagmi/core';
 import { getProposalFromLogs } from '../web3';
 import useSWR from 'swr';
 import { publicClient } from '@core/common/web3/public-client';
-import { encodeFunctionData, erc20Abi, getContract, parseUnits } from 'viem';
+import { encodeFunctionData, erc20Abi, parseUnits } from 'viem';
 import {
   daoProposalsImplementationAbi,
   daoProposalsImplementationAddress,
 } from '@core/generated';
+import { getTokenDecimals } from '@core/common/web3/get-token-decimals';
 
-interface CreatePayForExpensesInput {
+interface CreateDeployFundsInput {
   spaceId: number;
   payouts: {
     amount: string;
@@ -20,26 +21,16 @@ interface CreatePayForExpensesInput {
   recipient: string;
 }
 
-async function getTokenDecimals(tokenAddress: string): Promise<number> {
-  const contract = getContract({
-    address: tokenAddress as `0x${string}`,
-    abi: erc20Abi,
-    client: publicClient,
-  });
-
-  return await contract.read.decimals();
-}
-
-export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
+export const useDeployFundsMutationsWeb3Rpc = (config?: Config) => {
   const {
-    trigger: createPayForExpensesMutation,
-    reset: resetCreatePayForExpensesMutation,
-    isMutating: isCreatingPayForExpenses,
-    data: createPayForExpensesHash,
-    error: errorCreatePayForExpenses,
+    trigger: createDeployFundsMutation,
+    reset: resetCreateDeployFundsMutation,
+    isMutating: isCreatingDeployFunds,
+    data: createDeployFundsHash,
+    error: errorCreateDeployFunds,
   } = useSWRMutation(
-    config ? [config, 'createPayForExpenses'] : null,
-    async ([config], { arg }: { arg: CreatePayForExpensesInput }) => {
+    config ? [config, 'createDeployFunds'] : null,
+    async ([config], { arg }: { arg: CreateDeployFundsInput }) => {
       const transactions = await Promise.all(
         arg.payouts.map(async (payout) => {
           const decimals = await getTokenDecimals(payout.token);
@@ -77,12 +68,12 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
   );
 
   const {
-    data: createdPayForExpenses,
-    isLoading: isLoadingPayForExpensesFromTransaction,
-    error: errorWaitPayForExpensesFromTransaction,
+    data: createdDeployFunds,
+    isLoading: isLoadingDeployFundsFromTransaction,
+    error: errorWaitDeployFundsFromTransaction,
   } = useSWR(
-    createPayForExpensesHash
-      ? [createPayForExpensesHash, 'waitForPayForExpenses']
+    createDeployFundsHash
+      ? [createDeployFundsHash, 'waitForDeployFunds']
       : null,
     async ([hash]) => {
       const { logs } = await publicClient.waitForTransactionReceipt({ hash });
@@ -91,13 +82,13 @@ export const usePayForExpensesMutationsWeb3Rpc = (config?: Config) => {
   );
 
   return {
-    createPayForExpenses: createPayForExpensesMutation,
-    resetCreatePayForExpensesMutation,
-    isCreatingPayForExpenses,
-    isLoadingPayForExpensesFromTransaction,
-    errorCreatePayForExpenses,
-    errorWaitPayForExpensesFromTransaction,
-    createPayForExpensesHash,
-    createdPayForExpenses,
+    createDeployFunds: createDeployFundsMutation,
+    resetCreateDeployFundsMutation,
+    isCreatingDeployFunds,
+    isLoadingDeployFundsFromTransaction,
+    errorCreateDeployFunds,
+    errorWaitDeployFundsFromTransaction,
+    createDeployFundsHash,
+    createdDeployFunds,
   };
 };
