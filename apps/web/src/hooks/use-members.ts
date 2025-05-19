@@ -30,7 +30,7 @@ export const useMembers: UseMembers = ({
       ...(searchTerm ? { searchTerm } : {}),
     };
     return `?${queryString.stringify(effectiveFilter)}`;
-  }, [page, searchTerm]);
+  }, [page, pageSize, searchTerm]);
 
   console.debug('useMembers', { queryParams });
 
