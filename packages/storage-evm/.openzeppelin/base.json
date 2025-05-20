@@ -5915,7 +5915,7 @@
             "label": "spaces",
             "offset": 0,
             "slot": "0",
-            "type": "t_mapping(t_uint256,t_struct(Space)3029_storage)",
+            "type": "t_mapping(t_uint256,t_struct(Space)4202_storage)",
             "contract": "DAOSpaceFactoryStorage",
             "src": "contracts/storage/DAOSpaceFactoryStorage.sol:33"
           },
@@ -5931,7 +5931,7 @@
             "label": "directoryContract",
             "offset": 0,
             "slot": "2",
-            "type": "t_contract(IDirectory)2998",
+            "type": "t_contract(IDirectory)4171",
             "contract": "DAOSpaceFactoryStorage",
             "src": "contracts/storage/DAOSpaceFactoryStorage.sol:35"
           },
@@ -5971,7 +5971,7 @@
             "label": "spaceMembers",
             "offset": 0,
             "slot": "7",
-            "type": "t_mapping(t_uint256,t_struct(SpaceMembers)3055_storage)",
+            "type": "t_mapping(t_uint256,t_struct(SpaceMembers)4228_storage)",
             "contract": "DAOSpaceFactoryStorage",
             "src": "contracts/storage/DAOSpaceFactoryStorage.sol:47"
           },
@@ -5995,7 +5995,7 @@
             "label": "proposalsContract",
             "offset": 0,
             "slot": "10",
-            "type": "t_contract(IDAOProposals)2767",
+            "type": "t_contract(IDAOProposals)3678",
             "contract": "DAOSpaceFactoryImplementation",
             "src": "contracts/DAOSpaceFactoryImplementation.sol:42"
           }
@@ -6051,11 +6051,11 @@
             "label": "uint256[]",
             "numberOfBytes": "32"
           },
-          "t_contract(IDAOProposals)2767": {
+          "t_contract(IDAOProposals)3678": {
             "label": "contract IDAOProposals",
             "numberOfBytes": "20"
           },
-          "t_contract(IDirectory)2998": {
+          "t_contract(IDirectory)4171": {
             "label": "contract IDirectory",
             "numberOfBytes": "20"
           },
@@ -6071,15 +6071,15 @@
             "label": "mapping(address => uint256)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_uint256,t_struct(Space)3029_storage)": {
+          "t_mapping(t_uint256,t_struct(Space)4202_storage)": {
             "label": "mapping(uint256 => struct DAOSpaceFactoryStorage.Space)",
             "numberOfBytes": "32"
           },
-          "t_mapping(t_uint256,t_struct(SpaceMembers)3055_storage)": {
+          "t_mapping(t_uint256,t_struct(SpaceMembers)4228_storage)": {
             "label": "mapping(uint256 => struct DAOSpaceFactoryStorage.SpaceMembers)",
             "numberOfBytes": "32"
           },
-          "t_struct(Space)3029_storage": {
+          "t_struct(Space)4202_storage": {
             "label": "struct DAOSpaceFactoryStorage.Space",
             "members": [
               {
@@ -6145,7 +6145,7 @@
             ],
             "numberOfBytes": "320"
           },
-          "t_struct(SpaceMembers)3055_storage": {
+          "t_struct(SpaceMembers)4228_storage": {
             "label": "struct DAOSpaceFactoryStorage.SpaceMembers",
             "members": [
               {
@@ -6398,6 +6398,301 @@
           "t_mapping(t_uint256,t_address)": {
             "label": "mapping(uint256 => address)",
             "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
+    },
+    "c15550388c0e2709eedde8fe4940c6e6ecdb0fcff358ee7cde2c244a2526459a": {
+      "address": "0x8e19AC1d68ECe72Ea8F50d3C8785344bCd0dA286",
+      "txHash": "0x7e29c6fa5c9bde97043f41450cb83ae25de1004691b69c9909e9cb25c77f9a9a",
+      "layout": {
+        "solcVersion": "0.8.28",
+        "storage": [
+          {
+            "label": "spaces",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_uint256,t_struct(Space)9483_storage)",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:33"
+          },
+          {
+            "label": "spaceCounter",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:34"
+          },
+          {
+            "label": "directoryContract",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(IDirectory)9452",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:35"
+          },
+          {
+            "label": "tokenFactoryAddress",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_address",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:36"
+          },
+          {
+            "label": "joinMethodDirectoryAddress",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_address",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:37"
+          },
+          {
+            "label": "proposalManagerAddress",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:38"
+          },
+          {
+            "label": "exitMethodDirectoryAddress",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_address",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:39"
+          },
+          {
+            "label": "spaceMembers",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_mapping(t_uint256,t_struct(SpaceMembers)9509_storage)",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:47"
+          },
+          {
+            "label": "executorToSpaceId",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:48"
+          },
+          {
+            "label": "memberSpaces",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "contract": "DAOSpaceFactoryStorage",
+            "src": "contracts/storage/DAOSpaceFactoryStorage.sol:51"
+          },
+          {
+            "label": "proposalsContract",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_contract(IDAOProposals)8359",
+            "contract": "DAOSpaceFactoryImplementation",
+            "src": "contracts/DAOSpaceFactoryImplementation.sol:42"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)73_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)13_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_contract(IDAOProposals)8359": {
+            "label": "contract IDAOProposals",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IDirectory)9452": {
+            "label": "contract IDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(address => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Space)9483_storage)": {
+            "label": "mapping(uint256 => struct DAOSpaceFactoryStorage.Space)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(SpaceMembers)9509_storage)": {
+            "label": "mapping(uint256 => struct DAOSpaceFactoryStorage.SpaceMembers)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Space)9483_storage": {
+            "label": "struct DAOSpaceFactoryStorage.Space",
+            "members": [
+              {
+                "label": "unity",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "quorum",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "votingPowerSource",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "tokenAddresses",
+                "type": "t_array(t_address)dyn_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "members",
+                "type": "t_array(t_address)dyn_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "exitMethod",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "joinMethod",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "createdAt",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "7"
+              },
+              {
+                "label": "creator",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "8"
+              },
+              {
+                "label": "executor",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "9"
+              }
+            ],
+            "numberOfBytes": "320"
+          },
+          "t_struct(SpaceMembers)9509_storage": {
+            "label": "struct DAOSpaceFactoryStorage.SpaceMembers",
+            "members": [
+              {
+                "label": "spaceMemberAddresses",
+                "type": "t_array(t_address)dyn_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSpaceMember",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
           },
           "t_uint256": {
             "label": "uint256",

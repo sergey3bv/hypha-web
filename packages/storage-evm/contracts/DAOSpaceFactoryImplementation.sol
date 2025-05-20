@@ -102,7 +102,7 @@ contract DAOSpaceFactoryImplementation is
     for (uint256 i = 0; i < space.members.length; i++) {
       require(space.members[i] != msg.sender, 'member');
     }
-//add this as a separate contract
+    //add this as a separate contract
     if (space.joinMethod == 2) {
       // If join method is 2, create a proposal to add the member
       require(proposalManagerAddress != address(0), 'Proposal manager not set');
@@ -195,6 +195,7 @@ contract DAOSpaceFactoryImplementation is
     emit MemberJoined(_spaceId, _memberAddress);
   }
 
+  /*
   function removeMember(uint256 _spaceId, address _memberToRemove) public {
     //require(_spaceId > 0 && _spaceId <= spaceCounter, 'Invalid space ID');
     require(
@@ -241,6 +242,7 @@ contract DAOSpaceFactoryImplementation is
     space.members[memberIndex] = space.members[space.members.length - 1];
     space.members.pop();
 
+
     // Remove this space from the member's list of spaces
     uint256[] storage memberSpacesList = memberSpaces[_memberToRemove];
     for (uint256 i = 0; i < memberSpacesList.length; i++) {
@@ -267,13 +269,15 @@ contract DAOSpaceFactoryImplementation is
 
     emit MemberRemoved(_spaceId, _memberToRemove);
   }
+  */
 
   function getSpaceMembers(
     uint256 _spaceId
   ) public view returns (address[] memory) {
     return spaces[_spaceId].members;
   }
-/*
+
+  /*
   function hasToken(
     uint256 _spaceId,
     address _tokenAddress
@@ -388,6 +392,38 @@ contract DAOSpaceFactoryImplementation is
     uint256 spaceId = executorToSpaceId[_spaceAddress];
     //require(spaceId != 0, 'notspcad');
     return spaceId;
+  }
+
+  // New function to change voting power source method
+  function changeVotingMethod(
+    uint256 _spaceId,
+    uint256 _newVotingPowerSource
+  ) external onlySpaceExecutor(_spaceId) {
+    require(_newVotingPowerSource > 0, 'Invalid voting power source');
+
+    Space storage space = spaces[_spaceId];
+    uint256 oldVotingPowerSource = space.votingPowerSource;
+    space.votingPowerSource = _newVotingPowerSource;
+
+    emit VotingMethodChanged(
+      _spaceId,
+      oldVotingPowerSource,
+      _newVotingPowerSource
+    );
+  }
+
+  // New function to change entry method
+  function changeEntryMethod(
+    uint256 _spaceId,
+    uint256 _newJoinMethod
+  ) external onlySpaceExecutor(_spaceId) {
+    require(_newJoinMethod > 0, 'Invalid join method');
+
+    Space storage space = spaces[_spaceId];
+    uint256 oldJoinMethod = space.joinMethod;
+    space.joinMethod = _newJoinMethod;
+
+    emit EntryMethodChanged(_spaceId, oldJoinMethod, _newJoinMethod);
   }
 
   // New function to get all spaces a member is part of

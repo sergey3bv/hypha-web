@@ -26,7 +26,7 @@ interface IDAOSpaceFactory {
 
   function addMember(uint256 _spaceId, address _memberAddress) external;
 
-  function removeMember(uint256 _spaceId, address _memberToRemove) external;
+  //function removeMember(uint256 _spaceId, address _memberToRemove) external;
 
   function getSpaceMembers(
     uint256 _spaceId
@@ -94,4 +94,15 @@ interface IDAOSpaceFactory {
   //event JoinMethodDirectoryContractUpdated(address indexed newAddress);
   //event ProposalManagerUpdated(address indexed newAddress);
   //event ExitMethodDirectoryContractUpdated(address indexed newAddress);
+
+  event VotingMethodChanged(
+    uint256 indexed spaceId,
+    uint256 oldVotingPowerSource,
+    uint256 newVotingPowerSource
+  );
+  event EntryMethodChanged(
+    uint256 indexed spaceId,
+    uint256 oldJoinMethod,
+    uint256 newJoinMethod
+  );
 }
