@@ -19,19 +19,40 @@ export async function GET(
       return NextResponse.json({ error: 'Space not found' }, { status: 404 });
     }
 
-    const spaceDetails = await publicClient.readContract(
-      getSpaceDetails({ spaceId: BigInt(space.web3SpaceId as number) }),
-    );
+    let spaceDetails;
+    try {
+      spaceDetails = await publicClient.readContract(
+        getSpaceDetails({ spaceId: BigInt(space.web3SpaceId as number) }),
+      );
+    } catch (err: any) {
+      const errorMessage =
+        err?.message || err?.shortMessage || JSON.stringify(err);
+      if (errorMessage.includes('rate limit') || errorMessage.includes('429')) {
+        console.warn(
+          'Rate limit exceeded when calling readContract:',
+          errorMessage,
+        );
+        return NextResponse.json(
+          {
+            error: 'External API rate limit exceeded. Please try again later.',
+          },
+          { status: 503 },
+        );
+      }
+
+      console.error('Error while calling readContract:', err);
+      return NextResponse.json(
+        { error: 'Failed to fetch contract data.' },
+        { status: 500 },
+      );
+    }
 
     const [, , , , members] = spaceDetails;
-
-    console.log('spaceDetailsFromRoute', spaceDetails);
 
     const url = new URL(request.url);
     const page = parseInt(url.searchParams.get('page') || '1', 10);
     const pageSize = parseInt(url.searchParams.get('pageSize') || '4', 10);
     const searchTerm = url.searchParams.get('searchTerm') || undefined;
-    console.log('spaceDetailsFromRoute', { searchTerm });
 
     const result = await findPersonByAddresses(
       members as `0x${string}`[],
@@ -43,7 +64,7 @@ export async function GET(
   } catch (error) {
     console.error('Failed to fetch members:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch members' },
+      { error: 'Failed to fetch members.' },
       { status: 500 },
     );
   }
