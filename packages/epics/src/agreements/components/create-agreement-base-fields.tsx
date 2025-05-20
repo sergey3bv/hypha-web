@@ -24,6 +24,7 @@ import { z } from 'zod';
 import { createAgreementFiles, schemaCreateAgreement } from '@core/governance';
 
 import Link from 'next/link';
+import RichTextEditor from 'packages/ui/src/organisms/editor';
 
 const schemaCreateAgreementForm =
   schemaCreateAgreement.extend(createAgreementFiles);
@@ -121,9 +122,9 @@ export function CreateAgreementBaseFields({
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Textarea
-                disabled={isLoading}
-                placeholder="Type a brief description here..."
+              <RichTextEditor
+                editorRef={null}
+                markdown={field.value}
                 {...field}
               />
             </FormControl>
