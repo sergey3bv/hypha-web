@@ -28,7 +28,7 @@ export const MarkdownSuspense = ({
 }: MarkdownProps & { FallBack?: React.ReactNode }) => {
   return (
     <Suspense fallback={FallBack}>
-      <Markdown children={children} components={components} />
+      <Markdown components={components}>{children}</Markdown>
     </Suspense>
   );
 };
