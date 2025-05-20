@@ -9,6 +9,7 @@ import { Image } from '@hypha-platform/ui';
 import { PersonLabel } from '../../people/components/person-label';
 import { type Creator } from '../../people/components/person-label';
 import { type BadgeItem, BadgesList } from '@hypha-platform/ui';
+import { stripMarkdown } from '@hypha-platform/lib/utils';
 
 interface Document {
   title?: string;
@@ -70,7 +71,12 @@ export const DocumentCard: React.FC<DocumentCardProps & Document> = ({
             height="48px"
             loading={isLoading}
           >
-            <div className="line-clamp-3 w-full">{description}</div>
+            <div className="line-clamp-3 w-full">
+              {stripMarkdown(description, {
+                orderedListMarkers: false,
+                unorderedListMarkers: false,
+              })}
+            </div>
           </Skeleton>
         </div>
         {interactions}
