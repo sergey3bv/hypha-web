@@ -14,6 +14,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useProposalDetailsWeb3Rpc } from '@core/governance';
 import { ProposalTransactionItem } from '../../governance';
+import { MarkdownSuspense } from '@hypha-platform/ui/server';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -92,7 +93,7 @@ export const ProposalDetail = ({
           alt={title ?? ''}
         />
       </Skeleton>
-      <div>{content}</div>
+      <MarkdownSuspense>{content}</MarkdownSuspense>
       <AttachmentList attachments={attachments || []} />
       {proposalDetails?.transfers.map((tx, idx) => (
         <ProposalTransactionItem

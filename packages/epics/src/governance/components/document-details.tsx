@@ -68,7 +68,7 @@ export const DocumentDetails = ({
         className="rounded-lg"
       >
         <div className="text-2 text-neutral-11">
-          <MarkdownSuspense content={description || ''} />
+          <MarkdownSuspense children={description || ''} />
         </div>
       </Skeleton>
       <Separator />
