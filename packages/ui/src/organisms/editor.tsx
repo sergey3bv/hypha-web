@@ -1,27 +1,54 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
-import { Markdown } from 'tiptap-markdown';
-import StarterKit from '@tiptap/starter-kit';
-import { EditorMenu } from './editor-menu';
+import type { ForwardedRef } from 'react';
+import {
+  toolbarPlugin,
+  headingsPlugin,
+  listsPlugin,
+  quotePlugin,
+  thematicBreakPlugin,
+  markdownShortcutPlugin,
+  MDXEditor,
+  type MDXEditorMethods,
+  type MDXEditorProps,
+  UndoRedo,
+  BoldItalicUnderlineToggles,
+  ListsToggle,
+  linkPlugin,
+  BlockTypeSelect,
+} from '@mdxeditor/editor';
 
-export const Editor = () => {
-  const element = document.querySelector('#proposal');
-  console.debug('Editor', { element });
-  const editor = useEditor({
-    extensions: [StarterKit, Markdown],
-    content: '# Hello Tiptap!',
-    onUpdate: ({ editor }) =>
-      console.debug('Editor content has been updated', {
-        json: editor.getJSON(),
-        markdown: editor.storage.markdown.getMarkdown(),
-      }),
-  });
+import '@mdxeditor/editor/style.css';
 
+export function RichTextEditor({
+  editorRef,
+  ...props
+}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) {
   return (
-    <>
-      <EditorMenu editor={editor} />
-      <EditorContent editor={editor} />
-    </>
+    <MDXEditor
+      className="prose max-w-full"
+      plugins={[
+        // Example Plugin Usage
+        toolbarPlugin({
+          toolbarContents: () => (
+            <div className="flex gap-1 grow text-lg">
+              <BlockTypeSelect />
+              <BoldItalicUnderlineToggles />
+              <ListsToggle />
+              <div className="grow" />
+              <UndoRedo />
+            </div>
+          ),
+        }),
+        headingsPlugin(),
+        listsPlugin(),
+        quotePlugin(),
+        thematicBreakPlugin(),
+        markdownShortcutPlugin(),
+        linkPlugin(),
+      ]}
+      {...props}
+      ref={editorRef}
+    />
   );
-};
+}

@@ -3,7 +3,6 @@
 import { useFormContext } from 'react-hook-form';
 import {
   Button,
-  Textarea,
   Input,
   FormControl,
   FormDescription,
@@ -14,6 +13,7 @@ import {
   Separator,
   Badge,
   AddAttachment,
+  RichTextEditor,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
@@ -121,9 +121,9 @@ export function CreateAgreementBaseFields({
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Textarea
-                disabled={isLoading}
-                placeholder="Type a brief description here..."
+              <RichTextEditor
+                editorRef={null}
+                markdown={field.value}
                 {...field}
               />
             </FormControl>
