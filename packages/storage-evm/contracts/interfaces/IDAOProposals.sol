@@ -45,7 +45,8 @@ interface IDAOProposals {
       uint256 yesVotes,
       uint256 noVotes,
       uint256 totalVotingPowerAtSnapshot,
-      address creator
+      address creator,
+      Transaction[] memory transactions
     );
 
   function getProposalEndTime(
@@ -89,4 +90,5 @@ interface IDAOProposals {
 
   // Add new event for value tracking
   event ProposalValueSet(uint256 indexed proposalId, uint256 value);
+
 }
