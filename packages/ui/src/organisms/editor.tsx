@@ -20,7 +20,7 @@ import {
 
 import '@mdxeditor/editor/style.css';
 
-export default function RichTextEditor({
+export function RichTextEditor({
   editorRef,
   ...props
 }: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) {

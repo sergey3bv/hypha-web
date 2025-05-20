@@ -3,7 +3,6 @@
 import { useFormContext } from 'react-hook-form';
 import {
   Button,
-  Textarea,
   Input,
   FormControl,
   FormDescription,
@@ -14,6 +13,7 @@ import {
   Separator,
   Badge,
   AddAttachment,
+  RichTextEditor,
 } from '@hypha-platform/ui';
 import { RxCross1 } from 'react-icons/rx';
 import { Text } from '@radix-ui/themes';
@@ -24,7 +24,6 @@ import { z } from 'zod';
 import { createAgreementFiles, schemaCreateAgreement } from '@core/governance';
 
 import Link from 'next/link';
-import RichTextEditor from 'packages/ui/src/organisms/editor';
 
 const schemaCreateAgreementForm =
   schemaCreateAgreement.extend(createAgreementFiles);
