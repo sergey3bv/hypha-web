@@ -8,7 +8,7 @@ export const SETTINGS_ACTIONS = [
     title: 'Space Configuration',
     description:
       'Customize your space by setting its purpose, adding branding elements, and linking social media.',
-    href: '#',
+    href: 'space-configuration',
     icon: <Pencil2Icon />,
   },
   {
@@ -79,9 +79,11 @@ export const SETTINGS_ACTIONS = [
 
 export const SelectSettingsAction = ({
   daoSlug,
+  activeTab,
   lang,
 }: {
   daoSlug: string;
+  activeTab: string;
   lang: Locale;
 }) => {
   return (
@@ -90,7 +92,7 @@ export const SelectSettingsAction = ({
       content="Access and manage the settings for your space, including its appearance, structure, methods, membership, and treasury."
       actions={SETTINGS_ACTIONS.map((action) => ({
         ...action,
-        href: `/${lang}/dho/${daoSlug}/${action.href}`,
+        href: `/${lang}/dho/${daoSlug}/${activeTab}/${action.href}`,
       }))}
     />
   );
