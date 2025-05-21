@@ -15,7 +15,9 @@ import { validateMilestones, validateFutureDate } from '../validation';
 import { MilestoneField } from './milestone-field';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
-const options = ['Immediately', 'Future Payment', 'Milestones'] as const;
+// TODO: will be implemented after MVP
+// const options = ['Immediately', 'Future Payment', 'Milestones'] as const;
+const options = ['Immediately'] as const;
 type Option = (typeof options)[number];
 
 export interface PaymentScheduleProps {

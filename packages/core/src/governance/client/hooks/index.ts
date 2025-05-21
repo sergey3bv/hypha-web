@@ -5,3 +5,5 @@ export * from './useVote';
 export * from './useProposalDetails.web3.rpc';
 export * from './useCreatePayForExpensesOrchestrator';
 export * from './useCreateDeployFundsOrchestrator';
+export * from './useCreateProposeAContributionOrchestrator';
+export * from './useProposeAContributionMutations.web3.rsc';
