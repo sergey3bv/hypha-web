@@ -62,7 +62,11 @@ export const SpaceForm = ({
   isLoading,
   closeUrl,
   onSubmit,
-  defaultValues = DEFAULT_VALUES,
+  parentSpaceId,
+  defaultValues = {
+    ...DEFAULT_VALUES,
+    parentId: parentSpaceId,
+  },
   submitLabel = 'Create',
   submitLoadingLabel = 'Creating Space...',
 }: CreateSpaceFormProps) => {
