@@ -97,7 +97,6 @@ export const createSpaceFiles = {
 export const schemaCreateSpaceFiles = z.object(createSpaceFiles);
 export const updateSpaceProps = {
   ...createSpaceWeb2Props,
-  ...createSpaceWeb2FileUrls,
   title: createSpaceWeb2Props.title.optional(),
   description: createSpaceWeb2Props.description.optional(),
 };
