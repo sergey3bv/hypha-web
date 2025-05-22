@@ -16,8 +16,9 @@ export const SETTINGS_ACTIONS = [
     title: 'New Sub-Space',
     description:
       'Create and configure a new sub-space within your main space for specific activities or teams.',
-    href: 'membership/space/create',
+    href: 'space/create',
     icon: <Pencil2Icon />,
+    baseTab: 'membership',
   },
   {
     group: 'Agreements',
@@ -92,7 +93,9 @@ export const SelectSettingsAction = ({
       content="Access and manage the settings for your space, including its appearance, structure, methods, membership, and treasury."
       actions={SETTINGS_ACTIONS.map((action) => ({
         ...action,
-        href: `/${lang}/dho/${daoSlug}/${activeTab}/${action.href}`,
+        href: `/${lang}/dho/${daoSlug}/${action.baseTab || activeTab}/${
+          action.href
+        }`,
       }))}
     />
   );
