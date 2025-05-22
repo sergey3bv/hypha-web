@@ -73,6 +73,7 @@ export default function SpaceConfiguration() {
             leadImage: space?.leadImage || '',
             categories: space?.categories || [],
             links: space?.links || [],
+            web3SpaceId: space?.web3SpaceId || undefined
           }}
         />
       </LoadingBackdrop>
