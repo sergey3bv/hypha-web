@@ -58,7 +58,7 @@ export default function SpaceConfiguration() {
           submitLabel="Update"
           submitLoadingLabel="Updating..."
           isLoading={isLoadingJwt || isLoading || isMutating}
-          closeUrl={''}
+          closeUrl={getDhoPathGovernance(lang as Locale, spaceSlug)}
           creator={{
             name: person?.name,
             surname: person?.surname,
