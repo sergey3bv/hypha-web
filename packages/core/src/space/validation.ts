@@ -46,8 +46,8 @@ const createSpaceWeb2Props = {
 export const schemaCreateSpaceWeb2 = z.object(createSpaceWeb2Props);
 
 export const createSpaceWeb2FileUrls = {
-  logoUrl: z.string().url('Logo URL must be a valid URL').optional(),
-  leadImage: z.string().url('Lead Image URL must be a valid URL').optional(),
+  logoUrl: z.string().url('Logo URL must be a valid URL'),
+  leadImage: z.string().url('Lead Image URL must be a valid URL'),
 };
 
 export const schemaCreateSpaceWeb2FileUrls = z.object(createSpaceWeb2FileUrls);
@@ -62,36 +62,32 @@ const createSpaceWeb3Props = {
 export const schemaCreateSpaceWeb3 = z.object(createSpaceWeb3Props);
 
 export const createSpaceFiles = {
-  logoUrl: z
-    .union([
-      z.string().url('logoUrl URL must be a valid URL'),
-      z
-        .instanceof(File)
-        .refine(
-          (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
-          'File size must be less than 5MB',
-        )
-        .refine(
-          (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
-          'File must be an image (JPEG, PNG, GIF, WEBP)',
-        ),
-    ])
-    .optional(),
-  leadImage: z
-    .union([
-      z.string().url('Lead Image URL must be a valid URL'),
-      z
-        .instanceof(File)
-        .refine(
-          (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
-          'File size must be less than 5MB',
-        )
-        .refine(
-          (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
-          'File must be an image (JPEG, PNG, GIF, WEBP)',
-        ),
-    ])
-    .optional(),
+  logoUrl: z.union([
+    z.string().url('logoUrl URL must be a valid URL'),
+    z
+      .instanceof(File)
+      .refine(
+        (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
+        'File size must be less than 5MB',
+      )
+      .refine(
+        (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+        'File must be an image (JPEG, PNG, GIF, WEBP)',
+      ),
+  ]),
+  leadImage: z.union([
+    z.string().url('Lead Image URL must be a valid URL'),
+    z
+      .instanceof(File)
+      .refine(
+        (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
+        'File size must be less than 5MB',
+      )
+      .refine(
+        (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+        'File must be an image (JPEG, PNG, GIF, WEBP)',
+      ),
+  ]),
 };
 
 export const schemaCreateSpaceFiles = z.object(createSpaceFiles);
