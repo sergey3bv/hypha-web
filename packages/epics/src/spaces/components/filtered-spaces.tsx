@@ -7,7 +7,11 @@ import { useState } from 'react';
 import { Person, useMe } from '@core/people';
 import { useMemberWeb3SpaceIds } from '@web/hooks/use-member-web3-space-ids';
 
-function filterSpaces(spaces: Space[], user: Person | undefined, mySpaces: boolean) {
+function filterSpaces(
+  spaces: Space[],
+  user: Person | undefined,
+  mySpaces: boolean,
+) {
   const { web3SpaceIds } = useMemberWeb3SpaceIds();
   if (!mySpaces || !user?.slug || !web3SpaceIds) {
     return spaces;

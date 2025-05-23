@@ -30,11 +30,7 @@ export default async function Index(props: PageProps) {
         <Heading size="9" color="secondary" weight="medium" align="center">
           All your spaces, in one place
         </Heading>
-        <FilteredSpaces
-          lang={lang}
-          spaces={spaces}
-          useMembers={useMembers}
-        />
+        <FilteredSpaces lang={lang} spaces={spaces} useMembers={useMembers} />
         <div
           data-testid="recommended-spaces-container"
           className="w-full space-y-6"

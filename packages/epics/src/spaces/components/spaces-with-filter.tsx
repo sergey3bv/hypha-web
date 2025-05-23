@@ -53,11 +53,7 @@ export function SpacesWithFilter({
           </Link>
         </div>
       </div>
-      <SpaceCardList
-        lang={lang}
-        spaces={spaces}
-        useMembers={useMembers}
-      />
+      <SpaceCardList lang={lang} spaces={spaces} useMembers={useMembers} />
     </div>
   );
 }

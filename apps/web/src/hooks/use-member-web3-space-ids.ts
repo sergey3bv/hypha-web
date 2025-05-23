@@ -12,9 +12,7 @@ export function useMemberWeb3SpaceIds() {
   } = useSWR(
     user?.wallet?.address ? [user.wallet.address, 'getMemberSpaces'] : null,
     async ([address]) =>
-      publicClient.readContract(
-        getMemberSpaces({ memberAddress: address }),
-      ),
+      publicClient.readContract(getMemberSpaces({ memberAddress: address })),
     { revalidateOnFocus: true },
   );
 
