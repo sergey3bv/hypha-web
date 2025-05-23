@@ -50,8 +50,8 @@ export type CreateSpaceFormProps = {
 const DEFAULT_VALUES = {
   title: '',
   description: '',
-  logoUrl: undefined,
-  leadImage: undefined,
+  logoUrl: '',
+  leadImage: '',
   categories: [],
   links: [],
   parentId: null,
