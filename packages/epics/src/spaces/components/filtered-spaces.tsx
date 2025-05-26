@@ -2,7 +2,11 @@
 
 import { Locale } from '@hypha-platform/i18n';
 import { Space } from '@core/space';
-import { UseMembers, SpacesWithFilter, useMemberWeb3SpaceIds } from '@hypha-platform/epics';
+import {
+  UseMembers,
+  SpacesWithFilter,
+  useMemberWeb3SpaceIds,
+} from '@hypha-platform/epics';
 import { useState } from 'react';
 import { Person, useMe } from '@core/people';
 
