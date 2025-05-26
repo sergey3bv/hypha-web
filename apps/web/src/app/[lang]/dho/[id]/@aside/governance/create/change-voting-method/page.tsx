@@ -1,6 +1,7 @@
 import {
   SidePanel,
   CreateProposalChangeVotingMethodForm,
+  ChangeVotingMethodPlugin,
 } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@core/space/server';
@@ -29,7 +30,7 @@ export default async function CreateChangeVotingMethodPage({
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
         successfulUrl={getDhoPathGovernance(lang as Locale, id)}
-        plugin={<></>}
+        plugin={<ChangeVotingMethodPlugin />}
       />
     </SidePanel>
   );
