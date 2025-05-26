@@ -37,7 +37,7 @@ export const MemberWithNumberFieldFieldArray = ({
   return (
     <div className="flex flex-col gap-5">
       <Separator />
-      <Text className="text-3 text-neutral-11">Initial voice allocation</Text>
+      <Text className="text-2 text-neutral-11">Initial voice allocation</Text>
       <div className="flex flex-col gap-2 w-full items-end">
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center gap-2">

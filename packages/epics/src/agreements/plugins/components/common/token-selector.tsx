@@ -34,7 +34,7 @@ export const TokenSelector = ({
 
   return (
     <div className="flex justify-between w-full">
-      <label className="text-3 text-neutral-11 flex items-center">Token</label>
+      <label className="text-2 text-neutral-11 flex items-center">Token</label>
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
