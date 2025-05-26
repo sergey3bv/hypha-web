@@ -14,8 +14,8 @@ function filterSpaces(
   spaces: Space[],
   user: Person | undefined,
   mySpaces: boolean,
+  web3SpaceIds: readonly bigint[] | undefined,
 ) {
-  const { web3SpaceIds } = useMemberWeb3SpaceIds();
   if (!mySpaces || !user?.slug || !web3SpaceIds) {
     return spaces;
   }
@@ -23,11 +23,6 @@ function filterSpaces(
     return web3SpaceIds.indexOf(BigInt(space.web3SpaceId || -1)) != -1;
   });
   return userSpaces;
-}
-
-function filterMySpaces(spaces: Space[], mySpaces: boolean) {
-  const { person: user } = useMe();
-  return filterSpaces(spaces, user, mySpaces);
 }
 
 function isMySpace(value: string): boolean {
@@ -43,6 +38,8 @@ export function FilteredSpaces({
   spaces: Space[];
   useMembers: UseMembers;
 }) {
+  const { person: user } = useMe();
+  const { web3SpaceIds } = useMemberWeb3SpaceIds();
   const [showMySpaces, setShowMySpaces] = useState(false);
 
   const handleChangeFilter = (value: string) => {
@@ -53,7 +50,7 @@ export function FilteredSpaces({
   return (
     <SpacesWithFilter
       lang={lang}
-      spaces={filterMySpaces(spaces, showMySpaces)}
+      spaces={filterSpaces(spaces, user, showMySpaces, web3SpaceIds)}
       useMembers={useMembers}
       handleChangeFilter={handleChangeFilter}
     />
