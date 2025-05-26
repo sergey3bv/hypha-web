@@ -16,11 +16,6 @@ type SpacesFilterType = {
   options: OptionType[];
 };
 
-const FILTERS = {
-  all: 'All',
-  'my-spaces': 'My Spaces',
-};
-
 export function SpacesWithFilter({
   lang,
   spaces,
@@ -37,8 +32,8 @@ export function SpacesWithFilter({
   const filterSettings: SpacesFilterType = {
     value: showMySpaces ? 'my-spaces' : 'all',
     options: [
-      { label: FILTERS['all'], value: 'all' },
-      { label: FILTERS['my-spaces'], value: 'my-spaces' },
+      { label: 'All', value: 'all' },
+      { label: 'My Spaces', value: 'my-spaces' },
     ],
   };
 
@@ -46,7 +41,7 @@ export function SpacesWithFilter({
     <div className="space-y-6">
       <div className="justify-between items-center flex">
         <Text className="text-4">
-          {showMySpaces ? FILTERS['my-spaces'] : FILTERS['all']} |{' '}
+          {showMySpaces ? 'My Spaces' : 'All Spaces'} |{' '}
           {spaces.length}
         </Text>
         <div className="flex items-center">
