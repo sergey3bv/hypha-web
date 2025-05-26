@@ -79,7 +79,7 @@ export const MemberWithNumberField = ({
           renderOption={(option) => (
             <>
               <Image
-                src={option.avatarUrl}
+                src={option.avatarUrl || '/placeholder/space-avatar-image.png'}
                 alt={option.label}
                 width={24}
                 height={24}
@@ -92,7 +92,9 @@ export const MemberWithNumberField = ({
             option ? (
               <div className="flex items-center gap-2 truncate">
                 <Image
-                  src={option.avatarUrl}
+                  src={
+                    option.avatarUrl || '/placeholder/space-avatar-image.png'
+                  }
                   alt={option.label}
                   width={24}
                   height={24}
