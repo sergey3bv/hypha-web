@@ -41,8 +41,7 @@ export function SpacesWithFilter({
     <div className="space-y-6">
       <div className="justify-between items-center flex">
         <Text className="text-4">
-          {showMySpaces ? 'My Spaces' : 'All Spaces'} |{' '}
-          {spaces.length}
+          {showMySpaces ? 'My Spaces' : 'All Spaces'} | {spaces.length}
         </Text>
         <div className="flex items-center">
           <FilterMenu
