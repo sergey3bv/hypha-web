@@ -7,6 +7,7 @@ import { MemberWithNumberFieldFieldArray } from '../components/common/member-wit
 import { DecaySettingsField } from '../components/common/decay-settings-field';
 import { TokenSelectorField } from '../components/common/token-selector-field';
 import { useTokens } from '@hypha-platform/epics';
+import { QuorumAndUnityChangerField } from '../components/common/quorum-and-unity-change-field';
 
 export const ChangeVotingMethodPlugin = ({
   spaceSlug,
@@ -29,6 +30,7 @@ export const ChangeVotingMethodPlugin = ({
       {selectedMethod === '1t1v' && (
         <TokenSelectorField name="token" tokens={tokens} />
       )}
+      <QuorumAndUnityChangerField name="quorumAndUnity"/>
     </div>
   );
 };
