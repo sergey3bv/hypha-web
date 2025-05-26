@@ -9,6 +9,7 @@ import {
 } from '@hypha-platform/epics';
 import { useState } from 'react';
 import { Person, useMe } from '@core/people';
+import React from 'react';
 
 function filterSpaces(
   spaces: Space[],
@@ -48,10 +49,15 @@ export function FilteredSpaces({
     setShowMySpaces(mySpacesOnly);
   };
 
+  const filteredSpaces = React.useMemo(
+    () => filterSpaces(spaces, user, showMySpaces, web3SpaceIds),
+    [spaces, user, showMySpaces, web3SpaceIds],
+  );
+
   return (
     <SpacesWithFilter
       lang={lang}
-      spaces={filterSpaces(spaces, user, showMySpaces, web3SpaceIds)}
+      spaces={filteredSpaces}
       showMySpaces={showMySpaces}
       useMembers={useMembers}
       handleChangeFilter={handleChangeFilter}
