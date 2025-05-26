@@ -20,7 +20,8 @@ function filterSpaces(
     return spaces;
   }
   const userSpaces: Space[] = spaces.filter((space) => {
-    return web3SpaceIds.indexOf(BigInt(space.web3SpaceId || -1)) != -1;
+    const spaceId = space.web3SpaceId ? BigInt(space.web3SpaceId) : null;
+    return spaceId !== null && web3SpaceIds.includes(spaceId);
   });
   return userSpaces;
 }
