@@ -1,12 +1,12 @@
 import {
   SidePanel,
   CreateProposalChangeVotingMethodForm,
-  ChangeVotingMethodPlugin,
 } from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@core/space/server';
 import { notFound } from 'next/navigation';
 import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
+import { Plugin } from '../plugins';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -22,7 +22,7 @@ export default async function CreateChangeVotingMethodPage({
   const spaceFromDb = await spaceService.getBySlug({ slug: id });
 
   if (!spaceFromDb) notFound();
-  const { id: spaceId, web3SpaceId } = spaceFromDb;
+  const { id: spaceId, web3SpaceId, slug: spaceSlug } = spaceFromDb;
 
   return (
     <SidePanel>
@@ -30,7 +30,7 @@ export default async function CreateChangeVotingMethodPage({
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
         successfulUrl={getDhoPathGovernance(lang as Locale, id)}
-        plugin={<ChangeVotingMethodPlugin />}
+        plugin={<Plugin spaceSlug={spaceSlug} name="change-voting-method" />}
       />
     </SidePanel>
   );
