@@ -17,7 +17,7 @@ type SpacesFilterType = {
 };
 
 const FILTERS = {
-  'all': 'All',
+  all: 'All',
   'my-spaces': 'My Spaces',
 };
 
@@ -46,7 +46,8 @@ export function SpacesWithFilter({
     <div className="space-y-6">
       <div className="justify-between items-center flex">
         <Text className="text-4">
-          {showMySpaces ? FILTERS['my-spaces'] : FILTERS['all']} | {spaces.length}
+          {showMySpaces ? FILTERS['my-spaces'] : FILTERS['all']} |{' '}
+          {spaces.length}
         </Text>
         <div className="flex items-center">
           <FilterMenu
