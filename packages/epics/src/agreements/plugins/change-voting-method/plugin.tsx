@@ -30,7 +30,7 @@ export const ChangeVotingMethodPlugin = ({
       {selectedMethod === '1t1v' && (
         <TokenSelectorField name="token" tokens={tokens} />
       )}
-      <QuorumAndUnityChangerField name="quorumAndUnity"/>
+      <QuorumAndUnityChangerField name="quorumAndUnity" />
     </div>
   );
 };

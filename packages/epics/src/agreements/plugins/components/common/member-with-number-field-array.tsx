@@ -28,7 +28,6 @@ export const MemberWithNumberFieldFieldArray = ({
     control,
     name,
   });
-  console.log('members', members);
   const handleAddField = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     append({ member: null, number: '' });

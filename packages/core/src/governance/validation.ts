@@ -183,12 +183,35 @@ export const transactionSchema = z.object({
   data: z.string().optional(),
 });
 
+export const schemaMemberWithNumber = z.object({
+  member: z.number().min(1, 'Member is required'),
+  number: z.number().min(0, 'Number must be positive'),
+});
+
+export const schemaDecaySettings = z.object({
+  decayPeriod: z.number().min(1, 'Decay period must be at least 1').max(200),
+  timeFormat: z.enum(['Minutes', 'Hours', 'Days', 'Weeks', 'Months']),
+  decayPercent: z
+    .number()
+    .min(1)
+    .max(100, 'Decay percent must be between 1-100'),
+});
+
+export const schemaQuorumAndUnity = z.object({
+  quorum: z.number().min(0).max(100, 'Quorum must be between 0-100'),
+  unity: z.number().min(0).max(100, 'Unity must be between 0-100'),
+});
+
 export const schemaCreateAgreementForm = z.object({
   ...createAgreementWeb2Props,
   ...createAgreementFiles,
   recipient: schemaProposeContribution.shape.recipient,
   payouts: schemaProposeContribution.shape.payouts,
   paymentSchedule: paymentScheduleSchema.optional(),
+  members: z.array(schemaMemberWithNumber).optional(),
+  decaySettings: schemaDecaySettings.optional(),
+  token: z.string().optional(),
+  quorumAndUnity: schemaQuorumAndUnity.optional(),
 });
 
 export const schemaCreateProposalWeb3 = z.object({

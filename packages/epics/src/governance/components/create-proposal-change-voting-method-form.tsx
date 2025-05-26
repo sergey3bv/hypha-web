@@ -41,6 +41,14 @@ export const CreateProposalChangeVotingMethodForm = ({
       attachments: undefined,
       spaceId: spaceId ?? undefined,
       creatorId: person?.id,
+      members: [],
+      decaySettings: {
+        decayPeriod: 1,
+        timeFormat: 'Minutes',
+        decayPercent: 1,
+      },
+      token: undefined as `0x${string}` | undefined,
+      quorumAndUnity: { quorum: 0, unity: 0 },
     },
   });
 
@@ -51,7 +59,10 @@ export const CreateProposalChangeVotingMethodForm = ({
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(handleCreate)}
+        onSubmit={() => {
+          console.log(form);
+          form.handleSubmit(handleCreate);
+        }}
         className="flex flex-col gap-5"
       >
         <CreateAgreementBaseFields
