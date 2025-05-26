@@ -19,11 +19,13 @@ type SpacesFilterType = {
 export function SpacesWithFilter({
   lang,
   spaces,
+  showMySpaces,
   useMembers,
   handleChangeFilter,
 }: {
   lang: Locale;
   spaces: Space[];
+  showMySpaces: boolean;
   useMembers: UseMembers;
   handleChangeFilter?: (value: string) => void;
 }) {
@@ -38,7 +40,9 @@ export function SpacesWithFilter({
   return (
     <div className="space-y-6">
       <div className="justify-between items-center flex">
-        <Text className="text-4">My spaces | {spaces.length}</Text>
+        <Text className="text-4">
+          {showMySpaces ? 'My spaces' : 'All spaces'} | {spaces.length}
+        </Text>
         <div className="flex items-center">
           <FilterMenu
             value={filterSettings.value}

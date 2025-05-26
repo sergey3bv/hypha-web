@@ -51,6 +51,7 @@ export function FilteredSpaces({
     <SpacesWithFilter
       lang={lang}
       spaces={filterSpaces(spaces, user, showMySpaces, web3SpaceIds)}
+      showMySpaces={showMySpaces}
       useMembers={useMembers}
       handleChangeFilter={handleChangeFilter}
     />
