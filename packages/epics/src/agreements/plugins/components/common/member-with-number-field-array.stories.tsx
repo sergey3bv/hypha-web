@@ -36,12 +36,14 @@ export const Default: Story = {
   args: {
     members: [
       {
+        id: 1,
         name: 'Charlie',
         surname: 'Chaplin',
         avatarUrl: 'https://github.com/shadcn.png',
         address: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd1',
       },
       {
+        id: 2,
         name: 'Diana',
         surname: 'Doe',
         avatarUrl: 'https://github.com/shadcn.png',
