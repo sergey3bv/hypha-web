@@ -188,7 +188,7 @@ export const schemaMemberWithNumber = z.object({
     .string()
     .min(1, { message: 'Recipient is required' })
     .regex(ETH_ADDRESS_REGEX, { message: 'Invalid Ethereum address' }),
-  number: z.number().min(0, 'Number must be positive'),
+  number: z.number().min(0, 'Number must be non-negative'),
 });
 
 export const schemaDecaySettings = z.object({
