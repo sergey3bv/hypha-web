@@ -1,15 +1,20 @@
-import { CreateDeployFundsForm, SidePanel } from '@hypha-platform/epics';
+import {
+  SidePanel,
+  CreateProposalChangeVotingMethodForm,
+} from '@hypha-platform/epics';
 import { Locale } from '@hypha-platform/i18n';
 import { createSpaceService } from '@core/space/server';
+import { notFound } from 'next/navigation';
 import { getDhoPathGovernance } from '../../../../@tab/governance/constants';
 import { Plugin } from '../plugins';
-import { notFound } from 'next/navigation';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
 };
 
-export default async function CreateDeployFundsPage({ params }: PageProps) {
+export default async function CreateChangeVotingMethodPage({
+  params,
+}: PageProps) {
   const { lang, id } = await params;
 
   const spaceService = createSpaceService();
@@ -21,11 +26,11 @@ export default async function CreateDeployFundsPage({ params }: PageProps) {
 
   return (
     <SidePanel>
-      <CreateDeployFundsForm
-        successfulUrl={getDhoPathGovernance(lang as Locale, id)}
+      <CreateProposalChangeVotingMethodForm
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
-        plugin={<Plugin name="deploy-funds" spaceSlug={spaceSlug} />}
+        successfulUrl={getDhoPathGovernance(lang as Locale, id)}
+        plugin={<Plugin spaceSlug={spaceSlug} name="change-voting-method" />}
       />
     </SidePanel>
   );
