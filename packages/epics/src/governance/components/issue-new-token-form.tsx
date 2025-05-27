@@ -41,6 +41,12 @@ export const IssueNewTokenForm = ({
       attachments: undefined,
       spaceId: spaceId ?? undefined,
       creatorId: person?.id,
+      name: '',
+      symbol: '',
+      icon: undefined,
+      digits: 0,
+      type: undefined,
+      maxSupply: 0,
     },
   });
 
