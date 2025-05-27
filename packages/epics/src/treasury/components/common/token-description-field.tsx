@@ -1,5 +1,3 @@
-'use client';
-
 import { useFormContext } from 'react-hook-form';
 import {
   FormControl,
@@ -7,21 +5,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  TokenIcon,
+  Textarea,
 } from '@hypha-platform/ui';
 
-export function TokenIconField() {
+export function TokenDescriptionField() {
   const { control } = useFormContext();
 
   return (
     <FormField
       control={control}
-      name="tokenIcon"
+      name="tokenDescription"
       render={({ field }) => (
         <FormItem className="flex justify-between items-center">
-          <FormLabel className="text-2 text-neutral-11">Token Icon</FormLabel>
+          <FormLabel className="text-2 text-neutral-11 w-full">
+            Token Short Description
+          </FormLabel>
           <FormControl>
-            <TokenIcon value={field.value} onChange={field.onChange} />
+            <Textarea
+              placeholder="Type a brief description here..."
+              {...field}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
