@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { UploadIcon, XIcon } from 'lucide-react';
 import { cn } from '@hypha-platform/lib/utils';
 import Image from '../image';
@@ -21,26 +21,42 @@ export const TokenIcon = ({
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     defaultImageUrl || null,
   );
+  const objectUrlRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+      }
+    };
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+      }
+
       const objectUrl = URL.createObjectURL(file);
+      objectUrlRef.current = objectUrl;
       setPreviewUrl(objectUrl);
       onChange(file);
     }
   };
 
   const handleReset = useCallback(() => {
-    setPreviewUrl(null);
+    if (objectUrlRef.current) {
+      URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    }
+    setPreviewUrl(defaultImageUrl || null);
     onChange(null);
-  }, [onChange]);
+  }, [defaultImageUrl, onChange]);
 
   useEffect(() => {
-    if (value && value !== '') {
-      setPreviewUrl(value);
-    } else {
-      setPreviewUrl(defaultImageUrl || null);
+    if (!objectUrlRef.current) {
+      setPreviewUrl(value || defaultImageUrl || null);
     }
   }, [value, defaultImageUrl]);
 
@@ -64,11 +80,12 @@ export const TokenIcon = ({
         <>
           <div className="relative w-8 h-8">
             <Image
-              src={previewUrl as string}
+              src={previewUrl}
               alt="Token Icon"
               width={32}
               height={32}
               className="rounded-full object-cover w-8 h-8"
+              onError={() => setPreviewUrl(defaultImageUrl || null)}
             />
           </div>
           <button
