@@ -22,9 +22,14 @@ export function TokenDigitsField() {
               Digits (after comma)
             </FormLabel>
             <FormControl>
-              <Input min={0}
-  max={18}
-  step={1} type="number" placeholder="Type a number" {...field} />
+              <Input
+                min={0}
+                max={18}
+                step={1}
+                type="number"
+                placeholder="Type a number"
+                {...field}
+              />
             </FormControl>
           </div>
           <FormMessage />

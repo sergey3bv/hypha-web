@@ -23,7 +23,7 @@ export function TokenMaxSupplyField() {
             </FormLabel>
             <FormControl>
               <Input
-                type='number'
+                type="number"
                 placeholder="Type an amount or 0 for unlimited supply"
                 {...field}
               />

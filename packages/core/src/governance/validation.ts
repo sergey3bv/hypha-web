@@ -220,39 +220,41 @@ export const schemaIssueNewToken = z.object({
     }),
 
   icon: z
-  .instanceof(File)
-  .refine(
-    (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
-    'File size must be less than 5MB',
-  )
-  .refine(
-    (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
-    'File must be an image (JPEG, PNG, GIF, WEBP)',
-  ),
+    .instanceof(File)
+    .refine(
+      (file) => file.size <= ALLOWED_IMAGE_FILE_SIZE,
+      'File size must be less than 5MB',
+    )
+    .refine(
+      (file) => DEFAULT_IMAGE_ACCEPT.includes(file.type),
+      'File must be an image (JPEG, PNG, GIF, WEBP)',
+    ),
 
   tokenDescription: z
     .string()
     .min(10, { message: 'Description must be at least 10 characters long' })
     .max(500, { message: 'Description must be at most 500 characters long' }),
 
-    digits: z.preprocess(
+  digits: z.preprocess(
     (val) => Number(val),
-    z.number().min(0, { message: 'Digits must be 0 or greater' })
-    .max(18, { message: 'Digits must not exceed 18' }),
+    z
+      .number()
+      .min(0, { message: 'Digits must be 0 or greater' })
+      .max(18, { message: 'Digits must not exceed 18' }),
   ),
   type: z.enum(['utility', 'credits', 'ownership'], {
     required_error: 'Token type is required',
   }),
 
-    maxSupply: z.preprocess(
-      (val) => Number(val),
-      z
-    .number()
-    .min(0, { message: 'Max supply must be 0 or greater' })
-    .refine((value) => value >= 0, {
-      message: 'Max supply must be a non-negative number',
-    })
-    ),
+  maxSupply: z.preprocess(
+    (val) => Number(val),
+    z
+      .number()
+      .min(0, { message: 'Max supply must be 0 or greater' })
+      .refine((value) => value >= 0, {
+        message: 'Max supply must be a non-negative number',
+      }),
+  ),
 });
 
 export const schemaCreateAgreementForm = z.object({
@@ -271,7 +273,7 @@ export const schemaCreateAgreementForm = z.object({
   digits: schemaIssueNewToken.shape.digits,
   type: schemaIssueNewToken.shape.type,
   maxSupply: schemaIssueNewToken.shape.maxSupply,
-  tokenDescription: schemaIssueNewToken.shape.tokenDescription
+  tokenDescription: schemaIssueNewToken.shape.tokenDescription,
 });
 
 export const schemaCreateProposalWeb3 = z.object({
