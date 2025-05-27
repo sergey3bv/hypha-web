@@ -14,7 +14,7 @@ export function TokenDigitsField() {
   return (
     <FormField
       control={control}
-      name="tokenDigits"
+      name="digits"
       render={({ field }) => (
         <FormItem className="flex justify-between items-center">
           <FormLabel className="text-2 text-neutral-11 w-full">

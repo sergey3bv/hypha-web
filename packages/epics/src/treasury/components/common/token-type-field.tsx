@@ -38,7 +38,7 @@ export function TokenTypeField() {
   return (
     <FormField
       control={control}
-      name="tokenType"
+      name="type"
       render={({ field }) => (
         <FormItem className="flex justify-between items-center">
           <FormLabel className="text-2 text-neutral-11 w-full">

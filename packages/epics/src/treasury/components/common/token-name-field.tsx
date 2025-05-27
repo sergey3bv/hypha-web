@@ -14,7 +14,7 @@ export function TokenNameField() {
   return (
     <FormField
       control={control}
-      name="tokenName"
+      name="name"
       render={({ field }) => (
         <FormItem className="flex justify-between items-center">
           <FormLabel className="text-2 text-neutral-11 w-full">
