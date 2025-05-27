@@ -184,7 +184,10 @@ export const transactionSchema = z.object({
 });
 
 export const schemaMemberWithNumber = z.object({
-  member: z.number().min(1, 'Member is required'),
+  member: z
+    .string()
+    .min(1, { message: 'Recipient is required' })
+    .regex(ETH_ADDRESS_REGEX, { message: 'Invalid Ethereum address' }),
   number: z.number().min(0, 'Number must be positive'),
 });
 

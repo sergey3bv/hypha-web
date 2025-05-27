@@ -5,8 +5,8 @@ import { Image, Combobox, Input } from '@hypha-platform/ui';
 import { Person } from '@core/people';
 
 type MemberWithNumberValue = {
-  member: Person | null;
-  number: string;
+  member: string;
+  number: number;
 };
 
 type MemberWithNumberFieldProps = {
@@ -21,14 +21,15 @@ export const MemberWithNumberField = ({
   value,
 }: MemberWithNumberFieldProps) => {
   const [selected, setSelected] = useState<Person | null>(null);
-  const [number, setNumber] = useState<string>('');
+  const [number, setNumber] = useState<number>(0);
 
   useEffect(() => {
     if (value) {
-      setSelected(value.member || null);
-      setNumber(value.number ?? '');
+      const found = members.find((m) => m.address === value.member) || null;
+      setSelected(found);
+      setNumber(value.number ?? 0);
     }
-  }, [value]);
+  }, [value, members]);
 
   const placeholder = 'Select member...';
 
@@ -55,16 +56,22 @@ export const MemberWithNumberField = ({
         ) || null;
 
       setSelected(found);
-      onChange?.({ member: found, number });
+      onChange?.({
+        member: found?.address || '',
+        number,
+      });
     },
     [members, number, onChange],
   );
 
   const handleNumberChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value;
+      const val = Number(e.target.value);
       setNumber(val);
-      onChange?.({ member: selected, number: val });
+      onChange?.({
+        member: selected?.address || '',
+        number: val,
+      });
     },
     [selected, onChange],
   );
