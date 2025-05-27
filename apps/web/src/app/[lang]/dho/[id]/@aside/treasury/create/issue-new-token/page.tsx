@@ -4,6 +4,7 @@ import { createSpaceService } from '@core/space/server';
 import { notFound } from 'next/navigation';
 import { getDhoPathTreasury } from '../../../../@tab/treasury/constants';
 import { IssueNewTokenForm } from '@hypha-platform/epics';
+import { Plugin } from '../../../governance/create/plugins';
 
 type PageProps = {
   params: Promise<{ lang: Locale; id: string }>;
@@ -26,7 +27,7 @@ export default async function IssueNewTokenPage({ params }: PageProps) {
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
         successfulUrl={getDhoPathTreasury(lang as Locale, id)}
-        plugin={<></>}
+        plugin={<Plugin name="issue-new-token" spaceSlug={spaceSlug} />}
       />
     </SidePanel>
   );
