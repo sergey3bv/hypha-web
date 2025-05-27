@@ -8,12 +8,7 @@ import {
   DropdownMenuTrigger,
   Image,
 } from '@hypha-platform/ui';
-
-interface Token {
-  icon: string;
-  symbol: string;
-  address: `0x${string}`;
-}
+import { Token } from './token-payout-field-array';
 
 interface TokenSelectorProps {
   value: string;
