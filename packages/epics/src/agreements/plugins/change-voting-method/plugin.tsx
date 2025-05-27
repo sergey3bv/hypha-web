@@ -11,7 +11,6 @@ import { QuorumAndUnityChangerField } from '../components/common/quorum-and-unit
 import { useFormContext } from 'react-hook-form';
 
 export const ChangeVotingMethodPlugin = ({
-  spaceSlug,
   members,
 }: {
   spaceSlug: string;
