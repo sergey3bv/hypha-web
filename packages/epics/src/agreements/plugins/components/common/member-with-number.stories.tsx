@@ -54,7 +54,6 @@ export const Default: Story = {
       },
     ],
     value: {
-      // @evgenibir TODO: Is that correct? Is it an address? The types are not clear
       member: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9',
       number: 100,
     },
