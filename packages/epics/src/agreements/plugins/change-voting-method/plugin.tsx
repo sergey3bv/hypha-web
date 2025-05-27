@@ -8,6 +8,7 @@ import { DecaySettingsField } from '../components/common/decay-settings-field';
 import { TokenSelectorField } from '../components/common/token-selector-field';
 import { useTokens } from '@hypha-platform/epics';
 import { QuorumAndUnityChangerField } from '../components/common/quorum-and-unity-change-field';
+import { useFormContext } from 'react-hook-form';
 
 export const ChangeVotingMethodPlugin = ({
   spaceSlug,
@@ -18,9 +19,31 @@ export const ChangeVotingMethodPlugin = ({
 }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const { tokens } = useTokens();
+  const { reset } = useFormContext();
+
+  const handleMethodChange = (method: string | null) => {
+    setSelectedMethod(method);
+    reset(
+      {
+        members: [],
+        decaySettings: {
+          decayPeriod: 1,
+          timeFormat: 'Minutes',
+          decayPercent: 1,
+        },
+        token: undefined,
+        quorumAndUnity: { quorum: 0, unity: 0 },
+      },
+      {
+        keepDefaultValues: true,
+        keepValues: false,
+      },
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
-      <VotingMethodSelector onChange={setSelectedMethod} />
+      <VotingMethodSelector onChange={handleMethodChange} />
       {selectedMethod === '1v1v' && (
         <>
           <MemberWithNumberFieldFieldArray name="members" members={members} />

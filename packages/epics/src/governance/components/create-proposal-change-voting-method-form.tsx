@@ -59,10 +59,7 @@ export const CreateProposalChangeVotingMethodForm = ({
   return (
     <Form {...form}>
       <form
-        onSubmit={() => {
-          console.log(form);
-          form.handleSubmit(handleCreate);
-        }}
+        onSubmit={form.handleSubmit(handleCreate)}
         className="flex flex-col gap-5"
       >
         <CreateAgreementBaseFields
