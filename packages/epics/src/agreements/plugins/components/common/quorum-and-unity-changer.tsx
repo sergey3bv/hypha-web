@@ -40,7 +40,7 @@ export function QuorumAndUnityChanger({
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-4">
-        <label className="w-20 text-2 text-neutral-11 w-full">Quorum</label>
+        <label className="text-2 text-neutral-11 w-full">Quorum</label>
         <div className="w-full max-w-[340px] flex items-center gap-2">
           <Slider
             value={[localQuorum]}
@@ -55,7 +55,7 @@ export function QuorumAndUnityChanger({
       </div>
 
       <div className="flex items-center gap-4">
-        <label className="w-20 text-2 text-neutral-11 w-full">Unity</label>
+        <label className="text-2 text-neutral-11 w-full">Unity</label>
         <div className="w-full max-w-[340px] flex items-center gap-2">
           <Slider
             value={[localUnity]}
