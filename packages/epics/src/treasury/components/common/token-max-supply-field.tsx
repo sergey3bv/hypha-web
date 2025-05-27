@@ -16,16 +16,19 @@ export function TokenMaxSupplyField() {
       control={control}
       name="maxSupply"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-center">
-          <FormLabel className="text-2 text-neutral-11 w-full">
-            Token Max Supply
-          </FormLabel>
-          <FormControl>
-            <Input
-              placeholder="Type an amount or 0 for unlimited supply"
-              {...field}
-            />
-          </FormControl>
+        <FormItem>
+          <div className="flex justify-between items-center">
+            <FormLabel className="text-2 text-neutral-11 w-full">
+              Token Max Supply
+            </FormLabel>
+            <FormControl>
+              <Input
+                type='number'
+                placeholder="Type an amount or 0 for unlimited supply"
+                {...field}
+              />
+            </FormControl>
+          </div>
           <FormMessage />
         </FormItem>
       )}

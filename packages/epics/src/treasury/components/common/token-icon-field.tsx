@@ -18,11 +18,13 @@ export function TokenIconField() {
       control={control}
       name="icon"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-center">
-          <FormLabel className="text-2 text-neutral-11">Token Icon</FormLabel>
-          <FormControl>
-            <TokenIcon value={field.value} onChange={field.onChange} />
-          </FormControl>
+        <FormItem>
+          <div className="flex justify-between items-center">
+            <FormLabel className="text-2 text-neutral-11">Token Icon</FormLabel>
+            <FormControl>
+              <TokenIcon value={field.value} onChange={field.onChange} />
+            </FormControl>
+          </div>
           <FormMessage />
         </FormItem>
       )}

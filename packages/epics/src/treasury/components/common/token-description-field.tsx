@@ -14,18 +14,20 @@ export function TokenDescriptionField() {
   return (
     <FormField
       control={control}
-      name="description"
+      name="tokenDescription"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-start">
-          <FormLabel className="text-2 text-neutral-11 w-full">
-            Token Short Description
-          </FormLabel>
-          <FormControl>
-            <Textarea
-              placeholder="Type a brief description here..."
-              {...field}
-            />
-          </FormControl>
+        <FormItem>
+          <div className="flex justify-between items-start">
+            <FormLabel className="text-2 text-neutral-11 w-full">
+              Token Short Description
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Type a brief description here..."
+                {...field}
+              />
+            </FormControl>
+          </div>
           <FormMessage />
         </FormItem>
       )}

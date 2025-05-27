@@ -47,6 +47,7 @@ export const IssueNewTokenForm = ({
       digits: 0,
       type: undefined,
       maxSupply: 0,
+      tokenDescription: ''
     },
   });
 

@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { UploadIcon, XIcon } from 'lucide-react';
-import Image from 'next/image';
 import { cn } from '@hypha-platform/lib/utils';
+import Image from '../image';
 
 interface TokenIconProps {
   value: string | null;
@@ -37,16 +37,18 @@ export const TokenIcon = ({
   }, [onChange]);
 
   useEffect(() => {
-    if (value) {
+    if (value && value !== '') {
       setPreviewUrl(value);
     } else {
       setPreviewUrl(defaultImageUrl || null);
     }
   }, [value, defaultImageUrl]);
 
+  const hasPreview = previewUrl && previewUrl !== '';
+
   return (
     <div className="flex items-center space-x-2">
-      {!previewUrl ? (
+      {!hasPreview ? (
         <label className="inline-flex items-center space-x-2 px-3 py-2 rounded-md border text-sm cursor-pointer transition">
           <UploadIcon size={16} />
           <span>Upload</span>
@@ -62,7 +64,7 @@ export const TokenIcon = ({
         <>
           <div className="relative w-8 h-8">
             <Image
-              src={previewUrl}
+              src={previewUrl as string}
               alt="Token Icon"
               width={32}
               height={32}

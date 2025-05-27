@@ -16,13 +16,17 @@ export function TokenDigitsField() {
       control={control}
       name="digits"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-center">
-          <FormLabel className="text-2 text-neutral-11 w-full">
-            Digits (after comma)
-          </FormLabel>
-          <FormControl>
-            <Input type="number" placeholder="Type a number" {...field} />
-          </FormControl>
+        <FormItem>
+          <div className="flex justify-between items-center">
+            <FormLabel className="text-2 text-neutral-11 w-full">
+              Digits (after comma)
+            </FormLabel>
+            <FormControl>
+              <Input min={0}
+  max={18}
+  step={1} type="number" placeholder="Type a number" {...field} />
+            </FormControl>
+          </div>
           <FormMessage />
         </FormItem>
       )}

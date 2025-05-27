@@ -40,29 +40,31 @@ export function TokenTypeField() {
       control={control}
       name="type"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-center">
-          <FormLabel className="text-2 text-neutral-11 w-full">
-            Token Type
-          </FormLabel>
-          <FormControl>
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a token type" />
-              </SelectTrigger>
-              <SelectContent className="p-2">
-                {TOKEN_TYPE_OPTIONS.map(({ value, label, description }) => (
-                  <SelectItem key={value} value={value}>
-                    <div className="flex flex-col text-left">
-                      <span className="text-1 font-medium">{label}</span>
-                      <span className="text-1 text-neutral-11">
-                        {description}
-                      </span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FormControl>
+        <FormItem>
+          <div className="flex justify-between items-center">
+            <FormLabel className="text-2 text-neutral-11 w-full">
+              Token Type
+            </FormLabel>
+            <FormControl>
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a token type" />
+                </SelectTrigger>
+                <SelectContent className="p-2">
+                  {TOKEN_TYPE_OPTIONS.map(({ value, label, description }) => (
+                    <SelectItem key={value} value={value}>
+                      <div className="flex flex-col text-left">
+                        <span className="text-1 font-medium">{label}</span>
+                        <span className="text-1 text-neutral-11">
+                          {description}
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormControl>
+          </div>
           <FormMessage />
         </FormItem>
       )}
