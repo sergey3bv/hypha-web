@@ -7,6 +7,7 @@ import {
   TokenDescriptionField,
   TokenDigitsField,
   TokenTypeField,
+  TokenMaxSupplyField,
 } from '../../components';
 
 export const IssueNewTokenPlugin = ({ spaceSlug }: { spaceSlug: string }) => {
@@ -18,6 +19,7 @@ export const IssueNewTokenPlugin = ({ spaceSlug }: { spaceSlug: string }) => {
       <TokenDescriptionField />
       <TokenDigitsField />
       <TokenTypeField />
+      <TokenMaxSupplyField />
     </div>
   );
 };
