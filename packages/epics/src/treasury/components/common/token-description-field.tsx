@@ -16,7 +16,7 @@ export function TokenDescriptionField() {
       control={control}
       name="tokenDescription"
       render={({ field }) => (
-        <FormItem className="flex justify-between items-center">
+        <FormItem className="flex justify-between items-start">
           <FormLabel className="text-2 text-neutral-11 w-full">
             Token Short Description
           </FormLabel>

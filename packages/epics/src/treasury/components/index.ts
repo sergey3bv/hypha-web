@@ -9,3 +9,4 @@ export * from './common/token-symbol-field';
 export * from './common/token-icon-field';
 export * from './common/token-description-field';
 export * from './common/token-digits-field';
+export * from './common/token-type-field';
