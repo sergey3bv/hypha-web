@@ -6,3 +6,4 @@ export * from './assets/asset-detail';
 export * from './assets/deposit-funds';
 export * from './common/token-name-field';
 export * from './common/token-symbol-field';
+export * from './common/token-icon-field';

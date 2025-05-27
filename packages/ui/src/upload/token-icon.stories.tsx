@@ -16,7 +16,6 @@ type Story = StoryObj<typeof TokenIcon>;
 export const Default: Story = {
   args: {
     isUploading: false,
-    uploadedFile: '',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

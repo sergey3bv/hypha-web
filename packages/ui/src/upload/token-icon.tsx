@@ -6,17 +6,15 @@ import Image from 'next/image';
 import { cn } from '@hypha-platform/lib/utils';
 
 interface TokenIconProps {
-  uploadedFile: string | null;
-  onUpload: (files: File[]) => void;
-  onReset: () => void;
+  value: string | null;
+  onChange: (file: File | null) => void;
   defaultImageUrl?: string;
   isUploading?: boolean;
 }
 
 export const TokenIcon = ({
-  uploadedFile,
-  onUpload,
-  onReset,
+  value,
+  onChange,
   defaultImageUrl,
   isUploading = false,
 }: TokenIconProps) => {
@@ -25,25 +23,26 @@ export const TokenIcon = ({
   );
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files[0]) {
-      const fileArray = Array.from(files);
-      const objectUrl = URL.createObjectURL(fileArray[0]);
+    const file = e.target.files?.[0];
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
       setPreviewUrl(objectUrl);
-      onUpload(fileArray);
+      onChange(file);
     }
   };
 
   const handleReset = useCallback(() => {
     setPreviewUrl(null);
-    onReset();
-  }, [onReset]);
+    onChange(null);
+  }, [onChange]);
 
   useEffect(() => {
-    if (uploadedFile) {
-      setPreviewUrl(uploadedFile);
+    if (value) {
+      setPreviewUrl(value);
+    } else {
+      setPreviewUrl(defaultImageUrl || null);
     }
-  }, [uploadedFile]);
+  }, [value, defaultImageUrl]);
 
   return (
     <div className="flex items-center space-x-2">

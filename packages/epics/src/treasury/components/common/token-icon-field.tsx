@@ -1,0 +1,31 @@
+'use client';
+
+import { useFormContext } from 'react-hook-form';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  TokenIcon,
+} from '@hypha-platform/ui';
+
+export function TokenIconField() {
+  const { control } = useFormContext();
+
+  return (
+    <FormField
+      control={control}
+      name="tokenIcon"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className="text-2 text-neutral-11">Token Icon</FormLabel>
+          <FormControl>
+            <TokenIcon value={field.value} onChange={field.onChange} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+}
