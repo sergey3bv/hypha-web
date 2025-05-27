@@ -10,7 +10,7 @@ import {
   TokenMaxSupplyField,
 } from '../../components';
 
-export const IssueNewTokenPlugin = ({ spaceSlug }: { spaceSlug: string }) => {
+export const IssueNewTokenPlugin = () => {
   return (
     <div className="flex flex-col gap-4">
       <TokenNameField />

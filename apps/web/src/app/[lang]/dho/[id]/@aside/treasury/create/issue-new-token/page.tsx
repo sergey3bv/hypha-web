@@ -19,7 +19,7 @@ export default async function IssueNewTokenPage({ params }: PageProps) {
 
   if (!spaceFromDb) notFound();
 
-  const { id: spaceId, web3SpaceId, slug: spaceSlug } = spaceFromDb;
+  const { id: spaceId, web3SpaceId } = spaceFromDb;
 
   return (
     <SidePanel>
@@ -27,7 +27,7 @@ export default async function IssueNewTokenPage({ params }: PageProps) {
         spaceId={spaceId}
         web3SpaceId={web3SpaceId}
         successfulUrl={getDhoPathTreasury(lang as Locale, id)}
-        plugin={<Plugin name="issue-new-token" spaceSlug={spaceSlug} />}
+        plugin={<Plugin name="issue-new-token" />}
       />
     </SidePanel>
   );

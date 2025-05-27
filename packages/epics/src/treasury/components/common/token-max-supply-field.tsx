@@ -21,7 +21,10 @@ export function TokenMaxSupplyField() {
             Token Max Supply
           </FormLabel>
           <FormControl>
-            <Input placeholder="Type an amount or 0 for unlimited supply" {...field} />
+            <Input
+              placeholder="Type an amount or 0 for unlimited supply"
+              {...field}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
