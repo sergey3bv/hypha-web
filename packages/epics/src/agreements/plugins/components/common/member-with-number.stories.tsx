@@ -39,20 +39,25 @@ export const Default: Story = {
   args: {
     members: [
       {
+        id: 1,
         name: 'Alice',
         surname: 'Anderson',
         avatarUrl: 'https://github.com/shadcn.png',
         address: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9',
       },
       {
+        id: 2,
         name: 'Bob',
         surname: 'Brown',
         avatarUrl: 'https://github.com/shadcn.png',
         address: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd1',
       },
     ],
-    value: '',
-    numberValue: '',
+    value: {
+      // @evgenibir TODO: Is that correct? Is it an address? The types are not clear
+      member: '0xc8B8454D2F9192FeCAbc2C6F5d88F6434A2a9cd9',
+      number: 100,
+    },
     onChange: () => {
       console.log('onChange handler');
     },
