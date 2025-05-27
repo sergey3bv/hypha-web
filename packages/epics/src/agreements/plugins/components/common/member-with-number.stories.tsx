@@ -53,7 +53,9 @@ export const Default: Story = {
     ],
     value: '',
     numberValue: '',
-    onChange: () => {},
+    onChange: () => {
+      console.log('onChange handler');
+    },
   },
 
   play: async ({ canvasElement }) => {
