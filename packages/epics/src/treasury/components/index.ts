@@ -4,3 +4,5 @@ export * from './requests/transactions-section';
 export * from './payouts/payouts-section';
 export * from './assets/asset-detail';
 export * from './assets/deposit-funds';
+export * from './common/token-name-field';
+export * from './common/token-symbol-field';
