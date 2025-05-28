@@ -9,7 +9,7 @@ async function main(): Promise<void> {
   // Check current nonces
   const latestNonce = await deployer.getNonce('latest');
   const pendingNonce = await deployer.getNonce('pending');
-  
+
   console.log('Latest confirmed nonce:', latestNonce);
   console.log('Next pending nonce:', pendingNonce);
 
@@ -23,8 +23,8 @@ async function main(): Promise<void> {
     to: deployerAddress, // Send to yourself
     value: 0, // 0 ETH
     nonce: stuckNonce, // Use the stuck nonce
-    maxFeePerGas: ethers.parseUnits("20", "gwei"), // Much higher gas
-    maxPriorityFeePerGas: ethers.parseUnits("5", "gwei"),
+    maxFeePerGas: ethers.parseUnits('20', 'gwei'), // Much higher gas
+    maxPriorityFeePerGas: ethers.parseUnits('5', 'gwei'),
     gasLimit: 21000, // Standard transfer gas limit
   });
 
@@ -34,16 +34,18 @@ async function main(): Promise<void> {
   const receipt = await cancelTx.wait();
   console.log('Cancellation transaction confirmed!');
   console.log('Block number:', receipt?.blockNumber);
-  
+
   // Check nonces after cancellation
   const newLatestNonce = await deployer.getNonce('latest');
   const newPendingNonce = await deployer.getNonce('pending');
-  
+
   console.log('New latest nonce:', newLatestNonce);
   console.log('New pending nonce:', newPendingNonce);
-  
+
   if (newLatestNonce === newPendingNonce) {
-    console.log('✅ No more pending transactions - you can now run your upgrade!');
+    console.log(
+      '✅ No more pending transactions - you can now run your upgrade!',
+    );
   } else {
     console.log('⚠️  Still have pending transactions');
   }
