@@ -3466,6 +3466,9 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Based on the direct deployment, predict the address of the next token
       // that will be created when the proposal executes
+      if (!directEvent) {
+        throw new Error('Direct token deployment event not found');
+      }
       const directTokenAddress = directEvent.args.tokenAddress;
       console.log(`Direct token was deployed at: ${directTokenAddress}`);
 
@@ -3620,14 +3623,24 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Change the voting method to 2
       const newVotingPowerSource = 2;
+      const newUnity = 51; // Keep same unity
+      const newQuorum = 51; // Keep same quorum
       const changeTx = await daoSpaceFactory
         .connect(executorSigner)
-        .changeVotingMethod(spaceId, newVotingPowerSource);
+        .changeVotingMethod(spaceId, newVotingPowerSource, newUnity, newQuorum);
 
       // Verify the event is emitted
       await expect(changeTx)
         .to.emit(daoSpaceFactory, 'VotingMethodChanged')
-        .withArgs(spaceId, initialVotingPowerSource, newVotingPowerSource);
+        .withArgs(
+          spaceId,
+          initialVotingPowerSource, // oldVotingPowerSource = 1
+          newVotingPowerSource, // newVotingPowerSource = 2
+          51, // oldUnity (51 from createDefaultSpace)
+          newUnity, // newUnity = 51
+          51, // oldQuorum (51 from createDefaultSpace)
+          newQuorum, // newQuorum = 51
+        );
 
       // Verify the voting power source has been updated
       const updatedSpaceDetails = await daoSpaceFactory.getSpaceDetails(
@@ -3698,7 +3711,7 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Try to change voting method as non-executor (should fail)
       await expect(
-        daoSpaceFactory.connect(other).changeVotingMethod(spaceId, 2),
+        daoSpaceFactory.connect(other).changeVotingMethod(spaceId, 2, 51, 51),
       ).to.be.revertedWith('Not executor');
     });
 
@@ -3741,7 +3754,9 @@ describe('DAOSpaceFactoryImplementation', function () {
 
       // Try to set invalid voting method (0)
       await expect(
-        daoSpaceFactory.connect(executorSigner).changeVotingMethod(spaceId, 0),
+        daoSpaceFactory
+          .connect(executorSigner)
+          .changeVotingMethod(spaceId, 0, 51, 51),
       ).to.be.revertedWith('Invalid voting power source');
     });
 
@@ -3851,7 +3866,7 @@ describe('DAOSpaceFactoryImplementation', function () {
       const changeVotingMethodCalldata =
         daoSpaceFactory.interface.encodeFunctionData(
           'changeVotingMethod',
-          [spaceId, 3], // Change to voting method 3
+          [spaceId, 3, 51, 51], // Change to voting method 3, keep unity and quorum at 51
         );
 
       // Create a proposal to change the voting method
@@ -3885,7 +3900,9 @@ describe('DAOSpaceFactoryImplementation', function () {
       } catch (error) {
         // If the error is "Proposal already executed", we can ignore it
         // This means the first vote was enough to pass the proposal
-        if (!error.toString().includes('Proposal already executed')) {
+        if (
+          !(error as Error).toString().includes('Proposal already executed')
+        ) {
           // If it's a different error, rethrow it
           throw error;
         }
