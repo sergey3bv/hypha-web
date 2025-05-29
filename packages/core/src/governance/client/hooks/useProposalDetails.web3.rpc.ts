@@ -4,7 +4,12 @@ import { publicClient } from '@core/common';
 import useSWR from 'swr';
 import { getProposalDetails } from '../web3';
 import React from 'react';
-import { erc20Abi, decodeFunctionData } from 'viem';
+import { decodeFunctionData, erc20Abi } from 'viem';
+import {
+  regularTokenFactoryAbi,
+  ownershipTokenFactoryAbi,
+  decayingTokenFactoryAbi,
+} from '@core/generated';
 
 export const useProposalDetailsWeb3Rpc = ({
   proposalId,
@@ -27,6 +32,7 @@ export const useProposalDetailsWeb3Rpc = ({
 
   const parsedProposal = React.useMemo(() => {
     if (!data) return null;
+
     const [
       spaceId,
       startTime,
@@ -46,30 +52,156 @@ export const useProposalDetailsWeb3Rpc = ({
         ? Math.min(100, (totalVotingPowerNumber / quorumTotal) * 100)
         : 0;
 
-    const parsedTransferTransactions = (transactions as any[])
-      .map((tx) => {
-        try {
-          const decoded = decodeFunctionData({
-            abi: erc20Abi,
-            data: tx.data,
-          });
+    const transfers: {
+      recipient: string;
+      rawAmount: bigint;
+      token: string;
+      value: bigint;
+    }[] = [];
 
-          if (decoded.functionName !== 'transfer') return null;
+    const tokens: Array<{
+      tokenType: 'regular' | 'ownership' | 'voice';
+      spaceId: bigint;
+      name: string;
+      symbol: string;
+      maxSupply: bigint;
+      isVotingToken: boolean;
+      transferable?: boolean;
+      decayPercentage?: bigint;
+      decayInterval?: bigint;
+    }> = [];
 
-          const recipient = decoded.args?.[0] as string;
-          const rawAmount = decoded.args?.[1] as bigint;
+    (transactions as any[]).forEach((tx) => {
+      try {
+        const decoded = decodeFunctionData({
+          abi: erc20Abi,
+          data: tx.data,
+        });
 
-          return {
-            recipient,
-            rawAmount,
+        if (decoded.functionName === 'transfer') {
+          transfers.push({
+            recipient: decoded.args?.[0] as string,
+            rawAmount: decoded.args?.[1] as bigint,
             token: tx.target,
             value: tx.value,
-          };
-        } catch {
-          return null;
+          });
+          return;
         }
-      })
-      .filter(Boolean);
+      } catch (error) {
+        console.error('Failed to decode function data:', error);
+      }
+
+      try {
+        const decoded = decodeFunctionData({
+          abi: regularTokenFactoryAbi,
+          data: tx.data,
+        });
+
+        if (decoded.functionName === 'deployToken') {
+          const [
+            spaceId,
+            name,
+            symbol,
+            initialSupply,
+            transferable,
+            isVotingToken,
+          ] = decoded.args as unknown as [
+            bigint,
+            string,
+            string,
+            bigint,
+            boolean,
+            boolean,
+          ];
+
+          tokens.push({
+            tokenType: 'regular',
+            spaceId,
+            name,
+            symbol,
+            maxSupply: initialSupply,
+            isVotingToken,
+            transferable,
+          });
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to decode function data:', error);
+      }
+
+      try {
+        const decoded = decodeFunctionData({
+          abi: ownershipTokenFactoryAbi,
+          data: tx.data,
+        });
+
+        if (decoded.functionName === 'deployOwnershipToken') {
+          const [spaceId, name, symbol, maxSupply, isVotingToken] =
+            decoded.args as unknown as [
+              bigint,
+              string,
+              string,
+              bigint,
+              boolean,
+            ];
+
+          tokens.push({
+            tokenType: 'ownership',
+            spaceId,
+            name,
+            symbol,
+            maxSupply,
+            isVotingToken,
+          });
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to decode function data:', error);
+      }
+
+      try {
+        const decoded = decodeFunctionData({
+          abi: decayingTokenFactoryAbi,
+          data: tx.data,
+        });
+
+        if (decoded.functionName === 'deployDecayingToken') {
+          const [
+            spaceId,
+            name,
+            symbol,
+            maxSupply,
+            transferable,
+            isVotingToken,
+            decayPercentage,
+            decayInterval,
+          ] = decoded.args as unknown as [
+            bigint,
+            string,
+            string,
+            bigint,
+            boolean,
+            boolean,
+            bigint,
+            bigint,
+          ];
+
+          tokens.push({
+            tokenType: 'voice',
+            spaceId,
+            name,
+            symbol,
+            maxSupply,
+            isVotingToken,
+            transferable,
+            decayPercentage,
+            decayInterval,
+          });
+        }
+      } catch (error) {
+        console.error('Failed to decode function data:', error);
+      }
+    });
 
     return {
       creator,
@@ -90,7 +222,8 @@ export const useProposalDetailsWeb3Rpc = ({
           ? (Number(noVotes) / totalVotingPowerNumber) * 100
           : 0,
       quorumPercentage,
-      transfers: parsedTransferTransactions,
+      transfers,
+      tokens,
     };
   }, [data, quorumTotal]);
 
