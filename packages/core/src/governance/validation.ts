@@ -206,6 +206,8 @@ export const schemaQuorumAndUnity = z.object({
 });
 
 export const schemaIssueNewToken = z.object({
+  ...createAgreementWeb2Props,
+  ...createAgreementFiles,
   name: z
     .string()
     .min(2, { message: 'Token name must be at least 2 characters long' })
@@ -260,24 +262,22 @@ export const schemaIssueNewToken = z.object({
   ),
 });
 
+export const schemaChangeVotingMethod = z.object({
+  ...createAgreementWeb2Props,
+  ...createAgreementFiles,
+  members: z.array(schemaMemberWithNumber).optional(),
+  decaySettings: schemaDecaySettings.optional(),
+  token: z.string().optional(),
+  quorumAndUnity: schemaQuorumAndUnity.optional(),
+  votingMethod: z.enum(['1m1v', '1v1v', '1t1v']).nullable().optional(),
+});
+
 export const schemaCreateAgreementForm = z.object({
   ...createAgreementWeb2Props,
   ...createAgreementFiles,
   recipient: schemaProposeContribution.shape.recipient,
   payouts: schemaProposeContribution.shape.payouts,
   paymentSchedule: paymentScheduleSchema.optional(),
-  members: z.array(schemaMemberWithNumber).optional(),
-  decaySettings: schemaDecaySettings.optional(),
-  token: z.string().optional(),
-  quorumAndUnity: schemaQuorumAndUnity.optional(),
-  name: schemaIssueNewToken.shape.name.optional(),
-  symbol: schemaIssueNewToken.shape.symbol.optional(),
-  icon: schemaIssueNewToken.shape.icon.optional(),
-  // digits: schemaIssueNewToken.shape.digits.optional(),
-  type: schemaIssueNewToken.shape.type.optional(),
-  maxSupply: schemaIssueNewToken.shape.maxSupply.optional(),
-  // tokenDescription: schemaIssueNewToken.shape.tokenDescription.optional(),
-  votingMethod: z.enum(['1m1v', '1v1v', '1t1v']).nullable().optional(),
 });
 
 export const schemaCreateProposalWeb3 = z.object({

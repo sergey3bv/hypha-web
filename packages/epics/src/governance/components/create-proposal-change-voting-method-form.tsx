@@ -4,7 +4,7 @@ import { CreateAgreementBaseFields } from '@hypha-platform/epics';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  schemaCreateAgreementForm,
+  schemaChangeVotingMethod,
   createAgreementFiles,
   useMe,
 } from '@hypha-platform/core/client';
@@ -12,10 +12,10 @@ import { z } from 'zod';
 import { Button, Form, Separator } from '@hypha-platform/ui';
 import React from 'react';
 
-type FormValues = z.infer<typeof schemaCreateAgreementForm>;
+type FormValues = z.infer<typeof schemaChangeVotingMethod>;
 
 const schemaCreateProposalChangeVotingMethod =
-  schemaCreateAgreementForm.extend(createAgreementFiles);
+  schemaChangeVotingMethod.extend(createAgreementFiles);
 
 interface CreateProposalChangeVotingMethodFormProps {
   spaceId: number | undefined | null;
