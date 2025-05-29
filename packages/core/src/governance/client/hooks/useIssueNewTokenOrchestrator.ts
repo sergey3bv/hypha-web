@@ -92,6 +92,10 @@ type CreateIssueTokenArg = z.infer<typeof schemaCreateAgreementWeb2> & {
   maxSupply: number;
   transferable: boolean;
   isVotingToken: boolean;
+  decaySettings: {
+    decayInterval: number;
+    decayPercentage: number;
+  };
   type: 'voice' | 'ownership' | 'utility' | 'credits';
 };
 
@@ -165,8 +169,14 @@ export const useCreateIssueTokenOrchestrator = ({
             transferable: arg.transferable,
             isVotingToken: arg.isVotingToken,
             type: arg.type,
-            decayPercentage: arg.type === 'voice' ? 1 : undefined,
-            decayInterval: arg.type === 'voice' ? 604800 : undefined,
+            decayPercentage:
+              arg.type === 'voice'
+                ? arg.decaySettings.decayPercentage
+                : undefined,
+            decayInterval:
+              arg.type === 'voice'
+                ? arg.decaySettings.decayInterval
+                : undefined,
           });
           completeTask('CREATE_WEB3_AGREEMENT');
         }

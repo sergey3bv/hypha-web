@@ -205,6 +205,23 @@ export const schemaQuorumAndUnity = z.object({
   unity: z.number().min(0).max(100, 'Unity must be between 0-100'),
 });
 
+const decaySettingsSchema = z.object({
+  decayInterval: z
+    .number({
+      required_error: 'Decay interval is required',
+      invalid_type_error: 'Decay interval must be a number',
+    })
+    .positive('Decay interval must be greater than 0'),
+
+  decayPercentage: z
+    .number({
+      required_error: 'Decay percentage is required',
+      invalid_type_error: 'Decay percentage must be a number',
+    })
+    .min(1, 'Decay percentage must be at least 1%')
+    .max(100, 'Decay percentage must not exceed 100%'),
+});
+
 export const schemaIssueNewToken = z.object({
   ...createAgreementWeb2Props,
   ...createAgreementFiles,
@@ -260,6 +277,7 @@ export const schemaIssueNewToken = z.object({
         message: 'Max supply must be a non-negative number',
       }),
   ),
+  decaySettings: decaySettingsSchema,
 });
 
 export const schemaChangeVotingMethod = z.object({

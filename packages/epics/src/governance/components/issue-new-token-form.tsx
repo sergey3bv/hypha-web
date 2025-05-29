@@ -65,6 +65,10 @@ export const IssueNewTokenForm = ({
       type: undefined,
       maxSupply: 0,
       // tokenDescription: '',
+      decaySettings: {
+        decayInterval: 604800,
+        decayPercentage: 1,
+      },
     },
   });
 
