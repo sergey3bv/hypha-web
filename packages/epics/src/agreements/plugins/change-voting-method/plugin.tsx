@@ -18,26 +18,19 @@ export const ChangeVotingMethodPlugin = ({
 }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const { tokens } = useTokens();
-  const { reset } = useFormContext();
+  const { reset, setValue } = useFormContext();
 
   const handleMethodChange = (method: string | null) => {
     setSelectedMethod(method);
-    reset(
-      {
-        members: [],
-        decaySettings: {
-          decayPeriod: 1,
-          timeFormat: 'Minutes',
-          decayPercent: 1,
-        },
-        token: undefined,
-        quorumAndUnity: { quorum: 0, unity: 0 },
-      },
-      {
-        keepDefaultValues: true,
-        keepValues: false,
-      },
-    );
+    setValue('votingMethod', method as '1m1v' | '1v1v' | '1t1v');
+    setValue('members', []);
+    setValue('decaySettings', {
+      decayPeriod: 1,
+      timeFormat: 'Minutes',
+      decayPercent: 1,
+    });
+    setValue('token', undefined);
+    setValue('quorumAndUnity', { quorum: 0, unity: 0 });
   };
 
   return (

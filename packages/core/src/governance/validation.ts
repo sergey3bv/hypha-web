@@ -270,13 +270,14 @@ export const schemaCreateAgreementForm = z.object({
   decaySettings: schemaDecaySettings.optional(),
   token: z.string().optional(),
   quorumAndUnity: schemaQuorumAndUnity.optional(),
-  name: schemaIssueNewToken.shape.name,
-  symbol: schemaIssueNewToken.shape.symbol,
-  icon: schemaIssueNewToken.shape.icon,
-  // digits: schemaIssueNewToken.shape.digits,
-  type: schemaIssueNewToken.shape.type,
-  maxSupply: schemaIssueNewToken.shape.maxSupply,
-  // tokenDescription: schemaIssueNewToken.shape.tokenDescription,
+  name: schemaIssueNewToken.shape.name.optional(),
+  symbol: schemaIssueNewToken.shape.symbol.optional(),
+  icon: schemaIssueNewToken.shape.icon.optional(),
+  // digits: schemaIssueNewToken.shape.digits.optional(),
+  type: schemaIssueNewToken.shape.type.optional(),
+  maxSupply: schemaIssueNewToken.shape.maxSupply.optional(),
+  // tokenDescription: schemaIssueNewToken.shape.tokenDescription.optional(),
+  votingMethod: z.enum(['1m1v', '1v1v', '1t1v']).nullable().optional(),
 });
 
 export const schemaCreateProposalWeb3 = z.object({
