@@ -13,8 +13,13 @@ import { CommentsList } from '../../interactions/components/comments-list';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useProposalDetailsWeb3Rpc } from '@core/governance';
-import { ProposalTransactionItem, ProposalTokenItem } from '../../governance';
+import {
+  ProposalTransactionItem,
+  ProposalTokenItem,
+  ProposalVotingInfo,
+} from '../../governance';
 import { MarkdownSuspense } from '@hypha-platform/ui/server';
+import { Slider } from '@hypha-platform/ui';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -95,6 +100,14 @@ export const ProposalDetail = ({
       </Skeleton>
       <MarkdownSuspense>{content}</MarkdownSuspense>
       <AttachmentList attachments={attachments || []} />
+      {proposalDetails?.votingMethods.map((method, idx) => (
+        <ProposalVotingInfo
+          key={idx}
+          votingPowerSource={method.votingPowerSource}
+          unity={method.unity}
+          quorum={method.quorum}
+        />
+      ))}
       {proposalDetails?.tokens.map((token, idx) => (
         <ProposalTokenItem
           key={idx}
