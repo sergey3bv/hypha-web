@@ -266,7 +266,6 @@ export const schemaChangeVotingMethod = z.object({
   ...createAgreementWeb2Props,
   ...createAgreementFiles,
   members: z.array(schemaMemberWithNumber).optional(),
-  decaySettings: schemaDecaySettings.optional(),
   token: z.string().optional(),
   quorumAndUnity: schemaQuorumAndUnity.optional(),
   votingMethod: z.enum(['1m1v', '1v1v', '1t1v']).nullable().optional(),

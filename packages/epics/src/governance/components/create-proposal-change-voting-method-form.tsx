@@ -59,11 +59,6 @@ export const CreateProposalChangeVotingMethodForm = ({
       spaceId: spaceId ?? undefined,
       creatorId: person?.id,
       members: [],
-      decaySettings: {
-        decayPeriod: 1,
-        timeFormat: 'Minutes',
-        decayPercent: 1,
-      },
       token: undefined as `0x${string}` | undefined,
       quorumAndUnity: { quorum: 0, unity: 0 },
       votingMethod: undefined,
@@ -79,11 +74,6 @@ export const CreateProposalChangeVotingMethodForm = ({
         spaceId: spaceId as number,
         web3SpaceId: web3SpaceId,
         members: data.members ?? [],
-        decaySettings: {
-          decayPeriod: data.decaySettings?.decayPeriod ?? 0,
-          timeFormat: data.decaySettings?.timeFormat ?? '',
-          decayPercent: data.decaySettings?.decayPercent ?? 0,
-        },
         token: data.token?.startsWith('0x')
           ? (data.token as `0x${string}`)
           : undefined,

@@ -19,11 +19,6 @@ import {
 interface ChangeVotingMethodArgs {
   spaceId: number;
   members: { member: string; number: number }[];
-  decaySettings: {
-    decayPeriod: number;
-    timeFormat: string;
-    decayPercent: number;
-  };
   token: `0x${string}` | undefined;
   quorumAndUnity: { quorum: bigint; unity: bigint };
   votingMethod: '1m1v' | '1v1v' | '1t1v';

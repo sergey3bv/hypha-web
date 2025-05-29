@@ -88,11 +88,6 @@ const computeProgress = (tasks: TaskState): number => {
 type CreateChangeVotingMethodArg = z.infer<typeof schemaCreateAgreementWeb2> & {
   web3SpaceId: number;
   members: { member: string; number: number }[];
-  decaySettings: {
-    decayPeriod: number;
-    timeFormat: string;
-    decayPercent: number;
-  };
   token: `0x${string}` | undefined;
   quorumAndUnity: { quorum: bigint; unity: bigint };
   votingMethod: '1m1v' | '1v1v' | '1t1v';
@@ -163,7 +158,6 @@ export const useCreateChangeVotingMethodOrchestrator = ({
           await web3.createChangeVotingMethod({
             spaceId: arg.web3SpaceId,
             members: arg.members,
-            decaySettings: arg.decaySettings,
             token: arg.token,
             quorumAndUnity: arg.quorumAndUnity,
             votingMethod: arg.votingMethod,
