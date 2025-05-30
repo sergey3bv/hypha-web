@@ -41,7 +41,7 @@ export const useChangeVotingMethodMutationsWeb3Rpc = (config?: Config) => {
     async ([cfg], { arg }: { arg: ChangeVotingMethodArgs }) => {
       const chainId = 8453;
 
-      let txData: Array<{
+      const txData: Array<{
         target: `0x${string}`;
         value: number;
         data: `0x${string}`;
