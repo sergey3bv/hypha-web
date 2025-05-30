@@ -1,4 +1,3 @@
-import { addDays } from 'date-fns';
 import { formatISO } from 'date-fns';
 import { FormVoting } from './form-voting';
 import { ProposalHead, ProposalHeadProps } from './proposal-head';
@@ -17,9 +16,9 @@ import {
   ProposalTransactionItem,
   ProposalTokenItem,
   ProposalVotingInfo,
+  ProposalMintItem,
 } from '../../governance';
 import { MarkdownSuspense } from '@hypha-platform/ui/server';
-import { Slider } from '@hypha-platform/ui';
 
 type ProposalDetailProps = ProposalHeadProps & {
   onAccept: () => void;
@@ -124,12 +123,13 @@ export const ProposalDetail = ({
           tokenAddress={tx?.token}
         />
       ))}
+      {proposalDetails?.mintings.map((mint, idx) => (
+        <ProposalMintItem key={idx} member={mint.member} number={mint.number} />
+      ))}
       <FormVoting
         unity={proposalDetails?.yesVotePercentage || 0}
         quorum={proposalDetails?.quorumPercentage || 0}
-        endTime={formatISO(
-          addDays(new Date(proposalDetails?.endTime || new Date()), 2),
-        )}
+        endTime={formatISO(new Date(proposalDetails?.endTime || new Date()))}
         onAccept={handleOnAccept}
         onReject={handleOnReject}
       />
