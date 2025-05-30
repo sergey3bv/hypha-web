@@ -10,6 +10,7 @@ import {
   ownershipTokenFactoryAbi,
   decayingTokenFactoryAbi,
   daoSpaceFactoryImplementationAbi,
+  decayingSpaceTokenAbi,
 } from '@core/generated';
 
 export const useProposalDetailsWeb3Rpc = ({
@@ -77,6 +78,11 @@ export const useProposalDetailsWeb3Rpc = ({
       votingPowerSource: bigint;
       unity: bigint;
       quorum: bigint;
+    }> = [];
+
+    const mintings: Array<{
+      member: `0x${string}`;
+      number: bigint;
     }> = [];
 
     (transactions as any[]).forEach((tx) => {
@@ -230,6 +236,27 @@ export const useProposalDetailsWeb3Rpc = ({
       } catch (error) {
         console.error('Failed to decode function data:', error);
       }
+
+      try {
+        const decoded = decodeFunctionData({
+          abi: decayingSpaceTokenAbi,
+          data: tx.data,
+        });
+
+        if (decoded.functionName === 'mint') {
+          const [member, number] = decoded.args as unknown as [
+            `0x${string}`,
+            bigint,
+          ];
+
+          mintings.push({
+            member,
+            number,
+          });
+        }
+      } catch (error) {
+        console.error('Failed to decode function data:', error);
+      }
     });
 
     return {
@@ -254,6 +281,7 @@ export const useProposalDetailsWeb3Rpc = ({
       transfers,
       tokens,
       votingMethods,
+      mintings,
     };
   }, [data, quorumTotal]);
 
