@@ -33,7 +33,7 @@ export default defineConfig({
           [base.id]: '0x95A33EC94de2189893884DaD63eAa19f7390144a',
         },
         DecayingTokenFactory: {
-          [base.id]: '0x95A33EC94de2189893884DaD63eAa19f7390144a',
+          [base.id]: '0x299f4D2327933c1f363301dbd2a28379ccD5539b',
         },
         OwnershipTokenFactory: {
           [base.id]: '0xA1eDf096B72226ae2f7BDEb12E9c9C82152BccB6',
