@@ -15,6 +15,11 @@ import {
   daoSpaceFactoryImplementationAbi,
   daoSpaceFactoryImplementationAddress,
 } from '@core/generated';
+import {
+  decayingSpaceTokenAbi,
+  decayingTokenFactoryAbi,
+  decayingTokenFactoryAddress,
+} from '@core/generated';
 
 interface ChangeVotingMethodArgs {
   spaceId: number;
@@ -42,23 +47,46 @@ export const useChangeVotingMethodMutationsWeb3Rpc = (config?: Config) => {
         data: `0x${string}`;
       }> = [];
 
-      if (arg.votingMethod === '1m1v') {
-        txData = [
-          {
-            target: daoSpaceFactoryImplementationAddress[chainId],
+      txData.push({
+        target: daoSpaceFactoryImplementationAddress[chainId],
+        value: 0,
+        data: encodeFunctionData({
+          abi: daoSpaceFactoryImplementationAbi,
+          functionName: 'changeVotingMethod',
+          args: [
+            BigInt(arg.spaceId),
+            BigInt(
+              arg.votingMethod === '1m1v'
+                ? 2
+                : arg.votingMethod === '1v1v'
+                ? 1
+                : 2,
+            ),
+            BigInt(arg.quorumAndUnity.unity),
+            BigInt(arg.quorumAndUnity.quorum),
+          ],
+        }),
+      });
+
+      if (arg.votingMethod === '1v1v') {
+        const tokenAddress = await publicClient.readContract({
+          abi: decayingTokenFactoryAbi,
+          address: decayingTokenFactoryAddress[chainId],
+          functionName: 'getSpaceToken',
+          args: [BigInt(arg.spaceId)],
+        });
+
+        arg.members.forEach(({ member, number }) => {
+          txData.push({
+            target: tokenAddress as `0x${string}`,
             value: 0,
             data: encodeFunctionData({
-              abi: daoSpaceFactoryImplementationAbi,
-              functionName: 'changeVotingMethod',
-              args: [
-                BigInt(arg.spaceId),
-                BigInt(2),
-                BigInt(arg.quorumAndUnity.unity),
-                BigInt(arg.quorumAndUnity.quorum),
-              ],
+              abi: decayingSpaceTokenAbi,
+              functionName: 'mint',
+              args: [member as `0x${string}`, BigInt(number) * 10n ** 18n],
             }),
-          },
-        ];
+          });
+        });
       }
 
       const parsedProposal = schemaCreateProposalWeb3.parse({

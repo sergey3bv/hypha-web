@@ -24,7 +24,6 @@ export const ChangeVotingMethodPlugin = ({
     setValue('votingMethod', method as '1m1v' | '1v1v' | '1t1v');
     setValue('members', []);
     setValue('token', undefined);
-    setValue('quorumAndUnity', { quorum: 0, unity: 0 });
   };
 
   return (

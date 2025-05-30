@@ -16,6 +16,8 @@ import { useJwt } from '@hypha-platform/core/client';
 import { useConfig } from 'wagmi';
 import { LoadingBackdrop } from '@hypha-platform/ui/server';
 import { useRouter } from 'next/navigation';
+import { useSpaceDetailsWeb3Rpc } from '@hypha-platform/core/client';
+
 type FormValues = z.infer<typeof schemaChangeVotingMethod>;
 
 const schemaCreateProposalChangeVotingMethod =
@@ -39,6 +41,9 @@ export const CreateProposalChangeVotingMethodForm = ({
   const { jwt } = useJwt();
   const config = useConfig();
 
+  const { spaceDetails } = useSpaceDetailsWeb3Rpc({
+    spaceId: spaceId as number,
+  });
   const {
     createChangeVotingMethod,
     reset,
@@ -60,7 +65,10 @@ export const CreateProposalChangeVotingMethodForm = ({
       creatorId: person?.id,
       members: [],
       token: undefined as `0x${string}` | undefined,
-      quorumAndUnity: { quorum: 0, unity: 0 },
+      quorumAndUnity: {
+        quorum: Number(spaceDetails?.quorum),
+        unity: Number(spaceDetails?.unity),
+      },
       votingMethod: undefined,
     },
   });
