@@ -1,5 +1,4 @@
 import '@hypha-platform/ui-utils/global.css';
-import '@hypha-platform/ui/styles.css';
 
 export const metadata = {
   title: 'Welcome to web',
