@@ -1,0 +1,78 @@
+.mdxeditor {
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  background-color: hsl(var(--neutral-1));
+
+  .mdxeditor-popup-container {
+  }
+  .mdxeditor-toolbar {
+    background-color: hsl(var(--neutral-2));
+    border-radius: var(--radius) var(--radius) 0 0;
+
+    .selectContainer {
+      background-color: hsl(var(--neutral-2));
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      box-shadow: 0 0 0 1px hsl(var(--border));
+    }
+  }
+  .mdxeditor-select-content {
+    background-color: hsl(var(--neutral-4));
+  }
+  ._selectTrigger_sects_308 {
+    margin: 0;
+    background: hsl(var(--neutral-4));
+
+    &[data-placeholder] > span:first-child {
+      color: hsl(var(--neutral-12));
+    }
+  }
+
+  .mdxeditor-root-contenteditable {
+    font-family: var(--font-text);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
+
+      li {
+        margin: 0;
+        line-height: 1;
+
+        &::before {
+          border-color: hsl(var(--neutral-12));
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &::after {
+          top: 25%;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+/* Fix dropdown list container styling - rendered outside .mdxeditor */
+[role='listbox'] {
+  background-color: hsl(var(--neutral-4)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Fix dropdown option styling - rendered outside .mdxeditor */
+._selectItem_sects_301 {
+  background-color: hsl(var(--neutral-4)) !important;
+  color: hsl(var(--neutral-12)) !important;
+
+  &:hover,
+  &[data-highlighted] {
+    background-color: hsl(var(--neutral-5)) !important;
+  }
+
+  &[data-state='checked'] {
+    background-color: hsl(var(--neutral-6)) !important;
+  }
+}
