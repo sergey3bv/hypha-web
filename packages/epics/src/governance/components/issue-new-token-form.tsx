@@ -83,8 +83,8 @@ export const IssueNewTokenForm = ({
       ...data,
       spaceId: spaceId as number,
       web3SpaceId: web3SpaceId as number,
-      transferable: data.type === 'voice' ? false : true,
-      isVotingToken: data.type === 'voice' ? true : false,
+      transferable: data.type !== 'voice',
+      isVotingToken: data.type === 'voice',
     });
   };
 
