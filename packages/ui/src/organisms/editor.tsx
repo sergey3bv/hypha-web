@@ -38,7 +38,7 @@ export function RichTextEditor({
               <Separator orientation="vertical" />
               <BoldItalicUnderlineToggles />
               <Separator orientation="vertical" />
-              <ListsToggle />
+              <ListsToggle options={['bullet', 'number']} />
               <div className="grow" />
               <UndoRedo />
             </div>
