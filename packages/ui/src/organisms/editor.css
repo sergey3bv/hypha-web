@@ -257,6 +257,63 @@
   }
 }
 
+/* Tooltip styling for MDX editor */
+[role='tooltip'] {
+  background-color: hsl(var(--neutral-2)) !important;
+  color: hsl(var(--neutral-12)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+  z-index: 9999 !important;
+  max-width: 200px !important;
+  word-wrap: break-word !important;
+}
+
+/* Tooltip content wrapper */
+._tooltipContent_sects_681,
+[data-state='delayed-open'][class*='tooltipContent'] {
+  background-color: hsl(var(--neutral-2)) !important;
+  color: hsl(var(--neutral-12)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+  z-index: 9999 !important;
+  max-width: 200px !important;
+  word-wrap: break-word !important;
+}
+
+/* Tooltip trigger styling improvements */
+._tooltipTrigger_sects_677[data-state='delayed-open'] {
+  position: relative;
+}
+
+/* Ensure all tooltip-like elements have proper styling */
+[data-tooltip],
+[aria-describedby][data-state='delayed-open'] {
+  position: relative;
+}
+
+/* Global tooltip styling for any tooltips rendered outside the editor */
+body [role='tooltip']:not(.mdxeditor [role='tooltip']) {
+  background-color: hsl(var(--neutral-2)) !important;
+  color: hsl(var(--neutral-12)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+  z-index: 9999 !important;
+}
+
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   .mdxeditor,
